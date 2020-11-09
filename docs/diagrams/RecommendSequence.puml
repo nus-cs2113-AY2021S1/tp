@@ -1,0 +1,39 @@
+@startuml
+participant ":Fitr" as fitr
+participant ":Parser" as Parser << class >>
+participant ":RecommendCommand" as RecommendCommand
+participant ":Recommender" as Recommender
+
+
+activate fitr
+fitr -> Parser : parse("Exercise push ups /500")
+activate Parser
+
+create RecommendCommand
+Parser-> RecommendCommand
+
+activate RecommendCommand
+return
+return
+deactivate Parser
+
+fitr -> RecommendCommand : execute()
+activate RecommendCommand
+
+RecommendCommand -> Recommender: recommend()
+activate Recommender
+Recommender -> Recommender : recommendParser()
+activate Recommender
+return
+create ":StandardExerciseList"
+Recommender -> ":StandardExerciseList"
+activate ":StandardExerciseList"
+return
+return
+RecommendCommand -> ":StorageManager" : writeExerciseList()
+activate ":StorageManager"
+return
+
+return
+hide footbox
+@enduml

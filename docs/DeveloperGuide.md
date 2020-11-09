@@ -178,7 +178,7 @@ This section describes how some of the features in Fitr are implemented.
 ### 4.1 Add Exercise and Add Food Command
 The `AddFoodCommand` and `AddExerciseCommand` are similar in implementation. It simply adds the user input into either the `ExerciseList` or the `Foodlist` using the ListManager.
 
-<p align="center"><img src="images/AddExerciseCommandSequence.png"></p>
+<p align="center"><img src="images/AddExerciseSequence.png"></p>
 <p align="center">Figure 7: Sequence diagram for <code>AddExerciseCommand</code></p>
 
 <!-- @@author jerichochua -->
@@ -254,7 +254,7 @@ The user's input is first parsed by the `Parser` class, which returns a `Recomme
 
 The `Recommender` class then returns a list of type `StandardExerciseList`. The user input is then read in by the `Ui` class to determine which `StandardExercise` objects in the `StandardExerciseList` should be converted to `Exercise` and added to the exerciseList of type `ExerciseList`
 
-<p align="center"><img src="images/RecommendCommandSequenceDiagram.png"></p>
+<p align="center"><img src="images/RecommendSequence.png"></p>
 <p align="center">Figure 15: Sequence diagram for <code>recommend</code> command</p>
 
 <!-- @@author dmbclub -->

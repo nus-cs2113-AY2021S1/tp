@@ -1,0 +1,46 @@
+@startuml
+participant ":Fitr" as fitr
+participant ":Parser" as Parser << class >>
+participant ":AddExerciseCommand" as AddExerciseCommand
+participant ":ListManager" as ListManager
+participant ":Exercise" as Exercise
+participant ":StorageManager" as StorageManager
+participant ":ExerciseList" as ExerciseList
+
+
+activate fitr
+fitr -> Parser : parse("Exercise push ups /500")
+activate Parser
+
+create AddExerciseCommand
+Parser-> AddExerciseCommand
+
+activate AddExerciseCommand
+return
+return
+deactivate Parser
+
+fitr -> AddExerciseCommand : execute()
+activate AddExerciseCommand
+
+create Exercise
+AddExerciseCommand -> Exercise
+activate Exercise
+return
+
+AddExerciseCommand -> ListManager: addExercise()
+activate ListManager
+ListManager -> ExerciseList : addExercise()
+activate ExerciseList
+return
+return
+
+AddExerciseCommand -> StorageManager: writeExercistList()
+activate StorageManager
+return
+
+return
+AddExerciseCommand -[hidden]-> fitr
+destroy AddExerciseCommand
+hide footbox
+@enduml
