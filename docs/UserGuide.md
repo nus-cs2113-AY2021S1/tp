@@ -232,7 +232,7 @@ While `showsettings` shows you the settings, this command lets you change one of
 * `{NEW_OPTION}` is the new setting option that you would like to select. This needs to be typed in exactly as show from the `showsettings` command.
 
 For example, let's say that you want Zoomaster to enter `bookmark` mode when you start it. 
-You can type in `set def_mode bookmark` and Zoomaster will change your settings, as shown below.
+You can type in `set def_mode bookmark` and Zoomaster will change your settings, as shown below.  
 
 ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/setsettings.png)
 
@@ -263,11 +263,13 @@ This feature helps you print out all bookmark in your bookmark list.
 ```
 Format: show
 ```
-Example of a printed out bookmark list.
+Example of a printed out bookmark list.  
 
-![]()
+![](images/showOutput.PNG)
 
-If your bookmark list is empty you will get message ""
+If your bookmark list is empty you will get the message show in the screenshot below  
+
+![](images/showEmptyBookmarks.PNG)
 
 <br/><br/> 
 <a name="addbookmark"></a>  
@@ -276,7 +278,7 @@ You can add bookmarks to your bookmark list. A bookmark contains its description
 
 > ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/bangbang.png)
 >* The validity of the `URL` you entered cannot be checked. Please ensure that you entered the correct link. 
->* Your `DESCRIPTION` must only contain one word (no whitespace inside). You can use underscore("_") or dashes("-"") to string
+>* Your `DESCRIPTION` must only contain one word (no whitespace inside). You can use underscore("_") or dashes("-") to string
 >multiple words together. Eg. "github_team_repo" or "cs2113t-website".
 >* Your input `URL` has to start with `www.`, `http://` or `https://`.
 
@@ -286,11 +288,8 @@ Format: add {DESCRIPTON} {URL}
 
 Example of usage:
 * `add google www.google.com/`  
-![]()
 * `add example http://example.com`  
-![]()
 * `add cs2113t-website https://nus-cs2113-ay2021s1.github.io/website/`  
-![]()
 
 <br/><br/> 
 <a name="deletebookmark"></a>  
@@ -307,8 +306,8 @@ Example of usage:
 * `delete 2`  
 * `delete 4`  
 
-You should see a message similar to the screenshot below.
-![]()
+You should see a message similar to the screenshot below.  
+![](images/deletebookmarksoutput.PNG)
 
 <!-- @@author fchensan -->
 <br/><br/> 
@@ -347,11 +346,10 @@ Example of usage:
 * `find cs2113t-website`
 * `find notes`  
 
-You should see a message similar to the screenshot below when a successful match is found.
-![]()
+You should see a message similar to the screenshot below when a successful match is found.  
+![](images/findBookmarkoutput.PNG)
 
-Else you should see "No bookmarks contain the specified keyword!" like the screenshot below.
-![]()
+Else you should see "No bookmarks contain the specified keyword!".
 
 <br/><br/> 
 <a name="launchbookmark"></a>  
@@ -433,7 +431,7 @@ Example of usage:
 <br/><br/>
 <a name="showmoduledetails"></a>
 #### 5.3.2 Show module and slot details: `show` (Xing Rong)
-Shows the details of a module or slot that has been added.  
+You can use this command to show the details of a module or slot that has been added.  
 You can see the respective indexes of each of the slots from the module 
 and using the `bookmarks` keyword will show the bookmarks which are saved in the module and its slots.
 
@@ -446,11 +444,11 @@ Format (show module details): show {MODULE} bookmarks(optional)
 ```
 
 Example of usage:   
-* `show CS2113T`  
-![](images/showTimetableCommand/showmoduleoutput.PNG)  
-
-* `show CS2113T bookmarks`  
-![](images/showTimetableCommand/showmodulebookmarksoutput.PNG)
+>* `show CS2113T`  
+>![](images/showTimetableCommand/showmoduleoutput.PNG)  
+>
+>* `show CS2113T bookmarks`  
+>![](images/showTimetableCommand/showmodulebookmarksoutput.PNG)
 
 <br/><br/> 
 <a name="addtimeslot"></a>
@@ -499,42 +497,42 @@ Format (chaining commands): add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_T
   exists or is valid from left to right of the input before adding them.
   * In the command `add cs2113t lecture fri 16:00 18:00`, if `cs2113t` module already exists, 
     then it will not be added into the timetable. The slot `lecture fri 16:00 18:00` 
-    which is valid and not a duplicate will then be added to the existing `cs2113t` module.
+    will then be added to the existing `cs2113t` module.
 
 
 Example of usage:   
 
-* Adding a module  
-input: `add CS2113T`  
-output:  
-![](images/addSlotCommand/addmoduleoutput.PNG)  
-
-* Adding a slot to a module  
-input: `add CS2102 tutorial fri 10:00 12:00`  
-output:  
-![](images/addSlotCommand/addslottomoduleoutput.PNG)  
-
-* Adding a bookmark to a module  
-input: `add CS2113T module-website https://nus-cs2113-ay2021s1.github.io/website/index.html`  
-output:  
-![](images/addSlotCommand/addbookmarktomoduleoutput.PNG)  
-
-* Adding a bookmark to a slot  
-input: `add CS2102 tutorial fri 10:00 12:00 www.google.com`   
-output:  
-![](images/addSlotCommand/addbookmarktoslotoutput.PNG)  
-
-* Chaining commands  
-input: `add CG2271 tutorial thu 11:00 12:00, lecture wed 09:00 11:00 www.yahoo.com, example-bookmark https://www.youtube.com`  
-output:  
-(The indentation of each line of the output shows the relationships between the components.
-In the output shown below, `bookmarks added to CG2271 lecture` is one level of indentation 
-higher than the previous line. This means that the bookmark is added to that lecture slot.
-Similarly, `bookmark added to module` is one level of indentation higher than `CG2271 added`, 
-which suggests that the bookmark is added to the module CG2271.)  
-![](images/addSlotCommand/addchaincommandoutput.PNG)  
-result:  
-![](images/addSlotCommand/addresult.PNG)
+>* **Adding a module**  
+>  * Input: `add CS2113T`  
+>  * Output:  
+>![](images/addSlotCommand/addmoduleoutput.PNG)  
+>
+>* **Adding a slot to a module**  
+>  * Input: `add CS2102 tutorial fri 10:00 12:00`  
+>  * Output:  
+>![](images/addSlotCommand/addslottomoduleoutput.PNG)  
+>
+>* **Adding a bookmark to a module**  
+>  * Input: `add CS2113T module-website https://nus-cs2113-ay2021s1.github.io/website/index.html`  
+>  * Output:  
+>![](images/addSlotCommand/addbookmarktomoduleoutput.PNG)  
+>
+>* **Adding a bookmark to a slot**  
+>  * Input: `add CS2102 tutorial fri 10:00 12:00 www.google.com`   
+>  * Output:  
+>![](images/addSlotCommand/addbookmarktoslotoutput.PNG)  
+>
+>* **Chaining commands**  
+>  * Input: `add CG2271 tutorial thu 11:00 12:00, lecture wed 09:00 11:00 www.yahoo.com, example-bookmark https://www.youtube.com`  
+>  * Output:  
+>(The indentation of each line of the output shows the relationships between the components.
+>In the output shown below, `bookmarks added to CG2271 lecture` is one level of indentation 
+>higher than the previous line. This means that the bookmark is added to that lecture slot.
+>Similarly, `bookmark added to module` is one level of indentation higher than `CG2271 added`, 
+>which suggests that the bookmark is added to the module CG2271.)  
+>![](images/addSlotCommand/addchaincommandoutput.PNG)  
+>  * Result:  
+>![](images/addSlotCommand/addresult.PNG)
   
 
 
@@ -569,10 +567,10 @@ Format (deleting bookmarks of a slot of a module): delete {MODULE} {INDEX} bookm
 * Deleting bookmarks will delete all bookmarks associated with the module or slot.
 
 Example of usage:   
-* `delete CS2113T` 
-* `delete CG2271 1` 
-* `delete CS2113T bookmarks` 
-* `delete CS2113T 1 bookmarks` 
+>* `delete CS2113T` 
+>* `delete CG2271 1` 
+>* `delete CS2113T bookmarks` 
+>* `delete CS2113T 1 bookmarks` 
 <!-- @@author -->
 <br/><br/> 
 
@@ -601,7 +599,7 @@ The second `DAY` parameter is for the new day of the week you wish to set your s
 > ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslotcontext.png)
 >
 > If you want to change the title of the second slot to "tutorial", you can simply type `edit title wed 2 tutorial`.
-> You should then see a message as shown below:
+> You should then see a message as shown below:  
 >
 > ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslot.png)
 >
