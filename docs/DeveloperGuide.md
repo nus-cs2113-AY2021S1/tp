@@ -613,10 +613,10 @@ Aspect: **Loading `Workspace` on program start**
 
 As there needs to be an `activeWorkspace` set at all times for operations such as adding `Watchlist`. How do we determine which `Workspace` should be chosen if the `User` owns multiple `Workspaces`?
 
-| Approach                                     | Pros                                                         | Cons                                                         |
-| -------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Scan from data folder and pick first result. | Able to adapt to changes even if malicious or unexpected edits were made to file system. | User may need to switch to his favorite `Workspace` on each startup, if any. |
-| Store last used `Workspace`.                 | `User` might gain some convenience of not needing to switch to his favorite `Workspace`. | Prone to potential issues from the file system.              |
+| Approach                                       | Pros                                                         | Cons                                                         |
+| ---------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Scan from `data` folder and pick first result. | Able to adapt to changes even if malicious or unexpected edits were made to file system. | User may need to switch to his favorite `Workspace` on each startup, if any. |
+| Store last used `Workspace`.                   | `User` might gain some convenience of not needing to switch to his favorite `Workspace`. | Prone to potential issues from the file system.              |
 
 We picked the first approach as it is the safer option. By allowing **AniChan** to scan and adapt to file system changes (e.g. `User` accidentally moves/renames/deletes `Workspace` on his hard drive), we avoid potential issues of relying on old information created in previous runtime which may hinder user experience.
 
