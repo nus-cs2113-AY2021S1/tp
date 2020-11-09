@@ -124,7 +124,7 @@ What would you like to do with Quotesify?
 
 ## 3.0 Design
 
-*Note: All UML diagrams in this guide are stored in the images/directory.*
+*Note: All UML diagrams in this guide are stored in the docs/images directory.*
 
 ### 3.1 Architecture
 ![Architecture Diagram](images/Architecture_Diagram.png)
@@ -228,7 +228,7 @@ On Command execution:
 
 ## 4.0 Implementation
 
-*Note: All UML diagrams in this guide are stored in the images/ directory.*
+*Note: All UML diagrams in this guide are stored in the docs/images directory.*
 
 ### 4.1 Feature: Book Management
 
