@@ -43,6 +43,6 @@ Given below are my contributions to this project:
 * __Community:__
     * Reviewed Developer Guide of the team and fixed format error [#86](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/86/files)
     * PRs reviewed (with non-trivial review comments): [#174](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/174#pullrequestreview-526179937)
-
+    * Reported for bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S1-CS2113T-W12-2/tp/issues/221), [2](https://github.com/AY2021S1-CS2113T-W12-2/tp/issues/223), [3](https://github.com/AY2021S1-CS2113T-W12-2/tp/issues/224))
 
     
