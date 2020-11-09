@@ -455,6 +455,8 @@ This section contains 10 commands to navigate the Timetable mode:
 * [2.9. Deleting a class](#29-deleting-a-class-delete-class-index)
 * [2.10 Removing all past events](#210-removing-all-past-event-clean-up)
 
+<div style="page-break-after: always;"></div>
+
 ### 2.1 Entering timetable mode: `cd 3` / `cd timetable`
 
 If you find it difficult to make plans due to uncertainties in your schedule, this timetable mode presents your upcoming
@@ -470,6 +472,8 @@ Expected output:
 
 >**Useful information:**
 >* You can use this command from any mode to access the timetable mode easily and quickly!
+
+<div style="page-break-after: always;"></div>
 
 ### 2.2 Adding classes: `add class`
 
