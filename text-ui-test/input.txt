@@ -367,4 +367,45 @@ estimate -wph -hello
   estimate <.txt
   estimate >.txt
   estimate |.txt
+workspace -wph 800
+workspace -hello
+workspace -----
+workspace script
+workspace script.
+workspace script.t
+workspace script.tx
+workspace script-wph.txt.txt-wph 700
+workspace script-wph.txt.txt .txt
+workspace script.txt hello
+workspace script.txt -hello
+workspace script.txt -----
+workspace script.txt -   wph 700
+workspace script.txt -wph 0
+workspace script.txt -wph -1
+workspace script.txt -wph 1 2
+workspace script.txt -wph one
+workspace script.txt -wph -hello
+workspace script.txt -wph 1 -wph 2
+workspace script.txt -wph 1 -hello
+workspace -wph -1
+workspace -wph one
+workspace -wph 1 -wph 2
+workspace -wph 1 -hello
+workspace -wph -hello
+  workspace  do-not-exist-file.txt
+  workspace  do-not-exist-file.txt  -wph    123
+  workspace /.txt
+  workspace \.txt
+  workspace ?.txt
+  workspace :.txt
+  workspace *.txt
+  workspace <.txt
+  workspace >.txt
+  workspace |.txt
+user
+user -n abc
+user -h
+user -d abc
+user ??
+workspace -l
 exit

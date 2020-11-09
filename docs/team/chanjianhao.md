@@ -9,16 +9,16 @@
 *   **New Feature:** Added the ability to create `User`.
     *   What it does: On first execution, prompts user for his name and gender to create `User` profile.
     *   Justification: This feature allows program to know user better so that program may greet user appropriately as part of good user experience we hope to provide.
-    *   Highlights: Notably, `User` is a subclass of `Human` abstract class. Other classes such as `Character` and `VoiceActor` inherits `Human` class as part of our OOP practice when coding **AniChan** which stores lots of anime data which comes with lots of voice actors and characters. **User** class contains many interesting methods meant for controlling `Workspace` feature of **AniChan**.
+    *   Highlights: Notably, `User` is a subclass of `Human` abstract class. Other classes such as `Character` and `VoiceActor` inherits `Human` class as part of our OOP practice when coding **AniChan** which stores lots of anime data which comes with lots of voice actors and characters. `User` class contains many interesting methods meant for controlling `Workspace` feature of **AniChan**.
 
 *   **New Feature:** Added the ability to create, list, switch, and delete `Workspace`.
     *   What it does: Allows the user to create, list, select, and delete `Workspace`.
-    *   Justification: This feature enables the user to have segregation in his translation work. As `Watchlist` and `Bookmark` are contained in individual `Workspaces`.
-    *   Highlights: `Workspace` works closely with core components of **AniChan** such as `User`, `Watchlist`, `Bookmark` and notably, `Storage`. To ensure secure and safe creation of `Workspace` when program exits, layers of string validation and sanitization are implemented to ensure no unexpected behaviors when creating `Workspace` in `data` folder.
+    *   Justification: This feature enables the user to segregate his translation work. As `Watchlist` and `Bookmark` are contained in individual `Workspaces`.
+    *   Highlights: `Workspace` works closely with core components of **AniChan** such as `User`, `Watchlist`, `Bookmark` and notably, `Storage`. To ensure secure and safe creation of `Workspace` when program exits, layers of string validation and sanitization ensures no unexpected behaviors when creating `Workspace` in `data` folder.
 
 *   **New Feature:** Added customized exception class, `AniException`.
     *   What it does: Allows application to throw custom exceptions specific to **AniChan**.
-    *   Justification: There needs to be a way to handle exception which are caused by **AniChan**.
+    *   Justification: There needs to be a way to handle exception which are caused by **AniChan**-related operations.
     *   Highlights: Made a special exception package and class which extends Java default `Exception` class.
 
 *   **New Feature:** Added logging class `AniLogger`.
@@ -30,6 +30,8 @@
     *   What it does: Deletes `Workspace` on the file system when `Workspace` is deleted in **AniChan**.
     *   Justification: When `Workspace` is deleted in **AniChan**, the leftover folder and files in `data` should be deleted as well.
     *   Highlights: Implemented a safe recursive delete approach for `Workspace` deletion, where it searches recursively for leftover `Watchlist`/`Bookmark` data to delete first before deleting the folder. Exceptions and input validation built-in for deletion to prevent file system related issues to crash the program or cause unexpected results.
+
+*   **Code Contributed:** [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chanjianhao&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=ChanJianHao&tabRepo=AY2021S1-CS2113T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 *   **Documentation:**
     *   README.md:
@@ -44,7 +46,7 @@
         *   Contributed to `Workspace` related user stories and manual testing guide: [#285](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/285).
         *   Documented `Workspace` implementation and its diagrams: [#206](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/206).
         *   Documented the section on '**Documentation, Logging, Testing, and DevOps**': [#195](https://github.com/AY2021S1-CS2113T-F12-2/tp/issues/195).
-        *   Formatting & Grammar fixes and improvements: [#254](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/254).
+        *   Formatting & Grammar fixes and improvements: [#254](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/254), [#302](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/302).
 
 *   **Team-based Tasks**
     *   Created team organization and GitHub repository.
@@ -66,5 +68,4 @@
     *   Integrated **Travis CI** for DevOps purposes.
     *   Integrated **Codecov** for coverage tracking.
     *   Added **Discord bot** for GitHub tracking.
-
-*   **Code Contributed:** [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chanjianhao&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=ChanJianHao&tabRepo=AY2021S1-CS2113T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
+    

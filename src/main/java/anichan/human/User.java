@@ -1,6 +1,5 @@
 package anichan.human;
 
-import anichan.Main;
 import anichan.exception.AniException;
 import static anichan.logger.AniLogger.getAniLogger;
 
@@ -135,6 +134,7 @@ public class User extends Human {
 
             activeWorkspace = inputWorkspace;
         } catch (Exception e) {
+            LOGGER.log(Level.WARNING, EXCEPTION_WORKPLACE_NOT_FOUND);
             throw new AniException(EXCEPTION_WORKPLACE_NOT_FOUND);
         }
     }
