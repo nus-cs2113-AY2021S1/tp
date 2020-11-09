@@ -295,7 +295,7 @@ This component is split into 4 different classes, their associations and multipl
 the above Figure 7. 
 1. The main class `FlashcardRun` will be accessed when the flashcard mode is called in `StudyIt` Class. 
 1. `FlashcardRun` class is associated with `FlashcardStorage` class that is used to store data in .txt file. 
-1.`FlashcardDeck` class which contains any number of `Flashcards`.
+1. `FlashcardDeck` class which contains any number of `Flashcards`.
 
 **Flashcard Implementation**
 
