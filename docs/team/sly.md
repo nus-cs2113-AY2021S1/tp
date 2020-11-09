@@ -1,7 +1,7 @@
 # Sun Ling Yue - Project Portfolio Page
 
 ## Overview
-I have worked on a project in year 2020. This project wass about creating a command line program to manage
+I have worked on a project in year 2020. This project was about creating a command line program to manage
 your finances. We were a team of five NUS students. Each of us has chosen a unique feature to work on. For my
 part, I have created a save and load manager that maintain copies of past saves to be loaded at will.
 
