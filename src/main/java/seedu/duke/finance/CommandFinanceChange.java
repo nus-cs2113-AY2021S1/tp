@@ -48,10 +48,12 @@ public class CommandFinanceChange extends Command {
 
     public int validate(UserInput ui) {
         if (ui.getCategory().equals("finance") && (ui.getCommand().equalsIgnoreCase("changelog")
-            || ui.getCommand().equalsIgnoreCase("c"))
-            && ui.getArg("i") != null && ui.getArg("n") != null) {
-            userinput = ui;
-            return ACCEPT;
+                || ui.getCommand().equalsIgnoreCase("c"))) {
+            if (ui.getArg("i") != null && ui.getArg("n") != null) {
+                userinput = ui;
+                return ACCEPT;
+            }
+            return ARGUMENT_ERR;
         }
         return NO_MATCH;
     }
