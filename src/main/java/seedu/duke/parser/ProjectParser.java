@@ -58,7 +58,7 @@ public class ProjectParser implements ExceptionsParser {
         case SELECT:
 
             if (parameters.get("0") == null) {
-                throw new DukeException("Please do not enter dashes.");
+                throw new DukeException("Please enter a project id and do not include any dashes.");
             }
             if (!ParserManager.isStringIntParsable(parameters.get("0"))) {
                 throw new DukeException("Please give a project number.");
