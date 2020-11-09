@@ -25,7 +25,7 @@ public class CommandFinanceDel extends Command {
 
     @Override
     public String help() {
-        return "Syntax: finance delLog <index>";
+        return "Syntax: finance delLog INDEX";
     }
 
     public int validate(UserInput ui) {
