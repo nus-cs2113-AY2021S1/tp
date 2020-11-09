@@ -290,9 +290,14 @@ public class CommandCreator {
      * @return CategoryCommand with given arguments.
      * @throws DukeException If invalid arguments are given.
      */
-    public static Command createCategoryCommand(String commandString, HashMap<String, String> argumentsMap)
-            throws DukeException {
+    public static Command createCategoryCommand(String commandString, HashMap<String, String> argumentsMap,
+                                                String description) throws DukeException {
         int index;
+        try {
+            Integer.parseInt(description);
+        } catch (NumberFormatException e) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
+        }
         try {
             index = Integer.parseInt(commandString.split(" ")[0]);
         } catch (NumberFormatException e) {
