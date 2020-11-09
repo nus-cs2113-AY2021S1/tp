@@ -303,11 +303,39 @@ After clearing :
 DietBook is currently empty.
 ```
 
-### Features related to nutritional intake and recommendation
+### Features related to nutritional intake calculation
 
-To get recommended calorie intake: recommend
+#### Calculating nutrition intake: calculate
+Calculate the amount of nutrition in the foods in intake list.
 
-Example of usage :
+Format: `calculate NUTRITION_NAME [START_TIME] [END_TIME]`
+* The NUTRITION_NAME should be one of the five cases, which are: `calorie`, `carbohydrate`, `protein`, `fat`, and `all`.
+    * `calorie`: calculate the total amount of calorie from the foods in the intake list.
+    * `carbohydrate`: calculate the total amount of carbohydrate from the foods in the intake list.
+    * `protein`: calculate the total amount of protein from the foods in the intake list.
+    * `fat`: calculate the total amount of fat from the foods in the intake list.
+    * `all`: calculate the total amount of all five nutrition elements.
+* Although two time inputs are listed as optional, the END_TIME is only meaningful inputted with the START_TIME.
+    * `calculate NUTRITION_NAME`: calculate the amount of nutrition from all foods in the intake list.
+    * `calculate NUTRITION_NAME [START_TIME]`: calculate the amount of nutrition from the foods after a time in the intake list.
+    * `calculate NUTRITION_NAME [START_TIME] [END_TIME]`: calculate the amount of nutrition from the foods within a time period in the intake list.
+* Two time time inputs should be in the format `yyyy-mm-ddTHH:mm`. For example: `2020-10-29T08:00`.
+
+example usage:
+* `calculate carbohydrate 2020-10-29T08:00 2020-10-29T17:00`
+
+Output example:
+```
+Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1700
+
+Total carbohydrate intake: 80g
+```
+
+#### Calculating recommended calorie daily intake: recommend
+Calculate the recommendation based on the person infomation.
+
+Format: recommend
+Example of usage: recommend
 
 Output : 
 ```
@@ -334,87 +362,6 @@ Here are the food items in DietBook:
   5. Chicken Wing Noodles | calorie : 400 | protein : 30 | carbohydrate : 10 | fats : 10 -- (1)
 ```
 
-#### To calculate carbohydrate intake: calculate carbohydrate
-
-Input : calculate carbohydrate
-
-Output : 
-```
-Total carbohydrate intake: 80g
-```
-
-#### To calculate carbohydrate intake within a time period: calculate carbohydrate yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
-
-Input : calculate carbohydrate 2020-10-29T08:00 2020-10-29T17:00
-
-Output : 
-```
-Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1700
-
-Total carbohydrate intake: 80g
-```
-
-#### To calculate carbohydrate intake from a certain date until now: calculate carbohydrate yyy-mm-ddTHH:mm
-
-Input : calculate carbohydrate 2020-10-29T08:00
-
-Output : 
-```
- Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1340
- 
- Total carbohydrate intake: 80g
-```
-
-Similar Inputs and outputs for the following 
- * To calculate calorie intake: calculate calorie
- * To calculate calorie intake within a time period: calculate calorie yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
- * To calculate calorie intake from a certain date until now: calculate calorie yyyy-mm-ddTHH:mm
-
- * To calculate protein intake: calculate protein
- * To calculate protein intake within a time period: calculate protein yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
- * To calculate protein intake from a certain date until now: calculate protein yyyy-mm-ddTHH:mm
-
- * To calculate fat intake: calculate fat
- * To calculate fat intake within a time period: calculate fat yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
- * To calculate fat intake from a certain date until now: calculate fat yyyy-mm-ddTHH:mm
-
- * To calculate all nutritional intake: calculate all
-
-Input : calculate all
-
-OutPut : 
-```
-Total calorie intake: 1900kcal
-Total carbohydrate intake: 80g
-Total protein intake: 110g
-Total fat intake: 90g
-```
- * To calculate all nutritional intake within a time period: calculate all yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
-
-Input : calculate all 2020-10-29T08:00 2020-10-29T17:00
-
-OutPut : 
-```
-Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1700
-     
-Total calorie intake: 1900kcal
-Total carbohydrate intake: 80g
-Total protein intake: 110g
-Total fat intake: 90g
-```
-
- * To calculate all nutritional intake from a certain date until now: calculate all yyyy-mm-ddTHH:mm
-
-Input : calculate all 2020-10-29T08:00
-
-OutPut : 
-```
-Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1345
-     
-Total calorie intake: 1900kcal
-Total carbohydrate intake: 80g
-Total protein intake: 110g
-```
  
 ### Other features
 
@@ -504,4 +451,4 @@ Enter info | **Note**: Used only when setting up DietBook for the first time.<br
 View user info | `userinfo`
 Edit user info | `editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [f/FITNESS_LEVEL]` <br/> e.g.,`editinfo c/75 f/4`
 Calculate recommended calorie intake | `recommend`
-Calculate nutrition intake | `calculate [NUTRITION_NAME] [START_TIME] [END_TIME]` <br/> e.g.,`calculate fat`
+Calculate nutrition intake | `calculate NUTRITION_NAME [START_TIME] [END_TIME]` <br/> e.g.,`calculate fat`
