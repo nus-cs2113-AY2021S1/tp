@@ -138,7 +138,7 @@ public class UiMessage {
     public static final String LIST_BOOK_COMPLETE = "List books by completion:                                        "
             + "list -b done/undone";
     public static final String LIST_QUOTE_COMMAND = "List quotes:                                                     "
-            + "list -q [/by AUTHOR] [/from REFERENCE]";
+            + "list -q {[/by AUTHOR] [/from REFERENCE]}";
     public static final String LIST_QUOTE_REFLECTION_COMMAND = "List quote reflection:                               "
             + "            " + "list -qr QUOTE_NUMBER";
     public static final String LIST_BOOKMARK_COMMAND = "List bookmarks:                                             "
