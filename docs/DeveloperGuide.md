@@ -475,21 +475,20 @@ One-stop application for Primary 6 students to plan their schedule and do revisi
 |v2.0|Primary 6 student|to remember the contact details of my teachers|I can contact them in case there is an emergency.|
 |v2.0|Primary 6 student|to see the list of questions I have added|I can keep track of the questions I need.|
 |v2.0|Primary 6 student|to practice via short and interactive online trivia|I can revise in an entertaining manner.|
+|v2.1|Primary 6 student|set a number of productive hours per day|I can work efficiently and effective without overloading.|
 
 <!-- @@author AndreWongZH -->
 ## Non-Functional Requirements
 
 * Should work on any Windows, Mac and Linux operating system with Java 11 installed.
 * Should update the storage every time a command changes the data.
-* Users should be able to view the output of their command within 10 seconds
+* Users should be able to view the output of their command within 10 seconds.
 * Accessing and loading of data should take less than 5 seconds when we have less than 10000 data entries.
 <!-- @@author -->
 
 ## Glossary
 
-* *glossary item* - Definition
-
-Data entries 
+Data entries:
 	Event, Quiz or contact data that are either in storage or in their respective Manager class
 
 <!-- @@author AndreWongZH -->
@@ -525,7 +524,8 @@ Given below are instructions to test the app manually
 1. Test case: `find`
 	* Expected: Inform the user to find either event, quiz or contact
 1. Test case: `find contact math`
-	* Expected: Show a list of contacts that matches the keywords. If there are no contacts found , inform the user that the search has no result.
+	* Expected: Show a list of contacts that matches the keywords. If there are no contacts found, 
+	inform the user that the search has no result.
 1. Test case: `find contact`
 	* Expected: Remind the user to include the keyword in the command.
 1. Test case: `find testing`
@@ -550,7 +550,7 @@ However, any prior data stored will be lost.
 
 We define a file to be corrupted when our decoders are unable to decode the data .txt files.
 
-We can simulate this by changing the encoded text in the file. For example, a Class that has the follow parameters:
+We can simulate this by changing the encoded text in the file. For example, a Class that has the following parameters:
 
 * Description: Math tutorial
 * isDone: false
