@@ -1,6 +1,7 @@
 # Gunit Mittal - Project Portfolio Page
 
 ## Overview
+
 My team and I created a command line interface for project managers to organize and manage work.
 Our CS2113T product, SCRUMptious makes collaboration for users much easier than before, and digitalizes the entire
  process for product managers.
@@ -84,9 +85,4 @@ Many PED Bugs were also solved in [#178](https://github.com/AY2021S1-CS2113T-F11
 
 
 
-line1
-line2
-line3
-line4
-line5
-line generous
+

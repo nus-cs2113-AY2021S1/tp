@@ -1,11 +1,617 @@
-   _____  _____ _____  _    _ __  __       _   _
-  / ____|/ ____|  __ \| |  | |  \/  |     | | (_)
+   _____  _____ _____  _    _ __  __       _   _  
+  / ____|/ ____|  __ \| |  | |  \/  |     | | (_) 
  | (___ | |    | |__) | |  | | \  / |_ __ | |_ _  ___  _   _ ___
   \___ \| |    |  _  /| |  | | |\/| | '_ \| __| |/ _ \| | | / __|
-  ____) | |____| | \ \| |__| | |  | | |_) | |_| | (_) | |_| \__ \
- |_____/ \_____|_|  \_\\____/|_|  |_| .__/ \__|_|\___/ \__,_|___/
+  ____) | |____| | \ \| |__| | |  | | |_) | |_| | (_) | |_| \__ \ 
+ |_____/ \_____|_|  \_\\____/|_|  |_| .__/ \__|_|\___/ \__,_|___/ 
                                     | |
                                     |_|
 
 WELCOME TO SCRUMPTIOUS
-command>bye
+command>[!WARNING!] Are you sure? This command is irreversible! (y/N) Data clear aborted.
+command>No projects are created.
+command>There are no projects added.
+command>Missing parameters.
+command>Project successfully created.
+	Title: MeTube
+command>Project successfully created.
+	Title: FaceDiary
+command>============================ PROJECT ============================
+[ID: 2]
+[Title: FaceDiary]
+[Description: Social networking]
+[No members added]
+[Project will start along with the first sprint]
+[Project backlog is empty]
+[There are no Sprints]
+=================================================================
+
+command>Following are the added projects: 
+	ID Title 		Description
+	1) MeTube 		video streaming software
+	2) FaceDiary 		Social networking
+command>Please enter a project id and do not include any dashes.
+command>Project 1 has been selected.
+command>Invalid index, no corresponding project exists.
+command>============================ PROJECT ============================
+[ID: 1]
+[Title: MeTube]
+[Description: video streaming software]
+[No members added]
+[Project will start along with the first sprint]
+[Project backlog is empty]
+[There are no Sprints]
+=================================================================
+
+command>Missing name.
+command>amy has been added to the project.
+command>john has been added to the project.
+mary has been added to the project.
+jane has been added to the project.
+bob has been added to the project.
+test1 has been added to the project.
+test2 has been added to the project.
+command>Missing name.
+command>bob has been removed from the project.
+command>test1 has been removed from the project.
+test2 has been removed from the project.
+command>============================ PROJECT ============================
+[ID: 1]
+[Title: MeTube]
+[Description: video streaming software]
+[Members: amy john mary jane]
+[Project will start along with the first sprint]
+[Project backlog is empty]
+[There are no Sprints]
+=================================================================
+
+command>Task successfully created.
+[Task]
+	ID: 1
+	Title: dummyTask1
+	Description: dummy_description
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+
+command>Task successfully created.
+[Task]
+	ID: 2
+	Title: dummyTask2
+	Description: dummy_description
+	Priority: Medium priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+
+command>The corresponding task dummyTask1 has been removed from project.
+command>Task successfully created.
+[Task]
+	ID: 3
+	Title: dummyTask3
+	Description: dummy_description
+	Priority: Low priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+
+command>Task successfully created.
+[Task]
+	ID: 4
+	Title: dummyTask4
+	Description: dummy_description
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+
+command>Task successfully created.
+[Task]
+	ID: 5
+	Title: dummyTask5
+	Description: dummy_description
+	Priority: Medium priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+
+command>Task successfully created.
+[Task]
+	ID: 6
+	Title: dummyTask6
+	Description: dummy_description
+	Priority: Low priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+
+command>============================ PROJECT ============================
+[ID: 1]
+[Title: MeTube]
+[Description: video streaming software]
+[Members: amy john mary jane]
+[Project will start along with the first sprint]
+---------------------------- BACKLOG ----------------------------
+[Task ID: 2]	[Title: dummyTask2]	[Completion: Incomplete]
+[Task ID: 3]	[Title: dummyTask3]	[Completion: Incomplete]
+[Task ID: 4]	[Title: dummyTask4]	[Completion: Incomplete]
+[Task ID: 5]	[Title: dummyTask5]	[Completion: Incomplete]
+[Task ID: 6]	[Title: dummyTask6]	[Completion: Incomplete]
+-----------------------------------------------------------------
+[There are no Sprints]
+=================================================================
+
+command>Missing parameters.
+command>The details of the tasks are as follows: 
+You have entered a task ID that has been deleted.
+Please do not enter deleted task IDs.
+To view subsequent tasks, please run this command again with the subsequent IDs.
+command>The details of the tasks are as follows: 
+[Task]
+	ID: 2
+	Title: dummyTask2
+	Description: dummy_description
+	Priority: Medium priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+
+command>The details of the tasks are as follows: 
+[Task]
+	ID: 2
+	Title: dummyTask2
+	Description: dummy_description
+	Priority: Medium priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+
+[Task]
+	ID: 3
+	Title: dummyTask3
+	Description: dummy_description
+	Priority: Low priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+
+[Task]
+	ID: 4
+	Title: dummyTask4
+	Description: dummy_description
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+
+command>The details of the tasks, in descending priority, are as follows: 
+[Task]
+	ID: 4
+	Title: dummyTask4
+	Description: dummy_description
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 2
+	Title: dummyTask2
+	Description: dummy_description
+	Priority: Medium priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 5
+	Title: dummyTask5
+	Description: dummy_description
+	Priority: Medium priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 3
+	Title: dummyTask3
+	Description: dummy_description
+	Priority: Low priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 6
+	Title: dummyTask6
+	Description: dummy_description
+	Priority: Low priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+command>The task dummyTask2 has its priority changed to:
+	High priority
+command>The details of the tasks, in descending priority, are as follows: 
+[Task]
+	ID: 2
+	Title: dummyTask2
+	Description: dummy_description
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 4
+	Title: dummyTask4
+	Description: dummy_description
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 5
+	Title: dummyTask5
+	Description: dummy_description
+	Priority: Medium priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 3
+	Title: dummyTask3
+	Description: dummy_description
+	Priority: Low priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 6
+	Title: dummyTask6
+	Description: dummy_description
+	Priority: Low priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+command>Please create a sprint for Project 1 first.
+command>Please indicate a valid date in this following format: YYYYMMDD.
+command>[Project ID: 1]
+First Sprint: Project will start along with the newly created sprint
+Project period: 2020-10-10 to 2020-11-08
+============================ SPRINT =============================
+[ID: 1]
+[Goal: milestone1]
+[Period: 2020-10-10 - 2020-10-19]
+[No allocated tasks]
+=================================================================
+command>[Project ID: 1]
+Not first sprint: New sprint will start right after previous sprint ends.
+============================ SPRINT =============================
+[ID: 2]
+[Goal: milestone2]
+[Period: 2020-10-20 - 2020-10-29]
+[No allocated tasks]
+=================================================================
+command>[Project ID: 1]
+Not first sprint: Start tag will be ignored and new sprint will start right after previous sprint ends.
+============================ SPRINT =============================
+[ID: 3]
+[Goal: milestone3]
+[Period: 2020-10-30 - 2020-11-08]
+[No allocated tasks]
+=================================================================
+command>All sprints are already created.
+command>All sprints are already created.
+command>All sprints are already created.
+command>[Project ID: 1]
+========================= CURRENT SPRINT ========================
+[ID: 1]
+[Goal: milestone1]
+[Period: 2020-10-10 - 2020-10-19]
+[Remaining: 9 days]
+[No allocated tasks]
+=================================================================
+command>============================ PROJECT ============================
+[ID: 1]
+[Title: MeTube]
+[Description: video streaming software]
+[Members: amy john mary jane]
+[Period: 2020-10-10 - 2020-11-08]
+---------------------------- BACKLOG ----------------------------
+[Task ID: 2]	[Title: dummyTask2]	[Completion: Incomplete]
+[Task ID: 3]	[Title: dummyTask3]	[Completion: Incomplete]
+[Task ID: 4]	[Title: dummyTask4]	[Completion: Incomplete]
+[Task ID: 5]	[Title: dummyTask5]	[Completion: Incomplete]
+[Task ID: 6]	[Title: dummyTask6]	[Completion: Incomplete]
+-----------------------------------------------------------------
+-------------------------- ALL SPRINTS --------------------------
+[Sprint ID: 1]	[Goal: milestone1]	[Period: 2020-10-10 - 2020-10-19]
+[Sprint ID: 2]	[Goal: milestone2]	[Period: 2020-10-20 - 2020-10-29]
+[Sprint ID: 3]	[Goal: milestone3]	[Period: 2020-10-30 - 2020-11-08]
+-----------------------------------------------------------------
+=================================================================
+
+command>[Project ID: 1]
+========================= CURRENT SPRINT ========================
+[ID: 1]
+[Goal: milestone1]
+[Period: 2020-10-10 - 2020-10-19]
+[Remaining: 9 days]
+[No allocated tasks]
+=================================================================
+command>Please indicate the task(s) to be allocated/deallocated.
+command>Task not found in backlog: 1
+command>[Project ID: 1]
+	dummyTask2 added to sprint 1.
+command>[Project ID: 1]
+	dummyTask4 added to sprint 1.
+	dummyTask3 added to sprint 1.
+command>[Project ID: 1]
+========================= CURRENT SPRINT ========================
+[ID: 1]
+[Goal: milestone1]
+[Period: 2020-10-10 - 2020-10-19]
+[Remaining: 9 days]
+[Task]
+	ID: 2
+	Title: dummyTask2
+	Description: dummy_description
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 4
+	Title: dummyTask4
+	Description: dummy_description
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 3
+	Title: dummyTask3
+	Description: dummy_description
+	Priority: Low priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+=================================================================
+command>Missing parameter(s): user
+command>Missing parameter(s): task
+command>Task not found in backlog: 1
+command>[Project ID: 1]
+[Sprint ID: 1]
+dummyTask3 is assigned to [amy]
+command>amy is already allocated with Task 3
+command>[Project ID: 1]
+[Sprint ID: 1]
+dummyTask3 is assigned to [jane, mary]
+command>User not found: bob
+command>Missing parameter(s): user
+command>Missing parameter(s): task
+command>Task not found in backlog: 1
+command>[Project ID: 1]
+[Sprint ID: 1]
+dummyTask3 is removed from [amy]
+command>Not all tasks are allocated to member: [amy]
+command>[Project ID: 1]
+[Sprint ID: 1]
+dummyTask3 is removed from [jane, mary]
+command>User not found: bob
+command>[Project ID: 1]
+[Sprint ID: 1]
+dummyTask3 is assigned to [amy, jane, mary]
+command>[Project ID: 1]
+========================= CURRENT SPRINT ========================
+[ID: 1]
+[Goal: milestone1]
+[Period: 2020-10-10 - 2020-10-19]
+[Remaining: 9 days]
+[Task]
+	ID: 2
+	Title: dummyTask2
+	Description: dummy_description
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 4
+	Title: dummyTask4
+	Description: dummy_description
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 3
+	Title: dummyTask3
+	Description: dummy_description
+	Priority: Low priority
+	Completion: Incomplete
+	Assigned to: amy jane mary 
+=================================================================
+command>Missing parameter(s): goal
+command>[Project ID: 1]
+Goal updated.
+========================= CURRENT SPRINT ========================
+[ID: 1]
+[Goal: milestone1 edited]
+[Period: 2020-10-10 - 2020-10-19]
+[Remaining: 9 days]
+[Task]
+	ID: 2
+	Title: dummyTask2
+	Description: dummy_description
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 4
+	Title: dummyTask4
+	Description: dummy_description
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 3
+	Title: dummyTask3
+	Description: dummy_description
+	Priority: Low priority
+	Completion: Incomplete
+	Assigned to: amy jane mary 
+=================================================================
+command>[Project ID: 1]
+Goal updated.
+============================ SPRINT =============================
+[ID: 2]
+[Goal: milestone2 edited]
+[Period: 2020-10-20 - 2020-10-29]
+[No allocated tasks]
+=================================================================
+command>Sprint not found: 4
+command>[Project ID: 1]
+========================= CURRENT SPRINT ========================
+[ID: 1]
+[Goal: milestone1 edited]
+[Period: 2020-10-10 - 2020-10-19]
+[Remaining: 9 days]
+[Task]
+	ID: 2
+	Title: dummyTask2
+	Description: dummy_description
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 4
+	Title: dummyTask4
+	Description: dummy_description
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 3
+	Title: dummyTask3
+	Description: dummy_description
+	Priority: Low priority
+	Completion: Incomplete
+	Assigned to: amy jane mary 
+=================================================================
+command>Please indicate the task(s) to be allocated/deallocated.
+command>Task not found in backlog: 1
+command>[Project ID: 1]
+	dummyTask3 removed from sprint 1.
+command>Missing parameters or dashes were input. Please do not enter dashes for this command.
+command>You have entered a task ID that has been deleted.
+command>The task ID: 2 and title: dummyTask2 has been marked as done.
+command>The task ID: 3 and title: dummyTask3 has been marked as done.
+The task ID: 4 and title: dummyTask4 has been marked as done.
+command>============================ PROJECT ============================
+[ID: 1]
+[Title: MeTube]
+[Description: video streaming software]
+[Members: amy john mary jane]
+[Period: 2020-10-10 - 2020-11-08]
+---------------------------- BACKLOG ----------------------------
+[Task ID: 2]	[Title: dummyTask2]	[Completion: Completed]
+[Task ID: 3]	[Title: dummyTask3]	[Completion: Completed]
+[Task ID: 4]	[Title: dummyTask4]	[Completion: Completed]
+[Task ID: 5]	[Title: dummyTask5]	[Completion: Incomplete]
+[Task ID: 6]	[Title: dummyTask6]	[Completion: Incomplete]
+-----------------------------------------------------------------
+-------------------------- ALL SPRINTS --------------------------
+[Sprint ID: 1]	[Goal: milestone1 edited]	[Period: 2020-10-10 - 2020-10-19]
+[Sprint ID: 2]	[Goal: milestone2 edited]	[Period: 2020-10-20 - 2020-10-29]
+[Sprint ID: 3]	[Goal: milestone3]	[Period: 2020-10-30 - 2020-11-08]
+-----------------------------------------------------------------
+=================================================================
+
+command>Missing parameters or dashes were input. Please do not enter dashes for this command.
+command>The following task ID: 1 doesn't exist in backlog.
+Please enter a valid ID.
+command>The corresponding task dummyTask2 has been removed from project.
+command>The corresponding task dummyTask3 has been removed from project.
+The corresponding task dummyTask4 has been removed from project.
+command>============================ PROJECT ============================
+[ID: 1]
+[Title: MeTube]
+[Description: video streaming software]
+[Members: amy john mary jane]
+[Period: 2020-10-10 - 2020-11-08]
+---------------------------- BACKLOG ----------------------------
+[Task ID: 5]	[Title: dummyTask5]	[Completion: Incomplete]
+[Task ID: 6]	[Title: dummyTask6]	[Completion: Incomplete]
+-----------------------------------------------------------------
+-------------------------- ALL SPRINTS --------------------------
+[Sprint ID: 1]	[Goal: milestone1 edited]	[Period: 2020-10-10 - 2020-10-19]
+[Sprint ID: 2]	[Goal: milestone2 edited]	[Period: 2020-10-20 - 2020-10-29]
+[Sprint ID: 3]	[Goal: milestone3]	[Period: 2020-10-30 - 2020-11-08]
+-----------------------------------------------------------------
+=================================================================
+
+command>[Project ID: 1]
+========================= CURRENT SPRINT ========================
+[ID: 1]
+[Goal: milestone1 edited]
+[Period: 2020-10-10 - 2020-10-19]
+[Remaining: 9 days]
+[No allocated tasks]
+=================================================================
+command>[!WARNING!] Are you sure? This command is irreversible! (y/N) All data has been cleared!
+command>Here is the list of commands used in SCRUMptious. Type "help /*", where * is the command number for more information on that specific command.
+1. Project
+2. Member
+3. Task
+4. Sprint
+5. Storage
+command>Invalid action!
+command>The command number is not in the list!
+command>1. Create project
+   Format: project /create -title <title> -desc <description> -dur <duration> -sd <sprint interval>
+   Example: project /create -title MeTube -desc video streaming software -dur 90 -sd 10
+2. View project
+   Format & example: project /view
+3. View project list
+   Format & example: project /list
+4. Select project
+   Format: project /select <projectid>
+   Example: project /select 1
+command>1. Add members
+   Format: member /add <username> [<username> ...]
+   Example: member /add john mary
+2. Remove members
+   Format: member /del <username> [<username> ...]
+   Example: member /del john mary
+command>1. Add tasks 
+   Format: task /add -title <title> -desc <description> -priority <category>
+   Example: task /add -title Add UI -desc add an interactive UI -priority HIGH
+2. Delete tasks
+   Format: task /del <taskid> [<taskid>...]
+   Example: task /del 5 7 9
+3. View task
+   Format: task /view <taskid>
+   Example: task /view 3
+4. Change task priority
+   Format: task /priority -priority <category> -id <taskid>
+   Example: task /priority -priority HIGH -id 1
+5. Mark task as complete
+   Format: task /done <taskid>
+   Example: task /done 1
+6. View tasks in descending priority
+   Format: task /priorityview
+command>1. Create sprint
+   Format: sprint /create -goal <goal_input> [optional tags]
+   Example 1: sprint /create Shopping Cart -start 20201010
+   Example 2: sprint /create -goal UI -start 20201010
+   Example 3: sprint /create -goal UI -start 20201010 -project 3
+2. View sprint
+   Format: sprint /view [optional tags]
+   Example 1: sprint /view
+   Example 2: sprint /view 2
+   Example 3: sprint /view -project 2
+   Example 4: sprint /view -project 2 -sprint 3
+3. Edit sprint
+   Format: sprint /edit -goal <goal_input> [optional tags]
+   Example 1: sprint /edit -goal Add Documentation
+   Example 2: sprint /edit -project 2 -goal Add Documentation
+   Example 3: sprint /edit -project 2 -sprint 3 -goal Add Documentation
+4. Add tasks to sprint
+   Format: sprint /addtask <task_id> [<task_id> ...] [optional tags]
+   Example 1: sprint /addtask 1 2
+   Example 2: sprint /addtask -task 1 2
+   Example 3: sprint /addtask -project 2 -task 1 2
+   Example 4: sprint /addtask -project 2 -sprint 3 -task 1 2
+5. Delete tasks from sprint
+   Format: sprint /removetask <task_id> [<task_id> ...] [optional tags]
+   Example 1: sprint /removetask 1 2
+   Example 2: sprint /removetask -project 2 -task 1 2
+   Example 3: sprint /removetask -project 2 -sprint 3 -task 1 2
+6. Allocate task to team members
+   Format: sprint /allocate -task <task_id> -user <user_id> [<user_id> ...] [optional tags]
+   Example 1: sprint /allocate -task 1 2 -user johntan mary jane
+   Example 2: sprint /allocate -project 2 -task 1 -user mary
+   Example 3: sprint /allocate -project 2 -sprint 3 -task 1 -user mary
+7. Deallocate tasks from team members
+   Format: sprint /deallocate -task <task_id> -user <user_id> [<user_id> ...] [optional tags]
+   Example 1: sprint /deallocate -task 1 2 -user johntan mary jane
+   Example 2: sprint /deallocate -project 2 -task 1 -user mary
+   Example 3: sprint /deallocate -project 2 -sprint 3 -task 1 -user mary
+command>1. Clear all data. You will be prompted to confirm the decision.
+   Data will be cleared if "y" (case-insensitive) is provided.
+   Format: storage /clear
+   Example: storage /clear
+command>The command number is not in the list!
+command>See you again...

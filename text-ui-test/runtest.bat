@@ -14,7 +14,8 @@ for /f "tokens=*" %%a in (
 
 IF EXIST .\data\data.json DEL /F .\data\data.json
 
-java -jar %jarloc% < ..\..\text-ui-test\input.txt > ..\..\text-ui-test\ACTUAL.TXT
+REM java -jar %jarloc% < ..\..\text-ui-test\input.txt > ..\..\text-ui-test\ACTUAL.TXT
+java -ea -cp %jarloc% com.scrumptious.test.TextUiTest < ..\..\text-ui-test\input.txt > ..\..\text-ui-test\ACTUAL.TXT
 
 cd ..\..\text-ui-test
 
