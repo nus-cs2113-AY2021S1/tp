@@ -55,7 +55,7 @@ Section Added:
   * Search for an Event
   
 **Contributions to Developer Guide:**
-* All event features and descriptions under Section 3.4.1 to 3.4.6 (including all sequential diagrams, state diagrams and architecture diagram)
+* All event features and descriptions under Section 3.4.1 to 3.4.5 (including all sequential diagrams, state diagrams and architecture diagram)
 * User Stories
 * Setting up
 * Glossary 
