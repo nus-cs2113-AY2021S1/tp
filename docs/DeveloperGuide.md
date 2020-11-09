@@ -200,7 +200,7 @@ the intended actions. Then, it will call `getCategorymode` to get the current mo
 A more detailed explanation of `BookmarkCommand`, `BookmarkCategory` and `BookmarkList` will be 
 shown below. `BookmarkUi` and `BookmarkStorage` follow the same design implementations as the main 
 architecture. The below figure shows the command classes available and they are called based on the 
-`BookmarkParser` class as illustrated in the figure below. 
+`BookmarkParser` class as illustrated in the figure above. 
 
 ![BookmarkCommand ClassDiagram](Images/BookmarkDG/bookmarkCommand_Class.png)
 
