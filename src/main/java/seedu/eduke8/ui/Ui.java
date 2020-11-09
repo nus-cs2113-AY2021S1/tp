@@ -150,6 +150,7 @@ public class Ui {
     public static final String OS_MAC = "mac";
     public static final String NUMBERS_ONLY = "[0-9]+";
     public static final String EMPTY = "";
+    public static final String NOTE_LIST_ERROR = "Please try again!";
 
     private static String operatingSystem = null;
 
@@ -422,12 +423,12 @@ public class Ui {
                 NoteList noteListTopic = topic.getNoteList();
                 showNotes(noteListTopic);
             } else {
-                printMessage(INVALID_TOPIC);
-                printTopicsError(topicList);
-                printMessage(INPUT_ERROR);
+                throw new Eduke8Exception(INPUT_ERROR);
             }
         } catch (Eduke8Exception e) {
-            printError(e.getMessage());
+            printMessage(INPUT_ERROR);
+            printTopicsError(topicList);
+            printMessage(NOTE_LIST_ERROR);
         }
     }
 
