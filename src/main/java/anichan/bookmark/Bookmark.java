@@ -216,7 +216,7 @@ public class Bookmark {
      * Check if anime id already exist within the bookmark.
      *
      * @param animeIndex anime id to be added
-     * @return true if already exit, else otherwise
+     * @return true if already exist, else otherwise
      */
     public boolean checkExist(int animeIndex) {
         boolean alreadyExist = false;
