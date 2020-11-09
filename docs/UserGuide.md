@@ -142,7 +142,7 @@ amazing features!
 ### Viewing help: `help`
 Shows all available commands that you can use
 
-Firstly, type `help` in the command line as seen below, and press ‘Enter’ to execute it.
+Firstly, type `help` in the command line as seen below, and press 'Enter' to execute it.
 
 ![help1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/help1.png)
 
@@ -193,7 +193,7 @@ WARNING:
 ##### Adding a class: `add class`
 Allows you to add a new class with a name, date and time.
 
-Firstly, type `add` in the command line as seen below, followed by the category type which is the class. Afterwards, key in the description of the class as well as its start and end date and time. Press `Enter` to execute it.
+Firstly, type `add` in the command line as seen below, followed by the category type which is the class. Afterwards, key in the description of the class as well as its start and end date and time. Press 'Enter' to execute it.
 
 ![addclass1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/addclass1.png)
 
@@ -223,7 +223,7 @@ cannot contain '/'.
 ##### Deleting a class: `delete class`
 Allows you to delete a class based on its index in the list.
 
-Firstly, type ‘delete’ in the command line as seen below, followed by the category type which is the class. Afterwards, key in the corresponding index of the class you would like to delete. Press ‘Enter’ to execute it.
+Firstly, type ‘delete’ in the command line as seen below, followed by the category type which is the class. Afterwards, key in the corresponding index of the class you would like to delete. Press 'Enter' to execute it.
 ![deleteclass1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_class_1.png)
 
 The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
@@ -245,7 +245,7 @@ WARNING:
 ##### Adding a cca: `add cca`
 Allow you to add a new cca with a name, date and time.
 
-Firstly, type ‘add’ in the command line as seen below, followed by the category type which is the cca. Afterwards, key in the description of the cca as well as its start and end date and time. Press ‘Enter’ to execute it.
+Firstly, type `add` in the command line as seen below, followed by the category type which is the cca. Afterwards, key in the description of the cca as well as its start and end date and time. Press 'Enter' to execute it.
 
 ![addCca1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_cca_1.png)
 
@@ -273,7 +273,7 @@ cannot contain '/'.
 ##### Deleting a cca: `delete cca`
 Allows you to delete a cca based on its index in the list.
 
-Firstly, type ‘delete’ in the command line as seen below, followed by the category type which is the cca. Afterwards, key in the corresponding index of the cca you would like to delete. Press ‘Enter’ to execute it.
+Firstly, type `delete` in the command line as seen below, followed by the category type which is the cca. Afterwards, key in the corresponding index of the cca you would like to delete. Press 'Enter' to execute it.
 
 ![deleteCca1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_cca_1.png)
 
@@ -298,7 +298,7 @@ WARNING:
 ##### Adding a test: `add test`
 Allows you to add a new test with a name, date and time.
 
-Firstly, type ‘add’ in the command line as seen below, followed by the category type which is the test. Afterwards, key in the description of the test as well as its start and end date and time. Press ‘Enter’ to execute it.
+Firstly, type `add` in the command line as seen below, followed by the category type which is the test. Afterwards, key in the description of the test as well as its start and end date and time. Press 'Enter' to execute it.
 
 ![addtest1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_test_1.png)
 
@@ -326,7 +326,7 @@ cannot contain '/'.
 ##### Deleting a test: `delete test`
 Allows you to delete a test event based on its index in the list.
 
-Firstly, type ‘delete’ in the command line as seen below, followed by the category type which is the test. Afterwards, key in the corresponding index of the test you would like to delete. Press ‘Enter’ to execute it.
+Firstly, type `delete` in the command line as seen below, followed by the category type which is the test. Afterwards, key in the corresponding index of the test you would like to delete. Press 'Enter' to execute it.
 
 ![deletetest1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_test_1.png)
 
@@ -352,7 +352,7 @@ WARNING:
 ##### Adding a tuition: `add tuition`
 Allows you to add a new test with a name, date, time, location.
 
-Firstly, type ‘add’ in the command line as seen below, followed by the category type which is the tuition. Afterwards, key in the description of the tuition, its start and end date and time as well as its location. Press ‘Enter’ to execute it.
+Firstly, type `add` in the command line as seen below, followed by the category type which is the tuition. Afterwards, key in the description of the tuition, its start and end date and time as well as its location. Press 'Enter' to execute it.
 
 ![addtuition1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_tuition_1.png)
 
@@ -380,7 +380,7 @@ cannot contain '/'.
 ##### Deleting a tuition: `delete tuition`
 Allows you to delete a tuition based on its index in the list.
 
-Firstly, type ‘delete’ in the command line as seen below, followed by the category type which is the tuition. Afterwards, key in the corresponding index of the tuition you would like to delete. Press ‘Enter’ to execute it.
+Firstly, type `delete` in the command line as seen below, followed by the category type which is the tuition. Afterwards, key in the corresponding index of the tuition you would like to delete. Press 'Enter' to execute it.
 
 ![deletetuition1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_tuition_1.png)
 
@@ -398,7 +398,7 @@ WARNING:
 
 ![deletetuitionerror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_tuition_error.png)
 
-<br /
+<br />
 <!-- @@author -->
 
 <!-- @@author AndreWongZH -->
@@ -409,7 +409,7 @@ You can also choose to list today's schedule, the schedule
 for the week or the schedule for a specific date.
 
 ##### List event: `list event`
-Firstly, to list out all events, type ‘list event’ in the command line, as seen below. Press ‘Enter’ to execute it.
+Firstly, to list out all events, type ‘list event’ in the command line, as seen below. Press 'Enter' to execute it.
 
 ![listevent1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_1.png)
 
@@ -423,7 +423,7 @@ The output is seen in the console. The list is arranged by their respective cate
 <!-- @@author Aliciaho-->
 ##### List event today: `list event today`
 
-Secondly, to list out all events today, type ‘list event today’ in the command line, as seen below. Press ‘Enter’ to execute it.
+Secondly, to list out all events today, type `list event today` in the command line, as seen below. Press 'Enter' to execute it.
 
 ![listeventtoday1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_today_1.png)
 
@@ -437,7 +437,7 @@ The output is seen in the console. The list is arranged by their respective cate
 <!-- @@author durianpancakes -->
 ##### List event week: `list event week`
 
-Thirdly, to list out all events in the current week, type ‘list event week’ in the command line, as seen below. Press ‘Enter’ to execute it.
+Thirdly, to list out all events in the current week, type `list event week` in the command line, as seen below. Press 'Enter' to execute it.
 
 ![listeventweek1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_week_1.png)
 
@@ -449,7 +449,7 @@ The output is seen in the console. It is displayed in a calendar format for easi
 
 ##### List event next week: `list event nextweek`
 
-Fourthly, to list out all events in the next week, type ‘list event nextweek’ in the command line, as seen below. Press ‘Enter’ to execute it.
+Fourthly, to list out all events in the next week, type `list event nextweek` in the command line, as seen below. Press 'Enter' to execute it.
 
 ![listeventnextweek1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_nextweek_1.png)
 
@@ -463,7 +463,7 @@ The output is seen in the console. It is displayed in a calendar format for easi
 <!-- @@author Aliciaho-->
 ##### List event date: `list event [desired date]`
 
-Lastly, to list out all events on a particular date, type ‘list event [desired date]’ in the command line, as seen below. Press ‘Enter’ to execute it.
+Lastly, to list out all events on a particular date, type `list event [desired date]` in the command line, as seen below. Press 'Enter' to execute it.
 
 ![listeventdate1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_date_1.png)
 
@@ -588,7 +588,7 @@ You should see the full list of questions you have answered wrongly in your prev
 #### Adding a contact `add contact`
 Allows you to add a teacher's contact details to the contact list.
 
-Firstly, type 'add' in the command line as seen below, followed by the category type which is the contact. 
+Firstly, type `add` in the command line as seen below, followed by the category type which is the contact. 
 Afterwards, key in the description of the contact. Press 'Enter' to execute it.
 
 ![add_contact_command](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_contact_command.png)
@@ -609,7 +609,7 @@ WARNING:
 #### Deleting a contact `delete contact`
 Allows you to delete a contact from the contact list.
 
-Firstly, type 'delete' in the command line as seen below, followed by the category type which is the contact. 
+Firstly, type `delete` in the command line as seen below, followed by the category type which is the contact. 
 Afterwards, key in the corresponding index of the contact you would like to delete. Press 'Enter' to execute it.
 
 ![delete_contact_command](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_contact_command.png)
@@ -628,8 +628,8 @@ WARNING:
 #### Listing out contacts `list contact`
 Allows you to list out all the contacts in the contact list
 
-To list out all contacts, type 'list contact' in the command line, as seen below. 
-Press 'Enter' to execute it.
+To list out all contacts, type `list contact` in the command line, as seen below. 
+Press `Enter` to execute it.
 
 ![list_contact_command](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_contact_command.png)
 
