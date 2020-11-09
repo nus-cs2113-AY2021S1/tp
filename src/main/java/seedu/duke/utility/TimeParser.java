@@ -1,8 +1,5 @@
 package seedu.duke.utility;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
 /**
  * TimeParser converts user's time input into int.
  */

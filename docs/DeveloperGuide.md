@@ -74,7 +74,7 @@ This will generate all the resources required by the application and tests.
 ## 3. Design
 
 WatchNext was designed drawing from the ideas of the __Event-driven architectural style__. <br>
-The class diagram below describes the relationship between the different components in **WatchNext**
+The class diagram below describes the relationship between the different components in **WatchNext**.<br><br>
 <img src = "images/designDG/designArchitecture.png" width = "700"> <br><br>
 <br>The Ui and the Scanner components work together as event emitters. The `Ui` class prompts the user for input, and the scanner is ready to receive the input. Should the format of the input be unrecognised or incorrect, the `Ui` class guides the user with prompts to rectify the errors.<br>
 <br>Events will be passed onto the `InputParser` which serves as the dispatcher. The `InputParser` uses various string manipulation operations from the `StringOperations` class to recognise the intention of the user input. After recognising the command, the input will be parsed, and the command information will be passed onto the various command classes for processing. The `InputParser` communicates the events to event consumers which are the command classes in this case. <br>
