@@ -14,14 +14,14 @@ import java.util.logging.Logger;
 
 public class QuizSubjectCommand extends SubjectCommand {
     private static final Logger logger = Logger.getLogger(QuizSubjectCommand.class.getName());
-    private String fullcommand;
+    private String fullCommand;
 
     public QuizSubjectCommand(String fullcommand) {
-        this.fullcommand = fullcommand;
+        this.fullCommand = fullcommand;
     }
 
-    public String getFullcommand() {
-        return this.fullcommand;
+    public String getFullCommand() {
+        return this.fullCommand;
     }
 
     /**
@@ -36,7 +36,7 @@ public class QuizSubjectCommand extends SubjectCommand {
     public void execute(SubjectList subjectList, Storage storage) throws NoSubjectException, InvalidSubjectException,
             NoTopicException, NoFlashcardException {
         logger.info("Begin finding the subject for which the quiz has to be conducted.");
-        String[] message = this.fullcommand.split("\\s+", 2);
+        String[] message = this.fullCommand.split("\\s+", 2);
         if (message.length <= 1 || message[1].isEmpty()) {
             throw new InvalidSubjectException(Ui.INVALID_SUBJECT_EXCEPTION);
         }
