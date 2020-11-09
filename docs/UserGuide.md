@@ -244,6 +244,11 @@ This section contains 8 commands:
 * 1.7 : [Deleting a link](#17-deleting-a-link-rm-link_number-)
 * 1.8 : [Starring / Unstarring a link](#18-marking-unmarking-a-link-as-a-starred-link-star-link_number)
 
+>**Warning**
+>If you edit the data file wrongly, the bookmark feature will not be able to take in the correct category name, and links. 
+>If you encounter any errors after handling the bookmark data file, refer to [FAQ](#faq)
+
+
 <div style="page-break-after: always;"></div>
 
 ### 1.1 Viewing all the bookmarks links: `list`,`list -s`, `list -c`, `list -a`
@@ -492,7 +497,7 @@ This section contains 10 commands to navigate the Timetable mode:
 * [2.7. Showing classes list](#27-showing-class-list-list-class)
 * [2.8. Deleting an activity](#28-deleting-an-activity-delete-activity-index)
 * [2.9. Deleting a class](#29-deleting-a-class-delete-class-index)
-* [2.10 Removing all past events](#210-removing-all-past-event-clean-up)
+* [2.10 Removing all past events](#210-removing-all-past-events-clean-up)
 
 <div style="page-break-after: always;"></div>
 
@@ -1062,6 +1067,17 @@ feel free to refer to the About Us page and contact any of the developers.
 
 **A**: As this app is still under development, there are many features we would like to add in the future.
 Do feedback to us what features you would like to see in Study It!
+
+**Q**: What to do if bookmark data does not load properly after changing the bookmark.txt file?
+
+**A**: This is for users who editted the bookmark.txt file in the data folder. If you encounter trouble after editing the data file, 
+you can do one of the following steps: 
+* revert the changes in the data file.
+* delete the bookmark data file.
+* ensure the bookmark data file are stored in the correct format. This is the following format: 
+    * CategoryName = links \| links \| \|STAR\|links \| links t->title 
+    * Category name and the links are separated with a " = " and each link is separated with a " \| ". (Take note of the space before and after the symbols)
+    * A starred link has \|STAR\| in front of the link. A link with a title has " t->" infront of the title. (Take note of the space in front of t->)
 
 <div style="page-break-after: always;"></div>
 

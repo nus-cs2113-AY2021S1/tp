@@ -3,8 +3,6 @@
 * Table of Contents
 {:toc}
 
-<div style="page-break-after: always;"></div>
-
 ## Introduction
 Welcome to Study It Developer Guide!
 
@@ -21,7 +19,6 @@ study life. It will also provide various functionalities to help with their stud
 The 4 main functionalities available now are bookmark, timetable, academic tracker and flashcard. 
 Each of this will be discussed in detail under the “Design & Implementation” section later in the document.
 
-<div style="page-break-after: always;"></div>
 
 ## Setting up & getting started
 **Requirements**
@@ -41,10 +38,6 @@ place it in an empty folder
 4. Type `java -jar tp.jar` into the command prompt and press Enter to execute it
 5. If the application runs successfully, you’ll be greeted by a welcome message
 
-<p align="center">
-    <img width="70%" height="70%" src="Images/GeneralUG/welcomemessage.png">
-</p>
-
 **Setting up the project on your PC**
 First, **fork** this repo, and **clone** the fork into your computer.
 
@@ -53,8 +46,6 @@ If you plan to use Intellij IDEA (highly recommended):
 2. Import the project as a Gradle project.
 3. Run the studyit.StudyIt and try a few commands.
 4. Run the tests to ensure they all pass.
-
-<div style="page-break-after: always;"></div>
 
 ## Design & implementation
 This section explains the architecture of our software and the design of each component.
@@ -78,8 +69,6 @@ Flashcard | Stores study questions and allow you to quiz yourself for easier mem
 The **main component** of Study It helps user access each of these components.
 It processes the user input, provides general functionalities to traverse the software and other
 helpful functionalities. This will be further explained under Study It's design later.
-
-<div style="page-break-after: always;"></div>
 
 ### **Architecture**
 This section describes the overall architecture of Study It.
@@ -132,8 +121,6 @@ The commands received will then be parsed to identify the type of command. If th
 general commands, it'll be processed and provide output. Otherwise, the command will be relayed
 to different components to be processed based on the software's current mode. 
 
-<div style="page-break-after: always;"></div>
-
 ### **Main Component**
 
 This section will give an overview of the main component of Study It.
@@ -161,8 +148,6 @@ program. ErrorMessage, HelpMessage and MainMenu are subclasses of Ui to make use
 StudyIt class will also initialize various instances of classes such as TimeTableRun, FlashCardRun, 
 ArrayList<BookmarkCategory>, ArrayList<Grade>, ArrayList<Person> and pass it to Command class to perform 
 each mode’s functionality.
-
-<div style="page-break-after: always;"></div>
 
 ### **Bookmark Component**
 
@@ -207,8 +192,6 @@ in Bookmark mode.
 
 ![BookmarkCommand ClassDiagram](Images/BookmarkDG/AddCommand.png)
 
-<div style="page-break-after: always;"></div>
-
 ### **Timetable Component**
 
 This section will describe in detail how some features inside the timetable section have been 
@@ -229,10 +212,26 @@ The timetable component consists of 7 major classes as shown. The above figure i
  1. `Event` class is the abstract parent class for `Lesson` and `Activity`. 
  1. `Event` class also contains a number of `Duration` and it has a dependency on the `EvenType` enum.
 
-The figure below is the sequence diagram of how the classes interact with each other when 
-the main function make the run(command) API call.
+**Timetable Implementation**
+
+This section explains the details on how certain features are implemented in Timetable.
+
+The figure below is the sequence diagram of the major interactions between classes when
+the main function makes the run(command) API call and the command is "add class", 
+"show schedule", "show link", or "delete class" .
 
 ![timetable_sequence diagram](Images/timetable_sequence%20diagram.png)
+
+When command="add class" the `run(command)` method calls the `commandParse()` method from the `TimeTableParser` which the function
+will call `addClass()` function from the `TimeTableCommand` Class. New `Lesson` Class will be initialised based on user input.
+Following that a `addClassPeriod()` function will be called taking in the new lesson class initialised to add all the time slots
+into lesson class. This class will then be returned to `TimetableParser` class where it will call the `addEvent()` method in DateList
+to add the new `Lesson` Class into the arrayList within `DateList` Class. `WriteFile()` method in `Storage` will also be called to 
+save the infomation of the new `Lesson` class to the data file.
+
+Other possible commands that are not shown in the diagram will interact between classes in a similar way,
+where command will be passed to the TimeTableParser Class where it interprets the command and calls the respective
+function from the TimeTableCommand Class.
 
 <div style="page-break-after: always;"></div>
 
@@ -305,25 +304,35 @@ In terms of general structure, it is largely similar to that of `GradeBook`'s.
 This section will describe in detail how the flashcard feature is implemented.
 
 
-![Flashcard Component Class Diagram](Images/Flashcard_Class.png)
+![Flashcard Component Class Diagram](Images/flashcard%20class%20diagram.png)
 
 The above diagram looks at the overall structure of how the flashcard component is being implemented. 
 This component is split into 4 different classes, their associations and multiplicity as explained in 
-the above Figure 7. 
+the above Figure. 
 1. The main class `FlashcardRun` will be accessed when the flashcard mode is called in `StudyIt` Class. 
 1. `FlashcardRun` class is associated with `FlashcardStorage` class that is used to store data in .txt file. 
 1.`FlashcardDeck` class which contains any number of `Flashcards`.
 
 **Flashcard Implementation**
 
+This section explains the details on how certain features are implemented in flashcard.
+
+When `FlashcardRun` is first initialised by `StudyIt`, it will construct 
+the `FlashcardDeck` class.
+
 ![Sequence Diagram when user input “add card” command](Images/addCard_sequenceDiagram.png)
 
-With reference to Figure 8, when `FlashcardRun` is first initialised by `StudyIt`, it will construct 
-the `FlashcardDeck` class. As an add card command is given by the user, `FlashcardRun` will take in the 
+With reference to the figure above, as an "add card" command is given by the user, `FlashcardRun` will take in the 
 command and call `addCard()` method in `FlashcardDeck` which constructs a new Flashcard object and stores 
 it inside the `FlashcardDeck` object.The `addCard()` function will then show the user the question and 
-answer of the flashcard that have been created.
+answer of the flashcard that has been created.
+
+Other possible commands that are not shown in the figure work in a similar way where command is parsed in `FlashcardRun` Class,
+and calls the corresponding function within the `FlashcardDeck` Class. `WriteToFile` function is called at the end of the
+process to update any changes to the deck to the data file.
+
 <!-- @@author -->
+
 ## Documentation, logging, testing, configuration, dev-ops
 ### Testing guide
 Running tests:  
@@ -354,8 +363,6 @@ This project uses Gradle for build automation management.
 ./gradlew build - check for checkstyle error and runs all tests
 Code coverage
 This project uses code coverage that is in IntelliJ IDE to check for the coverage of the code. 
-
-<div style="page-break-after: always;"></div>
 
 ## Appendix: Requirement 
 ### Product scope
@@ -402,3 +409,7 @@ tasks faster using commands than using the mouse.
 ## Glossary
 
 * *Mainstream OS* - Windows, Unix, Linux, OS-X
+
+## Instructions for manual testing
+
+{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
