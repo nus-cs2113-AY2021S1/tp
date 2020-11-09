@@ -1,7 +1,7 @@
 # John - Project Portfolio Page
 
 ## Overview
-This document covers my contribution to CCA Manager. CCA Manager was a revolutionary all in one tool conceptualized to deliver an efficient management system that integrates many different categories and aspects of management into one single easy to use program.
+This document covers my contribution to CCA Manager. CCA Manager is a revolutionary all in one tool conceptualized to deliver an efficient management system that integrates many different categories and aspects of management into one single easy to use program.
 Instead of having dozens of text fields and hard to navigate menus, we made a focus on simplicity and efficiency to allow people to quickly get things done with CCA Manager rather than to have to figure out how to find a specific feature or spend hours managing the inputs in spreadsheet apps.
 
 ### Summary of Contributions
@@ -15,6 +15,7 @@ User-Facing features developed
 * Bye command to terminate program
 * Help command to display help information
 * import command to import data from other csv files
+* Relative Time feature for Events so that event dates can be defined by human friendly shortcuts like "next fri" or "next monday" instead of having to type the full date format
 
 Backend features developed
 
@@ -28,6 +29,7 @@ Backend features developed
 Additional contributions
 
 * Fuzzing inputs with common attack vectors to ensure consistent program behavior
+* Application hardening to prevent unexpected crashes from user input
 * Setting up of the team organization and repo
 * Creation of deliverable builds (.jar files)
 * Design and art for product logo
@@ -36,6 +38,16 @@ Additional contributions
 **Code Contributed**
 
 [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=JohnNub&tabRepo=AY2021S1-CS2113T-F14-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
+
+**Contributions to Development Guide**
+* Introduction
+* Feature Overview
+* Instructions on how to run a terminal and navigate using the terminal
+* Help Command
+* Bye Command
+* Import Command
+* Glossary
+
 
 **Contributions to Development Guide**
 * Introduction

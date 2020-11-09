@@ -45,6 +45,15 @@
 Welcome to **CCA Manager!**
 CCA Manager is a revolutionary tool that changes the way you can manage interest groups with unrivaled efficiency and simplicity. Its lightweight Command Line Interface (CLI) allows administrators to breeze through tasks quickly and easily while offering powerful features to advanced users.
 
+Feature Overview
+
+* Manage HR list of members and external contacts
+* Create events and record the attendance rate of events
+* Track financial spending and budgeting
+* Import data from other programs
+* Shorthand Commands to reduce the amount of typing required to execute a command
+* Relative Time for events to quickly declare a date without date format use
+
 ### 2. About this User Guide 
 (By: Varsha)
 
@@ -74,6 +83,12 @@ The following steps will guide you through the process of running CCA Manager.  
  
  :three: Navigate to the folder where you downloaded CCA Manager. Run the program by entering `java -jar CCAManager.jar` in a terminal. As seen in the figure below, the red arrow points to where you have to type in commands.
  
+ > :information_source: To launch a terminal on Windows, open the start menu, type "Command Prompt" to search for the terminal and run it.   
+> On MacOS, you can find the Terminal in the `/Applications/Utilities` folder. Double click Terminal to launch it.  
+> On linux operating systems, the most common shortcut to opening the Terminal is CTRL+ALT+T.  
+> To navigate to the folder with CCA Manager, use the command `cd <FOLDER NAME/PATH>` to go in to the folder. You can use `cd ..` to go back one level if you made a mistake.
+
+ 
  ![](userGuidePic/terminal.PNG)
  
   > :information_source: Please resize the terminal to full screen mode 
@@ -99,6 +114,8 @@ For example, as shown in the picture below, instead of typing `event`, you can t
 
 ### 4.1 Help `help`
 Shows a list of available commands<br/>
+
+This command allows you to view a summary of all the available commands and how to use them.
 Format: help
 
 Expected Outcome: 
@@ -106,7 +123,9 @@ Expected Outcome:
 ![helpCommand](userGuidePic/helpCommand.PNG)
 
 ### 4.2 Exit the program: `bye` 
-Exits the program. <br/>
+Exits the program.
+
+With this command you can exit the program directly from the terminal without closing it. <br/>
 Format: `bye`
 
 ### 4.3 HR features `HR` 
@@ -260,6 +279,10 @@ Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
 > :information_source: The EVENT_INDEX must be an integer greater than 0. <br/>
 > :information_source: The EVENT_DATE entered should be in the format YYYY-MM-DD. <br/>
 > :information_source: The EVENT_TIME entered should be in the 24-hour clock format (HH-mm). <br/>
+
+
+> :bulb: You can use Relative Time by specifying date of week for convenience. For example `/d next friday` will schedule the event on the next friday from current day.
+
 
 Shorthand Format : <br/>
 event --> e <br/>
@@ -567,6 +590,8 @@ The expected outcome is as follows:
 
 ![Outcome](userGuidePic/import3.png)  
 
+If you would like to try out importing a file with a sample, we provide a sample file similar to the one shown in the above example.  
+You can download the sample [here](https://raw.githubusercontent.com/AY2021S1-CS2113T-F14-1/tp/master/docs/sample.csv).
 
 [Return to the top](#user-guide)
 
@@ -583,11 +608,12 @@ This section details the frequently asked questions (FAQ) regarding the use of t
 
 **Q** How do I transfer my data to another computer? <br/>
 **A** Install CCA Manager in the other computer and overwrite the empty data files it creates with the file that contains the data from your previous computer. <br/>
+You can find the data files in the "data" folder inside the folder that CCAManager is running in.  
 
 **Q** Is CCA Manager optimized for all Operating Systems(OS)? <br/>
 **A** CCA Manager is available for download on all major Operating Systems such as Windows, Mac and Linux.
 
-**Q** Where can I find the release?
+**Q** Where can I find the release?  
 **A** You can find it here [add v2.1 here]().
 
 
@@ -636,7 +662,11 @@ summary | `finance summary` |   -
 This section explains certain technical terms used in the guide which may require more detail.
 
 CCA - Co-curricular Activity <br/>
-CSV - Comma-separated values <br/>
-Command Line Interface(CLI): Processes commands to a computer program in the form of lines of text. <br/>
+CSV - Comma-separated values. This typically refers to the file type with extension .csv  <br/>
+Command Line Interface(CLI) - Processes commands to a computer program in the form of lines of text. <br/>
+Terminal/Command Prompt - An interface where you can type and execute text based commands. It is a basic feature of most Operating Systems.  
+Directory - Folder. A directory is a more technical name for referring to folders. 
+Command - A command is an instruction that will cause a program to perform a series of actions based on what was supplied to it.  
+Index - An index (of a list) refers to which position the item is in the list. In the list (apple,pear,banana) the index of "pear" is 2 because it's the 2nd element.  
 HR - Human Resource <br/>
 OS - Operating Systems <br/>
