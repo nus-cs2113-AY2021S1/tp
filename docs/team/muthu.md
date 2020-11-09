@@ -15,29 +15,20 @@
          classes were based on the other SubjectCommand classes created by [JiaLerk](https://github.com/jialerk).
          - Logging (within the respective classes) 
          - Testing - SubjectQuizTest and TopicQuizTest.
-         - Testing -Two test cases in the SubjectCommandTest and  TopicCommandTest related to quiz. The other methods were
-         created by [JiaLerk](https://github.com/jialerk).
-
-    * Implement Quiz Feature which includes the following:
-        - Quiz,SubjectQuiz and TopicQuiz classes which form the quiz.
-        - QuizSubjectCommand and QuizTopicCommand classes to read the input and initiate the respective quizzes. These
-        command classes were created by [JiaLerk](https://github.com/jialerk).
-        - NoFlashcardException to inform the users if there are no flashcards present in a topic or a quiz. 
-        - Logging (within the respective classes)
-        - Testing - SubjectQuizTest,TopicQuizTest.
-        - Testing - The two test cases in the SubjectCommandTest and  TopicCommandTest related to results.The other methods were
-         created by [JiaLerk](https://github.com/jialerk).
+         - Testing -Two test cases in the SubjectCommandTest and  TopicCommandTest related to quiz. The other methods were created by [JiaLerk](https://github.com/jialerk).
     
     * Implement Result Feature which includes the following:
-        - Result , ResultList classes.
+        - Result , ResultList classes. The resultList class is based on the other list classes created by [JiaLerk](https://github.com/jialerk). 
         - ResultSubjectCommand and ResultTopicCommand classes to read the input and show the respective results.
+        These command classes are based on the command classes created by [JiaLerk](https://github.com/jialerk).    
         - NoFlashcardException to inform the users if there are no flashcards present in a topic or a quiz.
         - Logging (within the respective classes)
-        - Testing -  The two test cases in the SubjectCommandTest and TopicCommandTest related to results.
-       
+        - Testing -  The two test cases in the SubjectCommandTest and TopicCommandTest related to results.The other methods were created by [JiaLerk](https://github.com/jialerk).
+        
+* **Enhancements implemented:**        
     * Implement printing of upcoming tasks in the application.
  
-    * Implement Date and Time feature in Event and deadline classes. Furthermore, sorted the tasks according to their Date and Time.
+    * Implement Date and Time feature in Event and deadline classes. Furthermore, sorted the tasks according to their Date and Time [#84](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/84).
  
     * Implement the logo in the application.
  
@@ -60,10 +51,10 @@
     - Target User Profile
     - Value proposition
     - Glossary
-  UML diagrams: Section 4.4 
+    - UML diagrams: Section 4.4 
  
  #### Team based tasks
 - Set up the Github team org and repo <br>
 - In charge of release v1.0 and v2.0 <br>
--  Link to issues created: Click [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/issues/created_by/syncode98)
+- Link to issues created: Click [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/issues/created_by/syncode98)
 - Link to pull requests reviewed:[here](https://github.com/AY2021S1-CS2113T-W13-1/tp/pulls?q=is%3Apr+is%3Aopen+reviewed-by%3A%40me)
