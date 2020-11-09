@@ -50,7 +50,7 @@ Wan Shi Jie Brendan<br>
 * [Documentation](#documentation) <br>
 * [Testing](#testing)<br>
 * [Appendix A. Product scope](#appendix-a-product-scope)<br>
-* [Appendix B.User stories](#appendix-b-user-stories)<br>
+* [Appendix B. User stories](#appendix-b-user-stories)<br>
 * [Appendix C. Non-functional requirements](#appendix-c-non-functional-requirements)<br>
 * [Appendix D. Instructions for manual testing](#appendix-d-instructions-for-manual-testing)
 
