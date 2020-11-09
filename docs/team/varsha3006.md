@@ -26,8 +26,8 @@ I added to the event feature in this project. Specifically  `CommandEventAdd`, `
 * To mark an event as completed, user can use `event done <index>` <br/>
 * The user can use `event listEvent` to list all the events in the list. <br/>
 * The user can use `event search` to find events. They have the option to:
-  Search by Event date <br/>
-  Search by Event name <br/>
+  * Search by Event date <br/>
+  * Search by Event name <br/>
  * The user can use   `event countdown` to see number of days left to the upcoming event. <br/>
 
 **Enhancements Added:**
