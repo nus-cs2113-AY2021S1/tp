@@ -31,6 +31,8 @@ The list of contributions for testing, assertions and logging include the follow
 * Assertions and exception for the component class functions including the setValue() and getValue() functions [#48](https://github.com/AY2021S1-CS2113T-W13-3/tp/pull/48)
 * Logging in the Boolean Tutorial Command [#103](https://github.com/AY2021S1-CS2113T-W13-3/tp/pull/103)
 
+<div style="page-break-after: always;"></div>
+
 #### Developer Guide
 
 The list of the contributions to the developer guide include:
@@ -46,4 +48,3 @@ The list of contributions to user guide include:
 * Editing command information [#180](https://github.com/AY2021S1-CS2113T-W13-3/tp/pull/180) 
 * Formattting [#180](https://github.com/AY2021S1-CS2113T-W13-3/tp/pull/180) 
 
-<div style="page-break-after: always;"></div>
