@@ -35,9 +35,7 @@ Given below are my contributions to the project.
   * Credits: The code to compare whether 2 localDateTimes are within the same week. 
   Provided by Sunil Katti [here](https://stackoverflow.com/a/56246095)  
   
-* **New Feature**: Added the ability to exit the application.
-
-* **New Feature**: Added the ability to print the list of events.  
+* **New Feature**: Added the ability to exit the application. 
 
 * **New Feature**: Added the ability to print the list of locations at the selected area in NUS. 
 
