@@ -888,6 +888,8 @@ Expected output:
 
 ![Flashcard_4_2](Images/FlashcardUG/Flashcard_4_2.png){:height="80%" width="80%"}
 
+<div style="page-break-after: always;"></div>
+
 If you encounter any errors, take note of the following warning.
 
 >**Warning:**
@@ -897,6 +899,8 @@ If you encounter any errors, take note of the following warning.
 >If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
 >
 >![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png){:height="80%" width="80%"}
+
+<div style="page-break-after: always;"></div>
 
 ### 4.3 Listing flashcards: `list`
 
