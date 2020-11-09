@@ -189,7 +189,9 @@ Example of usage: <br/>
 Search the members whose information matches user input.  
 :bulb: If a member's information matches any of the conditions that the user inputs, 
 it will return this member.  
-Format: `hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)`  
+Format: `hr search ITEM /n ITEM /p ITEM /e ITEM /r ITEM`  
+:bulb: User can choose any parts of conditions above to search.  
+:bulb: The ITEM without any symbol in front means searching the key from any parts of `Member`'s information.  
 
 Shorthand format:  
 `hr` -> `h`  
