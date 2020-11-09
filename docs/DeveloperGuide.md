@@ -13,7 +13,7 @@ Each release will have an edition of the document, and the current edition of th
 The goal of this document is to cover the high-level system architecture and design. This document is divided into three major parts: design, implementation, product proposition. 
 
 ## Design
-
+<!-- @@author AndreWongZH -->
 ### Architecture
 
 ![diagram](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ArchitectureDiagram.png)
@@ -38,6 +38,7 @@ Each of the four components:
 Exposes its functionality using a concrete {Component Name}Manager class.
 
 The sections below give more details of each component.
+<!-- @@author -->
 
 <!-- @@author durianpancakes -->
 #### UserInterface component
@@ -58,7 +59,10 @@ This component uses the singleton design, meaning that there is only an instance
 `UserInterface userInterface = UserInterface.getInstance()`
 <br />
 <br />
+
 <!-- @@author -->
+
+<!-- @@author AndreWongZH -->
 
 #### Controller component
 
@@ -96,7 +100,7 @@ The Model component,
 * Each data type has a corresponding manager that the controller can interface with. This is named as <datatype>Manager.java.
 * During a command execution, the manager will handle the modification and reading of its data type.
 * After the execution, the corresponding output is passed on to the User Interface component to be shown to the user.
-
+<!-- @@author -->
 <br />
 <br />
 
@@ -319,7 +323,7 @@ The result is subsequently outputted by the UI class to the user.
 Upon completion of this feature, it returns a boolean value “true” to the active flag in UserInterface.java to allow the continuous usage of the program. 
 
 ### List feature
-
+<!-- @@author AndreWongZH -->
 #### List contact / quiz
 
 ![listcontact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ListContact.png)
@@ -359,7 +363,10 @@ If that is true, then it converts the userInput attribute to `LocalDate.now()`, 
 When filtering the events to be converted, the start time of the event is compared with the parameter date.
 If it is equal, the event will be converted and be printed out.
 
+<!-- @@author -->
+
 <!-- @@author durianpancakes -->
+
 #### List event week/nextweek
 
 ![listeventweek](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ListWeekSequence.png)
@@ -384,7 +391,7 @@ userInterface.printWeekSchedule(this, ListWeekCommand.CURRENT_WEEK); // the Even
 
 
 ### Find feature
-
+<!-- @@author AndreWongZH -->
 #### Find event <keyword(s)>
 
 The execution of FindCommand will cause the `EventManager` class to invoke `EventManager#find()`. Inside this `EventManager#find()`, it creates an instance of the `FindSchedule` class, with all the classes, ccas, tests and tuitions data as its attributes. 
@@ -398,6 +405,7 @@ The diagram below shows the execution flow explained below.
 ![findevent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/FindEvent.png)
 
 Figure 20. Sequence diagram for finding events.
+<!-- @@author -->
 
 <!-- @@author untitle4 -->
 #### Find quiz <keyword(s)>
@@ -468,12 +476,15 @@ One-stop application for Primary 6 students to plan their schedule and do revisi
 |v2.0|Primary 6 student|to see the list of questions I have added|I can keep track of the questions I need.|
 |v2.0|Primary 6 student|to practice via short and interactive online trivia|I can revise in an entertaining manner.|
 |v2.1|Primary 6 student|set a number of productive hours per day|I can work efficiently and effective without overloading.|
+
+<!-- @@author AndreWongZH -->
 ## Non-Functional Requirements
 
 * Should work on any Windows, Mac and Linux operating system with Java 11 installed.
 * Should update the storage every time a command changes the data.
 * Users should be able to view the output of their command within 10 seconds
 * Accessing and loading of data should take less than 5 seconds when we have less than 10000 data entries.
+<!-- @@author -->
 
 ## Glossary
 
@@ -482,6 +493,7 @@ One-stop application for Primary 6 students to plan their schedule and do revisi
 Data entries 
 	Event, Quiz or contact data that are either in storage or in their respective Manager class
 
+<!-- @@author AndreWongZH -->
 ## Instructions for manual testing
 
 Given below are instructions to test the app manually
@@ -519,6 +531,7 @@ Given below are instructions to test the app manually
 	* Expected: Remind the user to include the keyword in the command.
 1. Test case: `find testing`
 	* Expected: Inform user that the program does not recognise the category.
+<!-- @@author -->
 
 <!-- @@author durianpancakes -->
 ### Saving data
@@ -531,7 +544,7 @@ There are two ways we use to define a missing file:
 We can simulate this by deleting any of the critical data .txt file, or the “data” directory 	as a whole. 
 
 Expected: The “data” directory as well as “event.txt“ and “quiz.txt” are recreated.
-However, any prior data stored will be lost. 	
+However, any prior data stored will be lost.
 
 
 #### Dealing with corrupted data files
@@ -545,7 +558,7 @@ We can simulate this by changing the encoded text in the file. For example, a Cl
 * Start: 2020-09-21 1500
 * End: 2020-09-21 1600
 
-should be encoded as “[CLASS]|false|Math tutorial|2020-09-21 1500|2020-09-21 1600” in the events.txt file. 
+should be encoded as “[CLASS]\|false\|Math tutorial\|2020-09-21 1500\|2020-09-21 1600” in the events.txt file. 
 
 Corrupted forms can be in the following forms, but not limited to:
 * “[CLASS]\|Math tutorial\|2020-09-21 1500\|2020-09-21 1600”: the isDone parameter is missing from the encoded string.
