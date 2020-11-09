@@ -13,7 +13,7 @@ There are 3 large features in this program: HR, Event, and Finance.
 Given below are my contributions to the project, which includes coding, documenting and other helpful contributions in the process of developing CCA Manager.  
 
 #### Code Contributed
-This is the link to view the code and documentations that I have contributed to this project: [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=yeyutong811&tabRepo=AY2021S1-CS2113T-F14-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
+This is the link to view the code and documentations that I have contributed to this project: [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=yeyutong811)
 
 #### Features Added
   **New features:**   
