@@ -1137,7 +1137,7 @@ You should see the following:
 > Note that the ledger of date 2020-07-07 was not created beforehand. However, the ledger will be automatically created by the operation, and will resume as per normal. 
 
 ## Testing EntryTracker
-1. The following testing guide assumes that [testing above](#testing-manualTracker) is completed.
+1. The following testing guide assumes that the test for __Manual Tracker__ has been completed.
 
 **Show Command List** <br />
 1. Enter ```commands``` into the console.
