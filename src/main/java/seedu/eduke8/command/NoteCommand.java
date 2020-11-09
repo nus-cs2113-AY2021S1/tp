@@ -8,7 +8,7 @@ import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
 
 /**
- * Represents a specific command that manages a user's Notes in E-Duke-8.
+ * A specific command that manages a user's Notes in E-Duke-8.
  */
 public class NoteCommand extends Command {
 

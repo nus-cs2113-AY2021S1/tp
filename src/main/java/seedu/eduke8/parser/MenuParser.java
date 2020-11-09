@@ -60,6 +60,9 @@ public class MenuParser implements Parser {
 
     private BookmarkList bookmarkList;
 
+    /**
+     * Parses user input while user is in the main menu.
+     */
     public MenuParser(BookmarkList bookmarkList) {
         this.bookmarkList = bookmarkList;
     }
