@@ -695,6 +695,8 @@ The sequence diagram below explains how this feature is executed:
     * Pros: Easier to implement.
     * Cons: The user needs to type in `show` to know the index number.
 
+<br>
+
 <!-- @@author jusufnathanael-->
 <a name="planner"></a>
 ### Planner feature (Jusuf)
@@ -708,18 +710,6 @@ Below is the general flow on how the mechanism works:
 4. The user can also call the `add` command to add a new meeting, similar to the timetable feature.
 5. Finally, the user can call the `save` command to store the newly added meeting(s) to each individual timetable.
 
-#### Design consideration:
-
-##### Aspect: How to load and save the group meeting to the timetables.
-
-* **Alternative 1 (Current choice):** Manually load the individual timetables and save the new meetings (slots and bookmarks) to the timetables.
-    * Pros: User can decide when to save the newly added meetings (still allow some changes).
-    * Cons: In case that the program crashes, the meeting will not be saved.
-* **Alternative 2:** Automatically load and save the individual timetables per every command.
-    * Pros: Any changes will be automatically saved, in case that the program crashes
-    * Cons: Hard to implement
-    * Cons: Do not allow any further modifications in case the user wants to change the meeting details.
-    
 <br>
 
 Some of the key features of the planner mode is the `load` and `save` commands.
@@ -748,8 +738,22 @@ The sequence diagram below explains how the load planner command is executed:
 ![](diagrams/plannerCommand/save_planner.png) <br/>
 *<center/>Figure 2.27 Sequence diagram for SavePlannerCommand</center> <br/>*
 
-
 <br>
+
+#### Design consideration:
+
+##### Aspect: How to load and save the group meeting to the timetables.
+
+* **Alternative 1 (Current choice):** Manually load the individual timetables and save the new meetings (slots and bookmarks) to the timetables.
+    * Pros: User can decide when to save the newly added meetings (still allow some changes).
+    * Cons: In case that the program crashes, the meeting will not be saved.
+* **Alternative 2:** Automatically load and save the individual timetables per every command.
+    * Pros: Any changes will be automatically saved, in case that the program crashes
+    * Cons: Hard to implement
+    * Cons: Do not allow any further modifications in case the user wants to change the meeting details.
+    
+<br>
+
 
 <!-- @@author -->
 <a name="appendix-a"></a>
