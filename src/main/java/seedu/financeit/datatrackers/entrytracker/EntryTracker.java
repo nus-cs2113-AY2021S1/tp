@@ -182,20 +182,27 @@ public class EntryTracker {
         EditEntryHandler editEntryHandler = EditEntryHandler.getInstance();
 
         Entry entry;
+        Entry prevEntry = null;
         try {
             // RetrieveEntryCommand instance retrieves the corresponding entry instance
             // from the entryList instance.
             retrieveEntryHandler.handlePacket(packet, entryList);
-            entry = (Entry) entryList.getItemAtCurrIndex();
-
+            // Remove the entry from the list.
+            entry = (Entry) entryList.popItemAtCurrIndex();
+            prevEntry = new Entry(entry);
             // EditEntryCommand instance edits details of the corresponding ledger instance
             // from the entryList instance.
             editEntryHandler.setEntry(entry);
             editEntryHandler.handlePacket(packet);
+
+            // Add the edited entry back to the list.
+            entryList.addItem(entry);
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s edited!", entry.getName()));
             ManualTrackerSaver.getInstance().save();
         } catch (InsufficientParamsException | IncompatibleParamsException | ItemNotFoundException exception) {
+            // If the edited entry is not valid, add back in the previous entry.
+            entryList.addItem(prevEntry);
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         } finally {

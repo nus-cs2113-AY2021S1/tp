@@ -94,6 +94,13 @@ public abstract class ItemList {
         return this.items.get(index);
     }
 
+    public Item popItemAtCurrIndex() throws IndexOutOfBoundsException {
+        assert this.indexToModify >= 0;
+        int index = this.indexToModify;
+        this.isIndexToModifySet = false;
+        return this.items.remove(index);
+    }
+
     public Item getItemAtIndex(int index) throws IndexOutOfBoundsException {
         assert index < items.size();
         Item item =  this.items.get(index);

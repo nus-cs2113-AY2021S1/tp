@@ -38,7 +38,7 @@ public class EditEntryHandler extends ParamHandler {
     public void checkCatAndEntryType() throws IncompatibleParamsException {
         switch (this.entry.getEntryType()) {
         case EXP:
-            if (! CategoryMap.expenseCategories.contains(this.entry.getCategory())) {
+            if (!CategoryMap.expenseCategories.contains(this.entry.getCategory())) {
                 UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Category is not compatible with entry type!",
                     "-e : {fd, tpt, tvl, shp, bll, oth}"

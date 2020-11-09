@@ -236,11 +236,12 @@ Param Type| Param | Param Format
 `/amt`|Amount involved in the transaction.| Input positive floating point number in 2 d.p. <br/> Can be $XX.XX, XX, etc.
 `/cat`|Category of transaction. | Input string belonging in the set: {tpt, fd, tvl, shp, bll, slr, alw}
 `-i or -e`|Type of transaction. | No parameter required. 
-
+`/desc`|Information about the transaction | Description should not have ';' characters.<br/>Users can use the '>' character to indent their input texts. 
 > Example: 
 
 ![](developerGuide_images/screenshots_entrytracker/entry_create.png)
 
+> Note that ';' is an illegal input character! Also, you can force indent to your text using '>' key. 
 
 ## Edit entry
 Add an entry to the ledger record.

@@ -41,7 +41,7 @@ entryTracker ->entryTracker: handleCreateEntry()
        return
 
     == Retrieval of entry from entryList ==
-    entryTracker -> "entryList:EntryList" : getItemAtCurrIndex()
+    entryTracker -> "entryList:EntryList" : popItemAtCurrIndex()
     return entry
 
     == Phase 2: Edit Entry ==
@@ -52,6 +52,8 @@ entryTracker ->entryTracker: handleCreateEntry()
         entryTracker -> "editEntryHandler:EditEntryHandler" : handlePacket
                         ref over entryTracker, "retrieveEntryHandler:RetrieveEntryHandler", ":ParamChecker","entryList:EntryList" : handlePacket (Phase 2) 
        
+        return
+        entryTracker -> "entryList:EntryList" : addItem(entry)
         return
    == Edit successful ==
    return

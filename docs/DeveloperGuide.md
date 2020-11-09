@@ -491,7 +491,7 @@ The editing of details within the entry is performed in two phases: Entry Retrie
         1. ```retrieveEntryHandler.handlePacket(packet)``` is called to handle params in the packet.
             1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
             1. For ```retrieveEntryHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table3).
-            1. From ```EntryTracker```, call ```entryList.getItemAtCurrIndex``` to retrieve the entry specified by the index set to modify earlier.
+            1. From ```EntryTracker```, call ```entryList.popItemAtCurrIndex``` to retrieve the entry specified by the index set to modify earlier.
 
 #### <a name = table3></a> Param Handling Behavior
 
@@ -511,7 +511,7 @@ The editing of details within the entry is performed in two phases: Entry Retrie
     1. ```EditEntryHandler.handlePacket()``` is called to handle params in the packet.
         1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
         1. For ```EditEntryHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table4).
-
+    1. The edited entry is added back into the list.
 #### <a name = table4></a> Param Handling Behavior           
 
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
