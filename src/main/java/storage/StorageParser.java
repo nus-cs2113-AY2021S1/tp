@@ -5,6 +5,13 @@ import exception.InvalidFileFormatException;
 public class StorageParser {
 
     //@@author Zhu-Ze-Yu
+    /**
+     * Parses the question in the file
+     *
+     * @param arg question with prefix [Q] in the file
+     * @return String question without prefix [Q]
+     * @throws InvalidFileFormatException if the file format is not invalid
+     */
     public static String parseQuestionInFile(String arg) throws InvalidFileFormatException {
         if (!(arg.trim().startsWith(Storage.QUESTION_PREFIX))) {
             throw new InvalidFileFormatException("Questions in the file should begin with [Q].");
@@ -18,6 +25,13 @@ public class StorageParser {
         return question;
     }
 
+    /**
+     * Parses the answer in the file
+     *
+     * @param arg answer with prefix [A] in the file
+     * @return String answer without prefix [A]
+     * @throws InvalidFileFormatException if the file format is not invalid
+     */
     public static String parseAnswerInFile(String arg) throws InvalidFileFormatException {
         if (!(arg.trim().startsWith(Storage.ANSWER_PREFIX))) {
             throw new InvalidFileFormatException("Answers in the file should begin with [A].");
@@ -31,6 +45,13 @@ public class StorageParser {
         return answer;
     }
 
+    /**
+     * Parses the previous interval in the file
+     *
+     * @param arg previous interval with prefix [P] in the file
+     * @return String previous interval without prefix [P]
+     * @throws InvalidFileFormatException if the file format is not invalid
+     */
     public static String parsePreIntervalInFile(String arg) throws InvalidFileFormatException {
         if (!(arg.trim().startsWith(Storage.PREVIOUS_INTERVAL_PREFIX))) {
             throw new InvalidFileFormatException("Previous intervals in the file should begin with [P].");

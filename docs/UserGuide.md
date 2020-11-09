@@ -189,9 +189,17 @@ Here are some key points:
 
 Example of usage: 
 * Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
-![List Modules 1](UG_Images/list_module1.png)
+
+<p align="center">
+    <img src="UG_Images/list_module1.png" alt="List Module 1"/>
+</p>
+
 * Step 2: The result for the list of modules will be displayed as shown.<br>
-![List Modules 2](UG_Images/list_module2.png)
+
+<p align="center">
+    <img src="UG_Images/list_module2.png" alt="List Module 2"/>
+</p>
+
 * After listing all modules, you can try all commands available in **Admin Level**.
 
 #### 3.1.3. Editing a module name: `edit` 
@@ -210,13 +218,29 @@ Here are some key points:
 Example of usage: 
 Let's say you want to edit the module name to `CS2113T` for the module `cs2113`.
 * Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/EditModule1.png" width="600" alt="Edit Module 1"/><br>
+
+<p align="center">
+    <img src="UG_Images/EditModule1.png" alt="Edit Module 1"/>
+</p>
+
 * Step 2: From the list of modules displayed, you can see that the module `MODULE_INDEX` is 1.<br>
-<img src="UG_Images/EditModule2.png" width="600" alt="Edit Module 2"/><br>
+
+<p align="center">
+    <img src="UG_Images/EditModule2.png" alt="Edit Module 2"/>
+</p>
+
 * Step 3: Next, you can type `edit 1 CS2113T` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/EditModule3.png" width="600" alt="Edit Module 3"/><br>
+
+<p align="center">
+    <img src="UG_Images/EditModule3.png" alt="Edit Module 3"/>
+</p>
+
 * Step 4: After the module name has been successfully edited, the result will be displayed as shown.<br>
-<img src="UG_Images/EditModule4.png" width="600" alt="Edit Module 4"/><br>
+
+<p align="center">
+    <img src="UG_Images/EditModule4.png" alt="Edit Module 4"/>
+</p>
+
 * After editing the module name, you can try all commands available in **Admin Level**.
 
 #### 3.1.4. Removing a module: `remove` 
@@ -306,9 +330,17 @@ Here are some key points:
 
 Example of usage: 
 * Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
-![List Chapters 1](UG_Images/list_chapter1.png)
+
+<p align="center">
+    <img src="UG_Images/list_chapter1.png" alt="List Chapter 1"/>
+</p>
+
 * Step 2: The result for the list of chapters will be displayed as shown.<br>
-![List Chapters 2](UG_Images/list_chapter2.png)
+
+<p align="center">
+    <img src="UG_Images/list_chapter2.png" alt="List Chapter 2"/>
+</p>
+
 * After listing all chapters, you can try all commands available in **Module Level**.
 
 #### 3.2.3. Editing a chapter name: `edit`
@@ -851,9 +883,17 @@ Here is a key point:
 
 Example of usage: 
 * Step 1: Type `help` into the command prompt and press `Enter` to execute it.<br>
-![Help 1](UG_Images/help1.png)
+
+<p align="center">
+    <img src="UG_Images/help1.png" alt="Help 1"/>
+</p>
+
 * Step 2: Part the result for the list of commands will be displayed as shown.<br>
-![Help 2](UG_Images/help2.png)
+
+<p align="center">
+    <img src="UG_Images/help2.png" alt="Help 2"/>
+</p>
+
 * After knowing what are the commands, you can try any commands on the correct level.
 
 #### 3.5.2. Viewing the revision history: `history`
@@ -873,11 +913,23 @@ Here are some key points:
 Example of usage: 
 Let's say today is 2020-11-09 and you want to view the revision history today:
 * Step 1: Type `history` or `history 2020-11-09` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/history1.png" width="600" alt="history 1"/><br>
+
+<p align="center">
+    <img src="UG_Images/history1.png" alt="History 1"/>
+</p>
+
 * Step 2: The result for the list of history will be displayed as shown.<br>
-<img src="UG_Images/history2.png" width="600" alt="history 2"/><br>
+
+<p align="center">
+    <img src="UG_Images/history2.png" alt="History 2"/>
+</p>
+
 * If you have not revised in 2020-11-09 this result will be displayed.<br>
-<img src="UG_Images/history3.png" width="600" alt="history 3"/><br>
+
+<p align="center">
+    <img src="UG_Images/history3.png" alt="History 3"/>
+</p>
+
 * After knowing the revision you have completed, you can try any commands on the correct level.
 
 #### 3.5.3. Exiting the program: `exit`
@@ -889,9 +941,17 @@ Format: `exit`
 
 Example of usage: 
 * Step 1: Type `exit` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/exit1.png" width="600" alt="exit 1"/><br>
+
+<p align="center">
+    <img src="UG_Images/exit1.png" alt="Exit 1"/>
+</p>
+
 * Step 2: The result for the exit will be displayed as shown.<br>
-<img src="UG_Images/exit2.png" width="600" alt="exit 2"/>
+
+<p align="center">
+    <img src="UG_Images/exit2.png" alt="Exit 1"/>
+</p>
+
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -93,6 +93,11 @@ public class StorageWrite {
     }
 
     //@@author Zhu-Ze-Yu
+    /**
+     * Creates the history directory.
+     *
+     * @throws IOException if there is an error when loading from storage file
+     */
     public static void createHistoryDir() throws IOException {
         File f = new File("data/history");
         createDir(f);
@@ -181,6 +186,15 @@ public class StorageWrite {
     }
 
     //@@author Zhu-Ze-Yu
+    /**
+     * Saves all the flashcards of the specified {@code chapter}.
+     *
+     * @param cards list of cards
+     * @param module module name of the chapters
+     * @param chapter chapter name of the flashcards
+     * @param filePath of the storage file
+     * @throws IOException if there is an error when loading from storage file
+     */
     protected static void saveCards(CardList cards, String module, String chapter, String filePath)
             throws IOException {
         FileWriter fw = new FileWriter(filePath + "/" + module + "/" + chapter + ".txt");
