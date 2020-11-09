@@ -109,11 +109,16 @@ public class Formatter {
         return encloseTopAndBottom(formattedString);
     }
 
-    //@@author Narzyl
-    public static String formatNote(String header, Note note) {
+    //@@author Nazryl
+    public static String formatNote(String message, Note note) {
         String formattedString = "";
+        String header = message.concat(note.getTitle() + " " + note.getTagsName());
 
-        header = header.concat(note.getTitle() + " " + note.getTagsName());
+        header = header.concat("| " + note.getPinnedString() + " ");
+
+        if (note.getIsArchived()) {
+            header = header.concat("| " + note.getIsArchivedString());
+        }
 
         formattedString = formattedString.concat(generatesHeader(header));
         for (String line : note.getContent()) {
@@ -167,7 +172,7 @@ public class Formatter {
             months.sort(Month::compareTo);
             for (Month currMonth : months) {
                 eventsStrings.addAll(formatMonthTimetable(currMonth.name(), timetable.get(currMonth)));
-                eventsStrings.add(" ");
+                eventsStrings.add(EMPTY_SPACE);
             }
             eventsStrings.remove(eventsStrings.size() - 1);
         }
@@ -205,10 +210,23 @@ public class Formatter {
      */
     public static ArrayList<String> formatEvent(Event event) {
         ArrayList<String> result = new ArrayList<>();
+        ArrayList<String> reminders = event.getReminderPeriodsString();
+
+        if (reminders.size() == 0) {
+            reminders.add("None");
+        }
+
+        String reminderString = "Reminders:";
+        for (String reminder : reminders) {
+            reminderString = reminderString.concat(" " + reminder);
+        }
+
         result.add("Event: " + event.getTitle());
         result.add("Date: " + event.getStartDate().toString()
-                + EMPTY_SPACE.repeat(4) + "Time: " + event.getStartTime().toString());
-        result.add("Reminder: " + event.getIsToRemind());
+                + EMPTY_SPACE.repeat(4) + "Start: " + event.getStartTime().toString()
+                + EMPTY_SPACE.repeat(4) + "End: " + event.getEndTime().toString());
+
+        result.add(reminderString);
         String repeatingString = "Repeating: ";
         String endRecurrenceDateString = "";
         if (event instanceof RecurringEvent) {
@@ -250,7 +268,7 @@ public class Formatter {
         result.add(header);
         for (Reminder reminder : reminders) {
             result.addAll(formatReminder(reminder));
-            result.add(" ");
+            result.add(EMPTY_SPACE);
         }
         result.remove(result.size() - 1);
 
@@ -314,7 +332,7 @@ public class Formatter {
      * @param hasHeader Determines if there is a header. Header MUST be the first element in the list.
      * @return Formatted message.
      */
-    public static String formatString(String[] messages, boolean hasHeader) {
+    public static String formatString(String[] messages, boolean hasHeader, boolean isContent) {
         String formattedString = "";
         if (hasHeader) {
             formattedString = generatesHeader(messages[0]);
@@ -327,7 +345,12 @@ public class Formatter {
                 formattedString = formattedString.concat(encloseRow(s));
             }
         }
-        return encloseTopAndBottom(formattedString);
+
+        String result = encloseTopAndBottom(formattedString);
+        if (isContent) {
+            return result.substring(0, result.length() - 1);
+        }
+        return result;
     }
 
     /**

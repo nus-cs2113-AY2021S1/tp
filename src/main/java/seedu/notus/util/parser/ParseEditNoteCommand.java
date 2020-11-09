@@ -68,7 +68,6 @@ public class ParseEditNoteCommand extends Parser {
                     if (index <= NULL_INDEX) {
                         throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
                     }
-                    index--;
                     break;
                 case PREFIX_TITLE:
                     title = checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_TITLE);
@@ -127,7 +126,7 @@ public class ParseEditNoteCommand extends Parser {
             note = tags.isEmpty() ? new Note(title, content, null, isArchived) :
                     new Note(title, content, null, isArchived, tags);
 
-            return new EditNoteCommand(index, note, addLists, editLists, deleteLists, isInput);
+            return new EditNoteCommand(index - 1, note, addLists, editLists, deleteLists, isInput);
         } catch (ArrayIndexOutOfBoundsException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX_PREFIX);
         } catch (NumberFormatException exception) {

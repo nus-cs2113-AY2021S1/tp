@@ -3,6 +3,7 @@ package seedu.notus.command;
 import org.junit.jupiter.api.Test;
 
 import seedu.notus.data.tag.Tag;
+import seedu.notus.data.tag.TagManager;
 import seedu.notus.data.timetable.DailyEvent;
 import seedu.notus.data.timetable.Event;
 import seedu.notus.data.timetable.Timetable;
@@ -23,15 +24,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class AddEventCommandTest {
     private static final String TEST_TITLE = "CS2113 Tutorial";
     private static final LocalDateTime TEST_DATE_TIME = LocalDateTime.of(2020, 8, 27, 13,0);
+    private static final LocalDateTime TEST_END_DATE_TIME = LocalDateTime.of(2020, 8, 27, 14,0);
     private static final boolean TEST_REMINDER = true;
     private static final ArrayList<Integer> TEST_TIME_PERIODS = new ArrayList<>(List.of(1,3));
     private static HashMap<String, ArrayList<Integer>> reminderSchedule = new HashMap<>();
     private static final ArrayList<Tag> tags = new ArrayList<>();
 
-    private Event event = new DailyEvent(TEST_TITLE, TEST_DATE_TIME,
+    private Event event = new DailyEvent(TEST_TITLE, TEST_DATE_TIME, TEST_END_DATE_TIME,
             TEST_REMINDER, reminderSchedule, tags);
 
     private static final Timetable TIMETABLE = new Timetable();
+    private TagManager tagManager = new TagManager();
     private StorageManager storageManager = new StorageManager(TIMETABLE, null, null, null);
 
 
@@ -43,7 +46,7 @@ class AddEventCommandTest {
     @Test
     void execute_singleEvent_success() {
         reminderSchedule.put("day", TEST_TIME_PERIODS);
-        command.setData(null, TIMETABLE, null, storageManager);
+        command.setData(null, TIMETABLE, tagManager, storageManager);
         command.execute();
         assertTrue(command.timetable.getEvent(0) == (event));
     }

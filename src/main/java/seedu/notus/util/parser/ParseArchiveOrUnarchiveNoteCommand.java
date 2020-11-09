@@ -53,6 +53,7 @@ public class ParseArchiveOrUnarchiveNoteCommand extends Parser {
                     if (index <= NULL_INDEX) {
                         throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
                     }
+
                     if (isArchive) {
                         return new ArchiveNoteCommand(index - 1);
                     } else {

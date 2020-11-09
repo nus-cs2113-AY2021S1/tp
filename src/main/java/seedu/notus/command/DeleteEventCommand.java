@@ -44,7 +44,7 @@ public class DeleteEventCommand extends Command {
         timetable.deleteEvent(index);
 
         try {
-            storageManager.saveTimetable(timetable);
+            storageManager.saveTimetable();
         } catch (IOException exception) {
             return Formatter.formatString(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
         }

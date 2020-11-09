@@ -1,7 +1,16 @@
 @startuml
+
+hide footbox
+
+participant ":ParserManager" as ParserManager
+participant ":ParseAddNoteCommand" as ParseAddNoteCommand
+participant ":Command" as Command
+participant ":ParseDeleteNoteCommand" as ParseDeleteNoteCommand
+
 -> ParserManager: ParseCommand()
 
 alt add-n
+
 create ParseAddNoteCommand
 ParserManager -> ParseAddNoteCommand: <<create>>
 
@@ -20,7 +29,6 @@ activate Command
 deactivate Command
 
 deactivate ParseAddNoteCommand
-destroy ParseAddNoteCommand
 
 else delete-n
 create ParseDeleteNoteCommand
@@ -41,16 +49,22 @@ activate Command
 deactivate Command
 
 deactivate ParseDeleteNoteCommand
-destroy ParseDeleteNoteCommand
 
 end
-
+destroy ParseAddNoteCommand
+destroy ParseDeleteNoteCommand
 @enduml
 
 @startuml
 
+participant ":ParserManager" as ParserManager
+participant ":ParseAddNoteCommand" as ParseAddNoteCommand
+participant ":AddNoteCommand" as AddNoteCommand
+participant ":IncorrectCommand" as IncorrectCommand
+
 create ParserManager
 
+alt add-n
 create ParseAddNoteCommand
 ParserManager -> ParseAddNoteCommand: <<create>>
 
@@ -83,10 +97,12 @@ deactivate IncorrectCommand
 ParserManager <-- ParseAddNoteCommand
 
 deactivate ParseAddNoteCommand
-destroy ParseAddNoteCommand
 
 <-- ParserManager
 
+destroy ParseAddNoteCommand
+
+end
 end
 
 @enduml

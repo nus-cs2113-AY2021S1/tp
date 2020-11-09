@@ -102,15 +102,11 @@ public class Note extends TaggableObject {
     }
 
     public String getPinnedString() {
-        return (isPinned ? "Y" : "N");
+        return (isPinned ? "Pinned" : "Unpinned");
     }
 
     public void togglePinned() {
         isPinned = !isPinned;
-    }
-
-    public void setPinned(Boolean pinned) {
-        isPinned = pinned;
     }
 
     public void toggleArchived() {
@@ -119,6 +115,10 @@ public class Note extends TaggableObject {
 
     public boolean getIsArchived() {
         return this.isArchived;
+    }
+
+    public String getIsArchivedString() {
+        return (isArchived ? "Archived" : "Unarchived");
     }
 
     public void setArchived(boolean archived) {
@@ -134,7 +134,6 @@ public class Note extends TaggableObject {
         }
         noteDetails += PREFIX_DELIMITER + PREFIX_TITLE + " " + this.title + " "
                     + PREFIX_DELIMITER + PREFIX_PIN + " " + this.isPinned + " "
-                    + PREFIX_DELIMITER + PREFIX_ARCHIVE + " " + this.isArchived + " "
                     + tagDetails + LS;
 
         return noteDetails;

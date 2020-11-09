@@ -1,0 +1,32 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class "{abstract} \n Command" {
+# notebook: Notebook
+# timetable : Timetable
+# tagManager: TagManager
+# storageManager: StorageManager
++ execute():String {abstract}
++ setData(Notebook, Timetable, TagManager, StorageManager)
+}
+
+class XYZCommand {
+<u>+ COMMAND_WORD: String</u>
+# notebook: Notebook
+# timetable : Timetable
+# tagManager: TagManager
+# storageManager: StorageManager
++ execute(): String
++ setData(Notebook, Timetable, TagManager, StorageManager)
+}
+
+XYZCommand -left|> "{abstract} \n Command"
+
+note right of XYZCommand
+XYZCommand = AddNoteCommand,
+AddEventCommand, etc
+end note
+
+@enduml

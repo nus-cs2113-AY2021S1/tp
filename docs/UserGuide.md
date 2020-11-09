@@ -1,4 +1,7 @@
-# User Guide
+---
+layout : page
+title : User Guide
+---
 
 ## Table of Contents
 #### [1. Introduction](#intro)
@@ -44,7 +47,7 @@ Any points with the 💡 emoji represents an additional information. You can acc
 
 1. Ensure that you have Java 11 or above installed.
 1. Down the latest version of `NotUS` from [here](https://github.com/AY2021S1-CS2113-T13-1/tp/releases) or under [releases from the homepage](https://github.com/AY2021S1-CS2113-T13-1/tp).
-1. Go to the folder of the download and open your command terminal. Enter the following `java -jar Notus.jar`. Wait for the program to run.
+1. Go to the folder of the download and open your command terminal*. Enter the following `java -jar Notus.jar`. Wait for the program to run.
 1. If the program is running correctly, you should see the following:
 
 <p align="center">
@@ -53,11 +56,16 @@ Any points with the 💡 emoji represents an additional information. You can acc
 
 5. Use the command `help` to get a list of commands and their usages before using the application (if needed).
 
+💡 Supported terminals are: Windows 10 Command Prompt, Windows Powershell, macOS and linux Terminals. Other terminals, such as Cygwin may not support color display.
+💡 Recommended to use black background for better color contrast.
+
 <br>
 
 ## 3. <a id="features">Features</a>
 
-Parameters listed in [ ] denote optional entries. In some cases, at least one of the [ ] parameters must be listed. More information can be found under the respective commands. Texts listed in the following style refer to responses by the console running NotUS.
+Parameters listed in [ ] denote optional entries. In some cases, at least one of the [ ] parameters must be listed. When listing the optional entries, the brackets, '[ ]', should be omitted. More information can be found under the respective commands. Texts listed in the following style refer to responses by the console running NotUS.
+
+The following example shows how responses from the console will be displayed in this User Guide.
 
 ```css
 Example message as seen on the console
@@ -76,6 +84,8 @@ The parameters for the following commands are **NOT** case-sensitive.
 ### <a id="help"><ins>3.1 View Command List:</ins> `help`</a>
 Shows a list of all the commands that the user can enter.
 
+💡 Even if you input anything beyond help, the program will understand the command. For example, `help me please` will still result in the program listing the available commands and its usages.
+
 Example of usage: 
 
 `help`
@@ -83,7 +93,11 @@ Example of usage:
 Expected output: 
 
 <p align="center">
-   <img alt="help" src="screenshots/help.png"/>
+   <img alt="help" src="screenshots/help_1.png"/>
+</p>
+
+<p align="center">
+   <img alt="help" src="screenshots/help_2.png"/>
 </p>
 
 ### <a id="add-n"><ins>3.2 Add Note:</ins> `add-n`</a>
@@ -92,9 +106,10 @@ Adds a new note to the list of note items (think of it as a notebook).
 Format: `add-n /t TITLE [/tag TAG_1] [/tag TAG_2]... [/pin ISPIN] [/archive ISARCHIVE]`
 
 💡 Each note has to have a **UNIQUE** title and it is **CASE-INSENSITIVE**. <br>
+💡 As an extension to the above point, new notes cannot have the same title as those archived. <br>
 💡 One can choose to add a `TAG` or/and `ISPIN`, `ISARCHIVE`. These parameters are optional.<br>
-💡 Set `ISPIN` to true if you want the note to be pinned.  
-💡 Set `ISARHCIVE` to true if you want the note to be archived.
+💡 Set `ISPIN` to "true" if you want the note to be pinned. Any other input value will leave the note unpinned.  
+💡 Set `ISARCHIVE` to "true" if you want the note to be archived. Any other input value will leave the note unarchived.
 
 Subsequently, the application prompts the user to enter the content of the note. 
 
@@ -116,6 +131,7 @@ Enter Note:
 `Line 2`<br>
 `/end`
 
+💡 Note content must have at least 1 line.<br>
 💡 Use `/del` to delete the previous line.<br>
 💡 Use `/end` on a new line to denote the end of the note.
 
@@ -146,6 +162,7 @@ Example of usage:
 💡 Use `/sort down` to display the list of notes in descending order (Z-A). <br>
 💡 The archived notes will **ONLY** be listed in chronological order. <br>
 💡 The content of the note is truncated, thus partial content may be displayed when listing the notes. To view the full content of a particular note, use the view note command.
+💡 Even if you input anything beyond `list-n` or `/archive` without the command delimiter (`/`), the program will execute the command. For example, `list-n the notes` or `list-n /archive test example` will still result in the program listing the notes/archived notes.
 
 Expected output:
 
@@ -160,6 +177,8 @@ Format: `view-n [/i INDEX] [/t TITLE]`
 
 - Views the note at that index or with the specific title entered. The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …). 
 - At least one of the optional fields must be provided.
+- If both the fields are provided, only the first one entered will be used to search for the note.
+
 
 Example of usage: 
 
@@ -173,7 +192,7 @@ Expected output:
    <img alt="viewNote" src="screenshots/viewNote.png"/>
 </p>
 
-#### <a id="edit-n">3.5 Edit Note: `edit-n`</a>
+### <a id="edit-n"><ins>3.5 Edit Note:</ins> `edit-n`</a>
 Edits an existing note.
 
 Format: `edit-n /i INDEX [/t TITLE] ([/add INDEX STRING] OR [/ln LINE_INDEX CONTENTS] OR [/del INDEX]) [/c CONTENT] [/tag TAG TAG_COLOR /tag TAG1 TAG_COLOR...]`
@@ -186,6 +205,10 @@ Format: `edit-n /i INDEX [/t TITLE] ([/add INDEX STRING] OR [/ln LINE_INDEX CONT
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags will be removed, while the non-existing tags will be added.
+
+💡 Each note has to have a **UNIQUE** title and it is **CASE-INSENSITIVE**. <br>
+💡 As an extension to the above point, new notes cannot have the same title as those archived. <br>
+💡 Note content must have at least 1 line.
 
 Example of usage: 
 
@@ -227,6 +250,7 @@ Format: `pin-n [/i INDEX] [/t TITLE]`
 
 - Pins a note to the top of the list. A pinned note will be unpinned. The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …).
 - At least one of the optional fields must be provided.
+- If both fields are provided, only the first one will be used to pin the note. 
  
 Example of usage: 
 
@@ -310,7 +334,7 @@ Create tags.
 Format: `create-t /tag TAG [TAG_COLOR] [/tag TAG]...`
 
 - Creates a tag with the name TAG. TAG can only be a single word.
-- [TAG_COLOR] is an optional input to specify the tag color to display. The possible colors are red, green, blue, yellow, purple, cyan, white. The tag color is set as white by default.
+- [TAG_COLOR] is an optional input to specify the tag color to display. The possible colors are red, green, blue, yellow, purple, cyan, white. If no color is specified, or an invalid input is entered, the color of the tag will be set to the default white color. This applies to all other inputs that have `/tag TAG [TAG_COLOR]` as an optional field as well. 
 - The user can create multiple tags within a single line.
 
 💡 Creating a tag that already exists will override the tag color.
@@ -320,8 +344,6 @@ Example of usage:
 `create-t /tag CS2113`
 
 `create-t /tag important red /tag CS2113 blue`
-
-💡 If no tag color is specified, the color of the tag will be that of the default white color.
 
 Expected output:
 
@@ -409,15 +431,23 @@ Expected output:
 ### <a id="add-e"><ins>3.16 Add Event:</ins> `add-e`</a>
 Adds an event to the list.
 
-Format: `add-e /t TITLE /timing DATETIME [/repeat REPEAT] [/stop REPEAT_END] [/remind REMIND] [/tag TAG_1] [/tag TAG_2]...`
+Format: `add-e /t TITLE /timing DATETIME [/end DATETIME] [/repeat REPEAT] [/stop REPEAT_END] [/remind REMIND] [/tag TAG_1] [/tag TAG_2]...`
 
-💡 DATETIME format pattern "dd-MM-yyyy HH:mm:ss” <br>
-💡 Specifying [/repeat RECURRING] will set the event as a recurring event. <br>
-💡 Specifying [/remind REMIND] will set the program to remind the event.
+- Events have a default duration of 1 hour if [/end] is not specified.
+- Events must end on the same day they start.
+- Events cannot end before they start
+- Specifying [/end DATETIME] will set the event to end a specific time.
+- Specifying [/repeat RECURRING] will set the event as a recurring event.
+- Specifying [/remind REMIND] will set the program to remind the event.
+
+💡 DATETIME format pattern "dd-MM-yyyy HH:mm”<br>
+💡 Repeat inputs can be `daily`, `weekly`, `monthly`, `yearly`<br>
+💡 Remind inputs can be `[1-7]-day` or `1-week` <br>
+💡 Remind inputs can be chained to indicate multiple reminders
 
 Example of usage: 
 
-`add-e /t CS2113 Tutorial /timing 2020-10-30 13:00 /repeat weekly /remind 1-day 3-day`
+`add-e /t CS2113 Tutorial /timing 2020-10-30 13:00 /end 2020-10-30 19:00 /repeat weekly /remind 1-day 3-day`
 
 Expected output:
 
@@ -428,11 +458,23 @@ Expected output:
 ### <a id="edit-e"><ins>3.17 Edit Event:</ins> `edit-e`</a>
 Edits an existing event in the event list/timetable.
 
-Format: `edit-e /i INDEX [/t TITLE] [/timing DATETIME] [/repeat REPEAT] [/stop REPEAT_END] [/remind-add REMIND] [/remind-drop REMIND] [/remind-clear]`
+Format: `edit-e /i INDEX [/t TITLE] [/timing DATETIME] [/end DATETIME] [/repeat REPEAT] [/stop REPEAT_END] [/remind-add REMIND] [/remind-drop REMIND] [/remind-clear]`
 
 - Edits the event at the specified INDEX. The index refers to the index number shown in the displayed events list. The index must be a **positive integer** (1, 2, 3, …).​
-- At least one of the optional fields must be provided [/t TITLE], [/timing DATETIME], [/repeat REPEAT], [/stop REPEAT_END], [/remind-add REMIND], [/remind-drop REMIND], [/remind-clear] [.
+- At least one of the optional fields must be provided [/t TITLE], [/timing DATETIME], [/end DATETIME], [/repeat REPEAT], [/stop REPEAT_END], [/remind-add REMIND], [/remind-drop REMIND], [/remind-clear] [.
 - Existing values will be updated to the input values.
+- End date time must be on the same day as start date time.
+
+- Specifying [/timing DATETIME] without [/end DATETIME] will have event duration maintained and end datetime changed. If end datetime would be past 2359, end datetime would be set at 2359.
+- Specifying [/repeat RECURRING] will set the event that type of event.
+- Specifying [/remind-add REMIND] will add that reminder to the event if it does not exist.
+- Specifying [/remind-drop REMIND] will delete that reminder from the event if it exists.
+- Specifying [/remind-add REMIND] will remove all reminders in the event if any exists.
+
+💡 DATETIME format pattern "dd-MM-yyyy HH:mm”<br>
+💡 Repeat inputs can be `none`, `daily`, `weekly`, `monthly`, `yearly`<br>
+💡 Remind inputs can be `[1-7]-day` or `1-week` <br>
+💡 Remind inputs can be chained to indicate multiple reminders
 
 Example of usage: 
 
@@ -444,7 +486,7 @@ Expected output:
    <img alt="editEvent" src="screenshots/editEvent.png"/>
 </p>
 
-### <a id="list-e"><ins>3.18 Event Manager:</ins> `list-e`</a>
+### <a id="list-e"><ins>3.18 List Events:</ins> `list-e`</a>
 Display the module timetable on the current day.
 
 Format: `list-e [/timing Year] [/timing Year-Month]`
@@ -487,7 +529,7 @@ Adds a new item to the list of todo items.
 
 Format: `delete-e INDEX`
 
-* Deletes the event at the specified INDEX. The index refers to the index number shown in the displayed event list (list-e). The index must be a **positive integer** (1, 2, 3, …).
+- Deletes the event at the specified INDEX. The index refers to the index number shown in the displayed event list (list-e). The index must be a **positive integer** (1, 2, 3, …).
 
 Example of usage: 
 
@@ -500,7 +542,9 @@ Expected output:
 </p>
 
 ### <a id="exit"><ins>3.21 Exit:</ins> `exit`</a>
-Exits the program..
+Exits the program.
+
+💡 Even if you input anything beyond exit, the program will terminate. For example, `exit the program` will still result in the program being terminated.
 
 Example of usage: 
 
@@ -542,8 +586,8 @@ Create tag | `create-t /tag Important red`<br>`create-t /tag NUS /tag CEG yellow
 List tags | `list-t`
 Tag/Untag | `tag /i 1 /tag Important`<br>`tag /i 1 /tag Important red`<br>`tag /i 1 /tag Important red /tag NUS /tag CEG yellow`
 Delete tag | `delete-t /tag Important`<br>`delete-t /tag Important red`<br>`delete-t /tag NUS /tag CEG yellow`
-Add event | `add-e /t CS2113 /d 16-10-2020 16:00:00`<br>`add-e /t CS2113 Lecture /d 16-10-2020 16:00:00 /repeat ...`<br>`add-e /t CS2113 Lecture /d 16-10-2020 16:00:00 /remind ...`<br>Or any combination with `/repeat` and `/remind`
-Edit event | `edit-e /i 1 /t CS2113 Lecture`<br>`edit-e /i 1 /d 16-10-2020 15:55:00`<br>`edit-e /i 1 /repeat ...`<br>`edit-e /i 1 /remind ...`<br>Or any combination with `/t`, `/d`, `/repeat` and `/remind`)
+Add event | `add-e /t CS2113 /timing 16-10-2020 16:00`<br>`add-e /t CS2113 Lecture /timing 16-10-2020 16:00 /repeat ...`<br>`add-e /t CS2113 Lecture /timing 16-10-2020 16:00 /end 16-10-2020 18:00 /remind ...`<br>Or any combination with `/repeat` and `/remind`
+Edit event | `edit-e /i 1 /t CS2113 Lecture`<br>`edit-e /i 1 /d 16-10-2020 15:55`<br>`edit-e /i 1 /repeat ...`<br>`edit-e /i 1 /remind ...`<br>Or any combination with `/t`, `/d`, `/repeat` and `/remind`)
 Event Manager | `list-e`<br>`list-e /d 14-09-2020`
 Remind | `remind-e 1`
 Delete event | `delete-e 1`

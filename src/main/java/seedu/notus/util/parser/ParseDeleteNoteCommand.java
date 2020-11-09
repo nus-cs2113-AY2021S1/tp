@@ -1,6 +1,6 @@
 package seedu.notus.util.parser;
 
-//@@author Narzyl
+//@@author Nazryl
 import seedu.notus.command.Command;
 import seedu.notus.command.DeleteNoteCommand;
 import seedu.notus.data.exception.SystemException;

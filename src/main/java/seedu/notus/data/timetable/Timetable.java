@@ -61,20 +61,6 @@ public class Timetable {
         this.events = events;
     }
 
-    public ArrayList<Event> getAllNonRecurringEvents() {
-        return nonRecurringEvents;
-    }
-
-    public ArrayList<RecurringEvent> getAllRecurringEventsArray() {
-        ArrayList<RecurringEvent> events = new ArrayList<>();
-        events.addAll(dailyEvents);
-        events.addAll(weeklyEvents);
-        events.addAll(monthlyEvents);
-        events.addAll(yearlyEvents);
-
-        return events;
-    }
-
     /**
      * Method to allow a new event to be set at a specific index.
      *
@@ -212,8 +198,8 @@ public class Timetable {
     /**
      * Provides a method to get all events, including re-occurring events in an arraylist in a specified period.
      *
-     * @param startDate Start of time period.
-     * @param endDate End of time period.
+     * @param startDate Start of time period. Inclusive of date.
+     * @param endDate End of time period. Inclusive of date.
      * @return ArrayList of all events. Re-occurring events are initialized as a new event.
      */
     public ArrayList<Event> getAllEvents(LocalDate startDate, LocalDate endDate) {
@@ -272,7 +258,7 @@ public class Timetable {
      *      in the arraylist as a Event, not as an extension of RecurringEvent.
      */
     @SafeVarargs
-    protected final ArrayList<Event> getAllRecurringEvents(LocalDate startDate, LocalDate endDate,
+    private ArrayList<Event> getAllRecurringEvents(LocalDate startDate, LocalDate endDate,
                                                   ArrayList<? extends RecurringEvent>... eventsSet) {
         ArrayList<Event> eventList = new ArrayList<>();
         for (ArrayList<? extends RecurringEvent> events : eventsSet) {
@@ -287,7 +273,7 @@ public class Timetable {
      * @param setOfEvents Set of Events to search from.
      * @return PriorityQueue of Reminder from all provided events.
      */
-    public PriorityQueue<Reminder> getEventSetReminder(ArrayList<Event> setOfEvents) {
+    private PriorityQueue<Reminder> getEventSetReminder(ArrayList<Event> setOfEvents) {
         PriorityQueue<Reminder> reminders = new PriorityQueue<>(Reminder::compareTo);
         for (Event event : setOfEvents) {
             for (LocalDate reminderDate : event.getReminderDates()) {
@@ -322,4 +308,21 @@ public class Timetable {
         return todayReminders;
     }
 
+    /**
+     * Compares this event to all other events stored in the timetable and get all events that clashes.
+     *
+     * @param event Event to be checked against the timetable
+     * @return ArrayList of Events that clashes.
+     */
+    public ArrayList<Event> getClashingEvents(Event event) {
+        ArrayList<Event> clashedEvents = new ArrayList<>();
+        LocalDate eventDate = event.getStartDate();
+        ArrayList<Event> eventsHappening = getAllEvents(eventDate, eventDate);
+        for (Event storedEvent : eventsHappening) {
+            if (event.occursDuringEvent(storedEvent)) {
+                clashedEvents.add(storedEvent);
+            }
+        }
+        return clashedEvents;
+    }
 }

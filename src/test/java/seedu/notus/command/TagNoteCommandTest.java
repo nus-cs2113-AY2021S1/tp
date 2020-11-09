@@ -52,6 +52,7 @@ class TagNoteCommandTest {
 
         tagManager = new TagManager();
         notebook = new Notebook();
+        storageManager = new StorageManager(null, null, notebook, tagManager);
     }
 
     @Test
@@ -67,7 +68,7 @@ class TagNoteCommandTest {
 
     @Test
     void tagCommand_tagNote_tagsNote() {
-        /*tags.add(tagRed);
+        tags.add(tagRed);
         tags.add(tagBlue);
 
         taggedNote.setTags(tags);
@@ -81,12 +82,12 @@ class TagNoteCommandTest {
         assertEquals(noTagNote.getTags().size(), 2);
         assertTrue(noTagNote.getTags().contains(tagRed));
         assertEquals(tagManager.getTagMap().size(), 2);
-        assertEquals(tagManager.getTagMap().get(tagRed).size(), 2);*/
+        assertEquals(tagManager.getTagMap().get(tagRed).size(), 2);
     }
 
     @Test
     void tagCommand_untagNote_untagsNote() {
-        /*tags.add(tagRed);
+        tags.add(tagRed);
         tags.add(tagBlue);
 
         taggedNote.setTags(tags);
@@ -99,16 +100,16 @@ class TagNoteCommandTest {
         tags.add(tagRedRef);
         tags.add(tagBlueRef);
 
-        getCommandExecutionString(notebook, tagManager, storageManager, 1 , tags);
+        getCommandExecutionString(notebook, tagManager, storageManager, 1, tags);
 
         assertEquals(taggedNote.getTags().size(), 0);
         assertEquals(tagManager.getTagMap().get(tagRed).size(), 0);
-        assertEquals(tagManager.getTagMap().get(tagBlue).size(), 0);*/
+        assertEquals(tagManager.getTagMap().get(tagBlue).size(), 0);
     }
 
     @Test
     void tagCommand_tagAndUntagNote_tagsNoteAndUntagsNote() {
-        /*tags.add(tagRed);
+        tags.add(tagRed);
         tags.add(tagBlue);
 
         taggedNote.setTags(tags);
@@ -130,7 +131,7 @@ class TagNoteCommandTest {
 
         assertEquals(noTagNote.getTags().size(), 1);
         assertEquals(tagManager.getTagMap().get(tagRed).size(), 2);
-        assertEquals(tagManager.getTagMap().get(tagBlue).size(), 1);*/
+        assertEquals(tagManager.getTagMap().get(tagBlue).size(), 1);
     }
 
     private String getCommandExecutionString(Notebook notebook, TagManager tagManager, StorageManager storageManager,

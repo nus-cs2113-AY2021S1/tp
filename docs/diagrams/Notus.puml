@@ -1,12 +1,23 @@
 @startuml
-Notus -> StorageManager: Load saved file
-Notus <-- StorageManager: Load result
+
+hide footbox
+
+participant ":NotUS" as NotUS
+participant ":StorageManager" as StorageManager
+participant ":InterfaceManager" as InterfaceManager
+participant ":ParserManager" as ParserManager
+participant ":Parser" as Parser
+participant ":Command" as Command
+participant ":Formatter" as Formatter
+
+NotUS -> StorageManager: Load saved file
+NotUS <-- StorageManager: Load result
 
 loop !Exit Command
-Notus -> InterfaceManager: getUserCommandInput()
-Notus <-- InterfaceManager: userInput
+NotUS -> InterfaceManager: getUserCommandInput()
+NotUS <-- InterfaceManager: userInput
 
-Notus -> ParserManager: parseCommand()
+NotUS -> ParserManager: parseCommand()
 create Parser
 ParserManager -> Parser: <<create>>
 
@@ -22,30 +33,30 @@ create Command
 Parser -> Command: <<create>>
 
 activate Command
-Notus <-- Command:
+NotUS <-- Command:
 deactivate Command
 
 deactivate Parser
-destroy Parser
 
-Notus -> Command: setData()
+NotUS -> Command: setData()
 
 activate Command
-Notus <-- Command
+NotUS <-- Command
 deactivate Command
 
-Notus -> Command: execute()
+NotUS -> Command: execute()
 
 activate Command
 Command -> Formatter: formatString()
 Command <-- Formatter: string
-Notus <-- Command: string
+NotUS <-- Command: string
 
 deactivate Command
 
-Notus -> InterfaceManager: prints()
-Notus <-- InterfaceManager
+NotUS -> InterfaceManager: prints()
+NotUS <-- InterfaceManager
 
+destroy Parser
 destroy Command
 end
 

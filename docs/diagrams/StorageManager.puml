@@ -25,6 +25,7 @@ class StorageManager {
     + saveNoteContent (Note note, boolean isArchive) : void
     + saveNoteDetails (Note note, boolean isArchive) : void
     + saveTimetable () : void
+    + saveAll() : void
 
     + deleteNoteContentFile (String noteTitle, boolean isArchive) : void
     + noteExists (Note note, boolean isArchive) : boolean

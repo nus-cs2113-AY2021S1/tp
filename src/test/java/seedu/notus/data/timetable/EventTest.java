@@ -19,13 +19,14 @@ import java.util.List;
 public class EventTest {
     private static final String TEST_TITLE = "CS2113 Tutorial";
     private static final LocalDateTime TEST_DATE_TIME = LocalDateTime.of(2020, 8, 27, 13,0);
+    private static final LocalDateTime TEST_END_DATE_TIME = LocalDateTime.of(2020, 8, 27, 14,0);
     private static final boolean TEST_REMINDER = true;
     private static final ArrayList<Integer> TEST_TIME_PERIODS = new ArrayList<>(List.of(1,3));
     private static HashMap<String, ArrayList<Integer>> reminderSchedule = new HashMap<>();
     private static final boolean TEST_RECURRING = false;
     private static final ArrayList<Tag> tags = new ArrayList<>();
 
-    Event event = new Event(TEST_TITLE, TEST_DATE_TIME, TEST_REMINDER, TEST_RECURRING,
+    Event event = new Event(TEST_TITLE, TEST_DATE_TIME, TEST_END_DATE_TIME, TEST_REMINDER, TEST_RECURRING,
             reminderSchedule, tags);
 
     /**

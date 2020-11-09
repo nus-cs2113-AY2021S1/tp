@@ -4,18 +4,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.notus.storage.StorageManager.FOLDER_DIR;
-import static seedu.notus.storage.StorageManager.NOTES_DIR;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import static seedu.notus.util.CommandMessage.NOTE_DOES_NOT_EXIST_MESSAGE;
 
-
-import seedu.notus.data.exception.SystemException;
 import seedu.notus.data.notebook.Note;
 import seedu.notus.data.notebook.Notebook;
 import seedu.notus.storage.StorageManager;
 import seedu.notus.ui.Formatter;
+import seedu.notus.util.parser.ParserManager;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 //@@author prachi2023
@@ -23,15 +22,14 @@ class PinCommandTest {
     private Note notePinned;
     private Note noteNotPinned;
 
-    private Notebook notebook;
-    private StorageManager storageManager;
+    private Notebook notebook = new Notebook();
+    private ParserManager parserManager = new ParserManager();
+    private StorageManager storageManager = new StorageManager(null, parserManager, notebook, null);
 
     private static final ArrayList<String> NOTE_CONTENT = new ArrayList<>();
 
     private static final String NOTE1_TITLE = "TestNote1";
     private static final String NOTE2_TITLE = "TestNote2";
-
-    private static final String UNSUCCESFUL_MESSAGE = Formatter.formatString(NOTE_DOES_NOT_EXIST_MESSAGE);
 
     @BeforeEach
     void setUp() {
@@ -51,26 +49,26 @@ class PinCommandTest {
 
     @Test
     void execute_inputIndex_NoteExists_PinsAndUnpinsNotes() {
-        /*String note1Expected = Formatter.formatString(NOTE1_TITLE + " pinned: " + 'N');
-        String note2Expected = Formatter.formatString(NOTE2_TITLE + " pinned: " + 'Y');
+        String note1Expected = Formatter.formatString(NOTE1_TITLE + " Unpinned");
+        String note2Expected = Formatter.formatString(NOTE2_TITLE + " Pinned");
 
         assertEquals(note1Expected, getExecutionStringInputIndex(notebook, 0));
         assertEquals(note2Expected, getExecutionStringInputIndex(notebook, 1));
 
         assertFalse(notePinned.getPinned());
-        assertTrue(noteNotPinned.getPinned());*/
+        assertTrue(noteNotPinned.getPinned());
     }
 
     @Test
     void execute_inputTitle_NoteExists_PinsAndUnpinsNotes() {
-        /*String note1Expected = Formatter.formatString(NOTE1_TITLE + " pinned: " + 'N');
-        String note2Expected = Formatter.formatString(NOTE2_TITLE + " pinned: " + 'Y');
+        String note1Expected = Formatter.formatString(NOTE1_TITLE + " Unpinned");
+        String note2Expected = Formatter.formatString(NOTE2_TITLE + " Pinned");
 
         assertEquals(note1Expected, getExecutionStringInputTitle(notebook, NOTE1_TITLE));
         assertEquals(note2Expected, getExecutionStringInputTitle(notebook, NOTE2_TITLE));
 
         assertFalse(notePinned.getPinned());
-        assertTrue(noteNotPinned.getPinned());*/
+        assertTrue(noteNotPinned.getPinned());
     }
 
     @Test

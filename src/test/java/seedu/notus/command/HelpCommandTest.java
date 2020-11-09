@@ -65,6 +65,6 @@ class HelpCommandTest {
     void executeTest() {
         String helpCommand = new HelpCommand().execute();
 
-        assertEquals(Formatter.formatString(COMMANDS_USAGE, true), helpCommand);
+        assertEquals(Formatter.formatString(COMMANDS_USAGE, true, false), helpCommand);
     }
 }

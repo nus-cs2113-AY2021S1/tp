@@ -42,6 +42,7 @@ class Note {
 -isArchived: boolean
 +getContentString(): String
 +getPinnedString(): String
++getIsArchivedString(): String
 +togglePinned(): void
 +toggleArchived(): void
 +toSaveString(): String

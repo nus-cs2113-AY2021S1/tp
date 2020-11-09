@@ -21,7 +21,8 @@ public class SystemException extends Exception {
         EXCEPTION_MISSING_TITLE("Missing title!"),
 
         EXCEPTION_MISSING_TIMING_PREFIX("Please include the timing prefix."),
-        EXCEPTION_MISSING_TIMING("This event does not have a timing specified!"),
+        EXCEPTION_MISSING_START_TIMING("This event does not have a timing specified!"),
+        EXCEPTION_MISSING_END_TIMING("Missing end timing!"),
 
         EXCEPTION_MISSING_TAG_PREFIX("Missing tag prefix!"),
         EXCEPTION_MISSING_TAG("Missing tag name!"),
@@ -29,8 +30,8 @@ public class SystemException extends Exception {
         EXCEPTION_MISSING_SORT("Missing sort order! Please specify how you would like to sort. "
                 + "up or down."),
         EXCEPTION_INVALID_SORT_TYPE("Invalid sort order command! "
-                + "Only \"up\" and \"down\" are recognized as valid commands." + Formatter.LS
-                + "Up for ascending and down for descending."),
+                + "Only \"up\" and \"down\" are recognized as valid commands. "
+                + "\"Up\" for ascending and \"down\" for descending."),
 
         EXCEPTION_MISSING_INDEX_PREFIX("Missing index prefix!"),
         EXCEPTION_MISSING_INDEX("Missing index!"),
@@ -79,7 +80,6 @@ public class SystemException extends Exception {
                 + "daily, weekly, monthly or yearly"),
         EXCEPTION_INVALID_EDIT_RECURRING_TYPE("There are only the following recurring types: "
                 + "none, daily, weekly, monthly or yearly"),
-        EXCEPTION_INVALID_TIME_UNIT("That time unit is not accepted!"),
 
         // Storage related exceptions
         EXCEPTION_FILE_CREATION_ERROR("Unable to create a file!"),

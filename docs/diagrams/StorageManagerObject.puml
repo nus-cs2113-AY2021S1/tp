@@ -1,4 +1,13 @@
 @startuml
+
+hide footbox
+
+participant ":NotUS" as NotUS
+participant ":StorageManager" as StorageManager
+participant ":ParserManager" as ParserManager
+participant ":AddNoteCommand" as AddNoteCommand
+participant ":AddEventCommand" as AddEventCommand
+
 activate NotUS
 
 create StorageManager

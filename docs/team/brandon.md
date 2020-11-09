@@ -1,6 +1,0 @@
-# Brandon - Project Portfolio Page
-
-## Overview
-
-
-### Summary of Contributions

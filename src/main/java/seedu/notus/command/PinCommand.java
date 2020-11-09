@@ -4,12 +4,14 @@ import seedu.notus.data.notebook.Note;
 import seedu.notus.ui.Formatter;
 
 import java.io.IOException;
+
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import static seedu.notus.storage.StorageManager.LOGS_DIR;
 import static seedu.notus.util.CommandMessage.NOTE_DOES_NOT_EXIST_MESSAGE;
 
 //@@author prachi2023
@@ -86,7 +88,7 @@ public class PinCommand extends Command {
             return Formatter.formatString(e.getMessage());
         }
 
-        return Formatter.formatString(note.getTitle() + " pinned: " + note.getPinnedString());
+        return Formatter.formatString(note.getTitle() + " " + note.getPinnedString());
     }
 
     private void setupLogger() {
@@ -94,7 +96,7 @@ public class PinCommand extends Command {
         LOGGER.setLevel(Level.INFO);
 
         try {
-            FileHandler fileHandler = new FileHandler("PinCommand.log");
+            FileHandler fileHandler = new FileHandler(LOGS_DIR + "/PinCommand.log");
             fileHandler.setFormatter(new SimpleFormatter());
             fileHandler.setLevel(Level.INFO);
             LOGGER.addHandler(fileHandler);
