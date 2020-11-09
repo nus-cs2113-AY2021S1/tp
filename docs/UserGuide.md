@@ -98,7 +98,7 @@ For example:
 
 `help` is a valid command while `HELP` is an invalid command!
 
-**2. All command parameters are not be used as user input!**
+**2. All command parameters are not allowed to be used as user inputs!**
 
 For example:
 
