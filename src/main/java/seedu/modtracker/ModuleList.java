@@ -569,13 +569,6 @@ public class ModuleList {
      */
     private boolean validateTimeAndWeekInput(boolean toPrint, String modCode, String week, double hours) {
 
-        if (!checkIfModuleValid(modCode)) { //checks
-            ui.printInvalidModule(toPrint);
-            return false;
-        }
-
-        assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
-        assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
 
         if (!checkIfTimeValid(hours, toPrint)) { //checks if time input is valid
             return false;
