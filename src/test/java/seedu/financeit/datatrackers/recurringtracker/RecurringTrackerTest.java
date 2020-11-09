@@ -52,6 +52,8 @@ public class RecurringTrackerTest {
         String[] validEditParamTypes = new String[] {"-e", "/desc", "/amt", "/day", "/notes"};
         String[] validEditParamArguments = new String[] {"", "NewDescription)*(&)(908945",
             "1999.99", "27", "HP08709HN*^*D?:L[]``]/<>"};
+        int i = 0;
+
         RecurringEntry entry = new RecurringEntry();
         clearEntries();
         testPacket = TestCommands.generateCreateCorrectEntryCommandAutoIncome();
@@ -59,7 +61,7 @@ public class RecurringTrackerTest {
             createHandler.handlePacket(testPacket);
             entry = createHandler.getEntry();
             editHandler.setEntry(entry);
-            for (int i = 0; i < validEditParamTypes.length; i++) {
+            for (i = 0; i < validEditParamTypes.length; i++) {
                 testPacket = TestUtil.createCommandPacket("edit",
                         new String[]{"/id", validEditParamTypes[i]},
                         new String[]{"1", validEditParamArguments[i]});
@@ -68,7 +70,10 @@ public class RecurringTrackerTest {
             entry = editHandler.getEntry();
 
         } catch (Exception exception) {
-            fail("Unexpected exception! " + exception.getMessage());
+            Object oldValue = entry.getParamFromParamType(validEditParamTypes[i]);
+            if(!oldValue.equals(validEditParamArguments[i])) {
+                fail("Unexpected exception! " + exception.getMessage());
+            }
         }
         assertEquals(Common.EntryType.EXP, entry.entryType);
         assertEquals(validEditParamArguments[1], entry.description);
