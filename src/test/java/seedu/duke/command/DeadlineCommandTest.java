@@ -7,6 +7,7 @@ import seedu.duke.data.UserData;
 import seedu.duke.exception.DateErrorException;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.InvalidIndexException;
+import seedu.duke.exception.InvalidTimePeriodException;
 import seedu.duke.exception.TimeErrorException;
 import seedu.duke.exception.WrongNumberFormatException;
 import seedu.duke.exception.WrongNumberOfArgumentsException;
@@ -17,6 +18,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -60,14 +62,14 @@ class DeadlineCommandTest {
         Command addPersonalEvent = new AddCommand(input);
         addPersonalEvent.execute(data, ui, storage);
 
-        DeadlineCommand testDeadlineWithDateOnly = new DeadlineCommand("1; 1/12/21; 11:20 PM");
+        DeadlineCommand testDeadlineWithDateOnly = new DeadlineCommand("1; 1/12/30; 11:20 PM");
         testDeadlineWithDateOnly.execute(data, ui, storage);
         StringWriter expectedStringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(expectedStringWriter);
         printWriter.println("You have successfully added this event to your list!");
         printWriter.println("[P][X] sleep");
         printWriter.println("You have successfully updated the deadline for this event!");
-        printWriter.println("[P][X] sleep on 2021-12-01, 23:20");
+        printWriter.println("[P][X] sleep on 2030-12-01, 23:20");
         printWriter.close();
         String expected = expectedStringWriter.toString();
         assertEquals(expected,
@@ -151,6 +153,23 @@ class DeadlineCommandTest {
         assertThrows(TimeErrorException.class, () -> {
             DeadlineCommand testDeadlineWithInvalidTimeFormat = new DeadlineCommand("1; 7/11/21; 23:20 PM");
             testDeadlineWithInvalidTimeFormat.execute(data, ui, storage);
+        });
+    }
+
+    @Test
+    public void execute_withInvalidDateRange_InvalidTimePeriodException() throws DukeException {
+        String input = "personal; sleep";
+        Command addPersonalEvent = new AddCommand(input);
+        addPersonalEvent.execute(data, ui, storage);
+        LocalDate yesterday = LocalDate.now().minusDays(1);
+
+        PrintStream outputLoc = new PrintStream(outputStreamCaptor);
+        System.setOut(outputLoc);
+
+        assertThrows(InvalidTimePeriodException.class, () -> {
+            DeadlineCommand testDeadlineWithInvalidTimePeriodException = new DeadlineCommand("1;"
+                    + yesterday + "; 23:20 PM");
+            testDeadlineWithInvalidTimePeriodException.execute(data, ui, storage);
         });
     }
 
