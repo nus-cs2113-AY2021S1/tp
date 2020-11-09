@@ -868,6 +868,8 @@ Expected output:
 >**Useful information:**
 >* You can use this command from any mode to access the flashcard mode easily and quickly!
 
+<div style="page-break-after: always;"></div>
+
 ### 4.2 Adding flashcards: `add`
 
 To assist you in your studies, there needs to be a knowledge base of content to be revised.
@@ -885,8 +887,6 @@ Example of usage:
 Expected output:
 
 ![Flashcard_4_2](Images/FlashcardUG/Flashcard_4_2.png){:height="80%" width="80%"}
-
-<div style="page-break-after: always;"></div>
 
 If you encounter any errors, take note of the following warning.
 
