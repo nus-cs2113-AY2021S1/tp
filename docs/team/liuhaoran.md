@@ -10,7 +10,7 @@ It also supports a **database** containing a list of common food can be found in
 #### Code contributed
 
 * Code contributed: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=yuqiaoluolong&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zA=yuqiaoluolong&zR=AY2021S1-CS2113-T14-4%2Ftp%5Bmaster%5D&zACS=199.19225487503434&zS=2020-09-27&zFS=&zU=2020-11-09&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
-* Authored 7 [PRs](https://github.com/AY2021S1-CS2113-T14-4/tp/pulls?q=is%3Apr+author%3Ayuqiaoluolong+)
+* Authored more than 10 [PRs](https://github.com/AY2021S1-CS2113-T14-4/tp/pulls?q=is%3Apr+author%3Ayuqiaoluolong+)
 
 #### Features implemented
 
