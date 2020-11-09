@@ -186,9 +186,9 @@ How does the storage component save files
 In this section, the features implemented will be explained using various UML diagrams and code snippets.
 
 #### Help feature
-(WIP)
 
-<div style="page-break-after: always;"></div>
+The help feature in the program allows the user to extract out help information for a specified command. Information for help is stored in a file titled `helpfile.txt` located in the `resources` folder of the project
+
 
 #### Add feature
 
@@ -1022,26 +1022,28 @@ Below are some instructions provided for use in manual testing
     1. Type `calendar`
     Expected: As you press enter, you should see all your events and timings displayed in chronological order. Once all the events have been printed, the `End of calendar` message should appear.
     Your calendar should appear as shown:
+    
     ```
-   calendar
-   _________________________________
-   Calendar has 2 dates to display
-   ---------------------------------------------------------------------------------------
-   18 Sep 2020
-   ---------------------------------------------------------------------------------------
-   P | 2:00 PM | X | dental appointment 
-   ---------------------------------------------------------------------------------------
-   Enter 'q' to exit or enter to continue...
-   
-   ---------------------------------------------------------------------------------------
-   19 Oct 2020
-   ---------------------------------------------------------------------------------------
-   P | 12:00 PM | X | birthday 
-   ---------------------------------------------------------------------------------------
-   End of calendar
-   _________________________________
+      calendar
+      _________________________________
+      Calendar has 2 dates to display
+      ---------------------------------------------------------------------------------------
+      18 Sep 2020
+      ---------------------------------------------------------------------------------------
+      P | 2:00 PM | X | dental appointment 
+      ---------------------------------------------------------------------------------------
+      Enter 'q' to exit or enter to continue...
+      
+      ---------------------------------------------------------------------------------------
+      19 Oct 2020
+      ---------------------------------------------------------------------------------------
+      P | 12:00 PM | X | birthday 
+      ---------------------------------------------------------------------------------------
+      End of calendar
+      _________________________________
 
    ```
+
    
    
 ### Checking schedule availability
@@ -1053,7 +1055,8 @@ Below are some instructions provided for use in manual testing
     1. Test Case: `check 01/01/2010; 1100; 01/01/2010; 2359;`
     Expected: The message `You have no coinciding events!` should be printed. 
     1. Test Case: `check 01/01/2020; 1100; 01/01/2021; 2359;`
-    Expectd: You should see the check command prints out all events that fall between the timing of 01 Jan 2010 1100hrs to 2359hrs as shown below
+    Expected: You should see the check command prints out all events that fall between the timing of 01 Jan 2010 1100hrs to 2359hrs as shown below
+    
     ```
    _________________________________
    Here is a list of your coinciding events:
@@ -1066,46 +1069,95 @@ Below are some instructions provided for use in manual testing
 ### Adding deadline to event
 1. Repeating a personal event
     1. Load the program
-    1. Type `add personal dental appointment; 18/09/2020`
-    1. Type `add personal birthday`
+    1. Type `add personal; dental appointment; 18/09/2020`
+    1. Type `add personal; birthday`
     1. Type `list all` Expected: You should now see the events listed on the terminal
-    1. Test Case: `deadline 2; 03/08/2020`
-        A success message should be printed, indicating that the new deadline has been set
-        When `list personal` is typed, you should see that the second event now has a deadline attached to it
+    1. Test Case: `deadline 2; <date>; <time>` where `date` and `time` are any date and time that is past the current date and time this test is being run.
+        Expected: A success message should be printed, indicating that the new deadline has been set
+        When `list personal` is typed, you should see that the second birthday event now has a deadline attached to it.
 
 ### Setting reminder
 1. Repeating a personal event
     1. Load the program
-    1. Type `add personal dental appointment; 18/09/2020`
-    1. Type `add personal birthday; <<current date that test is run>>`
+    1. Type `add personal; dental appointment; 18/09/2020`
+    1. Type `add personal; birthday; <<current date that test is run>>`
     1. Test Case: `reminder`
-        The program should show that the personal birthday event is the event that you have for today. 
+        Expected: The program should show that the personal birthday event is the event that you have for today. 
+        
+        ```
+       reminder
+       _________________________________
+       You have the following events today: 
+       
+       _________Events Without Time_____
+       [P][X] birthday on 2020-11-09
+       _________________________________
+
+       ```
+        
 
 ### Adding note for an event
 1. Add a new note for an event
     1. Load the program
-    1. Type `add personal dental appointment; 18/09/2020`
+    1. Type `add personal; dental appointment; 18/09/2020`
     1. Test Case:  `note personal; 1`
         1. Upon Scheduler prompt , type the following
+        
             ```
            Teeth polished
            Cost: 100
            noteend
            ```
-        The program should show that the note has been successfully created with the content of the note printed.
+           
+        Expected: The program should show that the note has been successfully created with the content of the note printed.
         
 
 ### Viewing note for an event 
 1. View note for an event
     1. Load the program
-    1. Type `add personal dental appointment; 18/09/2020`
+    1. Type `add personal; dental appointment; 18/09/2020`
     1. Type `note personal; 1`
         1. Upon Scheduler prompt , type the following
+        
             ```
            Teeth polished
            Cost: 100
            noteend
            ```
+           
     1. Test Case: `view personal; 1`
-         The program should show that the notes for the dental appointment that you previously created
+         Expected: The program should show that the notes for the dental appointment that you previously created
+         
+         ```
+       _________________________________
+       These are the notes that you have taken: 
+       ---------2020-11-09T22:57:09.242317700---------
+       Teeth polished
+       Cost: 100
+       _________________________________
+
+       ```
         
+### Extract information for an event
+1. Extracting information
+    1. Load the program
+    1. Type `extract quiz; `
+        1. Upon Scheduler prompt, type the following
+        
+        ```
+       7 October 2020 at 4pm there is a quiz
+       extractend
+       ```
+     
+    Expected: The terminal should indicate that you have added a personal event as shown below
+    
+    ```
+   7 October 2020 at 4pm there is a quiz
+   extractend
+   One date detected and chosen: 2020-10-07
+   One timing detected and chosen: 16:00
+   You have successfully added this event to your list!
+   [P][X] quiz on 2020-10-07, 16:00
+   _________________________________
+
+   ```
