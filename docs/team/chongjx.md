@@ -15,9 +15,9 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 
 *Features implemented*
 
-1\. Implemented `TaggableObject` class which is inherited by `Note` and `Event`. Taggable objects can have multiple tags and different Taggable objects can share same tag(s).
+1\. Implemented `TaggableObject` class which is inherited by `Note` and `Event`, which can have multiple tags and different Taggable objects can share same tag(s).
 
-2\. Implemented `Tag` class which contains the name and of the tag and its color. Added color support for user to better differentiate the tags.
+2\. Implemented `Tag` class which contains the name and of the tag and its color to better differentiate the tags.
 
 3\. Implemented `TagManager` class which manages all the tags in application. A hashmap is used where each unique tag is mapped to a Taggable object.
 
@@ -27,7 +27,7 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 
 6\. Implemented `SystemException` class which extends from `Exception` class. Enumeration for all possible types of exception that may occur with a unique string as its message.
 
-7\. Implemented `Formatter` class which formats Note, Event and String into a formatted String to be printed.
+7\. Implemented `Formatter` class which formats Note, Event and String before printing.
 
 <div style="page-break-after: always;"></div>
     
@@ -45,8 +45,7 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 
 *Community*
 
-1\. Reviewed most of the PRs to ensure the Classes and functions follow the project architecture as well code logic of the programme.
-- Reviewed a total of 66 PRs out of 114 PRs, with [167 comments](https://nus-cs2113-ay2021s1.github.io/dashboards/contents/tp-comments.html), dated 7/11/2020.
+1\. Reviewed most of the PRs to ensure the Classes and functions follow the project architecture as well code logic of the programme. Reviewed a total of 66 PRs out of 114 PRs, with [167 comments](https://nus-cs2113-ay2021s1.github.io/dashboards/contents/tp-comments.html), dated 7/11/2020.
 
 2\. Reported bugs and suggested fixes for team members. ([#115](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/115), [#135](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/135), [#148](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/148), [#159](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/159), [#168](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/168), [#175](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/175) and [#199](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/199))
 
