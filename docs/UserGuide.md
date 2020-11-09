@@ -199,6 +199,8 @@ Below are the breakdown of this example: <br>
   <img src="UG_Images/addModule4.png" alt="Add Module 4"/>
 </p>
 
+<div style="page-break-after: always;"></div>
+
 This is another additional example to show you the unique property of Kaji's add feature. <br>
 As you may aware from `Key Pointers` section above, Kaji only allows addition of one new module each time. Let's see what will happen if you try to add two modules `cs2113 cs2101` at same time. <br>
 Below are the breakdown of this example: <br>
