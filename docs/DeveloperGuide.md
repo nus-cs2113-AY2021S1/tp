@@ -44,6 +44,15 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Generating a random bunny idea: `random bunny`](#generating-a-random-bunny-idea-random-bunny) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Resetting the entire list of Bunny ideas: `reset bunny`](#resetting-the-entire-list-of-bunny-ideas-reset-bunny) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Names class family](#names-class-family) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Overview of main function](#overview-of-main-function) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Names Storage](#names-storage) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Names Exception Handling](#names-exception-handling) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Names method implementation](#names-method-implementation) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [`getName` method](#getname-method) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [`filterNames` method](#filternames-method) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [`listNames` method](#listnames-method) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [`addName` method](#addname-method) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [`deleteName` method](#deletename-method) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[ClearLoader class](#clearloader-class) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Aesthetic components](#aesthetic-components) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Changing line divider in Fluffle: `divider`](#changing-line-divider-in-fluffle-divider) <br>
@@ -452,6 +461,32 @@ The `NamesDB` class accesses the `nameList` and overwrites the current `Names.tx
 #### Names Exception Handling
 
 As shown in Figure 13, both the NamesDB class and the Names class will create the `NameException` class. This is a subclass that inherits from the `Exception` superclass and passes the exception message to the superclass. In the event of an exception, it is thrown from the methods in `NamesDB` class and `Names` class and handled by the `NameException` class.
+
+[Jump to top](#developer-guide)
+
+### Names method implementation
+
+#### `getName` method
+
+Loads the database first so we are working with the latest version of the database. Generates a random number within a range and using that number, we can use it as an index and get a random name from `nameList`. Exceptions are also handled properly.
+
+#### `filterNames` method
+
+Loads the database first so we are working with the latest version of the database. Uses filtering to get the list of names matching the String provided. Returns a collection from the `filteredNames` and checks if any names were matched during the filter. If none, then outputs none and if any are found, all are printed. Exceptions are handled properly using the `NameException` class.
+
+#### `listNames` method
+
+Loads the database first so we are working with the latest version of the database. Prints the list of names found in the updated `nameList`. Checks if there are no names stored in `nameList` and prints an appropriate message.
+
+#### `addName` method
+
+Loads the database first so we are working with the latest version of the database. Strips the given name of all extra white spaces and adds it the ArrayList of names named `nameList`. `nameList` is then passed to `NamesDB`'s method called `updateDB`. `updateDB` will then update the text file stored locally named `Names.txt`. Outputs the success of adding a name if successful and throws Exception to `NameException` if invalid.
+
+#### `deleteName` method
+
+Loads the database first so we are working with the latest version of the database. Using the index received, parse the index accordingly. Will handle exceptions in the case the index is not valid. The index will be used to remove the name entry at that index minus one in the `nameList` ArrayList. The updated `nameList` is then passed to the `NamesDB`'s method called `updateDB`. `updateDB` will then update the text file stored locally named `Names.txt`. Outputs the success of deleting a name if successful and throws Exception to `NameException` if invalid.
+
+[Jump to top](#developer-guide)
 
 ### ClearLoader class
 ![ClearLoader Class sequence diagram](graphics/diagrams/ClearLoader_Sequencediagram.png)
