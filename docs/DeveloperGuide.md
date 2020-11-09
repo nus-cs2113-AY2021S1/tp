@@ -27,7 +27,6 @@
     * [Reminder](#reminder-feature)
     * [Extract](#extract-feature)    
     * [Bye](#bye-feature)
-- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
     * [Product scope](#product-scope)   
     * [User Stories](#user-stories) 
@@ -79,8 +78,11 @@ Welcome to scheduler--;!
 What can I do for you?
 _________________________________
 File Created: Personal
+0/0 loaded successfully for Personal
 File Created: Zoom
+0/0 loaded successfully for Zoom
 File Created: Timetable
+0/0 loaded successfully for Timetable
 File Created: Goal
 The file has successfully been loaded!
 _________________________________
@@ -157,13 +159,20 @@ The storage component,
 
 ![Diagram for storageOverall](./diagrams/storageOverall.jpg)
 
-How the storage component load files
+How does the storage component load files
 - the storage component will read the correct txt file.
 - It passes the text to the StorageParser.
-- The event strings are converted to actual events using their respective class constructors.
-- the events are added back into the UserData structure.
+- The event strings are converted to actual events using their respective class constructors
 
-How the storage component save files
+The following object diagram shows the state of the storage object upon completion of converting each txt file to their respective events.
+![Diagram for storageOverall](./diagrams/object_diagram_storage_before.png)
+
+- The events are stored within the UserData object to be used by the program
+
+The following object diagram illustrates the state of the storage object upon completion of this step
+![Diagram for storageOverall](./diagrams/object_diagram_storage_after.png)
+
+How does the storage component save files
 - The storage component will first retrieve the correct EventList from the UserData.
 - It will next send this EventList into the StorageParser
 - The StorageParser uses its functions to convert the events into string representations
@@ -800,7 +809,6 @@ The following sequence diagram shows how the Bye feature works:
 ![Sequence Diagram for Bye Command](./diagrams/ByeCommandSequenceDiagram.png)
 <div style="page-break-after: always;"></div>
  
-## Documentation, logging, testing, configuration, dev-ops
 
 <div style="page-break-after: always;"></div>
 
@@ -919,104 +927,138 @@ Scheduler--; prints an error message and use case ends.
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+Below are some instructions provided for use in manual testing
 
 ### Launch and Shutdown
 1. Initial Launch
     1. Copy the Java Archive file into an empty directory
     1. On windows machines, open up the terminal and navigate to the directory
-    1. Type in `chcp 65001` and press enter
-    1. Type in `java -Dfile.encoding=UTF-8 -jar scheduler.jar` and press enter
-    1. You should now see the welcome message printed on the screen
+    1. Type in `java -jar scheduler.jar` and press enter. Expected: You should now see the welcome message printed on the screen
 1. Shutdown
     1. In the program, type the word `bye` and press enter
-    1. You should now see the goodbye message printed on the screen
-    1. The program should return you back to the main terminal window
-
-### Loading  and Saving Data
-1. Sample Load data
-    1. Copy the Java Archive file into an empty directory
-    1. In this directory, make a directory called `data`
-    1. Copy the files in the `storagetester` directory into the `data` directory
-    1. Launch the program as shown in the previous section
-    1. Type `list all`
-    1. You should now see the files listed on the program as shown
+    1. You should now see the goodbye message printed on the screen. Expected: The program should return you back to the main terminal window
 
 ### Adding new event
 1. Add a personal event
     1. Load the program
-    1. Type `add personal dental appointment`
+    1. Type `add personal; dental appointment`
+    1. Type `list personal`. Expected: your new personal event should be displayed on the screen
+1. Add a zoom event
+    1. Load the program
+    1. Type `add zoom; math lesson; www.zoom.com; 20/10/2020; 15:00`
+    1. Type `list zoom`. Expected: your new zoom event should be displayed on the screen
+1. Add a timetable event
+    1. Load the program
+    1. Type `add timetable; science class; S17; 23/10/2020; 11:00`
+    1. Type `list timetable`. Expected: your new timetable event should be displayed on the screen
+    
+### Loading  and Saving Data
+1. Sample Save Data
+    1. Follow the instructions for "Initial Launch"
+    1. Type `add personal; dental appointment`
     1. Type `list personal`, your new personal event should be displayed on the screen
+    1. Type `save` into the terminal
+    1. Type `bye` to exit the program
+    1. At your current file directory, find the file `personal.txt` located in the `data` directory of where your program is running. Expected:You should see that the file is no longer empty and should see one line with the words `dental appointment` written. 
+1. Sample Load data
+    1. Follow the instructions in "Sample Save Data"
+    1. Launch the program
+    1. Type `list personal`. Expected: your previous personal event should be displayed on the screen
 
 ### Delete Event
 1. Deleting a personal event
-    1. Load the program
-    1. Type `add personal dental appointment`
+    1. Launch the program
+    1. Type `add personal; dental appointment`
     1. Type `list personal`, your new personal event should be displayed on the screen
-    1. Test Case: `delete 1` 
-        When you type `list personal`, you should notice that the list is blank
-    1. Test Case: `delete 0`
-        An error message should be displayed as none of the events are labelled with event index 0.
+    1. Test Case: `delete personal; 1` 
+        Expected: When you type `list personal`, you should notice that the list is blank
+    1. Test Case: `delete personal; 3`
+        Expected: An error message should be displayed as none of the events are labelled with event index 3.
 
 ### Repeat Event
 1. Repeating a personal event
     1. Load the program
-    1. Type `add personal dental appointment; 18/09/2020`
-    1. Type `add personal birthday`
+    1. Type `add personal; dental appointment; 18/09/2020`
+    1. Type `add personal; birthday`
     1. Type `list personal`, your new personal events should be displayed on the screen
-    1. Test Case: `repeat personal 2 monthly 3`
-        An error message should be displayed indicating that you cannot repeat an event with no deadline
-    1. Test Case: `repeat personal 1 monthly 3`
-        When you type `repeat personal 1`, you should see a message indicating to you that the event is repeated monthly for three more times. 
+    1. Test Case: `repeat personal; 2; monthly; 3`
+        Expected: An error message should be displayed indicating that you cannot repeat an event with no deadline
+    1. Test Case: `repeat personal; 1; monthly; 3`
+        Expected:When you type `repeat personal; 1`, you should see a message indicating to you that the event is repeated monthly for three more times. 
 
 ### Changing status of events
 1. Changing the status of a personal event
     1. Load the program
-    1. Type `add personal dental appointment; 18/09/2020`
-    1. Type `add personal birthday`
+    1. Type `add personal; dental appointment; 18/09/2020`
+    1. Type `add personal; birthday`
     1. Type `list personal`, your new personal events should be displayed on the screen
-    1. Test Case: `done pesonal 1`
-        When you type `list personal`, you should see that the symbol of the first event has changed from a cross to a tick
-    1. Test Case: `undone personal 1`
-        When you type `list personal`, you should see that the symbol of the first event has changed from a tick to a cross 
+    1. Test Case: `done pesonal; 1`
+        Expected: When you type `list personal`, you should see that the symbol of the first event has changed from a cross to a tick
+    1. Test Case: `undone personal; 1`
+        Expected: When you type `list personal`, you should see that the symbol of the first event has changed from a tick to a cross 
 
 ### Help Command
 1. Getting generic help
     1. Load the program
     1. Type `help` and press enter
-    1. You should see a summary of all the commands available to the user printed on the screen
+    Expected: You should see a summary of all the commands available to the user printed on the screen
 
 ### Printing calendar
 1. Printing calendar
-    1. Copy the Java Archive file into an empty directory
-    1. In this directory, make a directory called `data`
-    1. Copy the files in the `storagetester` directory into the `data` directory
-    1. Launch the program as shown in the previous section
-    1. Type `list all`
-    1. You should now see the files listed on the program as shown
+    1. Launch the program
+    1. Type `add personal; dental appointment; 18/09/2020; 1400`
+    1. Type `add personal; birthday; 19/10/2020; 1200`
+    1. Type `list all` Expected: You should now see the events listed on the terminal
     1. Type `calendar`
-    1. As you press enter, you should see all your events and timings being displayed in chronological order
-    1. Once all the events have been printed, the `End of calendar` message should appear
-    
+    Expected: As you press enter, you should see all your events and timings displayed in chronological order. Once all the events have been printed, the `End of calendar` message should appear.
+    Your calendar should appear as shown:
+    ```
+   calendar
+   _________________________________
+   Calendar has 2 dates to display
+   ---------------------------------------------------------------------------------------
+   18 Sep 2020
+   ---------------------------------------------------------------------------------------
+   P | 2:00 PM | X | dental appointment 
+   ---------------------------------------------------------------------------------------
+   Enter 'q' to exit or enter to continue...
+   
+   ---------------------------------------------------------------------------------------
+   19 Oct 2020
+   ---------------------------------------------------------------------------------------
+   P | 12:00 PM | X | birthday 
+   ---------------------------------------------------------------------------------------
+   End of calendar
+   _________________________________
+
+   ```
+   
+   
 ### Checking schedule availability
 1. Check Schedule
-    1. Copy the Java Archive file into an empty directory
-    1. In this directory, make a directory called `data`
-    1. Copy the files in the `storagetester` directory into the `data` directory
-    1. Launch the program as shown in the previous section
-    1. Type `list all`
-    1. You should now see the files listed on the program as shown
+    1. Launch the program
+    1. Type `add personal; dental appointment; 18/09/2020; 1400`
+    1. Type `add personal; birthday; 19/10/2020; 1200`
+    1. Type `list all` Expected: You should now see the events listed on the terminal
     1. Test Case: `check 01/01/2010; 1100; 01/01/2010; 2359;`
-        1. You should see the check command prints out all events that fall between the timing of 01 Jan 2010 1100hrs to 2359hrs
-    1. Test Case: `check 01/01/2020; 1100; 01/01/2020; 2359`
-        1. The message `You have no coinciding events!` should be printed. 
+    Expected: The message `You have no coinciding events!` should be printed. 
+    1. Test Case: `check 01/01/2020; 1100; 01/01/2021; 2359;`
+    Expectd: You should see the check command prints out all events that fall between the timing of 01 Jan 2010 1100hrs to 2359hrs as shown below
+    ```
+   _________________________________
+   Here is a list of your coinciding events:
+   1. [P][X] dental appointment on 2020-09-18, 14:00
+   2. [P][X] birthday on 2020-10-19, 12:00
+   _________________________________
+
+   ```
 
 ### Adding deadline to event
 1. Repeating a personal event
     1. Load the program
     1. Type `add personal dental appointment; 18/09/2020`
     1. Type `add personal birthday`
-    1. Type `list personal`, your new personal events should be displayed on the screen
+    1. Type `list all` Expected: You should now see the events listed on the terminal
     1. Test Case: `deadline 2; 03/08/2020`
         A success message should be printed, indicating that the new deadline has been set
         When `list personal` is typed, you should see that the second event now has a deadline attached to it

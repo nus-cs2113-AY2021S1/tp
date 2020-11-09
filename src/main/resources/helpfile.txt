@@ -1,4 +1,4 @@
-summary | help | add | deadline | repeat | goal | done | undone | delete | note | reminder | extract | list | save | view | check | bye
+summary | help | add | deadline | repeat | goal | done | undone | delete | note | reminder | extract | list | save | view | check | calendar | bye
 begin summary
 Here is a summary of all the commands that the program can run
 help - Provides more information on how to use the commands available in the program
@@ -8,14 +8,15 @@ repeat - repeat an event for a specified amount of times every day, week or mont
 goal - Sets up a goal for the user
 done - mark the event as completed
 undone - mark the event as not completed
-delete - remove a personal, timetable or zoom event permamently from the program
+delete - remove a personal, timetable or zoom event permanently from the program
 note - Add in additional notes associated to the personal, timetable or zoom event
-reminder - prints out events that will be occuring on the present day
+reminder - prints out events that will be occurring on the present day
 extract - extracts out important event information from text to be recorded as events in the program
 list - list down all events by category or list out events belonging to only one category
 save - save current changes made to the program
 view - view notes that have been written for the event
 check - checks between a start period and end period if your schedule is available or not
+calendar - displays your events in chronological order
 bye - exits the program 
 
 To find out more about each of these functions, type in "help [COMMAND]" into the terminal where COMMAND is the name of the command you would like more information about
@@ -41,7 +42,7 @@ add - Records a personal, timetable or zoom event into the program
 Format: add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM
 
 
-EVENT_TYPE specify the type of event you want to add. These include “zoom”, “timetable” and “personal”.
+EVENT_TYPE specify the type of event you want to add. These include zoom, timetable and personal.
 EVENT_DESCRIPTION is the description or name of the event.
 LINK/LOCATION is the website link or the location of the event. This is applicable and optional for zoom and timetable events respectively. This field should always be after the event description if used.
 DD/MM/YY is the date associated with the event in the format DD/MM/YY.
@@ -84,9 +85,9 @@ repeat - repeat an event for a specified amount of times every day, week or mont
 
 Format: repeat EVENT_TYPE; EVENT_INDEX; [UNIT]; [COUNT]
 
-EVENT_TYPE specify what kind of event you would like to repeat. The accepted arguments for this are “personal”, “timetable” and “zoom”
+EVENT_TYPE specify what kind of event you would like to repeat. The accepted arguments for this are "personal", "timetable" and "zoom"
 EVENT_INDEX is an number. It contains the index of the event that is to be repeated
-[UNIT] can either take the word "Daily", “Weekly” or “Monthly”. It tells the program to repeat the event either every day, every week or every month.
+[UNIT] can either take the word "Daily", "Weekly" or "Monthly". It tells the program to repeat the event either every day, every week or every month.
 [COUNT] takes an integer which indicates how many units of time will this event repeat itself. For instance, if the unit input is Weekly, placing a number 5 will repeat the event for 5 weeks.
 
 When the optional arguments of [UNIT] and [COUNT] are omitted in the code, repeat will instead display the repeat status of the event.
@@ -105,11 +106,14 @@ end goal
 begin done
 done - mark the event as completed
 
-Format: done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE] 
+Format: done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]
 
 EVENT_TYPE specify what kind of event you would like to mark as done. The accepted arguments for this are "personal", "timetable" and "zoom"
 EVENT_INDEX is a number. It contains the index of the event that is to be marked as done
 [EVENT_DATE] is an optional argument. When a date is provided for marking a repeated command as done, the done command will mark the repetition with the date matching EVENT_DATE as done
+
+If you would like to mark a non repeating event as done, the format to use is : done EVENT_TYPE; EVENT_INDEX;
+If you would like to mark the repetitions of a repeated event as done, the format to use is : done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]
 
 end done
 
@@ -121,6 +125,9 @@ Format: undone EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]
 EVENT_TYPE specify what kind of event you would like to mark as not done. The accepted arguments for this are "personal", "timetable" and "zoom"
 EVENT_INDEX is a number. It contains the index of the event that is to be marked as not done
 [EVENT_DATE] is an optional argument. When a date is provided for marking a repeated command as not done, the undone command will mark the repetition with the date matching EVENT_DATE as undone
+
+If you would like to mark a non repeating event as not done, the format to use is : undone EVENT_TYPE; EVENT_INDEX;
+If you would like to mark the repetitions of a repeated event as not done, the format to use is : undone EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]
 
 end undone
 
@@ -202,6 +209,16 @@ Format: check [START_DATE]; [START_TIME]; [END_DATE]; [END_TIME]
 [END_TIME] is a time during the start date which you would like the program to start checking from
 
 end check
+
+begin calendar
+calendar - displays your events in chronological order
+Format: calendar
+
+Enter calendar into the terminal. Your events will be displayed in chronological order, day by day
+To advance to the next day, press the enter key
+To terminate the function early, press the 'q' key
+
+end calendar
 
 begin bye
 bye - exits the program 
