@@ -1,0 +1,50 @@
+@startuml
+
+skinparam packageStyle rectangle
+skinparam classAttributeIconSize 0
+hide circle
+hide members
+
+package Model {
+    class Model
+    class Storage
+    package ItemList {
+        class "{abstract}\nItemList" as ItemList
+        class TaskList
+        class BookList
+        class LinkList
+        class ModuleList
+        class ExpenseList
+    }
+    package Item {
+        class Task
+        class Book
+        class Link
+        class Module
+        class Expense
+        class Item
+    }
+}
+
+Model --> "1" Storage
+Model --> "5" ItemList
+
+TaskList -up-|> ItemList
+BookList -up-|> ItemList
+LinkList -up-|> ItemList
+ModuleList -up-|> ItemList
+ExpenseList -up-|> ItemList
+
+TaskList -down-> "*" Task
+BookList -down-> "*" Book
+LinkList -down-> "*" Link
+ModuleList -down-> "*" Module
+ExpenseList -down-> "*" Expense
+
+Task --|> Item
+Book --|> Item
+Link --|> Item
+Module --|> Item
+Expense --|> Item
+
+@enduml

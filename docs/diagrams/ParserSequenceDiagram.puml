@@ -1,0 +1,52 @@
+@startuml
+participant ":Parser" as Parser <<class>>
+participant ":CommandCreator" as CommandCreator <<class>>
+participant ":Command" as Command
+
+
+-> Parser : parse(fullCommand)
+activate Parser
+
+ref over Parser : parse rootCommand and commandString
+
+Parser -> Parser : removeArgumentsFromCommand
+activate Parser
+
+Parser --> Parser : description
+deactivate Parser
+
+opt !rootCommand.equals("find")
+
+Parser -> Parser : getArgumentsFromRegex
+activate Parser
+
+Parser --> Parser : argumentsMap
+deactivate Parser
+
+Parser -> Parser : checkValidDescription
+activate Parser
+
+Parser --> Parser
+deactivate Parser
+
+end
+
+ref over Parser : checkAllowedArguments for certain commands
+ref over Parser : checkFullCommand for single-word commands
+
+Parser -> CommandCreator : get corresponding rootCommand
+activate CommandCreator
+
+create Command
+CommandCreator -> Command : new Command()
+activate Command
+
+CommandCreator <-- Command : Command
+deactivate Command
+
+Parser <-- CommandCreator : Command
+deactivate CommandCreator
+
+<-- Parser : Command
+deactivate Parser
+@enduml

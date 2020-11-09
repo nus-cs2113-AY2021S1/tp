@@ -1,21 +1,52 @@
+//@@author GuoAi-reused
+//Reused from https://github.com/GuoAi/ip with minor modifications
+
 package seedu.duke;
 
-import java.util.Scanner;
+import seedu.duke.commands.Command;
+import seedu.duke.model.Model;
+import seedu.duke.parser.Parser;
+import seedu.duke.ui.Ui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ * Entry point of the Duke application.
+ * Initializes the application and starts the interaction with the user.
+ */
 public class Duke {
-    /**
-     * Main entry-point for the java.duke.Duke application.
-     */
-    public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
+    private final Model model;
+    private static final Logger dukeLogger = Logger.getLogger(Duke.class.getName());
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+    public Duke() {
+        model = new Model();
+        model.load();
+    }
+
+    /**
+     * Reads the user command and executes it, until the user issues the bye command.
+     */
+    public void run() {
+        Ui.showWelcome();
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = Ui.readCommand();
+                Command c = Parser.parse(fullCommand);
+                c.execute(model);
+                isExit = c.isExit();
+                model.save();
+            } catch (DukeException e) {
+                Ui.showError(e);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        dukeLogger.log(Level.INFO, "Logging started");
+        new Duke().run();
     }
 }
+
+//@@author

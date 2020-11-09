@@ -1,34 +1,955 @@
-# Developer Guide
+<h1 align="center">termiNus Developer Guide</h1>
+{:.no_toc}
 
-## Design & implementation
+* Table of contents
+{:toc}
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+<!-- @@author MuhammadHoze -->
+## Introduction
+
+termiNus is an interactive Command Line Interface (CLI) task manager for undergraduate students in NUS. 
+This program will help them achieve a better grip on their school life as well as assist in better management of their 
+daily expenses and be reminded of any library loans. 
+
+This guide gives an overview understanding of the architectural design and implementation of termiNus. It will
+assist developers in the knowledge they require to further build upon this application. We hope you have a clearer picture
+after reading through our Developer Guide. <br>
+
+**Pre-requisite:** Proficient in comprehending UML diagrams and notations.   
+
+## Setting up, Getting Started
+
+### Setting up the project in your local machine 
+Ensure that you have JDK 11 or above installed on your computer. 
+
+First, **fork** this [repo](https://github.com/AY2021S1-CS2113-T14-3/tp), and **clone** the fork to your local machine. 
+
+If you plan to use IntelliJ IDEA (highly recommended):
+1. Ensure IntelliJ IDEA is configured to use JDK 11.
+    * Open IntelliJ and a welcome screen should appear.
+    * Click on `Configure` -> `Structure for New Projects` -> `Project Settings` -> `Project`.
+    * Under the `Project SDK:` section, select **java version "11.0.8"** or higher). <br>
+
+2. Import the project as a Gradle project.
+    * Ensure Gradle plugin is enabled by going to `File` -> `Settings` -> `Plugins`.
+    * Under the `Installed` section go to `Build Tools` and enable Gradle. 
+    * At the welcome page, click on `Open or Import`.
+    * Locate the `build.gradle` file within the folder that contains the clone repo and select it.
+    * Choose the `Open as Project` option when asked.
+    * Accept all default settings and wait for the project to import. 
+3. Verify the setup.
+    * Under the `seedu.duke` package, locate the `Duke` class and run it.
+    * Try a few commands. You may want to refer to the [user guide](https://ay2021s1-cs2113-t14-3.github.io/tp/UserGuide.html).
+
+### Before writing the code 
+1. Configure the coding style
+    * If using IntelliJ IDEA, follow this [guide](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to set up IDEA's coding style to match ours.
+1. Set up CI
+    * This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, 
+    it will run the CI for the project automatically at each push to the `master` branch or to any PR.
+    **No setup is required for this**.
+    
+1. Learn the design
+   * When you are ready to start coding, we recommend that you refer to [termiNus's architecture](#architecture-diagram)
+   to get a better idea of the overall design.
+<!-- @@author --> 
+ 
+## Design
+
+<!-- @@author iamchenjiajun -->
+### Architecture
+
+#### Architecture Diagram
+Below is an architecture diagram of termiNus.
+
+![ArchitectureDiagram](./images/ArchitectureDiagram.png)
+
+- `Duke` is the main object of the program and handles all the logic and models related to the program.
+- `Ui` is the main object that provides an interface between `Duke` and the user.
+- `Command` represents a command that is provided by the user. `Ui` reads the command before it is sent to `Parser` to create a new `Command` object.
+- `Parser` creates a command object by parsing the user's arguments and sending them to `CommandCreator`, which returns a `Command` object. For instances where no arguments are needed (such as `ByeCommand`), Parser creates the `Command` object directly.
+- `Duke` executes the `Command` and shows the output to the user through `Ui`.
+- `Command` object modifies the state of `Model`, which consists of multiple lists for different types of `Items`.
+- `Storage` takes the state of `Model` and stores it to file.
+
+#### Sequence Diagram
+Below is a sequence diagram of how the main program functions.
+
+![DukeSequenceDiagram](./images/DukeSequenceDiagram.png)
+
+1. First, the `main` function of the `Duke` class creates an instance of `Duke`.
+1. During the instantiation of `Duke`, a `Model` object is created.
+1. `Duke` loads the state of `Model` from file by calling the `load()` method of `Model`.
+1. After `Duke` is initialized, the `Duke` class calls the `run()` method of `Duke`.
+1. `Duke` calls methods from `Ui` class and shows messages to the user.
+1. `Duke` reads user commands using the `Ui` class (which acts as an interface between `Duke` and the user).
+1. `Command` object is returned to `Duke` which is executed.
+1. `Command` object interacts with `Model` and changes its state.
+1. `Duke` saves the state of `Model` to file by calling the `save()` method of `Model`.
+1. `Duke` continues reading commands until a `ByeCommand` is generated by the user.
+
+<!-- @@author iamchenjiajun -->
+### Ui component
+The Ui component is a user interface which reads user input command and output interacting messages.
+
+The `Ui` component represents a `Ui` class and acts as an interface between `Duke` and the user.
+
+The `Ui` component:
+- Reads input from the user.
+- Prints the output to the user, for example during the execution of a `Command`.
+- Displays other types of output to the user, such as a calendar.
+
+<!-- @@author iamchenjiajun -->
+### Parser component
+
+The `Parser` class is a class forming part of the logic of termiNus. The `Parser` parses user commands and
+returns a `Command` subclass which corresponds to the full command with arguments.
+
+<!-- @@author iamchenjiajun -->
+### Command component
+
+The `Command` component represents an abstract object with state corresponding to a single line of the user's input.
+
+<!-- @@author Cao-Zeyu -->
+![CommandClassDiagram](./images/CommandClassDiagram.png)
+Every basic command inherits the abstract `Command` class, with their own attributes and execute operations. After 
+user input is parsed by `Parser`, `CommandCreator` will create and return the corresponding command to be execute.
+
+<!-- @@author iamchenjiajun -->
+The `Command` object:
+- Modifies the state of `Model` object which depends on the state and type of `Command` object.
+- Exposes its `execute()` method so that it can be passed around before the `Command` is executed.
+- Is executed by the `Duke` object.
+- Prints the output to the user through the `Ui` component.
+
+### CommandCreator component
+
+The `CommandCreator` represents a class with methods that generate `Commands` from parsed arguments from `Parser` class.
+
+The `CommandCreator` class:
+- Takes in arguments as needed by `Parser` class.
+- Splits the arguments further into more parts if the `Command` has more arguments in the description.
+- Returns a `Command` subclass object depending on the method that was called.
+
+<!-- @@author GuoAi -->
+### Storage component  
+
+The `Storage` class is a class loading data from files when termiNus starts and saving data to files after each command.
+
+<!-- @@author iamchenjiajun -->
+The `Storage` object:
+- Is referenced only by `Model`.
+- Expose functions to allow `Model` to pass in the state and saves it to file.
+- Expose functions to load the state of `Model` from file.
+
+<!-- @@author GuoAi -->
+
+### Item component
+
+`Item` is a super class with 5 subclasses inheriting it: `Task`, `Expense`, `Module`, `Link`, `Book`.
+
+Here is the class diagram for `Item` class and its subclasses.
+
+![ItemClassDiagram](./images/ItemClassDiagram.png)
+
+The `Item` class and its subclasses:
+- Contains getters and setters to retrieve and set the attributes.
+
+<!-- @@author iamchenjiajun -->
+### Model Component
+
+![ModelClassDiagram](./images/ModelClassDiagram.png)
+
+The `Model` component represents the state of the various lists stored in memory.
+
+The `Model` component:
+- Stores and loads program state to file using the `Storage` API.
+- Expose references to its `ItemList` objects so that other objects such as `Command` can modify it.
+
+<!-- @@author -->
+## Implementation
+This section describes how certain features are implemented.
+
+<!-- @@author iamchenjiajun -->
+### Parser
+
+The `Parser` class is a class that takes in a single line of the user's command and returns a corresponding `Command` that can be executed.
+
+The `Parser` object:
+- Expose functions to allow `Model` to pass in the user's full command to be parsed.
+- Uses regular expressions to parse the user's arguments into several parts.
+- Passes these parts to `CommandCreator` to create the corresponding command.
+- Returns the `Command` to `Model` that can be executed.
+
+#### High level description
+
+The `Parser.parse()` method takes in `fullCommand` as an argument, which is the full command entered by the user.
+
+Example commands:
+- `add task tP meeting c/cs2113 p/0`
+- `add module CS2113 mc/4 ay/2021S1 g/A`
+
+The `fullCommand` is composed of several parts, which consists of a root command (`add`), description (`module CS2113`)
+and optional arguments (`mc/4 ay/2021S1 g/A`).
+
+An optional argument consists of 2 parts, which is delimited by a forward slash. In the example above, there are 3 optional
+arguments, which are `mc/4`, `ay/2021S1` and `g/A`. Each optional argument can be represented in this form: `<key>/<value>`.
+
+In some commands, the optional arguments may be compulsory and is checked by the `Parser` at runtime.
+
+The `parse` method parses the `fullCommand` into these parts before passing them as arguments to `CommandCreator`
+methods and returns a `Command` object with the corresponding arguments.
+
+The following sequence diagram shows how the `Parser` works.
+
+![DukeSequenceDiagram](./images/ParserSequenceDiagram.png)
+
+The following diagram shows how a command should be parsed into its separate parts.
+
+![CommandParseDiagram](./images/CommandParseDiagram.png)
+
+#### Implementation details
+
+1. The `parse` method of `Parser` is invoked by the calling object. In termiNus, the only object that invokes this
+method is `Duke`. The `fullCommand` is passed an argument, which is the full command entered by the user.
+1. The method parses `fullCommand` into two separate `Strings`, which are `rootCommand` and `commandString`.
+`rootCommand` contains the first word of the command and `commandString` contains the rest of the command with the first
+word removed. This is done using the `split` method of the `String` class, then removing the `rootCommand` from the 
+`fullCommand` before storing it in `commandString`.
+1. The method then invokes the `removeArgumentsFromCommand` method to parse and remove optional arguments from the full
+command. This is done using regular expression parsing which is detailed in the next section. The results are returned
+to the `parse` method and stored in `description`.
+1. The method then invokes the `getArgumentsFromRegex` method when the `rootCommand` is not `"find"` to parse the optional arguments from the full command.
+The results are stored in a `HashMap<String, String>`, which is a `HashMap` of key-value pairs, similar to the form of the
+optional argument (`<key>/<value>`). The results are returned to the `parse` method and stored as `argumentsMap`.
+1. The method then checks the `rootCommand` and decides which `Command` to return, which calls `CommandCreator`
+methods with the parsed `argumentsMap`, `description`, and `commandString`.
+1. For certain commands, `checkAllowedArguments` method is called to ensure that the user did not pass in invalid arguments for that given command, and throws an error if there are invalid arguments.
+1. For single-word commands like `bye`, `checkFullCommand` method is called to ensure that the full command corresponds to the command word, and rejects commands like `bye 3`.
+1. The results of the `CommandCreator` methods are returned as a `Command` back to the invoker of the `parse` method.
+
+#### Regular expression parsing
+
+Two of the previously mentioned methods, `removeArgumentsFromCommand` and `getArgumentsFromRegex` make use of regular
+expressions to parse the optional arguments.
+
+The diagram below illustrates how the regular expression matches an optional argument.
+
+![RegexDiagram](./images/RegexDiagram.png)
+
+- The regular expression that parses these optional arguments is `([\w]+/[^\s]+)`. This regular expression matches **1 or more
+alphanumeric characters** (denoted by `[\w]+`), followed by a forward slash, then **1 or more non-whitespace character** (denoted by `[^\s]+`).
+- The expression also uses capturing parenthesis to ensure that the parser does not parse the same argument twice.
+
+#### Design considerations
+
+- The results of `getArgumentsFromRegex` are stored as a `HashMap` instead of `ArrayList` or simply returned as a value.
+This allows the same method to be reused for different commands, which may accept different optional arguments with
+different key-value pairs. This ensures that the code follows DRY principles.
+- The regular expressions parsing means that we do not need to manually parse every different command with different
+arguments, thus reducing code complexity and SLOC.
+
+<!-- @@author GuoAi -->
+### Storage
+
+This section describes how the `Storage` class works
+
+#### High level description
+
+Methods handling data loading (i.e. `loadTask()`, `loadBook()`, `loadLinks()`, `loadModule()`, `loadExpense()` methods) 
+return an `ArrayList` of items (i.e. `Task`, `Book`, `Link`, `Module`, `Expense`). These will be the initial values of 
+the item list (i.e. `TaskList`, `BookList`, `LinkList`, `ModuleList`, `ExpenseList`). The `save()` method takes an 
+inherited instance of `ItemList` and a `String` specifying the path to which the file will be saved. The `ItemList` will 
+be parsed and saved into files (each `ItemList` will be saved to a separate file) at the specified path.  
+  
+Formats of the files: 
+  
+- `tasks.txt`:  
+  
+There are 6 fields stored for each `Task`:  
+1. String `T` for "Task"  
+2. Whether the `Task` has been done or not (1 for done, 0 for not done)  
+3. Description of the `Task`  
+4. Priority of the `Task` (an Integer)
+5. Category of the `Task`
+6. Date of the `Task`  
+  
+All the fields are separated by `|` with a leading and a trailing space. Each `Task` is stored as one line.  
+  
+Example: `T | 0 | borrow book | 1 | book | 28-10-2020`  
+  
+- `books.txt`:  
+
+There are 5 fields stored for each `Book`:  
+1. String `B` for "Book"  
+2. Whether the `Book` has been returned or not (1 for returned, 0 for not returned)   
+3. Name/Description of the `Book`  
+4. Borrow date of the `Book`  
+5. Return date of the `Book`  
+
+All the fields are separated by `|` with a leading and a trailing space. Each `Book` is stored as one line.  
+  
+Example: `B | 0 | cooking book | 11-11-2011 | 11-12-2011`  
+  
+- `links.txt`:  
+
+There are 3 fields stored for each `Link`:  
+1. Module of the `Link`  
+2. Use of the `Link`  
+3. URL of the `Link`  
+  
+All the fields are separated by `|` with a leading and a trailing space. Each `Link` is stored as one line.  
+
+Example: `CS2113 | lecture | https://cs2113Lecture.zoom.com`  
+  
+- `modules.txt`:  
+
+There are 4 fields for each `Module`:  
+1. Module code  
+2. Grade  
+3. Modular credits  
+4. Academic year and semester  
+
+All the fields are separated by `|` with a leading and a trailing space. Each `Module` is stored as one line.  
+  
+- `expenses.txt`
+
+There are 4 fields for each `Expense`:
+1. Description
+2. Value
+3. Currency
+4. Date
+
+All the fields are separated by `|` with a leading and a trailing space. Each `Module` is stored as one line.
+
+Currency has default value "SGD".
+
+Date has default value of the date that the `spend` command is executed.
+
+Date will be in the format of `yyyy-MM-dd`, e.g. `2020-11-09`.
+  
+#### Implementation details
+
+The following sequence diagram shows how the `Storage` works.
+
+![StorageSequenceDiagram](./images/StorageSequenceDiagram.png)
+  
+1. At the start of `Duke`, a new `Storage` object will be created.
+2. `Duke` calls loading methods (i.e. `loadTask()`, `loadBook()`, `loadLinks()`, `loadModule()`, `loadExpense()`) 
+sequentially. Each loading method calls the corresponding helper method (i.e. `loadTaskFromLine()`, `loadBookFromLine()`, 
+`loadLinkFromLine()`, `loadModuleFromLine()`, `loadExpenseFromLine()`) to load `Item`s from each line in the file. 
+3. After each command, `Duke` calls the `save()` method of `Storage` to save all the `Item`s in the list to files.
 
 
-## Product scope
-### Target user profile
+<!-- @@author -->
 
-{Describe the target user profile}
+### List feature
 
-### Value proposition
+<!-- @@author Cao-Zeyu -->
+#### List tasks
+The list tasks feature allows the user to list all the tasks tracked.
+This feature is facilitated by `ListCommand`. 
+1. The user inputs the command `list tasks`. (Assuming the task list is not empty)
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `ListCommand`.
+1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks`, and returns a `ListCommand` for the whole task list.
+1. The command is executed and the complete list of all the tracked tasks is displayed.
 
-{Describe the value proposition: what problem does it solve?}
+#### List tasks with priority
+The list tasks with priority feature allows the user to list tasks of a certain priority.
+This feature is facilitated by `Parser` and `ListCommand`.
+1. The user inputs the command `list tasks p/3`. (Assuming the tasks of priority 3 exist.)
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `ListCommand`.
+1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks` and `p/`, and returns a `ListCommand` for the task list of priority level 3.
+1. The command is executed and the list of tasks with priority 3 is displayed.
 
-## User Stories
+#### List tasks with category
+The list tasks with category feature allows the user to list tasks of a certain category.
+This feature is facilitated by `Parser` and `ListCommand`.
+1. The user inputs the command `list tasks c/CS2113`. (Assuming the tasks of CS2113 exist.)
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `ListCommand`.
+1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks` and `c/`, and returns a `ListCommand` for the task list under CS2113 category.
+1. The command is executed and the list of tasks categorized by CS2113 is displayed.
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+#### Add links
+The add links feature allows the user to add and save zoom meeting links of modules.
+This feature is faclitated by `Parser`, `AddCommand` and `Storage`.
+1. The user inputs `add links m/CS2113 t/lecture u/https://nus.sg.zoom.us/cs2113/lecture`.
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `AddCommand`.
+1. The method `createAddCommand()` in `CommandCreator` further parses the input by identifying the keyword `link`, and returns a `AddCommand`.
+1. The command is excuted and the link is added into the link list with module name and online class type.
+1. `Storage` saves the added link by writing it into the `links.txt` file.
 
-## Non-Functional Requirements
+#### List links
+The list link feature allows the user to list all the zoom meeting links.
+This feature is facilitated by `Parser` and `AddCommand`.
+1. The user inputs `list links`. (Assuming the link list is not empty).
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `ListCommand`.
+1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `links`, and returns a `ListCommand` for the link list.
+1. The command is excuted and the complete list of links is displayed.
+<!-- @@author -->
 
-{Give non-functional requirements}
+<!-- @@author Guo Ai -->
 
-## Glossary
+#### List expenses
 
-* *glossary item* - Definition
+The list expenses feature allows the user to list all the expense items in the expense list together with a summary 
+message displaying the total amount of expenses listed for each currency.
 
-## Instructions for manual testing
+This feature is facilitated by `Parser` and `ListExpenseCommand`.
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+1. The user inputs `list expenses`.
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create 
+a `ListExpense Command`.
+1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `expenses`, 
+and calls the static method `createListExpenseCommand()` in class `ListExpenseCommand`.
+1. The static method `creatListExpenseCommand()` in class `ListExpenseCommand` further parses the arguments and returns 
+a new `ListExpenseCommand` for the expense list.
+1. The command is executed and the complete expense list is displayed together with the summary information.
+
+- If the expense list is empty, the message `There are no expense items to be listed in your expense list.` will be 
+displayed.
+
+#### List expenses with currency
+
+The list expenses with currency feature allows the user to list expense items of a curtain currency together with a 
+summary message displaying the total amount of expenses listed for each currency.
+
+This feature is facilitated by `Parser` and `ListExpenseCommand`.
+
+1. The user inputs the command `list expenses currency/USD`.
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to 
+create a `ListExpense Command`.
+1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `expenses`, 
+and calls the static method `createListExpenseCommand()` in class `ListExpenseCommand`.
+1. The static method `creatListExpenseCommand()` in class `ListExpenseCommand` further parses the arguments by 
+identifying keyword `currency`, and returns a new `ListExpenseCommand` for the expense list.
+1. The command is executed and the expense list with `currency` `USD` is displayed together with the summary information.
+
+- If the expense list is empty, the message `There are no expense items to be listed in your expense list.` will be 
+displayed.
+
+#### List expenses with date
+
+The list expenses with date feature allows the user to list expense items of a curtain date together with a 
+summary message displaying the total amount of expenses listed for each currency.
+
+This feature is facilitated by `Parser` and `ListExpenseCommand`.
+
+1. The user inputs the command `list expenses date/2020-11-09`.
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to 
+create a `ListExpense Command`.
+1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `expenses`, 
+and calls the static method `createListExpenseCommand()` in class `ListExpenseCommand`.
+1. The static method `creatListExpenseCommand()` in class `ListExpenseCommand` further parses the arguments by 
+identifying keyword `date`, and returns a new `ListExpenseCommand` for the expense list.
+1. The command is executed and the expense list with `date` `2020-11-09` is displayed together with the summary information.
+
+- If the expense list is empty, the message `There are no expense items to be listed in your expense list.` will be 
+displayed.
+
+- The `date` argument must be in the format of `date/<yyyy-MM-dd>`. If the `date` argument does not follow the correct 
+format, an error message `Please input a valid date string in the format "yyyy-MM-dd"` will be displayed.
+
+#### List expenses with date
+
+The list expenses with date feature allows the user to list expense items of a curtain date together with a 
+summary message displaying the total amount of expenses listed for each currency.
+
+This feature is facilitated by `Parser` and `ListExpenseCommand`.
+
+1. The user inputs the command `list expenses date/2020-11-09`.
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to 
+create a `ListExpense Command`.
+1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `expenses`, 
+and calls the static method `createListExpenseCommand()` in class `ListExpenseCommand`.
+1. The static method `creatListExpenseCommand()` in class `ListExpenseCommand` further parses the arguments by 
+identifying keyword `date`, and returns a new `ListExpenseCommand` for the expense list.
+1. The command is executed and the expense list with `date` `2020-11-09` is displayed together with the summary information.
+
+- If the expense list is empty, the message `There are no expense items to be listed in your expense list.` will be 
+displayed.
+
+- The `date` argument must be in the format of `date/<yyyy-MM-dd>`. If the `date` argument does not follow the correct 
+format, an error message `Please input the date string in the format "yyyy-MM-dd"` will be displayed.
+
+#### List expenses for a certain date range
+
+The list expenses for a certain date range feature allows the user to list expense items of a curtain date range (i.e. 
+today/this week/this month/this year) together with a summary message displaying the total amount of expenses listed for each currency.
+
+This feature is facilitated by `Parser` and `ListExpenseCommand`.
+
+1. The user inputs the command `list expenses for/WEEK`.
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to 
+create a `ListExpense Command`.
+1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `for`, 
+and calls the static method `createListExpenseCommand()` in class `ListExpenseCommand`.
+1. The static method `creatListExpenseCommand()` in class `ListExpenseCommand` further parses the arguments by 
+identifying keyword `for`, and returns a new `ListExpenseCommand` for the expense list.
+1. The command is executed and the expense list for the currency week is displayed together with the summary information.
+
+- If the expense list is empty, the message `There are no expense items to be listed in your expense list.` will be 
+displayed.
+
+- The `for` argument is case-insensitive. For example, both `list expenses for/MONTH` and `list expenses for/month` are 
+valid commands.
+
+<!-- @@author -->
+
+### Calendar feature
+
+<!-- @@author iamchenjiajun -->
+#### Calendar command
+The calendar command allows users to print out a calendar view of their tasks within the next `X` days, where `X` is a parameter passed by the user.
+
+1. `CalendarCommand` obtains a list of tasks from `TaskList` by using its `getTaskList` method, which returns an `ArrayList` of `Task` objects.
+1. The list of tasks is converted into a `Stream`.
+1. The `Task` objects without dates are filtered out.
+1. The `Task` objects outside the range of the current date and `X` days of the current date are filtered out.
+1. The `ArrayList` is sorted by task dates, which uses a `Comparator` defined in the parameters.
+1. The `Stream` is collected back into an `ArrayList`, which has sorted dates of tasks within the next `X` days.
+1. The `ArrayList` of `Task` objects are passed to the `Ui.dukePrintCalendar` method, which prints the tasks as a calendar.
+1. The `dukePrintCalendar` method groups tasks by date and a new heading is printed for each day. This is done by comparing each `Task` in the loop with the
+previous task to check if they have the same date, and to print a new heading if not.
+
+The filtering of the tasks by date is done using this code, which is called on a `Stream` object.
+```
+    .filter(task -> currentDate.until(task.getDate(), ChronoUnit.DAYS) >= 0)
+    .filter(task -> currentDate.until(task.getDate(), ChronoUnit.DAYS) <= daysToPrint)
+```
+
+The sorting of tasks by date is done using this code, which is also called on a `Stream` object.
+```
+    .sorted(Comparator.comparing(Task::getDate))
+```
+
+This sorts the stream using a `Comparator` which is defined inline. The `Comparator` makes use of the `Task.getDate()` method to do the comparisons.
+This is done instead of defining a new `Comparator` class as `toCompare` is already implemented in the `LocaDate` API, and doing this simplifies the code.
+<!-- @@author -->
+
+<!-- @@author GuoAi -->
+
+### Delete feature
+
+#### Delete tasks by index
+
+The delete tasks by index feature allows the user to delete a task identified by a certain index.
+
+This feature is facilitated by `Parser` and `DeleteCommand`.
+
+1. The user inputs the command `delete task 2`. (Assuming the task of index `2` exist.)
+1. The full command string will be parsed by `Parser`, whose `parse()` command returns a `CommandCreator` object to 
+create a `DeleteCommand`.
+1. The method `createDeleteCommand()` in `CommandCreator` further parses the input by identifying the keyword `task`, 
+and returns a `DeleteCommand` with the task index.
+1. The command is executed and the task with index `2` is deleted. The deleted task is displayed.
+
+- If the task does not exist in the task list, the error message `~Error~ This task index does not exist. Please try 
+again.` will be displayed.
+
+### Delete tasks with priority
+
+The delete tasks with priority feature allows the user to delete all the tasks of a certain priority.
+
+This feature is facilicated by `Parser` and `DeleteCommand`.
+
+1. The user inputs the command `delete tasks p/2`. (Assuming the tasks of priority `2` exist.)
+1. The full command string will be parsed by `Parser`, whose `parse()` command returns a `CommandCreator` object to 
+create a `DeleteCommand`.
+1. The method `createDeleteCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks` 
+and `p/`, and returns a `DeleteCommand` for the task list of priority level `2`.
+1. The command is executed and all tasks with priority level `2` are deleted. The deleted tasks are displayed.
+
+- If the priority does not exist in the task list, the error message `~Error~ Invalid priority number.` will be 
+displayed.
+
+### Delete tasks with category
+
+The delete tasks with category feature allows the user to delete all the tasks of a certain category.
+
+This feature is facilicated by `Parser` and `DeleteCommand`.
+
+1. The user inputs the command `delete tasks c/cs2113`. (Assuming the tasks of category `cs2113` exist.)
+1. The full command string will be parsed by `Parser`, whose `parse()` command returns a `CommandCreator` object to 
+create a `DeleteCommand`.
+1. The method `createDeleteCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks` 
+and `c/`, and returns a `DeleteCommand` for the task list of category `cs2113`.
+1. The command is executed and all tasks with category `cs2113` are deleted. The deleted tasks are displayed.
+
+- If the priority does not exist in the task list, the error message `~Error~ Invalid category.` will be 
+displayed.
+
+#### Delete links by index
+
+The delete links by index feature allows the user to delete a link identified by a certain index.
+
+This feature is facilitated by `Parser` and `DeleteCommand`.
+
+1. The user inputs the command `delete link 2`. (Assuming the link of index `2` exist.)
+1. The full command string will be parsed by `Parser`, whose `parse()` command returns a `CommandCreator` object to 
+create a `DeleteCommand`.
+1. The method `createDeleteCommand()` in `CommandCreator` further parses the input by identifying the keyword `link`, 
+and returns a `DeleteCommand` with the link index.
+1. The command is executed and the link with index `2` is deleted. The deleted link is displayed.
+
+- If the link does not exist in the link list, the error message `~Error~ This link index does not exist. Please try 
+again.` will be displayed.
+
+#### Delete modules by index
+
+The delete modules by index feature allows the user to delete a module identified by a certain index.
+
+This feature is facilitated by `Parser` and `DeleteCommand`.
+
+1. The user inputs the command `delete module 2`. (Assuming the module of index `2` exist.)
+1. The full command string will be parsed by `Parser`, whose `parse()` command returns a `CommandCreator` object to 
+create a `DeleteCommand`.
+1. The method `createDeleteCommand()` in `CommandCreator` further parses the input by identifying the keyword `module`, 
+and returns a `DeleteCommand` with the module index.
+1. The command is executed and the module with index `2` is deleted. The deleted module is displayed.
+
+- If the module does not exist in the module list, the error message `~Error~ This module index does not exist. Please 
+try again.` will be displayed.
+
+#### Delete expenses by index
+
+The delete expenses by index feature allows the user to delete an expense item identified by a certain index.
+
+This feature is facilitated by `Parser` and `DeleteExpenseCommand`.
+
+1. The user inputs `delete expense 2`. (Assuming the expense item of index `2` exist.)
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create 
+a `DeleteExpenseCommand`.
+1. The method `createDeleteCommand()` in `CommandCreator` further parses the input by identifying the keyword `expenses`, 
+and returns a `DeleteExpenseCommand` with the expense index.
+1. The command is executed and the expense item with index `2` is deleted. the deleted expense item is displayed.
+
+- If the expense item does not exist in the expense list, the error message `~Error~ This expense item does not exist. 
+Please try again.` will be displayed.
+
+#### Delete expenses with currency
+
+The delete expenses with currency feature allows the user to delete all the expense items of a certain currency.
+
+This feature is facilicated by `Parser` and `DeleteExpenseCommand`.
+
+1. The user inputs the command `delete expenses currency/USD`. (Assuming the expenses of currency `USD` exist.)
+1. The full command string will be parsed by `Parser`, whose `parse()` command returns a `CommandCreator` object to 
+create a `DeleteExpenseCommand`.
+1. The method `createDeleteCommand()` in `CommandCreator` further parses the input by identifying the keyword `expenses` 
+and `currency/`, and returns a `DeleteExpenseCommand` for the task list of currency `USD`.
+1. The command is executed and all expense items with currency `USD` are deleted. The deleted expense items are displayed.
+
+- If the currency does not exist in the task list, the error message `There is no expense item deleted.` will be 
+displayed.
+
+#### Deleting expenses with date
+
+The delete expenses with date feature allows the user to delete all the expense items of a certain date.
+
+This feature is facilicated by `Parser` and `DeleteExpenseCommand`.
+
+1. The user inputs the command `delete expenses date/2020-11-09`. (Assuming the expenses of date `2020-11-09` exist.)
+1. The full command string will be parsed by `Parser`, whose `parse()` command returns a `CommandCreator` object to 
+create a `DeleteExpenseCommand`.
+1. The method `createDeleteCommand()` in `CommandCreator` further parses the input by identifying the keyword `expenses` 
+and `date/`, and returns a `DeleteExpenseCommand` for the task list of date `2020-11-09`.
+1. The command is executed and all expense items with date `2020-11-09` are deleted. The deleted expense items are displayed.
+
+- If the currency does not exist in the task list, the error message `There is no expense item deleted.` will be 
+displayed.
+
+- The `date` argument must be in the format of `date/<yyyy-MM-dd>`. If the `date` argument does not follow the correct 
+format, an error message `Please input a valid date string in the format "yyyy-MM-dd"` will be displayed.
+
+<!-- @@author -->
+
+## Appendix: Requirements
+
+### Product scope
+
+<!-- @@author MuhammadHoze -->
+#### Target user profile
+Undergraduate students of National University of Singapore who:
+- require help to better manage their school work.
+- forgets to return their loan books to the library on time.
+- wants a timetable planner for easy reference.
+- are lazy to create separate module folders every semester.
+- wish to calculate their CAP.
+<!-- @@author -->
+
+<!-- @@author MuhammadHoze -->
+#### Value proposition
+termiNus is an application which helps NUS undergraduates to better manage their school life, by providing daily task or
+borrowed books tracking, and module-related functions. This increase users' efficiency and make their life more organized.
+<!-- @@author -->
+ 
+<!-- @@author MuhammadHoze -->
+### User Stories
+
+Version | Priority | As a ... | I want to ... | So that I can ...
+------- | -------- | -------- | ------------- | ------------------
+v1.0 | High | student | add tasks into a list | keep track of the things I need to do
+v1.0 | High | student | assign priorities to tasks | focus on the more important things first
+v1.0 | Medium | student | assign categories to tasks | have a more organised task list
+v1.0 | High | student | mark tasks as done | keep track of the remaining tasks to do
+v1.0 | Medium | student | list all tasks in my list | have a better overview
+v1.0 | High | student | be able to delete unwanted tasks | focus on the tasks which I need
+v1.0 | High | student | save all data after using the application | retrieve the data upon running the application
+v2.0 | Medium | student | automatically create folders for my modules | I do not have to manually create them
+v2.0 | High | student| add recurring tasks | avoid adding the same tasks every week
+v2.0 | High | student | have a calendar | I can view my current and upcoming tasks
+v2.0 | High |student| be able to set a tracker my borrowed books | avoid overdue fines
+v2.0 | Medium | student | sort my tasks based on highest priority | focus on those tasks first
+v2.0 | High | student | save zoom links in a centralized place | easily attend my online classes instead of looking through my email for the link
+v2.0 | High | student | add modules and calculate my CAP| have a better projection of my grades and efforts
+v2.0 | Low | student | login with a password | my system is protected
+
+<!-- @@author MuhammadHoze -->
+### Non-Functional Requirements
+
+1. Should work on any *mainstream OS* as long as it has `Java 11` or above installed.
+
+2. Should be able to respond to any command in less than 2 seconds.
+
+3. A user should be able to complete majority of tasks faster using CLI than GUI.
+<!-- @@author -->
+
+<!-- @@author MuhammadHoze -->
+### Glossary
+
+Acronym | Full form | Meaning
+-------- | ---------- | ----------
+**CI**   | Continuous Integration | Combining parts of a software product to form a whole
+**SDK**  | Software Development Kit | A set of software tools by software vendors
+**IntelliJ** | IntelliJ | An Integrated Development Environment written in Java
+**UML** | Unified Modeling Language | A modeling language which to visualize the design of a system
+**CLI** | Command Line Interface | A program that accepts text inputs to execute operating system functions
+**GUI** | Graphical User Interface | An interface that allows users to interact through graphical icons
+**Mainstream OS** | Windows, Linux, Unix, OS-X | Operating systems
+**SLOC** | Source Lines of Code | The number of lines in a program's source code
+**DRY** | Don't Repeat Yourself | Every piece of knowledge must have a single, unambiguous, authoritative representation within a system
+**CAP** | Cumulative Average Point | The weighted average grade point of all modules taken by a student
+
+<!-- @@author -->
+## Appendix: Instructions for manual testing
+Below are the steps required for manual testing of termiNus
+<!-- @@author Cao-Zeyu -->
+### Launch and shutdown
+1. Initial launch <br>
+    1. Download the latest version of `termiNus` from [here](https://github.com/AY2021S1-CS2113-T14-3/tp/releases/latest) 
+    and copy the jar file to an empty folder.
+    2. Open a command line window in the same directory and launch termiNus by typing `java -jar termiNus.jar` and press enter.
+
+2. Shutdown <br>
+    1. Input `bye` to exit the program.
+
+### Adding items
+1. Adding a task
+    - Test case: `add task tP submission c/CS2113 p/1 date/09-11-2020` <br>
+      Expected: task `tP submission` is added to the task list, with priority of `1`, category of `CS2113`, and 
+      a date of `09 Nov 2020`.
+      
+2. Adding a recurring task
+    - Test case: `addr tP meeting s/26-10-2020 e/27-11-2020 day/tue c/CS2113 p/2` <br>
+      Expected: recurring tasks `tP meeting` are added to the task list, with priority of `2`, category of `CS2113`,
+      and the recurring dates of the Tuesdays during the start and end period.
+      
+    - Test case: `addr game club c/CCA <br>`
+      Expected: an error message is printed since the compulsory arguments `s/`, `e/`, `day/` are all required for 
+      a recurring task.
+      
+3. Adding a module 
+    - Test case: `add module CS1010 d/1 g/A+ mc/4 ay/1920S1` <br>
+      Expected: module `CS1010` completed in `AY1920S1` is added to the module list, with the grade `A+` and MCs of `4`.
+    
+    - Test case: `add module STT233 d/1 g/A+ mc/4 ay/1920S1` <br>
+      Expected: an error message is printed since the module name is in incorrect format.
+    
+    - Test case: `add module ST2334 mc/4 ay/1920S1` <br>
+      Expected: an error message is printed since the compulsory arguments `g/`, `mc/`, `ay/` are all required for 
+      a module.
+      
+4. Adding a link
+    - Test case: `add link m/CS2113 t/lecture u/https://cs2113lecture.zoom.com` <br>
+      Expected: the Zoom meeting link for `lecture` of module `CS2113` is added to the link list.
+    
+    - Test case: `add link m/CS2113 t/meeting u/https://cs2113meeting.zoom.com` <br>
+      Expected: an error message is printed since the input for `t/` argument can only be `lecture`, `tutorial`, `lab`, 
+      or `project`.
+      
+5. borrowing a book
+    - Test case: `borrow Harry Potter date/10-11-2020` <br>
+      Expected: the book `Harry Potter` is added to the book list with the loan date `10 Nov 2020` and due date 
+      `10 Dec 2020`.
+      
+6. Adding an expense item
+    - Test case: `spend lunch v/4 currency/SGD date/2020-11-08` <br>
+      Expected: a `4.00` `SGD` expense on `lunch` on `Sunday, November 8,2020` is added to the expense list.
+    
+    - Test case: `spend book v/15` <br>
+      Expected: a `15.00` `SGD` expense on `book` on the current day is added to the expense list. 
+      (By default, if `currency/` and `date/` arguments are not specified, termiNus will assume the currency is `SGD` 
+      and the date is the current day.)
+      
+### Creating module folders
+- Test case: `makefolders` <br>
+  Expected: sub-folders (`Lecture Notes` and `Tutorials`) are created at the output directories for each module in 
+  the module list.
+  
+### Displaying items
+1. Displaying tasks
+    - Test case: `list tasks` <br>
+      Expected: the complete list of tasks is displayed.
+      
+    - Test case: `list tasks p/1` <br>
+      Expected: the list of tasks under priority `1` is displayed.
+      
+    - Test case: `list tasks p/-1` <br>
+      Expected: an error message is printed, since the priority of a task can only be a non-zero integer.
+    
+    - Test case: `list tasks p/4` <br>
+      Expected: an error message is printed, since there is no task of this priority.
+    
+    - Test case: `list tasks c/CS2113` <br>
+      Expected: the list of tasks under category `CS2113` is displayed.
+      
+    - Test case: `list tasks c/work` <br>
+      Expected: an error message is printed, since there is no task of this category.
+      
+2. Displaying modules
+    - Test case: `list modules` <br>
+      Expected: the complete list of modules is displayed.
+      
+3. Displaying links
+    - Test case: `list links` <br>
+      Expected: the complete list of links is displayed.
+      
+4. Displaying books
+    - Test case: `list books` <br>
+      Expected: the complete list of books is displayed.
+      
+5. Displaying expenses
+    - Test case: `list expenses` <br>
+      Expected: the complete list of expenses is displayed, followed by the total expenses calculated for 
+      the current day, week, month, and year.
+    
+    - Test case: `list expenses date/2020-11-09` <br>
+      Expected: the list of expenses on `Sunday, November 8, 2020` is displayed, followed by the total expenses 
+      caculated for the given day.
+    
+    - Test case: `list expenses for/week` <br>
+      Expected: the list of expenses for the current week is displayed.
+
+### Marking an item as done
+Prerequisite: list the desired item list using `list` command. Multiple items in the list.
+
+1. Marking a task as done
+    - Test case: `done task 1` <br>
+      Expected: the first task in the task list is marked as done `Y`.
+      
+2. Marking a module as completed
+    - Test case: `done module 1` <br>
+      Expected: the first module in the module list is marked as completed `CM`.
+      
+3. Marking a book as returned
+    - Test case: `return 2` <br>
+      Expected: the second book in the book list is marked as returned `R`.
+
+### Setting the priority of a task
+Prerequisite: list the complete task list using `list` command. Multiple tasks in the list.
+
+- Test case: `set 3 p/2` <br>
+  Expected: the priority of the third task in the task list is set as `2`.
+  
+### Setting the category of a task
+Prerequisite: list the complete task list using `list` command. Multiple tasks in the list.
+
+- Test case: `category 2 c/CS2113` <br>
+  Expected: the category of the second task in the task list is set as `CS2113`.
+
+### Setting the date of a task
+Prerequisite: list the complete task list using `list` command. Multiple tasks in the list.
+
+- Test case: `date 2 date/02-01-2021` <br>
+  Expected: the date of the second task in the task list is set as `02 Jan 2021`.
+  
+### Printing the task calendar
+- Test case: `calendar d/3` <br>
+  Expected: the tasks for the current day and for the next `3` days are output separately as a calendar.
+
+### Searching for tasks with keywords
+- Test case: `find tP` <br>
+  Expected: the tasks containing the keyword `tP` are displayed.
+  
+- Test case: `find t` <br>
+  Expected: an information is printed out to informing there is no matching tasks, since there is no keyword `t` in 
+  any task in the list and incomplete keywords are not allowed.
+
+### Deleting items
+Prerequisite: list the desired item list using `list` command. Multiple items in the list.
+
+1. Deleting a task/tasks
+    - Test case: `delete task 1` <br>
+      Expected: the first task in the task list is deleted.
+      
+    - Test case: `delete tasks p/1` <br>
+      Expected: the tasks that under priority `1` are deleted.
+      
+    - Test case: `delete task p/0` <br>
+      Expected: an error message is printed indicating invalid index, since the delete command for tasks under a certain 
+      priority should use `tasks` instead of `task` in the input.
+    
+    - Test case: `delete tasks p/10` <br>
+      Expected: an error message is printed indicating invalid index, since there is no task of priority `10` 
+      in the list.
+   
+    - Test case: `delete tasks c/CS2113` <br>
+      Expected: the tasks that under category `CS2113` are deleted.
+   
+    - Test case: `delete task c/CS2113` <br>
+      Expected: an error message is printed indicating invalid index, since the delete command for tasks under a certain 
+      category should use `tasks` instead of `task` in the input.
+    
+    - Test case: `delete tasks c/work` <br>
+      Expected: an error message is printed indicating invalid category, since there is no task of category `work` 
+      in the list.
+      
+2. Deleting a module
+    - Test case: `delete module 2` <br>
+      Expected: the second module in the module list is deleted.
+      
+    - Test case: `delete module 8` <br>
+      Expected: an error message is printed, since the module index does not exist.
+      
+3. Deleting a link
+    - Test case: `delete link 1` <br>
+      Expected: the first link in the link list is deleted.
+      
+    - Test case: `delete link 7` <br>
+      Expected: an error message is printed, since the link index does not exist.
+      
+4. Deleting an expense
+    - Test case: `delete expense 1` <br>
+      Expected: the first expense in the expense list is deleted.
+      
+    - Test case: `delete expense 10` <br>
+      Expected: an error message is printed, since the expense index does not exist.
+    
+    - Test case: `delete expenses date/2020-11-09` <br>
+      Expected: all the expenses on `Sunday, November 8, 2020` are removed from the expense list.
+   
+    - Test case: `delete expense date/2020-11-09` <br>
+      Expected: an error message is printed indicating invalid index, since the delete command for expenses on a certain
+      day should be `expenses` instead of `expense` in the input.
+
+### Clearing all items
+- Test case: `clear all` <br>
+  Expected: all the tasks, modules, links, books, and expenses are removed.
+  
+### Getting help
+- Test case: `help` <br>
+  Expected: all the available commands and their usages are displayed in the help message.
+ <!-- @@author -->
+
+<h1 align="center">End of termiNus Developer Guide</h1>

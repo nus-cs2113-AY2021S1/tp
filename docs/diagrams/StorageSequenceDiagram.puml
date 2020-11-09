@@ -1,0 +1,188 @@
+'@@author GuoAi
+@startuml
+participant ":Model" as Model
+participant ":Storage" as Storage
+participant ":Task" as Task
+participant ":Book" as Book
+participant ":Link" as Link
+participant ":Module" as Module
+participant ":Expense" as Expense
+
+create Storage
+Model -> Storage : new Storage()
+activate Storage
+
+Model <-- Storage
+deactivate Storage
+
+Model -> Storage : loadTask()
+activate Storage
+
+loop sc.hasNextLine()
+
+Storage -> Storage : loadTaskFromLine(line)
+activate Storage
+
+create Task
+Storage -> Task : new Task(description, isDone, priority)
+activate Task
+
+Storage <-- Task : newTask
+deactivate Task
+
+opt !category.equals("")
+
+Storage -> Task : setCategory(category)
+activate Task
+
+Storage <-- Task
+deactivate Task
+
+end
+
+opt !dateString.equals("")
+
+Storage -> Task : setDateFromString(dateString)
+activate Task
+
+Storage <-- Task
+deactivate Task
+
+end
+
+destroy Task
+
+Storage <-- Storage : newTask
+deactivate Storage
+
+end
+
+Model <-- Storage : tasks
+deactivate Storage
+
+Model -> Storage : loadBook()
+activate Storage
+
+loop sc.hadNextLine()
+
+Storage -> Storage : loadBookFromLine(line)
+activate Storage
+
+create Book
+Storage -> Book : new Book(description, isReturn)
+activate Book
+
+Storage <-- Book : newBook
+deactivate Book
+
+opt !dateString.equals("")
+
+Storage -> Book : setDateFromString(dateString)
+activate Book
+
+Storage <-- Book
+deactivate Book
+
+end
+
+opt !futureDateString.equals("")
+
+Storage -> Book : setDateFromString(dateString)
+activate Book
+
+Storage <-- Book
+deactivate Book
+
+end
+
+destroy Book
+
+Storage <-- Storage : newBook
+deactivate Storage
+
+end
+
+Model <-- Storage : books
+deactivate Storage
+
+Model -> Storage : loadLinks()
+activate Storage
+
+loop sc.hasNextLine()
+
+Storage -> Storage : loadLinkFromLine(line)
+activate Storage
+
+create Link
+Storage -> Link : new Link(module, type, url)
+activate Link
+
+Storage <-- Link : newLink
+deactivate Link
+
+destroy Link
+
+Storage <-- Storage : newLink
+deactivate Storage
+
+end
+
+Model <-- Storage : links
+deactivate Storage
+
+Model -> Storage : loadModule()
+activate Storage
+
+loop sc.hasNextLine()
+
+Storage -> Storage : loadModuleFromLine(line)
+activate Storage
+
+create Module
+Storage -> Module : new Module(description, grade, mc, semester)
+activate Module
+
+Storage <-- Module : newModule
+deactivate Module
+
+destroy Module
+
+Storage <-- Storage : newModule
+deactivate Storage
+
+end
+
+Model <-- Storage : modules
+deactivate Storage
+
+Model -> Storage : loadExpense()
+activate Storage
+
+loop sc.hasNextLine()
+
+Storage -> Storage : loadExpenseFromLine(line)
+activate Storage
+
+create Expense
+Storage -> Expense : new Expense(description, value)
+activate Expense
+
+Storage <-- Expense : newExpense
+deactivate Expense
+
+destroy Expense
+
+Storage <-- Storage : newExpense
+deactivate Storage
+
+end
+
+Model <-- Storage : expenses
+deactivate Storage
+
+Model -> Storage : save(items, path)
+activate Storage
+
+Model <-- Storage
+deactivate Storage
+@enduml

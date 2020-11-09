@@ -1,0 +1,80 @@
+@startuml
+participant ":Duke" as DukeClass <<class>>
+participant ":Duke" as Duke
+participant ":Model" as Model
+participant ":Ui" as Ui <<class>>
+participant ":Parser" as Parser <<class>>
+participant ":Command" as Command
+
+-> DukeClass : main()
+activate DukeClass
+
+create Duke
+DukeClass -> Duke: new Duke()
+activate Duke
+
+create Model
+Duke -> Model : new Model()
+activate Model
+
+Duke <-- Model
+deactivate Model
+
+Duke -> Model : load()
+activate Model
+
+Duke <-- Model
+deactivate Model
+
+DukeClass <-- Duke
+deactivate Duke
+
+DukeClass -> Duke : run()
+activate Duke
+
+'Duke runs
+
+Duke -> Ui : showWelcome()
+
+loop !isExit
+
+Duke -> Ui : readCommand()
+activate Ui
+
+Duke <-- Ui : fullCommand
+deactivate Ui
+
+Duke -> Parser : parse(fullCommand)
+activate Parser
+
+create Command
+Parser -> Command
+activate Command
+
+Parser <-- Command
+deactivate Command
+
+Duke <-- Parser : Command
+deactivate Parser
+
+Duke -> Command : execute(model)
+
+Duke -> Command : isExit()
+
+Duke -> Model : save()
+
+destroy Command
+
+end
+
+'Duke stops
+
+DukeClass <-- Duke
+deactivate Duke
+
+destroy Duke
+destroy Model
+
+<-- DukeClass
+deactivate DukeClass
+@enduml

@@ -1,1 +1,15 @@
-James Gosling
+help
+add task iP meeting
+add task other meeting p/3
+add task tP meeting p/5 c/cs2113
+list tasks
+done task 1
+done task 4
+list tasks
+add task tP meeting p/2 c/cs2113 invalid/argument
+delete task 10
+delete task 2
+list tasks
+find book
+Revengers Assemble!
+bye
