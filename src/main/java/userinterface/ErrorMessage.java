@@ -35,6 +35,11 @@ public class ErrorMessage extends Ui {
     public static void printRepeatedGrade() {
         printLine("This grade has already been added!");
     }
+
+    public static void printEmptyInput() {
+        printLine("You cannot leave this input empty!\n"
+                + "or you can type \"help\" for more information");
+    }
 }
 
 

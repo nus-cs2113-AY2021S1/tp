@@ -1,5 +1,6 @@
 package academic;
 
+import exceptions.EmptyInputException;
 import exceptions.InvalidEmailException;
 import exceptions.RepeatedGradeException;
 import java.io.File;
@@ -29,7 +30,7 @@ public class AcademicStorage {
             f.createNewFile();
             System.out.println("data/academic.txt is not found, creating a new file now!");
         } catch (StringIndexOutOfBoundsException | NumberFormatException
-                | InvalidEmailException | RepeatedGradeException e) {
+                | InvalidEmailException | RepeatedGradeException | EmptyInputException e) {
             listOfGrades.clear();
             listOfPerson.clear();
             File f = new File(filePath);
@@ -47,7 +48,7 @@ public class AcademicStorage {
      * @throws RepeatedGradeException when an existing grade is added repeatedly.
      */
     private static void loadText(ArrayList<Person> listOfPerson, ArrayList<Grade> listOfGrades)
-            throws FileNotFoundException, InvalidEmailException, RepeatedGradeException {
+            throws FileNotFoundException, InvalidEmailException, RepeatedGradeException, EmptyInputException {
         File f = new File(filePath); // create a File for the given file path
         Scanner s = new Scanner(f); // create a Scanner using the File as the source
         while (s.hasNext()) {
