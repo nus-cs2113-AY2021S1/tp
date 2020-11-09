@@ -63,23 +63,23 @@ and [#164](https://github.com/AY2021S1-CS2113T-F11-4/tp/issues/164).
 [#73](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/73),
 [#119](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/119),
 [#124](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/124).
-<br>
+
 Set up the draft of User Guide for initializing the application in `Project`, `Member`
 command. Updated the expected output of commands for V2.0 in 
 [#119](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/119). 
 Many PED Bugs were also solved in [#178](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/178), with many of them
- being high severity, and affecting the entire functionality of the program. 
+being high severity, and affecting the entire functionality of the program. 
  
  ### Developer Guide
  * **PR**[#181](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/181)
  [#140](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/140)
  [#131](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/131)
- \
- Created Architecture diagram for the Developer guide, added sequence diagrams and class diagrams to improve
- understanding of the project. Create sequence diagram for `CreateProjectCommand` to better understand the workflow
-  and user interaction when the application is run, and project is created. Added [user stories, value proposition and 
-  target user profile with implementaion and usage scenario for 
-  commands.](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/140).
+
+Created Architecture diagram for the Developer guide, added sequence diagrams and class diagrams to improve
+understanding of the project. Create sequence diagram for `CreateProjectCommand` to better understand the workflow
+and user interaction when the application is run, and project is created. Added [user stories, value proposition and 
+target user profile with implementaion and usage scenario for 
+commands.](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/140).
   
 #### Other Contributions
   * Reported bugs for other team's program during PE dry run. 
