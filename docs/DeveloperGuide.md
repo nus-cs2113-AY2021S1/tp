@@ -569,6 +569,9 @@ Nav@NUS seeks to help the intended audience to achieve the following:
 |v1.0|someone that is unfamiliar with the NUS campus|know the full routes of the buses|I could plan my route to my desired destination|
 |v1.0|someone new to NUS|know all the available bus stops in the school|I can check the possible bus stops I can board/alight at to reach my destination|
 |v1.0|curious person|know the full routes of all the buses in NUS|I can see where each bus is heading to|
+
+<div style="page-break-after: always;"></div>
+
 |v1.0|freshman/ anyone new to NUS|know the buses available at specific bus stops|I can better plan my trip around the campus in advance|
 |v2.0|frequent user|have a list of favourite commands|I can access my favourite commands quickly|
 |v2.0|frequent user|be able to customise my list of favourite commands|I can change the list according to my needs|
@@ -576,6 +579,8 @@ Nav@NUS seeks to help the intended audience to achieve the following:
 |v2.0|frequent user|be able to change how I describe my favorite commands|I know when and why I usually use that command and so that I can use it accordingly later.|
 |v2.0|food connoisseur|know what dining options are available in my faculty|I can find food that suits my taste|
 |v2.0|freshman|know the locations and opening hours of the cafes in my faculty|I do not waste time looking for them|
+
+<div style="page-break-after: always;"></div>
 
 ## 6. Appendix C: Non-Functional Requirements - Wamika
 
