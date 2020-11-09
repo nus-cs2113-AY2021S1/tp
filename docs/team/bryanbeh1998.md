@@ -36,7 +36,7 @@ I wrote mainly the features part of the UG. I wrote the AddReview,ChangeRating,C
 Delete Rating portions of the features in the UG. In addition, I helped to overlook all the functions in the UG to 
 ensure flow and good formatting in the UG.
 
-# Contributions to the Developer Guide
+## Contributions to the Developer Guide
 I wrote mainly the implementation portion of the Developer Guide. 
 * I wrote the AddReview,ChangeRating,ChangeReview,DeleteRating and Delete Rating portions of the implementations.
 * I added Diagrams to the ChangeRatingCommand,DeleteCommand and DeleteRatingCommand for better visualisation
