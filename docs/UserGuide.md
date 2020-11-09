@@ -28,6 +28,7 @@ from the text file and loads the appliances' data back.
   * [Saving the data](#saving-the-data)
 * [Command summary](#command-summary)
 
+<div style="page-break-after: always;"></div>
 ## Quick start
 
 1.  Ensure you have Java `11` or above installed in your Computer.
