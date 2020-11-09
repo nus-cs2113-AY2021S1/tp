@@ -20,7 +20,8 @@ public class LocationList {
      */
     public boolean checkValidLocation(String name) {
         for (Location location : locationList) {
-            if (name.equalsIgnoreCase(location.getName())) {
+            String input = name.toLowerCase().replaceAll("\\s","");
+            if (input.equals(location.getName().toLowerCase().replaceAll("\\s",""))) {
                 return true;
             }
         }
@@ -36,8 +37,9 @@ public class LocationList {
     public Location findLocation(String name) {
         Location locationReturned = null;
         int i = 0;
+        String input = name.toLowerCase().replaceAll("\\s","");
         for (Location location : locationList) {
-            if (name.equalsIgnoreCase(location.getName())) {
+            if (input.equalsIgnoreCase(location.getName().toLowerCase().replaceAll("\\s",""))) {
                 locationReturned = locationList.get(i);
                 return locationReturned;
             }

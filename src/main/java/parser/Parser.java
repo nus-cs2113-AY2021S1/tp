@@ -169,6 +169,15 @@ public abstract class Parser {
 
         //this block deals with locate command
         if (words[0].equalsIgnoreCase(LOCATE_EVENT)) {
+            String input = "";
+            int i;
+            for (i = 1; i < words.length; i++) {
+                input = input.concat(words[i]);
+                int j = i;
+                if (j++ != words.length) {
+                    input = input.concat(" ");
+                }
+            }
             if (words.length == 1) {
                 throw new EmptyLocationException();
             } else if (locations.checkIfInteger(words[1])) {
@@ -178,10 +187,10 @@ public abstract class Parser {
                 } else {
                     return new LocateCommand(words[1]);
                 }
-            } else if (!locations.checkValidLocation(words[1])) {
+            } else if (!locations.checkValidLocation(input)) {
                 throw new InvalidLocationException();
             } else {
-                return new LocateCommand(words[1]);
+                return new LocateCommand(input);
             }
         }
         if (words[0].equalsIgnoreCase(LOCATE_EVENT) && words.length > 1) {
