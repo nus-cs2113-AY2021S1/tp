@@ -18,8 +18,7 @@ E-Duke-8 (pronounced "Educate") helps CS2113/T students learn and understand sof
   - What it does: Based on the user's specified number of questions and topic, `QuizQuestionsManager` randomly selects the indicated number of questions from the list of questions of the indicated topic at the start of the quiz. It also ensures that a quiz will not have duplicated questions. Furthermore, It provides the ability to navigate to the next question, and the ability to determine the end of the quiz. 
   - Justification: The random selection of questions will ensure that users get a variety of questions from the topic. 
 
-
-- Code contributed: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=zhi-you&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+- **Code contributed:** [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=zhi-you&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 - **Enhancements to existing features:**
   - Personalized the project by changing packages' names and settings. (Pull request [#33](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/33))
