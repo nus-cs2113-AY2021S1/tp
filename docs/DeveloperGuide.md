@@ -121,10 +121,24 @@ All components can be accessed by the user through Fluffle's UI. On loading Fluf
 ### Writing Manager Component
 
 ### Bunny Manager Component
-The diagram below is describes the storage of the Bunny command in the diagram
-![Bunny Manager Component](graphics/diagrams/Bunny_manager_component.PNG)
+There are two methods for the user to load their bunny ideas into the application.
 
-Functions in the bunny related classes such as BunnyList, DeleteBunny, BunnyFilter and GenBunny can also access this bunniesList ArrayList as it is passed by reference from the bunny list. 
+#### Loading bunnies directly into the bunny.txt file
+The bunny ideas can be loaded into Fluffle by the user using the `Bunny` command. This command automatically adds these `Bunny` objects into the `bunniesList` ArrayList which can be found in the BunnyList class.
+
+#### Saving bunnies via the program commands
+All the other functions in the bunny related classes such as BunnyList, DeleteBunny, BunnyFilter and GenBunny can also access this `bunniesList` ArrayList directly as it is passed by reference from the commandExecutor function, which imports the `bunniesList` from the BunnyList class. 
+
+#### Usage and storage
+The diagram above is describes the storage of the Bunny ideas in Fluffle. 
+![Bunny Manager Component](graphics/diagrams/Bunny_manager_component.PNG)
+<p align = "center"><i><b>Figure 3: Bunny manager architecture</b></i></p>
+
+The BunnySaver class handles 
+
+When the program is closed,
+
+Bunny read from storage and added to the new bunniesList ArrayList
 
 ### Word Manager Component
 Given below is the general architecture of our Word Manager Component.
@@ -284,6 +298,8 @@ Names.txt not existing, the NamesDB class will create the Names.txt database and
 As shown in Figure 8, both the NamesDB class and the Names class will create the NameException class. This is a subclass 
 that inherits from the Exception superclass and passes the exception message to the superclass. In the event of an 
 exception, it is thrown from the methods in NamesDB class and Names class and handled by the NameException class.
+
+## Aesthetic components
 
 ## Testing
 

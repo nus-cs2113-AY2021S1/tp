@@ -39,6 +39,11 @@ import static seedu.duke.ui.UI.printHelpMessage;
 
 
 public class CommandExecutor {
+    /**
+     * Executes the command as detected by the commandChecker function.
+     * @param commandChecker the type of command detected by the commandChecker function
+     * @param userInput the unprocessed user input string
+     */
     public static void executeCommand(CommandChecker commandChecker, String userInput) {
         switch (commandChecker) {
         case HELP:
