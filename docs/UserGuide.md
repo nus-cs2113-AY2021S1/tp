@@ -585,7 +585,7 @@ Instruction:
 
 Expected output:
 
-![To be added]
+![Timetable_2_10](Images/TimetableUG/Timetable_2_10.png)
 
 >**Warning:**
 >* Deletion will be done automatically. All the events that are deleted will not be able to be retrieved. 
