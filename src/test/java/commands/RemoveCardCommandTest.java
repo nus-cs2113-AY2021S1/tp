@@ -24,6 +24,7 @@ import static common.Messages.CARD;
 import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author neojiaern
 public class RemoveCardCommandTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
