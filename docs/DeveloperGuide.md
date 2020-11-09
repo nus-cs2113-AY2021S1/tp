@@ -142,6 +142,7 @@ Since the program only searches for the idea and genre tag, it is lenient when r
 
 #### Usage and storage
 The diagram above is describes the storage of the Bunny ideas in Fluffle. 
+
 ![Bunny Manager Component](graphics/diagrams/Bunny_manager_component.PNG)
 <p align = "center"><i><b>Figure 3: Bunny manager architecture</b></i></p>
 
