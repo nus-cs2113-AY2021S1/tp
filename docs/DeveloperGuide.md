@@ -797,6 +797,8 @@ Expected: No command executed.Error details will be shown to remind users to typ
         Expected output: Message detailing corrupted data detailed at start and corrupted data removed from FavList.
 <!-- @@author -->
 
+<div style="page-break-after: always;"></div>
+
 <!-- @@author Johnson-Yee -->
 ### E.12 Saving of search frequncies of each bus stop - Johnson
 1. Data is automatically saved in the `/data/FreqList.txt` directory of the jar file's home directory.
