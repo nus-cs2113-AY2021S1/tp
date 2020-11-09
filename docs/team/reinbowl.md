@@ -2,14 +2,22 @@
 
 ## Overview
 
-Scheduler--; is a desktop app for managing deadlines from different sources.
+Scheduler--; (S--) is a desktop app for managing deadlines from different sources.
 The user will use a Command Line Interface to control it.
 It is specially designed for Computing students who are comfortable in using CLI and have Git project deadlines as well
 as consolidated Zoom session links due which will suit home based learning in this COVID period.
 
 Given below are my contributions to the project.
 
-### Summary of Contributions
+## Summary of Contributions
+
+* **New Feature**: Added the structure to store user's data.
+    * What it does: Allows the user's data to be stored and accessed of easily during the program runtime.
+    * Justification: This feature is essential to keep track of the user's data in a manner that is not complicated and
+    can then be retrieved with simple code.
+    * Highlights: Because of the different data to keep track of, having a single list of event was not an ideal
+    solution. Multiple lists and each list with a name to keep track of the data had to be implemented for easy tracking
+    of the different data. 
 
 * **New Feature**: Added the ability to list events.
     * What it does: Allows the user to list events of a specific type or all events according to the order the events
@@ -46,9 +54,9 @@ Given below are my contributions to the project.
         
     * Developer Guide:
         * Added the architecture details. (Pull requests [\#126](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/126))
-        * Added implementation details of the `list` feature.
+        * Added implementation details of the `list` feature. (Pull requests [\#126](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/126))
         * Added implementation details of the `goal` feature. (Pull requests [\#96](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/96))
-        * Added implementation details of the `calendar` feature.
+        * Added implementation details of the `calendar` feature. (Pull requests [\#255](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/255))
     
 * **Community**:
     * Assisted with peer review for other group's PR 
