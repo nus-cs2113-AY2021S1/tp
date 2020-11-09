@@ -46,14 +46,14 @@ In summary, the `UI` component,
 
 #### Implementation
 
-This feature and its associated command words is **only used during the initial setup of the application**. Any subsequent editing of the user information can be done using the [Edit user information feature](#edit-user-information-feature).
+This feature allows users to enter their personal information into the system so that they can be used for tracking diet progress and calorie recommendation calculation. This feature and its associated command words is **only used during the initial setup of the application**. Any subsequent editing of the user information can be done using the [Edit user information feature](#edit-user-information-feature).
 
-**This feature utilises two commands words**
+**This feature utilises two commands words**:
 
 * [`name`](https://ay2021s1-cs2113-t14-4.github.io/tp/UserGuide.html#entering-username-name): Saves the user's name or nickname into the application. 
 * [`info`](https://ay2021s1-cs2113-t14-4.github.io/tp/UserGuide.html#entering-user-information-info): Saves the user's age, gender, height, fitness level, original, current and target weight into the application. 
 
-**Main classes and methods used** 
+**Main classes and methods used**: 
 
 * [`Manager`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/Manager.java): Stores a `Person` object.
     * `Manager#setPerson(String newName, Gender newGender, int newAge, int newHeight, int newOriginalWeight, int newCurrentWeight, int newTargetWeight, FitnessLevel newFitnessLevel)`: Calls a method in `Person` class (listed below) to set the attribute values of the `Person` object.
@@ -61,9 +61,8 @@ This feature and its associated command words is **only used during the initial 
     * `Person#setAll(String newName, Gender newGender, int newAge, int newHeight, int newOriginalWeight, int newCurrentWeight, int newTargetWeight, FitnessLevel newFitnessLevel)`: Updates the attribute values of the `Person` object.
                                              
 
-**Example usage scenario and how the feature work**<br/>
-_Summary_: Only one instance of `Person` is ever instantiated. A default person is instantiated at the start
- with default attribute values and when the user enters their information for the first time during the set up, all the default values would be updated to the inputted values. Therefore, the command to enter the user information will result in a change in the attribute values and not the creation of a new `Person` object.
+**Example usage scenario and how the feature work**:<br/>
+_Summary_: Only one instance of `Person` is ever instantiated. A default person is instantiated at the start with default attribute values and when the user enters their information for the first time during the set up, all the default values would be updated to the inputted values. Therefore, the command to enter the user information will result in a change in the attribute values and not the creation of a new `Person` object.
 
 **Step 1**. When the user launches the application for the first time. A default `Person` object will be initialised by `Manager` and the user will be prompted to enter their name.
  
@@ -97,6 +96,16 @@ Aspect: Whether to enter name and other information separately or together
 * **Alternative 2**: Enter name and other information together
     * Pros: Enter all information at once.
     * Cons: Decrease user interaction and engagement.
+    
+Aspect: Single or multiple usage of feature and command words
+
+* **Alternative 1 (current choice)**: Single usage of feature and command words, requiring any subsequent editing of user information to be done through another command
+    * Pros: Increase user interaction and engagement during initial setup. Enable users to edit any information thereafter more conveniently through one command. The two features of entering and editing personal information are clearly differentiated.
+    * Cons: Three commands need to be implemented, potentially leading to more bugs.
+    
+* **Alternative 2**: Multiple usage of feature and command words such that any subsequent editing of user information can be to be done the same command
+    * Pros: Two commands need to be implemented, likely to have lesser bugs.
+    * Cons: Decrease user interaction and engagement during initial set up. Subsequent editing needs to be done through two commands and there is no differentiation between the two features of entering and editing personal information.
 
 Aspect: Whether to use singleton pattern for Person class
 
@@ -104,7 +113,7 @@ Aspect: Whether to use singleton pattern for Person class
     * Pros: Reduce coupling and increase testability.
     * Cons: Risk of creating multiple `Person` object by mistake and there might be negative consequence in creating multiple objects.
     
-    However, there  is minimal risk of creating multiple `Person` object by mistake and minimal negative consequence in creating multiple objects as long as the `Manager` refers the correct instance of `Person`.
+    However, there is minimal risk of creating multiple `Person` object by mistake and minimal negative consequence in creating multiple objects as long as the `Manager` refers the correct instance of `Person`.
       
 * **Alternative 2**: Use singleton pattern for `Person`    
     * Pros: Easy to implement, prevent the instantiation of more than one `Person` object.
@@ -124,11 +133,17 @@ Aspect: Changing attribute values in `Person` object or creating new `Person` ob
 
 #### Implementation
 
-**This feature utilises the following command word**
+This feature allows users to edit their personal information after it has been entered into the system during the initial set up using the [Enter user information feature](#enter-user-information-feature). This feature was implemented to allow long term users to update their personal information like age, current weight, etc when necessary and also for careless users to edit their personal information if they have entered it wrongly.
 
-* [`editinfo`](https://ay2021s1-cs2113-t14-4.github.io/tp/UserGuide.html#editing-user-information-editinfo): Edits the user information stored in the application. 
+**This feature utilises the following command word**:
 
-**Main classes and methods used** 
+* [`editinfo`](https://ay2021s1-cs2113-t14-4.github.io/tp/UserGuide.html#editing-user-information-editinfo): Edits the user information stored in the application.<br/>
+The command is implemented in such a way that **one or more changes to the personal information can be made** using a single command. Below are some examples of valid commands. 
+    * `editinfo a/22`: Edits the age of the user to `22`
+    * `editinfo a/22 c/80`: Edits the age of the user to `22` and the current weight to `80kg`.
+    * `editinfo n/Jane g/F a/22 h/165 o/70 c/63 t/60 f/3`: Edit the name, gender, age, height, original, current and target weight as well as the fitness level of the user to `Jane`, `female`, `22`,`165`, `70`, `63`, `60` and `You engage in moderate amount of exercise or have a job that requires moderate physical activity.` respectively.
+
+**Main classes and methods used**: 
 
 * [`Person`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/person/Person.java): Stores all user information provided.
     * `Person#setName(String newName)`: Updates the name the `Person` object.
@@ -141,42 +156,47 @@ Aspect: Changing attribute values in `Person` object or creating new `Person` ob
     * `Person#setFitnessLevel(FitnessLevel newFitnessLevel)`: Updates the fitness level of the `Person` object                                       
                                         
 **Example usage scenario and how the feature work**<br/>
-_Summary_: Only one instance of `Person` is ever instantiated. A default person is instantiated at the start
- with default attribute values and when the user enters their information for the first time during the set up, all the default values would be updated to the inputted values. Therefore, the command to enter the user information will result in a change in the attribute values and not the creation of a new `Person` object.
+_Summary_: The corresponding existing values in `Person` class would be updated to the inputted values, even if the new value given is the same as the existing value.
 
-**Step 1**. When the user launches the application for the first time. A default `Person` object will be initialised by `Manager` and the user will be prompted to enter their name.
- 
-_Object Diagram:_<br/>
-![Enter Info Step1](diagrams/Enter Info Step1.png)
- 
-**Step 2**. The user inputs `name Jack` command to enter their name into DietBook. The `name` command calls `Manager#setName(Jack)`, to store the name in `Manager` first. After which, user will be prompted to enter all other details.
+**Step 1**. Takes for example the user's name, age, gender, height, fitness level, original, current and target weight are currently `Jack`, `21`, `male`, `175`,`You engage in some form of light exercise or have a job that requires some physical activity.` ,`85`, `85` and `75` respectively. 
 
 _Object Diagram:_<br/>
-![Enter Info Step2](diagrams/Enter Info Step2.png)
+![Edit Info Step1](diagrams/EnterInfoStep3.png)
+ 
+**Step 2**. When the user wishes to edit their age and current weight, they can enter a command like the following `editinfo a/22 c/80`. The `editinfo` command would call `Parse#executeEditInfo(editinfo a/22 c/80, manager)` before `Person#setAge(22)` and `Person#setCurrentWeight(80)` is called.
+
+_Object Diagram:_<br/>
+![Edit Info Step2](diagrams/EditInfoStep2.png)
 
 _Sequence Diagram:_<br/>
-![Name sequence diagram](diagrams/Name sequence diagram.png)
-  
-**Step 3**. The user inputs a command like the following `info g/M a/21 h/175 o/85 c/85 t/75 f/2` to enter all other personal information including age, gender, height, fitness level, original, current and target weight. The `info` command then calls `Parse#executeProcessedInfo(info g/M a/21 h/175 o/85 c/85 t/75 f/2, manager)` before calling `Manager#setPerson(Jack, Gender.MALE, 21, 175, 85, 85, 75, FitnessLevel.LOW)` which proceeds to call `Person#setAll(Jack, Gender.MALE, 21, 175, 85, 85, 75, Fitness.LOW)`.
-
-_Object Diagram:_<br/>
-![Enter Info Step3](diagrams/Enter Info Step3.png) 
-
-_Sequence Diagram:_<br/>
-![Info sequence diagram](diagrams/Info sequence diagram.png)
+![Edit Info sequence diagram](diagrams/EditInfoSequenceDiagram.png)
    
 #### Design considerations:
 
-Aspect: Whether to enter name and other information separately or together
+Aspect: Whether one or more changes to the personal information can be made using a single command or through the use of various commands
 
-* **Alternative 1 (current choice)**: Enter name and other information separately
-    * Pros: Increase user interaction and engagement.
-    * Cons: Enter information using two commands.
+* **Alternative 1 (current choice)**: One or more changes to the personal information can be made using a single command
+    * Pros: Easier and more convenient for the user when editing multiple pieces of personal information. Less user commands required.
+    * Cons: Harder to implement.
 
-* **Alternative 2**: Enter name and other information together
-    * Pros: Enter all information at once.
-    * Cons: Decrease user interaction and engagement.
+* **Alternative 2**: Each piece of personal information is changed using separate commands
+    * Pros: Easier to implement.
+    * Cons: Tedious for the user to edit multiple pieces of personal information. More user commands required.
     
+Aspect: Use of multiple or single setter method(s)
+
+* **Alternative 1 (current choice)**: Use of multiple setter methods each updating an attribute in the `Person` class<br/>
+E.g.`Person#setName(String newName)`: Updates the name the `Person` object.<br/>
+E.g.`Person#setGender(Gender newGender)`: Updates the gender of the `Person` object.<br/>
+    * Pros: Easier to implement and uses the KISS principle.
+    * Cons: More method calls is required, possibly resulting in more bugs due to wrong method calls.
+
+* **Alternative 2**: Use of a single setter method that is able to update a variable number of attributes in `Person` class
+    * Pros: Lesser method calls is required, possibly resulting in lesser bugs due to wrong method calls.
+    * Cons: Harder to implement.
+
+Head over to the Design Considerations Section in the [Enter user information feature](#enter-user-information-feature) for more related design considerations.
+
 ## Save/Load Feature
 
 The Save/Load feature is implemented by the saveload package.
@@ -246,8 +266,8 @@ DietBook is designed to **track the food and different kinds of nutritional inta
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0 v2.0|person with an ideal weight in mind|input my target weight and relevant information|get daily calorie intake recommendations|
-|v1.0|clumsy or long term user|be able to view my personal information|make changes when necessary|
-|v2.0|clumsy user|be able to edit my personal information|make changes if I input the wrong information|
+|v1.0|careless or long term user|be able to view my personal information|make changes when necessary|
+|v2.0|careless user|be able to edit my personal information|make changes if I input the wrong information|
 |v2.0|potential long term user|be able to edit my personal information|make changes to information like age, weight and fitness level as it can changes over time|
 |v2.0|user that wants to track weight changes|be able to view the weight I started off with, my current weight and the weight I desire|take note of my progress|
 
