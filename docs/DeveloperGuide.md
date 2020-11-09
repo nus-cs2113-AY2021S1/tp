@@ -27,7 +27,7 @@ enhancements.
   * [3.5. Dining options finder (`/dine` Feature) - Shuyi](#35-dining-options-finder-dine-feature---shuyi)
   * [3.6. Find specific dining outlets (`/dineinfo` Feature) - Shuyi](#36-find-specific-dining-outlets-dineinfo-feature---shuyi)
   * [3.7. Favourite command adder (`/addfav` Feature) - Yuxin](#37-favourite-command-adder-addfav-feature---yuxin)
-  * [3.8. Removing specific delete command (`/deletefav` Feature)](#38-removing-specific-delete-command-deletefav-feature---johnson)
+  * [3.8. Removing specific delete command (`/deletefav` Feature) - Johnson](#38-removing-specific-delete-command-deletefav-feature---johnson)
   * [3.9. Favourite command executor (`/execfav` Feature) - Wong Heng Chin](#39-favourite-command-executor-execfav-feature---wong-heng-chin)
   * [3.10. Modifying the description of a favourite command (`/descfav` Feature) - Wamika](#310-modifying-the-description-of-a-favourite-command-descfav-feature---wamika)
   * [3.11. Performing similarity checks - Wamika](#311-performing-similarity-checks---wamika)
