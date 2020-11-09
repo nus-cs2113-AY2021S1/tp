@@ -7,37 +7,38 @@
 <br/>
 
 ## Table of Content
+
 1.  [Introduction](#1-introduction)
-<br/>&nbsp;1.1 [Purpose](#11-purpose)
-<br/>&nbsp;1.2 [Using this Guide](#12-using-this-guide)
+    <br/>&nbsp;1.1 [Purpose](#11-purpose)
+    <br/>&nbsp;1.2 [Using this Guide](#12-using-this-guide)
 
 2.  [Setting up](#2-setting-up)
 
 3.  [Design](#3-design)
-<br/>&nbsp;3.1  [Architecture](#31-architecture)
-<br/>&nbsp;3.2  [UI Component](#32-ui-component)
-<br/>&nbsp;3.3  [Parser Component](#33-parser-component)
-<br/>&nbsp;3.4  [Command Component](#34-command-component)
-<br/>&nbsp;3.5  [AnimeData Component](#35-animedata-component)
-<br/>&nbsp;3.6  [User Component](#36-user-component)
-<br/>&nbsp;3.7  [StorageManager Component](#37-storagemanager-component)
+    <br/>&nbsp;3.1  [Architecture](#31-architecture)
+    <br/>&nbsp;3.2  [UI Component](#32-ui-component)
+    <br/>&nbsp;3.3  [Parser Component](#33-parser-component)
+    <br/>&nbsp;3.4  [Command Component](#34-command-component)
+    <br/>&nbsp;3.5  [AnimeData Component](#35-animedata-component)
+    <br/>&nbsp;3.6  [User Component](#36-user-component)
+    <br/>&nbsp;3.7  [StorageManager Component](#37-storagemanager-component)
 
 4.  [Implementation](#4-implementation)
-<br/>&nbsp;4.1  [Estimate Feature](#41-estimate-feature)
-<br/>&nbsp;4.2  [Browse Feature](#42-browse-feature)
-<br/>&nbsp;4.3  [View Anime Information Feature](#43-view-anime-information-feature)
-<br/>&nbsp;4.4  [Workspace Feature](#44-workspace-feature)
-<br/>&nbsp;4.5  [Watchlist Management Feature](#45-watchlist-management-feature)
-<br/>&nbsp;4.6  [Add To Watchlist Feature](#46-add-to-watchlist-feature)
-<br/>&nbsp;4.7  [Remove From Watchlist Feature](#47-remove-from-watchlist-feature)
-<br/>&nbsp;4.8  [View Anime In Watchlist Feature](#48-view-all-anime-in-watchlist-feature)
-<br/>&nbsp;4.9  [Bookmark Feature](#49-bookmark-feature)
+    <br/>&nbsp;4.1  [Estimate Feature](#41-estimate-feature)
+    <br/>&nbsp;4.2  [Browse Feature](#42-browse-feature)
+    <br/>&nbsp;4.3  [View Anime Information Feature](#43-view-anime-information-feature)
+    <br/>&nbsp;4.4  [Workspace Feature](#44-workspace-feature)
+    <br/>&nbsp;4.5  [Watchlist Management Feature](#45-watchlist-management-feature)
+    <br/>&nbsp;4.6  [Add To Watchlist Feature](#46-add-to-watchlist-feature)
+    <br/>&nbsp;4.7  [Remove From Watchlist Feature](#47-remove-from-watchlist-feature)
+    <br/>&nbsp;4.8  [View Anime In Watchlist Feature](#48-view-all-anime-in-watchlist-feature)
+    <br/>&nbsp;4.9  [Bookmark Feature](#49-bookmark-feature)
 
 5.  [Documentation, Logging, Testing, and DevOps](#5-documentation-logging-testing-and-devops)
-<br/>&nbsp;5.1 [Documentation](#51-documentation)
-<br/>&nbsp;5.2 [Logging](#52-logging)
-<br/>&nbsp;5.3 [Testing](#53-testing)
-<br/>&nbsp;5.4 [DevOps](#54-development-and-operations-devops)
+    <br/>&nbsp;5.1 [Documentation](#51-documentation)
+    <br/>&nbsp;5.2 [Logging](#52-logging)
+    <br/>&nbsp;5.3 [Testing](#53-testing)
+    <br/>&nbsp;5.4 [DevOps](#54-development-and-operations-devops)
 
 [Appendix A: Product Scope](#appendix-a-product-scope)
 
@@ -496,14 +497,12 @@ At the same time, using anime ID as input would allow the program to be able to 
 <br/>
 
 ### 4.4 Workspace Feature
-Similar to a desktop, **AniChan** has a workspace feature which allows users to organise data in separate containers and switch between them to avoid intermixing of information.
 
-<br/>
+Similar to a desktop, **AniChan** has a workspace feature which allows users to organize data in separate containers and switch between them to avoid intermixing of information.
 
-`Workspace` is primarily the layer of code that sits between the user, and the rest of **AniChan** data management features (e.g., `Watchlist`, `Bookmark`). 
+`Workspace` is primarily the layer of code that sits between the user, and the rest of **AniChan** data management features (e.g. `Watchlist`, `Bookmark`). 
 
-As such, most of the code that manages `Workspace` can be found in [User.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/src/main/java/anichan/human/User.java) 
-and [Workspace.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/src/main/java/anichan/human/Workspace.java).
+As such, most of the code that manages `Workspace` can be found in `User.java` and `Workspace.java`.
 
 > :memo: Upon running the program for the first time, a workspace named `Default` is created. A similarly named folder will also be created in `/data` directory, managed by our `Storage` class.
 
@@ -511,21 +510,21 @@ and [Workspace.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/sr
 
 #### 4.4.1 Current Implementation
 
-| Command Option        | Workspace Command                      | Description field |
-|---|---|---|
-| `-n`       | `WorkspaceCommand#createWorkspace()`              | Creates new workspace |
-| `-s`       | `WorkspaceCommand#switchWorkspace()`              | Switches to specified workspace |
-| `-l`       | `WorkspaceCommand#listWorkspace()`                | Lists existing workspace(s)           |
-| `-d`       | `WorkspaceCommand#deleteWorkspace()`              | Deletes specified workspace |
+| Command Option | Workspace Command                    | Description field               |
+| -------------- | ------------------------------------ | ------------------------------- |
+| `-n`           | `WorkspaceCommand#createWorkspace()` | Creates new workspace           |
+| `-s`           | `WorkspaceCommand#switchWorkspace()` | Switches to specified workspace |
+| `-l`           | `WorkspaceCommand#listWorkspace()`   | Lists existing workspace(s)     |
+| `-d`           | `WorkspaceCommand#deleteWorkspace()` | Deletes specified workspace     |
 
 The `WorkspaceCommand` is instantiated by `WorkspaceParser`, and it requires 2 parameters: 
+
 *   `commandOption` (mandatory).
 *   `workspaceName` (mandatory unless option `-l` is specified).
 
 <br/>
 
-Given below is an example usage scenario showing how the command behaves at each step when the user tries 
-to **create new** `Workspace`:
+Given below is an example usage scenario showing how the command behaves at each step when the user tries to **create new** `Workspace`:
 
 **Step 1:** User launches the application for the first time. The `User` will be initialized with an initial `Workspace` named `Default`, and the `activeWorkspace` pointing to it and `workspaceList` `ArrayList` containing it.
 
@@ -540,8 +539,7 @@ to **create new** `Workspace`:
 
 **Step 4:** `Main` calls `WorkspaceCommand#execute()` and it checks the `commandOption` before running `WorkspaceCommand#createWorkspace()` accordingly.
 
-**Step 5:** `WorkspaceCommand` firstly calls `User#addWorkspace()` to add a new `Workspace` to `User`, then makes an empty `ArrayList` of `Watchlist` using `User#setWatchlistList()` for the `User`.
-Finally, it uses `storageManager#saveWorkspace()` to save the `Workspace` to disk.
+**Step 5:** `WorkspaceCommand` firstly calls `User#addWorkspace()` to add a new `Workspace` to `User`, then makes an empty `ArrayList` of `Watchlist` using `User#setWatchlistList()` for the `User`. Finally, it uses `storageManager#saveWorkspace()` to save the `Workspace` to disk.
 
 ![Workspace Command After Creation Diagram](images/WorkspaceCommand-After-Create.png) <br/>
 *Figure 17: Workspace Command After New Workspace Creation*
@@ -552,8 +550,7 @@ Finally, it uses `storageManager#saveWorkspace()` to save the `Workspace` to dis
 
 <br/>
 
-Likewise, the operations to switch, list, and delete follows a similar execution process. 
-The following diagrams will continue **from step 6**, and will illustrate the changes to the `Workspace` `ArrayList`.
+Likewise, the operations to switch, list, and delete follows a similar execution process. The following diagrams will continue **from step 6**, and will illustrate the changes to the `Workspace` `ArrayList`.
 
 **Step 7:** User keys in `workspace -s Netflix Animation Studio` to switch active workspace.
 
@@ -586,10 +583,10 @@ Aspect: **How can `Workspace` be identified?**
 
 As most commands in `WorkspaceCommand` operates on an individual `Workspace`, there needs to be some way to identify each of them uniquely. 
 
-| Approach | Pros | Cons  |
-| --- | --- | --- |
+| Approach                    | Pros                                                         | Cons                                                         |
+| --------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Identify using a number ID. | Users can quickly `switch` and `delete` `Workspace` just by keying in a number. | Operations like `delete` is irreversible and is not done often, accidentally keying in the wrong number can be catastrophic. |
-| Identify using name.  | If user remembers the name, he can easily `switch`/`delete` without using the `List` command first. | User may waste time typing long workspace names. |
+| Identify using name.        | If user remembers the name, he can easily `switch`/`delete` without using the `List` command first. | User may waste time typing long workspace names.             |
 
 We have decided to use `name` to identify `Workspace` as it is more intuitive for the end-user. 
 This also avoids the need to maintain an integer `ID` for each `Workspace`.
@@ -601,10 +598,10 @@ Aspect: **`Workspace` name restrictions**
 As `Workspace` is identified by their names, and other classes like `Storage` relies on the name to make folders for data storage purposes.
 Should we allow the user full discretion to naming `Workspace`?
 
-| Approach | Pros | Cons  |
-| --- | --- | --- |
-| Yes  | Allows user more flexibility. | Confusing or unexpected names may lead to unexpected outcomes. |
-| No   | Eliminate unexpected names which could lead to unexpected outcomes. | Less flexibility and more code required to enforce. |
+| Approach | Pros                                                         | Cons                                                         |
+| -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Yes      | Allows user more flexibility.                                | Confusing or unexpected names may lead to unexpected outcomes. |
+| No       | Eliminate unexpected names which could lead to unexpected outcomes. | Less flexibility and more code required to enforce.          |
 
 For example, a user may provide `new workspace__` as a `Workspace` name, this may confuse the user in the future when he tries to list 
 all `Workspace` as the space characters are whitespaces. Hence, enforcing no extra whitespaces was implemented. 
@@ -617,10 +614,10 @@ Aspect: **Loading `Workspace` on program start**
 
 As there needs to be an `activeWorkspace` set at all times for operations such as adding `Watchlist`. How do we determine which `Workspace` should be chosen if the `User` owns multiple `Workspaces`?
 
-| Approach | Pros | Cons  |
-| --- | --- | --- |
-| Scan from data folder and pick first result.  | Able to adapt to changes even if malicious or unexpected edits were made to file system. | User may need to switch to his favourite `Workspace` on each startup, if any. |
-| Store last used `Workspace`.                  | `User` might gain some convenience of not needing to switch to his favourite `Workspace`. | Prone to potential issues from the file system. |
+| Approach                                       | Pros                                                         | Cons                                                         |
+| ---------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Scan from `data` folder and pick first result. | Able to adapt to changes even if malicious or unexpected edits were made to file system. | User may need to switch to his favorite `Workspace` on each startup, if any. |
+| Store last used `Workspace`.                   | `User` might gain some convenience of not needing to switch to his favorite `Workspace`. | Prone to potential issues from the file system.              |
 
 We picked the first approach as it is the safer option. By allowing **AniChan** to scan and adapt to file system changes (e.g. `User` accidentally moves/renames/deletes `Workspace` on his hard drive), we avoid potential issues of relying on old information created in previous runtime which may hinder user experience.
 
@@ -868,7 +865,7 @@ The `Bookmark` class uses three ArrayList to store bookmark entries of the user,
 
 Given below is the example usage scenario and how the `Bookmark` command behaves at each step.
 
-> :bulb: The command is using one-based indexing while the program stores and recognises the zero-based indexing. The following example will use one-based to be consistent with the command. 
+> :bulb: The command is using one-based indexing while the program stores and recognises the zero-based indexing. The following example will use one-based to be consistent with the commands. 
 
 **Step 1:** User inputs command `bookmark`,  the application then calls `Parser#getCommand()` and passes the command to it.
 
@@ -903,7 +900,7 @@ Below is a list of bookmark operations:
 
 The sequence diagram presented below depicts the interaction between the components for running the command, bookmark -a 430.
 
-> :memo: The other options follow a similar process, only the list and info bookmark commands does not interact with StorageManager.
+> :memo: The other options follow a similar process, only the list and info bookmark commands does not interact with StorageManager. For example the delete bookmark command calls `deleteBookmarkEntry()` method and modify the bookmark entry using `Bookmark#deleteAnimeBookmark()`.
 
 ![Bookmark Add Command Sequence Diagram](images/Bookmark-Add-Sequence-Diagram.png) <br/>
 *Figure 31: Bookmark Add Command Sequence Diagram*
@@ -917,7 +914,7 @@ Listing all anime in bookmark:
 	3. InuYasha the Movie 2: The Castle Beyond the Looking Glass
 ```
 
-**Step 6:** The user executes `bookmark -d 1` command to delete the bookmark entry at bookmark ID: 1. `Bookmark#deleteAnimeBookmark()` will then remove the Bookmark index from the `Bookmark`.
+**Step 6:** The user executes `bookmark -d 1` command to delete the bookmark entry at bookmark ID 1. `Bookmark#deleteAnimeBookmark()` will then remove the Bookmark index from the `Bookmark`.
 
 ![Bookmark State After Delete Diagram](images/Bookmark-After-Step6.png) <br/>
 *Figure 32: Bookmark Entries After Delete*
@@ -929,7 +926,7 @@ Listing all anime in bookmark:
 ![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
 *Figure 33: Bookmark Entries After Edit Episode*
 
-**Step 8:** The user executes `bookmark 1 -n Schedule push back` command to add a note for a bookmark entry. `Bookmark#addNote()` will then add a note to the bookmark entry at bookmark ID: 1.
+**Step 8:** The user executes `bookmark 1 -n Schedule push back` command to add a note for a bookmark entry. `Bookmark#addNote()` will then add a note to the bookmark entry at bookmark ID 1.
 
 ![Bookmark State After Add Note Diagram](images/Bookmark-After-Step8.png) <br/>
 *Figure 34: Bookmark Entries After Add Note*
@@ -951,7 +948,7 @@ Notes for anime:
 1. Schedule push back
 ```
 
-**Step 10:** The user executes `bookmark 1 -r 1` command to remove a note from a bookmark entry. `Bookmark#removeNote()` will remove the note ID: 1 from the first bookmark entry. The resulting state of the remove note command will look exactly the same to the state before the note was added.
+**Step 10:** The user executes `bookmark 1 -r 1` command to remove a note from the bookmark entry. `Bookmark#removeNote()` will remove the note ID 1 from the first bookmark entry. The resulting state of the remove note command will look exactly the same to the state before the note was added.
 
 ![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
 *Figure 35: Bookmark Entries After Edit Episode*
@@ -988,11 +985,13 @@ We have decided to implement the first approach, **the bookmark will keep the an
 <br/>
 
 ## 5. Documentation, Logging, Testing, and DevOps
+
 This section details the documentation, logging, testing and dev-ops setup used in this project as well as information on how to use them.
 
 <br/>
 
 ### 5.1 Documentation
+
 We use **Jekyll** to manage documentation. We recommend that you document your feature implementations and code changes so that other developers are aware of its architecture.
 
 The `docs/` folder stores the documentation of this project. You can learn more about how to setup and maintain the project website using [this guide](https://se-education.org/guides/tutorials/jekyll.html).
@@ -1000,15 +999,17 @@ The `docs/` folder stores the documentation of this project. You can learn more 
 <br/>
 
 ### 5.2 Logging
+
 We encourage the use of logger in this project as they provide deeper insights as compared to error messages which can greatly help developers identify bugs and simplify their logging process.
 
 We are using `java.util.logging`  package for logging. The logger can be accessed using the  `AniLogger`  class. 
 
 `AniLogger` is used to manage the logging levels and logging destinations. Based on the default settings, logs will be written to both console and file `data/AniChan.log`.
 
-The  `Logger`  for a class can be obtained using  `AniLogger.getAniLogger(Class)`  which will log messages according to the specified logging level.
+The  `Logger`  for a class can be obtained using  `AniLogger.getAniLogger(Class.class.getName())`  which will log messages according to the specified logging level.
 
 We use the following log levels:
+
 *   `Level.SEVERE`: A critical failure, which prevents normal execution of the program.
 *   `Level.WARNING`: Indicates a potential problem, but can proceed with caution.
 *   `Level.INFO`: General noteworthy information of the program.
@@ -1016,6 +1017,7 @@ We use the following log levels:
 <br/>
 
 ### 5.3 Testing
+
 Testing is integral to the development of a reliable software. Before making a pull request, please ensure that all tests pass. You are recommended to write tests as you add new code to the program.
 
 We employ both unit and integration tests for our codes. They are located in `./src/test` directory.
@@ -1023,13 +1025,16 @@ We employ both unit and integration tests for our codes. They are located in `./
 <br/>
 
 #### 5.3.1 Running Tests
+
 There are primarily 2 ways to run the tests.
 
 **Method 1: Using IntelliJ**
+
 *   To run all tests, right-click on the `src/test/java` folder in the project panel and choose `Run Tests`.
-<br/>
+    <br/>
 
 **Method 2: Using Gradle**
+
 *   Open a terminal and navigate to project directory, run command `./gradlew clean checkstyleMain checkstyleTest test`.
 
 <br/>
@@ -1046,6 +1051,7 @@ These tools allow us to detect and mitigate bugs before they are merged to the r
 This project uses Gradle for build automation and dependency management.
 
 It automates tasks such as:
+
 *   Managing library dependencies.
 *   Analyzing code for style compliance.
 *   Running tests.
@@ -1061,6 +1067,7 @@ We use [GitHub Actions](https://github.com/features/actions) and [Travis CI](htt
 Their configuration is complete and there is no need to modify them, these CI will automatically run checks on every commit to **AniChan** repository.
 
 If you wish to modify these tools, you may find their configurations at:
+
 *   **GitHub Workflow:** `.github/workflows`
 *   **Travis CI:** `.travis.yml`
 
@@ -1107,8 +1114,8 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 ## Appendix B: User Stories
 
-| Version | As a ... | I want to ... | So that I ... |
-| --- | --- | --- | --- |
+| Version | As a ... | I want to ...        | So that I ...                                               |
+| ------- | -------- | -------------------- | ----------------------------------------------------------- |
 | v1.0 | user | create new watchlist | can keep track of anime easily based on my defined criteria |
 | v1.0 | user | add and remove an anime to a watchlist | can organise my anime into the defined criterion |
 | v1.0 | forgetful user | find out all watchlist I have created | can find out what watchlist I have |
@@ -1183,7 +1190,143 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.3: Creating watchlist
+### D.3: Browse 
+1.  Utilising the `browse` feature.
+    1.  Prerequisite:  None.
+
+    2.  Test case: `browse` <br/>
+    Expected: Will list 20 anime series according to the anime ID.
+    
+    3.  Test case: `browse -s rating` <br/>
+    Expected: Will list 20 anime series according to the most popular anime ratings.
+    
+    4.  Test case: `browse -s rating -o asc` <br/>
+    Expected: Will list 20 anime series from the lowest rated anime series (Ascending order).
+    
+    5.  Other incorrect commands to try: 
+        1.  `browse -s alpha`
+        2.  `browse -p x` (where x is a negative number, a word, or an additional parameter.)
+        3.  `browse -s name -s rating`
+        4.  `browse ---`
+        5.  `browse -s rating-o asc`
+
+<br/>
+
+### D.4: Search by name
+1.  Finding an anime series with `search` feature.
+    1.  Prerequisite:  None.
+
+    2.  Test case: `search -n Mushi` <br/>
+    Expected: Will return anime with the keyword 'Mushi'. In this case it would return 'MUSHI-SHI'.
+    
+    3.  Test case: `search -n MUSHI-` <br/>
+    Expected: Will return anime with the keyword 'MUSHI-'. In this case it would return 'MUSHI-SHI'.
+    
+    4.  Other incorrect commands to try: 
+        1.  `search`
+        2.  `search -n mush -n shi` In this case it would attempt to search for `mush -n shi`, and return no results.
+        3.  `search -n`
+
+<br/>
+
+### D.5: Search by genre
+1.  Finding all anime series that has a specific genre with `search` feature.
+    1.  Prerequisite:  None.
+
+    2.  Test case: `search -g Music` <br/>
+    Expected: Will return all anime that has 'Music' as its genre.
+    
+    3.  Test case: `search -n slice of life` <br/>
+    Expected: Will return anime that has 'Slice of Life' as its genre.
+    
+    4.  Other incorrect commands to try: 
+        1.  `search`
+        2.  `search -g musik` In this case it would attempt to search for `musik`, and return no results.
+        3.  `search -g`
+
+<br/>
+
+### D.6: Viewing the information of a specific anime
+1.  Viewing the information of a specific anime.
+    1.  Prerequisite: None.
+    
+    2.  Test case: `info 1` <br/>
+    Expected: Lists out the information of the anime with index 1.
+    
+    3.  Test case: `info 3` <br/>
+    Expected: Lists out the information of the anime with index 3.
+    
+    4.  Other incorrect commands to try:
+        1.  `info`
+        2.  `info x` (where x is a negative number, zero, a word, or a number exceeding the number of anime in the database)
+
+<br/>
+
+### D.7: Create a new Workspace
+1.  Create a new Workspace with `workspace` feature
+    1.  Prerequisite:  None.
+    
+    2.  Test case: `workspace -n Crunchyroll` <br/>
+    Expected: Workspace will be successfully created with success message.
+    
+    3.  Test case: `workspace -n Crunchyroll__` <br/>
+    Expected: Workspace creation will fail with error message stating names must be alphanumeric and spaces only.
+    
+        1.  Other incorrect commands to try: 
+            1.  `workspace`
+            2.  `workspace -n `
+            3.  `workspace -N`
+
+<br/>
+            
+### D.8: Switch to a different Workspace
+1.  Switch to a different Workspace with `workspace` feature
+    1.  Prerequisite:  Workspace must first exist before switching to them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the former.
+    
+    2.  Test case: `workspace -s CrunchyOreo` <br/>
+    Expected: Workspace will be successfully switched from `Default` to `CrunchyOreo`.
+    
+    3.  Test case: `workspace -s CrunchyOreo__` <br/>
+    Expected: Workspace switch will fail given how the name request does not meet requirement of being alphanumeric and spaces only.
+    
+        1.  Other incorrect commands to try: 
+            1.  `workspace`
+            2.  `workspace -s `
+            3.  `workspace -S`
+
+<br/>
+
+### D.9: List all Workspace
+1.  List all Workspace with `workspace` feature
+    1.  Prerequisite:  Workspace must first exist to be able to list them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the former.
+    
+    2.  Test case: `workspace -l` <br/>
+    Expected: Workspace `Default` and `CrunchyOreo` will be listed.
+    
+        1.  Other incorrect commands to try: 
+            1.  `workspace`
+
+<br/>
+            
+### D.10: Delete a Workspace
+1.  Delete a Workspace with `workspace` feature
+    1.  Prerequisite:  Workspace must first exist before deleting them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the latter.
+    
+    2.  Test case: `workspace -d Default` <br/>
+    Expected: Workspace will be successfully deleted.
+    
+    3.  Test case: `workspace -d default` <br/>
+    Expected: Workspace deletion will fail given default does not exist.
+    
+        1.  Other incorrect commands to try: 
+            1.  `workspace`
+            2.  `workspace -D`
+            3.  `workspace -d`
+            4.  `workspace -d ..`
+            
+<br/>
+
+### D.11: Creating watchlist
 1.  Creating a watchlist with a unique name.
     1.  Prerequisite: None.
     
@@ -1197,7 +1340,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.4: Listing all watchlist(s)
+### D.12: Listing all watchlist(s)
 1.  Listing all created watchlist(s).
     1.  Prerequisite: None.
     
@@ -1209,7 +1352,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.5: Selecting a watchlist to be the new active watchlist
+### D.13: Selecting a watchlist to be the new active watchlist
 1.  Selecting a watchlist to be the new active watchlist.
     1.  Prerequisite: The current workspace has at least 2 watchlist, and **the first watchlist in the list is the active watchlist**.
     
@@ -1225,7 +1368,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.6: Deleting a watchlist
+### D.14: Deleting a watchlist
 1.  Deleting a watchlist.
     1.  Prerequisite: The current workspace has at least 2 watchlist, and **the first watchlist is the active watchlist**.
 
@@ -1242,7 +1385,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.7: Adding an anime to active watchlist
+### D.15: Adding an anime to active watchlist
 1.  Adding an anime to active watchlist.
     1.  Prerequisite: The active watchlist does not contain the anime to be added.
     
@@ -1258,7 +1401,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.8: Removing an anime from active watchlist
+### D.16: Removing an anime from active watchlist
 1.  Removing an anime from active watchlist.
     1.  Prerequisite: The active watchlist must contain at least one anime.
     
@@ -1274,7 +1417,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.9: Viewing all anime in a specific or active watchlist
+### D.17: Viewing all anime in a specific or active watchlist
 1.  Viewing all anime in a specific or active watchlist.
     1.  Prerequisite: The watchlist must contain at least one anime.
     
@@ -1289,23 +1432,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.10: Viewing the information of a specific anime
-1.  Viewing the information of a specific anime.
-    1.  Prerequisite: None.
-    
-    2.  Test case: `info 1` <br/>
-    Expected: Lists out the information of the anime with index 1.
-    
-    3.  Test case: `info 3` <br/>
-    Expected: Lists out the information of the anime with index 3.
-    
-    4.  Other incorrect commands to try:
-        1.  `info`
-        2.  `info x` (where x is a negative number, zero, a word, or a number exceeding the number of anime in the database)
-
-<br/>
-
-### D.11: Listing bookmark entries
+### D.18: Listing bookmark entries
 1.  Listing bookmark entries.
     1.  Prerequisite: None.
 
@@ -1314,7 +1441,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.12: Adding a bookmark entry
+### D.19: Adding a bookmark entry
 1.  Adding a bookmark entry.
     1.  Prerequisite: Look up the anime ID using the `info` command. The anime ID is in `AnimeData` source.
 
@@ -1330,7 +1457,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.13: Deleting a bookmark entry
+### D.20: Deleting a bookmark entry
 1.  Deleting a bookmark entry.
     1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
 
@@ -1346,22 +1473,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.14: View information of a bookmark entry
-1.  View information of a bookmark entry.
-    1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
-
-    2.  Test case: `bookmark 1` <br/>
-    Expected: All information on a bookmark entry will be printed.
-    
-    3.  Test case: `bookmark 0` <br/>
-    Expected: No bookmark entry information is displayed. Error details show that bookmark ID cannot be 0.
-    
-    4.  Other incorrect commands to try: 
-        1.  `bookmark -d x` (where x is a negative number, a word, or an additional parameter)
-
-<br/>
-
-### D.15: Editing a bookmark entry episode
+### D.21: Editing a bookmark entry episode
 1.  Editing a bookmark entry episode.
     1.  Prerequisite: 
         1.  List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
@@ -1381,7 +1493,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.16: Adding a note to a bookmark entry
+### D.22: Adding a note to a bookmark entry
 1.  Adding a note to a bookmark entry.
     1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
          
@@ -1399,7 +1511,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.17: Removing a note from a bookmark entry
+### D.23: Removing a note from a bookmark entry
 1.  Removing a note from a bookmark entry.
     1.  Prerequisite:  View the information on bookmark entry using 'bookmark <BOOKMARK_ID>'. Multiple notes for that bookmarked anime.
 
@@ -1417,115 +1529,15 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.18: Browse 
-1.  Utilising the `browse` feature.
-    1.  Prerequisite:  None.
+### D.24: View information of a bookmark entry
+1.  View information of a bookmark entry.
+    1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
 
-    2.  Test case: `browse` <br/>
-    Expected: Will list 20 anime series according to the anime ID.
+    2.  Test case: `bookmark 1` <br/>
+    Expected: All information on a bookmark entry will be printed.
     
-    3.  Test case: `browse -s rating` <br/>
-    Expected: Will list 20 anime series according to the most popular anime ratings.
-    
-    4.  Test case: `browse -s rating -o asc` <br/>
-    Expected: Will list 20 anime series from the lowest rated anime series (Ascending order).
-    
-    5.  Other incorrect commands to try: 
-        1.  `browse -s alpha`
-        2.  `browse -p x` (where x is a negative number, a word, or an additional parameter.)
-        3.  `browse -s name -s rating`
-        4.  `browse ---`
-        5.  `browse -s rating-o asc`
-<br/>
-
-### D.19: Search by name
-1.  Finding an anime series with `search` feature.
-    1.  Prerequisite:  None.
-
-    2.  Test case: `search -n Mushi` <br/>
-    Expected: Will return anime with the keyword 'Mushi'. In this case it would return 'MUSHI-SHI'.
-    
-    3.  Test case: `search -n MUSHI-` <br/>
-    Expected: Will return anime with the keyword 'MUSHI-'. In this case it would return 'MUSHI-SHI'.
+    3.  Test case: `bookmark 0` <br/>
+    Expected: No bookmark entry information is displayed. Error details show that bookmark ID cannot be 0.
     
     4.  Other incorrect commands to try: 
-        1.  `search`
-        2.  `search -n mush -n shi` In this case it would attempt to search for `mush -n shi`, and return no results.
-        3.  `search -n`
-<br/>
-
-### D.20: Search by genre
-1.  Finding all anime series that has a specific genre with `search` feature.
-    1.  Prerequisite:  None.
-
-    2.  Test case: `search -g Music` <br/>
-    Expected: Will return all anime that has 'Music' as its genre.
-    
-    3.  Test case: `search -n slice of life` <br/>
-    Expected: Will return anime that has 'Slice of Life' as its genre.
-    
-    4.  Other incorrect commands to try: 
-        1.  `search`
-        2.  `search -g musik` In this case it would attempt to search for `musik`, and return no results.
-        3.  `search -g`
-<br/>
-  
-### D.21: Create a new Workspace
-1.  Create a new Workspace with `workspace` feature
-    1.  Prerequisite:  None.
-    
-    2.  Test case: `workspace -n Crunchyroll` <br/>
-    Expected: Workspace will be successfully created with success message.
-    
-    3.  Test case: `workspace -n Crunchyroll__` <br/>
-    Expected: Workspace creation will fail with error message stating names must be alphanumeric and spaces only.
-    
-        1.  Other incorrect commands to try: 
-            1.  `workspace`
-            2.  `workspace -n `
-            3.  `workspace -N`
-<br/>
-            
-### D.22: Switch to a different Workspace
-1.  Switch to a different Workspace with `workspace` feature
-    1.  Prerequisite:  Workspace must first exist before switching to them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the former.
-    
-    2.  Test case: `workspace -s CrunchyOreo` <br/>
-    Expected: Workspace will be successfully switched from `Default` to `CrunchyOreo`.
-    
-    3.  Test case: `workspace -s CrunchyOreo__` <br/>
-    Expected: Workspace switch will fail given how the name request does not meet requirement of being alphanumeric and spaces only.
-    
-        1.  Other incorrect commands to try: 
-            1.  `workspace`
-            2.  `workspace -s `
-            3.  `workspace -S`
-<br/>
-
-### D.23: List all Workspace
-1.  List all Workspace with `workspace` feature
-    1.  Prerequisite:  Workspace must first exist to be able to list them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the former.
-    
-    2.  Test case: `workspace -l` <br/>
-    Expected: Workspace `Default` and `CrunchyOreo` will be listed.
-    
-        1.  Other incorrect commands to try: 
-            1.  `workspace`
-<br/>
-            
-### D.24: Delete a Workspace
-1.  Delete a Workspace with `workspace` feature
-    1.  Prerequisite:  Workspace must first exist before deleting them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the latter.
-    
-    2.  Test case: `workspace -d Default` <br/>
-    Expected: Workspace will be successfully deleted.
-    
-    3.  Test case: `workspace -d default` <br/>
-    Expected: Workspace deletion will fail given default does not exists.
-    
-        1.  Other incorrect commands to try: 
-            1.  `workspace`
-            2.  `workspace -D`
-            3.  `workspace -d`
-            4.  `workspace -d ..`
-<br/>
+        1.  `bookmark -d x` (where x is a negative number, a word, or an additional parameter)

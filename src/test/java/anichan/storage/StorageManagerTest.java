@@ -33,22 +33,29 @@ class StorageManagerTest {
             + File.separator;
     private static final String INVALID_FILE_DIRECTORY = VALID_TEST_DIRECTORY + "DirectoryWithInvalidFile"
             + File.separator;
+    private static final String INVALID_USER_DATA_DIRECTORY = VALID_TEST_DIRECTORY + "InvalidUserDataDirectory"
+            + File.separator;
+
     private static final String BOOKMARK_LOAD_TEST = "Loaded successfully.";
     private static final String BOOKMARK_LOAD_FAIL_TEST = "Not loaded successfully.";
+
     private StorageManager validFileSM;
     private StorageManager invalidFileSM;
     private StorageManager emptySM;
     private StorageManager invalidDirectorySM;
+    private StorageManager invalidUserDataDirectorySM;
+
     private User userToLoad;
     private Bookmark bookmarkToLoad;
     private ArrayList<Watchlist> watchlistListForLoad;
 
     @BeforeEach
-    public void setUp() throws AniException {
+    public void setUp() {
         validFileSM = new StorageManager(VALID_FILE_DIRECTORY);
         invalidFileSM = new StorageManager(INVALID_FILE_DIRECTORY);
         emptySM = new StorageManager(EMPTY_FILE_DIRECTORY);
         invalidDirectorySM = new StorageManager(INVALID_TEST_DIRECTORY);
+        invalidUserDataDirectorySM = new StorageManager(INVALID_USER_DATA_DIRECTORY);
 
         userToLoad = null;
         bookmarkToLoad = null;
@@ -98,6 +105,7 @@ class StorageManagerTest {
     @Test
     void loadUser_invalidUserFile_throwsAniException() {
         assertThrows(AniException.class, () -> userToLoad = invalidFileSM.loadUser());
+        assertThrows(AniException.class, () -> userToLoad = invalidUserDataDirectorySM.loadUser());
     }
 
     // ========================== Watchlist Saving and Loading ==========================
@@ -170,7 +178,7 @@ class StorageManagerTest {
     }
 
     @Test
-    void loadBookmark_invalidBookmarkFormat_outputUnsuccessful() throws AniException {
+    void loadBookmark_invalidBookmarkFormat_unsuccessfulOutput() throws AniException {
         Bookmark bookmark = new Bookmark();
         String loadBookmarkResult = invalidFileSM.loadBookmark(ALL_INVALID_WORKSPACE, bookmark);
         assertEquals(BOOKMARK_LOAD_FAIL_TEST, loadBookmarkResult);
