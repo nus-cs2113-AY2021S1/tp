@@ -1078,7 +1078,7 @@ Do feedback to us what features you would like to see in Study It!
 
 **Q**: What to do if bookmark data does not load properly after changing the bookmark.txt file?
 
-**A**: This is for users who editted the bookmark.txt file in the data folder. If you encounter trouble after editing the data file, 
+**A**: This is for users who edited the bookmark.txt file in the data folder. If you encounter trouble after editing the data file, 
 you can do one of the following steps: 
 * revert the changes in the data file.
 * delete the bookmark data file.
