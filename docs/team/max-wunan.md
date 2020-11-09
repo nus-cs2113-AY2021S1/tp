@@ -36,6 +36,7 @@ Given below are my contributions to this project:
     * User Guide:
         * Added the project logo picture [#79](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/79), [#179](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/179)
         * Added documentation for help and clear function [#169](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/169), [#175](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/175)
+        * Added several solutions in Q&A section [#189](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/189)
     * Developer Guide:
         * Added the project logo picture [#79](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/79), [#179](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/179)
         * Added implementation details and sequence diagrams for help and clear function [#83](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/83)
