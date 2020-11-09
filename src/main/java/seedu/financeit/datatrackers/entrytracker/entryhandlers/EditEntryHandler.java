@@ -1,8 +1,10 @@
 package seedu.financeit.datatrackers.entrytracker.entryhandlers;
 
+import seedu.financeit.common.CategoryMap;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Common;
 import seedu.financeit.common.ParamHandler;
+import seedu.financeit.common.exceptions.IncompatibleParamsException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
@@ -18,8 +20,8 @@ import static seedu.financeit.utils.ParamChecker.PARAM_CATEGORY;
 import static seedu.financeit.utils.ParamChecker.PARAM_DESCRIPTION;
 import static seedu.financeit.utils.ParamChecker.PARAM_EXP;
 import static seedu.financeit.utils.ParamChecker.PARAM_INC;
-import static seedu.financeit.utils.ParamChecker.PARAM_TIME;
 import static seedu.financeit.utils.ParamChecker.PARAM_INDEX;
+import static seedu.financeit.utils.ParamChecker.PARAM_TIME;
 
 /**
  * CommandHandler class to edit an existing entry instance with specified parameter values.
@@ -32,6 +34,33 @@ public class EditEntryHandler extends ParamHandler {
 
     // Function of constructor is to set required params
     // No constructor needed as there are no required params for edit entry
+
+    public void checkCatAndEntryType() throws IncompatibleParamsException {
+        switch (this.entry.getEntryType()) {
+        case EXP:
+            if (! CategoryMap.expenseCategories.contains(this.entry.getCategory())) {
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
+                    "Category is not compatible with entry type!",
+                    "-e : {fd, tpt, tvl, shp, bll, oth}"
+                );
+                throw new IncompatibleParamsException(PARAM_EXP, PARAM_CATEGORY);
+            }
+            break;
+        case INC:
+            if (!CategoryMap.incomeCategories.contains(this.entry.getCategory())) {
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
+                    "Category is not compatible with entry type!",
+                    "-i : {slr, alw, oth}"
+                );
+                throw new IncompatibleParamsException(PARAM_INC, PARAM_CATEGORY);
+            }
+            break;
+
+        default:
+            // Fall through
+            break;
+        }
+    }
 
     public static EditEntryHandler getInstance() {
         if (handler == null) {
@@ -59,9 +88,10 @@ public class EditEntryHandler extends ParamHandler {
     }
 
     public void handlePacket(CommandPacket packet)
-        throws InsufficientParamsException, ItemNotFoundException {
+        throws InsufficientParamsException, ItemNotFoundException, IncompatibleParamsException {
         prevEntry = entry.toString();
         this.handleParams(packet);
+        checkCatAndEntryType();
         checkIfParamToEditEffective();
         checkIfParamToEditExists(packet);
     }

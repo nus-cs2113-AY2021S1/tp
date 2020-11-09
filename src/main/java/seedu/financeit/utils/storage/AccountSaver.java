@@ -43,7 +43,7 @@ public abstract class AccountSaver {
         }
         // Read data into FinanceTools
         while (s.hasNext()) {
-            String line = s.nextLine();
+            String line = s.nextLine().trim();
             int countLines = 0;
             String textToAdd = line + "\n";
             while (countLines < LINES_IN_AN_ACCOUNT && s.hasNext()) {

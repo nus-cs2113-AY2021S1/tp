@@ -53,7 +53,7 @@ rectangle LogicManagers {
         {static} handleDeleteEntry()
     }
 
-    RecurringEntryTracker --> RecurringEntryList : stores entries with >
+    RecurringEntryTracker --> "1" RecurringEntryList : stores entries with >
 }
 
 @enduml

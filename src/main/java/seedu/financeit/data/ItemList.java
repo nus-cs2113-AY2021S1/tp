@@ -44,6 +44,7 @@ public abstract class ItemList {
         this.indexToModify = index;
     }
 
+    //@@author Artemis-Hunt
     /**
      * Add the given item and sort the list according to the given comparator.
      *
@@ -54,6 +55,7 @@ public abstract class ItemList {
         this.items.add(item);
         items.sort(comparator);
     }
+    //@@author
 
     public int getListSize() {
         return this.items.size();
@@ -76,6 +78,7 @@ public abstract class ItemList {
         return false;
     }
 
+    //@@author Artemis-Hunt
     /**
      * Provides a reference to the specified item at the zero-based index.
      * Requires index to have been parsed from user-input, else it will

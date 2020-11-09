@@ -10,6 +10,7 @@ import seedu.financeit.datatrackers.manualtracker.ManualTracker;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
+import seedu.financeit.utils.storage.GoalTrackerSaver;
 
 import java.time.DateTimeException;
 import java.time.Month;
@@ -104,6 +105,7 @@ public class GoalTracker {
             } else if (userInput[1].equals("income")) {
                 editIncomeGoal(userInput);
             }
+            GoalTrackerSaver.getInstance().save();
         } catch (IndexOutOfBoundsException e) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter either expense "
                     + "or income");
@@ -248,6 +250,7 @@ public class GoalTracker {
                     totalGoalList.addGoal(goalToSet);
                     UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "You have set $" + expenseGoal
                             + " as your Expense Goals for " + month);
+                    GoalTrackerSaver.getInstance().save();
                 }
             }
             month = null;
@@ -296,6 +299,7 @@ public class GoalTracker {
                     totalGoalList.addGoal(goalToSet);
                     UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "You have set $" + incomeGoal
                             + " as your Income Goals for " + month);
+                    GoalTrackerSaver.getInstance().save();
                 }
             }
             month = null;

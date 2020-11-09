@@ -16,7 +16,7 @@ public class RecurringEntry extends Item {
     Month start = Month.of(1);
     Month end = Month.of(12);
     boolean isAuto = false;
-    String notes = " ";
+    String notes = "";
 
     //Attributes in String form, for table printing
     String expenditureAmount = null;
