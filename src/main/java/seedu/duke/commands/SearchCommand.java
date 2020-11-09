@@ -21,8 +21,8 @@ public class SearchCommand extends Command {
     }
 
     /**
-     * Searches for show in ShowList.
-     * @return true when found
+     * search shows by a key word, print out shows information if found.
+     * @return true when found, else return false.
      */
     public boolean processCommand() {
         String showName = inputs.get(1);
