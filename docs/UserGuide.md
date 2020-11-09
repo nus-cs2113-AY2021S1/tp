@@ -280,7 +280,7 @@ You can add bookmarks to your bookmark list. A bookmark contains its description
 
 > :bangbang:
 >* The validity of the `URL` you entered cannot be checked. Please ensure that you entered the correct link. 
->* Your `DESCRIPTION` must only contain one word (no whitespace inside). You can use underscore("_") or dashes("-"") to string
+>* Your `DESCRIPTION` must only contain one word (no whitespace inside). You can use underscore("_") or dashes("-") to string
 >multiple words together. Eg. "github_team_repo" or "cs2113t-website".
 >* Your input `URL` has to start with `www.`, `http://` or `https://`.
 
