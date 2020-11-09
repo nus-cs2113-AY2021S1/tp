@@ -341,33 +341,34 @@ This section shows how the developer guide is documented.
 We use Markdown for writing documentation.
 
 #### Setting up and maintaining the project website
-- We use [Cayman](https://pages-themes.github.io/cayman/) to manage documentation.  
-- The docs/ folder is used for documentation.  
-- To learn how to set it up and maintain the project website, follow the guide [[se-edu/guides] Using Jekyll for project documentation](https://se-education.org/guides/tutorials/jekyll.html).
+
+* We use Intellij's inbuilt markdown editor to maintain our documentations of this project
+* And also the [Cayman](https://pages-themes.github.io/cayman/) to manage documentation.  
+* The docs/ folder is used for documentation.  
 
 #### Style guidance
-- Follow the [Google developer documentation style guide](https://developers.google.com/style).
-- Also relevant is the [[se-edu/guides] Markdown coding standard](https://se-education.org/guides/conventions/markdown.html)
+* Follow the [Google developer documentation style guide](https://developers.google.com/style).
+* Also relevant is the [[se-edu/guides] Markdown coding standard](https://se-education.org/guides/conventions/markdown.html)
 
 #### Editing diagrams
-- We use [diagrams.net](https://www.diagrams.net/) to draw UML diagrams used in this document.
+* We use [diagrams.net](https://www.diagrams.net/) to draw UML diagrams used in this document.
 
 #### Converting a document to the PDF format
-- We use Google Chrome for converting documentation to PDF format.  
-- Here are the steps to convert the project documentation to PDF format:
-  - Go to your generated documentation site on GitHub using Chrome.
-  - Within Chrome, click on the Print option in Chrome’s menu.
-  - Set the destination to Save as PDF, then click Save to save a copy of the file in PDF format.
-- See the guide [[se-edu/guides] Saving web documents as PDF files](https://se-education.org/guides/tutorials/savingPdf.html) for more details.  
+* We use Google Chrome for converting documentation to PDF format.  
+* Here are the steps to convert the project documentation to PDF format:
+  * Go to your generated documentation site on GitHub using Chrome.
+  * Within Chrome, click on the Print option in Chrome’s menu.
+  * Set the destination to Save as PDF, then click Save to save a copy of the file in PDF format.
+* See the guide [[se-edu/guides] Saving web documents as PDF files](https://se-education.org/guides/tutorials/savingPdf.html) for more details.  
 
 ### Testing guide
 
 There are two ways to run tests.
-- Method 1: Using IntelliJ JUnit test runner
-  - To run all tests, right-click on the src/test/java folder and choose Run Tests in `tp.test`
-  - To run a subset of tests, you can right-click on a test package, test class, or a test and choose Run `DukeTest`
-- Method 2: Using Gradle
-  - Open a console and run the command `gradlew checkstyleMain` (Mac/Linux: ./gradlew checkstyleMain)  
+* Method 1: Using IntelliJ JUnit test runner
+  * To run all tests, right-click on the src/test/java folder and choose Run Tests in `tp.test`
+  * To run a subset of tests, you can right-click on a test package, test class, or a test and choose Run `DukeTest`
+* Method 2: Using Gradle
+  * Open a console and run the command `gradlew checkstyleMain` (Mac/Linux: ./gradlew checkstyleMain)  
 
 <!-- @@author -->
 
