@@ -1,6 +1,6 @@
 package seedu.revised.parser;
 
-import seedu.revised.command.flashcardcommand.*;
+
 import seedu.revised.command.subjectcommand.ListAllSubjectCommand;
 import seedu.revised.command.subjectcommand.AddSubjectCommand;
 import seedu.revised.command.subjectcommand.DeleteSubjectCommand;
@@ -33,33 +33,33 @@ public class SubjectParser {
         String command = tokens[0].toLowerCase();
 
         switch (command) {
-            case "results":
-                return new ResultSubjectCommand(fullCommand);
-            case "quiz":
-                return new QuizSubjectCommand(fullCommand);
-            case "subject":
-                return new AccessSubjectCommand(fullCommand);
-            case "find":
-                return new FindSubjectCommand(fullCommand);
-            case "add":
-                return new AddSubjectCommand(fullCommand);
-            case "delete":
-                return new DeleteSubjectCommand(fullCommand);
+        case "results":
+            return new ResultSubjectCommand(fullCommand);
+        case "quiz":
+            return new QuizSubjectCommand(fullCommand);
+        case "subject":
+            return new AccessSubjectCommand(fullCommand);
+        case "find":
+            return new FindSubjectCommand(fullCommand);
+        case "add":
+            return new AddSubjectCommand(fullCommand);
+        case "delete":
+            return new DeleteSubjectCommand(fullCommand);
+        default:
+            switch (fullCommandLowerCase) {
+            case "export":
+                return new ExportSubjectCommand();
+            case "help":
+                return new HelpSubjectCommand();
+            case "bye":
+                return new ExitSubjectCommand();
+            case "list" :
+                return new ListSubjectCommand();
+            case "list all":
+                return new ListAllSubjectCommand();
             default:
-                switch (fullCommandLowerCase) {
-                    case "export":
-                        return new ExportSubjectCommand();
-                    case "help":
-                        return new HelpSubjectCommand();
-                    case "bye":
-                        return new ExitSubjectCommand();
-                    case "list" :
-                        return new ListSubjectCommand();
-                    case "list all":
-                        return new ListAllSubjectCommand();
-                    default:
-                        return new SorrySubjectCommand();
-                }
+                return new SorrySubjectCommand();
+            }
         }
     }
 }
