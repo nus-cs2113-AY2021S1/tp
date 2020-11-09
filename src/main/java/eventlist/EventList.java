@@ -71,7 +71,7 @@ public class EventList {
      */
     public void doneEvent(int eventIndex) throws UndefinedEventException, DoneBeforeEndException {
         try {
-            if (events.get(eventIndex).getEndDateTime().isBefore(LocalDateTime.now())
+            if (events.get(eventIndex).getEndDateTime().isAfter(LocalDateTime.now())
                     && !(events.get(eventIndex) instanceof Assignment)) {
                 throw new DoneBeforeEndException();
             }
