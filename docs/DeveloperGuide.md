@@ -75,9 +75,11 @@ Lastly, text that is blue like this [example](#12-using-this-guide), are clickab
 <br/>
 
 ## 2. Setting Up
+
 ### 2.1 Setting up the project in your computer
 
 Ensure that you have the following installed: 
+
 *   JDK 11.
 *   IntelliJ IDE (highly recommended).
 
