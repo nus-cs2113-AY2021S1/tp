@@ -525,6 +525,8 @@ variable called searchCount.
     
 Given the above alternatives, alternative 1 was used considering the integration of other commands.
 
+<div style="page-break-after: always;"></div>
+
 ### 3.13 Resetting search frequencies of bus stops (`/reset` Feature) - Johnson
 This feature allows the user to reset the search frequencies of all bus stops.
 
@@ -535,6 +537,8 @@ The `ResetSearchFreqCommand#executeCommand()` method of ResetSearchFreqCommand C
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/reset` command.
 ![Sequence ](DG_Diagrams/ResetSearchFreqCommand/ResetSearchFreqSeq.png)
 <!-- @@author -->
+
+<div style="page-break-after: always;"></div>
 
 ## 4. Appendix A: Product Scope
 
