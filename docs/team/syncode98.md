@@ -23,7 +23,7 @@
         - Testing -  The two test cases in the SubjectCommandTest and TopicCommandTest related to results.The other methods were created by [JiaLerk](https://github.com/jialerk).
         
 * **Enhancements implemented:**        
-    * Implement printing of upcoming tasks in the application.
+    * Implement printing of upcoming tasks in the application[#141](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/141).
  
     * Implement Date and Time feature in Event and deadline classes. Furthermore, sorted the tasks according to their Date and Time [#84](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/84).
  
