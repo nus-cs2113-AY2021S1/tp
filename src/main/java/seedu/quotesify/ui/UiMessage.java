@@ -82,7 +82,7 @@ public class UiMessage {
     public static final String ADD_BOOK_COMMAND = "Add book:                                                        "
             + "add -b BOOK_TITLE /by AUTHOR";
     public static final String ADD_QUOTE_COMMAND = "Add quote:                                                       "
-            + "add -q QUOTE [/from BOOK_TITLE] [/by AUTHOR]";
+            + "add -q QUOTE {[/by AUTHOR] [/from REFERENCE]}";
     public static final String ADD_QUOTE_REFLECTION_COMMAND = "Add quote reflection:                                 "
             + "           " + "add -qr QUOTE_NUMBER /reflect REFLECTION";
     public static final String ADD_TODO_COMMAND = "Add task:                                                        "
@@ -112,7 +112,7 @@ public class UiMessage {
     public static final String EDIT_BOOK_COMMAND = "Edit book:                                                     "
             + "  " + "edit -b BOOK_NUMBER /to NEW_TITLE";
     public static final String EDIT_QUOTE_COMMAND = "Edit quote:                                                    "
-            + "  " + "edit -q QUOTE_NUMBER /to NEW_QUOTE [/by AUTHOR]" + " [/from BOOK_TITLE]";
+            + "  " + "edit -q QUOTE_NUMBER /to NEW_QUOTE {[/by AUTHOR] [/from REFERENCE]}";
     public static final String EDIT_QUOTE_REFLECTION_COMMAND = "Edit quote reflection:                             "
             + "              " + "edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION";
     public static final String EDIT_CATEGORY_COMMAND = "Edit category:                                              "
@@ -138,7 +138,7 @@ public class UiMessage {
     public static final String LIST_BOOK_COMPLETE = "List books by completion:                                        "
             + "list -b done/undone";
     public static final String LIST_QUOTE_COMMAND = "List quotes:                                                     "
-            + "list -q [/by AUTHOR] [/from BOOK_TITLE]";
+            + "list -q {[/by AUTHOR] [/from REFERENCE]}";
     public static final String LIST_QUOTE_REFLECTION_COMMAND = "List quote reflection:                               "
             + "            " + "list -qr QUOTE_NUMBER";
     public static final String LIST_BOOKMARK_COMMAND = "List bookmarks:                                             "

@@ -55,7 +55,10 @@ public abstract class Command {
     public static final String ERROR_MISSING_KEYWORD = "Please type in the keyword.";
     public static final String ERROR_MISSING_CATEGORY = "Missing category name";
     public static final String ERROR_MISSING_BOOK_OR_QUOTE = "Please specify a book title or quote number!";
+    public static final String ERROR_MISSING_REFERENCE_OR_AUTHOR = "Author name and Reference cannot be empty if "
+            + "\"/by\" flag and \"/from\" flag are present";
     public static final String ERROR_NO_REFLECTION = "The quote you selected does not have a reflection!";
+
 
     public static final String FLAG_AUTHOR = "/by";
     public static final String FLAG_REFERENCE = "/from";

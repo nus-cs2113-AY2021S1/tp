@@ -82,6 +82,9 @@ public class ListQuoteCommand extends ListCommand {
         HashMap<String, String> referenceAndAuthor = QuoteParser.getReferenceAndAuthor(information.substring(1));
         String reference = referenceAndAuthor.get(Command.REFERENCE_KEYWORD);
         String authorName = referenceAndAuthor.get(Command.AUTHORNAME_KEYWORD);
+        if (reference.isEmpty() || authorName.isEmpty()) {
+            throw new QuotesifyException(ERROR_MISSING_REFERENCE_OR_AUTHOR);
+        }
         ui.printAllQuotesByReferenceAndAuthor(quoteList, reference, authorName);
     }
 
