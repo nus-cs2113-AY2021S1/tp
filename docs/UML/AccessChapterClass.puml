@@ -1,0 +1,67 @@
+@startuml
+!include style.puml
+show member
+skinparam arrowThickness 1.1
+
+Class "{abstract}\nGoCommand" as GoCommand LOGIC_COLOR {
+  + isExit() : boolean
+}
+
+Class "{abstract}\nCommand" as Command LOGIC_COLOR {
+  + {abstract} isExit() : String
+  + {abstract} execute(ui : Ui, access : Access, storage : Storage) : void
+}
+
+Class Access MODEL_COLOR {
+    - module : Module
+    - chapter : Chapter
+    + getModule() : Admin
+    + getChapters() : ChapterList
+    + setChapterLevel(String) : void
+    + setChapter(Chapter) : void
+}
+
+Class Module MODEL_COLOR {
+    + getChapters() : ChapterList
+}
+
+Class Storage STORAGE_COLOR {
+    + loadCard() : ArrayList<Card>
+}
+
+Class ChapterList MODEL_COLOR{
+    + getAllChapters() : ArrayList<Chapter>
+    + get(int): Chapter
+}
+
+Class Chapter MODEL_COLOR {
+    + getChapterName() : String
+    + setCards(ArrayList<Card>) : void
+}
+
+Class Ui UI_COLOR {
+    + showToUser(String) : void
+}
+
+Class GoChapterCommand LOGIC_COLOR {
+    - chapterIndex : int
+    - goChapter(Access, Storage) : void
+    + execute(Ui, Access, Storage) : void
+}
+
+GoCommand <|-right- GoChapterCommand
+
+Command <|-right- GoCommand
+
+GoChapterCommand .down[LOGIC_COLOR_T4].> Access
+GoChapterCommand .right[LOGIC_COLOR_T4].> Storage
+GoChapterCommand .down[LOGIC_COLOR_T4].> ChapterList
+GoChapterCommand .up[LOGIC_COLOR_T4].> Ui
+
+Access -[MODEL_COLOR_T4]-> Chapter
+Access -down[MODEL_COLOR_T4]-> Module
+Module -down[MODEL_COLOR_T4]-> Chapter
+ChapterList -[MODEL_COLOR_T4]-> Chapter
+
+
+@enduml

@@ -1,0 +1,59 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":GoChapterCommand" as G LOGIC_COLOR
+end box
+
+box Access MODEL_COLOR_T1
+participant "access:Access" as A MODEL_COLOR
+participant "chapters:ChapterList" as CL MODEL_COLOR
+participant "allChapters:ArrayList<Chapter>" as AC MODEL_COLOR
+participant "chapter:Chapter" as C MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant "storage:Storage" as S STORAGE_COLOR
+participant ":<<class>>\nStorageLoad" as SL STORAGE_COLOR
+end box
+
+skinparam sequence {
+  GroupBodyBackgroundColor Transparent
+}
+
+activate A
+activate S
+-> G : execute()
+activate G
+    G -> G : goChapter()
+    activate G
+        G -> A : getModule()
+        A --> G
+        G -> A : getChapters()
+        A -> CL
+        activate CL
+        CL --> A
+        A --> G
+        G -> CL : getAllChapters()
+        CL -> AC
+        activate AC
+        AC --> CL
+        CL --> G
+        G -> AC : get(chapterIndex)
+        AC -> C
+        C --> AC
+        activate C
+        AC --> G
+        G -> S : loadCard(chapter)
+        S -> SL : loadCard(chapter)
+        SL --> S : allCards
+        S --> G : allCards
+        G -> C : getChapterName()
+        C --> G : chapterName
+        G -> A : setChapterLevel(chapterName)
+        G -> C : setCards(allCards)
+        G ->A : setChapter()
+
+    deactivate G
+deactivate G
+@enduml

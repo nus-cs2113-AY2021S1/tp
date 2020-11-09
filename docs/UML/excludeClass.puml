@@ -1,0 +1,49 @@
+@startuml
+
+!include style.puml
+show member
+skinparam arrowThickness 1.1
+
+Class "{abstract} \n Command" as Command LOGIC_COLOR {
+    + {abstract} execute(ui : Ui, access : Access,
+    storage : Storage) : void
+}
+
+Class Ui UI_COLOR {
+    + showToUser(message : String) : void
+}
+
+Class Storage STORAGE_COLOR {
+    + appendChapterToExclusionFile(moduleName : String, chapterName : String) : void
+    + appendModuleToExclusionFile(moduleName : String) : void
+    + loadExclusionFile(filePath : String) : ArrayList<String>
+    + loadChaptersFromSpecifiedModule(moduleName : String, filePath : String) : String[]
+}
+
+Class StorageLoad STORAGE_COLOR {
+    # loadExclusionFile(filePath : String) : ArrayList<String>
+}
+
+Class StorageWrite STORAGE_COLOR {
+    # appendChapterToExclusionFile(moduleName : String, chapterName : String, filePath : String) : void
+    # appendModuleToExclusionFile(moduleName : String, filePath : String) : void
+    - addEntryToExclusionFile(moduleName : String, chapterName : String) : void
+    - addModuleEntriesToExclusionFile(moduleName : String, excludedChapters : ArrayList<String>, chaptersInModule :
+    String[]) : void
+    - updateExclusionFile(excludedChapters : ArrayList<String>, filePath : String) : void
+}
+
+Class "ExcludeCommand" as ExcludeCommand LOGIC_COLOR {
+    + execute(ui : Ui , access : Access, storage : Storage) : void
+    - attemptToExclude(ui : Ui, storage : Storage) : String
+    - addChapterToExclusion(storage : Storage, ui : Ui) : String
+    - addModuleToExclusion(storage : Storage, ui : Ui) : String
+}
+
+ExcludeCommand -left[LOGIC_COLOR_T4]-|> Command
+ExcludeCommand .down[LOGIC_COLOR_T4].> Storage
+Storage .left[LOGIC_COLOR_T4].> StorageLoad
+Storage .down[LOGIC_COLOR_T4].> StorageWrite
+ExcludeCommand .up[LOGIC_COLOR_T4].> Ui
+
+@enduml
