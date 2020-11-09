@@ -1,9 +1,11 @@
 # User Guide
+
 CS2113T – T12 – 04 Scheduler--;
  
 Scheduler--; Does the job
 
 ## Table of Contents
+
 - [1. About Scheduler--;](#1-about-scheduler--) 
     - [1.1 What can it do?](#11-what-can-it-do) 
     - [1.2 About this guide](#12-about-this-guide) 
@@ -43,7 +45,10 @@ Scheduler--; Does the job
 
 - [5. Command Summary](#5-command-summary)
 
+<div style="page-break-after: always;"></div>
+
 ## 1. About Scheduler--;
+
 Hello! Welcome to scheduler--;
 
 Scheduler--; (S--) is a desktop app for managing deadlines from different sources. The user will use a Command Line Interface to control it. It is specially designed for Computing students who are comfortable in using CLI and have Git project deadlines as well as consolidated Zoom session links due which will suit home based learning in this COVID period. 
@@ -60,13 +65,17 @@ Scheduler--; comes with the following list of features to help you keep organise
 - And many more... 
 
 ### 1.2 About this guide
+
 This user guide is for your reference on how to set up the Scheduler--; program on your computer. It provides you with information on how to get things done with scheduler--; and how to use the commands in the program. 
 
 ### 1.3 How to use this document?
+
 To get started, take a look at the section labelled “Quick Start” to set up the application to run on your computer.  
 
 Once you have set up the application, you may use the table of contents present in this document to help find the correct command, learn how to use it and what it does.  
+
 ### 1.4 Conventions used in this document
+
 Words that are highlighted in grey, for instance, list, indicate that the words are commands to be typed into the command line interface. 
 
 - Words that are highlighted in grey and are in lower case indicates commands that are to be typed exactly. For instance, if the instructions says to type the words `list all` to run a command,  type on the program the exact words “list all” 
@@ -94,9 +103,12 @@ Words that are highlighted in grey, in upper case and are surrounded by square b
 > - Items with ... after them can be used multiple times including zero times.
 > e.g. `[t/TAG]...` can be used as  (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
+<div style="page-break-after: always;"></div>
+
 ## 2. Quick Start
 
 ### 2.1 System Requirements
+
 To run Scheduler--;, your computer must meet these minimum system requirements 
 
 - Operating System: Windows 7 and above, Mac OS X or Linux 
@@ -137,6 +149,7 @@ To run Scheduler--;, your computer must meet these minimum system requirements
 1. The welcome message for the program should appear. 
 
 ### 2.3 Test run 
+
 // this may need updating
 
 Type the command in the command box and press Enter to execute. 
@@ -148,10 +161,15 @@ Some examples you can try:
 - `bye`: exit the program 
     
 Congratulations! You have just finished setting up Scheduler--; Feel free to explore the program, or if you would like some assistance, take a look at the subsequent sections for instructions on how to use the available features of this program. Happy scheduling!
+
+<div style="page-break-after: always;"></div>
+
 ## 3. Features
+
 This section introduces and explains the features of Scheduler--;!
 
 ### 3.1 Viewing help: help (Colin Ng)
+
 If you are ever unsure on how to use a command, or you would like to learn more about the uses of a command, the help command is scheduler--; onboard help line for getting information. The help command allows you to get more information when you are unsure on how to use the program. It can also assist you with getting more information on how to use a specific command in the program. 
 
 Format: `help [COMMAND]`
@@ -212,6 +230,8 @@ text in uppercase indicates compulsory arguments that you will need to provide a
 text in uppercase surrounded by square brackets [] indicates optional arguments that you can choose to provide and type into the terminal to operate the command
 _________________________________
 ```
+
+<div style="page-break-after: always;"></div>
 
 ### 3.2 Adding an event: `add` (Matthew Gani)
 New to creating your events using Scheduler--;?
@@ -361,6 +381,7 @@ _________________________________
 > * Events will always be listed in the order: Personal, Timetable, Zoom.
 > * The index of events in the list should be referenced for `EVENT_INDEX` of other commands unless stated otherwise.
 
+<div style="page-break-after: always;"></div>
 
 ### 3.4 Calendar format list: `calendar` (Marcus Ng)
 
@@ -406,6 +427,7 @@ _________________________________
 > * Only events with date and time will be in the calendar.
 > * In calendar printing mode, all input except ```q``` is ignored. In other words, commands cannot be executed until you exit this mode.
 
+<div style="page-break-after: always;"></div>
 
 ### 3.5 Deadlines: `deadline` (Qing Ning)
 Want to set a deadline after you have created your personal event? Afraid that you forget your deadlines? Deadline is here to help! You can set the date and time of the task to be completed and on the day itself, we will remind you.  
@@ -478,7 +500,7 @@ You have successfully updated the deadline for this event!
 >
 > The event index keyed in have to be valid so that deadline can be created for the specified event index.
 
-
+<div style="page-break-after: always;"></div>
 
 ### 3.6 Repeat on daily/weekly/monthly basis: `repeat` (Colin Ng)
 Sets a specific event to be repeated either weekly or monthly in the calendar. 
@@ -574,6 +596,8 @@ _________________________________
 _________________________________
 ```
 
+<div style="page-break-after: always;"></div>
+
 ### 3.7 Check availability on a specific date and time: `check` (Marcus Tan)
 Would you like to check if you happen to be free at a certain time? The check command allows you to scan through your events to check for any events you might have within a given time period.
 
@@ -610,6 +634,7 @@ _________________________________
 >
 > * Even when you leave a time field (e.g. `[START_DATE]`) as blank, a semicolon (;) should still be used to denote the blank field (e.g. `check ; 2:00 pm; 25/12/2020; 2359`)
 
+<div style="page-break-after: always;"></div>
 
 ### 3.8 Goal setting and viewing: `goal` (Marcus Ng)
 
@@ -642,6 +667,7 @@ _________________________________
 > * You can only have one goal at any time.
 > * You can use `na` or `nil` instead of `delete` to remove goal.
 
+<div style="page-break-after: always;"></div>
 
 ### 3.9 Mark events as done: `done` (Marcus Tan)
 If you would like to mark an event as done, you can use the done command to do so. 
@@ -914,6 +940,7 @@ In this section, you can find some frequently asked questions(FAQ).
 **Q**: Can I create 2 events on the same date and time? <br>
 **A**:
 
+<div style="page-break-after: always;"></div>
 
 ## 5. Command Summary
 (Insert preface)
