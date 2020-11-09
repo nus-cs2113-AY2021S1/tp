@@ -82,7 +82,7 @@ The highlights and symbols used in this document are as follows:
 
 1. Ensure that you have Java `11` or above installed.
 2. Download the latest version of `Plan&Score` from [here](https://github.com/AY2021S1-CS2113T-W12-4/tp/releases).
-3. Run the program by entering `java -jar CS2113T-W12-4\ Plan\&Score.jar` in your terminal.
+3. Run the program by entering `java -jar \[CS2113T-W12-4\]\[\ Plan\&Score\].jar` in your terminal.
 4. You can exit the program by running `bye`.
 
 <!-- @@author Aliciaho -->
@@ -683,7 +683,7 @@ wiping all data stored in the text file.
 
 **Q**: How do I transfer my data to another computer?
 
-**A**: We recommend you to transfer the entire folder containing `CS2113T-W12-4 Plan&Score.jar` and the `data` directory. Then, follow instructions given in our `Quick Start` section to set up Plan&Score.
+**A**: We recommend you to transfer the entire folder containing `[CS2113T-W12-4][ Plan&Score].jar` and the `data` directory. Then, follow instructions given in our `Quick Start` section to set up Plan&Score.
 
 ## Troubleshooting
 
