@@ -4,14 +4,14 @@ import ui.Ui;
 
 import java.util.LinkedList;
 
-class UiStub extends Ui {
+public class UiStub extends Ui {
     private LinkedList<String> userInput;
 
-    protected UiStub() {
+    public UiStub() {
         userInput = new LinkedList<>();
     }
 
-    protected void pushUserInput(String userInput) {
+    public void pushUserInput(String userInput) {
         this.userInput.push(userInput);
     }
 
@@ -19,7 +19,7 @@ class UiStub extends Ui {
         return userInput.removeLast();
     }
 
-    protected void clearUserInput() {
+    public void clearUserInput() {
         userInput.clear();
     }
 }
