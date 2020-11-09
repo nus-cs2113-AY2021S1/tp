@@ -264,7 +264,9 @@ Output:
 Exits the application and switch off all appliances within SmartHomeBot. The monitoring of all appliances will be stop.
 
 Format: `exit`
- 
+
+Output: 
+
    ![](images/user_guide/ExitMessage.png) 
 <br/><br/>
 
