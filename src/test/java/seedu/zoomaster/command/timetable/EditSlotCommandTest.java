@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import seedu.zoomaster.Ui;
 import seedu.zoomaster.bookmark.BookmarkList;
 import seedu.zoomaster.exception.ZoomasterException;
-import seedu.zoomaster.exception.ZoomasterExceptionType;
 
 import seedu.zoomaster.slot.Module;
 import seedu.zoomaster.slot.Slot;
@@ -12,10 +11,11 @@ import seedu.zoomaster.slot.Timetable;
 
 import java.time.LocalTime;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-//@@author
+//@@author fchensan
 class EditSlotCommandTest {
 
     private static final String DEFAULT_START_TIME = "10:00";
@@ -40,18 +40,13 @@ class EditSlotCommandTest {
     }
 
     @Test
-    void constructor_invalidInput_throwsZoomasterException() {
+    void constructor_invalidInput_throwsZoomasterException() throws ZoomasterException {
         String input = EditSlotCommand.EDIT_KW + " mon 1 abcd abcd abcd";
 
         setupTimetable();
 
-        try {
-            EditSlotCommand command = new EditSlotCommand(input);
-            command.execute(bookmarks, timetable, ui);
-            fail();
-        } catch (ZoomasterException e) {
-            assertEquals(e.getError(), ZoomasterExceptionType.INVALID_EDIT_INPUT);
-        }
+        EditSlotCommand command = new EditSlotCommand(input);
+        assertThrows(ZoomasterException.class, () -> command.execute(bookmarks, timetable, ui));
     }
 
     @Test

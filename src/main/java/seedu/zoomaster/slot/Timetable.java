@@ -153,6 +153,7 @@ public class Timetable {
         newModule.addSlot(slot);
     }
 
+    //@@author
     public boolean isEmpty() {
         return modules.isEmpty();
     }
