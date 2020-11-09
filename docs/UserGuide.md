@@ -705,6 +705,8 @@ and must be a valid index number for a flashcard as displayed from the list of f
 * If the question or answer of your flashcard does not need to be edited,
 you do not need to type any content for the parameter `QUESTION` or `ANSWER`.
 
+<div style="page-break-after: always;"></div>
+
 **Example:**
 
 Let's say you want to edit the question to `2*1` for the flashcard that has `1+1` as the question and `2` as the answer.
@@ -731,6 +733,8 @@ Let's say you want to edit the question to `2*1` for the flashcard that has `1+1
 Removes a flashcard from KAJI.
 
 **Format:** `remove FLASHCARD_INDEX`
+
+<div style="page-break-after: always;"></div>
 
 Here are some key pointers:
 * Removes the flashcard based on the index provided.
@@ -763,6 +767,9 @@ For instance, you are currently in chapter level `Chapter 1` and want to return 
 <p align="center">
   <img src="UG_Images/BackMod1.PNG" width="600" alt="Back Module 1"/>
 </p>
+
+<div style="page-break-after: always;"></div>
+
 * Step 2: You should return to the module level as shown below: <br>
 <p align="center">
   <img src="UG_Images/BackMod2.PNG" width="600" alt="Back Module 2"/>
@@ -791,6 +798,9 @@ Below are steps of using this `showrate` command: <br>
 <p align="center">
   <img src="UG_Images/showrate1.png" alt="Show rate 1"/>
 </p>
+
+<div style="page-break-after: always;"></div>
+
 * Step 2: Kaji calculates the percentage of card in different master level (i.e. `easy`, `medium`, `hard` and `cannot answer`). <br>
 <p align="center">
   <img src="UG_Images/showrate2.png" alt="Show rate 2"/>
