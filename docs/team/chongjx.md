@@ -17,17 +17,22 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 ### Features implemented
 1\. Implemented `TaggableObject` class which is inherited by `Note` and `Event`. 
 - Taggable objects can have multiple tags and different Taggable objects can share same tag(s). They can also be filtered by their tags.
+
 2\. Implemented `Tag` class which contains the name and of the tag and its color.
 - Added color support for user to better differentiate the tags.
+
 3\. Implemented `TagManager` class which manages all the tags in application. 
 - A hashmap is used where each unique tag are the keys and the arraylist of taggable objects that share the same tag are the mapped values.
+
 4\. Implemented the functionality to create tag, delete tag, as well as tag or untag taggable objects.
+
 5\. Implemented `ParserManager` class which manages the creation of different parser objects to parse the user input to the required parameters.
 
 <div style="page-break-after: always;"></div>
 
 6\. Implemented `SystemException` class which extends from `Exception` class.
 - Within it, there is an enumeration for all possible types of exception that may occur and each enum value contains a unique string as its message.
+
 7\. Implemented `Formatter` class which formats the different objects, such as Note, Event and String with a specified layout into a String to be printed.
     
 ### Code contributed
