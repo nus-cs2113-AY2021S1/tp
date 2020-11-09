@@ -751,6 +751,10 @@ You have successfully marked this event as done!
 _________________________________
 ```
 
+> **Note!**
+>
+> *	If you want to mark an original repeat event as done rather than one of the subsequent repeated events, you can omit the date in the command. 
+
 <div style="page-break-after: always;"></div>
 
 ### 3.10 Mark events as not done: `undone` (Marcus Tan)
@@ -776,6 +780,10 @@ You have successfully marked this event as undone!
 _________________________________
 ```
 
+> **Note!**
+>
+> *	If you want to mark an original repeat event as done rather than one of the subsequent repeated events, you can omit the date in the command. 
+
 <div style="page-break-after: always;"></div>
 
 ### 3.11 Deleting an event: `delete` (Marcus Tan)
@@ -785,6 +793,7 @@ Format: `delete EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`
 
 Examples:
 -	`delete personal; 3` deletes the 3rd Personal event from Scheduler.
+-	`delete zoom; 4; 5/3/2020` if the 4th Zoom event is a repeated event with a repetition occurring on 5th March 2020, that repetition will be deleted 
 
 Expected output:
 ```
@@ -795,6 +804,16 @@ You have successfully deleted this event!
 [P][X] test 3 on 2020-01-01
 _________________________________
 ```
+
+> **Note!**
+>
+> *	If you want to delete an original repeat event rather than one of the subsequent repeated events, you can omit the date in the command. 
+
+
+> **Warning!**
+>
+> * If you delete the original repeat event, all the subsequent repeated events will be deleted along with it.
+> * Deleting an event on the original event's date will delete the main event, along with all the subsequent repeated events.
 
 <div style="page-break-after: always;"></div>
 
