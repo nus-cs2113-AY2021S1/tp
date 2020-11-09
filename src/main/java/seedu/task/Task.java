@@ -150,57 +150,26 @@ public class Task {
         return hashCode() % (int) pow(10, HASH_VALUE_DIGITS);
     }
 
-    /**
-     * returns the TaskID(index)
-     *
-     * @return taskID
-     */
     public Integer getTaskID() {
         return taskID;
     }
 
-    /**
-     * edits the taskID
-     *
-     * @param taskID the new taskID
-     */
     public void setTaskID(Integer taskID) {
         this.taskID = taskID;
     }
 
-    /**
-     * returns the task description
-     *
-     * @return task description
-     */
     public String getDescription() {
         return description;
     }
 
-    /**
-     * edits the task description
-     *
-     * @param description the new task description
-     */
     public void setDescription(String description) {
         this.description = description;
     }
 
-    /**
-     * returns the task date
-     *
-     * @return task date
-     */
     public LocalDate getDate() {
         return date;
     }
 
-    /**
-     * edits the task date
-     *
-     * @param dateString the new date
-     * @throws InvalidDatetimeException if the new date is in an invalid format
-     */
     public void setDate(String dateString) throws InvalidDatetimeException {
         date = Util.dateStringToDate(dateString);
     }
