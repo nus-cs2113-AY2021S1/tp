@@ -89,12 +89,12 @@ public class BookmarkCommand extends Command {
     /**
      * Create a new instance of BookmarkCommand using values extracted from BookmarkParser.
      *
-     * @param bookmarkAction the bookmark action of the bookmark
-     * @param bookmarkIndex the bookmark id for bookmark
-     * @param animeIndex the anime id for bookmark
-     * @param bookmarkEpisode the current episode for bookmark
-     * @param noteIndex the note id for bookmark
-     * @param bookmarkNote the note for book
+     * @param bookmarkAction the bookmark action that determine bookmark operations
+     * @param bookmarkIndex the bookmark entry id
+     * @param animeIndex the anime id to add to bookmark
+     * @param bookmarkEpisode the current episode to be edited for bookmark entry
+     * @param noteIndex the note id to remove for bookmark entry
+     * @param bookmarkNote the note to add for bookmark entry
      */
     public BookmarkCommand(String bookmarkAction, int bookmarkIndex, int animeIndex, int bookmarkEpisode,
                            int noteIndex, String bookmarkNote) {
