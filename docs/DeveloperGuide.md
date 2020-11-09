@@ -26,6 +26,7 @@
     * [View](#view-feature)
     * [Reminder](#reminder-feature)
     * [Extract](#extract-feature)    
+    * [Bye](#bye-feature)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
     * [Product scope](#product-scope)   
@@ -116,12 +117,12 @@ The 'Ui' component is in charge of handling input from users and system output.
 
 #### Command Component
 
-![Diagram for commmand](./diagrams/Command.jpg)
+![Diagram for command](./diagrams/Command.png)
 
 API: [Command.java](https://github.com/AY2021S1-CS2113T-T12-4/tp/blob/master/src/main/java/seedu/duke/command/Command.java) 
 1. `Parser` class to parse the user command 
 1.  This results in a `Command` object executed by the `Parser`
-1.  The command execution can affect the `Model`
+1.  The command execution can affect the `UserData`
 
 It listens for commands made in the Duke Class and sends the input to the parser class.
 It is also responsible for printing messages from commands and exception messages. 
@@ -190,18 +191,12 @@ The add feature in the program allows the user to create one of 3 different even
 These 3 are the Personal, Zoom and Timetable events. These events have varying numbers of arguments or fields that can 
 be inserted upon creation. 
 
+The following is a class diagram to show the structure of the Add feature:
+![Class diagram of Add feature](./diagrams/AddCommandClassDiagram.jpg)
+
 Generally, Personal events are meant for non school related events and can be any general task the user wants to do. 
 Zoom events are meant for events that require zoom links and helps the user to store their zoom links easily. 
 Timetable events can contain a location and are meant for school related events like classes.
-
-Firstly, to begin, the user needs to key in the add command with the general format `add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM`.
-The optional fields to fill in like the link and location for the zoom and timetable classes can be inserted respectively in the position right after the description field. For example,
-`add zoom; cs2113t meeting; zoom.sg; 16/09/20; 2100`
-
-When a command like this is called, the constructor to `AddCommand` will be able to detect the event type based on the user's input. It then stores the event type in that instance of the addCommand.
-
-Next, when `AddCommand#execute()` is called from the main, this method will call the respective method to create one of the three events. These methods are `AddCommand#addPersonal()`, `AddCommand#addZoom()`, and `AddCommand#addTimetable()`.
-These methods are then used to create events based on the number of fields/parameters entered by the user. Each event has multiple constructors and can contain different combinations of fields which will be stated below.
 
 The personal event can contain the following fields: 
 - Description 
@@ -229,10 +224,17 @@ Examples of user inputs for the respective fields of timetable events are:
 - add timetable; math class; 10/10/2000; 4:00 pm
 - add timetable; math class; NUS engineering; 10/10/2000; 4:00 pm
 
+The optional fields to fill in like the link and location for the zoom and timetable classes can be inserted respectively in the position right after the description field. 
 The fields for what each event can contain were chosen based on what we as a team thought were important fields for the respective event types.
 However, these methods can easily be edited to accept different numbers of fields if we change our minds in the future.
 
-Given below is an example scenario of the add feature:
+Given below is a general explanation of how the add feature works and an example usage scenario:
+
+When a valid format of the add command is called, the constructor to `AddCommand` will be able to detect the event type based on the user's input. It then stores the event type in that instance of the addCommand. <br>
+Next, when `AddCommand#execute()` is called from the main, this method will call the respective method to create one of the three events. These methods are `AddCommand#addPersonal()`, `AddCommand#addZoom()`, and `AddCommand#addTimetable()`. <br>
+These methods are then used to create events based on the number of fields/parameters entered by the user. Each event has multiple constructors and can contain different combinations of fields which was stated above.
+
+Example usage scenario:
  
 Step 1. The user launches the application for the first time. There will be no events stored at the moment.
  
@@ -244,10 +246,10 @@ Step 4. `addCommand#addZoom()` detects there are 4 fields in the command, separa
  
 Step 5. The Zoom event is then added to the user's `UserData` for further use.
  
-The following sequence diagram shows how the whole add feature works: <br>
+The following sequence diagram shows how the add feature works:
 
 ![Sequence Diagram for Add Command](./diagrams/addCommand.jpg)
-// to be updated
+
 
 <div style="page-break-after: always;"></div>
 
@@ -373,7 +375,7 @@ The original event is now cloned as shown in the following sequence diagram.
 
 ##### Step 5: Add the cloned activity
 
-The cloned activity will now have its date set to be `repeatDate`. This new activity is now added into the `repeatEventList` as shwon in the following diagram.
+The cloned activity will now have its date set to be `repeatDate`. This new activity is now added into the `repeatEventList` as shown in the following diagram.
 
 ![Sequence Diagram for Repeat Command step 5](./diagrams/repeatstep5.jpg)
 
@@ -392,6 +394,14 @@ Finally, set the `repeatEventList` using the `setRepeatEventList` command as sho
 <div style="page-break-after: always;"></div>
 
 #### Deadline feature
+
+The deadline feature allows user to add/update the deadline for their personal events.
+
+|Argument| Description |
+|--------|----------|
+|index|Index number of the event to change deadline that is stored on the `Personal` List|
+|date|The new deadline for the event [Optional field]|
+|time|The new specified time for deadline [Optional field]|
 
 The deadline feature is implemented using `DeadlineCommand` class. `DeadlineCommand` accesses the Personal `Events` to get the event specified by the user and change the date of the event. It implements the following operations:
 
@@ -422,14 +432,14 @@ The following sequence diagram shows how the deadline operation works: <br>
 Given below is how the deadline command behave: <br>
 
 <p align="center">
-  <img width="414" height="562" src="./diagrams/DeadlineScenario.jpg">
+  <img width="414" height="562" src="./diagrams/DeadlineScenario.png">
 </p>
 
 <div style="page-break-after: always;"></div>
 
 #### Check feature
 
-The check feature is implemented using the `CheckCommand` class. `CheckCommand` accesses the `Event`s stored within `EventList`s in order to determine if events are occurring within a given time period. It implements the following operations:
+The check feature is implemented using the `CheckCommand` class. `CheckCommand` accesses the `Event` stored within `EventList`s in order to determine if events are occurring within a given time period. It implements the following operations:
 
 - `CheckCommand#getDate(stringDate)` -- Parses a given string to get a LocalDate variable (either the start or end date for the time period).
 - `CheckCommand#getTime(stringTime)` -- Parses a given string to get a LocalTime variable (either the start or end time for the time period).
@@ -504,6 +514,14 @@ The following sequence diagram shows how `GoalCommand#execute()` works:
 (WIP)
 
 #### Note feature
+
+The Note feature allow user to add notes to the event.
+
+|Argument| Description |
+|--------|----------|
+|event type|Type of event. Accepted arguments are `personal`, `timetable` or `zoom` |
+|index|Index number of the event to add note that belongs to the specified `event type` List |
+
 The note feature is implemented using `NoteCommand` class. `NoteCommand` accesses the `Events` to get the event specified by the user and add notes to the event. It implements the following operations:
 
 - `NoteCommand#parseUserCommand(command)` -- Parses the command argument to take out the respective index, event type given by the user
@@ -531,7 +549,7 @@ The following sequence diagram shows how the note operation works: <br>
 Given below is how the note command behave: <br>
 
 <p align="center">
-  <img width="414" height="562" src="./diagrams/NoteCommandScenario.png">
+  <img width="482" height="776" src="./diagrams/NoteCommandScenario.png">
 </p>
 
 
@@ -539,10 +557,15 @@ Given below is how the note command behave: <br>
 
 The view feature allows user to see the notes they have created for a particular event.
 
+|Argument| Description |
+|--------|----------|
+|event type|Type of event. Accepted arguments are `personal`, `timetable` or `zoom` |
+|index|Index number of the event to view note that belongs to the specified `event type` List |
+
 The following is the class diagram for reminder command:
 
 <p align="center">
-  <img width="462" height="522" src="./diagrams/ViewCommandClass.png">
+  <img width="521" height="461" src="./diagrams/ViewCommandClass.png">
 </p>
 
 
@@ -572,7 +595,9 @@ The reminder feature allows user list to the user the events that are happening 
 
 The following is the class diagram for reminder command:
 
-![Class diagram for reminder command execute](./diagrams/ReminderCommandClass.png)
+<p align="center">
+  <img width="521" height="461" src="./diagrams/ReminderCommandClass.png">
+</p>
 
 The reminder feature is implemented using `ReminderCommand` class. `ReminderCommand` accesses `EventList` to get all event and filter out events happening today and sort them according to with/without time. It implements the following operations:
 
@@ -595,13 +620,16 @@ Step 5. After getting all the events happening today, `ReminderCommand#execute()
 
 The following sequence diagram shows how the reminder operation works: <br>
 
-![Sequence diagram for reminder command execute](./diagrams/ReminderCommandSequenceDiagram.png)
+![Sequence diagram for reminder command execute](./diagrams/ReminderCommandSequenceDiagram.jpg)
 
 
 #### Extract feature
 The extract feature allows users to copy and paste a body of text like emails and it will help users create either
 a Zoom or a Personal event. It utilizes Regular Expressions (Regex) patterns in order to match dates, times and zoom links
 in the text entered. 
+
+The following is a class diagram to show the structure of the Extract feature:
+![Class diagram for Extract command](./diagrams/ExtractCommandClassDiagram.jpg)
 
 Given below is an example usage scenario to explain how the extract feature works.
 
@@ -610,17 +638,18 @@ The constructor for `ExtractCommand` will then be called and the `TEXT_SUBJECT` 
 
 Step 2. Next, `ExtractCommand#execute()` is called from the main. This method will call `ExtractCommand#receiveTextBody()` which will let the user enter any text and only ends once the user types `extractend` on a new line.
 The user may then input a text copied from email, for example `The quiz will be on October 8 2020 or 9th October at 4pm or 5pm. The zoom link is at https://nus-sg.zoom.com`. After going to the next line, the user has to type `extractend`.
-This is saved as the `textBody` in this instance of `ExtractCommand`. 
 
-Step 3. The `textBody` is then used in multiple methods. These include `ExtractCommand#detectZoomLink()`, `ExtractCommand#detectDate()` and `ExtractCommand#detectTime()` which will use Regex patterns to find and match dates, times and zoom links.
+Step 3. The text body is then used in multiple methods. These include `ExtractCommand#detectZoomLink()`, `ExtractCommand#detectDate()` and `ExtractCommand#detectTime()` which will use Regex patterns to find and match dates, times and zoom links.
 
-Step 4. `ExtractCommand#verifyDate()` and `ExtractCommand#verifyTime()` will be called which will return dates and times that are valid. In this case, it will detect the 2 dates, 2 timings and 1 zoom link above.
+Step 4. `ExtractCommand#detectZoomLink()` will check if the URL found is a valid zoom link. In this case, the link is valid as it contains ".zoom.".
 
-Step 5. `ExtractCommand#chooseZoomLink()`, `ExtractCommand#chooseDate()` and `ExtractCommand#chooseTime()` will be called and will print out a list of valid zoom links/dates/times and allow the user to input the number of the link/date/time they want to select it.
+Step 5. `ExtractCommand#verifyDate()` and `ExtractCommand#verifyTime()` will be called which will return dates and times that are valid. In this case, it will verify the 2 dates and 2 timings detected.
+ 
+Step 6. `ExtractCommand#chooseZoomLink()`, `ExtractCommand#chooseDate()` and `ExtractCommand#chooseTime()` will be called and will print out a list of valid zoom links/dates/times and allow the user to input the number of the link/date/time they want to select it. The user can only choose 1 of each detected.
 
-Step 6. If the event has a zoom link, a `Zoom` event will be created using the link, date, time and `TEXT_SUBJECT` as its description. Otherwise, a `Personal` event will be created with the date, time and description fields. The event will be added to the user's `UserData`.
+Step 7. `ExtractCommand#createEvent()` will be called. If the event has a zoom link, like the example, a `Zoom` event will be created using the link, date, time and `TEXT_SUBJECT` as its description. Otherwise, a `Personal` event will be created with the date, time and description fields. The event will be added to the user's `UserData`.
 
-The following sequence diagram shows how the Extract Feature works in general:
+The following sequence diagram shows how the Extract feature works in general like I have explained above:
 
 ![Sequence Diagram for Extract Command](./diagrams/extractCommand.jpg)
 
@@ -631,15 +660,25 @@ It can also detect if the day portion of the date has any suffixes. This does no
 looking at many of the emails sent to us, we found most were of the Regex pattern we chose. However, this could be implemented in the future. 
 
 For the detection of time, the Regex pattern used detects time in the 12 or 24 hour format. It can detect time with AM/PM behind it too. However, it cannot detect 24 hour timings
-with no "." or ":" in it unlike some commands above. This is because it may result in detecting a lot of false timings like if a 4 digit number like 2020 for a date was detected as a time and a year.
+with no "." or ":" in it unlike some commands above. This is because it may result in detecting a lot of false timings like if a 4 digit number like 2020 for a date was detected as a time and a year which may confuse the user.
 
 For the detection of zoom link, the Regex pattern used first detects any URL starting with https:// or http://. It then checks whether the URL contains ".zoom." which we found the be common in most zoom links.
 
+#### Bye feature
 
+The Bye feature allows user to exit smoothly after saving all the files.
 
+Step 1. The user executes `bye` command to exit Scheduler.
 
+Step 2. `ByeCommand#execute()` is called and `ByeCommand` will set `isExit` to true.
 
+Step 3. Returning to `Duke`, `Duke` will call `Storage#saveAll()` to save all the files.
 
+Step 4. Before exiting, `Ui#printByeMessage()` will be called to print and exit the program smoothly.
+
+The following sequence diagram shows how the Bye feature works:
+
+![Sequence Diagram for Bye Command](./diagrams/ByeCommandSequenceDiagram.png)
 <div style="page-break-after: always;"></div>
  
 ## Documentation, logging, testing, configuration, dev-ops
@@ -683,6 +722,8 @@ and also extract deadlines from any body of text.
 |v2.0|user|view which events are upcoming in a convenient readable format|locate the events easily by date|
 |v2.0|user|the application to alert me when my deadlines are coming up|be given enough time to work on them and not rush last minute|
 |v2.0|user|create deadlines from the email text body|avoid looking through the email to create one by one|
+|v2.0|user|create notes for the event|avoid creating new notes in word documents for every event|
+|v2.0|user|view notes written for the event|avoid looking through to find notes|
 |v2.0|new user (new to text-based application)|detailed directions on commands I can use|easily navigate through the application|
 |v2.0|new user (expert in using text-based application)|have some useful shortcut keys|speed up common tasks|
 
