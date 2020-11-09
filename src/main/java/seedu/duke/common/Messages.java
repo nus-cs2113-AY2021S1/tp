@@ -48,8 +48,8 @@ public class Messages {
     public static final String MESSAGE_LINK_LIST = "Here are the link(s) in your list:\n";
     public static final String MESSAGE_EMPTY_BOOK_LIST = "~Info~ There are no books in your list. "
             + "Your book list is empty.";
-    public static final String MESSAGE_EMPTY_EXPENSE_LIST = "~Info~ There are no expense items in your list. "
-            + "Your expense list is empty.";
+    public static final String MESSAGE_EMPTY_EXPENSE_LIST = "~Info~ There are no expense items to be listed "
+            + "in your expense list.";
     public static final String MESSAGE_EMPTY_LIST_WITH_PRIORITY = "~Info~ There are no tasks of this priority in your "
             + "list. ";
     public static final String MESSAGE_EMPTY_LIST_WITH_CATEGORY = "~Info~ There are no tasks of this category in your "
