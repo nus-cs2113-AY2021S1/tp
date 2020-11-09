@@ -155,7 +155,7 @@ public abstract class Parser {
         if (words[0].equalsIgnoreCase(LOCATE_EVENT)) {
             String input = "";
             int i;
-            for (i=1; i< words.length; i++) {
+            for (i = 1; i < words.length; i++) {
                 input = input.concat(words[i]);
                 int j = i;
                 if (j++ != words.length) {
