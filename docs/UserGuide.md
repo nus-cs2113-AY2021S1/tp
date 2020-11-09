@@ -131,7 +131,7 @@ Format: `help`
 
 Expected outcome:
 
-![help_command](images/Help_command.png)
+![help_command](images/help.PNG)
 
 *Figure 3. A list of available commands and their formats will be displayed.*
 
