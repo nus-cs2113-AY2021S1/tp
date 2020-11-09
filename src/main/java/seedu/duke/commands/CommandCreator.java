@@ -65,15 +65,15 @@ public class CommandCreator {
     /**
      * Creates and returns a SetCommand with given arguments.
      *
-     * @param fullCommand  Full command given by the user.
+     * @param description  Parsed description given by the user.
      * @param argumentsMap HashMap containing optional arguments.
      * @return SetCommand with given arguments.
      * @throws DukeException  When invalid arguments are given.
      */
-    public static Command createSetCommand(String fullCommand, HashMap<String, String> argumentsMap)
+    public static Command createSetCommand(String description, HashMap<String, String> argumentsMap)
             throws DukeException {
         try {
-            return new SetCommand(Integer.parseInt(fullCommand.split(" ")[1]), argumentsMap);
+            return new SetCommand(Integer.parseInt(description), argumentsMap);
         } catch (NumberFormatException e) {
             throw new DukeException(Messages.WARNING_NO_TASK);
         } catch (IndexOutOfBoundsException e) {
@@ -202,14 +202,14 @@ public class CommandCreator {
     /**
      * Creates and returns a DateCommand with given arguments.
      *
-     * @param commandString Command parameters given by the user.
+     * @param description Parsed description given by the user.
      * @return DateCommand with given arguments.
      * @throws DukeException If invalid arguments are given.
      */
-    public static Command createDateCommand(String commandString, HashMap<String, String> argumentsMap)
+    public static Command createDateCommand(String description, HashMap<String, String> argumentsMap)
             throws DukeException {
         try {
-            int index = Integer.parseInt(commandString.split(" ")[0]);
+            int index = Integer.parseInt(description);
             return new DateCommand(index, argumentsMap);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
