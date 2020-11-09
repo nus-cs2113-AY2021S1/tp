@@ -29,11 +29,10 @@ public class TopicCommandTest {
     private DeleteTopicCommand deleteCommand;
     private FindTopicCommand findCommand;
     private AccessTopicCommand accessCommand;
-    private ListTopicCommand listCommand;
 
     @BeforeEach
     void setUp() {
-        List topicList = new ArrayList<Topic>(List.of(
+        List topicList = new ArrayList<>(List.of(
                 new Topic("Distance"),
                 new Topic("Speed"),
                 new Topic("Time")
@@ -118,12 +117,6 @@ public class TopicCommandTest {
     }
 
     @Test
-    public void listTopicCommand_validCommand_executesMethod() {
-        listCommand = new ListTopicCommand();
-        listCommand.execute(subject);
-    }
-
-    @Test
     public void quizTopicCommand_TopicNotPresent_throwsException() {
         QuizTopicCommand quizNoTopic = new QuizTopicCommand("quiz Geometry");
         assertThrows(NoTopicException.class, () -> quizNoTopic.execute(subject));
@@ -133,14 +126,12 @@ public class TopicCommandTest {
     public void quizTopicCommand_invalidCommand_throwsException() {
         QuizTopicCommand quizInvalidCommand = new QuizTopicCommand("quiz");
         assertThrows(InvalidTopicException.class, () -> quizInvalidCommand.execute(subject));
-
     }
 
     @Test
     public void resultTopicCommand_TopicNotPresent_throwsException() {
         ResultTopicCommand resultNoTopic = new ResultTopicCommand("quiz Geometry");
         assertThrows(NoTopicException.class, () -> resultNoTopic.execute(subject));
-
     }
 
     @Test
