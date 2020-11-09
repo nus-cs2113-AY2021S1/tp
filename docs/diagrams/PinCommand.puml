@@ -1,16 +1,19 @@
 @startuml
-
 hide footbox
 
 participant ":NotUS" as NotUS
 participant ":ParsePinCommand" as ParsePinCommand
 participant ":PinCommand" as PinCommand
 participant ":Notebook" as Notebook
-
+participant ":StorageManager" as StorageManager
 participant ":Note" as Note
 
 create NotUS
+activate NotUS
 create ParsePinCommand
+
+create StorageManager
+activate StorageManager
 
 create PinCommand
 activate PinCommand
@@ -18,22 +21,24 @@ activate PinCommand
 ParsePinCommand -> PinCommand : <<create>>
 deactivate PinCommand
 
+
+
 NotUS -> PinCommand: execute()
-activate PinCommand 
+activate PinCommand
 
 alt PinByIndex
 
     PinCommand -> Notebook: getNotes()
     activate Notebook
-    Notebook --> PinCommand: notes 
+    Notebook --> PinCommand: notes
     deactivate Notebook
 
     PinCommand -> Note: get(index)
     activate Note
     Note --> PinCommand: note
     deactivate Note
-  
-else __
+
+else getNoteBytitle
 ref over PinCommand, Notebook, Note: get Note using title
 
 end
@@ -43,10 +48,16 @@ alt note does not exist
     PinCommand --> NotUS: Unsuccesful
 
 else 
+    PinCommand -> Note: togglePinned
+    activate Note
+    Note --> PinCommand
+    deactivate Note
+
+    PinCommand -> StorageManager: saveAllNoteDetails (bool isArchive)
+    StorageManager --> PinCommand
 
     PinCommand --> NotUS: note content + pinned status
     deactivate PinCommand
-
 end
 
 destroy PinCommand

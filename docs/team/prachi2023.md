@@ -43,11 +43,13 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 
 *Contributions to User Guide*
 
+[reposense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=prachi2023&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zA=prachi2023&zR=AY2021S1-CS2113-T13-1%2Ftp%5Bmaster%5D&zACS=197.20472673559823&zS=2020-09-27&zFS=&zU=2020-11-08&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
+### Contributions to User Guide
 1. Maintain portions on the following commands 
-- `pin-n`
-- `view-n` 
+     - [Section 3.4 View Notes](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#view-n)
+     - [Section 3.7 Pin Notes](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#pin-n)
+     - [Section 4 FAQ](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#faq)
 
-*Contributions to Developer Guide*
-
-1. StorageManager related class and sequence diagrams 
-1. PinCommand and ViewNoteCommand sequence diagram 
+### Contributions to Developer Guide
+1. [StorageManager related class and sequence diagrams](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#storage) 
+1. [PinCommand sequence diagram](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#commands)
