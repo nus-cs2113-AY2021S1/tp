@@ -24,7 +24,7 @@ and keep track of their deadlines, tasks and any other important dates. It is wr
         the flow of logic of the code. Later, I had to SLAP it to make the method less nested and confusing.
 * **Enhancements implemented:** 
     * Enhanced the code to reduce redundancy and improve design.
-    * Changed the cascading if-else statements into switch-case statements for parse classes. 
+    * Changed the cascading if-else statements into switch-case statements for FlashcardParser and TopicParser classes. 
     (Pull requests: [#124](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/124))
     * Improve handling of command in the case of mistyped inputs (extra spaces, capital letters, etc.)
     (Pull requests: [#124](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/124))
