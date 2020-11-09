@@ -23,6 +23,8 @@ The design of the software can be split into 5 distinct components:
 * Data component
 * Storage component
 
+<div style="page-break-after: always;"></div>
+
 ## Logic Manager Component
 
 ![](uml_images/images_updated/Handler_arch.png)
@@ -47,6 +49,8 @@ finance calculator tools within it.
 * All ```LogicManager``` classes use the ```InputManager``` component to process user input, then use ```Logic``` component
 to perform the operation associated with the param handling.
 
+<div style="page-break-after: always;"></div>
+
 ## Logic Component
 
 ![](uml_images/images_updated/Logic_arch.png)
@@ -65,7 +69,7 @@ newly created ledger.
 * `CommandHandler` in turn uses `ParamChecker` to verify validity of inputs before setting.
 <!-- @@author-->
 
-
+<div style="page-break-after: always;"></div>
 
 ## Input Manager Component
 
@@ -90,6 +94,7 @@ and produce a ```CommandPacket```.
     while paramMap will consist of one key-value pair, key being `"/desc"` and value being
     `"Quick brown fox"`
 
+<div style="page-break-after: always;"></div>
 
 ## Model Component
 
@@ -364,6 +369,8 @@ The Manual Tracker is capable of executing the following states of operation:
 **Logic Manager and Parser** 
 
 ![](uml_images/images_updated/Handler.png)
+
+<div style="page-break-after: always;"></div>
 
 |Class| Function |	
 |--------|----------|	
