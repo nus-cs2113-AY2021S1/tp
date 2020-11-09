@@ -511,6 +511,7 @@ The diagram below is the sequence diagram from steps 4 onward.
 *Figure 15: Info feature steps 4 to 6 sequence diagram*
 
 #### 4.3.2 Design Consideration
+
 This section shows the considerations taken when designing this feature.
 
 Aspect: **Using anime title or Anime ID**
@@ -518,10 +519,10 @@ Aspect: **Using anime title or Anime ID**
 The user may at some point want to know more about a particular anime, in which he may or may not know the full title of the anime.
 It is therefore important to decide on whether to prompt users to give the title of the anime, or just give its ID.
 
-| Approach | Pros | Cons  |
-| --- | --- | --- |
-| Use anime title as input. | - Easier for users who know anime titles. | - Users will have to input the full anime title. <br/> - The program has to search through the whole list of anime data. |
-| Use anime ID as input. | - Users will only need to input one single integer. | - Users will have to search for the anime ID if they do not know the ID. |
+| Approach                  | Pros                                                | Cons                                                         |
+| ------------------------- | --------------------------------------------------- | ------------------------------------------------------------ |
+| Use anime title as input. | - Easier for users who know anime titles.           | - Users will have to input the full anime title. <br/> - The program has to search through the whole list of anime data. |
+| Use anime ID as input.    | - Users will only need to input one single integer. | - Users will have to search for the anime ID if they do not know the ID. |
 
 We decided to go with the second approach, as it would enhance the user experience of not having to key in the full anime title. It would be very frustrating for the user as well if he misspells the title.
 
@@ -657,20 +658,23 @@ We picked the first approach as it is the safer option. By allowing **AniChan** 
 <br/>
 
 ### 4.5 Watchlist Management Feature
+
 The watchlist management feature aims to provide translators with a simple way to keep track of anime by being able to group anime based on their own criteria. This allows them to stay organized and focused on their work rather than being concerned over irrelevant issues.
 
 #### 4.5.1 Current Implementation
+
 The watchlist management feature is facilitated by `WatchlistCommand`. By running the command `watchlist` with the relevant parameter and field, `WatchlistParser` will construct `WatchlistCommand` which will be used to execute the user's instruction. 
 
 Below is a table describing the 4 parameters supported by the `watchlist` command, and the corresponding method that is invoked (required parameters are omitted).
+
 > :memo: The term **active watchlist** refers to the watchlist that the user is using to add anime into or remove anime from, and this is tracked by `activeWatchlist` in `Workspace`.
 
-| Parameter | Method | Description |
-| --- | --- | --- |
-| `-n` | `WatchlistCommand#createWatchlist()` | Creates a new watchlist |
-| `-l` (lowercase letter 'L') | `WatchlistCommand#listAllWatchlist()` | Lists all watchlist in the workspace |
-| `-s` | `WatchlistCommand#selectWatchlist()` | Selects a watchlist to be the new active watchlist |
-| `-d` | `WatchlistCommand#deleteWatchlist()` | Deletes a watchlist |
+| Parameter                   | Method                                | Description                                        |
+| --------------------------- | ------------------------------------- | -------------------------------------------------- |
+| `-n`                        | `WatchlistCommand#createWatchlist()`  | Creates a new watchlist                            |
+| `-l` (lowercase letter 'L') | `WatchlistCommand#listAllWatchlist()` | Lists all watchlist in the workspace               |
+| `-s`                        | `WatchlistCommand#selectWatchlist()`  | Selects a watchlist to be the new active watchlist |
+| `-d`                        | `WatchlistCommand#deleteWatchlist()`  | Deletes a watchlist                                |
 
 <br/>
 
@@ -687,9 +691,11 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 **Step 3:** `WatchlistCommand` first invokes `User#getActiveWorkspace()` to identify the workspace to add the new watchlist, and according to the instruction "-n", `WatchlistCommand#createWatchlist()` is invoked.
 
 **Step 4:** It first invokes `activeWorkspace.getWatchlistList()` to initialise `watchlistList`. A `Watchlist` object is then constructed with the name "NewAnime" and validated before it is added to `watchlistList`.
+
 > :memo: The validation checks ensure the watchlist name is unique in `watchlistList`, is not empty, and contains less than or equal to 30 alphanumeric characters and/or spaces. 
 
 **Step 5:** `StorageManager#saveWatchlist()` is invoked to save the updated `watchlistList`, and finally, the result of this command execution is returned to `Main` for it to be printed via `Ui#printMessage()`.
+
 > :memo: The details of all `Watchlist` object for a workspace will be saved in the file "watchlist.txt" in the workspace folder.
 
 <br/>
@@ -704,6 +710,7 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 
 All the other parameters in the `watchlist` command also follows a similar execution process. 
 The following diagrams will **continue from step 6**, and it will show how the `activeWatchlist` state will change as the `watchlist` command executes with the select (`-s`) and delete (`-d`) parameter.
+
 > :memo: The execution with the list parameter (`-l`) is not shown as it does not result in any change to the `activeWatchlist` state.
 
 **Step 7:** The user executes `watchlist -s 2` to set the second watchlist ("New Anime") in the list as the new active watchlist.
@@ -723,6 +730,7 @@ The following diagrams will **continue from step 6**, and it will show how the `
 <br/>
 
 The sequence diagram presented below depicts the interaction between the components for running the command, `watchlist -n NewAnime`.
+
 > :memo: The sequence diagram shows the interaction from step 2 onward.
 
 > :memo: The other parameters (list, select, and delete) follows a similar process, only the list and the select parameter does not interact with the `StorageManager` since they do not modify the watchlist data.
@@ -734,16 +742,17 @@ The sequence diagram presented below depicts the interaction between the compone
 <br/>
 
 #### 4.5.2 Design Considerations
+
 This section shows the design considerations taken when implementing the watchlist management features.
 
 Aspect: **Saving watchlist data**
 
 Since watchlist can be created and deleted at any point of time, it is important to decide on when the application should save the watchlist data.
 
-| Approach | Pros | Cons |
-| --- | --- | --- |
-| Whenever the watchlist data is modified. | Data would not be lost if the application or system crashes midway. | Application might slow down when the data grows large. |
-| When the user exits the program. | Saving is more efficient and could improve performance. | User may lose their data if the application or system crashes midway. |
+| Approach                                 | Pros                                                         | Cons                                                         |
+| ---------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Whenever the watchlist data is modified. | Data would not be lost if the application or system crashes midway. | Application might slow down when the data grows large.       |
+| When the user exits the program.         | Saving is more efficient and could improve performance.      | User may lose their data if the application or system crashes midway. |
 
 Having considered both approach, we have decided to save watchlist data **whenever the watchlist data is modified** because users may work on the application for long period and unexpected events can always happen. Losing work data can also be a frustrating and costly mistake to the user especially if the data are important.
 
@@ -753,19 +762,21 @@ Aspect: **Watchlist name restriction**
 
 To create a watchlist, users would have to give it a name, and these names can affect the usability of the application in the long run. Hence, there is a need to decide on whether the watchlist name needs to be restricted to ensure it remains readable in the long run. 
 
-| Approach | Pros | Cons |
-| --- | --- | --- |
-| No restriction. | Users have more flexibility. | This may hinder user's vision of the input prompt and affects the usability. |
-| Maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only. | Ensure users have a easy to read input prompt. | Users have less flexibility in naming. |
+| Approach                                                     | Pros                                           | Cons                                                         |
+| ------------------------------------------------------------ | ---------------------------------------------- | ------------------------------------------------------------ |
+| No restriction.                                              | Users have more flexibility.                   | This may hinder user's vision of the input prompt and affects the usability. |
+| Maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only. | Ensure users have a easy to read input prompt. | Users have less flexibility in naming.                       |
 
 While both approach are valid in their own ways, we have decided to **restrict watchlist name to a maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only** because having a watchlist name that is lengthy or has special characters can muddle up the readability of the input prompt, and that can affect the usability of the application.
 
 <br/>
 
 ### 4.6 Add To Watchlist Feature
+
 The `add` feature allows users to add an anime into the active watchlist. This helps them keep track of the anime they would like to watch next.
 
 #### 4.6.1 Current Implementation
+
 The current implementation of the add to watchlist command requires the user to give an input in the form of `add <ANIME_ID>`. 
 This will allow users to add the ANIME_ID specified by calling the `Watchlist#addAnimeToList()` method in the active `Watchlist` object. 
 
@@ -797,25 +808,28 @@ For better illustration, Figure 28 below shows the sequence diagram of steps 4 t
 *Figure 26: Sequence diagram for Add To Watchlist feature steps 4 to 6*
 
 #### 4.6.2 Design consideration
+
 Below shows the considerations taken when implementing the `AddToWatchlist` feature. 
 
 Aspect: **Using anime title or anime ID**
 
 This consideration is similar to our `info` feature consideration, so below is the same table we find in our `info` feature section.
 
-| Approach | Pros | Cons  |
-| --- | --- | --- |
-| Use anime title as input. | Easier for users who remember anime titles. | Users will have to input the full anime title.  |
-| Use anime ID as input. | Users will only need to input one single integer. | Users will have to search for the anime ID if they do not know the ID. |
+| Approach                  | Pros                                              | Cons                                                         |
+| ------------------------- | ------------------------------------------------- | ------------------------------------------------------------ |
+| Use anime title as input. | Easier for users who remember anime titles.       | Users will have to input the full anime title.               |
+| Use anime ID as input.    | Users will only need to input one single integer. | Users will have to search for the anime ID if they do not know the ID. |
 
 Similarly, we decided to go with the second approach as this would be much easier for users to key in, and also faster for the program to find the anime the user wants to add into the watchlist.
 
 <br/>
 
 ### 4.7 Remove From Watchlist Feature
+
 The remove from watchlist feature allows users to remove a particular anime from their currently active watchlist. This would allow them to keep their watchlist clean of the anime that they have watched, leaving only those that they have not watched.
 
 #### 4.7.1 Current Implementation
+
 The remove from watchlist command currently requires the user to give an input in the format: `remove <ANIME_ID_IN_WATCHLIST>`. The implementation of remove from watchlist command is similar to the add to watchlist feature with the only difference being that the user has to delete the index of the anime in that watchlist, instead of the actual ANIME_ID.
 
 The usage scenario of remove from watchlist is similar to the add to watchlist command, but we will be using `RemoveCommand`, `RemoveCommandParser` and `Watchlist#removeAnimeFromList()`.
@@ -823,6 +837,7 @@ The usage scenario of remove from watchlist is similar to the add to watchlist c
 > :bulb: ANIME_ID_IN_WATCHLIST is the index of anime inside the watchlist itself, not the anime index in AnimeData.
 
 #### 4.7.2 Design Consideration
+
 This section describes the design considerations taken when implementing this feature.
 
 Aspect: **Which index to use when removing an anime**
@@ -830,19 +845,21 @@ Aspect: **Which index to use when removing an anime**
 It is important to decide the what type of input that the user should give, given that they will frequently use the remove 
 command to remove one, or multiple anime from his watchlist.
 
-| Approach | Pros | Cons  |
-| --- | --- | --- |
+| Approach                            | Pros                                                         | Cons                                                         |
+| ----------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Use anime ID in AnimeData as input. | - Easier for users who remember the anime ID as they added it in to the watchlist before. | - Users will have to search for the anime ID again in the event that he forgets it. <br/> - The program has to search through the whole list anime in the watchlist. |
-| Use anime ID in Watchlist as input. | - Program can easily delete a particular index of an ArrayList  | - Users will have to find out the anime index in the watchlist using the `view` command. |
+| Use anime ID in Watchlist as input. | - Program can easily delete a particular index of an ArrayList | - Users will have to find out the anime index in the watchlist using the `view` command. |
 
 We have decided to use approach 2 instead of 1, as it will not only will it be much faster for the program to delete one particular index instead of having to search through the whole list, it would be provide better user experience as the user will not need to search for the anime ID that he wants to remove in the case that he does not know the anime ID.
 
 <br/>
 
 ### 4.8 View All Anime in Watchlist Feature
+
 Users can view the anime that they have stored in his active watchlist, or a specific watchlist, by using the `view` command. In doing so, they can easily check what anime they would like to watch next.
 
 #### 4.8.1 Current Implementation
+
 The `view` command is currently implemented by the `ViewWatchlistCommand`. It is instantiated by `Parser` and executed by `Main`. This allows users to view all the anime currently inside a `Watchlist` object. 
 
 An example usage scenario on how view anime in watchlist behaves is given below.
@@ -884,15 +901,15 @@ The `Bookmark` class uses three ArrayList to store bookmark entries of the user,
 
 `BookmarkCommand` is instantiated by `BookmarkParser`, and requires a mandatory BookmarkAction. With the BookmarkAction, the `Parser` will determine the required field for the `BookmarkCommand`. The table below shows the required field for each action.
 
-| Bookmark Command | Bookmark Action | Required field |
-|---|---|---|
-| Add              | a               | Anime ID       |
-| Delete           | d               | Bookmark ID    |
-| List             | l               | Not required |
+| Bookmark Command | Bookmark Action | Required field       |
+| ---------------- | --------------- | -------------------- |
+| Add              | a               | Anime ID             |
+| Delete           | d               | Bookmark ID          |
+| List             | l               | Not required         |
 | Episode          | e               | Bookmark ID, Episode |
-| Note             | n               | Bookmark ID, Note |
+| Note             | n               | Bookmark ID, Note    |
 | Remove Note      | r               | Bookmark ID, Note ID |
-| Info             | i               | Bookmark ID |
+| Info             | i               | Bookmark ID          |
 
 <br/>
 
@@ -909,6 +926,7 @@ For example: `bookmark 2 -e 5`, the parser will create `BookmarkCommand` and cal
 **Step 3:** The application calls `BookmarkCommand#execute()` and the command will use the `BookmarkAction` to do a corresponding validation check on the field before calling the  Bookmark Operations.
 
 Below is a list of bookmark operations:
+
 *   `Bookmark#addAnimeBookmark()`: Adds the `Anime` index provided into the bookmark list.
 *   `Bookmark#getListInString()`: List all entries within the `Bookmark` using the `Bookmark` index together with the `Anime` name.
 *   `Bookmark#deleteAnimeBookmark()`: Remove the `Bookmark` index provided from the bookmark list.
@@ -989,16 +1007,17 @@ Notes for anime:
 <br/>
 
 #### 4.9.2 Design consideration
+
 This section describes the various design considerations taken when implementing the `Bookmark` feature.
 
 Aspect: **How should the bookmark entries be kept**
 
 The first design consideration was the data structure on how the bookmark entries should be maintained. The main issue here was the cohesiveness between the `Bookmark` object and the `Workspace`.
 
-| Approach | Pros | Cons  |
-| --- | --- | --- |
-| Usage of three ArrayList to store anime index, Episode, and Notes.     | - Easy to reference objects within ArrayList using its index and it is easy to implement. | - Require to synchronise the three ArrayList so the same index reference the components of the same bookmark entry. |
-| Use a `BookmarkManager` to handle bookmark features.                  | - Do not need to maintain multiple ArrayLists.    | - One extra layer of unnecessary abstraction (nesting), while introducing more coupling and dependency.  |
+| Approach                                                     | Pros                                                         | Cons                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Usage of three ArrayList to store anime index, Episode, and Notes. | - Easy to reference objects within ArrayList using its index and it is easy to implement. | - Require to synchronise the three ArrayList so the same index reference the components of the same bookmark entry. |
+| Use a `BookmarkManager` to handle bookmark features.         | - Do not need to maintain multiple ArrayLists.               | - One extra layer of unnecessary abstraction (nesting), while introducing more coupling and dependency. |
 
 While both approach have their own benefits, we have decided to use **three ArrayList to keep the information of the bookmark entries**. Considering the structure of how bookmark is within the workspace, we prefer to directly use the bookmark as the bookmark manager will create another layer of unrequired abstraction.
 
