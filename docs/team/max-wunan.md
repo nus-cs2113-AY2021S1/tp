@@ -42,7 +42,7 @@ Given below are my contributions to this project:
 
 * __Community:__
     * Reviewed Developer Guide of the team and fixed format error [#86](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/86/files)
-    
+    * PRs reviewed (with non-trivial review comments): [#174](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/174#pullrequestreview-526179937)
 
 
     
