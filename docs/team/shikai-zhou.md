@@ -3,6 +3,7 @@ layout: default
 title: shikai-zhou ProjectPortfolioPage
 permalink: /team/shikai-zhou.html
 ---
+# Zhou Shikai's Project Portfolio Page
 # Overview
 
 **WatchNext** is a show tracker designed for users who watch their favourite shows on multiple free streaming platforms and other open source streaming websites.
@@ -18,17 +19,22 @@ As a core member of the team, I am an active contributor of code both for new fu
 # Enhancements implemented
 This is a summary of the enhancements I implemented:
 - Wrote AddCommand [#25](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/25), [#47](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/47)
+    - Description: This is a core functionality that allows users to add shows into the showlist.
 - Wrote EditCommand [#32](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/32), [#41](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/41)
+    - Description: Another key feature that allows users to change information about the shows they are watching. 
 - Wrote UpdateTimeLimitCommand [#54](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/54)
+    - Description: Allows user to set or change their watchtime limit.
 - Wrote the TimeParser Utility [#121](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/121)
+    - Description: A utility function that handles making sense of the user's time input.
 - JUnit Test Code for the commands above [#38](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/38)
 - Parts of InputParser and Ui that relates to the above functionalities [#211](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/211)
 
 # Issues Fixed
 - Bug Fixes for UpdateShowEpisodeProgressCommand [#147](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/147)
 - Bug Fixes for UpdateShowSeasonCommand [#150](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/150)
-- Fixed issues raised during testing and mock PE [#198](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/198), [#200](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/200),
-[#188](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/188), [#180](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/180), [#181](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/181), [#182](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/182) 
+- Fixed issues raised during testing and mock PE [#180](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/180),
+[#181](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/181), [#182](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/182),
+[#188](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/188), [#198](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/198), [#200](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/200),
 - And other smaller bugs.
 
 # Contributions to documentation
