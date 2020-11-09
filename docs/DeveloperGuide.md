@@ -338,6 +338,8 @@ The following sequence diagram illustrates the steps taken by the program when t
 `/addfav <description>` is the command that has to be entered by the user to add a previous valid command in to the user's 
 list of favourites.
 
+<div style="page-break-after: always;"></div>
+
 The `AddFavCommand#executeCommand()` method of AddFavCommand Class executes the command in the following steps:
 1. The `AddFavCommand#executeCommand` method throws an exception if the command to be saved in FavList is missing.
 2. Calls `AddFavCommand#createFav()` to make a new Fav object to be saved in the FavList.
@@ -415,6 +417,8 @@ are linked to each other.
 
 <img src="DG_Diagrams/DescFavCommand/descFavClass.png" alt="DescFav class diagram" width = 700>
 
+<div style="page-break-after: always;"></div>
+
 The `DescFavCommand#executeCommand()` method of DescFavCommand Class executes the command in the following steps:
 1. Calls `DescFavParser#parseInput()` to check if the command message input by the user is valid.
     - Throws an exception if 
@@ -437,6 +441,8 @@ The following sequence diagram explains the above steps when the user enters `/d
 The following sequence diagram explains the interactions omitted in the main diagram.
 
 <img src="DG_Diagrams/DescFavCommand/descFavInternal.png" alt="executing command" width=700>
+
+<div style="page-break-after: always;"></div>
 
 **Design Considerations**
 
