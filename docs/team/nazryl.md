@@ -14,45 +14,53 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 ## Summary of Contributions
 
 ### Features implemented
-1. Set up the skeleton code used in the project, including the following [classes](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/6):
+1\. Set up the skeleton code used in the project, including the following [classes](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/6):
     * `Notebook`
     * `Note`
     * `InterfaceManager`
     * `SystemException`
     * `PrefixSyntax`
-1. Completed the following features and test code for
+
+2\. Completed the following features and test code for
     * [`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/31) Added functionality to add note into the notebook with option to add tags, pinned note and archived note.
     * [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/32) Functionality applies to delete note from the notebook by an index and title of the note.
     * [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/121) Functionality applies to edit any note content, title and tags stored in the notebook.
 
 <div style="page-break-after: always;"></div>
 
-3. Implemented the following classes
+3\. Implemented the following classes
     * `ParserAddNoteCommand`
     * `AddNoteCommand`
     * `ParserDeleteNoteCommand`
     * `DeleteNoteCommand`
     * `ParserEditNoteCommand`
     * `EditNoteCommand`
-4. Implemented test code for the following classes
+
+4\. Implemented test code for the following classes
     * [`AddNoteCommandTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61)
     * [`DeleteNoteCommandTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61)
     * [`ParserManagerTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61)
-5. Maintained Notebook and Note classes.
-6. Created inputContent() function for `add-n` and `edit-n` in `Parser`.
-7. Added formatNote method into the Formatter class.
-8. Implemented prefix handling method used in all Parser classes with Jun Xiang. Prefix are able to be called in any order.
-9. Set up demo commands and bug testing for v1.0 and v2.1.
-10. Edited v1.0 and v2.1 demo videos.
+
+5\. Maintained Notebook and Note classes.
+
+6\. Created inputContent() function for `add-n` and `edit-n` in `Parser`.
+
+7\. Added formatNote method into the Formatter class.
+
+8\. Implemented prefix handling method used in all Parser classes with Jun Xiang. Prefix are able to be called in any order.
+
+9\. Set up demo commands and bug testing for v1.0 and v2.1.
+
+10\. Edited v1.0 and v2.1 demo videos.
 
 ### Enhancements to existing features
-1. Multiple improvements/bug-fixes made for [`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/111), [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/88) and [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/180) after each milestone.
+1\. Multiple improvements/bug-fixes made for [`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/111), [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/88) and [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/180) after each milestone.
 
 ### Code contributed
 [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=nazryl&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other) to view a report of the code contribution.
 
 ### Contributions to User Guide
-1. Maintain portions on commands related to Note
+1\. Maintain portions on commands related to Note
     * [`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/182)
     * [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/32)
     * [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/141)
@@ -60,9 +68,10 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 <div style="page-break-after: always;"></div>
 
 ### Contributions to Developer Guide
-1. Maintain Commands section on:
+1\. Maintain Commands section on:
     * [AddNoteCommand](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/109)
-1. [Notebook](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/128)
+
+2\. [Notebook](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/128)
 
 ### Community
 - Reviewed some of the PRs to ensure the Classes and functions follow the project architecture as well code logic of the program.

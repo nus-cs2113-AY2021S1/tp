@@ -50,26 +50,36 @@ Added documentation for following features:
 ### Contributions to Developer Guide
 Added implementation details for the following:
 
-1. [Section 2.1 Architecture Overview](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#overview)
-1. [Section 2.3 Parser & ParserManager](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#parserManager)
-1. [Section 2.4 Commands](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#commands)
-    - Class diagram of Command Class, Figure 6
-1. [Section 2.7 Tags](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#tag)
-1. [Section 2.9 User Interface](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#ui)
-1. [Section 2.10 SystemException](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#exception)
-1. [Section 2.11 Usage of External Libraries](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#color)
-1. [Section 8.1 List of ParseCommand Classes](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#parseXYZCommands)
+1\. [Section 2.1 Architecture Overview](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#overview)
+
+2\. [Section 2.3 Parser & ParserManager](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#parserManager)
+
+3\. [Section 2.4 Commands](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#commands)
+- Class diagram of Command Class, Figure 6
+
+4\. [Section 2.7 Tags](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#tag)
+
+5\. [Section 2.9 User Interface](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#ui)
+
+6\. [Section 2.10 SystemException](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#exception)
+
+7\. [Section 2.11 Usage of External Libraries](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#color)
+
+8\. [Section 8.1 List of ParseCommand Classes](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#parseXYZCommands)
 
 <div style="page-break-after: always;"></div>
 
-9. [Section 8.2 List of Command Classes](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#XYZCommands)
+9\. [Section 8.2 List of Command Classes](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#XYZCommands)
 
 ### Community
-1. Reviewed most of the PRs to ensure the Classes and functions follow the project architecture as well code logic of the programme.
-    - Reviewed a total of 66 PRs out of 114 PRs, with [167 comments](https://nus-cs2113-ay2021s1.github.io/dashboards/contents/tp-comments.html), dated 7/11/2020.
-1. Reported bugs and suggested fixes for team members. ([#115](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/115), [#135](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/135), [#148](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/148), [#159](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/159), [#168](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/168), [#175](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/175) and [#199](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/199))
-1. Contributed to forum discussions on usage of Jcolor and jansi libraries. ([#86](https://github.com/nus-cs2113-AY2021S1/forum/issues/86) and [#93](https://github.com/nus-cs2113-AY2021S1/forum/issues/93))
+1\. Reviewed most of the PRs to ensure the Classes and functions follow the project architecture as well code logic of the programme.
+- Reviewed a total of 66 PRs out of 114 PRs, with [167 comments](https://nus-cs2113-ay2021s1.github.io/dashboards/contents/tp-comments.html), dated 7/11/2020.
+
+2\. Reported bugs and suggested fixes for team members. ([#115](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/115), [#135](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/135), [#148](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/148), [#159](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/159), [#168](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/168), [#175](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/175) and [#199](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/199))
+
+3\. Contributed to forum discussions on usage of Jcolor and jansi libraries. ([#86](https://github.com/nus-cs2113-AY2021S1/forum/issues/86) and [#93](https://github.com/nus-cs2113-AY2021S1/forum/issues/93))
 
 ### Tools:
-1. Integrated a third party library [(JColor)](https://github.com/dialex/JColor) to the project. [(#37)](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/37)
-1. Integrated a third party libaray [(jansi)](https://fusesource.github.io/jansi) to the project. [(#87)](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/87)
+1\. Integrated a third party library [(JColor)](https://github.com/dialex/JColor) to the project. [(#37)](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/37)
+
+2\. Integrated a third party libaray [(jansi)](https://fusesource.github.io/jansi) to the project. [(#87)](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/87)
