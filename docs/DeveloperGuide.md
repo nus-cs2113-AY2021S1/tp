@@ -316,10 +316,13 @@ In **Figure 7** above, the flow of the program after it enters the filter proces
 The above class diagram describes the overall architecture of the bunny list functionalities. Recall that the term bunny refers to  plot ideas that have yet to be devloped. 
 The above classes provide the functionality of storing such ideas in an organised manner that can easily be searched, saved and loaded.
 
+#### `BunnyList`, `BunnyFilter`, and `DeleteBunny` class overview
 The `BunnyList` class has the public ArrayList of bunnies `bunniesList` that is accessed by the `DeleteBunny` class method `deleteBunny` which removes a selected bunny from the `bunniesList` ArrayList. Similarly, `bunniesList` is also accessed by the `BunnyFilter` class which contains the `filterBunny` function which can filter through the list and obtain bunnies with specified keywords in the idea or the genre using the command `filter bunny i\IDEA g\GENRE`, where the user may choose to omit either the `IDEA` or the `GENRE` when running the command. 
 
+#### `BunnySaver` and `BunnyLoader` class overview
 The `BunnySaver` class accesses the `bunniesList` and overwrites the current `bunny.txt` file in the data directory, saving all `Bunny` objects into the file using the `saveAllBunny`  method. Bunny objects saved in that file can then be read by the `BunnyLoader` class and added into the `bunniesList` ArrayList each time the program is started up, which is done by calling the `loadBunnyFile` method.
 
+#### `GenBunny` class overview
 The `GenBunny` class can access the `bunniesList` as well. The function `pickRandomBunny` from the `GenBunny` class first randomly generates an integer between 0 and the max number of `Bunny` idea in the `bunniesList` ArrayList. It then selects that indexed `Bunny` from the `bunniesList` and returns it to the user. This allows the user to easily choose an idea to start working on without struggling to decide which idea to use.
 
 ### Bunny command implementations
@@ -331,18 +334,22 @@ The `GenBunny` class can access the `bunniesList` as well. The function `pickRan
 The user may call upon the `bunny` command to add bunnies to the list. The user input is first processed by the `extractCommandType` method from the `CommandChecker` class, and the command type detected is sent to the `executeCommand` method from the `CommandExecutor` class. The `addBunny` function is called by this method accordingly. The `addBunny` command calls the `parseSingleCharacterTaggedParamsFromUserInput` method from the `Parsers` class to extract the `idea` and `genre` arguments from the command. These are then used to create a new `Bunny` object that is then added to the `bunniesList` ArrayList. The `addBunnyMessage` method from `UI` is then called to print the message that the `Bunny` idea object has been sucessfully added to the ArrayList.
 
 #### Listing bunny ideas `list bunny` 
-This feature allows users to add a Verb into the word bank of Fluffle. When the user adds a verb using the `verb` command,
-an object of the `Verb` class is created and added into the ArrayList `WordList`.
+This command works similar to how the `saveAllBunny` command in the `BunnySaver` class works. The function called by the `executeCommand` method is the `listBunny` command of the `BunnyList` class. It iterates through the `bunniesList` and passes each one to the `UI` class method `printBunnyInList`. Once all the `Bunny` objects in the list are printed, it concludes by printing the number of `Bunny` objects found in the list so the user can easily tell how many bunny ideas they have left.
 
 #### Filtering bunny ideas: `filter bunny`
 
+
 #### Saving bunny ideas: `save bunny`
+When the `save bunny` command is detected by the `commandChecker` method of the `CommandChecker` class, 
 
 #### Deleting a bunny idea: `delete bunny`
 
+
 #### Generating a random bunny idea: `random bunny`
 
+
 #### Resetting the entire list of Bunny ideas: `reset bunny`
+
 
 ### Names class family
 
