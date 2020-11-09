@@ -100,7 +100,7 @@ The sections below provide more details for each component.
 
 ![UiStructure](https://raw.githubusercontent.com/alstontham/tp/DG-UG/docs/structures/UiStructure.png)
 
-[`Ui.java`](https://github.com/AY2021S1-CS2113T-W12-2/tp/blob/master/src/main/java/athena/Ui.java)
+[`AthenaUi.java`](https://github.com/AY2021S1-CS2113T-W12-2/tp/blob/master/src/main/java/athena/ui/AthenaUi.java)
 
 1. `Ui` consists of `AthenaUi` and `ColorText`.
 2. `AthenaUi` implements the `Ui` interface and outputs messages that the user sees.
@@ -169,10 +169,6 @@ The `Timetable` component is used to generate an output for the *list* command, 
 3. The `Timetable` groups the tasks by their `LocalDate` in a `TimetableDay`.
 4. The `Timetable` also creates a `TimetableDrawer` that is used to generate the timetable ASCII art.
 5. The `Timetable` and `TimetableDrawer` store a `TreeMap<LocalDate, TimetableDay>` to query for a `TimetableDay` based on a specific `LocalDate` quickly.
-
-## **Implementation**
-
-This section describes some important details about how certain features are implemented.
 
 ## **Implementation**
 
