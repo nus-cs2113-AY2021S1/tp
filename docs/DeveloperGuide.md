@@ -77,6 +77,7 @@ Aspect: Statefulness of Parser object
     * Pros: Easy to implement. Easy to test. Promotes use of single commands over multi-step commands.
     * Cons: Unable to implement intelligent functionality where previous input influences the behavior of the next.
     * Reason for choice: Our focus for this application is simplicity and efficiency. Having stateful commands runs counter to this design philosophy.
+      
 * Alternative 2: Parser preserves stateful information
     * Pros: Able to implement multi-step commands. Can easily implement confirmation step for commands that manipulate large volume of data.
     * Cons: More complicated to implement. Harder to ensure the behaviour of the parser is consistent. Harder to debug.
@@ -85,6 +86,7 @@ Aspect: Design of parser
 * Alternative 1 (Current Choice): Dedicated parser class creates an object to be passed into all other Command objects
     * Pros: Allows other classes to check for the required arguments without having to do low level string handling. Enforces consistent parsing across all commands. Enables `/` arguments to be added and read in any order.
     * Cons: Incurs additional overhead from adding an extra step between the input operation and the command invocation.
+   
 * Alternative 2: Each Command handles its own input independently
     * Pros: Command classes are free to simplify the parsing step depending on the required complexity of the command. No intermediate step and overhead.
     * Cons: More difficult to enforce parsing standards across Commands. String manipulation becomes required in every command.
@@ -119,6 +121,7 @@ Aspect: The need to instantiate a `Command`
     * Pros: Easy to implement. Less overhead from executing commands. Locality of the code allows for minimal merge conflicts when developing collaboratively.
     * Cons: Requires more memory at load to hold all the objects.
     * Reason for choice: Since we do not have a stateful parser, this option was chosen as the simplest implementation that gets the job done.
+    
 * Alternative 2: `Command`s only contain static methods
     * Pros: Conceptually more sensible than having exactly one instance of each command.
     * Cons: More complicated to implement, java has no elegant simple way to exploit inheritance and static functions in a list of classes making this option unpractical without implementing a bunch of hacks.
@@ -128,6 +131,7 @@ Aspect: Design of `Command` criteria checking
     * Pros: Allows for more complex criteria evaluation without having a dedicated class for resolving commands. Makes good use of abstraction and inheritance and puts all the `Command` related functions in the same class.
     * Cons: Searching of the command list is `O(n)` but the individual validation functions may not be `O(1)`, resulting in higher potential overhead if validation functions are not optimized.
     * Reason for choice: We wanted development of command related functions to all be housed in the same class. This design achieves that goal while giving us a great deal of flexibility.
+    
 * Alternative 2: Dedicated class for command resolution and validation
     * Pros: Further separates the job of command resolution from the `Ui` and `Command`. Simplifies `Command` class.
     * Cons: Would be a class which features a very un-elegant large `if-else` block or `switch` block. Requires every new command to update this class with a substantial amount of new lines. Harder to develop collaboratively, increases chances of merge conflicts.
@@ -179,6 +183,7 @@ Aspect: User input format for adding a finance log entry
     ITEM_VALUE. If the user inputs a separate number for ITEM_NAME but forgets to type ITEM_VALUE, then the program will mistake 
     the separate number in ITEM_NAME for its ITEM_VALUE. For example, if the user just input `finance summary iphone 12` but forgot to
     type the price, then the finance log entry will become `iphone $12`.    
+    
 * Alternative 2: The user inputs command in format of "finance addLog /n ITEM_VALUE /v ITEM_VALUE".  
     * Pros: The program can easily detect if the input command is valid.  
     * Cons: It is harder for the user to memorize the command format. It also costs more time when executing.  
@@ -215,6 +220,7 @@ Aspect: Repeated items
     he can just refer to this summary.  
     * Cons: It cannot display the total budget for these repeated items. The user has to find a way to calculate it 
     by himself.  
+    
 * Alternative 2: The summary will combine all the repeated items then output them.  
     * Pros: The user do not have to calculate the total budget for repeated items by himself.  
     * Cons: The summary cannot show each index of the repeated items that it is confusing when user wants to delete 
@@ -248,6 +254,7 @@ Aspect: User input format
     * Pros: The user does not need to remember two different command formats and the current format can increase the 
     efficiency of the program.  
     * Cons: Every time the user has to type in both ITEM_NAME and ITEM_VALUE, it may waste some time for the user.  
+    
 * Alternative 2: Split the command into changeName and changeNum.  
     * Pros: The user can choose whether just change only `finLog` or `finLogVal` and it is easier to debug.  
     * Cons: If the user want to change both `finLog` and `finLogVal`, it will waste more time on typing commands. Also, 
@@ -311,22 +318,22 @@ The sequence diagram for adding an event is as shown below:
 
 ![CommandEventAdd](EventDiagram/SequenceDiagram/CommandEventAdd.png)
 
-The sequence diagram for deleting a particular event or all events is as shown below:
+The sequence diagram for deleting **a particular event** or **all events** is as shown below:
 
 ![CommandEventDelete](EventDiagram/SequenceDiagram/CommandEventDelete.png)
 
 **3.4.1.2. Design Considerations** <br/>
 
 Aspect : User input format for adding an event <br/>
-
 * Alternative 1 (current choice) : The user will input the command in the format `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`. <br/>
     * Pros: Easy to detect if user input is valid for each parameter, `/n`,`/d`and`/t`. <br/>
     * Cons : It may be hard for the user to memorise the command format at the beginning. <br/>
-
+    
 * Alternative 2 : User input with the format `event addevent EVENT_NAME EVENT_DATE EVENT_TIME` <br/>
     * Pros: It is more convenient for the user to type commands and easier to memorise the command format. <br/>
     * Cons : It takes longer to execute the command as the program will take time to identify the respective parameters within the command entered. <br/>
 
+[Return to top](#CCA-manager-developer-guide)
 
 **3.4.2. Listing Events** `CommandEventList`
 
@@ -352,15 +359,13 @@ Step 2.The user executes `event listEvent` command to list the `EventList`. The 
 
 **3.4.2.2. Design Considerations** <br/>
 
-
 Aspect: Repeated items  <br/>
-
 * Alternative 1 (Current Choice): `event listEvent` command will only list unique events present in the list. It will not show repeated events.
 When a new event is added, if the event name and date matches to an existing event in the list, it is considered a duplicate event. It will not be added
 to the event list. <br/>
     * Pros : The resulting event list does not contain duplicates. The number of events in the list will be valid. <br/>
     * Cons :  Requires more methods to be written.
-
+    
 * Alternative 2 : Program accepts duplicated events and filters the duplicates for the user. <br/>
     * Pros: It can display all the indexes of the repeated items which user can refer to delete the duplicates. <br/>
     * Cons : The duplicate list is redundant to the user. <br/>
@@ -369,6 +374,8 @@ to the event list. <br/>
 The sequence diagram for listing events is as shown below:
 
 ![](EventDiagram/SequenceDiagram/CommandEventList.png)
+
+[Return to top](#CCA-manager-developer-guide)
 
 **3.4.3. Searching for an event via name or date** `CommandSearchEvent`
 
@@ -380,11 +387,21 @@ The `CommandSearchEvent` class in `seedu.duke.event` handles searching of an eve
 It implements the following operation:  
 * `CommandSearchEvent#execute()` - Search all `Event` in `EventList` for the name or date entered by user.
  
- 
  The sequence diagram for searching for an event is as shown below:
 
  ![](EventDiagram/SequenceDiagram/CommandSearchEvent.png)
  
+ **3.5.4.2. Design Considerations**  
+ Aspect: Search conditions  <br/>
+ *Alternative 1(Current choice): It will search for `events` by the name or date entered.  
+     *Pros: Its faster. If the name or date of the first `event` in the does not match it skips to the next `event` instead of checking other conditions.
+     *Cons: If the user input contains some common strings like "and" or "the", there will be too many results shown to the user.
+           
+ *Alternative 2: It will search for `events` whose information matches all the conditions provided by user input.  
+     *Pros: There will not be too many results when the user input includes common strings like "The" or "and".
+     *Cons: Since it's a linear search, therefore, the bigger the data size, the longer the search, especially with more conditions to check.
+ 
+ [Return to top](#CCA-manager-developer-guide)
  
 **3.4.4. Displaying countdown to upcoming events** `CommandEventCountdown`
 
@@ -394,12 +411,26 @@ It implements the following operation:
 The `CommandEventCountdown` class in `seedu.duke.event` handles displaying of countdown as an additional feature in the `EventList`.
  
 It implements the following operation: <br/>
-* `CommandEventCountdown#execute()` -  displays countdown feature for all upcoming `Event` in the `EventList`.
+* `CommandEventCountdown#execute()` -  displays countdown feature for all upcoming `Event` in the `EventList`. It shows the number of days remaining to the respective event and sorts them such that the 
+earliest upcoming events is first on the list. (Earliest Deadline First,EDF)
 
 The sequence diagram for displaying countdown is as shown below:
 
 ![](EventDiagram/SequenceDiagram/CommandEventCountdown.png)
 
+**3.5.4.2. Design Considerations**  
+ Aspect: Format of countdown feature <br/> 
+ * Alternative 1(Current choice): `event countdown` Events are sorted such that the most upcoming events is displayed ahead of others. <br/?
+    * Pros: Users can view the most urgent event easily. It lists out all the events with the countdown feature. <br/>
+    * Cons: The more events added, the longer it will take to list the events. <br/>
+ * Alternative 2: `event countdown EVENT_INDEX` Will only display the countdown for the event in the index given. <br/>
+    * Pros: Faster, can easily retrieve the event from the list. <br/>
+    * Cons: Less useful to user as compared to alternative 1, where the EDF algorithm is used to sort the list. <br/>
+ 
+  
+
+ [Return to top](#CCA-manager-developer-guide)
+ 
 **3.4.5. Mark an event as completed** `CommandEventStatus`
 
 (By: Varsha)<br/>
@@ -413,6 +444,8 @@ It implements the following operation: <br/>
 The sequence diagram for marking an event as done is as shown below:
 
 ![CommandEventStatus](EventDiagram/SequenceDiagram/CommandEventStatus.png)
+
+[Return to top](#CCA-manager-developer-guide)
 
 **3.4.6. Add/delete event participants feature** `CommandAddEventAttendance` , `CommandDelEventAttendance` 
 
@@ -461,10 +494,12 @@ Aspect: Delete participant attendance from an event  <br/>
 *Alternative 1 (Current Choice): `event delAttendance` command will only delete member from each event by the member name. <br/>
     *Pros : The user can delete quickly if he is familiar with the name of the targeted participant. <br/>
     *Cons : The user needs to type in the full name of the participant in order to delete the person, might be less convenient if the user is not familiar with the names.
-
+    
 *Alternative 2 : `event delAttendance` command will only delete member from each event by the member's index in the participant list. <br/>
     *Pros : It is easier to implement.  
     *Cons : The user needs to view the participant list of the event first to view the index, hence requires more typing and less convenient. <br/>
+
+[Return to top](#CCA-manager-developer-guide)
 
 **3.4.7. Listing event participants** `CommandViewEventAttendance`
 
@@ -577,6 +612,8 @@ The method `MemberList#deleteFromEvents()` referenced in the above diagram is as
 
 Refer to section 3.4.6.1 for the sequence diagram of the method `EventList#deletAttendance()` referenced in the above diagram. 
 
+[Return to top](#CCA-manager-developer-guide)
+
 **3.5.2. List the members**  
 
 (By: Ye Yutong)<br/>
@@ -605,6 +642,8 @@ Step 2. The user executes `hr listMember` command to list the summary of `Member
  The sequence diagram for listing the members is as shown below:
  
  ![CommandViewMember](hrDiagramPic/CommandViewMember.png)
+ 
+ [Return to top](#CCA-manager-developer-guide)
 
 **3.5.3. Change member information**  
 
@@ -642,6 +681,7 @@ Aspect: Changing member information <br/>
     practice, he can change the member's information quickly.
     *Cons: Member name cannot be easily modified. If the user wants to change the name of the member, the user has to delete 
     the target member, and add the member back using the new name.
+    
 *Alternative 2: Member Information is to be modified based on the member's index in the list.  
     *Pros: Member name can be easily modified. 
     *Cons: This feature is very dependent on the list member feature. The user will always need to call the `hr listMember` 
@@ -689,6 +729,7 @@ Aspect: Search condition
     also decrease the running time in some degree because it can jump to the next `Member` if the previous `Member`'s name or phone 
     number or email matches the search condition.  
     *Cons: If the user input contains some common strings like ".com" or "a", there will be too many results shown to the user.  
+    
 *Alternative 2: It will search for `Members` whose information matches all the conditions provided by user input.  
     *Pros: There will not be too many results when the user input includes common strings with other conditions.  
     *Cons: It will increase the running time a lot because it has to check all the information of `Member`s, especially 
@@ -730,6 +771,7 @@ Aspect: Just use `hr search` or use `hr list prof&admin`
     *Pros: The user can just type one command, instead of typing `hr search prof` and `hr search admin`.  
     *Cons: It increases the time of searching all the `Command`s in command list and this command looks similar 
     to `hr list` that may confuse the user.  
+    
 *Alternative 2: Use `hr search`  
     *Pros: The time of searching all `Command`s in command list will not be influenced.
     *Cons: The user has to type `hr search` twice to list professors and administrators and the lists are separated.  
@@ -770,6 +812,7 @@ Aspect: Just use `hr search` or use `hr list connections`
     *Pros: The user can just type one command, instead of typing `hr search speaker` and `hr search alumni`.  
     *Cons: It increases the time of searching all the `Command`s in command list and this command looks similar 
     to `hr list` that may confuse the user.  
+    
 *Alternative 2: Use `hr search`  
     *Pros: The time of searching all `Command`s in command list will not be influenced.
     *Cons: The user has to type `hr search` twice to list speakers and alumni and the lists are separated.  
@@ -884,6 +927,7 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 **CLI** - Command Line interface <br/>
 **UML** - Unified Modelling Language <br/>
 **CSV** - Comma-seperated values. This typically refers to the file type with extension .csv <br/>
+**EDF** - Earliest Deadline First <br/>
 **OS** - Operating Systems  <br/>
 **RFC** - Request for Comments, an internet standard specifying various applications of technology or methodology.  
 **IDE** - Integrated Development Environment. A software application that provides facilities for software development, such as IntelliJ.  
