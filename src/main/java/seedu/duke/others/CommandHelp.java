@@ -11,7 +11,7 @@ public class CommandHelp extends Command {
                 + "\t2. Delete member: hr delMember MEMBER_INDEX\n"
                 + "\t3. View hr list: hr listMember\n"
                 + "\t4. Change member info: hr changeInfo /n NAME (/p ITEM) (/e ITEM) (/r ITEM)\n"
-                + "\t5. Search for members: hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)\n"
+                + "\t5. Search for members: hr search ITEM /n ITEM /p ITEM /e ITEM /r ITEM\n"
                 + "\t6. view contacts of prof/admin: hr list prof&admin\n"
                 + "\t7. view contacts of connections: hr list connections\n"
                 + "\t8. Add events: event addEvent /n EVENT_NAME /d EVENT_DATE <YYYY-MM-dd> /t EVENT_TIME <HH-mm>\n"

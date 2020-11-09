@@ -53,7 +53,7 @@ public class CommandSearchMember extends Command {
      */
     @Override
     public String help() {
-        return "Syntax: hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)\n";
+        return "Syntax: hr search ITEM /n ITEM /p ITEM /e ITEM /r ITEM\n";
     }
 
     /**
