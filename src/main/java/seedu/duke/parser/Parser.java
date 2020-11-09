@@ -23,6 +23,7 @@ import seedu.duke.commands.SpendCommand;
 import seedu.duke.common.Messages;
 
 import java.time.DayOfWeek;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.logging.Level;
@@ -76,6 +77,11 @@ public class Parser {
         case CategoryCommand.COMMAND_WORD:
             return CommandCreator.createCategoryCommand(commandString, argumentsMap);
         case ListCommand.COMMAND_WORD:
+            HashSet<String> allowedDescrptions = new HashSet<>(Arrays.asList("tasks", "expenses", "modules", "links",
+                    "books"));
+            if (!allowedDescrptions.contains(description.trim().toLowerCase())) {
+                throw new DukeException(Messages.EXCEPTION_INVALID_LIST_COMMAND);
+            }
             String subRootCommand = commandString.split(" ")[0];
             commandString = commandString.replaceFirst(subRootCommand, "").trim();
             return CommandCreator.createListCommand(fullCommand, subRootCommand, commandString);
