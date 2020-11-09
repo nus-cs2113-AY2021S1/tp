@@ -74,6 +74,7 @@ In this guide, we cover:
 * Common use cases for each command
 * Summary of all the commands
 
+<div style="page-break-after: always;"></div>
 
 ### 1.3. Understanding the Command Line Interface (CLI)
 To use KAJI, you have to first know the Command Line Interface, the platform that KAJI runs on. However, as we have simplified the interface for you, here is a simplified introduction that will cover everything you need to know about the CLI to use KAJI.
