@@ -97,7 +97,7 @@ If you plan to use Intellij IDEA:
     1.  Click on `Import Project` and locate the `build.gradle` file and select it. Click `OK`.
     2.  If asked, choose to `Open as Project` (not `Open as File`).
     3.  Click `OK` to accept the default settings but do ensure that the selected version of `Gradle JVM` matches the JDK being used for the project.
-    4.  Wait for the importing process to finish (could take a few minutes).
+    4.  Wait for the importing process to finish (it could take a few minutes).
 
 3.  **Verify the setup**: 
     1.  After the importing is complete, locate the `src/main/java/anichan/Main.java` file, right-click it, and choose `Run Main.main()`. If the setup is correct, you should see the following:

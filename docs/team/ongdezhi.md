@@ -33,9 +33,9 @@
         *   Add documentation for the features `watchlist`, and data saving and loading: [#138](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/138).
         *   Add documentation for the feature `estimate`: [#146](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/146).
     *   Developer Guide:
-        *   Add Setting Up Guide, Architecture Design, and StorageManager component: [#151](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/151).
+        *   Contributed to the sections, Introduction, Setting Up Guide, Architecture Design, and StorageManager component: [#151](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/151), [#284](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/284).
         *   Add implementation details of `estimate` and `watchlist` feature: [#197](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/197).
-        *   Contributed to the sections on target user profile, user stories, and non-functional requirements: [#207](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/207).
+        *   Contributed to the sections, Target User Profile, User Stories, and Non-Functional Requirements: [#207](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/207).
 
 *   **Team-based Tasks**
     *   Helped to organize the classes into packages: [#63](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/63).
