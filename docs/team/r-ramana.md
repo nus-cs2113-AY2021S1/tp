@@ -22,9 +22,9 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 
 2\. In the `Notebook` class, created: `archivedNotes`, `unarchivedNotes`, `getArchivedNotes`, `getNote`, `checkPinned`, `getSortedList`, `getPinnedNotes`, `getUnpinnedNotes`, `findNotes`. In the `Note` class, created: `toggleArchived`, `getIsArchived`, `getPinned`. Added a couple of `formatNotes` methods into the `Formatter` class.
 
-<div style="page-break-after: always;"></div>
-
 *Enhancements to existing features*
+
+<div style="page-break-after: always;"></div>
 
 Added ASCII art (PR [#90](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/90) and [#80](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/80)). Refactored code to abstract out the (un)successful execution messages (PR [#143](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/143)) to its own `CommandMessage` class.
 
