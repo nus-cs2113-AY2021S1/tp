@@ -209,88 +209,111 @@ Here are the food items in DietBook:
 
 ### Features related to the food list
 
-* To add you own food: add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] [p/PROTEIN] [f/FAT]
-    * Examples of usage : 
-        * Example 1 : add x/1 n/Salty Chicken Rice k/300 c/10 p/20 f/50
-        * Output of Example 1 : 
-        ```
-        Got it! I've added this food item:
-          Salty Chicken Rice | calorie : 300 | protein : 20 | carbohydrate : 10 | fats : 50 -- (1)
-        ```
-        * Example 2 : add x/2 n/Chilli Pepper Crab k/400 c/10 p/10 f/20
-        * Output of Example 2 :
-        ```
-        Got it! I've added this food item:
-          Chilli Pepper Crab | calorie : 400 | protein : 10 | carbohydrate : 10 | fats : 20 -- (2)
-        ```
+#### To add you own food: `add`
+ 
+Format: `add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] [p/PROTEIN] [f/FAT]`
 
-* To view all food in DietBook: list
-    * Example of usage : list
-    * Output :
-    ```
-    Here are the food items in DietBook:
-      1. Salty Chicken Rice | calorie : 300 | protein : 20 | carbohydrate : 10 | fats : 50 -- (1)
-      2. Salty Chicken Rice | calorie : 300 | protein : 20 | carbohydrate : 10 | fats : 50 -- (1)
-      3. Chilli Pepper Crab | calorie : 400 | protein : 10 | carbohydrate : 10 | fats : 20 -- (2)
-    ```
-* To view all food in DietBook recorded within a time period: list yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
-    * Example of usage : list 2020-10-29T11:30 2020-10-29T16:40
-    * Output :
-    ```
-    Here are the food items recorded in DietBook between 29 Oct 2020 1130 and 29 Oct 2020 1640:
-      1. Salty Chicken Rice | calorie : 300 | protein : 20 | carbohydrate : 10 | fats : 50 -- (1)
-      2. Salty Chicken Rice | calorie : 300 | protein : 20 | carbohydrate : 10 | fats : 50 -- (1)
-      3. Chilli Pepper Crab | calorie : 400 | protein : 10 | carbohydrate : 10 | fats : 20 -- (2)
-    ```
+Examples of usage : 
+* Example 1 : `add x/1 n/Salty Chicken Rice k/300 c/10 p/20 f/50`
+* Output of Example 1 : 
+```
+Got it! I've added this food item:
+  Salty Chicken Rice | calorie : 300 | protein : 20 | carbohydrate : 10 | fats : 50 -- (1)
+```
+
+* Example 2 : `add x/2 n/Chilli Pepper Crab k/400 c/10 p/10 f/20`
+* Output of Example 2 :
+```
+Got it! I've added this food item:
+  Chilli Pepper Crab | calorie : 400 | protein : 10 | carbohydrate : 10 | fats : 20 -- (2)
+```
+
+#### To view all food in DietBook: `list`
+
+Example of usage : list
+
+Output :
+```
+Here are the food items in DietBook:
+  1. Salty Chicken Rice | calorie : 300 | protein : 20 | carbohydrate : 10 | fats : 50 -- (1)
+  2. Salty Chicken Rice | calorie : 300 | protein : 20 | carbohydrate : 10 | fats : 50 -- (1)
+  3. Chilli Pepper Crab | calorie : 400 | protein : 10 | carbohydrate : 10 | fats : 20 -- (2)
+```
+#### To view all food in DietBook recorded within a time period: `list`
+ 
+Format: `list yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm`
+
+Example of usage : list 2020-10-29T11:30 2020-10-29T16:40
+
+* Output :
+```
+Here are the food items recorded in DietBook between 29 Oct 2020 1130 and 29 Oct 2020 1640:
+  1. Salty Chicken Rice | calorie : 300 | protein : 20 | carbohydrate : 10 | fats : 50 -- (1)
+  2. Salty Chicken Rice | calorie : 300 | protein : 20 | carbohydrate : 10 | fats : 50 -- (1)
+  3. Chilli Pepper Crab | calorie : 400 | protein : 10 | carbohydrate : 10 | fats : 20 -- (2)
+```
         
-* To view all food in DietBook recorded from a certain date until now: list yyyy-mm-ddTHH:mm 
-    * Example of usage : list 1066-10-14T08:00
-    * Output :
-    ```
-    Here are the food items recorded in DietBook between 14 Oct 1066 0800 and 29 Oct 2020 1317:
-      1. Salty Chicken Rice | calorie : 300 | protein : 20 | carbohydrate : 10 | fats : 50 -- (1)
-      2. Salty Chicken Rice | calorie : 300 | protein : 20 | carbohydrate : 10 | fats : 50 -- (1)
-      3. Chilli Pepper Crab | calorie : 400 | protein : 10 | carbohydrate : 10 | fats : 20 -- (2)
-    ```
-* To delete a food from DietBook: delete INDEX
-    * Example of usage : delete 2
-    * Output : 
-    ```
-    Noted. I've removed this food item:
-      Salty Chicken Rice | calorie : 300 | protein : 20 | carbohydrate : 10 | fats : 50 -- (1)
-    ```
-    * The list after delete is done :
-    ```
-    Here are the food items in DietBook:
-      1. Salty Chicken Rice | calorie : 300 | protein : 20 | carbohydrate : 10 | fats : 50 -- (1)
-      2. Chilli Pepper Crab | calorie : 400 | protein : 10 | carbohydrate : 10 | fats : 20 -- (2)
-    ```
-* To delete all food items from the DietBook: clear
-    * Example of usage : clear 
-    * Output : 
-    ```
-    All previous data has been deleted...
-    DietBook is now empty.
-    ```
-    * Before clearing : 
-    ```
-        Here are the food items in DietBook:
-          1. Salty Chicken Rice | calorie : 300 | protein : 20 | carbohydrate : 10 | fats : 50 -- (1)
-          2. Chilli Pepper Crab | calorie : 400 | protein : 10 | carbohydrate : 10 | fats : 20 -- (2)
-    ```
-    * After clearing : 
-    ```
+#### To view all food in DietBook recorded from a certain date until now: `list yyyy-mm-ddTHH:mm`
+
+Example of usage : list 1066-10-14T08:00
+
+Output :
+```
+Here are the food items recorded in DietBook between 14 Oct 1066 0800 and 29 Oct 2020 1317:
+  1. Salty Chicken Rice | calorie : 300 | protein : 20 | carbohydrate : 10 | fats : 50 -- (1)
+  2. Salty Chicken Rice | calorie : 300 | protein : 20 | carbohydrate : 10 | fats : 50 -- (1)
+  3. Chilli Pepper Crab | calorie : 400 | protein : 10 | carbohydrate : 10 | fats : 20 -- (2)
+```
+#### To delete a food from DietBook: `delete INDEX`
+
+Example of usage : delete 2
+
+Output : 
+```
+Noted. I've removed this food item:
+  Salty Chicken Rice | calorie : 300 | protein : 20 | carbohydrate : 10 | fats : 50 -- (1)
+```
+
+The list after delete is done :
+```
+Here are the food items in DietBook:
+  1. Salty Chicken Rice | calorie : 300 | protein : 20 | carbohydrate : 10 | fats : 50 -- (1)
+  2. Chilli Pepper Crab | calorie : 400 | protein : 10 | carbohydrate : 10 | fats : 20 -- (2)
+```
+
+#### To delete all food items from the DietBook: clear
+
+Example of usage : clear 
+
+Output : 
+```
+All previous data has been deleted...
+DietBook is now empty.
+```
+
+Before clearing : 
+```
+Here are the food items in DietBook:
+  1. Salty Chicken Rice | calorie : 300 | protein : 20 | carbohydrate : 10 | fats : 50 -- (1)
+  2. Chilli Pepper Crab | calorie : 400 | protein : 10 | carbohydrate : 10 | fats : 20 -- (2)
+```
+
+After clearing : 
+```
     DietBook is currently empty.
-    ```
+```
+
 ### Features related to nutritional intake and recommendation
 
 To get recommended calorie intake: recommend
-* Example of usage :
-* Output : 
-    ```
-    Hi Jack!
-    Here is your daily recommended calorie intake: 2607kcal
-    ```
+
+Example of usage :
+
+Output : 
+```
+Hi Jack!
+  Here is your daily recommended calorie intake: 2607kcal
+```
 
 We use the following list as an example, to set up the list we have the following sequence of inputs
 ```
@@ -311,29 +334,36 @@ Here are the food items in DietBook:
   5. Chicken Wing Noodles | calorie : 400 | protein : 30 | carbohydrate : 10 | fats : 10 -- (1)
 ```
 
- * To calculate carbohydrate intake: calculate carbohydrate
-    * Input : calculate carbohydrate
-    * Output : 
- ```
- Total carbohydrate intake: 80g
- ```
-* To calculate carbohydrate intake within a time period: calculate carbohydrate yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
-   * Input : calculate carbohydrate 2020-10-29T08:00 2020-10-29T17:00
-   * Output : 
- ```
- Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1700
+#### To calculate carbohydrate intake: calculate carbohydrate
 
- Total carbohydrate intake: 80g
- ```
+Input : calculate carbohydrate
 
-* To calculate carbohydrate intake from a certain date until now: calculate carbohydrate yyy-mm-ddTHH:mm
-   * Input : calculate carbohydrate 2020-10-29T08:00
-   * Output : 
- ```
+ Output : 
+```
+Total carbohydrate intake: 80g
+```
+
+#### To calculate carbohydrate intake within a time period: calculate carbohydrate yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
+
+Input : calculate carbohydrate 2020-10-29T08:00 2020-10-29T17:00
+
+Output : 
+```
+Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1700
+
+Total carbohydrate intake: 80g
+```
+
+#### To calculate carbohydrate intake from a certain date until now: calculate carbohydrate yyy-mm-ddTHH:mm
+
+Input : calculate carbohydrate 2020-10-29T08:00
+
+Output : 
+```
  Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1340
  
  Total carbohydrate intake: 80g
- ```
+```
 
 Similar Inputs and outputs for the following 
  * To calculate calorie intake: calculate calorie
@@ -349,36 +379,42 @@ Similar Inputs and outputs for the following
  * To calculate fat intake from a certain date until now: calculate fat yyyy-mm-ddTHH:mm
 
  * To calculate all nutritional intake: calculate all
-    * Input : calculate all
-    * OutPut : 
-    ```
-    Total calorie intake: 1900kcal
-    Total carbohydrate intake: 80g
-    Total protein intake: 110g
-    Total fat intake: 90g
-    ```
+
+Input : calculate all
+
+OutPut : 
+```
+Total calorie intake: 1900kcal
+Total carbohydrate intake: 80g
+Total protein intake: 110g
+Total fat intake: 90g
+```
  * To calculate all nutritional intake within a time period: calculate all yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
-     * Input : calculate all 2020-10-29T08:00 2020-10-29T17:00
-     * OutPut : 
-     ```
-     Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1700
+
+Input : calculate all 2020-10-29T08:00 2020-10-29T17:00
+
+OutPut : 
+```
+Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1700
      
-     Total calorie intake: 1900kcal
-     Total carbohydrate intake: 80g
-     Total protein intake: 110g
-     Total fat intake: 90g
-     ```
+Total calorie intake: 1900kcal
+Total carbohydrate intake: 80g
+Total protein intake: 110g
+Total fat intake: 90g
+```
+
  * To calculate all nutritional intake from a certain date until now: calculate all yyyy-mm-ddTHH:mm
-     * Input : calculate all 2020-10-29T08:00
-     * OutPut : 
-     ```
-     Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1345
+
+Input : calculate all 2020-10-29T08:00
+
+OutPut : 
+```
+Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1345
      
-     Total calorie intake: 1900kcal
-     Total carbohydrate intake: 80g
-     Total protein intake: 110g
-     Total fat intake: 90g
-     ```
+Total calorie intake: 1900kcal
+Total carbohydrate intake: 80g
+Total protein intake: 110g
+```
  
 ### Other features
 
@@ -431,26 +467,27 @@ ________________________________________________________________________________
               | exit
 __________________________________________________________________________________________________________________________________________
 ```
- #### To exit DietBook: `exit`
+
+#### To exit DietBook: `exit`
  
- Exits the DietBook.
+Exits the DietBook.
  
- Format: `exit`
+Format: `exit`
  
- Output example:
- ```
+Output example:
+```
  Bye! Hope to see you again soon!
- ```
+```
  
- #### Saving the DietBook: `Coming soon!`
+#### Saving the DietBook: `Coming soon!`
  
- Saves the DietBook data when the exit command have been input. The saved data is in 2 files: UserInfo.txt and FoodList.txt.
+Saves the DietBook data when the exit command have been input. The saved data is in 2 files: UserInfo.txt and FoodList.txt.
  
- Output example:
+Output example:
  
-  ```
-  Your data has been saved successfully.
-  ```
+```
+Your data has been saved successfully.
+```
 
 ## FAQ
 
