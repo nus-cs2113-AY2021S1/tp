@@ -34,6 +34,8 @@ title : Developer Guide
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.1 List of ParseCommand Classes](#parseXYZCommands)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.2 List of Command Classes](#XYZCommands)
 
+<br>
+
 ## <a id="intro">1. Introduction</a>
 
 NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking application for keyboard-inclined users. NotUS allows for users to categorize notes by tagging as well as pinning the more important notes. NotUS is also designed to assist in planning timetables to highlight possible clashes.
@@ -52,11 +54,11 @@ Ensures that you are using the correct JDK version (For this project we are usin
 
 For a more detailed set of instructions, please refer to the [following guide](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/README.md).
 
+<div style="page-break-after: always;"></div>
+
 #### <a id="management"><ins>1.2 Project Management and Development Practices</ins></a>
 
 Please refer to the [Development Practices Guide](DevelopmentPractices.md) for the Software Development practices used in the project. The document serves to inform on the Project Management frameworks used in the project.
-
-<div style="page-break-after: always;"></div>
 
 ## <a id="design">2. Design & Implementation</a>
 
@@ -73,11 +75,11 @@ Diagrams found in our documentation were generated using <a href="https://plantu
 Figure 1 depicts the architecture design of NotUS. The main components of NotUS are:
 
 1. `InterfaceManager`: Manages the user input as well as the message output from application.
-1. `ParserManager`: Creates a suitable parser, based on the command, to make sense of user message. The respective parsers then make sense of the information and calls the respective commands.
-1. `Command`: Executes the necessary tasks, depending on the respective command calls.
 
 <div style="page-break-after: always;"></div>
 
+2\. `ParserManager`: Creates a suitable parser, based on the command, to make sense of user message. The respective parsers then make sense of the information and calls the respective commands.
+3\. `Command`: Executes the necessary tasks, depending on the respective command calls.
 4\. `TagManager`: Stores and manages the creation and deletion of tags and other tag-related functionality.
 5\. `Timetable`: Stores and manages the creation and deletion of events and other event-related functionality.
 6\. `Notebook`: Stores and manages the creation and deletion of notes and other note-related functionality.
@@ -170,6 +172,8 @@ Command used:
 
 The following are some examples of the different type of Command Classes and its flow.
 
+<div style="page-break-after: always;"></div>
+
 **AddNoteCommand**
 
 Command used to add notes into the notebook.
@@ -226,7 +230,7 @@ Command used to pin/unpin notes.
    <br><em>Figure 10</em>
 </p>
 
-<br>
+<div style="page-break-after: always;"></div>
 
 #### <a id="note"><ins>2.5 Notebook</ins></a>
 
