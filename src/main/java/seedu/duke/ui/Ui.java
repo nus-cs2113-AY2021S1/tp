@@ -62,6 +62,7 @@ public class Ui {
         dukePrintCalendarHeading(currentDate, taskList, daysToPrint);
         dukePrintCalendarTasks(taskList);
         showLine();
+        showEmptyLine();
     }
 
     /**
