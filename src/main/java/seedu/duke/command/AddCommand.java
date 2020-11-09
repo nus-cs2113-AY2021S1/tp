@@ -273,7 +273,7 @@ public class AddCommand extends Command {
         time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
         if (moduleCode.isEmpty()) {
             throw new CommandException("exam");
-        } else if (venue.isEmpty()){
+        } else if (venue.isEmpty()) {
             System.out.println("The <venue> cannot be empty!\n");
             throw new CommandException("exam");
         } else {
