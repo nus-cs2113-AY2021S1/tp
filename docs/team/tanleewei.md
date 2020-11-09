@@ -53,7 +53,7 @@ the DeveloperGuide.
 * Meet up regularly in project discussion through zoom sessions and telegram group to update on our progress.
 * Provided suggestions and questions to improve the project during project meetings.
 
-#### Contributions beyond the project team:
+#### Contributions beyond the project team
 I have also provided in other group's project development by reviewing the products during tutorials and PE dry runs.
 
 * [Bug Issue 1](https://github.com/TanLeeWei/ped/issues/4)
