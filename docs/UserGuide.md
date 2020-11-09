@@ -605,7 +605,7 @@ Example of usage:
 
 ## <a id="command">5. Command Summary</a>
 
-| <div style="width:290px;"> Target Action </div> | Example Code(s)
+| Target Action | Example Code(s)
 ------------  | -------------
 View command list | `help`
 Add note | `add-n /t JavaDocs /tag CS2113 /pin true`<br>`add-n /t JavaDocs /pin true`<br>`add-n /t JavaDocs /tag CS2113`<br>`add-n /t JavaDocs`<br><br>`@param refers to param`<br>`@return refers to item to be returned`
@@ -617,7 +617,7 @@ Edit note | `edit-n /i 2 /t JavaDocs Notes`<br>`edit-n /i 2 /ln 1 /c @param refe
 
 <div style="page-break-after: always;"></div>
 
-| <div style="width:290px;"> Target Action </div> | Example Code(s)
+| Target Action | Example Code(s)
 | ------------  | -------------
 Find notes | `find-n Java`
 Pin note | `pin-n /t JavaDocs Notes`<br>`pin-n /i 1`
@@ -631,7 +631,7 @@ Edit event | `edit-e /i 1 /t CS2113 Lecture`<br>`edit-e /i 1 /timing 2020-10-16 
 
 <div style="page-break-after: always;"></div>
 
-| <div style="width:290px;"> Target Action </div> | Example Code(s)
+| Target Action | Example Code(s)
 ------------  | -------------
 Event Manager | `list-e`<br>`list-e /timing 2020-02`
 Remind | `remind-e`
