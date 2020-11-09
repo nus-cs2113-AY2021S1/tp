@@ -580,6 +580,9 @@ public class Ui {
         case "invalid recurring number":
             System.out.println("The recurring number is in the range of 0 - 13 only.");
             break;
+        case "important task":
+            System.out.println("The task has already been marked as done!");
+            break;
         default:
             System.out.println("Unknown Error.");
             break;
