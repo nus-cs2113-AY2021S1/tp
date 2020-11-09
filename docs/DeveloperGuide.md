@@ -490,7 +490,7 @@ when the application launches. On the other hand, exporting of data happens when
 ## 4. Implementation <a name="implementation"></a>
 This section describes some noteworthy details on how certain features are implemented.
 
-### 4.1 Storing data implementation <a name="store-imp"></a>
+### 4.1 Storing data <a name="store-imp"></a>
 
 `Storage` class stores the data following the same logical structure (subject -> topic) of the application to 
 make the stored data more presentable to the user. `Subject` and `Topic` data are stored as nested directories, while 
@@ -597,7 +597,7 @@ deleted since the rest of the method calls only replace or create data.
 > when the application exits, not to mention the (most of the time) needless deletion of all data before each save. 
 > To speed up the process, the implementation can be changed such that data is saved right after each user command that involves data manipulation.
 
-### 4.2 Loading data implementation <a name="load-imp"></a>
+### 4.2 Loading data <a name="load-imp"></a>
 
 For the data stored in json format, they are loaded using the same [Gson](https://github.com/google/gson/blob/master/UserGuide.md)
 library, whereas for the data `tasks.txt`, they are parsed line by line and converted into corresponding `Task` objects.
@@ -616,7 +616,7 @@ order. This is because subjects and topics are stored as directories, and the or
 guaranteed by the Java, so the sorting is just to fix the inconsistency of the order. The rest of the data, on the
 other hand, is guarenteed to have the same order every time they are loaded, so they are not sorted. 
 
-### 4.3 Exporting data implementation <a name="export-imp"></a>
+### 4.3 Exporting data <a name="export-imp"></a>
 
 The user can export all data of the application to the pre-defined `export/data.json` in the same directory where 
 the application runs. An example of the file content is shown below.
@@ -678,13 +678,13 @@ This content format is a result of converting a list of `Subject` objects with p
 > future versions. However, it may not be straightforward as type conversion is needed to convert the data into the
 > right types 
 > (refer to [Gson documentation](https://github.com/google/gson/blob/master/UserGuide.md#TOC-Collections-Limitations) for more details).
-### 4.4 Quiz implementation <a name="quiz-imp"></a>
+### 4.4 Quiz <a name="quiz-imp"></a>
 The abstract quiz class  contains a checkAnswer() method that checks the answer that the user had given with the correct answer of the quiz. 
 If the user enters the correct answer, the existing score is incremented by one. Else, the contents of the flashcards and the incorrect answer provided by
 the user are transferred to the  `incorrectAnswers` list. Once the user finished the quiz, the application would print the 
 questions that the users did not answer correctly, along the the answer that was provided by the user.
 
-#### 4.4.1 Initiating a subject quiz
+#### Initiating a subject quiz
 You can start a subject quiz by entering `quiz NAMEOFSUBJECT`. Subsequently, the application retrieves the QuizSubjectCommand
 after parsing the command and calls for the `startQuiz` method.
 The `startQuiz` method calls for the  `setupQuiz` method checks for the presence of topics or flashcards. Else, the application throws the `NoTopicException` for the former, and the 
@@ -702,7 +702,7 @@ The following diagram shows how you can initiate the quiz for a subject.
 ![first](https://user-images.githubusercontent.com/46095141/98369799-7ec3fa00-2074-11eb-9f01-e656fcebc227.png)
 
 
-#### 4.4.2 Initiating a topic quiz
+#### Initiating a topic quiz
 Provided that you have used the `subject NAMEOFSUBJECT` command to access a subject,you can start a subject quiz by entering `quiz NAMEOFTOPIC`. Subsequently, the application retrieves the QuizTopicCommand
 after parsing the command and calls for the `startQuiz` method. This method class for the `setupQuiz`method, which  throws the `NoFlashcardException` for when the topic does not 
 have any flashcards. The application then returns back to the `startQuiz` method. The implementation of the `startQuiz` method is similar
@@ -715,17 +715,17 @@ The following diagram shows how you can initiate the quiz for a topic.
 >if the user has completed the quiz. If the user stops the quiz without completing it, then the application will only
 >show the score obtained by the user.
 
-### 4.5 Sorting tasks implementation <a name="sort-imp"></a>
+### 4.5 Sorting tasks <a name="sort-imp"></a>
 The application sorts the tasks according to their dates and times. Tasks which are due soon are placed at the front
 while tasks which are due later are placed at the end of the task list. `Todo` tasks are placed at the end of the tasklist
 by assigning the `LocalDateTime` variable to be `LocalDateTimeMax`.
 
-### 4.6 Results implementation <a name="results-imp"></a>
+### 4.6 Results <a name="results-imp"></a>
 The `updateResult` method in the `Result`class updates the result for a given quiz by setting the score and the description.
 There are three categories of descriptions: `Fail` for getting a score which is lesser than half of the maximum score, `Pass`
 for obtaining a score above half of the maximum score and `Excellent` for getting the maximum score in a quiz.
 
-### 4.7 Adding objects implementation <a name="adding-imp"></a>
+### 4.7 Adding objects <a name="adding-imp"></a>
 Each of the add commands have an execute() method. The execute() method for AddSubjectCommand add subjects into the subject list, the execute() method for AddTopicCommand 
 add topics in a subject, while the execute() method for AddTodoCommand, AddDeadlineCommand and AddEventCommand adds tasks in a subject.
 subject.
@@ -752,7 +752,7 @@ implementation and how to access a subject can be found in <a href="#accessing-i
 
 Otherwise, adding topics and tasks follows the same implementation as adding a subject.
 
-### 4.8 Accessing levels implementation <a name="accessing-imp"></a>
+### 4.8 Accessing levels <a name="accessing-imp"></a>
 Each of the access commands have an execute() method and a goToSubject()/goToTopic() method. The AccessSubjectCommand class allows users to 
 access the subject level of a subject specified in the user input from the main level, while the AccessTopicCommand class allows users to access the topic level 
 of a topic specified in the user input from a subject level.
