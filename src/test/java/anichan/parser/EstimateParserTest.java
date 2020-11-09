@@ -72,13 +72,23 @@ public class EstimateParserTest {
     }
 
     @Test
-    void parse_pathToScriptFile_throwsAniException() {
-        assertThrows(AniException.class, () -> estimateParser.parse("/path/to/script.txt"));
+    void parse_tooManyScriptFile_throwsAniException() {
+        assertThrows(AniException.class, () -> estimateParser.parse("script.txt helloworld.txt"));
+        assertThrows(AniException.class, () -> estimateParser.parse("script.txt helloworld"));
     }
 
     @Test
-    void parse_tooManyScriptFile_throwsAniException() {
-        assertThrows(AniException.class, () -> estimateParser.parse("script.txt helloworld.txt"));
+    void parse_invalidFileNameCharacters_throwsAniException() {
+        assertThrows(AniException.class, () -> estimateParser.parse("\\\\/:*ABCD?\\\"<>|0*1.txt"));
+        assertThrows(AniException.class, () -> estimateParser.parse("\\.txt"));
+        assertThrows(AniException.class, () -> estimateParser.parse("/.txt"));
+        assertThrows(AniException.class, () -> estimateParser.parse(":.txt"));
+        assertThrows(AniException.class, () -> estimateParser.parse("*.txt"));
+        assertThrows(AniException.class, () -> estimateParser.parse("?.txt"));
+        assertThrows(AniException.class, () -> estimateParser.parse("\".txt"));
+        assertThrows(AniException.class, () -> estimateParser.parse("<.txt"));
+        assertThrows(AniException.class, () -> estimateParser.parse(">.txt"));
+        assertThrows(AniException.class, () -> estimateParser.parse("|.txt"));
     }
 
     @Test

@@ -14,12 +14,12 @@ import java.util.logging.Logger;
 public class EstimateParser extends CommandParser {
     private static final String WORDS_PER_HOUR_PARAM = "-wph";
     private static final String SCRIPT_FILE_FORMAT = ".txt";
-    private static final String SLASH = "/";
+    private static final String INVALID_FILE_NAME_CHARACTERS_REGEX = "^.*[\\\\/:*?\"<>|].*$";
     private static final String DOT = ".";
     private static final String REGEX_LAST_DOT = "\\.(?=[^.]*$)";
 
     private static final String NO_SCRIPT_FILE_SPECIFIED_ERROR = "No script file specified!";
-    private static final String SPECIFIED_PATH_TO_SCRIPT_FILE_ERROR = "Please specify only the script file name!";
+    private static final String FILE_NAME_CONTAINS_INVALID_CHARACTERS = "File name contains invalid characters!";
     private static final String INVALID_SCRIPT_FILE_FORMAT_ERROR = "Only \".txt\" script files are accepted!";
     private static final String INVALID_PARAMETER_ERROR = "Estimate command only accepts the parameter: -wph.";
     private static final String ESTIMATE_COMMAND_TOO_MUCH_FIELDS_ERROR = "Estimate command" + TOO_MUCH_FIELDS;
@@ -115,8 +115,8 @@ public class EstimateParser extends CommandParser {
      * @throws AniException when the file name is invalid
      */
     private boolean isValidFileName(String fileName) throws AniException {
-        if (fileName.contains(SLASH)) {
-            throw new AniException(SPECIFIED_PATH_TO_SCRIPT_FILE_ERROR);
+        if (fileName.matches(INVALID_FILE_NAME_CHARACTERS_REGEX)) {
+            throw new AniException(FILE_NAME_CONTAINS_INVALID_CHARACTERS);
         }
 
         String[] fileNameSplit = fileName.split(WHITESPACE);
