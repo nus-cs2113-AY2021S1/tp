@@ -75,7 +75,7 @@ public abstract class Event {
      *
      * @return returns a tick if the Event is done, and returns a cross if the Event is not done.
      */
-    public String getStatusIcon() {
+    public String getStatus() {
         return (isDone ? "Done" : "Not Done");
         //return tick or X symbols
     }
@@ -86,7 +86,7 @@ public abstract class Event {
      * @return the common part for Event, Assignment, Class.
      */
     public String toString() {
-        return "[" + getStatusIcon() + "]" + description;
+        return "[" + getStatus() + "]" + description;
     }
 
     /**

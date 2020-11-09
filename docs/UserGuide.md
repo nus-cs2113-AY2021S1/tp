@@ -33,6 +33,7 @@ This gives the application both simplicity and speed, setting it apart from othe
     * [Clear events](#clear-events)
     * [Mark event as done](#mark-event-as-done)
     * [Reminder of deadlines](#reminder-of-deadlines)
+    * [Repeat of events](#repeat-of-events)
 * [FAQs](#FAQ)
 * [Command Summary](#command-summary)
 
@@ -214,7 +215,7 @@ Delete events existing in the list, you can choose to delete all, auto delete or
   Format: `clear`
   
 * Switch the autoClear function on so that events happened one month ago will be automatically cleared
-  Format: `autoClear`
+  Format: `autoClear on` OR `autoClear off`
   Note that this function will clear all events which happened one month ago no matter they are done or not.
   
 * Clear events happened before a certain date
@@ -243,6 +244,15 @@ Format: `reminder`
 Example Output:  
 ![reminder](diagrams/reminder.png)
 
+### Repeat of events
+Repeat the selected event for several weeks, or repeat all classes this week for several weeks.
+
+Format: `repeat INDEX NUMBER_OF_WEEKS` OR `repeat all NUMBER_OF_WEEKS`
+
+Example Output:<br>
+![Repeat1](diagrams/repeat1.png)  
+![Repeat2](diagrams/repeat2.png)
+
 
 ## FAQ
 
@@ -269,7 +279,7 @@ accuracy. If you really cannot find what is wrong, please report it as an issue 
 |Action|Command|Example|
 |------|-------|-------|
 |add|`EVENTTYPE EVENTNAME /t DATE TIME` `/e DATE TIME`(optional personal event, compulsory for class, must not have for assignment) `/l LOCATION` OR `/o LINK` `/p PASSWORD`(optional)|`personalEvent Mom’s Birthday /t 2020-10-26 19:00 /l home`|
-|clear|`clear` OR `autoClear` OR `clearBefore CLEAR_DATE` |`clearBefore 2020-10-22`|
+|clear|`clear` OR `autoClear STATUS` OR `clearBefore CLEAR_DATE` |`clearBefore 2020-10-22`|
 |delete|`delete INDEX`|`delete 1`|
 |done|`done INDEX` |`done 1` |
 |edit|`edit`, then fill in each fields when prompted and press `ENTER` to move on to the next field|`edit 1` `ENTER` `class` `ENTER` `cs2113t` `ENTER` `\l school` `ENTER` `2020-10-26 19:00` `ENTER` `2020-10-26 20:00`|
@@ -277,3 +287,4 @@ accuracy. If you really cannot find what is wrong, please report it as an issue 
 |list|`list`||
 |locate|`locate LOCATION_NAME` OR `locate EVENT_INDEX`|`locate LT1`|
 |sort|`sort SORT_CRITERIA` |`sort description`|
+|repeat|`repeat INDEX NUMBER_OF_WEEKS` OR `repeat all NUMBER_OF_WEEKS`|`repeat 1 3`|
