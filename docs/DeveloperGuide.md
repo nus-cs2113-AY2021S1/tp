@@ -50,7 +50,7 @@ Wan Shi Jie Brendan<br>
 * [5. Documentation](#5-documentation) <br>
 * [6. Testing](#6-testing)<br>
 * [Appendix A. Product scope](#appendix-a-product-scopea-idproduct_scopea)<br>
-* [Appendix B.User stories](#appendix-b-user-storiesa-idstoriesa)<br>
+* [Appendix B. User stories](#appendix-b-user-stories)<br>
 * [Appendix C. Non-functional requirements](#appendix-c-non-functional-requirements)<br>
 * [Appendix D. Instructions for manual testing](#appendix-d-instructions-for-manual-testing)
 
@@ -424,7 +424,7 @@ NUSchedule aims to assist the target audience with:
 * managing all their events in one application (personal or work)
 * easily finding out about the location of their events 
 
-## Appendix B: User stories<a id="stories"></a>
+## Appendix B: User stories
   
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
