@@ -72,6 +72,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Performs input validation on the input before splitting it.
+     *
+     * @param input the input to parse
+     * @return the split input.
+     * @throws AniException if the input is empty
+     */
     public static String[] parseUserInput(String input) throws AniException {
         if (input == null || input.isEmpty()) {
             LOGGER.log(Level.WARNING, "Exception occurred");

@@ -70,6 +70,13 @@ public class BrowseCommand extends Command {
 
     private static final Logger LOGGER = AniLogger.getAniLogger(BrowseCommand.class.getName());
 
+    /**
+     * Creates an instance of BrowseCommand, and will set its options.
+     *
+     * @param sortType this indicates the type of sort needed (if any)
+     * @param order this indicates the order the browse displays in
+     * @param page this indicates the page to print
+     */
     public BrowseCommand(int sortType, int order, int page) {
         setIndexToPrint(ZERO_INDEX);
         setAnimePerPage(ANIME_PER_PAGE);
@@ -194,34 +201,75 @@ public class BrowseCommand extends Command {
         indexToPrint = (page - ZERO_BASE_OFFSET) * getAnimePerPage();
     }
 
+    /**
+     * Gets the currently set page.
+     *
+     * @return the page number
+     */
     public int getPage() {
         return page;
     }
 
+    /**
+     * Sets the sortType.
+     *
+     * @param sortType indicates the type of sort
+     */
     public void setSortType(int sortType) {
         this.sortType = sortType;
     }
 
+    /**
+     * Gets the currently set sort type.
+     *
+     * @return the type of sort
+     */
     public int getSortType() {
         return sortType;
     }
 
+    /**
+     * Sets the order to display.
+     *
+     * @param order indicates the order to display
+     */
     public void setOrder(int order) {
         this.order = order;
     }
 
+    /**
+     * Gets the order to display.
+     *
+     * @return  the order to display
+     */
     public int getOrder() {
         return order;
     }
 
+    /**
+     * Gets the amount of anime to print per page.
+     *
+     * @return the amount of anime to print per page
+     */
     public int getAnimePerPage() {
         return animePerPage;
     }
 
+    /**
+     * Sets the amount of anime to print per page.
+     *
+     * @param animePerPage indicates how many anime to be printed per page
+     */
     public void setAnimePerPage(int animePerPage) {
         this.animePerPage = animePerPage;
     }
 
+
+    /**
+     * Sets the starting index to begin printing.
+     *
+     * @param indexToPrint indicates which index to start at
+     */
     public void setIndexToPrint(int indexToPrint) {
         this.indexToPrint = indexToPrint;
     }
