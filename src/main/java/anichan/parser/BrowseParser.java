@@ -125,7 +125,7 @@ public class BrowseParser extends CommandParser {
 
     /**
      * Checks if it is the first string after split which should be blank.
-     * Possible vector of entering invalid input, example "browse invalidInput -s rating"
+     * Possible vector of entering invalid input, example "browse invalidInput -s rating".
      *
      * @param paramLoops is the current loop.
      * @param param the param string to check.

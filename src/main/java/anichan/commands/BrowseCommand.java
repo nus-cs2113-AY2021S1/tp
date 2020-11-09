@@ -157,6 +157,7 @@ public class BrowseCommand extends Command {
 
     /**
      * Checks if the page supplied exceed the initial starting index.
+     * 
      * @param usableList the list containing Anime objects to be sorted
      * @throws AniException if the page supplied too big to be used.
      */

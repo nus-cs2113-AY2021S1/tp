@@ -60,6 +60,7 @@ public class SearchParser extends CommandParser {
 
     /**
      * Checks for input that are dash only, or input that prepends invalid command before the dash.
+     *
      * @param paramGiven the parmeter to check
      * @throws AniException if any invalid input was detected
      */
