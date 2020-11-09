@@ -475,6 +475,8 @@ This sequence diagram shows how the `getDate` method functions:
 
 ![getDate day month year](./diagrams/getDate-day-month-year.jpg)
 
+`getTime` adds ":00" to the back if only hh or HH is given, then uses `DateTimeParser#timeParser` to parse the time. The parsed time is then returned.
+
 Step 4. Within `CheckCommand#execute()`, the start date, start time, end date and end time are passed to `CheckCommand#verifyValidTimePeriod()`. This method checks that the start date and time of the time period happen before the end date and time, and returns a boolean indicating the validity of the given time period.
 
 Step 5. Within `CheckCommand#execute()`, the start date time and end date time is passed to `CheckCommand#checkEventsInTimeRange()` along with an `EventList` (i.e. Zoom, Personal or Timetable). This method checks each `Event` in the `EventList` to determine if the event occurs within the time period. If the event date time coincides with the time period, the event is added to an ArrayList that stores all the coinciding events in the current `EventList`. This is done for each `EventList`. 
@@ -486,8 +488,6 @@ Step 7. `Ui#printList()` is called to print the list of coinciding events.
 The following sequence diagram shows how the check operation works:
 
 ![Sequence Diagram for CheckCommand](./diagrams/CheckCommand_seq_diagram.jpg)
-
-
 
 <div style="page-break-after: always;"></div>
 
@@ -525,7 +525,7 @@ The following sequence diagram shows how `GoalCommand#execute()` works:
 <div style="page-break-after: always;"></div>
 
 #### Done feature
-(WIP)
+
 The done feature allows users to mark events in Scheduler as done. The format for the done command is `done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
 
 |Argument| Description |
@@ -558,14 +558,14 @@ Step 3. Within `DoneCommand#execute()`, the 4th `Event` is called from the Perso
 
 ![DoneCommand state diagram](./diagrams/DoneCommandStates.jpg)
 
-If the called event is a repeat event and an event date is given, `DoneCommand#scanRepeatList()` is called to check for events matching the event date in the repeat event's `repeatEventList`. When a matching event is found, it is marked as done.
+If the called event is a repeat event and an event date not matching the called event's date is given, `DoneCommand#scanRepeatList()` is called to check for events matching the event date in the repeat event's `repeatEventList`. When a matching event is found, it is marked as done.
 
 Step 4. `Ui#printEventMarkedDoneMessage()` is called to print the event marked as done.
 
 Step 5. `Storage#saveFile()` is called to save the updated event list to the external file.
 
 #### Undone feature
-(WIP)
+
 The undone feature allows users to mark events in Scheduler as undone. The format for the undone command is `undone EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
 
 |Argument| Description |
@@ -590,16 +590,22 @@ Given below is an example usage scenario and how the done feature functions.
 
 Step 1. The user inputs `undone personal; 4` in order to mark the 4th `Personal` event as undone. This input is received by the Ui, which processes it into a string. The string is parsed by the Parser, which removes "undone" from the string and parses the resulting string with `UndoneCommand#parse()`. This returns a `UndoneCommand`.
 
-Step 2. `UndoneCommand#execute()` is called. The event identifier is split to separate the event index from an event date (if event date is given). 
+![Created UndoneCommand](./diagrams/CreatedUndoneCommand.jpg)
 
-Step 3. Within `UndoneCommand#execute()`, the event indicated by the given event index is called from the indicated event list. If an event date is given and the called event is a repeat event, `UndoneCommand#scanRepeatList()` is called to check for events matching the date in the repeat list. When the target event is found, it is marked as undone.
+Step 2. `UndoneCommand#execute()` is called. The `command` string is split at semicolons to separate the event index from an event date (if event date is given). The event index for this UndoneCommand is 4, and it has no event date.
+
+Step 3. Within `UndoneCommand#execute()`, the 4th `Event` is called from the Personal `EventList` and is marked as undone. 
+
+![UndoneCommand state diagram](./diagrams/UndoneCommandStates.jpg)
+
+If the called event is a repeat event and an event date not matching the called event's date is given, `UndoneCommand#scanRepeatList()` is called to check for events matching the event date in the repeat event's `repeatEventList`. When a matching event is found, it is marked as undone.
 
 Step 4. `Ui#printEventMarkedUndoneMessage()` is called to print the event marked as undone.
 
 Step 5. `Storage#saveFile()` is called to save the updated event list to the external file.
 
 #### Delete feature
-(WIP)
+
 The delete feature allows users to delete events from Scheduler. The format for the delete command is `delete EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
 
 |Argument| Description |
@@ -622,11 +628,15 @@ The delete feature is implemented using the `DeleteCommand` class. `DeleteComman
 
 Given below is an example usage scenario and how the done feature functions.
 
-Step 1. The user inputs `delete personal; 4` in order to delete the 4th `Personal` event. This input is received by the Ui, which processes it into a string. The string is parsed by the Parser, which removes "delete" from the string and parses the resulting string with `DeleteCommand#parse()`. This returns a `DeleteCommand`.
+Step 1. The user inputs `delete timetable; 1; 10/10/2020` in order to delete the 1st `Timetable` repeat event that occurs on 10 October 2020. This input is received by the Ui, which processes it into a string. The string is parsed by the Parser, which removes "delete" from the string and parses the resulting string with `DeleteCommand#parse()`. This returns a `DeleteCommand`.
 
-Step 2. `DeleteCommand#execute()` is called. The event identifier is split to separate the event index from an event date (if event date is given). 
+![Created DeleteCommand](./diagrams/CreatedDeleteCommand.jpg)
 
-Step 3. Within `DeleteCommand#execute()`, the event indicated by the given event index is called from the indicated event list. If an event date is given and the called event is a repeat event, `DeleteCommand#scanRepeatList()` is called to check for events matching the date in the repeat list. When the target event is found, it is deleted.
+Step 2. `DeleteCommand#execute()` is called. The `command` string is split at semicolons to separate the event index from an event date (if event date is given). The event index for this DeleteCommand is 1, and the event date is 10/10/2020.
+
+Step 3. Within `DeleteCommand#execute()`, the 1st `Event` is called from the Timetable `EventList`. Since the called event is a repeat event and an event date not matching the called event date was provided, `DeleteCommand#scanRepeatList()` is called to check for events matching the date in the repeat list. When a matching event is found, it is deleted. Since there are no more events in the repeatEventList, the repeat status of the called event is set to null.
+
+![DeleteCommand state diagram](./diagrams/DeleteCommandStates.jpg)
 
 Step 4. `Ui#printEventDeletedMessage()` is called to print the event that was deleted.
 
