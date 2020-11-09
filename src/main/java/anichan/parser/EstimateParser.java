@@ -33,7 +33,7 @@ public class EstimateParser extends CommandParser {
     private int wordsPerHour;
 
     /**
-     * Parses the specified command description.
+     * Parses the string parameters and creates an initialised {@code EstimateCommand} according to the parameters.
      *
      * @param description the specified command description
      * @return initialised {@code EstimateCommand} object
