@@ -179,7 +179,7 @@ Below is the list of commands available.
 ![Parser Model Component](images/diagrams/Sequence_Parser_Create.png)
 
 When the user enters the `create` command, the `prepareCreateCommand(argument)` is called. 
-It will reject the input provided by the user if the `argument` is empty or contain characters such as `/` or ` \| ` or if the argument contains spaces in between. 
+It will reject the input provided by the user if the `argument` is empty or contain characters such as `/` or `|` or if the argument contains `spaces` in between. 
 If the argument is not rejected, it will return and construct a new CreateCommand object with argument as the parameter to be created.  
 
 
@@ -199,7 +199,7 @@ If the argument is not rejected, it will return a new RemoveCommand object with 
 When the user enters the `add` command, the `prepareAddCommand(argument)` is called. 
 It will reject the input provided by the user if the l/[LOCATION_NAME] w/[WATTAGE] t/[APPLIANCE_TYPE] is not in this particular order. 
 If the `argument` entered are in the right order, it will split and reject if any of the parameters entered by the user is empty. 
-Next, it will check to ensure that the [APPLIANCE_NAME] parameter does not contain characters such as `/` or ` \| ` or spaces in between and [WATTAGE] is a valid int number from 1-9999. 
+Next, it will check to ensure that the [APPLIANCE_NAME] parameter does not contain characters such as `/` or `|` or `spaces` in between and [WATTAGE] is a valid int number from 1-9999. 
 If all these conditions are fulfilled, it will return and construct a new AddCommand object with name, location, wattage and type as the parameters to be used to add an appliance to the ApplianceList. 
 
 #### Sequence Diagram for `delete`
