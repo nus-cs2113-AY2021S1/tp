@@ -189,7 +189,7 @@ public class Ui {
         }
         assert (taskPresent == 1 || taskPresent == 0);
         if (taskPresent == 0) {
-            System.out.println(" Sorry! I could not find any task with " + find + " in the list.");
+            System.out.println(" Sorry! I could not find any tasks with " + find + " in the list.");
         }
         System.out.println(DIVIDER);
     }

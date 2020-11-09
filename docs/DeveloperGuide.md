@@ -14,11 +14,13 @@
     * <a href="#store-imp">4.1 Storing data implementation</a> 
     * <a href="#load-imp">4.2 Loading data implementation</a> 
     * <a href="#export-imp">4.3 Exporting data implementation</a>
-    * <a href="#quiz-imp">4.4 Quiz implementation</a>  
-    * <a href="#sort-imp">4.5 Sorting tasks implementation</a>
-    * <a href="#results-imp">4.6 Results implementation</a> 
-    * <a href="#adding-imp">4.7 Adding objects implementation</a> 
-    * <a href="#accessing-imp">4.8 Accessing subjects/topics implementation</a> 
+    * <a href="#parse-imp">4.4 Parsing commands</a>
+    * <a href="#quiz-imp">4.5 Quiz</a>  
+    * <a href="#sort-imp">4.6 Sorting tasks</a>
+    * <a href="#results-imp">4.7 Results feature</a> 
+    * <a href="#adding-imp">4.8 Adding objects</a> 
+    * <a href="#accessing-imp">4.9 Accessing levels</a>
+    * <a href="#listall-imp">4.10 List all command</a> 
 * <a href="#logging">5. Logging</a>
 * <a href="#documentation">6. Documentation</a>
 * <a href="#testing">7. Testing</a>
@@ -415,7 +417,30 @@ The relationship between the classes is shown below.
 
 ### 3.4 Parser Package <a name="parser"></a>
 
+The parser package consists of all the classes that are necessary to parse the user inputs. 
+These classes are responsible to understand what the useer has input, and take the necessary action.   
+
+This package consists of three classes:
+
+-SubjectParser: This class parses all the user inputs at the main level. 
+It deals with all the commands that relate to working with subjects, such as add and delete subjects.
+
+-TopicParser: This class parses all the user inputs at the subject level. 
+It deals with all the commands that relate to working with topics and tasks, 
+such as adding and deleting topics or tasks.
+
+-FlashcardParser: This class parses all the user inputs at the topic level. 
+It deals with all the commands that relate to working with flashcards, such as adding and deleting flashcards.
+
+The classes in this package directly communicate with the command package in order to execute the relevant commands.
+
 ### 3.5 Ui Package <a name="ui"></a>
+
+The ui package deals with handling user input and printing all the system outputs on the command line. 
+It consists of one class, Ui. 
+This class is responsible to print all messages to the command line. 
+The command classes call the methods in this class in order to print anything on the command line.
+This class also deaals with printing any messages when exceptions are encountered.
 
 ### 3.6 Storage Package <a name="storage"></a>
 There are two classes inside this package, both of which are inside `Storage.java`. The following diagram shows the
@@ -630,7 +655,33 @@ This content format is a result of converting a list of `Subject` objects with p
 > future versions. However, it may not be straightforward as type conversion is needed to convert the data into the
 > right types 
 > (refer to [Gson documentation](https://github.com/google/gson/blob/master/UserGuide.md#TOC-Collections-Limitations) for more details).
-### 4.4 Quiz <a name="quiz-imp"></a>
+
+### 4.4 Parsing Commands <a name="parse-imp"></a>
+
+The parser package contains the following three classes which are responsible for making sense of the user input.
+
+####SubjectParser
+
+The SubjectParser class parses the user inputs at the main level.
+The diagram below shows how the SubjectParser class is implemented.
+
+![SUbjectParser](http://www.plantuml.com/plantuml/svg/VTBBIiD05CRn_Jp5q5LRY0zGfBHumOKBjKympPngv2HfvoAjJ-yO8npbEt4JoF_B-AFC9YONKcxP69TJx-hKVBX4jkzCjTxb_JlLwSc5I65r_7xCToaqtQizPEQRlcrTvnV6E4xopHMTikCud-qlD5iOM_x-76MhjRqxDsbyENwrN9hVVmygEEMwgj3GqzGnXZWIn78JawPzB4tLWegrO2Yqg4vhhMEU4c-PLJGUOBVSOZeUw7ew7_kGrBinL9KEEvQBAOIF7RhhVsRdlGRUUgzhPPoWZZli114ZFJ4bqfotGrMfi6Ejc48mxjXyQ3glYUzBKxsWOgqO0Ykg-jLz8pvgseVIL2seM2k6G8ig_btZpqYzj7LDCQfSs35OJ24PTum-vUPJ4p-Nfdf1nLen15PKiJHGp9oYXdqPiig57OF5599n7zKOj-j3kAWsb35DBA5CEuZAS_XS7hYoNMOscn9po-OB)
+<sub>***Figure 4.4.1** UML sequence diagram for subject parser*</sub>
+
+####FlashcardParser
+
+The FlashcardParser class parses the user inputs at the topic level.
+The diagram below shows how the FlashcardParser class is implemented.
+
+![FlashcardParser](http://www.plantuml.com/plantuml/svg/ZPBTIiD048NlzocMNhM5-015Iei_UE65q2SOCgCDJ9AwFw9lxo1I9CmUpCt2dhCVtu4SSg5KwgWXK2qpzMNue29ndaAtVrJAvvuIlr3AadONEsHzAccOtk9hLRsRnv4ctjXZBNzlRkIzakRrIZw7ijg4QD-25hjzVB3qUltxTBiDLmilTrctNUUNMJ0iY6PnpNN8mFpPKc3kvC3SBRDW63QFf8hjZwfeW5_16xm-YuFqblIB5SJS7d1aHlBB68bxNHQ8yeLPL8gqdUz_SgJjDO1veyw2WUZNEOjUsWkUB0N-JWxitJAB2rkOj_nESqfVID0f04E_pV8FdDXfY2Ls5wUg6WuMrr6_0G00)
+<sub>***Figure 4.4.2** UML sequence diagram for flashcard parser*</sub>
+
+####TopicParser
+
+The TopicParser class parses the user inputs at the topic level.
+This class is implemented in a similar manner as the FlashcardParser and SubjectParser classes.
+
+### 4.5 Quiz <a name="quiz-imp"></a>
 The abstract quiz class  contains a checkAnswer() method that checks the answer that the user had given with the correct answer of the quiz. 
 If the user enters the correct answer, the existing score is incremented by one. Else, the contents of the flashcards and the incorrect answer provided by
 the user are transferred to the  `incorrectAnswers` list. Once the user finished the quiz, the application would print the 
@@ -654,7 +705,7 @@ The following diagram shows how you can initiate the quiz for the Maths Subject.
 
 ![first](https://user-images.githubusercontent.com/46095141/98517456-e5c9f480-22a8-11eb-98ad-87c08752e1b1.png)
 
- <sub>***Figure 4.4.1** UML sequence diagram for subject quiz*</sub>
+ <sub>***Figure 4.5.1** UML sequence diagram for subject quiz*</sub>
 
 #### Initiating a topic quiz
 Provided that you have used the `subject NAMEOFSUBJECT` command to access a subject,you can start a subject quiz by entering `quiz NAMEOFTOPIC`. Subsequently, the application retrieves the QuizTopicCommand
@@ -666,38 +717,41 @@ The following diagram shows how you can initiate the quiz for a topic speed unde
 
 ![topic](https://user-images.githubusercontent.com/46095141/98517458-e793b800-22a8-11eb-81c9-50581c178043.png)
 
- <sub>***Figure 4.4.2** UML sequence diagram for topic quiz*</sub>
+ <sub>***Figure 4.5.2** UML sequence diagram for topic quiz*</sub>
 
 > 📝️ **_NOTE:_** For both the subject quiz and the topic quiz, the application only prints out the incorrectAnswer
 >if the user has completed the quiz. If the user stops the quiz without completing it, then the application will only
 >show the score obtained by the user. 
 
-### 4.5 Sorting tasks <a name="sort-imp"></a>
+### 4.6 Sorting tasks <a name="sort-imp"></a>
 The application sorts the tasks according to their dates and times. Tasks which are due soon are placed at the front
 while tasks which are due later are placed at the end of the task list. `Todo` tasks are placed at the end of the tasklist.
 Their `LocalDateTime` variables are assigned the  `LocalDateTimeMax` value. This is to ensure that the sorting can be done
 for all tasks. 
 
-### 4.6 Implementation of Results feature <a name="results-imp"></a>
+### 4.7 Results feature<a name="results-imp"></a>
+
 ### Updating results
+
 The `updateResult` method in the `Result`class updates the result for a given quiz by setting the score and the description.
 There are three categories of descriptions: `Fail` for getting a score which is lesser than half of the maximum score, `Pass`
 for obtaining a score above half of the maximum score and `Excellent` for getting the maximum score in a quiz.
 
-### 4.6.1 Printing out the results for a subject
+### 4.7.1 Printing out the results for a subject
  For the results of a subject , the `printSubjectResults` method in the Ui class checks if there are any results of previous subject quizzes for that particular subject. 
  
  ![sr](https://user-images.githubusercontent.com/46095141/98535180-a3141680-22c0-11eb-9e75-519ea76684bd.png)
 <sub>***Figure 4.6.1** UML sequence diagram for requesting results of the Maths subject</sub>
 
-### 4.6.2 Printing out the results for a topic
+### 4.7.2 Printing out the results for a topic
 For the results of a topic, the `printTopicResults` method checks if the topic has any any results from previous topic quizzes.
 The user has to access the particular subject level to use this command.
 
 ![tr](https://user-images.githubusercontent.com/46095141/98535184-a3acad00-22c0-11eb-94fd-d911a346af11.png)
 <sub>***Figure 4.6.2** UML sequence diagram for requesting results of the Speed topic of the Maths subject*</sub>
 
-### 4.7 Adding objects <a name="adding-imp"></a>
+### 4.8 Adding objects <a name="adding-imp"></a>
+
 Each of the add commands have an execute() method. The execute() method for AddSubjectCommand add subjects into the subject list, the execute() method for AddTopicCommand 
 add topics in a subject, while the execute() method for AddTodoCommand, AddDeadlineCommand and AddEventCommand adds tasks in a subject.
 subject.
@@ -714,7 +768,7 @@ and add that new `Subject` created into the `SubjectList` that was created durin
 A Sequence diagram of adding a `Subject` Maths is shown below.
 ![AddSubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/98213500-1c89cd00-1f80-11eb-9b0c-9da37446b530.png)
 
-<sub>***Figure 4.7.1** UML sequence diagram for adding a subject*</sub>
+<sub>***Figure 4.8.1** UML sequence diagram for adding a subject*</sub>
 
 #### Adding a topic/task
 you can add a `Topic` by entering `add [TOPIC_NAME]`. Additionally, you can add a `Todo` task by entering `todo [DESCRIPTION]`, add a `Deadline` 
@@ -724,7 +778,7 @@ implementation and how to access a subject can be found in <a href="#accessing-i
 
 Otherwise, adding topics and tasks follows the same implementation as adding a subject.
 
-### 4.8 Accessing levels <a name="accessing-imp"></a>
+### 4.9 Accessing levels <a name="accessing-imp"></a>
 Each of the access commands have an execute() method and a goToSubject()/goToTopic() method. The AccessSubjectCommand class allows users to 
 access the subject level of a subject specified in the user input from the main level, while the AccessTopicCommand class allows users to access the topic level 
 of a topic specified in the user input from a subject level.
@@ -742,18 +796,15 @@ have a loop that reads user inputs and parse these inputs to create new `TopicCo
 The sequence diagram of accessing a `Subject` Maths is shown below.
 ![AccessSubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/98199431-171f8900-1f66-11eb-9dfe-fc263ccfe15f.png)
 
-<sub>***Figure 4.8.1** UML sequence diagram for accessing a subject*</sub>
+<sub>***Figure 4.9.1** UML sequence diagram for accessing a subject*</sub>
 
 #### Accessing a Topic <a name="accessing-topic"></a>
 You can access a topic by entering `topic [TOPIC_NAME]`. The topic needs to be a topic that already exists in the list, and you can 
 add the `Topic` into the `TopicList` of a `Subject` by using the adding a topic feature, elaborated further in <a href="#adding-imp">4.7 Adding objects implementation</a>.
 
-The sequence diagram of accessing a `Topic` Geometry is shown below.
-![Access Topic](https://user-images.githubusercontent.com/50734854/98531635-94773080-22bb-11eb-8ebd-36c94aeb4438.png)
 
-<sub>***Figure 4.8.2** UML sequence diagram for accessing a topic*</sub>
+### 4.10 `list all` command <a name="listall-imp"> </a>
 
-### 4.9 `list all` command <a name="list-all-imp"></a>
 While the syntax of the `list all` command is the same on the main, subject and topic levels,
 there are 3 separate ListAll___Commands for each level. Although all 3 commands classes call `Ui.printAll(subjects,activeSubject,activeTopic)`,
 the 3 classes are kept separate so that `printAll()` can recognise what object the user is accessing.

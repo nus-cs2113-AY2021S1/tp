@@ -178,9 +178,9 @@ Here's a list of all items:
 ├─ 2. CS2101
 │  │  Topics
 │  ├─ 1. Oral Presentation
-│  ├─ 2. Project Demo
+│  ├─ 2. Product Demo
 │  │  Tasks
-│  └─ 1. [E][✓] Project Demo (at: 2:00 PM 5 Nov 2020)
+│  └─ 1. [E][✓] Product Demo (at: 2:00 PM 5 Nov 2020)
 └─ 3. CS2113T
    │  Topics
    ├─ 1. Class Diagram
@@ -466,10 +466,10 @@ Sample output:
 ____________________________________________________________
 Here are the topic(s) under CS2101: 
 1. Oral Presentation
-2. Project Demo
+2. Product Demo
 ____________________________________________________________
 Here are the tasks(s) under CS2101: 
-1. [E][✘] Project Demo (at: 2:00 PM 5 Nov 2020)
+1. [E][✘] Product Demo (at: 2:00 PM 5 Nov 2020)
 ____________________________________________________________
 ```
 #### 3.2.3 Listing all items: `list all`
@@ -500,9 +500,9 @@ Here's a list of all items:
 ├─ 2. CS2101 (You are currently here)
 │  │  Topics
 │  ├─ 1. Oral Presentation
-│  ├─ 2. Project Demo
+│  ├─ 2. Product Demo
 │  │  Tasks
-│  └─ 1. [E][✓] Project Demo (at: 2:00 PM 5 Nov 2020)
+│  └─ 1. [E][✓] Product Demo (at: 2:00 PM 5 Nov 2020)
 └─ 3. CS2113T
    │  Topics
    ├─ 1. Class Diagram
@@ -520,19 +520,19 @@ Format: `add [TOPIC_NAME]`
 - The application will print the title of the topic you have added into the topic list, as well as the amount of topics you 
   have in the topic list on the command line.
 
-> ⚠️ **_WARNING:_** `[TOPIC_NAME]` is case-sensitive. `project pitch` and `PROJECT PITCH` will be registered as 2 different topics. 
->Adding flashcards in `project pitch` will not add the same flashcards in `PROJECT PITCH`.
+> ⚠️ **_WARNING:_** `[TOPIC_NAME]` is case-sensitive. `Product pitch` and `PRODUCT PITCH` will be registered as 2 different topics. 
+>Adding flashcards in `product pitch` will not add the same flashcards in `PRODUCT PITCH`.
 
 Example of usage: 
 ```
-add Project Pitch
+add Product Pitch
 ```
 
 Sample output:
 ```
 ____________________________________________________________
 Got it. I've added this topic:
-  Project Pitch
+  Product Pitch
 Now you have 3 topics in the list.
 ____________________________________________________________
 ```
@@ -565,7 +565,7 @@ Sample output:
 ```
 ____________________________________________________________
  Noted. I've removed this topic:
-   Project Pitch
+   Product Pitch
  Now you have 2 topics in the list.
 ____________________________________________________________
 ```
@@ -579,9 +579,9 @@ Format: `find [QUERY]`
 - searches all topics and tasks in the current subject with `[QUERY]` in its name and prints a list of them.
 - The application will print a list of topics and tasks with titles that contain the query.
 - The `find` command will only search the name of topics and tasks on this level.
-- Partial words will be matched. e.g. `Pro` will find `Project`.
+- Partial words will be matched. e.g. `Pro` will find `Product`.
 
-> ⚠️ **_WARNING:_** `[QUERY]` is case-sensitive. e.g. `project` will not find a topic or task with the name `PROJECT`.
+> ⚠️ **_WARNING:_** `[QUERY]` is case-sensitive. e.g. `product` will not find a topic or task with the name `PRODUCT`.
 
 Example of usage: 
 ```
@@ -592,11 +592,11 @@ Sample output:
 ```
 ____________________________________________________________
  Here are the matching topic(s) in your list:
-Project Demo
+Product Demo
 
 ____________________________________________________________
  Here are the matching task(s) in your list:
-[E][✓] Project Demo (at: 2:00 PM 5 Nov 2020)
+[E][✓] Product Demo (at: 2:00 PM 5 Nov 2020)
 ____________________________________________________________
 ```
 
@@ -608,10 +608,9 @@ Format: `topic [TOPIC_NAME]`
 - Access a pre-existing topic with a name of `[TOPIC_NAME]`.
 - Use this command if you want to access the topic level of a topic in the topic list.
 - The application will print the topic level of the subject specified in `[TOPIC_NAME]` on the command line.
-- This command is case-sensitive. e.g. `topic project` will not allow you to access a topic with the name `PROJECT`.
 - For more information on topic level commands, refer to <a href="#topic-level">3.3 Topic Level Features</a>
 
-> ⚠️ **_WARNING:_** `[TOPIC_NAME]` is case-sensitive. e.g. `topic project` will not access a topic with the name `PROJECT`.
+> ⚠️ **_WARNING:_** `[TOPIC_NAME]` is case-sensitive. e.g. `topic product` will not access a topic with the name `PRODUCT`.
 
 Example of usage:
 ```
@@ -900,9 +899,9 @@ Here's a list of all items:
 ├─ 2. CS2101
 │  │  Topics
 │  ├─ 1. Oral Presentation
-│  ├─ 2. Project Demo
+│  ├─ 2. Product Demo
 │  │  Tasks
-│  ├─ 1. [E][✓] Project Demo (at: 2:00 PM 5 Nov 2020)
+│  ├─ 1. [E][✓] Product Demo (at: 2:00 PM 5 Nov 2020)
 │  └─ 2. [T][✘] look up on what is active listening
 └─ 3. CS2113T
    │  Topics

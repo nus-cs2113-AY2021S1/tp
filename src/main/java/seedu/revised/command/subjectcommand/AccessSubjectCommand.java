@@ -82,7 +82,8 @@ public class AccessSubjectCommand extends SubjectCommand {
                     ((TaskCommand) c).execute(taskList);
                 }
                 isSubjectExit = c.isExit();
-
+            } catch (StringIndexOutOfBoundsException e) {
+                Ui.printErrorMsg(Ui.DEADLINE_EXCEPTION);
             } catch (NumberFormatException e) {
                 Ui.printErrorMsg(Ui.TOPIC_INDEX_FORMAT_EXCEPTION);
             } catch (IndexOutOfBoundsException e) {

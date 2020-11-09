@@ -33,14 +33,6 @@ public class Topic {
         flashcards.add(flashcard);
     }
 
-    public boolean removeFlashcard(Flashcard flashcard) {
-        return flashcards.remove(flashcard);
-    }
-
-    public Flashcard removeFlashcard(int index) {
-        return flashcards.remove(index);
-    }
-
     public List<Flashcard> getFlashcards() {
         return this.flashcards;
     }
