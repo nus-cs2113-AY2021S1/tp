@@ -25,7 +25,7 @@ for more details.
    * What it does: It checks the validity of the module code entered by the user against the NUSMod API.
    If valid, program will proceed as per normal. Else, it will prompt the user with an error message.
    * Justification: As a task scheduling application, it is crucial for the application to provide some sanity check to ensure the 
-   user entered the correct information, so as to present the user with accurate information.
+   user entered the correct information.
    * Highlights: This feature is functional with or without the Internet.
   
 ### Enhancement to existing features:
