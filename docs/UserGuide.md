@@ -513,7 +513,7 @@ the navigation functions.
 
 #### Examples of usage
 On start-up, you will receive a prompt of your most searched bus stop. This personalises your application and gives you
-the memory jolt of what to key in.
+the memory jolt of what to key in. <br>
 <img src="UG_Figures/displayfreq.png" alt="Search Freq Prompt" width=400><br>
 <!-- @@author -->
 
