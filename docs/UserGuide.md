@@ -551,7 +551,8 @@ Command | Format | Example
 /help | `/help` | `/help`
 /reset | `/reset` | `/reset`
 
-## 6. Glossary
+<!-- @@author wamikamalik -->
+## 6. Glossary - Wamika
 This section defines key technical terms we have used throughout the user guide.
 1. Case-sensitive: Capital and lower case letters are treated differently.
 2. Command Line Interface(CLI): Processes commands to a computer program in the form of lines of text.
@@ -560,4 +561,5 @@ This section defines key technical terms we have used throughout the user guide.
 5. Direct bus: Commute between two locations does not require changing buses.
 6. Execute: Run the command to display the output.
 7. Similarity check: Check for possible spelling errors.
+<!-- @@author -->
 
