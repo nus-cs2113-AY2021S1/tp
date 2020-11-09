@@ -142,7 +142,8 @@ Since the program only searches for the idea and genre tag, it is lenient when r
 
 #### Usage and storage
 The diagram above is describes the storage of the Bunny ideas in Fluffle. 
-![Bunny Manager Component](graphics/diagrams/Bunny_manager_component.PNG)
+
+![Bunny Manager Component](graphics/diagrams/Bunny_manager_component.png)
 <p align = "center"><i><b>Figure 3: Bunny manager architecture</b></i></p>
 
 The BunnySaver class handles the loading of saved `Bunny` objects from the `bunny.txt` file into the `bunniesList`. The 
@@ -218,7 +219,8 @@ When the user keys in the command `remind DATE`, where `DATE` is the date the us
 ### Word Features
 Fluffle contains a word bank that stores words which are keyed in by the user, together with its meaning. The diagram
 below shows the implementation of the words, as well as the word list classes in the program.
-![UML Words class diagram](graphics/diagrams/Words_UML Diagram.png)
+
+![UML Words class diagram](graphics/diagrams/Words_UML_Diagram.png)
 <p align = "center"><i><b>Figure 5: Words UML Class Diagram</b></i></p>
 
 `WordsList` is an ArrayList which stores the objects of `Words` class. Each object has the following attributes:
@@ -340,7 +342,14 @@ As shown in Figure 10, both the NamesDB class and the Names class will create th
 
 ## Testing
 
-Put methods of testing here !!! JUnit test, Unit testing, integration testing, ...
+If you are using IntelliJ IDEA with Gradle, there are two ways to run tests for Fluffle.
+
+### Using JUnit test
+- To run all test, in IntelliJ, right click on `test/java/seedu.duke` and choose `Run Tests in 'seedu.duke'`
+- To run test on a separate package/class/method, right click on that package/class/method in `test` directory and choose `Run 'NAME'`.
+
+### Using Gradle
+- To run all test, open the terminal in IntelliJ IDEA, move to the root folder of the project and key in `gradlew clean test` for Windows (`./gradlew clean test` for Mac OS/Linux).
 
 ## Appendices
 
