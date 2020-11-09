@@ -7,22 +7,22 @@ import exception.CommandException;
 import java.util.ArrayList;
 
 public class CheatSheetListStub extends CheatSheetList {
-    private ArrayList<CheatSheet> cheatSheetsStub = new ArrayList<>();
+    private ArrayList<CheatSheet> cheatSheets = new ArrayList<>();
 
     @Override
     public void add(CheatSheet cheatSheet) {
-        cheatSheetsStub.add(cheatSheet);
+        cheatSheets.add(cheatSheet);
     }
 
     @Override
     public void clear() {
-        cheatSheetsStub.clear();
+        cheatSheets.clear();
     }
 
     @Override
     public void remove(String name) throws CommandException {
         int index = 0;
-        for (CheatSheet cs : cheatSheetsStub) {
+        for (CheatSheet cs : cheatSheets) {
             if (cs.getName().equals(name)) {
                 break;
             }
@@ -38,14 +38,41 @@ public class CheatSheetListStub extends CheatSheetList {
     @Override
     public void remove(int index) throws CommandException {
         try {
-            cheatSheetsStub.remove(index);
+            cheatSheets.remove(index);
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException("Please enter a valid index");
         }
     }
 
+    public CheatSheet get(int index) throws CommandException {
+        CheatSheet cheatSheet;
+        try {
+            cheatSheet = cheatSheets.get(index - 1);
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException("Please enter a valid index");
+        }
+        return cheatSheet;
+    }
+
+    public CheatSheet get(String name) throws CommandException {
+        int index = 0;
+        for (CheatSheet cs : cheatSheets) {
+            if (cs.getName().equals(name)) {
+                break;
+            }
+            index++;
+        }
+        CheatSheet cheatSheet;
+        try {
+            cheatSheet = get(index + 1);
+        } catch (CommandException e) {
+            throw new CommandException("Please enter a valid name");
+        }
+        return cheatSheet;
+    }
+
     @Override
     public int getSize() {
-        return cheatSheetsStub.size();
+        return cheatSheets.size();
     }
 }

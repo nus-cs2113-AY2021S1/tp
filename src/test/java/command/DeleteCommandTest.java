@@ -9,7 +9,8 @@ import parser.CommandFlag;
 import ui.Printer;
 
 
-import org.junit.jupiter.api.Test;F
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.fail;
 import java.util.LinkedHashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,7 +25,7 @@ public class DeleteCommandTest {
     public DeleteCommandTest() {
         printer = new Printer();
         cheatSheetList = new CheatSheetListStub();
-        fileDestroyer = new DataFileDestroyerStub();
+        fileDestroyer = new DataFileDestroyerStub(cheatSheetList);
         ui = new UiStub();
 
         command = new DeleteCommand(printer, cheatSheetList, fileDestroyer, ui);
@@ -56,13 +57,70 @@ public class DeleteCommandTest {
 
     @Test
     public void delete_matchedNotConfirmed_notDeleted(){
+        cheatSheetList.clear();
+        cheatSheetList.add(new CheatSheet("A", "1", "2"));
+        cheatSheetList.add(new CheatSheet("B", "2", "4"));
+        cheatSheetList.add(new CheatSheet("C", "3", "6"));
+        cheatSheetList.add(new CheatSheet("D", "4", "8"));
+        assertEquals(4, cheatSheetList.getSize());
+
+        ui.clearUserInput();
+        ui.pushUserInput("ssasasas");
+
+        LinkedHashMap<CommandFlag, String> flagsToDescriptions = new LinkedHashMap<>();
+        flagsToDescriptions.put(CommandFlag.NAME, "A");
+        command.setFlagsToDescriptionsMap(flagsToDescriptions);
+
+        try {
+            command.execute();
+        } catch (CommandException e) {
+            fail(e.getMessage());
+        }
+        assertEquals(4, cheatSheetList.getSize());
     }
 
     @Test
-    public void delete_noneMatchedConfirm_continue() {
+    public void delete_outOfBoundIndexConfirm_error() {
+        cheatSheetList.clear();
+        cheatSheetList.add(new CheatSheet("A", "1", "2"));
+        cheatSheetList.add(new CheatSheet("B", "2", "4"));
+
+        ui.clearUserInput();
+        ui.pushUserInput("YES");
+
+        LinkedHashMap<CommandFlag, String> flagsToDescriptions = new LinkedHashMap<>();
+        flagsToDescriptions.put(CommandFlag.INDEX, "3");
+        command.setFlagsToDescriptionsMap(flagsToDescriptions);
+
+        try {
+            command.execute();
+        } catch (CommandException e) {
+            assertEquals("Please enter a valid index", e.getMessage());
+        }
+        fail("Did not throw error when deleting out of bounds");
     }
 
     @Test
     public void delete_twoMatchedConfirm_continue() {
+        cheatSheetList.clear();
+        cheatSheetList.add(new CheatSheet("A", "1", "2"));
+        cheatSheetList.add(new CheatSheet("B", "2", "4"));
+        cheatSheetList.add(new CheatSheet("C", "3", "6"));
+        cheatSheetList.add(new CheatSheet("D", "4", "8"));
+        assertEquals(4, cheatSheetList.getSize());
+
+        ui.clearUserInput();
+        ui.pushUserInput("ssasasas");
+
+        LinkedHashMap<CommandFlag, String> flagsToDescriptions = new LinkedHashMap<>();
+        flagsToDescriptions.put(CommandFlag.NAME, "A");
+        command.setFlagsToDescriptionsMap(flagsToDescriptions);
+
+        try {
+            command.execute();
+        } catch (CommandException e) {
+            fail(e.getMessage());
+        }
+        assertEquals(4, cheatSheetList.getSize());
     }
 }

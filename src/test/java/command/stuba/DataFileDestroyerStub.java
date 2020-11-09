@@ -1,12 +1,14 @@
 package command.stuba;
 
+import cheatsheet.CheatSheetList;
+import exception.CommandException;
 import storage.DataFileDestroyer;
 
 public class DataFileDestroyerStub extends DataFileDestroyer {
     boolean isDataDestroyed;
 
-    public DataFileDestroyerStub() {
-       super(null, null);
+    public DataFileDestroyerStub(CheatSheetList list) {
+       super(null, list);
        isDataDestroyed = false;
     }
 
@@ -15,7 +17,12 @@ public class DataFileDestroyerStub extends DataFileDestroyer {
     }
 
     @Override
-    public void executeFunction() {
+    public void executeFunction(String name) {
+//        try {
+//            cheatSheetList.remove(name);
+//        } catch (CommandException e) {
+//            isDataDestroyed = false;
+//        }
         isDataDestroyed = true;
     }
 }

@@ -22,7 +22,7 @@ class ClearCommandTest {
     public ClearCommandTest() {
         printer = new Printer();
         cheatSheetList = new CheatSheetListStub();
-        fileDestroyer = new DataFileDestroyerStub();
+        fileDestroyer = new DataFileDestroyerStub(cheatSheetList);
         fileReader = new DataFileReaderStub();
         ui = new UiStub();
 
