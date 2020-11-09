@@ -101,6 +101,8 @@ There are 18 features available in Nav@NUS. The following are instructions for u
 >
 >1. Words in **bold** are parameters to be provided by the user. (e.g. **location_1**)
 >2. Parameters and commands to be entered by the user are not case-sensitive.
+>3. Location names must be in full for commands that require bus stop location(s).
+
 ### 3.1. Bus Features
 This section provides the instruction for all features categorised under the main feature of navigation by bus.
 
