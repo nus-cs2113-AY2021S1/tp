@@ -17,7 +17,7 @@ public class BookmarkTest {
     private String authorName = "JK Rowling";
 
     @BeforeEach
-    public void SetUp() {
+    public void setUp() {
         author = new Author(authorName);
         book = new Book(author, bookName);
         bookmark = new Bookmark(book, pageNum);
@@ -25,6 +25,6 @@ public class BookmarkTest {
 
     @Test
     public void toStringTest() {
-        assertEquals("\"Harry Potter\" at page: 66", bookmark.toString() );
+        assertEquals("\"Harry Potter\" at page: 66", bookmark.toString());
     }
 }
