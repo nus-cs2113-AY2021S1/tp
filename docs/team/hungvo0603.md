@@ -18,14 +18,8 @@ The latest release of Fluffle can be accessed from **[here](https://github.com/A
 
 #### 2.2.1 Main features enhancements
 - Implemented storage for words by `WordsLoader` and `WordsSaver` classes. [#204](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/204)
-    - Functionality: This helps store the words in the user's customized words list into the hard drive location and load them whenever the user enters the program. The word types that the program can save and load are Noun, Verb and Adjective.
-    - Justification: This is necessary because when an expert writer uses the application frequently, their words list increases in size. In order to help him manage the words list better, local storage was implemented.
 - Implemented `filter words` and `list filter words` commands. [#133](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/133) [#174](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/174)
-    - Functionality: This helps the user to get the words as they wish. Words can be filtered based on their types or some of their substrings.
-    - Justification: This feature helps creative writers to get the words they need in their writings, or simply helps them brainstorm for new ideas.
 - Implemented `remind` command for writings. [#214](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/214)
-    - Functionality: This helps absent minded writers to stick to a piece of their writing by reminding them which writings they should continue on a specific date.
-    - Justification: Some writers end up writing a part of their whole story and totally forget about it later on. This helps encourage the writers to develop their short pieces to a full-length story and continuously practice their creative writing skills. 
 
 #### 2.2.2 Miscellaneous enhancements
 - Fixed print format for `noun`, `verb` and `adjective` commands. [#293](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/293)
