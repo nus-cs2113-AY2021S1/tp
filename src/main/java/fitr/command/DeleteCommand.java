@@ -20,6 +20,7 @@ import static fitr.common.Commands.COMMAND_FOOD;
 import static fitr.common.Commands.COMMAND_GOAL;
 import static fitr.common.Messages.ERROR_INDEX_DOES_NOT_EXIST;
 import static fitr.common.Messages.ERROR_IN_FILE;
+import static fitr.common.Messages.SPLIT_SPACE;
 
 public class DeleteCommand extends Command {
     public DeleteCommand(String command) {
@@ -31,7 +32,7 @@ public class DeleteCommand extends Command {
         try {
 
             String type = command.split(" ")[0];
-            if (command.split(" ").length != 3 && !type.equals(COMMAND_GOAL)) {
+            if (command.split(SPLIT_SPACE).length != 3 && !type.equals(COMMAND_GOAL)) {
                 throw new FitrException();
             }
             switch (type) {
@@ -90,7 +91,7 @@ public class DeleteCommand extends Command {
                 break;
             }
             case COMMAND_GOAL: {
-                int deletionIndex = Integer.parseInt(command.split(" ", 2)[1]);
+                int deletionIndex = Integer.parseInt(command.split(SPLIT_SPACE, 2)[1]);
                 Ui.printCustomMessage("The following has been deleted from the list of goals: "
                         + listManager.getGoal(deletionIndex - 1).getDescription());
                 listManager.deleteGoal(deletionIndex - 1);

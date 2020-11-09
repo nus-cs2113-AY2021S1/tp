@@ -27,6 +27,7 @@ import static fitr.common.Messages.PHRASE_SMART_EXERCISE_GOAL;
 import static fitr.common.Messages.PHRASE_SMART_FOOD_GOAL;
 import static fitr.common.Messages.SEPARATOR_LINE;
 import static fitr.common.Messages.SPACE_STRING;
+import static fitr.common.Messages.SPLIT_SPACE;
 import static fitr.common.Messages.SYMBOL_EXERCISE;
 import static fitr.common.Messages.SYMBOL_FOOD;
 
@@ -42,13 +43,13 @@ public class AddGoalCommand extends Command {
     @Override
     public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
         try {
-            String goalType = command.split(SPACE_STRING, 2)[0].trim().toLowerCase();
+            String goalType = command.split(SPLIT_SPACE, 2)[0].trim().toLowerCase();
             Goal newGoal = null;
             switch (goalType) {
             //Food goal
             case COMMAND_FOOD:
                 try {
-                    command = command.split(SPACE_STRING, 2)[1].trim();
+                    command = command.split(SPLIT_SPACE, 2)[1].trim();
                     newGoal = formatGoal(getCurrentDate(), SYMBOL_FOOD, command);
                     listManager.addGoal(newGoal);
                     Ui.printCustomMessage(ECHO_ADDED_GOAL + newGoal.getGoalType() + CLOSE_SQUARE_BRACKET
@@ -64,7 +65,7 @@ public class AddGoalCommand extends Command {
             //Exercise goal
             case COMMAND_EXERCISE:
                 try {
-                    command = command.split(SPACE_STRING, 2)[1].trim();
+                    command = command.split(SPLIT_SPACE, 2)[1].trim();
                     newGoal = formatGoal(getCurrentDate(), SYMBOL_EXERCISE, command);
                     listManager.addGoal(newGoal);
                     Ui.printCustomMessage(ECHO_ADDED_GOAL + newGoal.getGoalType() + CLOSE_SQUARE_BRACKET
