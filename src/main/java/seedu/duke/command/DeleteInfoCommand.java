@@ -28,7 +28,7 @@ public class DeleteInfoCommand extends Command {
 
         try {
             command = userInput.split("a", 2);
-            String[] commandSplit = command[0].split("/-",2);
+            String[] commandSplit = command[0].split("/-", 2);
             eventNumber = Integer.parseInt(commandSplit[1].trim());
             infoNumber = Integer.parseInt(command[1].trim());
         } catch (Exception e) {

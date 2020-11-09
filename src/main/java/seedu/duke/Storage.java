@@ -421,7 +421,7 @@ public class Storage {
     /**
      * Checks if the module code in the command is valid.
      *
-     * @param taskInFile   data in file.
+     * @param taskInFile data in file.
      * @return isValid  True if the module code is valid, FALSE otherwise.
      */
     private static boolean isValid(String[] taskInFile) {
