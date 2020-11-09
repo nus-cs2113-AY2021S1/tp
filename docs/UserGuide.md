@@ -404,7 +404,7 @@ This command sets the value of an input. The inputs will then be used in the [`c
 |:-:|
 |`set INPUT VALUE`|
 
-* The `INPUT` can be chosen only from the current `template`.
+* The `INPUT` can be chosen only from letters seen in the current `template`.
 * The `VALUE` can be any *integer*, but any valid non-zero *integer* will be treated as `1`, while 0 is treated as `0`. Valid *integers* are defined as the *Java* `int` type.
 
 The image below shows an example of using the command `set B 0` on the template shown.
@@ -417,11 +417,11 @@ The image below shows an example of using the command `set B 0` on the template 
 
 ### 7.3 Adding a Gate <a name="add-gate"></a>
 
-The application has the ability to combine multiple `Gate` objects to generate more complicated boolean *logic gate* configurations. This command allows you to set an input to a boolean logic `Gate`. You can also change an existing gate if needed. However, the depth of the deepest logic `Gate` from the *root* logic `Gate` (at the top) cannot exceed 2.
+The application has the ability to combine multiple `Gate` objects to generate more complicated boolean *logic gate* configurations. This command allows you to set an input to a boolean logic `Gate`. You can also change an existing gate if needed, except for the *root* `Gate`, which would require a new template. However, the depth of the deepest logic `Gate` from the *root* logic `Gate` (at the top) cannot exceed 2.
 
 <div markdown="span" class="alert alert-tip">
 
-:bulb: **Tip:**  You can use this command to change an existing `Gate`.
+:bulb: **Tip:**  You can use this command to change an existing `Gate`, except for the *root* `Gate`.
 
 </div>
 
