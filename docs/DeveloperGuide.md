@@ -25,7 +25,7 @@ This section will show you the requirements that you need to fulfill in order to
 ### 2.a Prerequisites
 
 1. **JDK `11`**  
-<br>   
+  
 > **[NOTE]**
 > The `WatchNext.jar` file is compiled using the Java version mentioned above.
 
@@ -57,6 +57,8 @@ This section will show you the requirements that you need to fulfill in order to
 
 9. Open a console and run the command `gradlew processResources` (Mac/Linux: `./gradlew processResources`). It should finish with the `BUILD SUCCESSFUL` message. +
 This will generate all the resources required by the application and tests.
+
+<br><br><br>
 
 ### 2.c Verifying the setup
 
@@ -131,7 +133,7 @@ episodes for each season respectively,Duration of an episode)
 * AddCommand checks the `ShowList` for duplicates. If there are duplicates, the user is prompted if they would like to
 overwrite the duplicate entry.
 * The `Show` is added to the `ShowList`.
-
+<br><br><br>
 **Step 6** 
 
 * The changes will be reflected to the user. Concurrently, the changes will be saved into the showList.txt file.
