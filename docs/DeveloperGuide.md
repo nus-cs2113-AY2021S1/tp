@@ -125,14 +125,12 @@ The main class is `Kaji.java`. It is responsible for:
 * Shutting down the components and invoking cleanup methods where necessary at exit.
 
 The rest of the App consists of 8 components:
-* `Access`: Keeps track of the access level of the user.
 * `UI`: The UI of the App.
-* `Command`: Executes the different command types.
-* `Common`: Contains common classes.
-* `Manager`: Holds the data of the App in memory.
-* `Paser`: Parses user input into specific command type.
-* `Scheduler`: Schedules the revision schedule.
+* `Logic`: The command executor. 
+* `Model`: Holds the data of the App in memory.
 * `Storage`: Reads data from, and writes data to, the hard disk.
+
+The sections below give more details of each component.
 
 ### 3.1. Ui Component 
 (Jia Ern)
@@ -186,7 +184,7 @@ The Model component consists of the `Access`, `History`, `DueChapter`, `ModuleLi
 
 The Model component
 * stores a `Access` object that holds temporary data for user's access level and contents of level being accessed.
-* stores a `History` object that saves revision history of current day.
+* stores a `History` object that saves revision history of a day.
 * stores a `DueChapter` object that manages due chapter data.
 * provides an `Admin` class that can be created and accessed by `Access` object. The `Admin` class contains a `ModuleList` object to manage data for modules.
 * provides a `Module` class that can be created and accessed by `Access` object. The `Module` class contains a `ChapterList` object to manage data for chapters.

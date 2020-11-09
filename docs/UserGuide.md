@@ -32,32 +32,36 @@ By: `Team F11-3` Since: `August 2020`
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.4. [Removing a flashcard: `remove`](#334-removing-a-flashcard-remove)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.5. [Returning to module level: `back`](#335-returning-to-module-level-back)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.6. [Checking overall performance for a chapter: `showrate`](#336-checking-overall-performance-for-a-chapter-showrate)<br>
-3.4. [General](#34-general)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.1. [Showing a list of commands available: `help`](#341-showing-a-list-of-commands-available-help)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.2. [Listing the chapters due for today: `due`](#342-listing-the-chapters-due-for-today-due)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.3. [Listing the chapters due in the upcoming week: `preview`](#343-listing-the-chapters-due-in-the-upcoming-week-preview)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.4. [Viewing the revision history: `history`](#344-viewing-the-revision-history-history)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.5. [Excluding or including modules and chapters: `exclude`](#345-excluding-or-including-modules-and-chapters-exclude)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.6. [Exiting the program: `exit`](#346-exiting-the-program-exit)<br>
+3.4. [Scheduling In KAJI](#34-scheduling-in-kaji)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.1. [Listing the chapters due for today: `due`](#341-listing-the-chapters-due-for-today-due)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.2. [Listing the chapters due in the upcoming week: `preview`](#342-listing-the-chapters-due-in-the-upcoming-week-preview)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.3. [Adding chapters to your list of Excluded Modules: `exclude`](#343-adding-chapters-to-your-list-of-excluded-modules-exclude)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.3. [Removing chapters from the list of Excluded Modules: `include`](#344-removing-chapters-from-the-list-of-excluded-modules-include)<br>
+3.5. [General](#35-general)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.5.1. [Showing a list of commands available: `help`](#351-showing-a-list-of-commands-available-help)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.5.2. [Viewing the revision history: `history`](#352-viewing-the-revision-history-history)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.5.3. [Exiting the program: `exit`](#353-exiting-the-program-exit)<br>
 4. [Command Summary](#4-command-summary)<br>
 4.1. [Admin Level](#41-admin-level)<br>
 4.2. [Module Level](#42-module-level)<br>
 4.3. [Chapter Level](#43-chapter-level)<br>
-4.4. [General](#44-general)<br>
+4.4. [Scheduling In Kaji](#44-scheduling-in-kaji)<br>
+4.5. [General](#45-general)<br>
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 1. Overview
 This section gives an overview about Kaji and the purpose of this user guide.
 
-### 1.1. About Kaji
+### 1.1. About KAJI
 In your past learning experience, have you encountered these problems? A large number of lecture notes and materials have made your computer desktop messy, 
 and there is no way to find the materials you want. When the exam is approaching, you don’t know which subject to review first, or suddenly find that you have 
 forgotten everything you learned before. No one wants to forget what they have dedicated time to learn.
 
 Don't worry! <strong>Kaji</strong> will help you solve all these problems!
 
-KAJI is a schedule manager that implements Spaced Repetition, optimised for use via a Command Line Interface (CLI).
+Kaji is a schedule manager that implements Spaced Repetition, optimised for use via a Command Line Interface (CLI).
 
 ### 1.2. About this User Guide
 This User Guide explains how to use Kaji. It provides an understanding of the features and commands, as well as some common use cases of this application.
@@ -172,37 +176,44 @@ Below are the breakdown of this example: <br>
 #### 3.1.2. Listing modules available: `list` 
 (by Zeyu)
 
-This command shows a list of modules on the admin level.
+After adding modules to the admin, you can view the list of modules that you have for the admin by using the `list` command.
 
 Format: `list`
 
 Here are some key points:
-* Do not need to add `admin` after `list`.
+* Do not need to add parameter `admin` after `list`.
 * All list commands have the same command word `list`. 
 
 Example of usage: 
-* At Admin Level: enter the command `list`.
-* Here is the expected output:
-![List Modules](UG_Images/list_module.png)
+* Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
+![List Modules 1](UG_Images/list_module1.png)
+* Step 2: The result for the list of modules will be displayed as shown.<br>
+![List Modules 2](UG_Images/list_module2.png)
 * After listing all modules, you can try all commands available in **Admin Level**.
 
 #### 3.1.3. Editing a module name: `edit` 
 (by Zeyu)
 
-This command modifies the module name you want to change.
+You can edit the name of an existing module from the list of modules by using the `edit` command, followed by the edited name of the module.
 
 Format: `edit MODULE_INDEX MODULE_NAME`
 
 Here are some key points:
 * You can only edit content on the level below the one you are on.
-* Edit the name / content at the specified `MODULE_INDEX`.
 * The `MODULE_INDEX` refers to the index number shown in the displayed content list.
-* The `MODULE_INDEX` **must be a positive integer** 1, 2, 3, …
+* The `MODULE_INDEX` **must be a positive integer** 1, 2, 3, …
+* The `MODULE_NAME` is the edited name of your module.
 
 Example of usage: 
-* At Admin Level: enter `edit 1 CS2113T` changes current Module name at index 1 to CS2113T.
-* Here is the expected output:
-![Edit Module Name](UG_Images/edit_module.png)
+Let's say you want to edit the module name to `CS2113T` for the module `cs2113`.
+* Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
+<img src="UG_Images/EditModule1.png" width="600" alt="Edit Module 1"/>
+* Step 2: From the list of modules displayed, you can see that the module `MODULE_INDEX` is 1.<br>
+<img src="UG_Images/EditModule2.png" width="600" alt="Edit Module 2"/>
+* Step 3: Next, you can type `edit 1 CS2113T` into the command prompt and press `Enter` to execute it.<br>
+<img src="UG_Images/EditModule3.png" width="600" alt="Edit Module 3"/>
+* Step 4: After the module name has been successfully edited, the result will be displayed as shown.<br>
+<img src="UG_Images/EditModule4.png" width="600" alt="Edit Module 4"/>
 * After editing the module name, you can try all commands available in **Admin Level**.
 
 #### 3.1.4. Removing a module: `remove` 
@@ -282,19 +293,19 @@ Below are steps of using this `add` command: <br>
 #### 3.2.2. Listing chapters available: `list`
 (by Zeyu)
 
-This command shows a list of chapters on the module level.
+After adding chapters to the module, you can view the list of chapters that you have for the module by using the `list` command.
 
 Format: `list`
 
 Here are some key points:
-* Do not need to add `module_name` after `list`.
-* All list commands have the same command word `list`.
+* Do not need to add parameter `module_name` after `list`.
+* All list commands have the same command word `list`. 
 
 Example of usage: 
-* At Module Level: enter the command `list`.
-* Here is the expected output:
-![List Chapters](UG_Images/list_chapter.png)
-* The date in the bracket is the due date for each chapter.
+* Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
+![List Chapters 1](UG_Images/list_chapter1.png)
+* Step 2: The result for the list of chapters will be displayed as shown.
+![List Chapters 2](UG_Images/list_chapter2.png)
 * After listing all chapters, you can try all commands available in **Module Level**.
 
 #### 3.2.3. Editing a chapter name: `edit`
@@ -589,66 +600,7 @@ Below are steps of using this `showrate` command: <br>
 * Step 2: Kaji calculates the percentage of card in different master level (i.e. `easy`, `medium`, `hard` and `cannot answer`).
 ![showrate 2](UG_Images/showrate2.PNG)
 
-### 3.4. General
-This section introduces the syntax and usages of the commands for the features that are available at **All Levels**.<br>
-You can use the commands in the next few sections at **Admin, Module and Chapter Level.**
-
-#### 3.4.1. Showing a list of commands available: `help`
-(by Zeyu)
-
-This command shows a list of commands available.
-
-Format: `help`
-
-Here is a key point:
-* This command can be **called from any Level**.
-
-Example of usage: 
-* At Any Level: enter the command `help`.
-* Here is part of the expected output, the whole output is a list of all commands useage:
-![Help List Beginning](UG_Images/help1.png)
-![Help list Ending](UG_Images/help2.png)
-* After knowing waht are the commands, you can try any commands on the correct level.
-
-
-#### 3.4.4. Viewing the revision history: `history`
-(by Zeyu)
-
-You can view the revision completed in the session/in a day by using this command.
-
-Format:<br>
-`history`<br>
-`history DATE`<br>
-
-Here are some key points:
-* This command can be **called from any Level**.
-* If you enter `history`, Kaji will show the revision completed today (the day you enter `history`).
-* If you enter `history DATE`, the `DATE` need to be in the format of yyyy-mm-dd, then Kaji will show the revision completed on the given date.
-
-Example of usage (`history` format): 
-* At Any Level: enter the command `history`.
-* Here is the expected output:
-![History List](UG_Images/history.png)
-
-Example of usage (`history DATE` format): 
-* At Any Level: enter the command `history 2020-10-30`.
-* Here is the expected output:
-![History List](UG_Images/history_Date.png)
-* After knowing the revision you have completed, you can try any commands on the correct level.
-
-#### 3.4.6. Exiting the program: `exit`
-(by Zeyu)
-
-You can exit Kaji by using this command.
-
-Format: `exit`
-
-Example of usage: 
-* At Any Level: enter the command `exit`
-* Here is the expected output:
-![Exit Kaji](UG_Images/exit.png)
-
-### 4.5 Scheduling In KAJI
+### 3.4 Scheduling In KAJI
 (by Yan An)
 
 Now that you know how to make KAJI manage your Database of revision content for you, **what about scheduling?** For your benefit, the **scheduling** in KAJI is mostly **automated**! 
@@ -658,7 +610,7 @@ Now that you know how to make KAJI manage your Database of revision content for 
 Despite that, this **does not mean that you cannot customise** the scheduling process. KAJI allows you to [`reschedule`](#451) and [`exclude`](#451) Chapters manually if you wish to do so, but more on that later. First, let us get into the specific introduction of each command.
 <br><br>
 
-### 4.5.1. Listing the chapters due for today: `due`
+### 3.4.1. Listing the chapters due for today: `due`
 (by Yan An)
 
 As you now know, **each Chapter will be scheduled** to be due on a date. However, it will be **tedious** for you to go through each chapter **one by one** to find their deadlines. Our **solution** to that, is the `due` command.
@@ -695,7 +647,7 @@ At any point, if you want to **see what Chapters are due**, all you have to do i
 
 <br><br>
 
-### 4.5.2. Listing the chapters that are due in the upcoming week: `preview`
+### 3.4.2. Listing the chapters that are due in the upcoming week: `preview`
 (by Yan An)
 
 Beyond simply being able to view the Chapters that are due on the day itself, what if you would like to **view your upcoming revision schedule** so that you can **plan ahead**? For that specific purpose, we have the `preview` command.
@@ -731,7 +683,7 @@ At any point, if you **want to see a preview of which Chapters are going to be d
 
 <br><br>
 
-### 4.5.3. Adding chapters to your list of Excluded Modules: `exclude`
+### 3.4.3. Adding chapters to your list of Excluded Modules: `exclude`
 (by Yan An)
 
 Apart from viewing your schedule, what if the Semester has ended and you would like to take a Module or Chapter out of your schedule? If you were to remove the files from your database completely, it would be really tedious to add the content back Card by Card. Therefore, we created the `exclude` command.
@@ -821,7 +773,7 @@ Example of ***`exclude chapter`***
 
 
 
-### 4.5.4. Removing chapters from the list of Excluded Modules: `include`
+### 3.4.4. Removing chapters from the list of Excluded Modules: `include`
 (by Yan An)
 
 However, what should be done if you had excluded the Chapters of a Module from your schedule, only to find that it is a prerequisite for another module the next semester. To prepare for the upcoming semester, you would like to revise the excluded content again. This is why we created the `include` command.
@@ -908,6 +860,64 @@ Example of ***`exclude chapter`***
   <br/>Figure <>. Example of Include Command Chapter mode: Result
 </p>
 
+### 3.5. General
+This section introduces the syntax and usages of the commands for the features that are available at **All Levels**.<br>
+You can use the commands in the next few sections at **Admin, Module and Chapter Level.**
+
+#### 3.5.1. Showing a list of commands available: `help`
+(by Zeyu)
+
+If you forget the format of some commands, you can find a list of commands available by using `help` command.
+
+Format: `help`
+
+Here is a key point:
+* This command can be **called from any Level**.
+
+Example of usage: 
+* Step 1: Type `help` into the command prompt and press `Enter` to execute it.<br>
+![Help](UG_Images/help.png)
+* Step 2: Part the result for the list of commands will be displayed as shown.<br>
+![Help List Beginning](UG_Images/help1.png)
+![Help list Ending](UG_Images/help2.png)
+* After knowing what are the commands, you can try any commands on the correct level.
+
+#### 3.5.2. Viewing the revision history: `history`
+(by Zeyu)
+
+You can view the revision completed in the session/in a day by using `history` command.
+
+Format:<br>
+`history`<br>
+`history DATE`<br>
+
+Here are some key points:
+* This command can be **called from any Level**.
+* If you enter `history`, Kaji will show the revision completed today (the day you enter `history`).
+* If you enter `history DATE`, the `DATE` need to be in the format of yyyy-mm-dd, then Kaji will show the revision completed on the given date.
+
+Example of usage: 
+Let's say today is 2020-11-11 and you want to view the revision history today:
+* Step 1: Type `history` or `history 2020-11-11` into the command prompt and press `Enter` to execute it.<br>
+<img src="UG_Images/history1.png" width="600" alt="history 1"/>
+* Step 2: The result for the list of history will be displayed as shown.<br>
+<img src="UG_Images/history2.png" width="600" alt="history 2"/>
+* If you have not revised in 2020-11-11 this result will be displayed.<br>
+<img src="UG_Images/history3.png" width="600" alt="history 3"/>
+* After knowing the revision you have completed, you can try any commands on the correct level.
+
+#### 3.5.3. Exiting the program: `exit`
+(by Zeyu)
+
+You can exit Kaji by using this command.
+
+Format: `exit`
+
+Example of usage: 
+* Step 1: Type `exit` into the command prompt and press `Enter` to execute it.<br>
+<img src="UG_Images/exit1.png" width="600" alt="exit 1"/>
+* Step 2: The result for the exit will be displayed as shown.<br>
+<img src="UG_Images/exit2.png" width="600" alt="exit 2"/>
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. Command Summary
@@ -946,15 +956,7 @@ Example of ***`exclude chapter`***
 | Return Module Level | `back` |
 | Show Rate | `showrate` |
 
-### 4.4. General
-
-| Action | Format, Examples |
-|--------|------------------|
-| Help | `help` |
-| Show Revision History | `history` or `history DATE` <br> e.g. `history 2020-11-03` |
-| Exit | `exit` |
-
-### 4.5. Scheduling
+### 4.4. Scheduling in KAJI
 
 | Action | Format, Examples |
 |--------|------------------|
@@ -962,3 +964,11 @@ Example of ***`exclude chapter`***
 | Preview | `preview` |
 | Exclude | `exclude MODULE_OR_CHAPTER` <br> e.g. `exclude module` or `exclude chapter` |
 | Include | `include MODULE_OR_CHAPTER` <br> e.g. `include module` or `include chapter` |
+
+### 4.5. General
+
+| Action | Format, Examples |
+|--------|------------------|
+| Help | `help` |
+| Show Revision History | `history` or `history DATE` <br> e.g. `history 2020-11-03` |
+| Exit | `exit` |
