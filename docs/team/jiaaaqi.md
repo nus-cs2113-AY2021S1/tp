@@ -18,7 +18,7 @@ Given below are my contributions to the project:
     list, which saves bus stop data. Users are able to view the entire list by keying in the command `locations` or 
     `busstops`.
     
-*__Storage:__ Added location data of locations within NUS
+* __Storage:__ Added location data of locations within NUS
 
 * __New Feature:__ Added a `locate` command to find a location using location name or event index
     * Justification: This feature will allow user to receive location information. It allows users to find more 
