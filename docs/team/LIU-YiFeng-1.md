@@ -20,7 +20,7 @@ for more details.
                     perform other operations (such as deletion, mark as done, adding additional information and viewing additional information etc) easily.
   * Highlights: It displays all events and tasks with additional information if there is any.
   
- * Added ability to verify the module code entered by the user.
+ * Integrated a third party library (fastjson) to the project and added the ability to verify the module code entered by the user.
   ([\#126](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/126),
   [\#246](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/246),
   [\#270](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/270),
