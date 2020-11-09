@@ -79,7 +79,7 @@ Created Architecture diagram for the Developer guide, added sequence diagrams an
 understanding of the project. Create sequence diagram for `CreateProjectCommand` to better understand the workflow
 and user interaction when the application is run, and project is created. Added [user stories, value proposition and 
 target user profile with implementaion and usage scenario for 
-commands.](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/140).
+commands.](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/140)
   
 #### Other Contributions
   * Reported bugs for other team's program during PE dry run. 
