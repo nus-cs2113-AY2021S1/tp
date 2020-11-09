@@ -80,7 +80,7 @@ Lastly, text that is blue like this [example](#12-using-this-guide), are clickab
 ## 2. Quick Start
 
 1.  Ensure that you have Java `11` or above installed.
-2.  Download the latest version of **AniChan** from [here](https://github.com/AY2021S1-CS2113T-F12-2/tp/releases/tag/V2.0).
+2.  Download the latest version of **AniChan** from [here](https://github.com/AY2021S1-CS2113T-F12-2/tp/releases/tag/V2.1).
 3.  Copy the file to the folder you want to use as the home folder for **AniChan**.
 4.  Open **command prompt** or **terminal** and change directory into the folder. Run `java -jar AniChan.jar`.
 5.  You will be first greeted by the **command prompt** for your name and gender as shown below.
