@@ -5,7 +5,6 @@ import event.Event;
 import exception.EmptyEventListException;
 import location.BusStop;
 import location.Location;
-import locationlist.LocationList;
 import usercommunication.UserInfo;
 
 import java.time.LocalDate;
@@ -39,7 +38,7 @@ public class UI {
         String[] editFields = {"TYPE: ", "DESC: ", "LOCATION: ", "START: ", "END: "};
         String[] editInformation = new String[5];
         System.out.println("Enter the edits for each component. Leave as blank if no edits are to be made.");
-        // populate editinformation with user data
+        // populate edit information with user data
         for (int i = 0; i < 5; i++) {
             System.out.print(editFields[i]);
             editInformation[i] = in.nextLine().trim();
@@ -58,14 +57,14 @@ public class UI {
     }
 
     /**
-     * Prints the logo of DUKE and greet the user.
+     * Prints the logo of NUSchedule and greet the user.
      */
     public void printGreetingMessage(UserInfo userInfo) {
         printLine();
-        try {
-            helloWithName(userInfo.getName());
-        } catch (NullPointerException e) {
+        if (userInfo.getName().isBlank()) {
             System.out.println("I am NUSchedule! What's your name?");
+        } else {
+            helloWithName(userInfo.getName());
         }
         System.out.println("Hello from\n" + LOGO);
         System.out.println("What can I do for you?");
@@ -131,16 +130,6 @@ public class UI {
      */
     public void showLoadingError() {
         System.out.println("You edit the file in a wrong format. Please check.");
-    }
-
-    /**
-     * Prints the message during executing commands.
-     * This function is used to make all printing being done in UI.
-     *
-     * @param message determined by the command
-     */
-    public void print(String message) {
-        System.out.print(message);
     }
 
     /**
@@ -391,10 +380,11 @@ public class UI {
     }
 
     /**
-     * Print the success message after the user input auto clear.
+     * Print the success message after the user input autoClear on.
      */
     public void printAutoClearOn() {
-        System.out.println("Great! All events happened one month ago are cleared :)");
+        System.out.println("Great! Your event happens one month ago will be auto-cleared from the next time you open "
+                + "this app onwards.");
     }
 
     /**
@@ -473,5 +463,11 @@ public class UI {
 
     }
 
+    /**
+     * Print the success message after the user input autoClear off.
+     */
+    public void printAutoClearOff() {
+        System.out.println("Great! Your event happens one month ago will not be auto-cleared now.");
+    }
 }
 

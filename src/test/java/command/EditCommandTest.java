@@ -7,10 +7,7 @@ import event.SelfStudy;
 import eventlist.EventList;
 import exception.CreatingFileException;
 import exception.DataFileNotFoundException;
-import exception.EditIndexOutOfBoundsException;
 import exception.EmptyEventIndexException;
-import exception.ExistingEventInListException;
-import exception.NoEditEventDescriptionException;
 import exception.UndefinedEventException;
 import exception.WrongEditFormatException;
 import location.Location;
@@ -25,8 +22,6 @@ import parser.Parser;
 import storage.Storage;
 import ui.UI;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.time.LocalDateTime;
 
 
@@ -56,7 +51,7 @@ class EditCommandTest {
         storage.loadLocationData(locations.getLocationList());
         Assertions.assertThrows(UndefinedEventException.class, () -> {
             Parser.parse("edit 1", locations, 0)
-                    .execute(new EventList(), new LocationList(), new BusStopList(), new UI(), storage);
+                    .execute(new EventList(), new LocationList(), new BusStopList(), new UI(), storage, userInfo);
         });
     }
 
@@ -72,7 +67,7 @@ class EditCommandTest {
 
         Command c = new EditCommand(0, editInformation, startEnd, null, null);
         Storage storage = new Storage("data/events.txt", "data/UserInfo.txt");
-        c.execute(events, new LocationList(), new BusStopList(), new UI(), storage);
+        c.execute(events, new LocationList(), new BusStopList(), new UI(), storage, userInfo);
         Assertions.assertEquals("something", events.get(0).getDescription());
     }
 
@@ -89,22 +84,22 @@ class EditCommandTest {
 
         Command c = new EditCommand(0, editInformation, startEnd, null, null);
         Storage storage = new Storage("data/events.txt", "data/UserInfo.txt");
-        c.execute(events, new LocationList(), new BusStopList(), new UI(), storage);
+        c.execute(events, new LocationList(), new BusStopList(), new UI(), storage, userInfo);
         Assertions.assertTrue(events.get(0) instanceof PersonalEvent);
 
         editInformation[0] = "class";
         Command d = new EditCommand(0, editInformation, startEnd, null, null);
-        d.execute(events, new LocationList(), new BusStopList(), new UI(), storage);
+        d.execute(events, new LocationList(), new BusStopList(), new UI(), storage, userInfo);
         Assertions.assertTrue(events.get(0) instanceof Class);
 
         editInformation[0] = "selfStudy";
         Command e = new EditCommand(0, editInformation, startEnd, null, null);
-        e.execute(events, new LocationList(), new BusStopList(), new UI(), storage);
+        e.execute(events, new LocationList(), new BusStopList(), new UI(), storage, userInfo);
         Assertions.assertTrue(events.get(0) instanceof SelfStudy);
 
         editInformation[0] = "assignment";
         Command f = new EditCommand(0, editInformation, startEnd, null, null);
-        f.execute(events, new LocationList(), new BusStopList(), new UI(), storage);
+        f.execute(events, new LocationList(), new BusStopList(), new UI(), storage, userInfo);
         Assertions.assertTrue(events.get(0) instanceof Assignment);
     }
 
@@ -148,7 +143,7 @@ class EditCommandTest {
         editInformation[4] = "nil";
         Command c = new EditCommand(0, editInformation, startEnd, null, null);
         Storage storage = new Storage("data/events.txt", "data/UserInfo.txt");
-        c.execute(events, new LocationList(), new BusStopList(), new UI(), storage);
+        c.execute(events, new LocationList(), new BusStopList(), new UI(), storage, userInfo);
         // end set to null, getEndDate will get start if end is null
         Assertions.assertEquals(start, events.get(0).getEndDateTime());
     }

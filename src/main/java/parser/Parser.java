@@ -45,6 +45,7 @@ import exception.InvalidEventIndexException;
 import exception.InvalidLocationException;
 import exception.InvalidNumWeekException;
 import exception.InvalidSortCriteriaException;
+import exception.WrongAutoClearArgumentException;
 import exception.NoEndTimeClassException;
 import exception.NoEventLocationException;
 import exception.NoEventTimeException;
@@ -67,7 +68,6 @@ import location.Location;
 import location.OnlineLocation;
 import location.OutOfNuS;
 import locationlist.LocationList;
-import usercommunication.UserInfo;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -142,8 +142,6 @@ public abstract class Parser {
             return new ClearCommand();
         case REMIND:
             return new ReminderCommand();
-        case AUTO_CLEAR:
-            return new AutoClearCommand();
         default:
             break;
         }
@@ -154,9 +152,23 @@ public abstract class Parser {
         switch (words[0]) {
         case "student":
         case "professor":
-            return new UserInfoCommand(new UserInfo(fullCommand.substring(words[0].length() + 1), words[0]));
+            return new UserInfoCommand(fullCommand.substring(words[0].length() + 1), words[0]);
         default:
             break;
+        }
+
+        //this block deals with auto clear command
+        if (words[0].equalsIgnoreCase(AUTO_CLEAR)) {
+            try {
+                fullCommand = fullCommand.substring(AUTO_CLEAR.length() + 1).trim();
+            } catch (StringIndexOutOfBoundsException e) {
+                throw new WrongAutoClearArgumentException();
+            }
+            if (fullCommand.equalsIgnoreCase("ON")) {
+                return new AutoClearCommand(true);
+            } else if (fullCommand.equalsIgnoreCase("OFF")) {
+                return new AutoClearCommand(false);
+            } else throw new WrongAutoClearArgumentException();
         }
 
         //this block deals with print locations in the area command
