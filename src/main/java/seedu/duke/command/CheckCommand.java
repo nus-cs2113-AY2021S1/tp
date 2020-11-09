@@ -77,7 +77,7 @@ public class CheckCommand extends Command {
             assert startTime != null : "null time read for startTime";
             assert endTime != null : "null time read for endTime";
 
-            boolean isTimePeriodValid = verifyValidStartEndDateTime(startDate, endDate, startTime, endTime);
+            boolean isTimePeriodValid = verifyValidTimePeriod(startDate, endDate, startTime, endTime);
 
             if (!isTimePeriodValid) {
                 logger.warning("InvalidTimePeriodException: Start of time period given was not before end of period.");
@@ -218,8 +218,8 @@ public class CheckCommand extends Command {
      * @param endTime the end time of the time period
      * @return boolean showing if the time period is valid i.e. the start is before the end
      */
-    private boolean verifyValidStartEndDateTime(LocalDate startDate, LocalDate endDate,
-                                                LocalTime startTime, LocalTime endTime) {
+    private boolean verifyValidTimePeriod(LocalDate startDate, LocalDate endDate,
+                                          LocalTime startTime, LocalTime endTime) {
         logger.fine("Start verifying time period validity.");
         logger.info("Start date: \"" + startDate + "\", Start time: \"" + startTime + "\"");
         logger.info("End date: \"" + endDate + "\", End time: \"" + endTime + "\"");

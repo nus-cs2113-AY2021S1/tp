@@ -90,7 +90,7 @@ public class DeleteCommand extends Command {
         int eventIndex = Integer.parseInt(eventIdentifierArray[0]) - 1;
         Event deleteEvent = eventList.getEventByIndex(eventIndex);
 
-        if (deleteEvent.getRepeatType() == null) {
+        if (deleteEvent.getRepeatType() == null || eventIdentifierArray.length == 1) {
             eventList.getEvents().remove(deleteEvent);
             ui.printEventDeletedMessage(deleteEvent);
             storage.saveFile(storage.getFileLocation(listType), data, listType);

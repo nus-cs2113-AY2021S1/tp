@@ -95,7 +95,7 @@ public class DoneCommand extends Command {
         int eventIndex = Integer.parseInt(eventIdentifierArray[0]) - 1;
         Event doneEvent = eventList.getEventByIndex(eventIndex);
 
-        if (doneEvent.getRepeatType() == null) {
+        if (doneEvent.getRepeatType() == null || eventIdentifierArray.length == 1) {
             doneEvent.markAsDone();
             ui.printEventMarkedDoneMessage(doneEvent);
             storage.saveFile(storage.getFileLocation(listType), data, listType);

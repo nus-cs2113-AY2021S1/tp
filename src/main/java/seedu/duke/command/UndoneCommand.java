@@ -95,7 +95,7 @@ public class UndoneCommand extends Command {
         int eventIndex = Integer.parseInt(eventIdentifierArray[0]) - 1;
         Event undoneEvent = eventList.getEventByIndex(eventIndex);
 
-        if (undoneEvent.getRepeatType() == null) {
+        if (undoneEvent.getRepeatType() == null || eventIdentifierArray.length == 1) {
             undoneEvent.markAsUndone();
             ui.printEventMarkedUndoneMessage(undoneEvent);
             storage.saveFile(storage.getFileLocation(listType), data, listType);
