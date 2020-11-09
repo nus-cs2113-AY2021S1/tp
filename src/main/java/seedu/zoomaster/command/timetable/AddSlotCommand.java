@@ -104,7 +104,7 @@ public class AddSlotCommand extends Command {
     }
 
     protected String createSlotAndBookmark(Module module, String command, Timetable timetable) {
-        assert module != null : "module should mot be null";
+        assert module != null : "module should not be null";
         String message = "";
         try {
             message += create(command, module, timetable);
@@ -229,7 +229,7 @@ public class AddSlotCommand extends Command {
      * true if module exist in the list or list is null.
      *     false if module does not exists in the list.
      */
-    private boolean isValidModule(String module) {
+    private static boolean isValidModule(String module) {
         if (Module.getModuleList() == null) { // If unable to get list of modules, always return true.
             return true;
         } else if (Module.getModuleList().contains(module)) {

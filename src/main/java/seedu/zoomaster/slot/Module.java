@@ -152,4 +152,14 @@ public class Module {
     public static void setModuleList(ArrayList<String> moduleList) {
         Module.moduleList = moduleList;
     }
+
+    public static boolean isValidModule(String module) {
+        if (moduleList == null) { // If unable to get list of modules, always return true.
+            return true;
+        } else if (moduleList.contains(module)) {
+            return true;
+        }
+        return false;
+    }
+
 }
