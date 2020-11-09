@@ -62,12 +62,13 @@ important details, generalize certain components/interactions, break diagram int
 * Testing
     * Wrote some JUnit tests for common components e.g. ParamChecker, which is used by 3 features.
     * Wrote functions to generate random strings/double/integer to facilitate testing
-    
+* Bug reporting for other members' features: [#127](https://github.com/AY2021S1-CS2113-T16-1/tp/issues/127), [#118](https://github.com/AY2021S1-CS2113-T16-1/tp/issues/118), [#87](https://github.com/AY2021S1-CS2113-T16-1/tp/issues/87)
+* Used issue tracker for enhancements: [#90](https://github.com/AY2021S1-CS2113-T16-1/tp/issues/90)
     
 ### Review/mentoring contributions
-* Reviewed [PR #74](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/74)
+* Reviewed [#74](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/74)
     * Comprehensive checking of code, and many suggestions on improvement
-* Provided suggestions on code structure and DG structure.
+* Provided suggestions on code structure and DG structure via WhatsApp chats
+* Reviewed another team's program and reported bugs. For example: [#7](https://github.com/Artemis-Hunt/ped/issues/7), [#2](https://github.com/Artemis-Hunt/ped/issues/2), [#10](https://github.com/Artemis-Hunt/ped/issues/10)
 
-### Contributions to Developer Guide (Extracts)
 

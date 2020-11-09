@@ -6,7 +6,6 @@ import seedu.financeit.utils.DateTimeHelper;
 import seedu.financeit.utils.ParamChecker;
 
 import java.time.Month;
-import java.util.Arrays;
 import java.util.HashMap;
 
 //@@author Artemis-Hunt
@@ -34,6 +33,7 @@ public class RecurringEntry extends Item {
     public void setAmount(double amount) {
         assert amount > 0;
         this.amount = amount;
+        convertAttributesToString();
     }
 
     public void setEntryType(Common.EntryType entryType) {
@@ -64,6 +64,25 @@ public class RecurringEntry extends Item {
 
     public void setDay(int day) {
         this.day = day;
+    }
+
+    public Object getParamFromParamType(String paramType) {
+        switch (paramType) {
+        case ParamChecker.PARAM_DAY:
+            return day;
+        case ParamChecker.PARAM_AMOUNT:
+            return amount;
+        case ParamChecker.PARAM_INC:
+        case ParamChecker.PARAM_EXP:
+            return entryType;
+        case ParamChecker.PARAM_DESCRIPTION:
+            return description;
+        case ParamChecker.PARAM_AUTO:
+            return isAuto;
+        case ParamChecker.PARAM_NOTES:
+            return notes;
+        default: return null;
+        }
     }
 
     public boolean equals(Object object) {
@@ -100,9 +119,9 @@ public class RecurringEntry extends Item {
     public void convertAttributesToString() {
         //One string is filled and the other is left blank, based on whether the entry is income or expenditure
         expenditureAmount = entryType == Common.EntryType.EXP ? "-$"
-                + String.format("%.2f", amount) : "";
+                + String.format("%.2f", this.amount) : "";
         incomeAmount = entryType == Common.EntryType.INC ? "+$"
-                + String.format("%.2f", amount) : "";
+                + String.format("%.2f", this.amount) : "";
         String[] monthsWithoutDay = DateTimeHelper.monthsWithoutDayOfMonth(day);
         duration = "Every month";
         if (monthsWithoutDay.length >= 1) {

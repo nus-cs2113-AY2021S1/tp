@@ -1,7 +1,6 @@
 package seedu.financeit.datatrackers.manualtracker;
 
 import seedu.financeit.common.CommandPacket;
-import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.datatrackers.manualtracker.ledgerhandlers.CreateLedgerHandler;
 
 import java.time.LocalDate;
@@ -28,7 +27,7 @@ public class TypicalLedgerEntries {
         CreateLedgerHandler createLedgerHandler = CreateLedgerHandler.getInstance();
         try {
             createLedgerHandler.handlePacket(packet);
-        } catch (InsufficientParamsException exception) {
+        } catch (Exception exception) {
             //Fall through
         }
         return createLedgerHandler.getCurrLedger();

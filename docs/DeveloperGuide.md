@@ -23,6 +23,8 @@ The design of the software can be split into 5 distinct components:
 * Data component
 * Storage component
 
+<div style="page-break-after: always;"></div>
+
 ## Logic Manager Component
 
 ![](uml_images/images_updated/Handler_arch.png)
@@ -47,6 +49,8 @@ finance calculator tools within it.
 * All ```LogicManager``` classes use the ```InputManager``` component to process user input, then use ```Logic``` component
 to perform the operation associated with the param handling.
 
+<div style="page-break-after: always;"></div>
+
 ## Logic Component
 
 ![](uml_images/images_updated/Logic_arch.png)
@@ -65,7 +69,7 @@ newly created ledger.
 * `CommandHandler` in turn uses `ParamChecker` to verify validity of inputs before setting.
 <!-- @@author-->
 
-
+<div style="page-break-after: always;"></div>
 
 ## Input Manager Component
 
@@ -90,6 +94,7 @@ and produce a ```CommandPacket```.
     while paramMap will consist of one key-value pair, key being `"/desc"` and value being
     `"Quick brown fox"`
 
+<div style="page-break-after: always;"></div>
 
 ## Model Component
 
@@ -111,7 +116,7 @@ instances to perform add, remove or edit operations on the ```Ledgers``` or ```E
 * Utility Model sub-components
     * Goal
         * Used by the `GoalTracker`. The user can set their income or expense goals by creating a `Goal` instance. They can then be compared against with total entry amounts recorded by the user, whereby the `GoalTracker` will report the progress of the user towards the `Goal` that they set. 
-        * More information can be found in the [GoalTracker section](#goalTracker).
+        * More information can be found in the [GoalTracker section](#goal-Tracker).
     * AccountSaver
         * Stores account information of the user.
         * More details can be found in the [FinanceTools section](#financeTools).
@@ -365,6 +370,8 @@ The Manual Tracker is capable of executing the following states of operation:
 
 ![](uml_images/images_updated/Handler.png)
 
+<div style="page-break-after: always;"></div>
+
 |Class| Function |	
 |--------|----------|	
 |```InputParser```| Breaks input string by user into ```commandString``` and a sequence of ```paramTypes```-```param``` pairs. <br><br> The latter subsequence of the string is passed into ParamParser for further processing. <br><br> Information obtained from input parsing will be used to populate an instantiated ```CommandPacket``` instance, which will then be passed to the entity that called the parsing function.	
@@ -429,19 +436,19 @@ The Manual Tracker is capable of executing the following states of operation:
     1. A new instance of ```CreateLedgerHandler``` is created. The input String array will be passed into `CreateLedgerHandler.setRequiredParams()` to set required params for a successful parse.
     1. A new instance of `Ledger` will be instantiated and set to `CreateLedgerHandler.currLedger`.
     1. ```CreateLedgerHandler.handlePacket(packet)``` is called to handle params in the packet.
-        1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
+        1. Refer to the section on [Param Handling](#logic) for more details pertaining to general param handling. 
         1. For `CreateLedgerHandler`, the `handleSingleParam` abstract method will be implemented as shown in the [following table](#table1).
         
 1. From ```ManualTracker```, the configured ```Ledger``` instance will be retrieved from the ```CreateLedgerHandler``` instance
 and added into the ```LedgerList``` instance at ```ManualTracker.ledgerList```.
 
-#### <a name = table1></a> Param Handling Behavior
+__<a name = table1></a> Param Handling Behavior__
 
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
 |---------|----------------|----------------|-----------|---------------------|
 |```PARAM.DATE```|"/date"|Various format of date in string, eg. "2020-03-02"| Call ```currLedger.setDate()``` to set date for the ```Ledger``` instance. | ```ParamChecker.checkAndReturnDate(packet)```|
 
-#### <a name = diag1></a> Sequence Diagram
+__<a name = diag1></a> Sequence Diagram__
 
 ![](uml_images/images_updated/manualTrackerCreateLedgerSeqDiagram.png)
 
@@ -457,20 +464,20 @@ The deletion of a specified ledger is performed in two phases: Ledger Retrieval 
         1. A new instance of ```RetrieveLedgerHandler``` is created. The input String array will be passed into 
         ```CreateLedgerHandler.setRequiredParams()``` to set required params for a successful parse.
         1. ```RetrieveledgerHandler.handlePacket(packet)``` is called to handle params in the packet.
-            1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
+            1. Refer to the section on [Param Handling](#logic) for more details pertaining to general param handling. 
             1. For ```CreateLedgerHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table2):
                 * Note that only one of the two params need to be invoked from the input. 
 1. __Phase 2: Ledger Deletion__
     1. From ```ManualTracker```, call ```ledgerList.RemoveItemAtCurrIndex()``` to remove the ledger specified by the index set to modify earlier.
 
-#### <a name = table2></a> Param Handling Behavior
+__<a name = table2></a> Param Handling Behavior__
     
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
 |---------|----------------|----------------|-----------|---------------------|
 |```PARAM.DATE```|"/date"|Various format of date in string, eg. "2020-03-02"| Call ```ledgerList.setIndexToModify()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnDate(packet)```|
 |```PARAM.INDEX```|"/index"|Valid index on the list from 1 onwards.|Call ```ledgerList.setIndexToModify()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnIndex(packet)```|
 
-#### <a name = diag2></a> Sequence Diagram
+__<a name = diag2></a> Sequence Diagram__
 
 ![](uml_images/images_updated/manualTrackerDeleteLedgerSeqDiagram.png)
 
@@ -489,30 +496,30 @@ The editing of details within the entry is performed in two phases: Entry Retrie
         1. A singleton instance of ```RetrieveEntryHandler``` is retrieved. The input String array will be passed into 
         ```retrieveEntryHandler.setRequiredParams()``` to set required params for a successful parse.
         1. ```retrieveEntryHandler.handlePacket(packet)``` is called to handle params in the packet.
-            1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
+            1. Refer to the section on [Param Handling](#logic) for more details pertaining to general param handling. 
             1. For ```retrieveEntryHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table3).
-            1. From ```EntryTracker```, call ```entryList.getItemAtCurrIndex``` to retrieve the entry specified by the index set to modify earlier.
+            1. From ```EntryTracker```, call ```entryList.popItemAtCurrIndex``` to retrieve the entry specified by the index set to modify earlier.
 
-#### <a name = table3></a> Param Handling Behavior
+__<a name = table3></a> Param Handling Behavior__
 
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
 |---------|----------------|----------------|-----------|---------------------|
 |```PARAM.INDEX```|"/index"|Valid index on the list <br/>from 1 onwards.|Call ```entryList.setIndexToModify()``` <br/>to set index of retrieved item. | ```ParamChecker.checkAndReturnIndex(packet)```|
 
-#### <a name = diag3></a> Sequence Diagram 
+__<a name = diag3></a> Sequence Diagram__ 
 
 ![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram2.png)
 
-1. __Phase 2: Entry edit ([Sequence Diagram](#diag4))__ 
+1. __Phase 2: Entry edit ([Sequence Diagram](#diag4))__ <br/>
     1. Following Phase 1, the following processes will be executed:
         1. The singleton instance of ```EditEntryHandler``` is retrieved. There is no need to call ```EditEntryHandler.setRequiredParams()```
         ; this command does not require params to modify. Instead, it acceps any params supplied and performs the edit accordingly.
         1. `editeEntryHandler.setPacket(packet)` is called to set packet.
     1. ```EditEntryHandler.handlePacket()``` is called to handle params in the packet.
-        1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
+        1. Refer to the section on [Param Handling](#logic) for more details pertaining to general param handling. 
         1. For ```EditEntryHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table4).
-
-#### <a name = table4></a> Param Handling Behavior           
+    1. The edited entry is added back into the list.
+__<a name = table4></a> Param Handling Behavior__          
 
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
 |---------|----------------|----------------|-----------|---------------------|
@@ -523,7 +530,7 @@ The editing of details within the entry is performed in two phases: Entry Retrie
 |```PARAM.DESCRIPTION```|"/desc"|Description in string, ';' character is illegal.|Call ```entryList.setDescription()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnDescription(packet)```|
 |```PARAM.CATEGORY```|"/cat"|A set of strings that corresponds with entry type|Call ```entryList.setCategory()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnCategories(packet)```|
 
-#### <a name = diag4></a> Sequence Diagram 
+__<a name = diag4></a> Sequence Diagram__
 
 ![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram3.png)
 
@@ -644,7 +651,7 @@ The sequence diagram below shows how it works:
 &nbsp;  
 
 <!-- @@author bqxy -->
-### <a name = financeTools></a> FinanceTools
+### FinanceTools
 **Overview** <br />
 FinanceTools consists of the following features
 1. Simple Interest Calculator
@@ -831,7 +838,7 @@ The results from calculation is stored in the ```ArrayList``` when the implement
 
 &nbsp;  
 
-### <a name = goalTracker></a> Goal Tracker
+### Goal Tracker
 **Set Expense Goal Feature** <br />
 The set expense goal feature is being implemented by ```GoalTracker```. It allows the user to set an expense goal for
 the respective month to ensure that the user does not overspent his budget. 
@@ -911,18 +918,18 @@ terminated.
 
 ## Value proposition
  
-**Expenditure Tracker**
-* Input itemised spending on a daily basis
-* Sum the monthly/weekly expenditure, as well as average weekly/daily expenditure
-* Categorise expenditures (e.g. food, transport etc) and sort by category
+**ManualTracker and EntryTracker**
+* Input itemised spending on a daily basis.
+* Summarise the daily expenditure.
+* Categorise expenditures (e.g. food, transport etc) 
 
-**Budget Management**
+**GoalTracker**
 * Set a budget (monthly)
 * Remind users of how much budget they have left for that month
 * Edit the budget (monthly)
 * Display the budget for that month
 
-**Recurring Expenditure/Income**
+**RecurringTracker**
 * Keep track of expenditure/income that occur on a monthly basis e.g. bills and income
 * Remind users of upcoming entries, e.g. a bill payment which is due tomorrow
 
@@ -941,32 +948,32 @@ terminated.
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|Financially prudent user|Keep record of my spendings of the day|I can keep track of my spending habits on a daily basis.|
-|v1.0|As a student who mistypes easily|Edit my transaction details using one line commands|I can correct my mis-types in a easy and intuitive way.|
-|v1.0|As a university student who may have difficulty keeping track of his finances|Monitor my spending habits and income according to various categories of expenditure|I can identify which particular category of spending forms the majority of my daily expenditures.|
-|v1.0|As a person who spends a lot of time in front of a computer|Record my expenses and income using one-line commands|I can monitor my spending habits conveniently and hassle-free.|
-|v1.0|user|calculate interest over a principal amount|know how much interest I can earn|
-|v1.0|user|calculate interest earned over a period time|know how much interest I can earn at the end of a period|
-|v1.0|user|calculate cashback earned|know how much cashback I can earn|
-|v1.0|user|calculate miles credit earned|know how much miles credit I can earn|
-|v1.0|user|set expense goal for 1 year|manage my expenditure according to the budget I set aside|
-|v1.0|user|set income goal for 1 year|know how much I have saved and did I reach my saving target|
-|v1.0|user|know my goal status everytime I made an entry|saved the hassle to go to goal tracker just to check the progress|
-|v1.0|user|add a recurring entry|Keep track of monthly transactions like income or bills|
-|v1.0|user|edit a recurring entry|update details of existing entries without having to re-enter everything|
-|v1.0|user|delete a recurring entry|remove recurring entries that are no longer valid e.g. cancelled subscription|
-|v1.0|user|create a save after I exit the program and load that save when I return|shutdown my PC and save electrical bills without losing progress|
-|v2.0|user|calculate interest over a principal amount with yearly or monthly deposit|know how much interest I can earn with regular deposits|
-|v2.0|user|store account or card information|refer to account features such as interest rate any time|
-|v2.0|user|compare my calculations with different interest rate|decide which account is better|
-|v2.0|user|set expense goal for specific month|manage my expenditure monthly instead of yearly|
-|v2.0|user|set income goal for specific month|know exactly which month I manage to saved up to my target goal|
-|v2.0|user|edit expense/income goal for specific month|adjust my expenditure/saving target according to the situation|
-|v2.0|user|display expense/income goal for specific month|keep track of my progress|
+|v1.0|financially prudent user|Keep record of my spendings of the day|I can keep track of my spending habits on a daily basis.|
+|v1.0|student who mistypes easily|Edit my transaction details using one line commands|I can correct my mis-types in a easy and intuitive way.|
+|v1.0|university student who may have difficulty keeping track of his finances|Monitor my spending habits and income according to various categories of expenditure|I can identify which particular category of spending forms the majority of my daily expenditures.|
+|v1.0|person who spends a lot of time in front of a computer|Record my expenses and income using one-line commands|I can monitor my spending habits conveniently and hassle-free.|
+|v1.0|person who owns a bank account|calculate interest over a principal amount|know how much interest I can earn|
+|v1.0|user planning for my future finances|calculate interest earned over a period time|know how much interest I can earn at the end of a period|
+|v1.0|user who owns a cashback credit card|calculate cashback earned|know how much cashback I can earn|
+|v1.0|user who owns a miles credit card|calculate miles credit earned|know how much miles credit I can earn|
+|v1.0|user who is interested about my expenses|set expense goal for 1 year|manage my expenditure according to the budget I set aside|
+|v1.0|user wants to save money|set income goal for 1 year|know how much I have saved and did I reach my saving target|
+|v1.0|user that wishes to manage my income|know my goal status everytime I made an entry|saved the hassle to go to goal tracker just to check the progress|
+|v1.0|user that has recurring bills from subscription services|add a recurring entry|Keep track of monthly transactions like income or bills|
+|v1.0|user that has recurring bills from subscription services|edit a recurring entry|update details of existing entries without having to re-enter everything|
+|v1.0|user that has multiple recurring subscription services bill|delete a recurring entry|remove recurring entries that are no longer valid e.g. cancelled subscription|
+|v1.0|user who wants to know my expenditure|create a save after I exit the program and load that save when I return|shutdown my PC and save electrical bills without losing progress|
+|v2.0|user who is planning for long-term finances|calculate interest over a principal amount with yearly or monthly deposit|know how much interest I can earn with regular deposits|
+|v2.0|user who has multiple bank accounts and credit cards|store account or card information|refer to account features such as interest rate any time|
+|v2.0|user who is new to credit cards or bank accounts|compare my calculations with different interest rate|decide which account is better|
+|v2.0|user whose expenditure is large for particular months|set expense goal for specific month|manage my expenditure monthly instead of yearly|
+|v2.0|user who wants flexibility for finance-related goals|set income goal for specific month|know exactly which month I manage to saved up to my target goal|
+|v2.0|user who has different income goals for different month|edit expense/income goal for specific month|adjust my expenditure/saving target according to the situation|
+|v2.0|user that is interested in my finances for a particular month|display expense/income goal for specific month|keep track of my progress|
 |v2.0|busy user with many bills to pay|see all my upcoming recurring entries|keep track of bill payment dates and prevent overdue fees|
-|v2.0|user|be assured my saved progress is not lost if program unexpectedly terminates|work long hours without manually saving the program|
-|v2.0|user|keep multiple copies of different saves|load a different save if my friend wishes to use the program on my computer|
-|v2.0|user|reset my program|easily remove all saved progress without having to delete them one at a time|
+|v2.0|user that has a lot of financial-related information|be assured my saved progress is not lost if program unexpectedly terminates|work long hours without manually saving the program|
+|v2.0|user who manages finance for other people|keep multiple copies of different saves|load a different save if my friend wishes to use the program on my computer|
+|v2.0|user who is particular about sensitive information|reset my program|easily remove all saved progress without having to delete them one at a time|
 
 <div style="page-break-after: always;"></div>
 
@@ -987,6 +994,15 @@ terminated.
     * _IntelliJ_ - An Integrated Development Environment (IDE) used to develop FinanceIt
     * _CLI_ - Command Line Interface
     * _UML_ - Unified Modeling Language
+* __Technical__
+    * _Param types_ - A keyword to a parameter that serves as input to a particular command. eg. `/date`
+    * _Param_ - The parameter to the command. Is associated with a param type. eg. `200404`
+    * _Param Map_ - A HashMap that maps Param types to their respective Params.
+    * _CommandPacket_ - Class that represents the user input in distinct attributes that are easier to be accessed by the program.
+    * _Command Handlers_ - Component of classes that implements a command.
+    * _Logic Managers_ - Component of classes that implements the high-level logical sequence of events and operations within a certain feature.
+    * _Logic_ - Component of classes that interprets CommandPacket attributes to control the low-level operation flow of a command.
+    * _Input Manager_ - Component of classes that handles input by user and output to user. 
 * __Manual Tracker and Entry Tracker__
     * _Entries_ - The class designed to represent a unit of transaction of the user. 
     * _Ledger_ - A collection of entries which are incurred on the same day.
@@ -1028,7 +1044,7 @@ would be helpful in assisting the users in meaningfully monitoring their spendin
 
 ![](developerGuide_images/screenshots_mainmenu/main_menu.png)
 
-## Main Menu
+## Testing Main Menu
 1. Accessing a feature (Using ManualTracker as example):
     1. Enter ```manual``` into the console.
     You should see the following: 
@@ -1040,8 +1056,7 @@ would be helpful in assisting the users in meaningfully monitoring their spendin
         You should see the following: 
         
 ![](developerGuide_images/screenshots_mainmenu/main_menu_exit.png)
-
-## ManualTracker
+## Testing ManualTracker
 **Show Command List** <br />
 1. Enter ```commands``` into the console.
 You should see the following: 
@@ -1096,7 +1111,7 @@ You should see the following:
 
 > Note that the ledger of date 2020-07-07 was not created beforehand. However, the ledger will be automatically created by the operation, and will resume as per normal. 
 
-## EntryTracker
+## Testing EntryTracker
 1. The following testing guide assumes that testing at [7.2](#7.2) is completed.
 **Show Command List** <br />
 1. Enter ```commands``` into the console.
@@ -1156,7 +1171,7 @@ You should see the following:
 > Observe the entry that is the latter to be added, entry with __Entry Type = Income__, is now
 removed from the list.
 
-## RecurringTracker
+## Testing RecurringTracker
 1. Enter `recur` in the Main Menu. You should see the following:
 
 ![](developerGuide_images/screenshots_recurringtracker/enter_tracker.png)
@@ -1244,7 +1259,7 @@ Enter `list`. Output:
 
 ![](developerGuide_images/screenshots_recurringtracker/reminders_launch.png)
 
-## GoalTracker
+## Testing GoalTracker
 **Set Goal for Expense** <br />
 **Positive Test** <br />
 Enter ``` expense 4000 for 01 ``` into the console.
@@ -1305,7 +1320,7 @@ You should see the following:
 When a user make a new entry, the goal status will update and display as output as shown:
 ![GoalStatusUpdate](developerGuide_images/screenshot_goaltracker/GoalStatusUpdate.png)
 
-## SaveManager
+## Testing SaveManager
 **Add Save** <br />
 **Positive Test** <br />
 Enter ```add /name save123``` into the console.
@@ -1356,7 +1371,7 @@ You should see the following:
 ![capture6](uml_images/saveManager/puml/Capture6.PNG)
 
 <!-- @@author bqxy -->
-## FinanceTools
+## Testing FinanceTools
 **Simple Interest Calculator** <br />
 Enter ```simple /a 1000 /r 5``` into the console. <br />
 You should see the following:

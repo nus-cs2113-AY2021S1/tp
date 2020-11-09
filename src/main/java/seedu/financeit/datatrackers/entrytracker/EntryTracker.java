@@ -163,7 +163,7 @@ public class EntryTracker {
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s created!", entry.getName()));
             ManualTrackerSaver.getInstance().save();
-        } catch (InsufficientParamsException | IncompatibleParamsException exception) {
+        } catch (InsufficientParamsException | IncompatibleParamsException | ItemNotFoundException exception) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         } catch (DuplicateInputException exception) {
@@ -182,20 +182,29 @@ public class EntryTracker {
         EditEntryHandler editEntryHandler = EditEntryHandler.getInstance();
 
         Entry entry;
+        Entry prevEntry = null;
         try {
             // RetrieveEntryCommand instance retrieves the corresponding entry instance
             // from the entryList instance.
             retrieveEntryHandler.handlePacket(packet, entryList);
-            entry = (Entry) entryList.getItemAtCurrIndex();
-
+            // Remove the entry from the list.
+            entry = (Entry) entryList.popItemAtCurrIndex();
+            prevEntry = new Entry(entry);
             // EditEntryCommand instance edits details of the corresponding ledger instance
             // from the entryList instance.
             editEntryHandler.setEntry(entry);
             editEntryHandler.handlePacket(packet);
+
+            // Add the edited entry back to the list.
+            entryList.addItem(entry);
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s edited!", entry.getName()));
             ManualTrackerSaver.getInstance().save();
-        } catch (InsufficientParamsException | ItemNotFoundException exception) {
+        } catch (InsufficientParamsException | IncompatibleParamsException | ItemNotFoundException exception) {
+            // If the edited entry is not valid, and if an entry is retrieved, add back in the previous entry.
+            if (prevEntry != null) {
+                entryList.addItem(prevEntry);
+            }
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         } finally {
@@ -209,11 +218,11 @@ public class EntryTracker {
     private static void printCommandList() {
         TablePrinter.setTitle("List of Commands");
         TablePrinter.addRow("No.;Command                 ;Input Format                                               ");
-        TablePrinter.addRow("1.;New entry;new /time {HHMM} /desc {string} /cat {category} -[i/e] "
-            + "/amt {Double, 2 decimal places}");
-        TablePrinter.addRow("2.;Edit entry;edit /id {integer} {param-type/parameter to edit}");
+        TablePrinter.addRow("1.;New entry;new /time {HHMM} /desc {string} /cat {STRING_CATEGORY} -[i/e] "
+            + "/amt {DOUBLE (Positive, 2 decimal places) }");
+        TablePrinter.addRow("2.;Edit entry;edit /id {INTEGER} { {PARAM_TYPE} {PARAM} }...");
         TablePrinter.addRow("3.;list entries;list");
-        TablePrinter.addRow("4.;delete entry;delete /id {integer}");
+        TablePrinter.addRow("4.;delete entry;delete /id {INTEGER}");
         TablePrinter.addRow("5.;list transaction categories;cat");
         TablePrinter.addRow("6.;exit to manual tracker;exit");
         TablePrinter.printList();
@@ -221,7 +230,7 @@ public class EntryTracker {
 
     private static void printValidCategories() {
         TablePrinter.setTitle("List of Valid Categories");
-        TablePrinter.addRow("Category;Input");
+        TablePrinter.addRow("Input shortcut;Category");
         for (String i : CategoryMap.inputToCategoryMap.keySet()) {
             TablePrinter.addRow(String.format("%s;%s", i, CategoryMap.getCategoryFromInput(i)));
         }

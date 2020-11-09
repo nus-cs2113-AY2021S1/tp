@@ -119,6 +119,8 @@ Param Type| Param | Param Format
 > Example: 
 
 ![](developerGuide_images/screenshots_manualtracker/manual_delete1.png)
+
+<div style="page-break-after: always;"></div>
     
 ## Open ledger
 Users will gain access into the entries associated with the specified ledger, referenced by date or id on the list.
@@ -236,15 +238,19 @@ Param Type| Param | Param Format
 `/amt`|Amount involved in the transaction.| Input positive floating point number in 2 d.p. <br/> Can be $XX.XX, XX, etc.
 `/cat`|Category of transaction. | Input string belonging in the set: {tpt, fd, tvl, shp, bll, slr, alw}
 `-i or -e`|Type of transaction. | No parameter required. 
+`/desc`|Information about the transaction | Description should not have ';' characters.<br/>Users can use the '>' character to indent their input texts. 
 
 > Example: 
 
 ![](developerGuide_images/screenshots_entrytracker/entry_create.png)
 
+> Note that ';' is an illegal input character! Also, you can force indent to your text using '>' key. 
+
+<div style="page-break-after: always;"></div>
 
 ## Edit entry
-Add an entry to the ledger record.
-Users only need specify the param to edit, there is no need to fill out all params.
+Edit an existing entry in the ledger record.
+Users only need specify the param-type to edit; there is no need to fill out all param-types as per the create entry command.
 
 __Note__
 * While the index is compulsory to be provided, the rest of the params are not compulsory.
@@ -379,6 +385,8 @@ Displays a list of all recurring entries.
     
 
 ![](screenshots/recurringtracker/list.png)
+
+<div style="page-break-after: always;"></div>
 
 ## Delete entry
 Deletes an entry at the given index. Index can be found via `list` and then checking the 
@@ -606,6 +614,9 @@ Store the commands inputted and results from calculations in FinanceTools.
     history
 
 ![Example](screenshots/financetools/History(1).PNG)
+
+<div style="page-break-after: always;"></div>
+
 ## Exit FinanceTools
 Exit FinanceTools to Main Menu.
 
@@ -616,7 +627,9 @@ Exit FinanceTools to Main Menu.
 > Example: 
 
     exit
+    
 ![Example](screenshots/financetools/Exit(1).PNG)
+
 <!-- @@author -->
 
 <div style="page-break-after: always;"></div>  
@@ -785,6 +798,7 @@ As you can see, the 3 text files you want to delete are gone.
 <br />
 names.txt file is also updated.
 
+<div style="page-break-after: always;"></div>  
 
 ## Reset
 ![picture](uml_images/saveManager/Capture9.PNG)

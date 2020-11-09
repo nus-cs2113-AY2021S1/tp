@@ -10,6 +10,7 @@ import seedu.financeit.datatrackers.manualtracker.LedgerList;
 import seedu.financeit.datatrackers.manualtracker.ManualTracker;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.UiManager;
+import seedu.financeit.utils.LoggerCentre;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -75,7 +76,7 @@ public class ManualTrackerSaver extends SaveHandler {
         } catch (Exception e) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Manual Tracker dynamic save failed: " + e);
-            e.printStackTrace();
+            LoggerCentre.writeStackTraceToLog(e);
         }
     }
 
@@ -103,7 +104,7 @@ public class ManualTrackerSaver extends SaveHandler {
             int line = 0;
             while (scanner.hasNext()) {
                 try {
-                    String saveString = scanner.nextLine();
+                    String saveString = scanner.nextLine().trim();
                     line++;
                     classContents = saveString.split(";");
                     switch (classContents[0]) {
@@ -135,13 +136,13 @@ public class ManualTrackerSaver extends SaveHandler {
                 } catch (Exception e) {
                     UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                             "saveMt.txt line " + line + " failed to load: " + e);
-                    e.printStackTrace();
+                    LoggerCentre.writeStackTraceToLog(e);
                 }
             }
         } catch (Exception e) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Manual Tracker load failed: " + e);
-            e.printStackTrace();
+            LoggerCentre.writeStackTraceToLog(e);
         }
     }
 }
