@@ -309,18 +309,18 @@ In addition, it implements the following operations:
 * `ListModulesCommand#execute()` — oversees entire execution for listing modules.
 * `ListModulesCommand#listModules()` — gets and lists all modules in admin level.
 
-For instance, the user wants to list all modules available in `admin`, a detailed description of what happens is shown below:
-
-* Step 1: The user is currently in `admin` level. 
-
-* Step 2: The user enters `list` command to list all modules in `admin` level. 
-
 The following diagram shows the class diagram of the list modules feature:
 
 <p align="center">
   <img src="DG_Images/listmod_class_diagram.png" width="800" alt="List Modules Class Diagram"/>
   <br/>Figure <>. Class diagram of list modules feature  
 </p>
+
+For instance, the user wants to list all modules available in `admin`, a detailed description of what happens is shown below:
+
+* Step 1: The user is currently in `admin` level. 
+
+* Step 2: The user enters `list` command to list all modules in `admin` level. 
 
 The following sequence diagram shows how the list modules feature works:
 
@@ -511,18 +511,18 @@ In addition, it implements the following operations:
 * `ListChaptersCommand#execute()` — oversees entire execution for listing chapters.
 * `ListChaptersCommand#listChapters()` — gets and lists all chapters in module level.
 
-For instance, the user wants to list all chapters available in `CS2113T` (module name), a detailed description of what happens is shown below:
-
-* Step 1: The user is currently in `CS2113T` level. 
-
-* Step 2: The user enters `list` command to list all chapters in `CS2113T` level. 
-
 The following diagram shows the class diagram of the list chapters feature:
 
 <p align="center">
   <img src="DG_Images/listchap_class_diagram.png" width="800" alt="List Chapters Class Diagram"/>
   <br/>Figure <>. Class diagram of list chapters feature  
 </p>
+
+For instance, the user wants to list all chapters available in `CS2113T` (module name), a detailed description of what happens is shown below:
+
+* Step 1: The user is currently in `CS2113T` level. 
+
+* Step 2: The user enters `list` command to list all chapters in `CS2113T` level. 
 
 The following sequence diagram shows how the list chapters feature works:
 
@@ -759,18 +759,18 @@ In addition, it implements the following operations:
 * `ListCardsCommand#execute()` — oversees entire execution for listing flashcards.
 * `ListCardsCommand#listCards()` — gets and lists all flashcards in chapter level.
 
-For instance, the user wants to list all flashcards available in `Chapter 1` (chapter name), a detailed description of what happens is shown below:
-
-* Step 1: The user is currently in `Chapter 1` level. 
-
-* Step 2: The user enters `list` command to list all flashcards in `Chapter 1` level. 
-
 The following diagram shows the class diagram of the list flashcards feature:
 
 <p align="center">
   <img src="DG_Images/listcard_class_diagram.png" width="800" alt="List Flashcards Class Diagram"/>
   <br/>Figure <>. Class diagram of list flashcards feature  
 </p>
+
+For instance, the user wants to list all flashcards available in `Chapter 1` (chapter name), a detailed description of what happens is shown below:
+
+* Step 1: The user is currently in `Chapter 1` level. 
+
+* Step 2: The user enters `list` command to list all flashcards in `Chapter 1` level. 
 
 The following sequence diagram shows how the list flashcards feature works:
 
@@ -1340,18 +1340,20 @@ In addition, it implements the following operations:
 * `HistoryCommand#execute()` — calls the list method to list the history. 
 * `HistoryCommand#listHistory()` — lists the revision completed in the session/in a day.
 
-Given below is an example usage scenario and how the history mechanism behaves at each step:
-
-Step 1: The user launches the application and is currently in the admin level. 
-
-Step 2: The user executes `history` command to load and list the revision completed in the session/in a day.
-
 The following diagram shows the class diagram of the list revision history feature:
 
 <p align="center">
   <img src="DG_Images/listhistory_class_diagram.png" width="800" alt="List Revision History Class Diagram"/>
   <br/>Figure <>. Class diagram of list revision history feature  
 </p>
+
+Given below is an example usage scenario and how the history mechanism behaves at each step:
+
+Step 1: The user launches the application and is currently in the admin level. 
+
+Step 2: The user executes `history` command to load and list the revision completed in current day.
+
+Step 3: The user can also execute `history 2020-11-09` command to load and list the revision completed in 2020-11-09.
 
 The following sequence diagram shows how the list revision history feature works:
 
