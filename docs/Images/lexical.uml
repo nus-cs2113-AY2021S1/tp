@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>lexical</OriginalElement>
+  <nodes>
+    <node x="17.805555555555557" y="240.0">lexical.Parser</node>
+    <node x="29.02777777777778" y="80.0">lexical.Token</node>
+    <node x="0.0" y="160.0">lexical.Lexer</node>
+    <node x="7.027777777777779" y="0.0">lexical.Types</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="lexical.Lexer" target="lexical.Token">
+      <point x="0.0" y="-15.0" />
+      <point x="-29.33333333333333" y="15.0" />
+    </edge>
+    <edge source="lexical.Parser" target="lexical.Token">
+      <point x="32.0" y="-15.0" />
+      <point x="98.5" y="135.0" />
+      <point x="102.36111111111111" y="135.0" />
+      <point x="29.33333333333333" y="15.0" />
+    </edge>
+    <edge source="lexical.Parser" target="lexical.Lexer">
+      <point x="-32.0" y="-15.0" />
+      <point x="33.80555555555556" y="215.0" />
+      <point x="22.0" y="215.0" />
+      <point x="-22.0" y="15.0" />
+    </edge>
+    <edge source="lexical.Lexer" target="lexical.Types">
+      <point x="-29.33333333333333" y="-15.0" />
+      <point x="14.666666666666671" y="135.0" />
+      <point x="18.52777777777777" y="135.0" />
+      <point x="18.52777777777777" y="55.0" />
+      <point x="21.694444444444443" y="55.0" />
+      <point x="-29.333333333333336" y="15.0" />
+    </edge>
+    <edge source="lexical.Token" target="lexical.Types">
+      <point x="-22.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.6000000000000005" x="163.49999999999994" y="216.0" />
+  <SelectedNodes>
+    <node>lexical.Parser</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>public</VISIBILITY>
+</Diagram>
+

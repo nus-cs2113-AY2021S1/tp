@@ -1,6 +1,9 @@
-# Duke project template
+# Domsun - An easy way to track your schedules!
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+![here](UI.png)
+
+ - This is a desktop tasks tracker application. It comes with a fancy and plain mode of display in which user can switch anytime between them.
+ - It is a Java application intended for students to track their modules, mc, daily task, as well as assignments for the individual modules. 
 
 ## Setting up in Intellij
 
@@ -58,7 +61,19 @@ The project uses [GitHub actions](https://github.com/features/actions) for CI. W
 Steps for publishing documentation to the public: 
 1. If you are using this project template for an individual project, go your fork on GitHub.<br>
    If you are using this project template for a team project, go to the team fork on GitHub.
-1. Click on the `settings` tab.
-1. Scroll down to the `GitHub Pages` section.
-1. Set the `source` as `master branch /docs folder`.
-1. Optionally, use the `choose a theme` button to choose a theme for your documentation.
+2. Click on the `settings` tab.
+3. Scroll down to the `GitHub Pages` section.
+4. Set the `source` as `master branch /docs folder`.
+5. Optionally, use the `choose a theme` button to choose a theme for your documentation.
+
+
+## Site Map
+
+* [User Guide](UserGuide.md)
+* [Developer Guide](DeveloperGuide.md)
+* [About Us](AboutUs.md)
+* [Contact Us](ContactUs.md)
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE4Mjk1MzI1MjgsLTE1NDYzMTAwOTAsMT
+YzNTY1MjI0NV19
+-->

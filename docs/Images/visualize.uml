@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>visualize</OriginalElement>
+  <nodes>
+    <node x="82.18020833333333" y="160.0">visualize.Bitmap</node>
+    <node x="0.0" y="0.0">visualize.Sprite</node>
+    <node x="177.18020833333333" y="250.0">visualize.FancyCli</node>
+    <node x="271.21770833333335" y="80.0">visualize.UI</node>
+    <node x="249.18020833333333" y="160.0">visualize.Cli</node>
+    <node x="157.984375" y="0.0">visualize.Color</node>
+    <node x="54.180208333333326" y="80.0">visualize.ColoredString</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="visualize.ColoredString" target="visualize.Color">
+      <point x="-2.8421709430404007E-14" y="-15.0" />
+      <point x="130.1802083333333" y="60.0" />
+      <point x="166.78437499999998" y="60.0" />
+      <point x="-35.2" y="15.0" />
+    </edge>
+    <edge source="visualize.Cli" target="visualize.UI">
+      <point x="18.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="visualize.Bitmap" target="visualize.Sprite">
+      <point x="-38.400000000000006" y="-15.0" />
+      <point x="91.78020833333332" y="140.0" />
+      <point x="38.03020833333332" y="140.0" />
+      <point x="38.03020833333332" y="60.0" />
+      <point x="48.0" y="60.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="visualize.FancyCli" target="visualize.Sprite">
+      <point x="-49.0" y="-15.0" />
+      <point x="184.18020833333333" y="230.0" />
+      <point x="27.03020833333332" y="230.0" />
+      <point x="27.03020833333332" y="60.0" />
+      <point x="16.0" y="60.0" />
+      <point x="-32.0" y="15.0" />
+    </edge>
+    <edge source="visualize.FancyCli" target="visualize.UI">
+      <point x="49.0" y="-15.0" />
+      <point x="282.1802083333333" y="230.0" />
+      <point x="331.6802083333333" y="230.0" />
+      <point x="331.6802083333333" y="140.0" />
+      <point x="324.55104166666666" y="140.0" />
+      <point x="21.333333333333343" y="15.0" />
+    </edge>
+    <edge source="visualize.ColoredString" target="visualize.Sprite">
+      <point x="-50.666666666666686" y="-15.0" />
+      <point x="32.0" y="15.0" />
+    </edge>
+    <edge source="visualize.FancyCli" target="visualize.Cli">
+      <point x="35.0" y="-15.0" />
+      <point x="268.1802083333333" y="220.0" />
+      <point x="303.1802083333333" y="220.0" />
+      <point x="18.0" y="15.0" />
+    </edge>
+    <edge source="visualize.Bitmap" target="visualize.Color">
+      <point x="38.400000000000006" y="-15.0" />
+      <point x="168.58020833333333" y="140.0" />
+      <point x="216.68020833333333" y="140.0" />
+      <point x="216.68020833333333" y="60.0" />
+      <point x="201.984375" y="60.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="visualize.FancyCli" target="visualize.Color">
+      <point x="7.0" y="-15.0" />
+      <point x="240.18020833333333" y="230.0" />
+      <point x="238.68020833333333" y="230.0" />
+      <point x="238.68020833333333" y="60.0" />
+      <point x="237.184375" y="60.0" />
+      <point x="35.19999999999999" y="15.0" />
+    </edge>
+    <edge source="visualize.Bitmap" target="visualize.ColoredString">
+      <point x="-19.200000000000017" y="-15.0" />
+      <point x="110.98020833333331" y="130.0" />
+      <point x="79.51354166666667" y="130.0" />
+      <point x="-50.66666666666666" y="15.0" />
+    </edge>
+    <edge source="visualize.FancyCli" target="visualize.Bitmap">
+      <point x="-35.0" y="-15.0" />
+      <point x="198.18020833333333" y="220.0" />
+      <point x="106.18020833333333" y="220.0" />
+      <point x="-24.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.5262156448202964" x="34.51378307244789" y="204.73888350187002" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>public</VISIBILITY>
+</Diagram>
+
