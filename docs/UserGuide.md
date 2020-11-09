@@ -417,6 +417,8 @@ Here are some key pointers:
 
 * After listing all chapters, you can try all commands available in **Module Level**.
 
+<div style="page-break-after: always;"></div>
+
 #### 3.2.3. Editing a chapter name: `edit`
 (by Jane)
 
