@@ -20,7 +20,8 @@ Prerequisites: JDK 11 (use the exact version), update Intellij to the most recen
 1. **Configure Intellij for JDK 11**, as described [here](https://se-education.org/guides/tutorials/intellijJdk.html).
 1. **Import the project _as a Gradle project_**, as described [here](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
 1. **Verify the set up**: After the importing is complete, locate `src/java/athena/Athena.java`, right-click it, and choose `Run Athena.main()`. If the setup is correct, you should see something like the one below:
-   ```
+
+```
    > Task :compileJava
    > Task :processResources NO-SOURCE
    > Task :classes
@@ -40,8 +41,9 @@ What can I do? Are you challenging me to a duel?
 ...
 Oh you mean in terms of tasks? Just type "help" to witness my mighty repertoire!
 So, what would you like to do today?
-   ```
-   Type something and press enter to see what ATHENA can do.
+```
+
+Type something and press enter to see what ATHENA can do.
 
 ## Build automation using Gradle
 
