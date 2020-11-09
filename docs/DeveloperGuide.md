@@ -43,17 +43,16 @@ major sections but still larger than normal paragraphs to distinguish them.
   * [Temporary list component](#temp-list)
   * [Storage component](#storage-component)
   * [Local files component](#local-files)
-  * [Exceptions component](#exceptions)
 * [Implementation](#implementation)
   * [Bookmark and Timetable modes feature](#mode)
   * [Show timetable feature](#show-timetable)
   * [Add Module and Slot features](#add-module-slot)
-  * [Validate Modules feature](#nus-module-list)
-  * [Extended HelpCommand feature](#extended-help-command)
+  * [Validate Modules feature](#nusmodulelist)
+  * [Extended HelpCommand feature](#extendedhelpcommand)
   * [Edit Slot feature](#edit-slot)
   * [Show Settings Feature](#showsettings)
   * [Set Settings Feature](#setsettings)
-  * [Planner Feature](#module-list)
+  * [Planner Feature](#planner)
 * [Appendix A: Product Scope](#appendix-a)
 * [Appendix B: User Stories](#appendix-b)
 * [Appendix C: Non-Functional Requirements](#appendix-c)
@@ -85,15 +84,15 @@ The figure below shows a high-level design for the architecture of Zoomaster. <b
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/architecture.png) <br/></br>
 *<center/> Figure 1.1 Architecture diagram of Zoomaster </center> <br/></br>*
 
-Our Program can be split up into 8 components
+Our Program can be split up into 7 components
 * Initialization
 * User Interface
 * Parser
 * Commands
-* Temp Lists
+* Lists
 * Storage
 * Local Files
-* Exceptions
+
 
 These components interact with each other as shown in Figure 1.1 to execute the functionalities of Zoomaster.
 
@@ -204,7 +203,7 @@ Its main roles are:
 * Catch errors or conflicts in users commands and throw the appropriate exception to the Main function
 
 <a name="temp-list"></a>
-### Temp List component
+### Lists component
 
 The Temp List component is responsible for holding on to temporary data of Zoomaster to be used by Commands.
 
@@ -242,20 +241,6 @@ Its main role is:
 
 In addition, the filepath to the directory containing the jar file is obtained by the getJarFilePath() method in `Zoomaster`.
 The files are saved using this filepath, allowing them to be saved in the same directory as the jar file. This allows for more convenient running of Zoomaster, as the user does not have to switch to the same directory of the jar file when running the application.
-
-<a name="exceptions"></a>
-### Exceptions component
-
-The Exceptions component is responsible for responding to the different errors different components of Zoomaster sends 
-back to the Main function.
-
-It extends the `Exception` class and uses it to catch unique exceptions thrown by different components of Zoomaster.
-
-It consists of  `ZoomasterException` and `ZoomasterExceptionType` classes.
-
-Its main role is:
-
-* Create unique exceptions thrown by different components to signal the Main function what error has occurred
 
 
 ## **Implementation**
@@ -664,7 +649,7 @@ The sequence diagram below explains how this feature is executed:
 *<center/> Figure 2.23 Sequence diagram for SetSettingsCommand </center> <br/></br>*
 
 <!-- @@author -->
-
+<a name="planner"></a>
 ### Planner feature (Jusuf)
 
 This feature is an extension of the timetable feature that allows users to find common empty slots from each individual timetable. The users can then add a new meeting, and the app will automatically write the meeting to each timetable.
@@ -749,11 +734,11 @@ Hence, Zoomaster helps to organise students’ Zoom links for easy access to the
     2. Open the command prompt and change directory to the location of the jar file.
     3. Enter `java -jar zoomaster.jar` in the command line. You should expect to see the welcome screen of the application.
 2. Testing
-    1. Download the test cases text file from github [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/tree/master/text-ui-test). <br></br>
+    1. Download the test cases text file from github [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/tree/master/text-ui-test).
     Its name is input.txt. 
     2. These are some the sample test cases used to test if the program is working as intended. You should get the same results <br></br>
     as shown in EXPECTED.txt file.
-    3. You can refer to the [User Guide](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/UserGuide.md) for the full list <br></br>
+    3. You can refer to the [User Guide](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/UserGuide.md) for the full list
     of features and available commands for Zoomaster.
     4. Now you can manually input test cases into Zoomaster and see the results.
     5. Note that the output of the application is dependent on the system time of your machine.
