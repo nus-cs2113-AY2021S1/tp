@@ -28,9 +28,7 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 
 Added ASCII art (PR [#90](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/90) and [#80](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/80)). Refactored code to abstract out the (un)successful execution messages (PR [#143](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/143)) to its own `CommandMessage` class.
 
-*Code contributed*
-
-[RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=r-ramana&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other) to view a report of the code contribution.
+*Code contributed*: [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=r-ramana&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other) to view a report of the code contribution.
 
 *Contributions to Team Based Task*
 
