@@ -1,6 +1,6 @@
 package seedu.quotesify.parser;
 
-import seedu.quotesify.commands.BookmarkCommand;
+import seedu.quotesify.commands.bookmark.BookmarkCommand;
 import seedu.quotesify.commands.add.AddCommand;
 import seedu.quotesify.commands.Command;
 import seedu.quotesify.commands.delete.DeleteCommand;
