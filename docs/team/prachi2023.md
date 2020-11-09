@@ -32,6 +32,8 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 `AddEventCommand`, `AddNoteCommand`, `ArchiveNoteCommand`, `UnarchiveNoteCommand`, `CreateTagCommand`, `DeleteEventCommand`, `DeleteNoteCommand`, `EditEventCommand`, `EditNoteCommand`, `PinCommand`, `TagEventCommand`, `TagNoteCommand`
 1. Saving of all the notes and events when the programme ends.
 
+<div style="page-break-after: always;"></div>
+
 *Code contributed*
 
 1. In the 'StorageManager' class, created the following methods:
