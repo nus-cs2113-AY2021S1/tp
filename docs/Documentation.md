@@ -1,6 +1,6 @@
 # Documentation Guide
 
-##Table of contents
+## Table of contents
 1. [Setting up and maintaining the project website](#1)
 2. [Style guidance](#2)
 3. [Diagrams](#3)
