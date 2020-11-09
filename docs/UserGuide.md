@@ -69,7 +69,9 @@ Once you are done installing Java 11.0.8 onto your PC, you may follow these proc
 
 ![WelcomeMessage](Images/GeneralUG/welcomemessage.png){:height="40%" width="40%" align="center"}
 
-<img align="center" width="40%" height="40%" src="Images/GeneralUG/welcomemessage.png">
+<p align="center">
+    <img width="40%" height="40%" src="Images/GeneralUG/welcomemessage.png">
+</p>
 
 Congratulations! You are now able to run Study It. To access its various functionalities,
 you would need to type in the command at the Command Prompt and press Enter. 
