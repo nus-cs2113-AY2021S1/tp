@@ -111,10 +111,10 @@ instances to perform add, remove or edit operations on the ```Ledgers``` or ```E
 * Utility Model sub-components
     * Goal
         * Used by the `GoalTracker`. The user can set their income or expense goals by creating a `Goal` instance. They can then be compared against with total entry amounts recorded by the user, whereby the `GoalTracker` will report the progress of the user towards the `Goal` that they set. 
-        * More information can be found in the [GoalTracker section](#feat_goalTracker).
+        * More information can be found in the [GoalTracker section](#goalTracker).
     * AccountSaver
         * Stores account information of the user.
-        * More details can be found in the [FinanceTools section](#feat_financeTools).
+        * More details can be found in the [FinanceTools section](#financeTools).
 
 ## Storage Component
 
@@ -530,7 +530,7 @@ __<a name = diag4></a> Sequence Diagram__
 <div style="page-break-after: always;"></div>
 
 &nbsp;  
-### <a name = feat_recurringTracker></a> Recurring Tracker
+### Recurring Tracker
 **Overview** <br />
 Recurring Tracker handles the creation, deletion and editing of recurring entries.
 
@@ -644,7 +644,7 @@ The sequence diagram below shows how it works:
 &nbsp;  
 
 <!-- @@author bqxy -->
-### <a name = feat_financeTools></a> FinanceTools
+### FinanceTools
 **Overview** <br />
 FinanceTools consists of the following features
 1. Simple Interest Calculator
@@ -831,7 +831,7 @@ The results from calculation is stored in the ```ArrayList``` when the implement
 
 &nbsp;  
 
-### <a name = feat_goalTracker></a> Goal Tracker
+### Goal Tracker
 **Set Expense Goal Feature** <br />
 The set expense goal feature is being implemented by ```GoalTracker```. It allows the user to set an expense goal for
 the respective month to ensure that the user does not overspent his budget. 
@@ -867,7 +867,7 @@ This sequence diagram will show the flow of setting of expense goal:
 
 &nbsp;  
 
-### <a name = feat_storageUtility></a> Storage Utility
+### Storage Utility
 **What it does** <br />
 Storage utility is a tool designed for backup and storage of all data associated with Goal tracker, Manual tracker and recurring tracker.
 It performs auto loading and saving of data upon entry and exit of the program as well as allowing multiple saves to be created and loaded
@@ -1037,7 +1037,7 @@ would be helpful in assisting the users in meaningfully monitoring their spendin
 
 ![](developerGuide_images/screenshots_mainmenu/main_menu.png)
 
-## Main Menu
+## Testing Main Menu
 1. Accessing a feature (Using ManualTracker as example):
     1. Enter ```manual``` into the console.
     You should see the following: 
@@ -1049,7 +1049,7 @@ would be helpful in assisting the users in meaningfully monitoring their spendin
         You should see the following: 
         
 ![](developerGuide_images/screenshots_mainmenu/main_menu_exit.png)
-## ManualTracker
+## Testing ManualTracker
 **Show Command List** <br />
 1. Enter ```commands``` into the console.
 You should see the following: 
@@ -1104,7 +1104,7 @@ You should see the following:
 
 > Note that the ledger of date 2020-07-07 was not created beforehand. However, the ledger will be automatically created by the operation, and will resume as per normal. 
 
-## EntryTracker
+## Testing EntryTracker
 1. The following testing guide assumes that testing at [7.2](#7.2) is completed.
 **Show Command List** <br />
 1. Enter ```commands``` into the console.
@@ -1164,7 +1164,7 @@ You should see the following:
 > Observe the entry that is the latter to be added, entry with __Entry Type = Income__, is now
 removed from the list.
 
-## RecurringTracker
+## Testing RecurringTracker
 1. Enter `recur` in the Main Menu. You should see the following:
 
 ![](developerGuide_images/screenshots_recurringtracker/enter_tracker.png)
@@ -1252,7 +1252,7 @@ Enter `list`. Output:
 
 ![](developerGuide_images/screenshots_recurringtracker/reminders_launch.png)
 
-## GoalTracker
+## Testing GoalTracker
 **Set Goal for Expense** <br />
 **Positive Test** <br />
 Enter ``` expense 4000 for 01 ``` into the console.
@@ -1313,7 +1313,7 @@ You should see the following:
 When a user make a new entry, the goal status will update and display as output as shown:
 ![GoalStatusUpdate](developerGuide_images/screenshot_goaltracker/GoalStatusUpdate.png)
 
-## SaveManager
+## Testing SaveManager
 **Add Save** <br />
 **Positive Test** <br />
 Enter ```add /name save123``` into the console.
