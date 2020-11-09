@@ -1,11 +1,11 @@
-# Kaji - User Guide
+# KAJI - User Guide
 By: `Team F11-3` Since: `August 2020`
 ## Table of content
 1. [Overview](#1-overview)<br>
-1.1. [About Kaji](#11-about-kaji)<br>
+1.1. [About KAJI](#11-about-kaji)<br>
 1.2. [About this User Guide](#12-about-this-user-guide)<br>
 1.3. [Understanding the Command Line Interface (CLI)](#13-understanding-the-command-line-interface-cli)<br>
-1.4. [Understanding Kaji](#14-understanding-kaji)<br>
+1.4. [Understanding KAJI](#14-understanding-kaji)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.4.1. [Content Management](#141-content-management)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.4.2. [Schedule Management](#142-schedule-management)<br>
 2. [Quick Start](#2-quick-start)<br>
@@ -48,47 +48,51 @@ By: `Team F11-3` Since: `August 2020`
 --------------------------------------------------------------------------------------------------------------------
 
 ## 1. Overview
-This section gives an overview about Kaji and the purpose of this user guide.
+This section gives an overview about KAJI and the purpose of this user guide.
 
-### 1.1. About Kaji
+### 1.1. About KAJI
 In your past learning experience, have you encountered these problems? A large number of lecture notes and materials have made your computer desktop messy, 
 and there is no way to find the materials you want. When the exam is approaching, you don’t know which subject to review first, or suddenly find that you have 
 forgotten everything you learned before. No one wants to forget what they have dedicated time to learn.
 
-Don't worry! <strong>Kaji</strong> will help you solve all these problems!
+Don't worry! <strong>KAJI</strong> will help you solve all these problems!
 
 KAJI is a schedule manager that implements Spaced Repetition, optimised for use via a Command Line Interface (CLI).
 
 ### 1.2. About this User Guide
-This User Guide explains how to use Kaji. It provides an understanding of the features and commands, as well as some common use cases of this application.
+This User Guide explains how to use KAJI. It provides an understanding of the features and commands, as well as some common use cases of this application.
 
 In this guide, we cover:
 * How to use the Command Line Interface (CLI)
-* Syntax of the commands available in different levels in Kaji
+* Syntax of the commands available in different levels in KAJI
 * Common use cases for each command
 * Summary of all the commands
 
 
 ### 1.3. Understanding the Command Line Interface (CLI)
-When you first launch Kaji, you will be greeted by the CLI. In this section, we shall learn about what each section of this CLI is responsible for.
+To use KAJI, you have to first know the Command Line Interface, the platform that KAJI runs on. However, as we have simplified the interface for you, here is a simplified introduction that will cover everything you need to know about the CLI to use KAJI.
 
+<p align="center">
+  <img src="UG_Images/CLI.png" width="600" alt="CLI"/>
+  <br/>Figure 1. KAJI CLI Layout 
+</p>
 
+* <b>Command Prompt:</b> This is where you enter your commands
+* <b>Access Level:</b> This displays the access level that you are currently at
+* <b>Result Display:</b> This displays feedback and other useful information about your commands that you have just entered
 
-In Kaji, the user interactions occurs via the <b>command line interface (CLI)</b>
-A <b>command line interface (CLI)</b> is a text-based user interface (UI) used to view and manage computer files. Command line interfaces are also called command-line user interfaces, console user interfaces and character user interfaces.
-
-### 1.4. Understanding Kaji
+### 1.4. Understanding KAJI
 
 #### 1.4.1. Content Management
-Kaji's content management system is similar to a physical folder which you may use to organize your lecture handouts. <br>
-Kaji manages content in four different levels, they are the Admin Level, the Module Level, the Chapter Level and the Flash Card Level: <br>
+KAJI's content management system is similar to a physical folder which you may use to organize your lecture handouts. <br>
+KAJI manages content in four different levels, they are the Admin Level, the Module Level, the Chapter Level and the Flash Card Level: <br>
 
 ![Content Management](UG_Images/contentManagement.PNG)
 
 * **Admin Level** is like your **bookshelf** to keep all the separated module folder in place.
 * **Module Level** is like a **folder** to keep all your lecture notes and materials by different module codes.
 * **Chapter level** is like an **index sticker** which organizes different pieces of information into its relevant chapters.
-* **Flashcard level** is all the **primary notes and material** which you have collected for your modules. With Kaji's assistant, you can easily categorise your messy notes into organized structure.
+* **Flashcard level** is all the **primary notes and material** which you have collected for your modules. With KAJI's assistant, you can easily categorise your messy notes into organized structure.
 
 When you start our program, you begin on the **Admin Level**, indicated by the prompt "admin" as shown here.
 To add/modify/remove elements of a certain level, you have to be on the level above it.
@@ -108,9 +112,9 @@ To find out more about how you can utilise the feature and even customise it to 
 To get started on this application, please perform the following steps:
 
 1. Ensure that you have Java 11 or above installed.
-1. Download the latest version of `Kaji` from [here](https://github.com/AY2021S1-CS2113T-F11-3/tp/releases).
-1. Copy the file to an empty folder you want to use as the <I>home folder</I> for your Kaji.
-1. Open a command window in the folder you saved Kaji and run the command `java -jar kaji.jar`. You should get the output as shown below: <br>
+1. Download the latest version of `KAJI` from [here](https://github.com/AY2021S1-CS2113T-F11-3/tp/releases).
+1. Copy the file to an empty folder you want to use as the <I>home folder</I> for your KAJI.
+1. Open a command window in the folder you saved KAJI and run the command `java -jar kaji.jar`. You should get the output as shown below: <br>
 ![Welcome screen](images/kaji.PNG)
 1. Type the command in the command window and press Enter to execute it. 
    e.g. typing `help` and pressing Enter will show the list of commands available.<br>
@@ -122,8 +126,8 @@ To get started on this application, please perform the following steps:
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Features
-This section introduces the syntax and usages of the commands for the features available in Kaji. 
-In explaining the syntax, do take note of the following command format which applies to all Kaji commands:
+This section introduces the syntax and usages of the commands for the features available in KAJI. 
+In explaining the syntax, do take note of the following command format which applies to all KAJI commands:
 * Words in `UPPER_CASE` are the parameters that you need to provide.
     * <b>Example:</b> In `add MODULE_NAME`, `MODULE_NAME` is a parameter which can be used as `add CS2113`.
 * Parameters cannot be given in any order.
@@ -138,20 +142,22 @@ The `INDEX` of a module/chapter/flashcard is shown one the left of each module/c
 ### 3.1. Admin Level
 This section introduces the syntax and usages of the commands for the features that are available at the **Admin Level**.<br>
 Ensure that you are at the **Admin Level** before trying the commands in the next few sections:<br>
-<img src="UG_Images/AdminLevel.png" width="600" alt="Admin Level"/>
+<p align="center">
+  <img src="UG_Images/AdminLevel.png" width="600" alt="Admin Level"/>
+</p>
 
 #### 3.1.1. Adding a module: `add`
 (by Jiayi)
 
-Welcome to the first feature of Kaji! In order to use this program, you first will need to create a module deck. Creating a new module deck in Kaji is like getting a new folder to store all the handouts for one module. This is important because it helps you to organize your messy notes. <br>
+Welcome to the first feature of KAJI! In order to use this program, you first will need to create a module deck. Creating a new module deck in KAJI is like getting a new folder to store all the handouts for one module. This is important because it helps you to organize your messy notes. <br>
 
 ##### Format: `add \MODULE_CODE`
 \MODULE_CODE is the name of the new module that you would like to create, such as `CS2113`, `Module 1` or `Biology`. 
 
 ##### Key Pointers:
-* Kaji does not allow duplicate of module names, therefore, if the existing module has the same name as the new module, you will get an error message.
-* Kaji is not case-sensitive, therefore, a new module named `module`  will be treated equally to a module named `MODULE`. 
-* Kaji only allows creation of one module with the `add` command. If you enter command `add CS2113T CS2101` will creates a module named `CS2113T CS2101`, instead of two separated modules named `CS2113T` and `CS2101` respectively.
+* KAJI does not allow duplicate of module names, therefore, if the existing module has the same name as the new module, you will get an error message.
+* KAJI is not case-sensitive, therefore, a new module named `module`  will be treated equally to a module named `MODULE`. 
+* KAJI only allows creation of one module with the `add` command. If you enter command `add CS2113T CS2101` will creates a module named `CS2113T CS2101`, instead of two separated modules named `CS2113T` and `CS2101` respectively.
 
 ##### Example: 
 In this example, you are going to add a new module called `CS2113T`. <br>
@@ -161,20 +167,20 @@ Below are steps of using this `add` command: <br>
 * Step 2: As shown below, a new module named `CS2113T` has just been created! You are free to edit, delete and access this module!
 ![Add Module 2](UG_Images/addModule2.PNG)
 
-This is an additional example to show you the unique property of Kaji's add feature. <br>
-As you may aware from `Key Pointers` section above, Kaji is case-insensetive. This example belows shows you what will happen if you try to add a new module called `cs2113t` after completing the previous example. <br>
+This is an additional example to show you the unique property of KAJI's add feature. <br>
+As you may aware from `Key Pointers` section above, KAJI is case-insensetive. This example belows shows you what will happen if you try to add a new module called `cs2113t` after completing the previous example. <br>
 Below are the breakdown of this example: <br>
 * Step 1: Types `add cs2113t` to add a new module named `cs2113t` after adding a module named `CS2113T` which essentially have a same name as our new module but in capital letters.
 ![Add Module 3](UG_Images/addModule3.PNG)
-* Step 2: Opps, Kaji refuses to add the module `cs2113t` because a module with the same name is already existed!
+* Step 2: Opps, KAJI refuses to add the module `cs2113t` because a module with the same name is already existed!
 ![Add Module 4](UG_Images/addModule4.PNG)
 
-This is an additional example to show you the unique property of Kaji's add feature. <br>
-As you may aware from `Key Pointers` section above, Kaji only allows addition of one new module each time. Let's see what will happen if you try to add two modules `cs2113 cs2101` at same time. <br>
+This is an additional example to show you the unique property of KAJI's add feature. <br>
+As you may aware from `Key Pointers` section above, KAJI only allows addition of one new module each time. Let's see what will happen if you try to add two modules `cs2113 cs2101` at same time. <br>
 Below are the breakdown of this example: <br>
 * Step 1: Types `add cs2113t cs2101` and attempts to add a new module named `cs2113t` and another new module `cs2101`.
 ![Add Module 5](UG_Images/addModule5.PNG)
-* Step 2: Opps, Kaji has interpreted it as one single module with the name of `cs2113t cs2101`, instead of two seperate modules. 
+* Step 2: Opps, KAJI has interpreted it as one single module with the name of `cs2113t cs2101`, instead of two seperate modules. 
 ![Add Module 6](UG_Images/addModule6.PNG)
 
 #### 3.1.2. Listing modules available: `list` 
@@ -216,7 +222,7 @@ Example of usage:
 #### 3.1.4. Removing a module: `remove` 
 (by Jia Ern)
 
-Removes a module from Kaji.
+Removes a module from KAJI.
 
 Format: `remove MODULE_INDEX`
 
@@ -241,8 +247,8 @@ Now you have learnt how to create, edit and delete the module deck, let's move t
 \MODULE_INDEX is the index of the module that you can find in the list command, such as `1`, `2` or `3`. 
 
 ##### Key Pointers:
-* Kaji only allow access to the existing modules that are shown in the list, therefore, module that is deleted or has never been created will result in an error message.
-* Kaji does not recognise any index out of bound such as `0` or index numbers that are not present in the list.
+* KAJI only allow access to the existing modules that are shown in the list, therefore, module that is deleted or has never been created will result in an error message.
+* KAJI does not recognise any index out of bound such as `0` or index numbers that are not present in the list.
 
 ##### Example: 
 In this example, you are going to access the module `CS2113T` that you have created in the previous sections.
@@ -261,7 +267,9 @@ Below are steps of using this `go` command:
 ### 3.2. Module level
 This section introduces the syntax and usages of the commands for the features that are available at the **Module Level**.<br>
 Ensure that you are at the **Module Level** before trying the commands in the next few sections:<br>
-<img src="UG_Images/ModuleLevel.png" width="600" alt="Module Level"/>
+<p align="center">
+  <img src="UG_Images/ModuleLevel.png" width="600" alt="Module Level"/>
+</p>
 
 #### 3.2.1. Adding a chapter: `add`
 (by Jiayi)
@@ -272,17 +280,17 @@ You are now at the module level! This command allows you to create a new chapter
 \CHAPTER_NAME is the name of the new chapter that you would like to create, such as `Topic 1`, `Chapter 1` or `Newton's laws of motion`. 
 
 ##### Key Pointers:
-* Similar to module, Kaji does not allow duplicate of chapter names, therefore, if the existing chapter has the same name as the new chapter, you will get an error message
-* Kaji is not case-sensitive, therefore, a new chapter named `chapter`  will be treated equally to a module named `CHAPTER`. 
+* Similar to module, KAJI does not allow duplicate of chapter names, therefore, if the existing chapter has the same name as the new chapter, you will get an error message
+* KAJI is not case-sensitive, therefore, a new chapter named `chapter`  will be treated equally to a module named `CHAPTER`. 
 
 ##### Example 1: 
 In this example, you are going to add a new chapter called `Chapter 1`. <br>
 Below are steps of using this `add` command: <br>
 * Step 1: Enters the command `add Chapter 1` into the command prompt which your new chapter name comes after the key word `add`.
 ![Add Chapter 1](UG_Images/addChapter1.PNG)
-* Step 2: In Kaji, you can give new chapters a rate to pre-set its revision schedules. If you would like to keep it as fault state, you can simply enter `N`. To demonstrate this feature fully, you may enter `Y` to rate the new chapter and check out how will Kaji responses!
+* Step 2: In KAJI, you can give new chapters a rate to pre-set its revision schedules. If you would like to keep it as fault state, you can simply enter `N`. To demonstrate this feature fully, you may enter `Y` to rate the new chapter and check out how will KAJI responses!
 ![Add Chapter 2](UG_Images/addChapter2.PNG)
-* Step 3: You choose to rate the new chapter from the previous step, therefore, you can rate your chapter as `Easy`, `Medium` or `Hard` by entering `E`, `M` and `H` as shown as the instruction given by Kaji.
+* Step 3: You choose to rate the new chapter from the previous step, therefore, you can rate your chapter as `Easy`, `Medium` or `Hard` by entering `E`, `M` and `H` as shown as the instruction given by KAJI.
 ![Add Chapter 3](UG_Images/addChapter3.PNG)
 * Step 4: You have just created a new chapter! Good Job!
 ![Add Chapter 4](UG_Images/addChapter4.PNG)
@@ -322,19 +330,26 @@ and must be a valid index number for a chapter as displayed from the list of cha
 
 Let's say you want to edit the chapter name to `Chapter 1` for the chapter `chap 1`.
 * Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/EditChapter1.png" width="600" alt="Edit Chapter 1"/>
-![Edit Chapter](UG_Images/EditChapter1.png)
+<p align="center">
+  <img src="UG_Images/EditChapter1.png" width="600" alt="Edit Chapter 1"/>
+</p>
 * Step 2: From the list of chapters displayed, you can see that the chapter `CHAPTER_INDEX` is 1.<br>
-<img src="UG_Images/EditChapter2.png" width="600" alt="Edit Chapter 2"/>
+<p align="center">
+  <img src="UG_Images/EditChapter2.png" width="600" alt="Edit Chapter 2"/>
+</p>
 * Step 3: Next, you can type `edit 1 Chapter 1` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/EditChapter3.png" width="600" alt="Edit Chapter 3"/>
+<p align="center">
+  <img src="UG_Images/EditChapter3.png" width="600" alt="Edit Chapter 3"/>
+</p>
 * Step 4: After the chapter name has been successfully edited, the result will be displayed as shown.<br>
-<img src="UG_Images/EditChapter4.png" width="600" alt="Edit Chapter 4"/>
+<p align="center">
+  <img src="UG_Images/EditChapter4.png" width="600" alt="Edit Chapter 4"/>
+</p>
 
 #### 3.2.4. Removing a chapter: `remove`
 (by Jia Ern)
 
-Removes a chapter from Kaji.
+Removes a chapter from KAJI.
 
 Format: `remove CHAPTER_INDEX`
 
@@ -449,13 +464,21 @@ and must be a valid index number for a chapter as displayed from the list of cha
 
 Let's say you want to reschedule the due date to `2020-12-20` for the chapter `Chapter 1`.
 * Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/RescheduleChapter1.png" width="600" alt="Reschedule Chapter 1"/>
+<p align="center">
+  <img src="UG_Images/RescheduleChapter1.png" width="600" alt="Reschedule Chapter 1"/>
+</p>
 * Step 2: From the list of chapters displayed, you can see that the chapter `CHAPTER_INDEX` is 1.<br>
-<img src="UG_Images/RescheduleChapter2.png" width="600" alt="Reschedule Chapter 2"/>
+<p align="center">
+  <img src="UG_Images/RescheduleChapter2.png" width="600" alt="Reschedule Chapter 2"/>
+</p>
 * Step 3: Next, you can type `reschedule 1 2020-12-20` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/RescheduleChapter3.png" width="600" alt="Reschedule Chapter 3"/>
+<p align="center">
+  <img src="UG_Images/RescheduleChapter3.png" width="600" alt="Reschedule Chapter 3"/>
+</p>
 * Step 4: After the due date of the chapter has been successfully rescheduled, the result will be displayed as shown.<br>
-<img src="UG_Images/RescheduleChapter4.png" width="600" alt="Reschedule Chapter 4"/>
+<p align="center">
+  <img src="UG_Images/RescheduleChapter4.png" width="600" alt="Reschedule Chapter 4"/>
+</p>
 
 ### 3.3. Chapter Level
 This section introduces the syntax and usages of the commands for the features that are available at the **Chapter Level**.<br>
@@ -481,9 +504,13 @@ Here are some key pointers:
 
 Let's say you want to add a new flashcard with `1+1` as the `QUESTION` and `2` as the `ANSWER`:
 * Step 1: Type `add q:1+1 | a:2` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/AddCard1.png" width="600" alt="Add Card 1"/>
+<p align="center">
+  <img src="UG_Images/AddCard1.png" width="600" alt="Add Card 1"/>
+</p>
 * Step 2: After the flashcard has been successfully added to the chapter, the result will be displayed as shown.<br>
-<img src="UG_Images/AddCard2.png" width="600" alt="Add Card 2"/>
+<p align="center">
+  <img src="UG_Images/AddCard2.png" width="600" alt="Add Card 2"/>
+</p>
 
 #### 3.3.2. Listing flashcards available: `list`
 (by Jane)
@@ -500,9 +527,13 @@ Here are some key pointers:
 
 Let's say you want to view all the flashcards for a chapter:
 * Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/ListCard1.png" width="600" alt="List Card 1"/>
+<p align="center">
+  <img src="UG_Images/ListCard1.png" width="600" alt="List Card 1"/>
+</p>
 * Step 2: The result for the list of flashcards will be displayed as shown.<br>
-<img src="UG_Images/ListCard2.png" width="600" alt="List Card 2"/>
+<p align="center">
+  <img src="UG_Images/ListCard2.png" width="600" alt="List Card 2"/>
+</p>
 
 #### 3.3.3. Editing a flashcard content: `edit`
 (by Jane)
@@ -530,18 +561,26 @@ you do not need to type any content for the parameter `QUESTION` or `ANSWER`.
 
 Let's say you want to edit the question to `2*1` for the flashcard that has `1+1` as the question and `2` as the answer.
 * Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/EditCard1.png" width="600" alt="Edit Card 1"/>
+<p align="center">
+  <img src="UG_Images/EditCard1.png" width="600" alt="Edit Card 1"/>
+</p>
 * Step 2: From the list of flashcards displayed, you can see that the flashcard `FLASHCARD_INDEX` is 1.<br>
-<img src="UG_Images/EditCard2.png" width="600" alt="Edit Card 2"/>
+<p align="center">
+  <img src="UG_Images/EditCard2.png" width="600" alt="Edit Card 2"/>
+</p>
 * Step 3: Next, you can type `edit 1 q:2*1 | a:` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/EditCard3.png" width="600" alt="Edit Card 3"/>
+<p align="center">
+  <img src="UG_Images/EditCard3.png" width="600" alt="Edit Card 3"/>
+</p>
 * Step 4: After the flashcard has been successfully edited, the result will be displayed as shown.<br>
-<img src="UG_Images/EditCard4.png" width="600" alt="Edit Card 4"/>
+<p align="center">
+  <img src="UG_Images/EditCard4.png" width="600" alt="Edit Card 4"/>
+</p>
 
 #### 3.3.4. Removing a flashcard: `remove`
 (by Jia Ern)
 
-Removes a flashcard from Kaji.
+Removes a flashcard from KAJI.
 
 Format: `remove FLASHCARD_INDEX`
 
@@ -591,7 +630,7 @@ For instance, you would like to check your overall performance after completing 
 Below are steps of using this `showrate` command: <br>
 * Step 1: Type "showrate" into the command prompt while you are in a chapter level.
 ![showrate 1](UG_Images/showrate1.PNG)
-* Step 2: Kaji calculates the percentage of card in different master level (i.e. `easy`, `medium`, `hard` and `cannot answer`).
+* Step 2: KAJI calculates the percentage of card in different master level (i.e. `easy`, `medium`, `hard` and `cannot answer`).
 ![showrate 2](UG_Images/showrate2.PNG)
 
 ### 3.4. General
@@ -627,8 +666,8 @@ Format:<br>
 
 Here are some key points:
 * This command can be **called from any Level**.
-* If you enter `history`, Kaji will show the revision completed today (the day you enter `history`).
-* If you enter `history DATE`, the `DATE` need to be in the format of yyyy-mm-dd, then Kaji will show the revision completed on the given date.
+* If you enter `history`, KAJI will show the revision completed today (the day you enter `history`).
+* If you enter `history DATE`, the `DATE` need to be in the format of yyyy-mm-dd, then KAJI will show the revision completed on the given date.
 
 Example of usage (`history` format): 
 * At Any Level: enter the command `history`.
@@ -644,14 +683,14 @@ Example of usage (`history DATE` format):
 #### 3.4.6. Exiting the program: `exit`
 (by Zeyu)
 
-You can exit Kaji by using this command.
+You can exit KAJI by using this command.
 
 Format: `exit`
 
 Example of usage: 
 * At Any Level: enter the command `exit`
 * Here is the expected output:
-![Exit Kaji](UG_Images/exit.png)
+![Exit KAJI](UG_Images/exit.png)
 
 ### 4.5 Scheduling In KAJI
 (by Yan An)
@@ -890,6 +929,7 @@ Example of ***`exclude chapter`***
 </p>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 4. Command Summary
 
