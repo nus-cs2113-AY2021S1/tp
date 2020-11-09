@@ -1147,8 +1147,8 @@ Items are added into the `ArrayList<String>` Exclusion List using two pairs of c
     * `Storage#appendModuleToExclusionFile()` - appends every `Chapter` of the target `Module` not already in the Exclusion File to it if the target `Module` exists
 
 <p align="center">
-  <img src="DG_Images/previewClass.png" height="600" width="1023" alt="Class Diagram of Preview"/>
-  <br/>Figure <>. Class diagram of Preview
+  <img src="DG_Images/excludeClass.png" height="600" width="1023" alt="Class Diagram of Exclude"/>
+  <br/>Figure <>. Class diagram of Exclude
 </p>
 
 ***Example***
@@ -1204,6 +1204,11 @@ Items are removed from the `ArrayList<String>` Exclusion List using two pairs of
 * Including a Module from Scheduling
     * `IncludeCommand#removeModuleFromExclusion()`- gets the name of the `Module` to be included, and calls `Storage#removeModuleFromExclusionFile()`
     * `Storage#removeModuleFromExclusionFile()` - removes every `Chapter` of the target `Module` that is in the Exclusion File
+
+<p align="center">
+  <img src="DG_Images/includeClass.png" height="600" width="1023" alt="Class Diagram of Include"/>
+  <br/>Figure <>. Class diagram of Include
+</p>
 
 ***Example***
 

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class PreviewCommand extends Command {
     public static final String COMMAND_WORD = "preview";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Forecasts the chapters due in the upcoming week.\n"
-            + "Example: " + COMMAND_WORD + "\n";
+            + "Example: " + COMMAND_WORD;
     public static final String UNABLE_TO_LOAD_EMPTY_DATABASE = "Sorry, you do not have any flashcards in the database"
             + "yet. Please try this command again once you have added some flashcards!";
     public ArrayList<DueChapter> allDueChapters;

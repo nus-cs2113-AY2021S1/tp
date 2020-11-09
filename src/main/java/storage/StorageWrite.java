@@ -111,6 +111,12 @@ public class StorageWrite {
             throws FileNotFoundException, ExclusionFileException {
         ArrayList<String> excludedChapters = Storage.loadExclusionFile(filePath);
         String[] chaptersInModule = Storage.loadChaptersFromSpecifiedModule(moduleName, filePath);
+        addModuleEntriesToExclusionFile(moduleName, excludedChapters, chaptersInModule);
+        updateExclusionFile(excludedChapters, filePath);
+    }
+
+    private static void addModuleEntriesToExclusionFile(String moduleName, ArrayList<String> excludedChapters,
+                                                        String[] chaptersInModule) {
         for (String chapter : chaptersInModule) {
             if (chapter.equals("dues")) {
                 continue;
@@ -118,7 +124,6 @@ public class StorageWrite {
             chapter = chapter.replace(".txt", "");
             addEntryToExclusionFile(moduleName, chapter, excludedChapters);
         }
-        updateExclusionFile(excludedChapters, filePath);
     }
 
     //@@author Darticune
@@ -143,11 +148,16 @@ public class StorageWrite {
             throws FileNotFoundException, ExclusionFileException {
         ArrayList<String> excludedChapters = Storage.loadExclusionFile(filePath);
         String[] chaptersInModule = Storage.loadChaptersFromSpecifiedModule(moduleName, filePath);
+        deleteModuleEntriesFromExclusionFile(moduleName, excludedChapters, chaptersInModule);
+        updateExclusionFile(excludedChapters, filePath);
+    }
+
+    private static void deleteModuleEntriesFromExclusionFile(String moduleName, ArrayList<String> excludedChapters,
+                                                             String[] chaptersInModule) {
         for (String chapter : chaptersInModule) {
             String chapterName = chapter.replace(".txt", "");
             deleteEntryFromExclusionFile(moduleName, excludedChapters, chapterName);
         }
-        updateExclusionFile(excludedChapters, filePath);
     }
 
     //@@author Darticune
