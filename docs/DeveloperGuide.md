@@ -326,6 +326,7 @@ This feature allows users to repeat all classes in the current week or a selecte
 This feature allows users to know locations in a certain faculty, including blocks and lecture theatres when users input
 abbreviations of various faculties (e.g. FOS).
 
+The sequence diagram belows shows what happens when user input any faculty abbreviation: <br>
 ![PrintAreaLocationsCommand Sequence Diagram](diagrams/printAreaLocationsCommand.png)<br>
 *Figure 4.12 Sequence Diagram for print area locations function*
 
