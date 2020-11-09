@@ -3,37 +3,37 @@ layout : page
 title : User Guide
 ---
 
-## Table of Contents
-#### [1. Introduction](#intro)
-#### [2. Quick Start](#quickstart)
-#### [3. Features](#features)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1 View Command List](#help)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Add Note](#add-n)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.3 List Notes](#list-n)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.4 View Note](#view-n)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.5 Edit Note](#edit-n)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.6 Find Notes](#find-n)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.7 Pin Note](#pin-n)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.8 Archive Note](#archive-n)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.9 Unarchive Note](#unarchive-n)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.10 Delete Note](#delete-n)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.11 Create Tags](#create-t)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.12 List Tags](#list-t)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.13 Tag/Untag Notes](#tag-n)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.14 Tag/Untag Events](#tag-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.15 Delete Tags](#delete-t)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.16 Add Event](#add-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.17 Edit Event](#edit-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.18 Event Manager](#list-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.19 Remind](#remind-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.20 Delete Event](#delete-e)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.21 Exit](#exit)
-#### [4. FAQ](#faq)
-#### [5. Command Summary](#command)
+### Table of Contents
+##### [1. Introduction](#intro)
+##### [2. Quick Start](#quickstart)
+##### [3. Features](#features)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1 View Command List](#help)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Add Note](#add-n)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.3 List Notes](#list-n)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.4 View Note](#view-n)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.5 Edit Note](#edit-n)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.6 Find Notes](#find-n)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.7 Pin Note](#pin-n)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.8 Archive Note](#archive-n)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.9 Unarchive Note](#unarchive-n)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.10 Delete Note](#delete-n)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.11 Create Tags](#create-t)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.12 List Tags](#list-t)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.13 Tag/Untag Notes](#tag-n)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.14 Tag/Untag Events](#tag-e)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.15 Delete Tags](#delete-t)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.16 Add Event](#add-e)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.17 Edit Event](#edit-e)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.18 Event Manager](#list-e)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.19 Remind](#remind-e)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.20 Delete Event](#delete-e)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.21 Exit](#exit)
+##### [4. FAQ](#faq)
+##### [5. Command Summary](#command)
 
-<br>
+<div style="page-break-after: always;"></div>
 
-## 1. <a id="intro">Introduction</a>
+## <a id="intro">1. Introduction</a>
 
 NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking application for keyboard-inclined users. NotUS allows for users to categorize notes by tagging as well as pinning the more important notes. NotUS is also designed to assist in planning timetables to highlight possible clashes.
 
@@ -43,7 +43,7 @@ Any points with the 💡 emoji represents an additional information. You can acc
 
 <br>
 
-## 2. <a id="quickstart">Quick Start</a>
+## <a id="quickstart">2. Quick Start</a>
 
 1. Ensure that you have Java 11 or above installed.
 1. Down the latest version of `NotUS` from [here](https://github.com/AY2021S1-CS2113-T13-1/tp/releases) or under [releases from the homepage](https://github.com/AY2021S1-CS2113-T13-1/tp).
@@ -54,14 +54,16 @@ Any points with the 💡 emoji represents an additional information. You can acc
    <img alt="startUp" src="screenshots/startUp.png"/>
 </p>
 
-5. Use the command `help` to get a list of commands and their usages before using the application (if needed).
+<div style="page-break-after: always;"></div>
+
+5\. Use the command `help` to get a list of commands and their usages before using the application (if needed).
 
 💡 Supported terminals are: Windows 10 Command Prompt, Windows Powershell, macOS and linux Terminals. Other terminals, such as Cygwin may not support color display.
 💡 Recommended to use black background for better color contrast.
 
 <br>
 
-## 3. <a id="features">Features</a>
+## <a id="features">3. Features</a>
 
 Parameters listed in [ ] denote optional entries. In some cases, at least one of the [ ] parameters must be listed. When listing the optional entries, the brackets, '[ ]', should be omitted. More information can be found under the respective commands. Texts listed in the following style refer to responses by the console running NotUS.
 
