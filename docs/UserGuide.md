@@ -981,6 +981,8 @@ feel free to refer to the About Us page and contact any of the developers.
 **A**: As this app is still under development, there are many features we would like to add in the future.
 Do feedback to us what features you would like to see in Study It!
 
+<div style="page-break-after: always;"></div>
+
 ## Command Summary
 
 The following table is a compiled list of all available commands in our application that you can easily refer to! 
