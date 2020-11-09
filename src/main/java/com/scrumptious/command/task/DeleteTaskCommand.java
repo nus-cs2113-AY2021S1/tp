@@ -47,6 +47,7 @@ public class DeleteTaskCommand extends TaskCommand {
             handleNegativeId(taskId, "Syntax error : task deletion.");
         } else if (proj.getBacklog().checkTaskExist(taskId)) {
             Task task = proj.getBacklog().getTask(taskId);
+            assert !(task == null) : "Task is NULL\n";
             displayToUser(taskId, task);
             proj.getBacklog().removeTask(taskId);
             ArrayList<Sprint> allSprints = proj.getSprintList().getSprintList();

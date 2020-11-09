@@ -24,6 +24,7 @@ public class PriorityViewCommand extends TaskCommand {
         }
         try {
             Project proj = projectListManager.getSelectedProject();
+            assert !(proj == null) : "Project is NULL";
             ArrayList<Task> tasks = proj.getBacklog().getTaskList();
             ArrayList<Task> highPriorityTasks = new ArrayList<>();
             ArrayList<Task> mediumPriorityTasks = new ArrayList<>();

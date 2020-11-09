@@ -31,6 +31,7 @@ public class ViewTaskCommand extends TaskCommand {
     public void handleViewTasks() {
         try {
             Project proj = projectListManager.getSelectedProject();
+            assert !(proj == null) : "Project is NULL";
             if (parameters.isEmpty()) {
                 handleMissingParams("Syntax error : task view.");
                 return;

@@ -22,6 +22,7 @@ public class DoneTaskCommand extends TaskCommand {
             return;
         }
         Project proj = projectListManager.getSelectedProject();
+        assert !(proj == null) : "Project is NULL";
         if (parameters.size() == 0) {
             handleMissingParams("Syntax error : task completion.");
             return;
