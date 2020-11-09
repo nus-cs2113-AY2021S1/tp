@@ -672,6 +672,10 @@ The output is shown in the console. It contains a simple goodbye message.
 <!-- @@author durianpancakes -->
 ## Saving Data
 Plan&Score saves all your data automatically after every command. There is no need to save manually.
+However, if your storage file is detected to be unreadable, Plan&Score will offer to reset itself to its default settings,
+wiping all data stored in the text file.
+
+![factoryreset](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/storage_corrupted_factory_reset.png)
 
 <br />
 
@@ -683,7 +687,7 @@ Plan&Score saves all your data automatically after every command. There is no ne
 
 ## Troubleshooting
 
-**Q**: Plan&Score is unable to start. How can I fix this?
+**Q**: Plan&Score is unable to start, and I do not want to lose my data through factory resetting. How can I fix this?
 
 **A**: Your data files might have been corrupted. To fix this, you can attempt the following steps:
 
