@@ -18,14 +18,15 @@ and other helpful contributions throughout the development of Quotesify.
 Please click [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=nat-ho&tabRepo=AY2021S1-CS2113T-T09-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other) to access the code that I contributed in this project.
 
 ### Enhancements implemented:
-1. Quote Management feature in Quotesify.
+
+#### 1. Quote Management feature in Quotesify.
 
 **What it does:**
 * The user may use the `add -q` command to add a quote into Quotesify.
 * The user may use the `edit -q` or `delete -q` command to edit or delete an existing quote in Quotesify.
 * The user may use the `list -q` command to list all existing quotes, quotes from a specified author, quotes from a 
-specified reference, or both quotes from a specified reference and author.
-* The user may also use the `find -q` command to find quotes that contains the specified keyword.
+specified reference, or both from a specified reference and author.
+* The user may also use the `find -q` command to find quotes containing a specified keyword.
 
 **Justification:**
 The Quote Management system is designed to help users log important and meaningful quotes from books and information 
@@ -35,9 +36,9 @@ of those quotes, enabling users to revisit and find them effectively.
 **Highlights:**
 To enable a wider range of use cases, Quotesify accepts multiple formats for quotes. Author and reference are optional 
 flags that can be added to provide more information which will enable users to find and list quotes more efficiently. 
-Users will also be reminded of saved quotes, resurfacing and reminding them so that they can better remember them in the long run.
+Users will also be reminded of saved quotes, resurfacing and reminding them so that they can better remember them.
     
-2. Quote Reflection feature in Quotesify.
+#### 2. Quote Reflection feature in Quotesify.
     
 **What it does:**
 * The user may use the `add -qr` command to add a reflection to an existing quote.
