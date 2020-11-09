@@ -901,7 +901,7 @@ Example of usage:
 
 Expected output:
 
-![Flashcard_4_2](Images/FlashcardUG/Flashcard_4_2.png){:height="70%" width="70%"}
+![Flashcard_4_2](Images/FlashcardUG/Flashcard_4_2.png){:height="65%" width="65%"}
 
 <div style="page-break-after: always;"></div>
 
