@@ -2,9 +2,9 @@ package seedu.exceptions;
 
 import seedu.messages.Messages;
 
-public class UnknowCommandException extends Exception {
+public class InvalidFormatException extends Exception {
     @Override
     public String toString() {
-        return Messages.UNKNOWN_COMMAND;
+        return Messages.INVALID_FORMAT;
     }
 }

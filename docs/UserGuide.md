@@ -10,7 +10,7 @@
     - [Searching task](#searching-relevant-tasks--search)
     - [Removing task](#removing-a-task--delete)
     - [Clearing task](#clearing-tasks--clear)
-    - [Setting reminder](#setting-a-reminder--reminder)
+    - [Reverting command](#reverting-command--undo)
     - [Exiting program](#exiting-program--bye)
 - [FAQ](#faq)
 - [Java 11 Installation Guide](#java-11-installation-guide)
@@ -139,11 +139,12 @@ Add a task to the task list and display task that was added.
 
 If the date and priority are omitted,
 default date will be the day when the tasked is added and
-default priority will be low. If the timings are omitted, the time displayed will be empty.
-A reminder can be set for the task, which will be displayed at a given time. If no time is given for the reminder, it will
-be set to its default which is one hour before the start time of the task. If both are omitted, an error is given.
+default priority will be low. If the timings are omitted, the time displayed will be empty.  
+A reminder can be set for the task, which will be displayed at a given time. If no time is given for the reminder, 
+it will be set to its default which is one hour before the start time of the task. 
+If both are omitted, an error is given.
 
-Format: `add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY] [r/(ON/OFF)] [t-REMINDER_TIME]`
+Format: `add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY] [r/ON|OFF] [t-REMINDER_TIME]`
 
 Example of usage: 
 
@@ -180,7 +181,7 @@ Format: `edit INDEX [des/DESCRIPTION] [d/DATE] [st/START_TIME] [et/END_TIME] [p/
 Example of usage: 
 
 `edit 875 des/reading`  
-`edit 4075 st/1400 et/1600 p/3`
+`edit 4075 st/1400 et/1600 p/3`  
 `edit 875 r/off`
 
 Expected outcome:
@@ -310,28 +311,21 @@ Expected outcome:
 *Figure 19. The task that was deleted will be displayed.*
 
 
-### Setting a reminder : `reminder`
+### Reverting command : `undo`
 
-Allows you to set a reminder for any specific task on the list.
-You can specify a time for the reminder, if no time has been specified, the default time will be set to 1 hour
-before the start time of the task.
+Reverts modification commands and display a message.
+You can undo until the tasks are the same as current session starts with.
 
-Format: `reminder INDEX [t/TIME]`
+List of modification commands:
+`add`, `edit`, `delete`, `clear`
 
-Example of usage: 
-
-`reminder 8833 t/2305`
+Format: `undo`
 
 Expected outcome:
 
-![reminder_set](images/reminder_set.png)
+![undo](images/undo.PNG)
 
-*Figure 20. Setting a reminder for task #8833 at 11.05pm.*
-
-![reminder_popup](images/reminder_popup.png)
-
-*Figure 21. Popup of a reminder.*
-
+*Figure 20. Demonstration for undo.*
 
 
 ### Exiting program : `bye`
@@ -344,7 +338,7 @@ Expected outcome:
 
 ![bye](images/bye.png)
 
-*Figure 22. Exit message.*
+*Figure 21. Exit message.*
 
 
 ### Saving data to file
@@ -399,9 +393,10 @@ and run the batch file by typing `SwitchJava.bat` and press `Enter`.
 Action | Format | Example
 ------ | ------ | -------
 add | `add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY] [r/(ON/OFF)] [t-REMINDER_TIME]` | `add meeting st/1400`
-edit | `edit INDEX [des/DESCRIPTION] [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY] [r/(ON/OFF)] [t-REMINDER_TIME]` | `edit 1234 p/3`
+edit | <code>edit INDEX [des/DESCRIPTION] [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY] [r/ON&#124;OFF] [t-REMINDER_TIME]</code> | `edit 1234 p/3`
 list | <code>list [-d&#124;-p&#124;-w&#124;-m&#124;d/DATE]</code> | `list -d`, `list d/10-10-2020`
 search | `search KEYWORD` | `search meet`
 delete | `delete INDEX` | `delete 212`
 clear | `clear` | `clear`
+undo | `undo` | `undo`
 bye | `bye` | `bye`

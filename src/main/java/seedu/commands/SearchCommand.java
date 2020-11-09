@@ -13,14 +13,25 @@ public class SearchCommand extends ReadOnlyCommand {
     public static final String COMMAND_WORD = "search";
     // Search by description, can extend to other attributes
     public static final Pattern COMMAND_PATTERN = Pattern.compile(
-        "^(?<toSearch>(\\w+\\s*)+\\w*)$");
+            "^(?<toSearch>(\\w+\\s*)+\\w*)$");
 
     private final String toSearch;
 
+    /**
+     * Constructor.
+     *
+     * @param keyWord String to be searched for in the task list.
+     */
     public SearchCommand(String keyWord) {
         toSearch = keyWord;
     }
 
+    /**
+     * Searches TaskMap for the keyword, and displays task(s) if found.
+     *
+     * @param tasks TaskMap of all the tasks in the list.
+     * @return A CommandResult object, depending on whether keyword is found.
+     */
     public CommandResult execute(TaskMap tasks) {
         TaskMap found = tasks.searchByDescription(toSearch);
         if (found.size() > 0) {

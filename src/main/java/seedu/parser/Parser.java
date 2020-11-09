@@ -13,8 +13,9 @@ import seedu.commands.SearchCommand;
 import seedu.commands.UndoCommand;
 
 import seedu.exceptions.InvalidCommandException;
+import seedu.exceptions.InvalidFormatException;
 import seedu.exceptions.InvalidTaskNumberException;
-import seedu.exceptions.UnknowCommandException;
+import seedu.exceptions.UnknownCommandException;
 
 import java.util.regex.Matcher;
 
@@ -22,7 +23,7 @@ public class Parser {
 
 
     public Command processRaw(String rawInput) throws
-            UnknowCommandException, InvalidCommandException, InvalidTaskNumberException {
+            UnknownCommandException, InvalidCommandException, InvalidTaskNumberException, InvalidFormatException {
         Matcher matcher;
         String commandWord = getCommandWord(rawInput);
         String commandArgs = getCommandArgs(rawInput);
@@ -51,7 +52,7 @@ public class Parser {
                         matcher.group("et"), matcher.group("priority"), matcher.group("reminder"),
                         matcher.group("t"));
             } else {
-                throw new InvalidCommandException();
+                throw new InvalidFormatException();
             }
         case EditCommand.COMMAND_WORD:
             matcher = EditCommand.COMMAND_PATTERN.matcher(commandArgs);
@@ -60,7 +61,7 @@ public class Parser {
                         matcher.group("date"), matcher.group("st"), matcher.group("et"),
                         matcher.group("priority"), matcher.group("reminder"), matcher.group("t"));
             } else {
-                throw new InvalidCommandException();
+                throw new InvalidFormatException();
             }
         case SearchCommand.COMMAND_WORD:
             matcher = SearchCommand.COMMAND_PATTERN.matcher(commandArgs);
@@ -79,7 +80,7 @@ public class Parser {
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
         default:
-            throw new UnknowCommandException();
+            throw new UnknownCommandException();
         }
     }
 
