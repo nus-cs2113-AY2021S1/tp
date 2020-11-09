@@ -344,7 +344,7 @@ thrown and respective error messages displayed to the user when detected.
         * Cons: Increased implementation complexity due to parsing different formats and additional error handling.
     * Alternative 2: Users can only add quotes of one format.
         * Pros: Easier implementation and less steep of a learning curve for new users.
-        * Cons: Reduced efficiency and usability as not all quotes have author and/or reference flags.
+        * Cons: Reduced efficiency and usability as not all quotes have author and/or reference titles.
     
 #### 4.2.2 Edit Quote Reflection
 
@@ -368,7 +368,7 @@ respective error messages will be displayed.
 * Aspect: Users have to use a `/to` flag before specifying updated reflection, or allowing users to specify the updated 
 reflection without any flags.
     * Alternative 1 (current choice): Use of `/to` flag
-        * Pros: Clear demarcation before start of the updated reflection.
+        * Pros: Clear demarcation before start of the updated reflection results in easier parsing.
         * Cons: Users are required to type more.
     * Alternative 2: No flags required before specifying updated reflection. 
         * Pros: Increased efficiency and users do not need to remember the different flags.
