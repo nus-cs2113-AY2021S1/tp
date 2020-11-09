@@ -118,7 +118,7 @@ The expected outcome is as follows:<br><br>
 ### 3.1.2. Check for direct bus: ```/route``` - Wamika
 This command displays all bus routes from one location to another that do not require changing buses.
 
-The format of this command is as follows: <br>
+Format: <br>
 <code>/route <strong>location_1</strong> /to <strong>location_2 </strong> </code>
 
 #### Examples of Usage
@@ -257,7 +257,7 @@ To see the description of each location:
 ### 3.1.7. List all faculties in NUS: ```/faculty``` - Shuyi
 This command lists out all faculties in NUS.
 
-The format of this command is as follows:<br> 
+Format:<br> 
 <code>/faculty</code> <br>
 
 #### Examples of Usage
@@ -275,7 +275,7 @@ This section provides the instruction for all features categorised under the mai
 ### 3.2.1. Search for dining options within a faculty: ```/dine``` - Shuyi
 This command lists out all dining outlets available within a chosen faculty.
 
-The format of this command is as follows:<br> 
+Format:<br> 
 <code>/dine <strong>faculty</strong></code> <br>
 
 #### Examples of Usage
@@ -304,7 +304,7 @@ You can simply use <strong>Sci</strong> instead of <strong>Science</strong>:
 ### 3.2.2. Search for specific dining outlet: ```/dineinfo``` - Shuyi
 This command finds all dining outlets that contains the keyword, and display their location and operating hours.
 
-The format of this command is as follows:<br>
+Format:<br>
 <code>/dineinfo <strong>outlet</strong></code>
 
 #### Examples of Usage
@@ -335,7 +335,7 @@ This command adds a valid command with an optional description to your list of f
 >Note: A valid command is command that does not return an error message and not associated 
 >with any commands related to favourites.
 
-The format of this command is as follows:<br>
+Format:<br>
 <code>/addfav <strong> [description] </strong> </code>
 
 #### Examples of Usage
@@ -372,7 +372,7 @@ to store the command in to your list of favourites with no description  as shown
 ### 3.3.2. List all favourite commands: `/listfav` - Shuyi
 This command displays all the commands in your list of favourite commands, along with their index and description.
 
-The format of this command is as follows:<br>
+Format:<br>
 <code>/listfav</code>
 
 #### Examples of Usage
@@ -456,7 +456,7 @@ shown in the figure below and press enter. <br>
 ### 3.3.6. Clear the list of favourite commands: `/clearfav` - Shuyi
 This command clears all the commands stored in your list of favourite commands.
 
-The format of this command is as follows:<br>
+Format:<br>
 <code>/clearfav</code>
 
 #### Examples of Usage
