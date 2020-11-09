@@ -22,11 +22,11 @@ Understand more about E-Duke-8, and how you can use it to aid your learning, thr
 ## 2. Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of **E-Duke-8** from [here](https://github.com/AY2021S1-CS2113T-F12-3/tp/releases).
+2. Download the latest version of the jar file for **E-Duke-8** from [here](https://github.com/AY2021S1-CS2113T-F12-3/tp/releases).
 3. Copy the files to the folder you want to use for the application.
-4. Double click on `eduke8.jar` to start up the program. If the program does not start up, continue to step 6, otherwise skip to step 8.
+4. Double click on the jar file to start up the program. If the program does not start up, continue to step 6, otherwise skip to step 8.
 5. If double clicking on the jar file does not work, open up the command prompt in the same folder used in step 3.
-6. Enter the following command `java -jar eduke8.jar`.
+6. Enter the following command `java -jar eduke8.jar` (assuming the downloaded jar file is named `eduke8.jar` but this can be changed).
 7. Type a command in the terminal and press Enter to execute it. e.g. typing `help` and pressing Enter will list all the commands that you can use in this application. For a start, here is a list of basic commands you can try:
    - `about` : Provides information about E-Duke-8.
    - `help` : Displays available commands.
@@ -53,12 +53,12 @@ You will see this message while the data loads:
 
 ![data loading](./images/data_loading.png)
 
-To ensure that data could be loaded successfully, ensure that the data folder that comes along with the `eduke8.jar` file is placed in the same folder as eduke8.jar. This is part of the setup and is to be done prior to the running of the app. 
 If the data has been loaded successfully you should see this message:
 
 ![data loaded](./images/data_loaded.png)
 
-If you wish to edit the data available, such as adding your own questions to the question bank, then do follow the instructions found in [**FAQ**](#4-faq). However, it is recommended that you do this only after fully exploring E-Duke-8.
+If you wish to edit the data available, such as adding your own questions to the question bank, then do follow the instructions found in [**FAQ**](#4-faq).
+However, it is recommended that you do this only after fully exploring E-Duke-8.
 
 If have trouble opening E-Duke-8 and received the following warning message, then please refer to the section [**6. Troubleshooting**](#6-troubleshooting) for help in resolving the issue.
 
@@ -411,7 +411,7 @@ Furthermore, hints might give you an alternative perspective to think about the 
 Make sure to include this file in the `main` folder located in the `data` folder.
 If these folders do not exist yet please run the application once to create it.
 
-The directory structure should look like this:
+The directory structure should look something like this (assuming the main jar file is named `eduke8.jar` but this can be changed):
 
 ```
 yourFolder
