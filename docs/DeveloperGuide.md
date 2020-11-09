@@ -41,7 +41,7 @@ Wan Shi Jie Brendan<br>
     * [4.9 Repeat](#repeat) <br>
     * [4.10 Delete](#delte) <br>
     * [4.11 Find](#find) <br>
-    * [4.12 Find base on date](#date) <br>
+    * [4.12 Find based on date](#date) <br>
     * [4.13 Print locations of a certain group](#location_group) <br>
     * [4.14 Study time](#study_time) <br>
     * [4.15 Done](#done) <br>
@@ -323,15 +323,36 @@ This feature allows the user to delete unwanted events. `DeleteCommand#Execute` 
 
 ### 4.11 Find<a id="find"></a>
 
-### 4.12 Find base on date<a id="date"></a>
+### 4.12 Find based on date<a id="date"></a>
+
+This feature allows users to find events on the date inputted by the user.
+
+Given below is an example usage scenario:
+
+Step 1. The user wishes to find events happening on a certain date, so he inputs `date 2020-10-10`.
+
+Step 2. This executes FindDateCommand, which calls `filterDateWith(2020-10-10)` to create a new filtered list.
+
+Step 3. This filtered list is then printed by calling `printFilteredDateEventList` from UI.
 
 ### 4.13 Print locations of a certain group<a id="location_group"></a>
+
+
 
 ### 4.14 Study time<a id="study_time"></a>
 
 ### 4.15 Done<a id="done"></a>
 
 ### 4.16 User Info<a id="user_info"></a>
+
+This feature allows users to input information about themselves into the app, specifically their name, and
+whether they are a student or a professor.
+
+Given below is an example usage scenario:
+
+Step 1: The user wishes to store his personal information, so he inputs `student Harry`.
+
+Step 2: This calls the UserInfoCommand, which stores his name, Harry, and type, student in UserInfo.
 
 1. The user enters `delete NUMBER` where `NUMBER` refers to the index of the command to be deleted. The user input is parsed by the Parser class which creates a new `DeleteCommand` object.
 

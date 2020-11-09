@@ -17,20 +17,20 @@ Given below are my contributions to the project.
   * What it does: Allows users to know what events they have for the day, and the deadlines they need to submit assignments by.
   * Justification: Helps forgetful users to remember what tasks are due.  
   
-* **Enhancements to existing features**
+* **Enhancements to existing features**:
   * Updated Parser to work with new features
   * Fixed bugs related to Parser and AddCommand
-* Code Contributed: [Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=madbeez&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)   
+* **Code Contributed**: [Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=madbeez&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)   
 * **Project management**:
   * Managed releases `v1.0` - `v2.1` (3 releases) on GitHub
   
 * **Documentation**:
   * User Guide
     * Added documentation for add, reminder and list features
-    * Added section on command summary 
+    * Added section for command summary 
   * Developer Guide
     * Added documentation for UI and Logic components
-    * Added documentation for add, reminder and list features
+    * Added documentation for add, reminder, list, find based on date, and user info features
     * Added sections on target user profile and user stories
     
 * **Community**
