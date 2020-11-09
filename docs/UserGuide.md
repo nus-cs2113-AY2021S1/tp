@@ -206,7 +206,7 @@ Output:
     ____________________________________________________________
      Got it. I've added this link:
        CS2113 lecture
-       https://cs2113Lecture.zoom.com
+       https://CS2113Lecture.zoom.com
      Now you have 1 link(s) in the list.
     ____________________________________________________________
 ```
