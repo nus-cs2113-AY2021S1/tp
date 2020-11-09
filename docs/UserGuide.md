@@ -528,7 +528,7 @@ Here are some key pointers:
 For instance, you are currently in the module level `CS2113T` and want to start a revision for `Chapter 1`, the steps to do so are shown below:
 * Step 1: Enter the command `revise 1` to start a revision on the first chapter in the list which in this case is `Chapter 1`: <br>
 <p align="center">
-  <img src="UG_Images/Revise1.PNG" width="600" alt="Revise 1"/>
+  <img src="UG_Images/Revise1.png" width="600" alt="Revise 1"/>
 </p>
 * Step 2: If the chapter is not due for revision yet, you will be shown the below message: <br>
 <p align="center">
