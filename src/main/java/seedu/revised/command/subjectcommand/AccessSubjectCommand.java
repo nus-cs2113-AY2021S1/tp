@@ -86,7 +86,7 @@ public class AccessSubjectCommand extends SubjectCommand {
             } catch (NumberFormatException e) {
                 Ui.printErrorMsg(Ui.TOPIC_INDEX_FORMAT_EXCEPTION);
             } catch (IndexOutOfBoundsException e) {
-                Ui.printErrorMsg(Ui.INDEX_OUT_OF_BOUND_EXCEPTION);
+                Ui.printErrorMsg(Ui.TOPIC_INDEX_FORMAT_EXCEPTION);
             } catch (IllegalArgumentException | DateTimeParseException d) {
                 Ui.printErrorMsg(Ui.INVALID_DATETIME_EXCEPTION);
             } catch (Exception e) {

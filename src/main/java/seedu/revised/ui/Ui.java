@@ -52,7 +52,6 @@ public class Ui {
     public static final String SUBJECT_INDEX_FORMAT_EXCEPTION = OOPS_PREFIX + " The index number must be a positive integer \n that belongs to an existing subject.";
     public static final String TOPIC_INDEX_FORMAT_EXCEPTION = OOPS_PREFIX + " The index number must be a positive integer \n that belongs to an existing task or topic.";
     public static final String FLASHCARD_INDEX_FORMAT_EXCEPTION = OOPS_PREFIX + " The index number must be a positive integer \n that belongs to an existing flashcard.";
-    public static final String INDEX_OUT_OF_BOUND_EXCEPTION = OOPS_PREFIX + " The index you entered does not exist.";
     public static final String NO_FLASHCARD_EXCEPTION = "There are no flashcards present yet!";
     public static final String NO_TOPIC_YET_EXCEPTION = "There are no topics present yet!";
     public static final String NO_TOPIC_EXCEPTION = "Please enter an existing topic.";
