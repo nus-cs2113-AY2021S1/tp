@@ -40,11 +40,14 @@ Please also take note of the labels on command formatting:
     *  [Switch mode:](#mode) **mode**
     *  [Clear:](#clear)  **clear**
     *  [Launch current lesson:](#launchnow)  **launch now**
+    *  [Show user settings:](#showsettings)  **showsettings**
+    *  [Set a setting:](#setsetting)  **set**
     *  [Exit:](#exit)  **exit**
   * [5.2 Bookmark mode](#bookmarkmode)
     * [Show bookmarks:](#showbookmark) **show**
     * [Add bookmark:](#addbookmark)  **add**
     * [Delete bookmark:](#deletebookmark)  **delete**
+    * [Edit bookmark:](#editbookmark)  **edit**
     * [Find bookmark:](#findbookmark)  **find**
     * [Launch bookmark:](#launchbookmark)  **launch**
   * [5.3 Timetable mode](#timetablemode)
@@ -226,7 +229,7 @@ The two settings are:
     By default, this is turned on and Zoomaster will save files every time you make changes. You might want to turn this off if you prefer to save only when you exit. 
 
 <br/><br/> 
-<a name="set"></a>  
+<a name="setsetting"></a>  
 #### 5.1.6. Set a setting: `set {SETTING_NAME} {NEW_OPTION}` (Francisco)
 While `showsettings` shows you the settings, this command lets you change one of the settings.
 * `{SETTING_NAME}` is the name of the setting as shown when you type in the `showsettings` command.
@@ -311,6 +314,7 @@ Example of usage:
 You should see a message similar to the screenshot below.
 ![]()
 
+<!-- @@author fchensan -->
 <br/><br/> 
 <a name="editbookmark"></a>  
 #### 5.2.3 Edit bookmarks: `edit`  
@@ -328,6 +332,7 @@ You should enter a `desc` or `url` depending on which one you want to edit.
 > You can type in `edit desc 3 straitstimes` to change the description to "straitstimes". The following message will 
 > appear:  
 > ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editbookmark.png)
+<!-- @@author -->
 
 <br/><br/> 
 <a name="findbookmark"></a>  
@@ -601,10 +606,10 @@ The second `DAY` parameter is for the new day of the week you wish to set your s
 > You should then see a message as shown below:
 > ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslot.png)
 
-Example of usage:   
-* `edit module mon 1 CS1010`  
-* `edit title mon 1 lecture`
-* `edit time mon 1 fri 10:00 12:00`
+> More examples of usage:   
+>* `edit module mon 1 CS1010`  
+>* `edit title mon 1 lecture`
+>* `edit time mon 1 fri 10:00 12:00`
 <br/><br/> 
 
 <!-- @@author xingrong123-->
