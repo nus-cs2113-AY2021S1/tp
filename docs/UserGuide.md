@@ -274,6 +274,7 @@ To see the description of each location:
 <!-- @@author mrwsy1 -->
 #### 3.1.6. List all faculties in NUS: ```/faculty``` - Shuyi
 This command lists out all faculties in NUS.
+
 Format:<br> 
 <code>/faculty</code> <br>
 
@@ -349,8 +350,10 @@ This section provides the instruction for all features categorised under the mai
 to your needs.
 
 <!-- @@author Lezn0 -->
-#### 3.3.1. Add a favourite command: `/addfav` - Yuxin
-This command adds a valid command with an optional description to your list of favourites
+### 3.3.1. Add a favourite command: `/addfav` -Yuxin
+This command adds a valid command with an optional description to your list of favourites.
+>Note: A valid command is command that does not return an error message and not associated 
+>with any commands related to favourites.
 
 Format:<br>
 <code>/addfav <strong> [description] </strong> </code>
@@ -569,9 +572,7 @@ Format:<br>
 <code>/exit</code>
 
 The application exits after displaying the following message.<br>
-```
-So long buddy!
-```
+<img src="UG_Figures/exit.png" alt="Correct input message" width=600><br>
 
 ## 4. FAQ
 This section addresses some common questions to aid in possible issues faced.
