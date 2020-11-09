@@ -234,9 +234,14 @@ Here are some key pointers:
 Example: <br>
 For instance, you are currently at the admin level and want to remove the module `CS2113T`, the steps to do so are shown below:
 * Step 1: Enter the command `remove 1` to remove the first module in the list which in this case is `CS2113T`: <br>
-![Remove Module 1](UG_Images/RemoveMod1.PNG)
+<p align="center">
+  <img src="UG_Images/RemoveMod1.PNG" alt="Remove Module 1"/>
+</p>
+
 * Step 2: The module as well as the chapters and flashcards in it are removed, and the output message below will be shown: <br>
-![Remove Module 2](UG_Images/RemoveMod2.PNG)
+<p align="center">
+  <img src="UG_Images/RemoveMod2.PNG" alt="Remove Module 2"/>
+</p>
 
 #### 3.1.5. Accessing the module level: `go`
 (by Jiayi)
@@ -351,9 +356,13 @@ Here are some key pointers:
 Example: <br>
 For instance, you are currently at the module level `CS2113T` and want to remove the chapter `Chapter 1`, the steps to do so are shown below:
 * Step 1: Enter the command `remove 1` to remove the first chapter in the list which in this case is `Chapter 1`: <br>
-![Remove Chapter 1](UG_Images/RemoveChap1.PNG)
+<p align="center">
+  <img src="UG_Images/RemoveChap1.PNG" alt="Remove Chapter 1"/>
+</p>
 * Step 2: The chapter and the flashcards in it are removed, and the output message below will be shown: <br>
-![Remove Chapter 2](UG_Images/RemoveChap2.PNG)
+<p align="center">
+  <img src="UG_Images/RemoveChap2.PNG" alt="Remove Chapter 2"/>
+</p>
 
 #### 3.2.5. Accessing the chapter level: `go` 
 (by Yan An)
@@ -418,22 +427,38 @@ Here are some key pointers:
 Example: <br>
 For instance, you are currently in the module level `CS2113T` and want to start a revision for `Chapter 1`, the steps to do so are shown below:
 * Step 1: Enter the command `revise 1` to start a revision on the first chapter in the list which in this case is `Chapter 1`: <br>
-![Revise 1](UG_Images/Revise1.png)
+<p align="center">
+  <img src="UG_Images/Revise1.PNG" alt="Revise 1"/>
+</p>
 * Step 2: If the chapter is not due for revision yet, you will be shown the below message: <br>
-![Revise 2](UG_Images/Revise2.PNG)
+<p align="center">
+  <img src="UG_Images/Revise2.PNG" alt="Revise 2"/>
+</p>
 * Step 3: Enter `Y` to start the revision.<br>
-![Revise 3](UG_Images/Revise3.PNG)
+<p align="center">
+  <img src="UG_Images/Revise3.PNG" alt="Revise 3"/>
+</p>
 * Step 4: The message below will be shown at the start of the revision: <br>
-![Revise 4](UG_Images/Revise4.PNG)
+<p align="center">
+  <img src="UG_Images/Revise4.PNG" alt="Revise 4"/>
+</p>
 * Step 5: The question of the flashcard will be shown as well: <br>
-![Revise 5](UG_Images/Revise5.PNG)
+<p align="center">
+  <img src="UG_Images/Revise5.PNG" alt="Revise 5"/>
+</p>
 * Step 6: Enter `s` to see the answer for the flashcard: <br>
-![Revise 6](UG_Images/Revise6.PNG)
+<p align="center">
+  <img src="UG_Images/Revise6.PNG" alt="Revise 6"/>
+</p>
 * Step 7: Based on the difficulty of the flashcard, you may enter either `e`/`m`/`h`/`c` to rate the flashcard as shown below: <br>
-![Revise 7](UG_Images/Revise7.PNG)
-* Step 8: If you entered `c`, the same flashcard will be shown again after your last flashcard, and the process will repeat until you enter `e`/`m`/`h` for the particular flashcard you could not answer for.  
+<p align="center">
+  <img src="UG_Images/Revise7.PNG" alt="Revise 7"/>
+</p>
+* Step 8: If you entered `c`, the same flashcard will be shown again after your last flashcard, and the process will repeat until you enter `e`/`m`/`h` for the particular flashcard you could not answer for. <br>
 * Step 9: Once all the flashcards have been revised, the output message below will be shown: <br>
-![Revise 8](UG_Images/Revise8.PNG)
+<p align="center">
+  <img src="UG_Images/Revise8.PNG" alt="Revise 8"/>
+</p>
 
 #### 3.2.8. Rescheduling a chapter: `reschedule`
 (by Jane)
@@ -558,9 +583,13 @@ Here are some key pointers:
 Example: <br>
 For instance, you are currently at the chapter level `Chapter 1` and want to remove the flashcard `[Q] 1+1 | [A] 2`, the steps to do so are shown below:
 * Step 1: Enter the command `remove 1` to remove the first flashcard in the list which in this case is `[Q] 1+1 | [A] 2`: <br>
-![Remove Card 1](UG_Images/RemoveCard1.PNG)
+<p align="center">
+  <img src="UG_Images/RemoveCard1.PNG" alt="Remove Card 1"/>
+</p>
 * Step 2: The flashcard is removed, and the output message below will be shown: <br>
-![Remove Card 2](UG_Images/RemoveCard2.PNG)
+<p align="center">
+  <img src="UG_Images/RemoveCard2.PNG" alt="Remove Card 2"/>
+</p>
 
 #### 3.3.5. Returning to module level: `back`
 (by Jia Ern)
@@ -572,9 +601,13 @@ Format: `back`
 Example: <br>
 For instance, you are currently in chapter level `Chapter 1` and want to return to the module level `CS2113T`, the steps to do so are shown below:
 * Step 1: Enter the command `back` to return to the previous level which is the module level: <br>
-![Back Module 1](UG_Images/BackMod1.PNG)
+<p align="center">
+  <img src="UG_Images/BackMod1.PNG" alt="Back Module 1"/>
+</p>
 * Step 2: You should return to the module level as shown below: <br>
-![Back Module 2](UG_Images/BackMod2.PNG)
+<p align="center">
+  <img src="UG_Images/BackMod2.PNG" alt="Back Module 2"/>
+</p>
 
 #### 3.3.6. Checking overall performance for a chapter: `showrate`
 (by Jiayi)
