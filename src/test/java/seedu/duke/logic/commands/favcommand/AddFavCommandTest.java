@@ -10,7 +10,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AddFavCommandTest {
     FavList list = new FavList();
-    
+
+    @Test
+    void executeCommand_nullCommand_expectException() {
+        String command = null;
+        String desc = "List all bus stops";
+        AddFavCommand addFav = new AddFavCommand(command, desc);
+        assertThrows(CustomException.class, addFav::executeCommand);
+    }
+
     @Test
     void executeCommand_validCommand_expectNoException() {
         String command = "liststops";
