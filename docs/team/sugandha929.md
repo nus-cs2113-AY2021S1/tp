@@ -53,6 +53,6 @@ and keep track of their deadlines, tasks and any other important dates. It is wr
     * Fixed coding style checks
     * Updated UG and DG to follow a standardised format
     * Updated some ui methods to follow a standardised format
-    * Link to Pull Requests Reviewed: [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/pulls?q=is%3Apr+reviewed-by%3A%40me+)
+    * Link to Pull Requests Reviewed: [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/pulls?q=is%3Apr+reviewed-by%3Asugandha929)
 
 
