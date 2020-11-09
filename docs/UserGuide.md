@@ -593,11 +593,11 @@ find Pro
 Sample output:
 ```
 ____________________________________________________________
- Here are the matching topic(s) in your list:
+Here are the matching topic(s) in your list:
 Product Demo
 
 ____________________________________________________________
- Here are the matching task(s) in your list:
+Here are the matching task(s) in your list:
 [E][Y] Product Demo (at: 2:00 PM 5 Nov 2020)
 ____________________________________________________________
 ```
@@ -830,8 +830,10 @@ results Java
 
 Sample output: 
 ```
+____________________________________________________________
 Quiz 1: 1.0/2.0 -- Pass
 Quiz 2: 2.0/2.0 -- Excellent
+____________________________________________________________
 ```
 
 #### 3.2.15 Exiting the subject: `exit`
