@@ -7,11 +7,12 @@ Fitr is a command-line application, helping you keep track of your food intake a
 ## Summary of Contributions
 
 ### Code contributed
-[Link to code contributed](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jerichochua)
+[Link to code contributed on RepoSense](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jerichochua)
 
 ### Enhancements implemented
 - Allow the user to clear the individual list, or clear all the lists at the same time
     - This feature allows users to quickly empty the lists, if they want to start with a fresh list.
+    - This feature is especially useful for users who may be trying the application for the first time, and may add random data to test the application. If they wish to use the application proper, they can immediately clear the lists, without having to delete the entries individually.
 - Allow the user to edit a previous exercise or food entry in the lists
     - This feature allows users to correct mistakes that they make in a previous entry.
     - This was initially hard to implement as the `edit` command was also used to edit the user's profile. Hence, I created the `EditCommandParser` to handle the arguments in the `edit` command first. Once the arguments are parsed, it is then passed into a `EditEntryCommand` class and the corresponding entry is edited.
@@ -27,7 +28,7 @@ Contributed the following sections in the user guide:
 - Editing an exercise entry
 - Clearing commands (Clearing all food entries, clearing all exercise entries, clearing all entries)
 - Saving your data
-- FAQ
+- Parts of the FAQ section
 
 ### Contributions to DG
 Contributed the following sections in the developer guide:
@@ -53,3 +54,6 @@ Reviewed the following PRs:
 - Responded to a [forum post](https://github.com/nus-cs2113-AY2021S1/forum/issues/52#issuecomment-693130427)
 - [Reviewed](https://github.com/nus-cs2113-AY2021S1/tp/pull/31#pullrequestreview-518329234) another team's DG
 - Found [4 bugs](https://github.com/jerichochua/ped/issues) in a team's tp during PE dry run
+
+### Tools
+- Integrated a third-party library into the project (Jansi) ([#180](https://github.com/AY2021S1-CS2113T-W13-2/tp/pull/180))
