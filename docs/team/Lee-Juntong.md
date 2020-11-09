@@ -60,5 +60,6 @@ Given below are my contributions to the project.
     * Make the hyperlinks work properly [\#92](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/92)
 
 * **Community**:
+  *PRs reviewed (with non-trivial review comments):[\#172](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/172#discussion_r519625561)
   * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2113-AY2021S1/forum/issues/48#issuecomment-709282848))
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/Lee-Juntong/ped/issues/9), [2](https://github.com/Lee-Juntong/ped/issues/13), [3](https://github.com/Lee-Juntong/ped/issues/14))
