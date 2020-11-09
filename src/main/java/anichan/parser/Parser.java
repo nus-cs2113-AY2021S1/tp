@@ -27,8 +27,11 @@ public class Parser {
     private static final String INIT_STRING = "";
 
     /**
-     * Prints the main menu of the application
-     * and requests for command.
+     * Parses the full command that the user provides.
+     * 
+     * @param fullCommand the user input to parse
+     * @return initialise {@Code Command} object
+     * @throws AniException when an error occurred while parsing the command
      */
     public Command getCommand(String fullCommand) throws AniException {
         LOGGER.log(Level.INFO, "Parse: " + fullCommand);
