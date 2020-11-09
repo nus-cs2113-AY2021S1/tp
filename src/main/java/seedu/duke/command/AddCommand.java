@@ -174,6 +174,9 @@ public class AddCommand extends Command {
             System.out.println("Warning! The value for <number of lab session> can only be "
                     + "in the range of 1 to 13. \n");
             throw new CommandException("lab");
+        } else if (venue.isEmpty()) {
+            System.out.println("The <venue> cannot be empty!\n");
+            throw new CommandException("lab");
         } else {
             for (int i = 0; i < recurringCount; i++) {
                 calendarList.addEvent(new Lab(moduleCode, date, time, venue));
@@ -181,6 +184,7 @@ public class AddCommand extends Command {
             }
         }
     }
+    //}
 
     /**
      * User input for Tutorial event example: tutorial CS1010 lt12 /at 090820 1000.
@@ -204,6 +208,9 @@ public class AddCommand extends Command {
             throw new CommandException("tutorial");
         } else if (recurringCount < 1 || recurringCount > 13) {
             System.out.println("Warning! The value for <number of tutorial> can only be in the range of 1 to 13. \n");
+            throw new CommandException("tutorial");
+        } else if (venue.isEmpty()) {
+            System.out.println("The <venue> cannot be empty!\n");
             throw new CommandException("tutorial");
         } else {
             for (int i = 0; i < recurringCount; i++) {
@@ -237,6 +244,9 @@ public class AddCommand extends Command {
         } else if (recurringCount < 1 || recurringCount > 13) {
             System.out.println("Warning! The value for <number of lecture> can only be in the range of 1 to 13. \n");
             throw new CommandException("lecture");
+        } else if (venue.isEmpty()) {
+            System.out.println("The <venue> cannot be empty!\n");
+            throw new CommandException("lecture");
         } else {
             for (int i = 0; i < recurringCount; i++) {
                 calendarList.addEvent(new Lecture(moduleCode, date, time, venue));
@@ -262,6 +272,9 @@ public class AddCommand extends Command {
         date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
         time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
         if (moduleCode.isEmpty()) {
+            throw new CommandException("exam");
+        } else if (venue.isEmpty()){
+            System.out.println("The <venue> cannot be empty!\n");
             throw new CommandException("exam");
         } else {
             calendarList.addEvent(new Exam(moduleCode, date, time, venue));
