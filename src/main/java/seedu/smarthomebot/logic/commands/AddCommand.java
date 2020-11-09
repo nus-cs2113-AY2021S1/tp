@@ -31,6 +31,14 @@ public class AddCommand extends Command {
     private final String wattage;
     private final String type;
 
+    /**
+     * Constructor for AddCommand.
+     *
+     * @param name name of Appliance to create.
+     * @param location location the Appliance will be placed.
+     * @param wattage wattage power rating of Appliance.
+     * @param type type of Appliance.
+     */
     public AddCommand(String name, String location, String wattage, String type) {
         assert !name.isEmpty() : "AddCommand must not accept empty name";
         assert !location.isEmpty() : "AddCommand must not accept empty location";
