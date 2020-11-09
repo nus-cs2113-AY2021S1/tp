@@ -81,6 +81,7 @@ public class AddCategoryCommand extends AddCommand {
             List<String> categories = CategoryParser.parseCategoriesToList(categoryNames);
             for (String categoryName : categories) {
                 categoryName = categoryName.toLowerCase();
+                CategoryParser.validateCategoryName(categoryName);
                 addCategoryToList(categoryList, categoryName);
                 Category category = categoryList.getCategoryByName(categoryName);
 

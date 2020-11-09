@@ -938,7 +938,9 @@ Here is the list of all categories:
 
 #### 4.4.3 List items in a category: `list -c`
 
-List all books and quotes tagged under the specified category name.
+List all books and quotes tagged under the specified category name. 
+
+*Note: Each item is numbered by its BOOK_NUMBER or QUOTE_NUMBER from its respective list.*
 
 Format: `list -c CATEGORY`
 
@@ -1166,71 +1168,72 @@ Example of usage: `help`
 
 Expected outcome:
 ```
-------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------
 Feeling stuck? Well here are the things you can do with Quotesify v2.1:
-------------------------------------------------------------------------------------------------------------------------
-                            1. Book Management
-------------------------------------------------------------------------------------------------------------------------
-Add book:                                           add -b BOOK_TITLE /by AUTHOR
-Mark book as complete:                              done -b BOOK_NUMBER
-Delete book:                                        delete -b BOOK_NUMBER
-Edit book:                                          edit -b BOOK_NUMBER /to NEW_TITLE
-List books:                                         list -b [/by AUTHOR]
-List book details:                                  list -b BOOK_NUMBER
-List books by completion:                           list -b done/undone
-------------------------------------------------------------------------------------------------------------------------
-                            2. Quote Management
-------------------------------------------------------------------------------------------------------------------------
-Add quote:                                          add -q QUOTE {[/by AUTHOR] [/from REFERENCE]}
-Delete quote:                                       delete -q QUOTE_NUMBER
-List quotes:                                        list -q {[/by AUTHOR] [/from REFERENCE]}
-Edit quote:                                         edit -q QUOTE_NUMBER /to NEW_QUOTE {[/by AUTHOR] [/from REFERENCE]}
-Find quote:                                         find -q KEYWORD
-Add quote reflection:                               add -qr QUOTE_NUMBER /reflect REFLECTION
-Delete quote reflection:                            delete -qr QUOTE_NUMBER
-Edit quote reflection:                              edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION
-List quote reflection:                              list -qr QUOTE_NUMBER
-------------------------------------------------------------------------------------------------------------------------
-                            3a. Bookmark Tracker
-------------------------------------------------------------------------------------------------------------------------
-Add bookmark:                                       bookmark -b BOOK_NUMBER /pg PAGE_NUMBER
-Delete bookmark:                                    delete -bm BOOK_NUMBER
-List bookmarks:                                     list -bm
-Update bookmark:                                    bookmark -b BOOK_NUMBER /pg PAGE_NUMBER
-------------------------------------------------------------------------------------------------------------------------
-                            3b. Task Tracker
-------------------------------------------------------------------------------------------------------------------------
-Add task:                                           add -t TASK /by DEADLINE
-Delete task:                                        delete -t TASK_NUMBER
-List tasks:                                         list -t
-Mark task as done:                                  done -t TASK_NUMBER
-------------------------------------------------------------------------------------------------------------------------
-                            4. Category Management
-------------------------------------------------------------------------------------------------------------------------
-Add category:                                       add -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}
-Delete category:                                    delete -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}
-List categories:                                    list -c [CATEGORY]
-Edit category:                                      edit -c OLD_CATEGORY /to NEW_CATEGORY
-Find category:                                      find -c KEYWORD
-------------------------------------------------------------------------------------------------------------------------
-                            5. Rating System
-------------------------------------------------------------------------------------------------------------------------
-Add rating:                                         add -r RATING_SCORE BOOK_NUMBER
-Delete rating:                                      delete -r BOOK_NUMBER
-List ratings:                                       list -r [RATING_SCORE]
-Edit rating:                                        edit -r RATING_SCORE BOOK_NUMBER
-Find ratings:                                       find -r KEYWORD
-------------------------------------------------------------------------------------------------------------------------
-                            Other useful commands
-------------------------------------------------------------------------------------------------------------------------
-Show this help page:                                help
-Quit Quotesify:                                     bye
-------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------
+                                1. Book Management
+---------------------------------------------------------------------------------------------------------------------------------------
+Add book:                                                        add -b BOOK_TITLE /by AUTHOR
+Mark book as complete:                                           done -b BOOK_NUMBER
+Delete book:                                                     delete -b BOOK_NUMBER
+Edit book:                                                       edit -b BOOK_NUMBER /to NEW_TITLE
+List books:                                                      list -b [/by AUTHOR]
+List book details:                                               list -b BOOK_NUMBER
+List books by completion:                                        list -b done/undone
+Find book:                                                       find -b KEYWORD
+---------------------------------------------------------------------------------------------------------------------------------------
+                                2. Quote Management
+---------------------------------------------------------------------------------------------------------------------------------------
+Add quote:                                                       add -q QUOTE [/from BOOK_TITLE] [/by AUTHOR]
+Delete quote:                                                    delete -q QUOTE_NUMBER
+List quotes:                                                     list -q [/by AUTHOR] [/from BOOK_TITLE]
+Edit quote:                                                      edit -q QUOTE_NUMBER /to NEW_QUOTE [/by AUTHOR] [/from BOOK_TITLE]
+Find quote:                                                      find -q QUOTE_NUMBER
+Add quote reflection:                                            add -qr QUOTE_NUMBER /reflect REFLECTION
+Delete quote reflection:                                         delete -qr QUOTE_NUMBER
+Edit quote reflection:                                           edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION
+List quote reflection:                                           list -qr QUOTE_NUMBER
+---------------------------------------------------------------------------------------------------------------------------------------
+                                3a. Bookmark Tracker
+---------------------------------------------------------------------------------------------------------------------------------------
+Add bookmark:                                                    bookmark -b BOOK_TITLE /pg PAGE_NUMBER
+Delete bookmark:                                                 delete -bm BOOK_NUMBER
+List bookmarks:                                                  list -bm
+Update bookmark:                                                 bookmark -b BOOK_NUMBER /pg PAGE_NUMBER
+---------------------------------------------------------------------------------------------------------------------------------------
+                                3b. Task Tracker
+---------------------------------------------------------------------------------------------------------------------------------------
+Add task:                                                        add -t TASK /by DEADLINE
+Delete task:                                                     delete -t TASK_NUMBER
+List tasks:                                                      list -t
+Mark task as done:                                               done -t TASK_NUMBER
+---------------------------------------------------------------------------------------------------------------------------------------
+                                4. Category Management
+---------------------------------------------------------------------------------------------------------------------------------------
+Add category:                                                    add -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}
+Delete category:                                                 delete -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}
+List categories:                                                 list -c [CATEGORY]
+Edit category:                                                   edit -c OLD_CATEGORY /to NEW_CATEGORY
+Find category:                                                   find -c KEYWORD
+---------------------------------------------------------------------------------------------------------------------------------------
+                                5. Rating System for books
+---------------------------------------------------------------------------------------------------------------------------------------
+Add rating:                                                      add -r RATING_SCORE BOOK_NUMBER
+Delete rating:                                                   delete -r BOOK_NUMBER
+List ratings:                                                    list -r [RATING_SCORE]
+Edit rating:                                                     edit -r RATING_SCORE BOOK_NUMBER
+Find ratings:                                                    find -r KEYWORD
+---------------------------------------------------------------------------------------------------------------------------------------
+                                Other useful commands
+---------------------------------------------------------------------------------------------------------------------------------------
+Show this help page:                                             help
+Quit Quotesify:                                                  bye
+---------------------------------------------------------------------------------------------------------------------------------------
 Remember: words in [] are optional, and words in CAPS are your own input
 Hope this helps!
 
 ~ Your friends from Quotesify
-------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 ---
@@ -1321,7 +1324,7 @@ Enter the following command | To do this
 `delete -r BOOK_NUMBER` | Delete rating
 `find -b KEYWORD` | Find books
 `find -q KEYWORD` | Find quotes
-`find -r KEYWORD` | Find rating
+`find -r KEYWORD` | Find ratings
 `find -c KEYWORD` | Find categories
 `done -b BOOK_NUMBER` | Mark book as complete
 `done -t TASK_NUMBER` | Mark task as done
