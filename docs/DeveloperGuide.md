@@ -2,7 +2,7 @@
 
 
 ## **Introduction**
- ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/zoomasterwhitebg.png) <br/><br/>
+ ![](https://raw.githubusercontent.com/AY2021S1-CS2113T-W11-1/tp/master/docs/images/zoomasterwhitebg.png) <br/><br/>
 ### Introduction to Zoomaster
 Zoomaster is a Java application for the Command Line. It provides a simple and intuitive way to store Zoom links for 
 online classes and other useful links for the lesson at hand.<br/>
