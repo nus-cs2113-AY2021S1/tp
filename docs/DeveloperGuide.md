@@ -3,6 +3,8 @@
 * Table of Contents
 {:toc}
 
+<div style="page-break-after: always;"></div>
+
 ## Introduction
 Welcome to Study It Developer Guide!
 
@@ -19,6 +21,7 @@ study life. It will also provide various functionalities to help with their stud
 The 4 main functionalities available now are bookmark, timetable, academic tracker and flashcard. 
 Each of this will be discussed in detail under the “Design & Implementation” section later in the document.
 
+<div style="page-break-after: always;"></div>
 
 ## Setting up & getting started
 **Requirements**
@@ -38,7 +41,12 @@ place it in an empty folder
 4. Type `java -jar tp.jar` into the command prompt and press Enter to execute it
 5. If the application runs successfully, you’ll be greeted by a welcome message
 
+<p align="center">
+    <img width="60%" height="60%" src="Images/GeneralUG/welcomemessage.png">
+</p>
+
 **Setting up the project on your PC**
+
 First, **fork** this repo, and **clone** the fork into your computer.
 
 If you plan to use Intellij IDEA (highly recommended):
@@ -47,10 +55,12 @@ If you plan to use Intellij IDEA (highly recommended):
 3. Run the studyit.StudyIt and try a few commands.
 4. Run the tests to ensure they all pass.
 
+<div style="page-break-after: always;"></div>
+
 ## Design & implementation
 This section explains the architecture of our software and the design of each component.
 
-### **Major components**
+### Major components
 This section introduces the multiple components in Study It.
 
 ![](Images/ArchitectureDiagrams/components.png)
@@ -70,7 +80,9 @@ The **main component** of Study It helps user access each of these components.
 It processes the user input, provides general functionalities to traverse the software and other
 helpful functionalities. This will be further explained under Study It's design later.
 
-### **Architecture**
+<div style="page-break-after: always;"></div>
+
+### Architecture
 This section describes the overall architecture of Study It.
 
 ![Architecture Diagram](Images/ArchitectureDiagrams/architecture.png)
@@ -95,6 +107,8 @@ storage component:
 
 **General commands** are commands that takes priority in execution no matter which mode the software is currently
 in.
+
+<div style="page-break-after: always;"></div>
 
 **Modes of the program**
 
@@ -121,7 +135,9 @@ The commands received will then be parsed to identify the type of command. If th
 general commands, it'll be processed and provide output. Otherwise, the command will be relayed
 to different components to be processed based on the software's current mode. 
 
-### **Main Component**
+<div style="page-break-after: always;"></div>
+
+### Main Component
 
 This section will give an overview of the main component of Study It.
 
@@ -149,11 +165,13 @@ StudyIt class will also initialize various instances of classes such as TimeTabl
 ArrayList<BookmarkCategory>, ArrayList<Grade>, ArrayList<Person> and pass it to Command class to perform 
 each mode’s functionality.
 
-### **Bookmark Component**
+<div style="page-break-after: always;"></div>
+
+### Bookmark Component
 
 This bookmark section consists of how the bookmark feature is implemented. 
 The bookmark feature is implemented similarly to the main architecture, however, 
-in a smaller scale and a more bookmark-specific way. Figure 1 illustrates the general overview, 
+in a smaller scale and a more bookmark-specific way. The figure below illustrates the general overview, 
 the associations and the multiplicity of the bookmark classes.
 
 ![Bookmark Class Diagram](Images/BookmarkDG/BookmarkRun_Class.png)
@@ -162,17 +180,17 @@ the associations and the multiplicity of the bookmark classes.
 
 The bookmark component consists of six major classes: `BookmarkRun`, `BookmarkStorage`, `BookmarkUi`, 
 `BookmarkCategory`, `BookmarkList` and `BookmarkParser`. 
-As shown in figure 1, `BookmarkRun` is 
+As shown in the figure above, `BookmarkRun` is 
 * The main class to be called when the bookmark mode is accessed.
 * The main class to access other bookmark classes.
 
-Given below, Figure 2, is the sequence diagram of how the classes interact with each 
+The figure given below is the sequence diagram of how the classes interact with each 
 other when bookmark mode is accessed from the main function.
 
 ![Bookmark Sequence Diagram](Images/BookmarkDG/Sequence_Diagram.png)
 
 The bookmark component has two modes: the main bookmark mode and the category mode. 
-As shown in Figure 2, when `BookmarkRun` is called, 
+As shown in the figure above, when `BookmarkRun` is called, 
 `BookmarkParser` will be called and return a `BookmarkCommand`. 
 Afterwards, `BookmarkRun` will then call `executeCommand` in `BookmarkCommand` which executes 
 the intended actions. Then, it will call `getCategorymode` to get the current mode the user is in. 
@@ -182,17 +200,19 @@ the intended actions. Then, it will call `getCategorymode` to get the current mo
 A more detailed explanation of `BookmarkCommand`, `BookmarkCategory` and `BookmarkList` will be 
 shown below. `BookmarkUi` and `BookmarkStorage` follow the same design implementations as the main 
 architecture. The below figure shows the command classes available and they are called based on the 
-`BookmarkParser` class as illustrated in Figure 2. 
+`BookmarkParser` class as illustrated in the figure above. 
 
 ![BookmarkCommand ClassDiagram](Images/BookmarkDG/bookmarkCommand_Class.png)
 
-Figure 4 shows a more detailed sequence diagram of how the `BookmarkCategory`, `BookmarkCommand` 
+The figure below shows a more detailed sequence diagram of how the `BookmarkCategory`, `BookmarkCommand` 
 and `BookmarkList` interacts with each other for the scenario when the user input an `AddLinkCommand` 
 in Bookmark mode.
 
 ![BookmarkCommand ClassDiagram](Images/BookmarkDG/AddCommand.png)
 
-### **Timetable Component**
+<div style="page-break-after: always;"></div>
+
+### Timetable Component
 
 This section will describe in detail how some features inside the timetable section have been 
 implemented.
@@ -211,6 +231,8 @@ The timetable component consists of 7 major classes as shown. The above figure i
  1. `EventList` contains a number of `Event`. 
  1. `Event` class is the abstract parent class for `Lesson` and `Activity`. 
  1. `Event` class also contains a number of `Duration` and it has a dependency on the `EvenType` enum.
+
+<div style="page-break-after: always;"></div>
 
 **Timetable Implementation**
 
@@ -235,7 +257,7 @@ function from the TimeTableCommand Class.
 
 <div style="page-break-after: always;"></div>
 
-### **Academic Component**
+### Academic Component
 
 This section will describe in detail how some features inside the academic tracker section have been implemented.
 The following diagram illustrates the general overview, the associations and the multiplicity of the academic classes.
@@ -298,8 +320,7 @@ In terms of general structure, it is largely similar to that of `GradeBook`'s.
 <div style="page-break-after: always;"></div>
 
 <!-- @@author hailqueenflo -->
-### **Flashcard Component**
-
+### Flashcard Component
 
 This section will describe in detail how the flashcard feature is implemented.
 
@@ -324,7 +345,7 @@ the `FlashcardDeck` class.
 
 With reference to the figure above, as an "add card" command is given by the user, `FlashcardRun` will take in the 
 command and call `addCard()` method in `FlashcardDeck` which constructs a new Flashcard object and stores 
-it inside the `FlashcardDeck` object.The `addCard()` function will then show the user the question and 
+it inside the `FlashcardDeck` object. The `addCard()` function will then show the user the question and 
 answer of the flashcard that has been created.
 
 Other possible commands that are not shown in the figure work in a similar way where command is parsed in `FlashcardRun` Class,
@@ -332,6 +353,8 @@ and calls the corresponding function within the `FlashcardDeck` Class. `WriteToF
 process to update any changes to the deck to the data file.
 
 <!-- @@author -->
+
+<div style="page-break-after: always;"></div>
 
 ## Documentation, logging, testing, configuration, dev-ops
 ### Testing guide
@@ -346,7 +369,7 @@ Type of Tests
 This project has 5 types of tests. 4 tests to test each feature and 1 test to test the main integration of the whole application.
 
 ### Logging guide
-We are using java.util.logging package for logging 
+We are using java.util.logging package for logging.
 The StudyItLog class is used to manage the logging levels and logging destinations.
 Log messages are output through the console and to a  .log file.
 The output logging level can be controlled using .setlevel( )
@@ -358,11 +381,13 @@ When choosing a level for a log message, follow the following conventions:
 
 
 ### DevOps Guide 
-Build automation  
+Build automation:
 This project uses Gradle for build automation management.
 ./gradlew build - check for checkstyle error and runs all tests
 Code coverage
 This project uses code coverage that is in IntelliJ IDE to check for the coverage of the code. 
+
+<div style="page-break-after: always;"></div>
 
 ## Appendix: Requirement 
 ### Product scope
@@ -409,7 +434,3 @@ tasks faster using commands than using the mouse.
 ## Glossary
 
 * *Mainstream OS* - Windows, Unix, Linux, OS-X
-
-## Instructions for manual testing
-
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
