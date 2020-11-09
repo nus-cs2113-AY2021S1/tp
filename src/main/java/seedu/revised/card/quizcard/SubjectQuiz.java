@@ -61,16 +61,11 @@ public class SubjectQuiz extends Quiz {
         this.result.setScore(0);
         Ui.printStartSubjectQuiz(this.subject);
 
-        Instant end = Instant.now().plusSeconds(120);
         String answer = null;
 
         logger.info("Start printing the questions");
         for (Flashcard flashcard : this.flashcards) {
-            if (Instant.now().isAfter(end)) {
-                logger.info("If the timer ends before the user could finish the quiz.");
-                break;
 
-            }
             Ui.printQuestion(flashcard.getQuestion());
             answer = Ui.readCommand().strip();
             if (answer.equals("stop")) {
