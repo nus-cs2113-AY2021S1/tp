@@ -94,6 +94,8 @@ This section contains the following commands:
 >The general commands doesn't work during `add class` or `add activity` sequence in timetable mode
 >and `add` or `test` sequence in flashcard mode
 
+<div style="page-break-after: always;"></div>
+
 ### 1. Prints help message: `help`
 
 The app will print out a summarised list of functions you can call at the current mode. 
@@ -107,15 +109,21 @@ Expected output:
 
 Example of printing help message at menu:
 
-![HelpMessage](Images/GeneralUG/help.png)
+<p align="center">
+    <img width="70%" height="70%" src="Images/GeneralUG/help.png">
+</p>
 
 Another example of printing help message at bookmark mode:
 
-![BookmarkHelp](Images/GeneralUG/bookmarkhelp.png)
+<p align="center">
+    <img width="70%" height="70%" src="Images/GeneralUG/bookmarkhelp.png">
+</p>
 
 >**Useful information:**
 >* The message varies in different modes to show you the commands at that mode. 
 >Try the command at other modes when you are using the application!
+
+<div style="page-break-after: always;"></div>
 
 ### 2. Changes the current mode: `cd MODE_NAME or MODE_INDEX`
 
