@@ -329,6 +329,7 @@ This feature allows the user to delete unwanted events. `DeleteCommand#Execute` 
 ### 4.13 Print locations of a certain group<a id="location_group"></a>
 
 ### 4.14 Study time<a id="study_time"></a>
+This feature allows the user to know the amount of time spent on study for certain date. The command is `studyTime DATE`.  
 
 ### 4.15 Done<a id="done"></a>
 
