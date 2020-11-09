@@ -51,15 +51,15 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.3. [Exclusion Feature](#453-exclusion-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.4. [Reschedule Chapter Feature](#454-reschedule-chapter-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.5. [View Revision History Feature](#455-view-revision-history-feature)<br>
-5. [<b>Appendix: Requirements</b>](#5-appendix-requirements)<br>
-5.1. [Product Scope](#51-product-scope)<br>
+5. [<b>Appendices</b>](#5-appendices)<br>
+5.1. [Appendix A: Product Scope](#51-appendix-a-product-scope)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.1.1. [Target User Profile](#511-target-user-profile)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.1.2. [Value Proposition](#512-value-proposition)<br>
-5.2. [User Stories](#52-user-stories)<br>
-5.3. [Use Cases](#53-use-cases)<br>
-5.4. [Non-Functional Requirements](#54-non-functional-requirements)<br>
-5.5. [Glossary](#55-glossary)<br>
-6. [<b>Appendix: Instructions for Manual Testing</b>](#6-appendix-instructions-for-manual-testing)<br>
+5.2. [Appendix B: User Stories](#52-appendix-b-user-stories)<br>
+5.3. [Appendix C: Use Cases](#53-appendix-c-use-cases)<br>
+5.4. [Appendix D: Non-Functional Requirements](#54-appendix-d-non-functional-requirements)<br>
+5.5. [Appendix E: Glossary](#55-appendix-e-glossary)<br>
+5.6. [Appendix F: Instructions for Manual Testing](#56-appendix-f-instructions-for-manual-testing)<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1137,9 +1137,9 @@ The following sequence diagram shows how the list chapters feature works:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Appendix: Requirements
-### 5.1. Product Scope
-#### 5.1.1. Target User Profile
+## 5. Appendices
+### 5.1. Appendix A: Product Scope
+#### 5.1.1 Target User Profile
 
 * Students who use a computer often, and are reasonably comfortable with the command line interface
 * Needs to have an effective study schedule
@@ -1148,9 +1148,11 @@ The following sequence diagram shows how the list chapters feature works:
 
 #### 5.1.2. Value Proposition
 
-The application aims to provide students with an effective studying technique. In order to make studying easier for students, the application implements a technique known as spaced repetition, which help with memory retention. Content are scheduled automatically, and information is organised in the form of flashcards which makes it convenient to revise. 
+The application aims to provide students with an effective studying technique. 
+In order to make studying easier for students, the application implements a technique known as spaced repetition, 
+which help with memory retention. Content are scheduled automatically, and information is organised in the form of flashcards which makes it convenient to revise. 
 
-### 5.2. User Stories
+### 5.2. Appendix B: User Stories
 
 | Version | As a ... | I want to ... | So that I can ... |
 |--------|----------|---------------|------------------|
@@ -1179,7 +1181,7 @@ The application aims to provide students with an effective studying technique. I
 | v2.0 | student | get a sense of how well I have mastered each chapter | have an idea of how well I am doing for a module |
 | v2.0 | student | include or exclude certain modules/chapters from the scheduler | revise only the modules/chapters that I need to |
 
-### 5.3. Use Cases
+### 5.3. Appendix C: Use Cases
 
 This section will describe the use cases of Kaji. 
 
@@ -1292,7 +1294,7 @@ There will only be changes to the rating after a revision session.
 
     Use case ends.
 
-### 5.4. Non-Functional Requirements
+### 5.4. Appendix D: Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 installed.
 2. Should be able to hold up to 1000 flashcards without a noticeable sluggishness in performance for typical usage.
@@ -1304,15 +1306,43 @@ There will only be changes to the rating after a revision session.
 8. Should be designed for a single user.
 9. Should work on both 32-bit and 64-bit environments.
 
-### 5.5. Glossary
+### 5.5. Appendix E: Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **CLI**: Command Line Interface
 
+### 5.6. Appendix F: Instructions for Manual Testing
+#### 5.6.1. Launch and Shutdown
+1. Initial launch
+    1. Download the jar file from the [release page](https://github.com/AY2021S1-CS2113T-F11-3/tp/releases) and copy into an empty folder.
+    2. Launch a terminal and navigate to the folder containing the jar file.
+    3. Run the jar file by entering command `java -jar kaji.jar` and press enter (replace kaji.jar by the actual file name you downloaded from the release page).
+       Expected output: Welcome message of **Kaji** is displayed.
+    
+2. Shutdown of application
+    1. Test case: `exit`<br>
+       Expected output: **Kaji** program terminates.
+       
+#### 5.6.2. Adding a module/chapter/flashcard
+1. Adding a module
+    1. Prerequisites: Ensure that the program is at the admin level.
+    2. Test case: `add CS2113T`<br>
+       Expected output: A success message stating that there is a new module added will be shown.
+    3. Test case: `add cs2113t` after running the `add` command as stated above<br>
+       Expected output: An error message stating that the module already exist will be shown.
+    4. Other incorrect commands to try: `add ../CS2113T` (where non-alphanumeric characters are present)<br>
+       Expected output: An error message stating that only alphanumeric characters and spaces will be shown.
+2. Adding a chapter
+    1. Prerequisites: At least one module in the list. Ensure that the program is at the module level.
+    2. Test case: `add Chapter 1`<br>
+       Expected output: A success message stating that there is a new chapter added will be shown.
+    3. Test case: `add cs2113t` after running the `add` command as stated above<br>
+       Expected output: An error message stating that the module already exist will be shown.
+    4. Other incorrect commands to try: `add ../CS2113T` (where non-alphanumeric characters are present)<br>
+       Expected output: An error message stating that only alphanumeric characters and spaces will be shown.
+  
+ 
+ (Jia Ern)
+    
 ##### <a href="#top">Back to Top ^</a>
-
 --------------------------------------------------------------------------------------------------------------------
-
-## 6. Appendix: Instructions for Manual Testing
-
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
