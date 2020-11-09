@@ -43,7 +43,7 @@ Java-doc comments are provided for most of the public classes and methods that I
 - Added v2.0 entries in "Appendix C: User Stories" table.
 - Added Appendix D and Appendix E.
 
-### 2.5 Contributions to team-based tasks
+### 2.4 Contributions to team-based tasks
 - Setup the team repo as instructed by the details on the module website.
 - Kept an eye on the module's requirements and remind team members to finish their tasks and credit on the tP progress dashboard.
 - Assigned team members to their issues.
@@ -51,6 +51,6 @@ Java-doc comments are provided for most of the public classes and methods that I
 - Reported issues and evaluated team members' code, sometimes helped them fix the issues, too. [#187](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/187) [#223](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/223/files) [#274](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/274)
 - Refactored the packages to be more OOP. [#315](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/315)
 
-### 2.6 Contributions beyond the project team
+### 2.5 Contributions beyond the project team
 - Reviewed and gave thoughtful feedback on other team's Developer Guide in tutorial. [#12](https://github.com/nus-cs2113-AY2021S1/tp/pull/12)
 - Reported bugs for other team's project in mock Practical Exam. [ped](https://github.com/hungvo0603/ped/issues)
