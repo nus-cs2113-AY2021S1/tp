@@ -20,9 +20,9 @@ public class TopicList implements DisplayableList {
     }
 
     /**
-     * Prints out description from Topic objects in TopicList
+     * Prints out description from Topic objects in TopicList.
      *
-     * @param ui
+     * @param ui Ui object is passed into the method so as to access Ui methods.
      */
     public void showTopics(Ui ui) {
         ui.printTopicList(topics);
@@ -32,7 +32,7 @@ public class TopicList implements DisplayableList {
     /**
      * Returns boolean result to indicate if the Topic object exists.
      *
-     * @param topicName
+     * @param topicName String topicName is the description of the Topic object to be found, if it exists.
      * @return boolean result.
      */
     public boolean doesTopicExist(String topicName) {
@@ -60,7 +60,7 @@ public class TopicList implements DisplayableList {
      *
      * @param topicName which is the description of the Topic object to be found.
      * @return Topic topic if the topic is found, null if the topic is not found.
-     * @throws Eduke8Exception
+     * @throws Eduke8Exception Handles the error should the Topic indicated not exist.
      */
     @Override
     public Displayable find(String topicName) throws Eduke8Exception {

@@ -403,7 +403,7 @@ public class Ui {
                 } else {
                     printMessage(INVALID_TOPIC_INDEX + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
                 }
-            } catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 printWithoutLines(INVALID_TOPIC_INDEX);
             }
         } else if (noteCount == 0) {
