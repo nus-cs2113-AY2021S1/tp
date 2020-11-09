@@ -165,7 +165,7 @@ public class ModuleChecker {
             System.out.println("The Json data file does not exist!\n "
                     + "In order to use `exam`, `lab`, `lect` and `tut` commands,\n"
                     + "please ensure either one of the following requirements is met:\n"
-                    + " 1. Re-establish your internet connect.\n"
+                    + " 1. Re-establish your internet connection.\n"
                     + " 2. Download the Json data file from our Github page.\n"
                     + "You may refer to `Quick Start` section in the User Guide for more info.\n"
                     + "Please omit the error message below and carry out the above mentioned steps!\n");
