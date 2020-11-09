@@ -107,7 +107,7 @@ public class Storage {
     }
 
     public void calenderChecker(TaskMap taskMap)
-        throws IOException, ParseException, InvalidDatetimeException, InvalidReminderException {
+            throws IOException, ParseException, InvalidDatetimeException, InvalidReminderException {
         File dirFile = new File(DIRECTORY_NAME);
         Priority priority;
         if (dirFile.isDirectory()) {
@@ -168,7 +168,7 @@ public class Storage {
 
 
     private void readTasksFromTimetable(TaskMap taskMap)
-        throws FileNotFoundException, ParseException, InvalidReminderException, InvalidDatetimeException {
+            throws FileNotFoundException, ParseException, InvalidReminderException, InvalidDatetimeException {
         File file = new File(DIRECTORY_NAME + "/" + TIMETABLE);
         if (file.exists()) {
             Task task;
@@ -207,7 +207,7 @@ public class Storage {
     }
 
     private void addTaskToTaskmap(TaskMap taskMap, Task task)
-        throws InvalidReminderException, InvalidDatetimeException {
+            throws InvalidReminderException, InvalidDatetimeException {
         int weeksPerSem = 13;
         int recessWeek = 7;
         int daysPerWeek = 7;
