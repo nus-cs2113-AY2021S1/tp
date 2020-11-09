@@ -1175,7 +1175,7 @@ Output:
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: `./tasks.txt`, `./books.txt`, `./links.txt`, `./expenses.txt` stores the user data, which can be transferred to another computer or instance of the program by
+**A**: `./tasks.txt`, `./books.txt`, `./links.txt`, `./modules.txt` and `./expenses.txt` stores the user data, which can be transferred to another computer or instance of the program by
 putting it in the same folder as `termiNus.jar`.
 
 **Q**: Are all commands case-sensitive?
