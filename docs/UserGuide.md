@@ -1193,7 +1193,7 @@ List quote reflection:                              list -qr QUOTE_NUMBER
 ------------------------------------------------------------------------------------------------------------------------
                             3a. Bookmark Tracker
 ------------------------------------------------------------------------------------------------------------------------
-Add bookmark:                                       bookmark -b BOOK_TITLE /pg PAGE_NUMBER
+Add bookmark:                                       bookmark -b BOOK_NUMBER /pg PAGE_NUMBER
 Delete bookmark:                                    delete -bm BOOK_NUMBER
 List bookmarks:                                     list -bm
 Update bookmark:                                    bookmark -b BOOK_NUMBER /pg PAGE_NUMBER
@@ -1296,7 +1296,7 @@ Enter the following command | To do this
 `add -t TASK /by DEADLINE` | Add task
 `add -c CATEGORIES {[-b BOOK_TITLE] [-q QUOTE_NUMBER]}` | Add categories
 `add -r RATING_SCORE BOOK_NUMBER` | Add rating
-`bookmark -b BOOK_TITLE /pg PAGE_NUMBER` | Add bookmark
+`bookmark -b BOOK_NUMBER /pg PAGE_NUMBER` | Add bookmark
 `list -b [/by AUTHOR]` | List books
 `list -b BOOK_NUMBER` | List book details
 `list -b done/undone` | List books by completion
