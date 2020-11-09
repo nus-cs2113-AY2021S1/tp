@@ -40,11 +40,14 @@ Please also take note of the labels on command formatting:
     *  [Switch mode:](#mode) **mode**
     *  [Clear:](#clear)  **clear**
     *  [Launch current lesson:](#launchnow)  **launch now**
+    *  [Show user settings:](#showsettings)  **showsettings**
+    *  [Set a setting:](#setsetting)  **set**
     *  [Exit:](#exit)  **exit**
   * [5.2 Bookmark mode](#bookmarkmode)
     * [Show bookmarks:](#showbookmark) **show**
     * [Add bookmark:](#addbookmark)  **add**
     * [Delete bookmark:](#deletebookmark)  **delete**
+    * [Edit bookmark:](#editbookmark)  **edit**
     * [Find bookmark:](#findbookmark)  **find**
     * [Launch bookmark:](#launchbookmark)  **launch**
   * [5.3 Timetable mode](#timetablemode)
@@ -56,8 +59,8 @@ Please also take note of the labels on command formatting:
     * [Launch bookmarks from module, slot:](#launchtimeslot)  **launch**
   * [5.4 Planner mode](#plannermode)
     * [Load planner:](#loadplanner) **load**
-    * [Show planner:](#showplanner) **show**
     * [Add meeting:](#addmeeting) **add**
+    * [Show planner:](#showplanner) **show**
     * [Save planner:](#saveplanner) **save**
 * [6.0 FAQ](#faq)
 * [7.0 Command Summary](#command-summary)
@@ -218,7 +221,7 @@ Once you are comfortable using Zoomaster, this command, along with the `set` com
 Format: showsettings
 ```
 When you type in this command, you will see two settings that you can adjust:
-
+![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/showsettings.png)
 The two settings are:
 * Default mode on start-up.
     You can choose between `mainmenu`, `timetable`, or `bookmark` as the first mode you will enter when you start Zoomaster.
@@ -226,14 +229,18 @@ The two settings are:
     By default, this is turned on and Zoomaster will save files every time you make changes. You might want to turn this off if you prefer to save only when you exit. 
 
 <br/><br/> 
-<a name="set"></a>  
+<a name="setsetting"></a>  
 #### 5.1.6. Set a setting: `set {SETTING_NAME} {NEW_OPTION}` (Francisco)
 While `showsettings` shows you the settings, this command lets you change one of the settings.
 * `{SETTING_NAME}` is the name of the setting as shown when you type in the `showsettings` command.
 * `{NEW_OPTION}` is the new setting option that you would like to select. This needs to be typed in exactly as show from the `showsettings` command.
 
-For example, let's say that you want Zoomaster to enter `bookmark` mode when you start it. You can type in `set def_mode bookmark` and Zoomaster will change your settings. The next time you run Zoomaster, you will automatically enter bookmark mode.
+For example, let's say that you want Zoomaster to enter `bookmark` mode when you start it. 
+You can type in `set def_mode bookmark` and Zoomaster will change your settings, as shown below.
 
+![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/setsettings.png)
+
+The next time you run Zoomaster, you will automatically enter bookmark mode.
 <!-- @@author -->
 <br/><br/> 
 <a name="exit"></a>  
@@ -306,6 +313,26 @@ Example of usage:
 
 You should see a message similar to the screenshot below.
 ![]()
+
+<!-- @@author fchensan -->
+<br/><br/> 
+<a name="editbookmark"></a>  
+#### 5.2.3 Edit bookmarks: `edit`  
+This command edits a bookmark's description or URL with the specified index.  
+Just like `delete`, the index will correspond to the index of that bookmark in the list. 
+You can do a `show` command to check the bookmark indexes.  
+
+```
+Format: edit {desc/url} {INDEX}
+```
+
+You should enter a `desc` or `url` depending on which one you want to edit.
+
+> For example, let's say that you have `[news] www.straitstimes.com` as your third bookmark on the list.
+> You can type in `edit desc 3 straitstimes` to change the description to "straitstimes". The following message will 
+> appear:  
+> ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editbookmark.png)
+<!-- @@author -->
 
 <br/><br/> 
 <a name="findbookmark"></a>  
@@ -439,7 +466,7 @@ You can also chain commands when adding multiple slots and bookmarks to a module
 >* You are required to insert **a space** between each parameter.
 >* The chaining of commands only performs on **one module** which is `{MODULE}`.    
 >* You can only add a module that is listed on the NUSMods website. 
->* You have to format your commands as shown below for Zoomaster to read it properly. <br></br>
+>* You have to format your commands as shown below for Zoomaster to read it properly.
 >You can see the [command format](#command_format) for more information.
 >* Your `DESCRIPTION` must only contain one word (no whitespace inside). 
 >See the [command format](#command_format) for more details.
@@ -448,6 +475,10 @@ You can also chain commands when adding multiple slots and bookmarks to a module
 >* You have to enter `DAY` input according to the command format else it will not be recognised as a valid date. 
 >The valid inputs are `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`and `today`. 
 >You can see the [command format](#command_format) for more information.
+>* The period you enter from `{START_TIME}` to `{END_TIME}` cannot cross over midnight. 
+>Eg. 23:30 to 00:30 is not a valid period you can enter.
+>You can work around this by splitting up your timeslot into the two period, one before midnight and one after.
+>Eg. 23:30 to 23:59 and 00:00 to 00:30
 
 ```
 Format (adding a module): add {MODULE}
@@ -573,10 +604,16 @@ Format (editing the time of a slot): edit time {DAY} {INDEX} {DAY} {new START_TI
 * For editing the time of a slot, the first `DAY` parameter is to choose the slot you wish to edit.
 The second `DAY` parameter is for the new day of the week you wish to set your slot.
 
-Example of usage:   
-* `edit module mon 1 CS1010`  
-* `edit title mon 1 lecture`
-* `edit time mon 1 fri 10:00 12:00`
+> For example, let's say that you have these two slots on wednesday:
+> ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslotcontext.png)
+> If you want to change the title of the second slot to "tutorial", you can simply type `edit title wed 2 tutorial`.
+> You should then see a message as shown below:
+> ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslot.png)
+
+> More examples of usage:   
+>* `edit module mon 1 CS1010`  
+>* `edit title mon 1 lecture`
+>* `edit time mon 1 fri 10:00 12:00`
 <br/><br/> 
 
 <!-- @@author xingrong123-->
@@ -608,9 +645,10 @@ Example of usage:
 
 <br>
 
+<!-- @@author jusufnathanael -->
 
 <a name="plannermode"></a>  
-### 5.4. Planner Mode  
+### 5.4. Planner Mode (Jusuf)
 
 <a name="loadplanner"></a>  
 #### 5.4.1. Load planner: `load`  
@@ -669,6 +707,7 @@ Saves the newly added slot(s) to each individual timetables.
 ```
 Format: save
 ```
+<!-- @@author -->
 
 <br/><br/> 
 ## 6.0 FAQ  
