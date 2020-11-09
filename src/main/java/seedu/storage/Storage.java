@@ -32,6 +32,12 @@ public class Storage {
     private static final String TIMETABLE = "nusmods_calendar.ics";
     private final Gson gson = new Gson();
 
+    /**
+     * Extract the each line from the ics file and store it as a string.
+     *
+     * @param textFile is the ics file.
+     * @return taskData, the string taskData if the file exists.
+     */
     public static String lineExtractor(File textFile) throws IOException {
         Scanner myReader = new Scanner(textFile);
         String taskData = "";
@@ -41,22 +47,40 @@ public class Storage {
         return taskData;
     }
 
-    public static int countExtractor(String splitted) {
-        String[] splitCount = splitted.split("COUNT=");
+    /**
+     * Extract and return the number of times the event repeats.
+     *
+     * @param splitLines is a chunk of string data that contains information about one lesson/exam.
+     * @return count, the integer value of the number of times this event repeats.
+     */
+    public static int countExtractor(String splitLines) {
+        String[] splitCount = splitLines.split("COUNT=");
         String[] lineSplit = splitCount[1].split(";");
         int count = Integer.parseInt(lineSplit[0]);
         return count;
     }
 
-    public static String descriptionExtractor(String splitted) {
-        String[] splitCount = splitted.split("SUMMARY:");
+    /**
+     * Extract and return the name of the event.
+     *
+     * @param splitLines is a chunk of string data that contains information about one lesson/exam.
+     * @return lineSplit, the string containing the name of this event.
+     */
+    public static String descriptionExtractor(String splitLines) {
+        String[] splitCount = splitLines.split("SUMMARY:");
         String[] lineSplit = splitCount[1].split("\n");
         return lineSplit[0];
     }
 
-    public static ArrayList<LocalDate> exceptionExtractor(String splitted) throws ParseException {
+    /**
+     * Extract and return the name of the event.
+     *
+     * @param splitLines is a chunk of string data that contains information about one lesson/exam.
+     * @return the string containing the name of this event.
+     */
+    public static ArrayList<LocalDate> exceptionExtractor(String splitLines) throws ParseException {
         ArrayList<LocalDate> exceptionDates = new ArrayList<LocalDate>();
-        String[] splitCount = splitted.split("\n");
+        String[] splitCount = splitLines.split("\n");
         for (String i : splitCount) {
             if (i.contains("EXDATE:")) {
                 String exDate;
@@ -68,6 +92,12 @@ public class Storage {
         return exceptionDates;
     }
 
+    /**
+     * Extract and return an array of the dates where this event happens.
+     *
+     * @param splitString is a chunk of string data that contains information about one lesson/exam.
+     * @return dates, an ArrayList containing LocalDate objects that represents the dates when the event occurs.
+     */
     public static ArrayList<LocalDate> dateExtractor(String splitString, int count) throws ParseException {
         String[] splitCount = splitString.split("\n");
         ArrayList<LocalDate> dates = new ArrayList<LocalDate>();
@@ -103,11 +133,17 @@ public class Storage {
         return true;
     }
 
-    public static LocalTime[] timeExtractor(String splitted) throws ParseException {
+    /**
+     * Extract and return the start and end time of the event.
+     *
+     * @param splitLines is a chunk of string data that contains information about one lesson/exam.
+     * @return taskDuration, an List containing LocalTime objects that contains the start and end time of the event.
+     */
+    public static LocalTime[] timeExtractor(String splitLines) throws ParseException {
         LocalTime startTime;
         LocalTime endTime;
         LocalTime[] taskDuration = new LocalTime[2];
-        String[] splitCount = splitted.split("\n");
+        String[] splitCount = splitLines.split("\n");
         for (String i : splitCount) {
             if (i.contains("DTSTART:")) {
                 String exDate;
@@ -190,6 +226,11 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Extracts and adds the events in the ics file into the TaskList.
+     *
+     * @param taskMap is the latest TaskList object after importing data from the saved json file.
+     */
     public void calReader(TaskMap taskMap) {
         try {
             calenderChecker(taskMap);
@@ -233,17 +274,20 @@ public class Storage {
                 taskDuration = timeExtractor(splitInputs[i]);
                 startTime = taskDuration[0];
                 endTime = taskDuration[1];
-                taskPrinter(taskMap, dates, startTime, endTime, taskDescription, repeatCount, priority);
+                taskAdder(taskMap, dates, startTime, endTime, taskDescription, repeatCount, priority);
             }
         } else {
             System.out.println(NO_SUCH_FILE);
         }
     }
 
-    public void taskPrinter(TaskMap taskMap, ArrayList<LocalDate> dates,
-                            LocalTime startTime, LocalTime endTime,
-                            String description, int repeatCount,
-                            Priority priority) throws InvalidReminderException, InvalidDatetimeException {
+    /**
+     * Adds extracted tasks tasks to the taskMap.
+     */
+    public void taskAdder(TaskMap taskMap, ArrayList<LocalDate> dates,
+                          LocalTime startTime, LocalTime endTime,
+                          String description, int repeatCount,
+                          Priority priority) throws InvalidReminderException, InvalidDatetimeException {
         Task task;
         for (int i = 0; i < repeatCount; i++) {
             task = new Task(description, dates.get(i), startTime, endTime, priority);
