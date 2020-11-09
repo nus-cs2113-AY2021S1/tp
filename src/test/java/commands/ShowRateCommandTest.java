@@ -13,15 +13,16 @@ import org.junit.jupiter.api.Test;
 import storage.Storage;
 import ui.Ui;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintStream;
+import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ShowRateCommandTest {
     private final PrintStream standardOut = System.out;
+    private final InputStream standardIn = System.in;
+
+    private ByteArrayInputStream testIn;
+    private ByteArrayOutputStream testOut;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     private ShowRateCommand showRateCommand;
@@ -56,7 +57,22 @@ public class ShowRateCommandTest {
         System.setOut(standardOut);
     }
 
-    /*@Test
+    @AfterEach
+    public void restoreSystemInputOutput() {
+        System.setIn(standardIn);
+        System.setOut(standardOut);
+    }
+
+    private String getOutput() {
+        String os = System.getProperty("os.name").toLowerCase();
+        String expected = outputStreamCaptor.toString();
+        if (!(os.contains("win"))) {
+            expected = expected.replaceAll("\\r\\n", "\n");
+        }
+        return expected;
+    }
+
+    @Test
     public void execute_validInput_showSuccessful() throws Exception {
         showRateCommand = new ShowRateCommand();
         showRateCommand.execute(ui, accessStub, storageStub);
@@ -66,8 +82,8 @@ public class ShowRateCommandTest {
                 + String.format(ShowRateCommand.MESSAGE_SHOW_PERCENTAGE_PROMPT, ShowRateCommand.MEDIUM, 0.20) + "\r\n"
                 + String.format(ShowRateCommand.MESSAGE_SHOW_PERCENTAGE_PROMPT, ShowRateCommand.HARD, 0.20) + "\r\n"
                 + String.format(ShowRateCommand.MESSAGE_SHOW_PERCENTAGE_PROMPT, ShowRateCommand.CANNOT_ANSWER, 0.20);
-        assertEquals(expectedResult.trim(), outputStreamCaptor.toString().trim());
-    }*/
+        assertEquals(expectedResult.trim(), getOutput().trim());
+    }
 
     @Test
     public void execute_noCardInChapter_goFail() throws Exception {
