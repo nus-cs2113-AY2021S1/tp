@@ -163,7 +163,7 @@ Ensure that you are at the **Admin Level** before trying the commands in the nex
 
 Welcome to the first feature of KAJI! In order to use this program, you first will need to create a module deck. Creating a new module deck in KAJI is like getting a new folder to store all the handouts for one module. This is important because it helps you to organize your messy notes. <br>
 
-##### Format: `add MODULE_NAME`
+**Format:** `add MODULE_NAME`
 MODULE_NAME is the name of the new module that you would like to create, such as `CS2113`, `Module 1` or `Biology`. 
 
 Here are some key pointers:
@@ -315,11 +315,15 @@ For instance, you are currently at the admin level and want to remove the module
 (by Jiayi)
 
 Now you have learnt how to create, edit and delete the module deck, let's move to the next page. You can now access the module deck you have created by using the command `go MODULE_INDEX`.
-##### Format: `go MODULE_INDEX`
+**Format:** `go MODULE_INDEX`
 
-##### Key Pointers:
+Here are some key pointers:
 * Kaji only allow access to the existing modules that are shown in the list, therefore, module that is deleted or has never been created will result in an error message.
 * `MODULE_INDEX` **must be a positive integer** 1, 2, 3, ..., and must be a valid index number for a module as displayed from the list of module.
+
+<div style="page-break-after: always;"></div>
+
+**Example:**
 
 In this example, you are going to access the module `CS2113T` that you have created in the previous sections.
 Below are steps of using this `go` command:
@@ -356,7 +360,7 @@ Ensure that you are at the **Module Level** before trying the commands in the ne
 
 You are now at the module level! This command allows you to create a new chapter inside your current module deck. It belongs to the module level you are currently in. It is like preparing an empty paper to write notes for a lecture. Let's create a new chapter inside the module! <br>
 
-##### Format: `add CHAPTER_NAME`
+**Format:** `add CHAPTER_NAME`
 CHAPTER_NAME is the name of the new chapter that you would like to create, such as `Topic 1`, `Chapter 1` or `Newton's laws of motion`. 
 
 Here are some key pointers:
