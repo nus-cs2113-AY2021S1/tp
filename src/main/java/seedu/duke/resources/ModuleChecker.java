@@ -91,6 +91,8 @@ public class ModuleChecker {
 
     /**
      * Generate a hashmap which maps the module code to a NusModule object/class.
+     * Referred to the code example from programcreek.
+     * (here is the link:https://www.programcreek.com/java-api-examples/?api=com.alibaba.fastjson.JSON)
      *
      * @return generatedNusModsList  a hash map containing the module code information only.
      */
@@ -100,7 +102,7 @@ public class ModuleChecker {
         String generatedNusModsList;
         try {
             URL url = new URL(LINK);
-            URLConnection myConnection = url.openConnection();// try to connect and echo back
+            URLConnection myConnection = url.openConnection();
             HttpURLConnection httpUrlConnection = (HttpURLConnection) myConnection;
             httpEcho = httpUrlConnection.getResponseCode();
             if (httpEcho != HttpURLConnection.HTTP_OK) {
@@ -113,7 +115,7 @@ public class ModuleChecker {
 
                 while (generatedNusModsList != null) {
                     stringBuffer.append(generatedNusModsList);
-                    stringBuffer.append(LINE_SEPARATOR);//must add new line or else it will be read as an entire string
+                    stringBuffer.append(LINE_SEPARATOR);
                     generatedNusModsList = bufferedReader.readLine();
                 }
                 generatedNusModsList = stringBuffer.toString();
@@ -153,7 +155,7 @@ public class ModuleChecker {
             }
 
             content = buffer.toString();
-            List<NusModule> modulesList = JSON.parseArray(content, NusModule.class);// extractModules(jsonStr);
+            List<NusModule> modulesList = JSON.parseArray(content, NusModule.class);
             for (NusModule a : modulesList) {
                 mappedNusModuleListWithLocalData.put(a.getModuleCode(), a);
             }
