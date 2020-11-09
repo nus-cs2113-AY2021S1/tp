@@ -182,7 +182,6 @@ When the user enters the `create` command, the `prepareCreateCommand(argument)` 
 It will reject the input provided by the user if the `argument` is empty or contain characters such as `/` or ` \| ` or if the argument contains spaces in between. 
 If the argument is not rejected, it will return and construct a new CreateCommand object with argument as the parameter to be created.  
 
-For example: user input: `create bedroom1`. `prepareCreateCommand(bedroom1)` will return a new CreateCommand object to be executed to create the location `bedroom1` in the LocationList. 
 
 #### Sequence Diagram for `remove`
 
@@ -191,8 +190,7 @@ For example: user input: `create bedroom1`. `prepareCreateCommand(bedroom1)` wil
 When the user enters the `remove` command, the `prepareRemoveCommand(argument)` is called. 
 It will reject the input provided by the user if the `argument` is empty. 
 If the argument is not rejected, it will return a new RemoveCommand object with argument as the parameter to be used to remove a location in the LocationList. 
-
-For example: user input: `remove bedroom1`. `prepareRemoveCommand(bedroom1)` will return and construct a new RemoveCommand object to be executed to remove the location `bedroom1` in the LocationList.  
+ 
 
 #### Sequence Diagram for `add`
 
@@ -210,9 +208,6 @@ If all these conditions are fulfilled, it will return and construct a new AddCom
 
 When the user enters the `delete` command, the `prepareDeleteCommand(argument)` is called. 
 It will reject the input provided by the user if the `argument` is empty. If the argument is not rejected, it will return a new DeleteCommand object with arguments as the parameter to be used to delete an appliance from the ApplianceList. 
-
-For example: user input: `delete aircon1`. `prepareRemoveCommand(aircon1)` will return and construct a new DeleteCommand object to be executed to remove the location `aircon1` in the LocationList.  
-
 
 #### Sequence Diagram for `on`
 
