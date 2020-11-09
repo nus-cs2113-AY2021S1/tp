@@ -115,6 +115,10 @@ On exiting Fluffle, all components will be saved to the storage.
 ### Writing Manager Component
 
 ### Bunny Manager Component
+The diagram below is describes the storage of the Bunny command in the diagram
+![Bunny Manager Component](graphics/diagrams/Bunny_manager_component.PNG)
+
+Functions in the bunny related classes such as BunnyList, DeleteBunny, BunnyFilter and GenBunny can also access this bunniesList ArrayList as it is passed by reference from the bunny list. 
 
 ### Word Manager Component
 Given below is the general architecture of our Word Manager Component.
@@ -215,7 +219,7 @@ In **Figure 6** above, the flow of the program after it enters the filter proces
 1. Filter list is printed by calling `FilterList.printFilterList()`.
 1. The filter process terminates.
    
-### Bunny class family
+### Bunny class family overview
 ![UML Bunny class diagram](graphics/diagrams/Class_diagram_bunny.png)
 <center><i>Figure 7:  Bunny ideas UML Class Diagram</i></center>
 The above class diagram describes the overall architecture of the bunny list functionalities. Recall that the term bunny refers to  plot ideas that have yet to be devloped. 
