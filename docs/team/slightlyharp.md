@@ -12,16 +12,16 @@ Given below are my contributions to the project.
 
 * **New Feature:** Implemented the timetable mode
 
-  * **Sub feature:** Added add class and add activity command that allow user to 
+  * **Sub feature:** Added add class and add activity command that allows user to 
   add events to the schedule.
   
   * **Sub feature:** Added show schedule command to display the full schedule
   the user has planned for the next seven days
   
   * **Sub feature:** Added show link command to allow user to see the 
-  link user need for the next two hours.
-    * Justification: This feature allows user to experience the ease of 
-    access links he/she need for events during the COVID period when many
+  links the user needs for the next two hours.
+    * Justification: This feature allows the user to experience the ease of 
+    accessing links they need for events during the COVID period when many
     links needed to be managed for school and work
     
   * **Sub feature:** Added show activity command to allow user to see the

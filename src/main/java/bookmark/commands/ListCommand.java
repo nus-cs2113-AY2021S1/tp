@@ -20,7 +20,7 @@ public class ListCommand extends BookmarkCommand {
     }
 
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories, BookmarkStorage bookmarkStorage) {
-        String line = input.substring(LIST_LENGTH).trim();
+        String line = input.substring(LIST_LENGTH).toLowerCase().trim();
         if (line.contains("-")) {
             if (line.contains("-s")) {
                 executeListStarCommand(ui, categories, line);
@@ -28,6 +28,8 @@ public class ListCommand extends BookmarkCommand {
                 executeListCatCommand(ui, categories, line);
             } else if (line.contains("-a")) {
                 executeListAllCommand(ui, categories, line);
+            } else {
+                ui.showCorrectCommand("list");
             }
         } else {
             if (line.length() > 0) {
