@@ -122,7 +122,9 @@ Given below is the general architecture of our Word Manager Component.
 ![WordManagerComponent](graphics/diagrams/WordManagerComponent.PNG)
 <p align = "center"><i><b>Figure 2: Word Manager Architecture</b></i></p>
 
-In Fluffle, the words list is stored in the local hard drive location `data/words.txt`. Fluffle can hold three types of word: `Noun`, `Verb` and `Adjective`. The operations that can be done on the words list are:
+In Fluffle, the words list is stored in the local hard drive location `data/words.txt`. 
+Fluffle can hold three types of word: `Noun`, `Verb` and `Adjective`. 
+The operations that can be done on the words list are:
 - Viewing the words list.
 - Getting three random words.
 - Filtering words (by word types or by substrings).
@@ -154,6 +156,18 @@ either poem or essay at this stage)
 
 ![UML WritingList family sequence diagram](graphics/diagrams/writingList_whileAddingWriting.png)
 <p align = "center"><i><b>Figure 4: General interactions between member classes when generating a new writing</b></i></p>
+
+**Implementation**
+
+1. The above sequence diagram illustrate the process of adding a new writing to the database of the application. 
+1. In this case, the database is created under the form of an ArrayList of Writings Objects. 
+1. At the beginning, the user can start the process by typing `start` into the terminal. 
+1. After that, the app will repeatededly asking the using typing in `type` for entering type decision mode.
+    1. During this mode, the user will only have options between `poem` and `essay` to choose before entering the main writing's attribute.
+    1. After that, the user'll go to the stage of inputing the details of the writings such as `topic`, `content`, `reminder date`.
+    1. The name of `author` attribute is taken by the name that the user registered at the beginning of the session.
+<br>
+The main purpose of this approach is not to make the process of configuring the modes more complicated but to prevent careless typos that usually occur while flags are used to indicate too many attributes.
 
 ### Word Features
 
@@ -223,10 +237,7 @@ generates an integer between 0 and the max number of `Bunny` idea in the `bunnie
 `bunniesList` and returns it to the user. This allows the user to easily choose an idea to start working on without struggling to decide which idea to use.
 
 ![UML BunnyList sequence diagram](graphics/diagrams/Sequence_diagram_bunny.png)
-<p align = "center"><i>
-  
-  
-  8:  Bunny list UML Sequence Diagram</i></p>
+<p align = "center"><b><i>Figure 8:  Bunny list UML Sequence Diagram</i></b></p>
 
 The user may call upon the `bunny` command to add bunnies to the list. The user input is first processed by the `extractCommandType` method from 
 the `CommandChecker` class, and the command type detected is sent to the `executeCommand` method from the `CommandExecutor` class. The `addBunny` function is called by this 
@@ -237,9 +248,9 @@ to print the message that the `Bunny` idea object has been sucessfully added to 
 ### Names class family
 
 ![Names UML Class Diagram](graphics/diagrams/classDiagram_Names.png)
-<p align = "center><b><i>Figure 8: Names UML Class Diagram</i></b><p>
+<p align = "center"><b><i>Figure 9: Names UML Class Diagram</i></b><p>
 
-The above class diagram (Figure 8) describes the overall architecture of the name list functionalities. The Names class 
+The above class diagram (Figure 9) describes the overall architecture of the name list functionalities. The Names class 
 has the protected ArrayList of names, nameList, that is accessed by the Names class method getName which randomly gets 
 a selected name from the nameList ArrayList. Similarly, nameList is also accessed by the Names class which contains the 
 filterNames function which can filter through the list and obtain names with specified keywords using the command filter 
@@ -263,7 +274,23 @@ exception, it is thrown from the methods in NamesDB class and Names class and ha
 
 ### ClearLoader class
 ![ClearLoader Class sequence diagram](graphics/diagrams/ClearLoader_Sequencediagram.png)
-<p align = "center><b><i>Sequence diagram of Clear Loader while operating the removing method for the app's writings and words</i></b></p>
+<p align = "center"><b><i>Figure 10: Sequence diagram of Clear Loader while operating the removing method for the app's writings and words</i></b></p>
+**Implementation**
+
+1. The above diagram illustare the mechanism of manipulating objects stored in the database by adding the ability of `clear` certain unwanted subjects from the database
+1. The main targets of the clearing procedure are the writings and words stored in the database as array listes
+1. The process begins when commandChecker detects the command `clear` enter by the users
+1. If the syntax is corrected in the form of `clear type\<TYPE_OF_OBJECT> item\<FLAG (Optional)><OBJECT_INDICATOR>`, the process begin
+    1. If the `<TYPE_OF_OBJECT>` chosen by the user is `writing`, the machine is now going to consider the `<FLAG>`
+        1. If there is no flag, it is detected as the order of the writings stored in the database, the process is going to clear the writings with such order stated by `<OBJECT_INDICATOR>`
+        1.If the flag is `-id`, the machine is going the clear the writing with respective `id` from the database
+        1. Otherwise, the command is considered as invalid (mostly in case `<OBJECT_INDICATOR>` is not an integer or leads to out of bound objects
+    1. If the `<TYPE_OF_OBJECT>` chosen by the user is `word`, the machine is now goin to consider the `<FLAG>`. There are 3 cases of flags available for this mode
+        1. `<FLAG>` is detected as `-noun`: Remove the corresponding item labelled by the followed `<OBJECT_INDICATOR>`
+        1. `<FLAG>` is detected as `-adj`: Remove the corresponding item labelled by the followed `<OBJECT_INDICATOR>`
+        1. `<FLAG>` is detected as `-verb`: Remove the corresponding item labelled by the followed `<OBJECT_INDICATOR>`
+        1. Otherwise, it is considered as invalid command if the `word` with respective `type` does not exist in the database.
+
 ## Testing
 
 Put methods of testing here !!! JUnit test, Unit testing, integration testing, ...
