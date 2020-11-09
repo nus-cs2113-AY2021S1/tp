@@ -318,7 +318,11 @@ The sequence diagram below shows what happens when user enters `help`:
 This feature allows users to repeat all classes in the current week or a selected event for several weeks.
 
 ### 4.10 Delete
+This feature allows the user to delete unwanted events. `DeleteCommand#Execute` deletes the specified event in the following steps:
 
+1. The user enters `delete NUMBER` where `NUMBER` refers to the index of the command to be deleted. The user input is parsed by the Parser class which creates a new `DeleteCommand` object.
+
+2. `Eventlist#remove()` is called which will delete the event with the specified index.
 ### 4.11 Find 
 
 ### 4.12 Print locations
