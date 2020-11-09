@@ -15,6 +15,8 @@ import seedu.financeit.datatrackers.manualtracker.Ledger;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
+import seedu.financeit.utils.storage.ManualTrackerSaver;
+
 
 /**
  * LogicManager Class to handle routine for manual entry management.
@@ -117,6 +119,7 @@ public class EntryTracker {
 
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s deleted!", deletedEntry.getName()));
+            ManualTrackerSaver.getInstance().save();
         } catch (InsufficientParamsException | ItemNotFoundException exception) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
@@ -159,6 +162,7 @@ public class EntryTracker {
 
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s created!", entry.getName()));
+            ManualTrackerSaver.getInstance().save();
         } catch (InsufficientParamsException | IncompatibleParamsException exception) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
@@ -190,6 +194,7 @@ public class EntryTracker {
             editEntryHandler.handlePacket(packet);
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s edited!", entry.getName()));
+            ManualTrackerSaver.getInstance().save();
         } catch (InsufficientParamsException | ItemNotFoundException exception) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());

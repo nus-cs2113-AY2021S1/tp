@@ -12,11 +12,11 @@ import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.LoggerCentre;
 import seedu.financeit.utils.RunHistory;
-import seedu.financeit.utils.storage.ReccuringTrackerSaver;
 import seedu.financeit.utils.storage.GoalTrackerSaver;
 import seedu.financeit.utils.storage.ManualTrackerSaver;
-import seedu.financeit.utils.storage.SaveHandler;
+import seedu.financeit.utils.storage.RecurringTrackerSaver;
 import seedu.financeit.utils.storage.SaveManager;
+import seedu.financeit.utils.storage.SaveHandler;
 
 import java.util.logging.Level;
 
@@ -36,7 +36,7 @@ public class Financeit {
 
         ManualTrackerSaver.getInstance("./data", "./data/saveMt.txt");
         GoalTrackerSaver.getInstance("./data", "./data/saveGt.txt");
-        ReccuringTrackerSaver.getInstance("./data", "./data/saveAt.txt");
+        RecurringTrackerSaver.getInstance("./data", "./data/saveAt.txt");
         load();
 
         //Loads the dateTime when the program was last ran
@@ -74,7 +74,7 @@ public class Financeit {
                 case "exit":
                     save();
                     UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
-                        "Exiting the program. Have a nice day!");
+                            "Exiting the program. Have a nice day!");
                     return;
                 default:
                     prompt = "Invalid Command";
@@ -106,45 +106,15 @@ public class Financeit {
     }
 
     public static void load() {
-
-        try {
-            GoalTrackerSaver.getInstance().load();
-        } catch (Exception m) {
-            System.out.println("Goal Tracker failed to load: " + m);
-        }
-
-        try {
-            ManualTrackerSaver.getInstance().load();
-        } catch (Exception m) {
-            System.out.println("Manual Tracker failed to load: " + m);
-        }
-
-        try {
-            ReccuringTrackerSaver.getInstance().load();
-        } catch (Exception m) {
-            System.out.println("Auto Tracker failed to load: " + m);
-        }
+        GoalTrackerSaver.getInstance().load();
+        ManualTrackerSaver.getInstance().load();
+        RecurringTrackerSaver.getInstance().load();
     }
 
     public static void save() {
-
-        try {
-            GoalTrackerSaver.getInstance().save();
-        } catch (Exception m) {
-            System.out.println("Goal Tracker failed to save: " + m);
-        }
-
-        try {
-            ManualTrackerSaver.getInstance().save();
-        } catch (Exception m) {
-            System.out.println("Manual Tracker failed to save: " + m);
-        }
-
-        try {
-            ReccuringTrackerSaver.getInstance().save();
-        } catch (Exception m) {
-            System.out.println("Auto Tracker failed to save: " + m);
-        }
+        GoalTrackerSaver.getInstance().save();
+        ManualTrackerSaver.getInstance().save();
+        RecurringTrackerSaver.getInstance().save();
     }
 
     public static void loadLastRunDateTime() {
