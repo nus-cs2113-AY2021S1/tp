@@ -935,6 +935,7 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 |v2.0|user|change member phone numbers and emails |so that I can update their contacts|
 |v2.0|user|take attendance | so that I can keep track of members participation in the club|
 |v2.0|user|view members absence rate | so that I can identify members with low participation rate|
+|v2.0|user|view the list of contacts of the connections (alumni, speakers) | So that I can source for collaborators or speakers for our events easily|
 |v2.0|user| import other csv files | So that I can transfer my existing data into the program easily|
 
 [Return to top](#CCA-manager-developer-guide)
