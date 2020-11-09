@@ -60,7 +60,24 @@
 5.4. [Appendix D: Non-Functional Requirements](#54-appendix-d-non-functional-requirements)<br>
 5.5. [Appendix E: Glossary](#55-appendix-e-glossary)<br>
 5.6. [Appendix F: Instructions for Manual Testing](#56-appendix-f-instructions-for-manual-testing)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.1. [Launch and Shutdown](#561-launch-and-shutdown)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.2. [Showing a list of commands](#562-showing-a-list-of-commands)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.3. [Adding a module/chapter/flashcard](#563-adding-a-modulechapterflashcard)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.4. [Listing modules/chapters/flashcards](#564-listing-moduleschaptersflashcards)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.5. [Editing a module/chapter/flashcard](#565-editing-a-modulechapterflashcard)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.6. [Removing a module/chapter/flashcard](#566-removing-a-modulechapterflashcard)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.7. [Accessing the next level](#567-accessing-the-next-level)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.8. [Going back to the previous level](#568-going-back-to-the-previous-level)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.9. [Rescheduling a chapter](#569-rescheduling-a-chapter)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.10. [Starting a revision session](#5610-starting-a-revision-session)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.11. [Checking percentage of rating for the cards in a chapter](#5611-checking-percentage-of-rating-for-the-cards-in-a-chapter)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.12. [Listing all chapters that are due on current date](#5612-listing-all-chapters-that-are-due-on-current-date)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.13. [Previewing list of chapters due in a week](#5613-previewing-list-of-chapters-due-in-a-week)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.14. [Viewing history of revision completed in a day](#5614-viewing-history-of-revision-completed-in-a-day)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.15. [Excluding a module/chapter](#5615-excluding-a-modulechapter)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.16. [Including a module/chapter](#5616-including-a-modulechapter)<br>
 
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## 1. Introduction
@@ -1535,9 +1552,16 @@ There will only be changes to the rating after a revision session.
     1. Test case: `exit`<br>
        Expected output: **Kaji** program terminates.
        
-#### 5.6.2. Adding a module/chapter/flashcard
+#### 5.6.2. Showing a list of commands
+1. Prerequisites: Launch `Kaji` successfully.
+2. Test case: `help`<br>
+   Expected output: A message listing how to use each command will be shown.
+3. Other incorrect commands to try: `help abcd` (where there are extra arguments)<br>
+   Expected output: An error message stating that there should not be any arguments will be shown.
+
+#### 5.6.3. Adding a module/chapter/flashcard
 1. Adding a module
-    1. Prerequisites: Ensure that the program is at the admin level.
+    1. Prerequisites: Ensure that you are at the admin level.
     2. Test case: `add CS2113T`<br>
        Expected output: A success message stating that there is a new module added will be shown.
     3. Test case: `add cs2113t` after running the `add` command as stated above<br>
@@ -1545,68 +1569,204 @@ There will only be changes to the rating after a revision session.
     4. Other incorrect commands to try: `add ../CS2113T` (where non-alphanumeric characters are present)<br>
        Expected output: An error message stating that only alphanumeric characters and spaces will be shown.
 2. Adding a chapter
-    1. Prerequisites: At least one module in the list. Ensure that the program is at the module level.
+    1. Prerequisites: At least one module in the module list. Ensure that you are at the module level.
     2. Test case: `add Chapter 1`<br>
        Expected output: A success message stating that there is a new chapter added will be shown.
-    3. Test case: `add cs2113t` after running the `add` command as stated above<br>
-       Expected output: An error message stating that the module already exist will be shown.
-    4. Other incorrect commands to try: `add ../CS2113T` (where non-alphanumeric characters are present)<br>
+    3. Test case: `add chapter 1` after running the `add` command as stated above<br>
+       Expected output: An error message stating that the chapter already exist will be shown.
+    4. Other incorrect commands to try: `add ../Chapter 1` (where non-alphanumeric characters are present)<br>
        Expected output: An error message stating that only alphanumeric characters and spaces will be shown.
-  
+3. Adding a flashcard
+    1. Prerequisites: At least one module and chapter in the module and chapter list respectively. Ensure that you are at the chapter level.
+    2. Test case: `add q:1+1 | a:2`<br>
+       Expected output: A success message stating that there is a new flashcard added will be shown.
+    3. Test case: `add q:1+1 | a:2` after running the `add` command as stated above<br>
+       Expected output: An error message stating that the flashcard already exist will be shown.
+    4. Other incorrect commands to try: `add q:1+1 | a:` (where parameter is missing)<br>
+       Expected output: An error message stating that the question or answer is missing will be shown.  
+
+#### 5.6.4. Listing modules/chapters/flashcards
+1. Listing all modules
+    1. Prerequisites: At least one module in the list. No chapters in the module list. Ensure that you are at the module level.
+    2. Test case: `list`<br>
+       Expected output: A message stating that there are no chapters will be shown.
+    3. Prerequisites: At least one module in the list. Chapter list contains some chapters. Ensure that you are at the module level.
+    4. Test case: `list`<br>
+       Expected output: A message listing all the chapters will be shown.
+    3. Other incorrect commands to try: `list abcd` (where there are extra arguments)<br>
+       Expected output: An error message stating that there should not be any arguments will be shown.
+2. Listing all chapters
+    1. Prerequisites: No modules in the module list. Ensure that you are at the admin level.
+    2. Test case: `list`<br>
+       Expected output: A message stating that there are no modules will be shown.
+    3. Prerequisites: Module list contains some modules. Ensure that you are at the admin level.
+    4. Test case: `list`<br>
+       Expected output: A message listing all the modules will be shown.
+    3. Other incorrect commands to try: `list abcd` (where there are extra arguments)<br>
+       Expected output: An error message stating that there should not be any arguments will be shown.
+3. Listing all flashcards
+    1. Prerequisites: At least one module and chapter in the module and chapter list respectively. 
+       No flashcards in the flashcard list. Ensure that you are at the chapter level.
+    2. Test case: `list`<br>
+       Expected output: A message stating that there are no flashcards will be shown.
+    3. Prerequisites: At least one module and chapter in the module and chapter list respectively. 
+       Flashcard list contains some flashcards. Ensure that you are at the chapter level.
+    4. Test case: `list`<br>
+       Expected output: A message listing all the flashcards will be shown.   
+    5. Other incorrect commands to try: `list abcd` (where there are extra arguments)<br>
+       Expected output: An error message stating that there should not be any arguments will be shown. 
  
- (Jia Ern)
+#### 5.6.5. Editing a module/chapter/flashcard
+1. Editing a module
+    1. Prerequisites: At least one module in the module list. Ensure that you are at the admin level.
+    2. Test case: `edit 1 CS2113`<br>
+       Expected output: A message stating the module name before and after the edit will be shown.
+    3. Test case: `edit 0 CS2113`<br>
+       Expected output: No module is edited. An error message will be shown.
+    4. Other incorrect commands to try: `edit`, `edit x CS2113` (where x is larger than the list size)<br>
+       Expected output: Similar to previous or a message stating how to use the command will be shown.
+2. Editing a chapter
+    1. Prerequisites: At least one module and chapter in the module and chapter list respectively. 
+       Ensure that you are at the module level.
+    2. Test case: `edit 1 Chapter 2`<br>
+       Expected output: A message stating the chapter name before and after the edit will be shown.
+    3. Test case: `edit 0 Chapter 2`<br>
+       Expected output: No chapter is edited. An error message will be shown.
+    4. Other incorrect commands to try: `edit`, `edit x Chapter 2` (where x is larger than the list size)<br>
+       Expected output: Similar to previous or a message stating how to use the command will be shown.
+3. Editing a flashcard
+    1. Prerequisites: At least one module, chapter and flashcard in the module, chapter and flashcard list respectively. 
+       Ensure that you are at the chapter level.
+    2. Test case: `edit 1 q:1+1 | a:`<br>
+       Expected output: A message stating the flashcard content before and after the edit will be shown.
+    3. Test case: `edit 0 q:1+1 | a:`<br>
+       Expected output: No flashcard is edited. An error message will be shown.
+    4. Other incorrect commands to try: `edit`, `edit x q:1+1 | a:` (where x is larger than the list size)<br>
+       Expected output: Similar to previous or a message stating how to use the command will be shown.
+
+#### 5.6.6. Removing a module/chapter/flashcard
+1. Removing a module
+    1. Prerequisites: At least one module in the module list. Ensure that you are at the admin level. List all modules using the `list` command.
+    2. Test case: `remove 1`<br>
+       Expected output: First module is removed from the module list. A message stating the details of the removed module will be shown.
+    3. Test case: `remove 0`<br>
+       Expected output: No module is removed. An error message will be shown.
+    4. Other incorrect commands to try: `remove`, `remove x` (where x is larger than the list size)<br>
+       Expected output: Similar to previous or a message stating how to use the command will be shown.
+2. Removing a chapter
+    1. Prerequisites: At least one module and chapter in the module and chapter list respectively. 
+       Ensure that you are at the module level. List all modules using the `list` command.
+    2. Test case: `remove 1`<br>
+       Expected output: First chapter is removed from the chapter list. A message stating the details of the removed chapter will be shown.
+    3. Test case: `remove 0`<br>
+       Expected output: No chapter is removed. An error message will be shown.
+    4. Other incorrect commands to try: `remove`, `remove x` (where x is larger than the list size)<br>
+       Expected output: Similar to previous or a message stating how to use the command will be shown.
+3. Removing a flashcard
+    1. Prerequisites: At least one module, chapter and flashcard in the module, chapter and flashcard list respectively. 
+       Ensure that you are at the chapter level. List all flashcards using the `list` command.
+    2. Test case: `remove 1`<br>
+       Expected output: First flashcard is removed from the chapter list. A message stating the details of the removed flashcard will be shown.
+    3. Test case: `remove 0`<br>
+       Expected output: No flashcard is removed. An error message will be shown.
+    4. Other incorrect commands to try: `remove`, `remove x` (where x is larger than the list size)<br>
+       Expected output: Similar to previous or a message stating how to use the command will be shown.
+
+#### 5.6.7. Accessing the next level
+1. Accessing module level
+    1. Prerequisites: At least one module in the module list. Ensure that you are at the admin level.
+    2. Test case: `go 1`<br>
+       Expected output: Accessed the first module in the module list. Access level message will be changed.
+    3. Test case: `go 0`<br>
+       Expected output: Still at admin level. An error message will be shown.
+    4. Other incorrect commands to try: `go`, `go x` (where x is larger than the list size)<br>
+       Expected output: Similar to previous or a message stating how to use the command will be shown.
+2. Accessing chapter level
+    1. Prerequisites: At least one module and chapter in the module and chapter list respectively. 
+       Ensure that you are at the module level.
+    2. Test case: `go 1`<br>
+       Expected output: Accessed the first chapter in the chapter list. Access level message will be changed.
+    3. Test case: `go 0`<br>
+       Expected output: Still at module level. An error message will be shown.
+    4. Other incorrect commands to try: `go`, `go x` (where x is larger than the list size)<br>
+       Expected output: Similar to previous or a message stating how to use the command will be shown.
+
+#### 5.6.8. Going back to the previous level
+1. Going back to admin level
+    1. Prerequisites: Ensure that you are at module level.
+    2. Test case: `back`<br>
+       Expected output: Back to admin level. Access level message will be changed.
+    3. Other incorrect commands to try: `back abcd` (where there are extra arguments)<br>
+       Expected output: An error message stating that there should not be any arguments will be shown.
+2. Going back to module level
+    1. Prerequisites: Ensure that you are at chapter level.
+    2. Test case: `back`<br>
+       Expected output: Back to module level. Access level message will be changed.
+    3. Other incorrect commands to try: `back abcd` (where there are extra arguments)<br>
+       Expected output: An error message stating that there should not be any arguments will be shown.
+
+#### 5.6.9. Rescheduling a chapter
+1. Prerequisites: At least one module and chapter in the module and chapter list respectively. 
+   Ensure that you are at the module level.
+2. Test case: Substitute DATE with the current date<br>
+   `reschedule 1 DATE`<br>
+   Expected output: A message stating the due date of the chapter before and after the rescheduling will be shown.
+3. Test case: Substitute DATE with the date before the current date<br>
+   `reschedule 1 DATE`<br>
+   Expected output: Chapter will not be rescheduled. A message stating that the due date cannot be before the current date will be shown.
+4. Test case: Substitute DATE with the current date<br>
+   `reschedule 0 DATE`<br>
+   Expected output: No chapter will be rescheduled. An error message will be shown.
+5. Other incorrect commands to try: `reschedule`, `reschedule x DATE` (where x is larger than the list size)<br>
+   Expected output: Similar to previous or a message stating how to use the command will be shown.
+
 #### 5.6.10. Starting a revision session
-1. Starting a revision session
-    1. Prerequisites: At least one flashcard is in the chapter to be revised. Ensure that you are at the module level.
-    2. Test case: `revise 1` <br>
-       Expected output: A revision session will start on the first chapter in the module.
-    3. Other incorrect commands to try: `revise Chapter 1` (where chapter name instead of its index integer is provided)<br>
-       Expected output: An error message stating to specify chapter index in integer will be shown.
+1. Prerequisites: At least one flashcard is in the chapter to be revised. Ensure that you are at the module level.
+2. Test case: `revise 1` <br>
+   Expected output: A revision session will start on the first chapter in the module.
+3. Other incorrect commands to try: `revise Chapter 1` (where chapter name instead of its index integer is provided)<br>
+   Expected output: An error message stating to specify chapter index in integer will be shown.
        
 #### 5.6.11. Checking percentage of rating for the cards in a chapter
-1. Checking percentage of rating for the cards in a chapter
-    1. Prerequisites: At least one flashcard is in the chapter. Ensure that you are at the chapter level.
-    2. Test case: `showrate` <br>
-       Expected output: A list of the percentage for easy/medium/hard based on the number of cards will be shown.
-    3. Other incorrect commands to try: `showrate blah` (where extra arguments are added)<br>
-       Expected output: An error message stating that there should be no extra arguments will be shown.
+1. Prerequisites: At least one flashcard is in the chapter. Ensure that you are at the chapter level.
+2. Test case: `showrate` <br>
+   Expected output: A list of the percentage for easy/medium/hard based on the number of cards will be shown.
+3. Other incorrect commands to try: `showrate blah` (where extra arguments are added)<br>
+   Expected output: An error message stating that there should be no extra arguments will be shown.
        
 #### 5.6.12. Listing all chapters that are due on current date
-1. Listing all chapters that are due on current date
-    1. Prerequisites: Launch Kaji successfully.
-    2. Test case: `due` <br>
-       Expected output: A list of chapters that are due on the current date will be shown. If no chapters are due, a message stating that no chapters are due for the day will be shown.
-    3. Other incorrect commands to try: `due blah` (where extra arguments are added)<br>
-       Expected output: An error message stating that there should be no extra arguments will be shown.
+1. Prerequisites: Launch `Kaji` successfully.
+2. Test case: `due` <br>
+   Expected output: A list of chapters that are due on the current date will be shown. If no chapters are due, a message stating that no chapters are due for the day will be shown.
+3. Other incorrect commands to try: `due blah` (where extra arguments are added)<br>
+   Expected output: An error message stating that there should be no extra arguments will be shown.
        
 #### 5.6.13. Previewing list of chapters due in a week
-1. Previewing list of chapters due in a week
-    1. Prerequisites: Launch Kaji successfully.
-    2. Test case: `preview` <br>
-       Expected output: A list of chapters that are due in a week will be shown. If no chapters are due, every date will be accompanied by a message that no chapters are due.
-    3. Other incorrect commands to try: `preview blah` (where extra arguments are added) <br>
-       Expected output: An error message stating that there should be no extra arguments will be shown.
+1. Prerequisites: Launch `Kaji` successfully.
+2. Test case: `preview` <br>
+   Expected output: A list of chapters that are due in a week will be shown. If no chapters are due, every date will be accompanied by a message that no chapters are due.
+3. Other incorrect commands to try: `preview blah` (where extra arguments are added) <br>
+   Expected output: An error message stating that there should be no extra arguments will be shown.
 
 #### 5.6.14. Viewing history of revision completed in a day
-1. Viewing history of revision completed in a day
-    1. Prerequisites: Launch Kaji successfully.
-    2. Test case: `history` <br>
-       Expected output: Lists the module and chapter which you have completed revision for. If no revision was done on the day, a message stating that no revision for that session will be shown.
-    3. Test case: `history 2020-11-09`
-       Expected output: List the module and chapter which you have completed revision for on 2020-11-09. If no revision was done on the day, a message stating that no revision for that session will be shown.
-    4. Other incorrect commands to try: `history blah` (where the argument is not in the correct date format) <br>
-       Expected output: An error message stating that the date should be in `yyyy-MM-dd` format will be shown.
+1. Prerequisites: Launch `Kaji` successfully.
+2. Test case: `history` <br>
+   Expected output: Lists the module and chapter which you have completed revision for. If no revision was done on the day, a message stating that no revision for that session will be shown.
+3. Test case: `history 2020-11-09`
+   Expected output: List the module and chapter which you have completed revision for on 2020-11-09. If no revision was done on the day, a message stating that no revision for that session will be shown.
+4. Other incorrect commands to try: `history blah` (where the argument is not in the correct date format) <br>
+   Expected output: An error message stating that the date should be in `yyyy-MM-dd` format will be shown.
        
 #### 5.6.15. Excluding a module/chapter
 1. Excluding a module
-    1. Prerequisites: Launch Kaji successfully. The module you want to exclude should exist.
+    1. Prerequisites: Launch `Kaji` successfully. The module you want to exclude should exist.
     2. Test case: `exclude module` <br>
        Expected output: A prompt for which module to be excluded will be shown and you can enter an existing module which you want to exclude.
     3. Other incorrect commands to try: `exclude blah` (where the argument is not module/chapter)
        Expected output: An error message stating that only module/chapter should be specified will be shown.
 
 2. Excluding a chapter
-    1. Prerequisites: Launch Kaji successfully. The chapter you want to exclude should exist.
+    1. Prerequisites: Launch `Kaji` successfully. The chapter you want to exclude should exist.
     2. Test case: `exclude chapter` <br>
        Expected output: A prompt for which chapter to be excluded will be shown and you can enter an existing chapter which you want to exclude.
     3. Other incorrect commands to try: `exclude blah` (where the argument is not module/chapter)
@@ -1614,14 +1774,14 @@ There will only be changes to the rating after a revision session.
        
 #### 5.6.16. Including a module/chapter
 1. Including a module
-    1. Prerequisites: Launch Kaji successfully. The module you want to include should exist.
+    1. Prerequisites: Launch `Kaji` successfully. The module you want to include should exist.
     2. Test case: `include module` <br>
        Expected output: A prompt for which module to be included will be shown and you can enter an existing module which you want to include.
     3. Other incorrect commands to try: `include blah` (where the argument is not module/chapter)
        Expected output: An error message stating that only module/chapter should be specified will be shown.
        
 2. Including a chapter
-    1. Prerequisites: Launch Kaji successfully. The chapter you want to include should exist.
+    1. Prerequisites: Launch `Kaji` successfully. The chapter you want to include should exist.
     2. Test case: `include chapter` <br>
        Expected output: A prompt for which chapter to be included will be shown and you can enter an existing chapter which you want to include.
     3. Other incorrect commands to try: `include blah` (where the argument is not module/chapter)
