@@ -36,7 +36,7 @@ I also added two sequence diagrams under these implementations.
 
 #### Contributions to Team-based Tasks
 I tested our team's app to find bugs and helped managed errors in codes when our functions conflict with each
-other's.
+other's. I also set up logging file for the team.
 Additionally, also edited the demo video for our team.
 On top of that, also helped to find documentation issues and rectify them when needed.
 

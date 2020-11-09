@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,7 +24,15 @@ public class Storage {
      * @param filePath File path whereby data is loaded from and stored at.
      */
     public Storage(String filePath) {
-        logger.setLevel(Level.INFO);
+        try {
+            FileHandler fh = new FileHandler("logger.log", true);
+            logger.setLevel(Level.INFO);
+            logger.addHandler(fh);
+        } catch (IOException e) {
+            logger.log(Level.WARNING, "Logger file load error. Please proceed on with app as this does not"
+                    + "affect your experience.");
+        }
+
 
         if (filePath == null) {
             logger.log(Level.WARNING, "null file path");
