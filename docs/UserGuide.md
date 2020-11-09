@@ -409,22 +409,22 @@ Furthermore, hints might give you an alternative perspective to think about the 
 
 **A6**: You may download the sample `topics.json` from the [releases page](https://github.com/AY2021S1-CS2113T-F12-3/tp/releases).
 Make sure to include this file in the `main` folder located in the `data` folder.
-If these folder does not exist yet please run the application once to create it.
+If these folders do not exist yet please run the application once to create it.
 
 The directory structure should look like this:
 
 ```
-root
-│   eduke8.jar
-│
-└───data
-    │
-    └───main
-    │   │   topics.json
-    │   │   ...
-    │
-    └───logs
-        │   ...
+yourFolder
+|   eduke8.jar
+|
+----data
+    |
+    ----main
+    |   |   topics.json
+    |   |   ...
+    |
+    ----logs
+        |   ...
 ```
 
 Your changes will not be reflected if the directory structure does not match that above.
