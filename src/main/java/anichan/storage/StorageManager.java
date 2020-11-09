@@ -199,7 +199,6 @@ public class StorageManager {
     // ========================== Script Loading ==========================
 
     //@@author OngDeZhi
-
     /**
      * Loads the script file.
      *
