@@ -177,20 +177,22 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 ### 3.3. Model Component
 (Jiayi)
 
-The Model,
-
-* stores a Access object that holds temporary data for user's access level and contents of level being accessed.
-* stores a History object that saves revision history of current day.
-* stores a DueChapter object that manages due chapter data.
-* contains an Admin class that can be created and accessed by Access object. The Admin class contains a ModuleList object to manage data for modules.
-* contains a Module class that can be created and accessed by Access object. The Module class contains a ChapterList object to manage data for chapters.
-* contains a Chapter class that can be created and accessed by Access object. The Chapter class contains a CardList object to manage data for cards.
-* contains a Card object that can be created and accessed by CardList. A Card object represents a flashcard with question, answer and master level of revision.
+The Model component consists of the `Access`, `History`, `DueChapter`, `ModuleList`, `ChapterList` and `CardList` classes as shown in the class diagram below:
 
 <p align="center">
-  <img src="UML/model.png" width="800" alt="Architecture Diagram of Model"/>
+  <img src="UML/model.png" width="600" alt="Architecture Diagram of Model"/>
   <br/>Figure <>. Architecture Diagram of Model
 </p>
+
+The Model component
+* stores a `Access` object that holds temporary data for user's access level and contents of level being accessed.
+* stores a `History` object that saves revision history of current day.
+* stores a `DueChapter` object that manages due chapter data.
+* provides an `Admin` class that can be created and accessed by `Access` object. The `Admin` class contains a `ModuleList` object to manage data for modules.
+* provides a `Module` class that can be created and accessed by `Access` object. The `Module` class contains a `ChapterList` object to manage data for chapters.
+* provides a `Chapter` class that can be created and accessed by `Access` object. The `Chapter` class contains a `CardList` object to manage data for cards.
+* provides a `Card` object that can be created and accessed by `CardList`. A `Card` object represents a flashcard with question, answer and master level of revision.
+
 
 ### 3.4. Storage Component 
 (Lucas)
@@ -212,6 +214,18 @@ The Storage component
 
 
 ### 3.5. Common Classes
+(Jiayi)
+
+The Common component consists of `KajiLog` and `Messages` as shown in the class diagram below: 
+
+<p align="center">
+  <img src="UML/commonClass.png" width="600" alt="Common Class Diagram"/>
+  <br/>Figure <>. Class diagram of Common component  
+</p>
+
+The Common component
+* stores user visible messages.
+* generates a log for Kaji.
 
 ##### <a href="#top">Back to Top ^</a>
 
@@ -221,7 +235,13 @@ The Storage component
 This section will describe the significant details of how the features in **Kaji** are being implemented.
 
 ### 4.1. Admin Features
-[summary + scenario]
+This section will elaborate the available features to users at **Admin Level**. <br>
+At Admin Level, users are able to: <br>
+* Add module
+* List modules
+* Edit module name
+* Delete module
+* Access module
 
 #### 4.1.1. Add Module Feature
 (Jiayi)
@@ -407,7 +427,15 @@ The following diagram shows how the add chapter command feature works:
 ##### <a href="#top">Back to Top ^</a>
 
 ### 4.2. Module Features
-[summary + scenario]
+This section will elaborate the available features to users at **Module Level**. <br>
+At Module Level, users are able to: <br>
+* Add chapter
+* List chapters
+* Edit chapter name
+* Delete chapter
+* Access chapter
+* Return to Admin Level
+
 
 #### 4.2.1. Add Chapter Feature
 (Jiayi)
@@ -586,7 +614,14 @@ The following sequence Diagrams illustrates how the Return to Admin Level Featur
 ##### <a href="#top">Back to Top ^</a>
 
 ### 4.3. Chapter Features
-[summary + scenario]
+This section will elaborate the available features to users at **Chapter Level**. <br>
+At Chapter Level, users are able to: <br>
+* Add flashcard
+* List flashcards
+* Edit question and answer of a flashcard
+* Delete flashcard
+* Return to Module Level
+* Check overall revision performance
 
 #### 4.3.1. Add Flashcard Feature
 (Jane)

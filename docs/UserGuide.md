@@ -75,7 +75,22 @@ A <b>command line interface (CLI)</b> is a text-based user interface (UI) used t
 ### 1.4. Understanding Kaji
 
 #### 1.4.1. Content Management
+Kaji's content management system is similar to a physical folder which you may use to organize your lecture handouts. <br>
+Kaji manages content in four different levels, they are the Admin Level, the Module Level, the Chapter Level and the Flash Card Level: <br>
 
+![Content Management](UG_Images/contentManagement.PNG)
+
+* **Admin Level** is like your **bookshelf** to keep all the separated module folder in place.
+* **Module Level** is like a **folder** to keep all your lecture notes and materials by different module codes.
+* **Chapter level** is like an **index sticker** which organizes different pieces of information into its relevant chapters.
+* **Flashcard level** is all the **primary notes and material** which you have collected for your modules. With Kaji's assistant, you can easily categorise your messy notes into organized structure.
+
+When you start our program, you begin on the **Admin Level**, indicated by the prompt "admin" as shown here.
+To add/modify/remove elements of a certain level, you have to be on the level above it.
+* E.g. to create a new Module in the **Chapter Level**, you have to be on the **Admin Level**
+* E.g. to create a new Flashcard in the **Flashcards Level**, you have to be on the **Chapter Level**
+
+Refer to [Features](#3-features) below for details of each command.
 
 #### 1.4.2. Schedule Management
 
@@ -120,7 +135,7 @@ Ensure that you are at the **Admin Level** before trying the commands in the nex
 #### 3.1.1. Adding a module: `add`
 (by Jiayi)
 
-Welcome to the first feature of Kaji! In order to use this program, you first will need to create a module deck. Creating a new module deck in Kaji is like getting a new folder to store all the handouts for one module. This is important because it helps you to organize your messy notes. 
+Welcome to the first feature of Kaji! In order to use this program, you first will need to create a module deck. Creating a new module deck in Kaji is like getting a new folder to store all the handouts for one module. This is important because it helps you to organize your messy notes. <br>
 
 ##### Format: `add \MODULE_CODE`
 \MODULE_CODE is the name of the new module that you would like to create, such as `CS2113`, `Module 1` or `Biology`. 
@@ -131,24 +146,24 @@ Welcome to the first feature of Kaji! In order to use this program, you first wi
 * Kaji only allows creation of one module with the `add` command. If you enter command `add CS2113T CS2101` will creates a module named `CS2113T CS2101`, instead of two separated modules named `CS2113T` and `CS2101` respectively.
 
 ##### Example: 
-In this example, you are going to add a new module called `CS2113T`.
-Below are steps of using this `add` command:
+In this example, you are going to add a new module called `CS2113T`. <br>
+Below are steps of using this `add` command: <br>
 * Step 1: Enters the command `add CS2113T` into the command prompt. Your new module name comes after the key word `add`.
 ![Add Module 1](UG_Images/addModule1.PNG)
 * Step 2: As shown below, a new module named `CS2113T` has just been created! You are free to edit, delete and access this module!
 ![Add Module 2](UG_Images/addModule2.PNG)
 
-This is an additional example to show you the unique property of Kaji's add feature. 
-As you may aware from `Key Pointers` section above, Kaji is case-insensetive. This example belows shows you what will happen if you try to add a new module called `cs2113t` after completing the previous example.
-Below are the breakdown of this example:
+This is an additional example to show you the unique property of Kaji's add feature. <br>
+As you may aware from `Key Pointers` section above, Kaji is case-insensetive. This example belows shows you what will happen if you try to add a new module called `cs2113t` after completing the previous example. <br>
+Below are the breakdown of this example: <br>
 * Step 1: Types `add cs2113t` to add a new module named `cs2113t` after adding a module named `CS2113T` which essentially have a same name as our new module but in capital letters.
 ![Add Module 3](UG_Images/addModule3.PNG)
 * Step 2: Opps, Kaji refuses to add the module `cs2113t` because a module with the same name is already existed!
 ![Add Module 4](UG_Images/addModule4.PNG)
 
-This is an additional example to show you the unique property of Kaji's add feature. 
-As you may aware from `Key Pointers` section above, Kaji only allows addition of one new module each time. Let's see what will happen if you try to add two modules `cs2113 cs2101` at same time.
-Below are the breakdown of this example:
+This is an additional example to show you the unique property of Kaji's add feature. <br>
+As you may aware from `Key Pointers` section above, Kaji only allows addition of one new module each time. Let's see what will happen if you try to add two modules `cs2113 cs2101` at same time. <br>
+Below are the breakdown of this example: <br>
 * Step 1: Types `add cs2113t cs2101` and attempts to add a new module named `cs2113t` and another new module `cs2101`.
 ![Add Module 5](UG_Images/addModule5.PNG)
 * Step 2: Opps, Kaji has interpreted it as one single module with the name of `cs2113t cs2101`, instead of two seperate modules. 
@@ -243,7 +258,7 @@ Ensure that you are at the **Module Level** before trying the commands in the ne
 #### 3.2.1. Adding a chapter: `add`
 (by Jiayi)
 
-You are now at the module level! This command allows you to create a new chapter inside your current module deck. It belongs to the module level you are currently in. It is like preparing an empty paper to write notes for a lecture. Let's create a new chapter inside the module!
+You are now at the module level! This command allows you to create a new chapter inside your current module deck. It belongs to the module level you are currently in. It is like preparing an empty paper to write notes for a lecture. Let's create a new chapter inside the module! <br>
 
 ##### Format: `add \CHAPTER_NAME`
 \CHAPTER_NAME is the name of the new chapter that you would like to create, such as `Topic 1`, `Chapter 1` or `Newton's laws of motion`. 
@@ -253,8 +268,8 @@ You are now at the module level! This command allows you to create a new chapter
 * Kaji is not case-sensitive, therefore, a new chapter named `chapter`  will be treated equally to a module named `CHAPTER`. 
 
 ##### Example 1: 
-In this example, you are going to add a new chapter called `Chapter 1`.
-Below are steps of using this `add` command:
+In this example, you are going to add a new chapter called `Chapter 1`. <br>
+Below are steps of using this `add` command: <br>
 * Step 1: Enters the command `add Chapter 1` into the command prompt which your new chapter name comes after the key word `add`.
 ![Add Chapter 1](UG_Images/addChapter1.PNG)
 * Step 2: In Kaji, you can give new chapters a rate to pre-set its revision schedules. If you would like to keep it as fault state, you can simply enter `N`. To demonstrate this feature fully, you may enter `Y` to rate the new chapter and check out how will Kaji responses!
@@ -554,9 +569,9 @@ For instance, you are currently in chapter level `Chapter 1` and want to return 
 #### 3.3.6. Checking overall performance for a chapter: `showrate`
 (by Jiayi)
 
-Congratulations! You have learnt how to add flashcards and revise your flash cards, and now is the time to **check your overall performance** for a chapter.
+Congratulations! You have learnt how to add flashcards and revise your flash cards, and now is the time to **check your overall performance** for a chapter. <br>
 
-It is very simple, all you have to do is to enter the command [`showrate`](#) in prompt. 
+It is very simple, all you have to do is to enter the command [`showrate`](#) in prompt. <br>
 
 ##### Format: `showrate`
 
@@ -567,8 +582,8 @@ It is very simple, all you have to do is to enter the command [`showrate`](#) in
 >:information_source: <b>Note:</b> As you now know, it is the level which you can add/edit/delete cards.
 
 ##### Example: 
-For instance, you would like to check your overall performance after completing several rounds of revision.
-Below are steps of using this `showrate` command.
+For instance, you would like to check your overall performance after completing several rounds of revision. <br>
+Below are steps of using this `showrate` command: <br>
 * Step 1: Type "showrate" into the command prompt while you are in a chapter level.
 ![showrate 1](UG_Images/showrate1.PNG)
 * Step 2: Kaji calculates the percentage of card in different master level (i.e. `easy`, `medium`, `hard` and `cannot answer`).
