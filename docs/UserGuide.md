@@ -327,7 +327,7 @@ Output:
     ____________________________________________________________
 ```
 
-### Displaying tasks based on priority: `list tasks`
+### Displaying tasks based on priority: `list tasks (by priority)`
 Lists all the tasks with the same priority.
 
 Format: `list tasks p/<priority>`
@@ -349,7 +349,7 @@ Output:
     ____________________________________________________________
 ```
 
-### Displaying tasks based on category: `list tasks`
+### Displaying tasks based on category: `list tasks (by category)`
 Lists all the tasks with the same category.
 
 Format: `list tasks c/<category>`
@@ -495,7 +495,7 @@ Output:
 
 ```
 
-### Displaying expense items by a certain currency on list: `list expenses` 
+### Displaying expense items by a certain currency on list: `list expenses (by currency)` 
 List all the expense items in the expense list based on currency and shows total amount of money spent for each currency.
 
 Format: `list expenses currency/currency_name`
@@ -519,7 +519,7 @@ Output:
     
 ```
 
-### Displaying expense items on a certain date on list: `list expenses` 
+### Displaying expense items on a certain date on list: `list expenses (by date)` 
 List all the expense items in the expense list based on the date and shows total amount of money spent for each currency.
 
 Format: `list expenses date/YYYY-MM-DD`
@@ -544,7 +544,7 @@ Output:
     ____________________________________________________________
 ```
 
-### Displaying expense items for a certain time period on list: `list expenses` 
+### Displaying expense items for a certain time period on list: `list expenses (by time period)` 
 List all the expense items in the expense list based on the time period and shows total amount of money spent for each currency.
 
 Format: `list expenses for/<time period>`
@@ -595,7 +595,7 @@ Output:
     ____________________________________________________________
 
 ```
-### Deleting all tasks of a certain priority: `delete tasks`
+### Deleting all tasks of a certain priority: `delete tasks (by priority)`
 Delete tasks of the same priority.
 
 Format: `delete tasks p/<priority>`
@@ -620,7 +620,7 @@ Output:
 
 ```
 
-### Deleting all tasks of a certain category: `delete tasks`
+### Deleting all tasks of a certain category: `delete tasks (by category)`
 Delete tasks of the same category.
 
 Format: `delete tasks c/<category>`
@@ -710,7 +710,7 @@ Output:
 
 ```
 
-### Deleting all the expense items of a certain currency: `delete expenses`
+### Deleting all the expense items of a certain currency: `delete expenses (by currency)`
 Delete expense items of the same currency.
 
 Format: `delete expenses currency/<currency>`
@@ -740,10 +740,9 @@ Output:
      ~Info~ There is no expense item deleted.
 
     ____________________________________________________________
-
 ```
 
-### Deleting all expense items of the same date: `delete expenses`
+### Deleting all expense items of the same date: `delete expenses (by same date)`
 Delete expense items of the same date.
 
 Format: `delete expenses date/<yyyy-MM-dd>`
@@ -763,26 +762,6 @@ Output:
      bread (0.20 USD) (date: Sunday, November 8, 2020)
      lunch (5.00 USD) (date: Sunday, November 8, 2020)
 
-```
-
-### Deleting expense items on a certain date from the list: `delete expenses`
-Delete an expense item from the list. 
-
-Format: `delete expenses date/YYYY-MM-DD`
-
-Example of usage:
-
-`delete expenses date/2020-11-07`
-
-Output: 
-```
-    ____________________________________________________________
-     Noted. I've removed all these expense item(s)
-
-     pencil (0.30 SGD) (date: Saturday, November 7, 2020)
-     pen (0.40 USD) (date: Saturday, November 7, 2020)
-     sandwich (3.00 SGD) (date: Saturday, November 7, 2020)
-    ____________________________________________________________
 ```
 
 ### Marking a task as done: `done task`
@@ -1182,7 +1161,7 @@ putting it in the same folder as `termiNus.jar`.
 
 **A**: The case-sensitivity has been stated for the applicable commands. 
 
- 
+
 
 ## Quick Command Reference
 
