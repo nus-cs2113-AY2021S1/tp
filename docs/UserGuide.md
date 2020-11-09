@@ -308,7 +308,7 @@ ____________________________________________________________
 
 #### 3.1.8 Starting Subject Quiz: `quiz`  <a name="subject_quiz"> </a>
 
-Starts a quiz for a particular subject. For more details, see <a href="#takeQuiz">takeQuiz</a>.
+Starts a quiz for a particular subject. For more details, see <a href="#takeQuiz">taking quizzes</a>.
 
 Format: `quiz [SUBJECT_NAME]`
 
