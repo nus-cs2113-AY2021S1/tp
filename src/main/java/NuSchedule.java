@@ -1,8 +1,6 @@
-import command.AutoClearCommand;
 import command.Command;
 import eventlist.EventList;
 import exception.CreatingFileException;
-import exception.DataFileNotFoundException;
 import exception.NuScheduleException;
 import locationlist.BusStopList;
 import locationlist.LocationList;

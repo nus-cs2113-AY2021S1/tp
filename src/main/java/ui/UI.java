@@ -392,7 +392,6 @@ public class UI {
 
     /**
      * Print the success message after the user input auto clear.
-     *
      */
     public void printAutoClearOn() {
         System.out.println("Great! All events happened one month ago are cleared :)");
@@ -400,10 +399,78 @@ public class UI {
 
     /**
      * Print the success message after the user successfully clear all events before a certain date.
-     *
      */
     public void printClearBefore(LocalDate clearDate) {
         System.out.println("Great! You have cleared all events before " + clearDate.toString());
+    }
+
+    public void printFassLocations() {
+        System.out.println("Locations available at FASS are: \n"
+                + "BLK/AS1~8 \n"
+                + "L/LT8~15"
+        );
+    }
+
+    public void printSdeLocations() {
+        System.out.println("Locations available at SDE are: \n"
+                + "BLK/SDE1~4 \n"
+                + "BLK/CELC"
+        );
+    }
+
+    public void printFosLocations() {
+        System.out.println("Locations available at FOS are: \n"
+                + "BLK/S1~17 \n"
+                + "BLK/MD1~11 \n"
+                + "L/LT20~34"
+        );
+    }
+
+    public void printFoeLocations() {
+        System.out.println("Locations available at FOE are: \n"
+                + "BLK/E1~E6 \n"
+                + "BLK/EA \n"
+                + "BLK/E1A \n"
+                + "BLK/E2A \n"
+                + "BLK/E3A \n"
+                + "BLK/E4A \n"
+                + "BLK/EW1 \n"
+                + "BLK/EW2 \n"
+                + "BLK/IT \n"
+                + "L/LT1~7 \n"
+                + "L/LT7A"
+        );
+    }
+
+    public void printHostelLocations() {
+        System.out.println("Hostels in NUS are: \n"
+                + "H/Raffles Hall \n"
+                + "H/Kent Ridge Hall \n"
+                + "H/King Edward VII Hall \n"
+                + "H/Sheares Hall \n"
+                + "H/Temasek Hall \n"
+                + "H/Eusoff Hall \n"
+                + "H/Cinnamon College \n"
+                + "H/College of Alice & Peter Tan \n"
+                + "H/Residential College 4 \n"
+                + "H/Ridge View Residential College \n"
+                + "H/Tembusu College \n"
+                + "H/Kuok Foundation House \n"
+                + "H/Prince George’s Park \n"
+                + "H/UTown Residence"
+        );
+    }
+
+    public void printSocAndBizLocations() {
+        System.out.println("Locations available at SOC or BIZ are: \n"
+                + "L/LT16~LT19 \n"
+                + "BLK/COM1 \n"
+                + "BLK/COM2 \n"
+                + "BLK/BIZ1 \n"
+                + "BLK/BIZ2 \n"
+                + "BLK/Shaw Foundation Alumni House \n"
+                + "BLK/I Cube");
+
     }
 
 }
