@@ -184,7 +184,6 @@ public class AddCommand extends Command {
             }
         }
     }
-    //}
 
     /**
      * User input for Tutorial event example: tutorial CS1010 lt12 /at 090820 1000.
