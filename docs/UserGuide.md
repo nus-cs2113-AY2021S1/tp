@@ -557,6 +557,8 @@ the navigation functions.
 
 >The application executes this command on start-up and does not require any explicit command to use this feature.
 
+<div style="page-break-after: always;"></div>
+
 **Examples of usage**
 
 On start-up, you will receive a prompt of your most searched bus stop. This personalises your application and gives you
