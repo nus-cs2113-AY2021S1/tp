@@ -47,7 +47,7 @@ public class FlashcardRun {
             break;
         default:
             Ui.printDivider();
-            System.out.println("Invalid command. Valid commands are \"add\", \"delete\", \"list\","
+            System.out.println("Invalid command. Valid commands are \"add\", \"delete\", \"list\", "
                     + "\"test\" and \"find\"."
                     + "\nUse \"exit\" to exit the flashcard mode.");
             Ui.printDivider();

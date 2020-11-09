@@ -37,7 +37,7 @@ public class TimeTableCommand {
                 System.out.println("Please enter the venue: ");
                 isInvalid = false;
             } else {
-                System.out.println("Invalid command command\n Is the class online? (yes/no)");
+                System.out.println("Invalid command!\n Is the class online? (yes/no)");
             }
         }
         final String linkOrVenue = in.nextLine();
