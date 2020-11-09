@@ -11,6 +11,7 @@ import command.FindCommand;
 import command.FindDateCommand;
 import command.HelpCommand;
 import command.LocateCommand;
+import command.PrintAreaLocationsCommand;
 import command.PrintFullListCommand;
 import command.PrintLocationCommand;
 import command.ReminderCommand;
@@ -106,6 +107,13 @@ public abstract class Parser {
     public static final String ALL = "all";
     public static final String AUTO_CLEAR = "autoClear";
     public static final String CLEAR_BEFORE = "clearBefore";
+    public static final String FOS = "FOS";
+    public static final String FOE = "FOE";
+    public static final String SDE = "SDE";
+    public static final String SOC = "SOC";
+    public static final String BIZ = "BIZ";
+    public static final String HOSTEL = "HOSTEL";
+    public static final String FASS = "FASS";
 
 
     /**
@@ -149,6 +157,14 @@ public abstract class Parser {
             return new UserInfoCommand(new UserInfo(fullCommand.substring(words[0].length() + 1), words[0]));
         default:
             break;
+        }
+
+        //this block deals with print locations in the area command
+        if (fullCommand.equalsIgnoreCase(FOS) || fullCommand.equalsIgnoreCase(FOE)
+                || fullCommand.equalsIgnoreCase(SDE) || fullCommand.equalsIgnoreCase(SOC)
+                || fullCommand.equalsIgnoreCase(BIZ) || fullCommand.equalsIgnoreCase(HOSTEL)
+                || fullCommand.equalsIgnoreCase(FASS)) {
+            return new PrintAreaLocationsCommand(fullCommand);
         }
 
         //this block deals with locate command
@@ -406,8 +422,8 @@ public abstract class Parser {
         //we shall check that the user input is not meant for any other command beforehand
         //because the default block will throw an exception.
         // i.e. when this block is entered, the parser will not go to any other blocks
-        if (words[0].equalsIgnoreCase(ASSIGNMENT) || words[0].equalsIgnoreCase(CLASS)
-                || words[0].equalsIgnoreCase(PERSONAL_EVENT) || words[0].equalsIgnoreCase(SELF_STUDY)) {
+        if (words[0].equals(ASSIGNMENT) || words[0].equals(CLASS)
+                || words[0].equals(PERSONAL_EVENT) || words[0].equals(SELF_STUDY)) {
             if (fullCommand.substring(words[0].length()).isBlank()) {
                 throw new EmptyEventException();
             }

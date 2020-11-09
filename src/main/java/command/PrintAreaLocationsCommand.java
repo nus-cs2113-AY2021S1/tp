@@ -1,7 +1,6 @@
 package command;
 
 import eventlist.EventList;
-import exception.NuScheduleException;
 import locationlist.BusStopList;
 import locationlist.LocationList;
 import storage.Storage;
@@ -31,15 +30,25 @@ public class PrintAreaLocationsCommand extends Command {
         switch (area.toUpperCase()) {
         case "FOS":
             ui.printFosLocations();
+            break;
         case "FOE":
             ui.printFoeLocations();
+            break;
         case "FASS":
             ui.printFassLocations();
+            break;
         case "SDE":
             ui.printSdeLocations();
+            break;
         case "SOC":
         case "BIZ":
             ui.printSocAndBizLocations();
+            break;
+        case "HOSTEL":
+            ui.printHostelLocations();
+            break;
+        default:
+            break;
         }
     }
 }

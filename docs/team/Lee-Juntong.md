@@ -42,7 +42,9 @@ Given below are my contributions to the project.
   
 * **New Feature**: Added the ability to exit the application.
 
-* **New Feature**: Added the ability to print the list of events.   
+* **New Feature**: Added the ability to print the list of events.  
+
+* **New Feature**: Added the ability to print the list of locations at the selected area in NUS. 
 
 * **Code contributed**: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=Lee-Juntong&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=Lee-Juntong&tabRepo=AY2021S1-CS2113T-F14-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
