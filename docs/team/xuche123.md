@@ -1,4 +1,4 @@
-# Project: NuSchedule
+# Project: NUSchedule
 
 NuSchedule is a task management application written in Java. It is operated on the command line interface.
 
