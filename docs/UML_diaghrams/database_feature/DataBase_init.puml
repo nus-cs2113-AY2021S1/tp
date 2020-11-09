@@ -1,0 +1,18 @@
+@startuml
+-> DataBase : init()
+activate DataBase
+activate InputStream
+DataBase -> InputStream : getResourceAsClass()
+InputStream --> DataBase : InputStream
+deactivate InputStream
+
+DataBase -> Scanner : new Scanner(InputStream)
+
+loop After START until START
+    activate Scanner
+    DataBase -> Scanner : nextLine()
+    Scanner --> DataBase : line data
+end
+destroy Scanner
+deactivate DataBase
+@enduml

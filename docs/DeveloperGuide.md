@@ -216,11 +216,11 @@ _Sequence Diagram:_<br/>
 ## Save/Load Feature
 
 The Save/Load feature is implemented by the saveload package.
-At the base of the package, there is the <mark> Saver </mark> 
-and <mark> Loader </mark>  class.
+At the base of the package, there is the `Saver`
+and `Loader` class.
 
-### Architecture
-![Alt text](save_load_feature/Architecture.png)
+### Design
+![Alt text](UML_diaghrams/save_load_feature/design.png)
 Note only the Saver and Loader class is flexible. They can be adapted to new situations without modifying
 the code. The FoodSaveLoadManager and PersonSaveLoadManager are written specifically for this version. They
 will have to be modified/replaced for future versions.
@@ -233,41 +233,101 @@ Handles the storage of its data by writing to a text file.
 ##### Constructor
 Specifies the length and height of the internal Saver table
 ##### Main Methods
-* Saver#save() saves the current data to the file in the folder with the given file name
-* Saver#add() Store String data in the x,y position in the table
+* `Saver#save()` saves the current data to the file in the folder with the given file name
+* `Saver#add()` Store String data in the x,y position in the table
 
 #### Loader class
 Loads data from a text file and stores it in a internal table just like the saver
 ##### Constructor
-static method Loader.load(folder name , file name) : creates a Loader object with 
+`static method Loader.load(folder name , file name)` : creates a Loader object with 
 a table storing the data found in the text file
 ##### Main Methods
-* Loader#get() retrives the data stored in the loader
+* `Loader#get()` retrives the data stored in the loader
 
-#### FoodSaveLoadManager class
+#### FoodPortionDateSaveLoadManager class
 Built on top of Saver and Loader class to implement save/load functionality
 for list of food items the user has input into the dietbook. Contains a instance
-of both <mark> Saver </mark> and <mark> Loader </mark>. It has its own folder to work with,
-the user only has to specify the file name.
+of both `Saver` and `Loader`. It has its own folder to work with,
+the user only has to specify the file name. To save the contents of a `FoodList`, call 
+`FoodPortionDateSaveLoadManager#saveFoodList(FoodList foodlist, String fileName)` 
+To load a file, call `FoodPortionDateSaveLoadManager#load()` first to load the contents of the file into
+the `FoodPortionDateSaveLoadManager` and then call `FoodPortionDateSaveLoadManager#saveFoodList()` to
+return the `FoodList` with those contents. 
+
 ##### Main Methods
-* FoodSaveLoadManager#save() saves the list of food objects to the specified file name
-* FoodSaveLoadManager#load() loads the file and returns the list of food objects stored inside it
+* `FoodPortionDateSaveLoadManager#saveFoodList()` saves the contents of the `FoodList` object
+* `FoodPortionDateSaveLoadManager#load()` loads the file and store the contents 
+* `FoodPortionDateSaveLoadManager#saveFoodList()` returns a `FoodList` with the contents of the 'FoodPortionDateSaveLoadManager'
 
 #### PersonSaveLoadManager class
 Built on top of Saver and Loader class to implement save/load functionality for user information
-Same as FoodSaveLoadManager, it has its own folder to work with, the user only has to specify the file name
-Unlike the FoodSaveLoadManager, it stores the data inside itself and can be updated.
+Same as `FoodPortionDateSaveLoadManager`, it has its own folder to work with, the user only has to specify the file name
+Unlike the `FoodPortionDateSaveLoadManager`, it stores the data inside itself and can be updated.
 ##### Main Methods
-* PersonSaveLoadManager#save() save the current state into the file
-* PersonSaveLoadManager#load() loads the file 
+* `PersonSaveLoadManager#save()` save the current state into the file
+* `PersonSaveLoadManager#load()` loads the file 
 * Setters and Getters for all the personal data in this current version
 
 #### UML diaghram
-##### FoodSaveLoadManager#save()
-![Alt text](save_load_feature/FoodSaveLoadManager_save.png)
-##### FoodSaveLoadManager#load()
-![Alt text](save_load_feature/FoodSaveLoadManager_load.png)
-similiar diaghrams for PersonSaveLoadManager
+##### `FoodPortionDateSaveLoadManager#save()`
+![Alt text](UML_diaghrams/save_load_feature/FoodPortionDateSaveLoadManager_save.png)
+##### `FoodPortionDateSaveLoadManager#load()`
+![Alt text](UML_diaghrams/save_load_feature/FoodPortionDateSaveLoadManager_load.png)
+similiar diaghrams for `PersonSaveLoadManager`
+
+## DataBase feature
+`DataBase` stores a list of food items that can be found in NUS and can be accessed by user
+The data is organized into a Canteen contains a number of Stores each of which contains a list of food items
+It also offers a number of filtering and searching methods. The data base resource is a text file which
+can be manually updated. 
+
+### DataBase class
+Stores a `List` of `Canteen` objects. Each `Canteen` object stores a `List` of `Store` object,
+each `Store` object contains a `List` of `Food` objects. Currently has a number of filtering and searching
+methods. These methods can easily be modified and new ones implemented depending on the needs of the application. 
+
+##### Main Methods
+* `DataBase#init()` reads from the data text resource and loads the contents into itself
+* searching methods Examples 
+    * `DataBase#searchFoodByIndex()` returns the `Food` with the provided index
+    * `DataBase#searchFoodByName()` returns the first `Food` object that contains the string provided
+    * `DataBase#searchAllFoodContainingName()` returns a `Stream<Food>` that contains all `Food` containing the string provided
+
+### Manually editing the text resource
+As of this version, there is no dev mode for an administrator or a user to add new items to the
+data base. This can be done manually by directly editing the data.txt resource.
+
+##### Format of data.txt resource
+The `DataBase#init()` method reads the data.txt file line by line
+**&%START** and **&%STOP** the `DataBase#init()` method will read anything between these two indicators
+initially the data base is in the `_*canteen*_` state, the next line it reads will be the canteen name
+when it moves from the canteen name line to the next line, it is in the `_*store*_` state,
+again the next line it reads will be the store name, when it moves from the store name line to the next line,
+now it is in the `_*food*_` state. In this state, input a line in the format `{food name}|{calorie}|{carbohydrate}|{protein}|{fats}`,
+this will add a food item. Any number of food lines can be written and the database will be in the `_*food*_` state.
+To go back up to the store state, write a line of **&%UP**. If a store name is given in the next line, the database
+will again be in the `_*food*_` state. To go back up to the canteen state write 2 consecutive lines of **&%UP**.
+##### Example 
+|data.txt line|explanation|before state|after state|
+|-----------------------------------------------------|-----------------------------------------------------------|-----------------|---------------|
+|&%START| starts the reading | not reading | canteen |
+| canteen1 | set the current canteen name to canteen1 | canteen | store |
+| store 1 | sets the current store name to store1 | store | food |
+| food1 | adds a food with the data of food1 | food | food |
+| food2 | adds a food with the data of food2 | food | food |
+| &%UP | goes up to store | food | store |
+| store 2 | sets the current store name to store2 | store | food |
+| food 3 | adds a food with the data of food3 | food | food |
+| &%UP | goes up to store | food | store |
+| &%UP | goes up to canteen | store | canteen |
+|&%STOP | stops the reading | canteen | not reading |
+
+### UML diagram 
+##### `DataBase#init()`
+![Alt text](UML_diaghrams/database_feature/DataBase_init.png)
+##### `DataBase#search()`
+![Alt_text](UML_diaghrams/database_feature/DataBase_search.png)
+
 
 ## Product scope
 ### Target user profile
