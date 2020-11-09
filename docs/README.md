@@ -1,7 +1,3 @@
----
-layout: page
-title: Nav@NUS
----
 
 ![logo](DG_Diagrams/Nav@NUSLogo.jpg)
 
