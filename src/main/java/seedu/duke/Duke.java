@@ -10,10 +10,6 @@ import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 import java.time.Clock;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
-import static java.lang.System.exit;
 
 public class Duke {
     /**
@@ -22,7 +18,7 @@ public class Duke {
 
     private static Clock clock = null;
     
-    private static final String dataFilename = "data.json";
+    private static final String DATA_FILENAME = "data.json";
 
     private static ParserManager parser = new ParserManager();
     private static StorageManager sm;
@@ -52,7 +48,7 @@ public class Duke {
             Ui.showError("Unable to setup logger!");
         }
         try {
-            sm = new StorageManager(dataFilename, projectManager);
+            sm = new StorageManager(DATA_FILENAME, projectManager);
         } catch (IOException e) {
             Ui.showError("Unable to create data/ directory, please "
                     + "ensure that we are allowed to create the data/ directory!");

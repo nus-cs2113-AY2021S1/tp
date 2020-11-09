@@ -15,16 +15,16 @@ import java.nio.file.Paths;
 public class StorageManager {
     private static final String DEFAULT_FILEPATH = "./data/data.json";
 
-    private final Path filepath;
-    private final ProjectManager projectManager;
+    private final Path FILE_PATH;
+    private final ProjectManager PROJECT_MANAGER;
 
     public StorageManager(String filename, ProjectManager projectManager) throws IOException {
         if (filename == null || filename.isBlank()) {
-            filepath = Paths.get(DEFAULT_FILEPATH);
+            FILE_PATH = Paths.get(DEFAULT_FILEPATH);
         } else {
-            filepath = Paths.get("./data", filename);
+            FILE_PATH = Paths.get("./data", filename);
         }
-        this.projectManager = projectManager;
+        this.PROJECT_MANAGER = projectManager;
         try {
             init();
         } catch (IOException e) {
@@ -41,14 +41,14 @@ public class StorageManager {
      * File name of the data file is specified when the StorageManager object is instantiated
      */
     public void save() throws IOException {
-        assert filepath != null : "File path is null.";
+        assert FILE_PATH != null : "File path is null.";
         try {
-            if (!Files.exists(filepath.getParent())) {
+            if (!Files.exists(FILE_PATH.getParent())) {
                 initDataDir();
             }
-            assert Files.exists(filepath.getParent()) : "Data directory is still not created";
-            FileWriter fw = new FileWriter((filepath.toFile()));
-            Jsoner.serialize(projectManager, fw);
+            assert Files.exists(FILE_PATH.getParent()) : "Data directory is still not created";
+            FileWriter fw = new FileWriter((FILE_PATH.toFile()));
+            Jsoner.serialize(PROJECT_MANAGER, fw);
             fw.close();
             ScrumLogger.LOGGER.info("Data has been successfully saved to the data file");
         } catch (IOException e) {
@@ -65,21 +65,21 @@ public class StorageManager {
      * @throws IOException Thrown when there is error opening the file or reading to the file.
      */
     public void load() throws IOException, JsonException {
-        assert filepath != null : "File path is null.";
-        if (!Files.exists(filepath)) {
+        assert FILE_PATH != null : "File path is null.";
+        if (!Files.exists(FILE_PATH)) {
             return; //file does not exist, start from a new
         }
         try {
             String rawData = loadRawData();
             JsonObject rawJson = (JsonObject) Jsoner.deserialize(rawData);
-            projectManager.fromJson(rawJson);
+            PROJECT_MANAGER.fromJson(rawJson);
             ScrumLogger.LOGGER.info("Data has been successfully loaded from the data file");
         } catch (IOException e) {
             ScrumLogger.LOGGER.warning(String.format("Parsing of JSON failed, proceeding in empty state: %s%n", 
                     e.toString()));
             throw e;
         } catch (ClassCastException | NullPointerException | JsonException e) {
-            projectManager.clearProjects();
+            PROJECT_MANAGER.clearProjects();
             ScrumLogger.LOGGER.warning(String.format("Parsing of JSON failed, proceeding in empty state: %s%n", 
                     e.toString()));
             throw e;
@@ -92,8 +92,8 @@ public class StorageManager {
     }
 
     private void initDataDir() throws IOException {
-        assert filepath != null : "File path is null.";
-        Path path = filepath.getParent();
+        assert FILE_PATH != null : "File path is null.";
+        Path path = FILE_PATH.getParent();
         if (!Files.exists(path)) {
             ScrumLogger.LOGGER.info("Data directory does not exist, creating a data directory");
             Files.createDirectory(path);
@@ -101,7 +101,7 @@ public class StorageManager {
     }
 
     private String loadRawData() throws IOException {
-        assert filepath != null && Files.exists(filepath) : "File path is null or the file does not exist.";
-        return Files.readString(filepath);
+        assert FILE_PATH != null && Files.exists(FILE_PATH) : "File path is null or the file does not exist.";
+        return Files.readString(FILE_PATH);
     }
 }
