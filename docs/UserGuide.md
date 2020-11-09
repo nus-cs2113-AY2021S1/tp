@@ -69,28 +69,50 @@ Adds events/tasks to the schedule. Can support various types of tasks:
 
 
 * Personal events  
-  Format: `personalEvent EVENTNAME /t DATE TIME /e DATE TIME /l LOCATION` for underline event.  
-  OR `personalEvent EVENTNAME /t DATE TIME /e DATE TIME /o MEETING_LINK /p MEETING_PASSWORD` for online events.  
-  Note that `/e DATE TIME` is optional. You have a personal event without an ending time.  
+  Format:  
+  `personalEvent EVENTNAME /t DATE TIME /e DATE TIME /l LOCATION` for offline events.  
+  OR  
+  `personalEvent EVENTNAME /t DATE TIME /e DATE TIME /o MEETING_LINK /p MEETING_PASSWORD` for online events.  
+    
+  Note that `/e DATE TIME` is optional. You may input a personal event without an ending time.  
   In `/e DATE TIME`, `DATE` is optional. If you enter `/e TIME`, the default date will be the same 
   as the date that the event starts.  
   For online events, `/p MEETING_PASSWORD` is optional, since not all online events require a password.
 
 * Assignments  
-  Format: `assignment EVENTNAME /t DATE TIME /l LOCATION`  
-  OR `assignment EVENTNAME /t DATE TIME /o SUBMISSION_LINK`  
+  Format:  
+  `assignment EVENTNAME /t DATE TIME /l LOCATION`  
+  OR  
+  `assignment EVENTNAME /t DATE TIME /o SUBMISSION_LINK`  
 
 * Classes  
-  Format: `class CLASSNAME /t DATE TIME /e DATE TIME /l LOCATION`  
-  OR `class CLASSNAME /t DATE TIME /e DATE TIME /o MEETING_LINK /p MEETING_PASSWORD`  
-  Same as in personal events, in `/e DATE TIME`, `DATE` is optional. For online events,`/p MEETING_PASSWORD` is optional.  
-  However, `/e DATE TIME` or `/e TIME` is required, since any class should end at some time. 
+  Format:  
+  `class CLASSNAME /t DATE TIME /e DATE TIME /l LOCATION`  
+  OR  
+  `class CLASSNAME /t DATE TIME /e DATE TIME /o MEETING_LINK /p MEETING_PASSWORD`  
+    
+  Similar to personal events, in `/e DATE TIME`, `DATE` is optional. For online events,`/p MEETING_PASSWORD` is optional.  
+  However, `/e DATE TIME` or `/e TIME` is required, since all classes should have an ending time. 
 
 
-Example of usage: 
-
-`personalEvent Mom’s Birthday /t 2020-10-26 19:00 /l home`  
+Examples of usage: 
+  
 `class CS2113 Lecture /t 2020-09-23 10:00 /e 12:00 /l LT27`
+`personalEvent Mom’s Birthday /t 2020-10-26 19:00 /l home`
+`assignment CS1010 Assignment /t 2020-01-04 23:59 /o Luminus`
+
+Adding a class:
+![add1](diagrams/add1.png)
+
+Adding a personal event:
+![add2](diagrams/add2.png)
+
+Adding an assignment:
+![add3](diagrams/add3.png)
+
+Adding an event with a timing clash:
+![add4](diagrams/add4.png)
+
 
 ### Edit an event
 With this command, you can edit existing tasks to change their description, start/end date, location and even the
@@ -133,23 +155,34 @@ Shows you a list of all events.
 
 Format: `list`  
 
+Example Output:
+![list](diagrams/list.png)
+
 ### Clear events
 Deletes all events in the list.  
 
 Format: `clear`  
 
+Example Output:
+![clear](diagrams/clear.png)
 
 ### Mark event as done
 Mark an event that has been completed with `DONE`.  
 
 Format: `done INDEX`  
 
-Example: `done 1`  
+Example: `done 2`
+
+Example Output:
+![done](diagrams/done.png)  
 
 ### Reminder of deadlines
 Shows a list of all events for today's date.
 
 Format: `reminder`
+
+Example Output:
+![reminder](diagrams/reminder.png)
 
 
 ## FAQ
