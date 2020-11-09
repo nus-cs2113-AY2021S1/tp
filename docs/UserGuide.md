@@ -80,6 +80,8 @@ This user guide covers the following:
  * Common errors or problems faced when using features
  * Frequently asked questions
 
+<div style="page-break-after: always;"></div>
+
 ### 1.3 Introduction to Command Line Interface (CLI)
 Nav@NUS sets up and runs on the CLI. As the CLI is not commonly used, it can seem daunting to users. 
 To give you a better experience, this section will introduce you to the CLI.
@@ -92,6 +94,8 @@ For computers running the Windows OS, the red arrow points to where you have to 
 
 For computers running the macOS, the red arrow points to where you have to type in commands. 
 ![MacOS CLI](UG_Figures/appleCLI.png)
+
+<div style="page-break-after: always;"></div>
 
 <!-- @@author Johnson-Yee -->
 ## 2. Quick Start - Johnson Yee
@@ -110,6 +114,8 @@ shown in the figure, the home folder is found in the address path of "C:\Users..
 ![Start Screen](UG_Figures/Nav@NUSstartScreen.png)<br>
 8. Try keying in `/help` and press <kbd>Enter</kbd>!
 <!-- @@author -->
+
+<div style="page-break-after: always;"></div>
 
 ## 3. Features 
 There are 18 features available in Nav@NUS. The following are instructions for using the features.
