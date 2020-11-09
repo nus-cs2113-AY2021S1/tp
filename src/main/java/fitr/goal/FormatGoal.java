@@ -4,6 +4,7 @@ import fitr.common.RemoveLeadingZeros;
 import fitr.exception.FitrException;
 import fitr.exception.UpperBoundLessThanException;
 import fitr.exception.UpperBoundMoreThanException;
+import fitr.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -35,8 +36,9 @@ public class FormatGoal {
                 }
                 String targetCalories = RemoveLeadingZeros.removeLeadingZeros(goalDescription.substring(1).trim());
                 try {
+                    Ui.printCustomError(targetCalories);
                     if (Integer.parseInt(targetCalories) >= 100000 || Integer.parseInt(targetCalories) < 0
-                            || Integer.parseInt(targetCalories) == -0) {
+                            || targetCalories.equals("-0")) {
                         throw new UpperBoundMoreThanException();
                     }
                 } catch (NumberFormatException e) {
