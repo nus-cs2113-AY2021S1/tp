@@ -17,14 +17,15 @@ such that you will have an easy reference for understanding the features impleme
 The guide outlines the architecture and design decisions for the implementation of WatchNext.The intended audience of this 
 document are the developers, testers and future contributors of WatchNext.
    
-
+ <div style="page-break-after: always;"></div>
+ 
 ## 2. Setting up
 This section will show you the requirements that you need to fulfill in order to quickly start contributing to this project in no time!
 
 ### 2.a Prerequisites
 
 1. **JDK `11`**  
-<br>   
+  
 > **[NOTE]**
 > The `WatchNext.jar` file is compiled using the Java version mentioned above.
 
@@ -57,6 +58,8 @@ This section will show you the requirements that you need to fulfill in order to
 9. Open a console and run the command `gradlew processResources` (Mac/Linux: `./gradlew processResources`). It should finish with the `BUILD SUCCESSFUL` message. +
 This will generate all the resources required by the application and tests.
 
+<br><br><br>
+
 ### 2.c Verifying the setup
 
 1. You can run `Duke` and try a few commands.
@@ -87,6 +90,8 @@ This class diagram shows how the Storage class is setup as an example.<br>
 <br>Throughout the lifespan of the program, various errors may occur. The `ErrorHandling` class stores the various errors that could occur. The expected errors usually stem from invalid user input or Input Output (IO) errors during file loading. The `Ui` class informs the users of the errors detected and suggests actions for rectification. <br>
 <img src = "images/designDG/designSequence.png" width = "700"> <br><br>
 This shows the flow of the program for one user command input.
+
+ <div style="page-break-after: always;"></div>
 
 ## 4. Implementation
 
@@ -129,6 +134,7 @@ episodes for each season respectively,Duration of an episode)
 * AddCommand checks the `ShowList` for duplicates. If there are duplicates, the user is prompted if they would like to
 overwrite the duplicate entry.
 * The `Show` is added to the `ShowList`.
+<br><br><br>
 
 **Step 6** 
 
@@ -244,6 +250,8 @@ to the show. The `addreview` command is invoked by the `InputParser` method `par
 
 * The changes are reflected back to the user. Concurrently, the changes will be saved to the showList.txt file.
 
+ <div style="page-break-after: always;"></div>
+
 ### ChangeRatingCommand
 The `changerating` command changes the rating of the desired show.
 The `changerating` command takes in 2 parameters, the show for which the rating is to be changed and the new rating to be
@@ -328,35 +336,7 @@ The `deleteRating` method in `DeleteRatingCommand` class is called.
 
 **Step 6**
 
-<<<<<<< HEAD
 The changes are reflected back to the user. At the same time, changes are saved into the showList.txt file.
-
-### Add Review Command
-
-The `addreview` command is invoked by the InputParser method parseAddReview. It takes a string as input. 
-Within the AddReview class
-
-**Step 1**
-
-The string is tokenised into separate words.
-
-**Step 2**
-
-The corresponding show is retrieved from the show list.
-
-**Step 3**
-
-The rating of the show is updated.
-
-**Step 4**
-
-The review of the rating is added to the show.
-
-**Step 5**
-
-
-* The changes are reflected back to the user. Concurrently, the changes will be saved to the showList.txt file.
-
 
 ### ChangeReviewCommand
 
@@ -679,6 +659,7 @@ actual time they spend watching shows and is a feature that is not provided by m
 |v1.0|user|clear my watch history |I can protect my privacy.|
 |v1.0|student|I want to track which zoom lectures / or webcasts that I have watched| I can make sure I don’t miss any important lessons.|
 
+ <div style="page-break-after: always;"></div>
 
 ##  Appendix C: Non-Functional Requirements
 
@@ -744,8 +725,8 @@ Expected: A message acknowledging the change. `Updated show details.`
 4. Test case: `season 3` followed by `episode 10,10,10` followed by `done`<br>
 Expected: A message acknowledging the change. `Updated show details.`
 
-5. Test case: `name f.r.i.e.n.d.s` followed by `done`<br>
-   Expected: A message acknowledging the change. `Updated show details.`
+ <div style="page-break-after: always;"></div>
+
 
 ### Managing Reviews and Ratings
 
