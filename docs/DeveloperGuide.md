@@ -162,6 +162,7 @@ All components can be accessed by the user through Fluffle's UI. On loading Fluf
 ### Writing Manager Component
 
 Given below is the overall architecture of Fluffle's writing component.
+
 <img align = "center" alt = "Writing Manager Component" src = "graphics/diagrams/WritingMangerComponent.PNG"></img>
 <p align = "center"><i><b>Figure 2: Writing manager architecture</b></i></p>
 
