@@ -106,12 +106,14 @@ end goal
 begin done
 done - mark the event as completed
 
-Format: done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE] 
+Format: done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]
 
 EVENT_TYPE specify what kind of event you would like to mark as done. The accepted arguments for this are "personal", "timetable" and "zoom"
 EVENT_INDEX is a number. It contains the index of the event that is to be marked as done
 [EVENT_DATE] is an optional argument. When a date is provided for marking a repeated command as done, the done command will mark the repetition with the date matching EVENT_DATE as done
 
+If you would like to mark a non repeating event as done, the format to use is : done EVENT_TYPE; EVENT_INDEX;
+If you would like to mark the repetitions of a repeated event as done, the format to use is : done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]
 
 end done
 
@@ -123,6 +125,9 @@ Format: undone EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]
 EVENT_TYPE specify what kind of event you would like to mark as not done. The accepted arguments for this are "personal", "timetable" and "zoom"
 EVENT_INDEX is a number. It contains the index of the event that is to be marked as not done
 [EVENT_DATE] is an optional argument. When a date is provided for marking a repeated command as not done, the undone command will mark the repetition with the date matching EVENT_DATE as undone
+
+If you would like to mark a non repeating event as not done, the format to use is : undone EVENT_TYPE; EVENT_INDEX;
+If you would like to mark the repetitions of a repeated event as not done, the format to use is : undone EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]
 
 end undone
 

@@ -23,6 +23,7 @@ Given below are my contributions to the project
     - Help set up the team organisation repo
     - Necessary general code enhancements
     - Help set up logging code for the project.
+    - Managed releases `v1.0` - `v2.1` (3 releases) on Github.
     
 - **Enhancements to Existing Features:**
     - Updated the parser to accept multiple commands in succession for users who are familiar with the product and would like to execute more than one command at once

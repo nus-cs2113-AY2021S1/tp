@@ -19,6 +19,7 @@ Scheduler--; Does the job
         - [2.2.2 Mac OS X](#222-mac-os-x)
         - [2.2.3 Linux](#223-linux)
     - [2.3 Test run](#23-test-run)
+    - [2.4 For Experienced Users](#24-for-experienced-users)
 
 - [3. Features](#3-features)
     - [3.1 Viewing help: help](#31-viewing-help-help-colin-ng)
@@ -162,6 +163,30 @@ Some examples you can try:
 - `bye`: exit the program 
     
 Congratulations! You have just finished setting up Scheduler--; Feel free to explore the program, or if you would like some assistance, take a look at the subsequent sections for instructions on how to use the available features of this program. Happy scheduling!
+
+### 2.4 For Experienced users
+
+If you are familiar with the commands used in the program, Scheduler--; now supports the processing of multiple commands
+To input more than one command into Scheduler--;, simply separate each command with a pipe character '|'
+
+Some examples you can try:
+- `add personal; dental appointment; 2020-05-05; | repeat personal; 1; monthly; 3;` will cause the program to add a new personal event named "Dental Appointment" and subsequently set the event to repeat monthly for three more months as shown below:
+```
+add personal; dental appointment; 2020-05-05; | repeat personal; 1; monthly; 3;
+_________________________________
+You have successfully added this event to your list!
+[P][X] dental appointment on 2020-05-05
+_________________________________
+[P][X] dental appointment on 2020-05-05
+is now repeating monthly for 3 times.
+_________________________________
+
+```
+
+> **Warning!**
+>
+> When writing multiple commands at once, keep in mind that the program processes each command entry from left to right. If you make a mistake for one command, the subsequent commands towards the right of the mistake will not be processed by the program
+>
 
 <div style="page-break-after: always;"></div>
 
