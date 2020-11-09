@@ -17,9 +17,6 @@ As the Dashboard is unable to detect some of my commits, click [here](https://gi
 I implemented a **planner** feature, which is an extension of the timetable feature that allows users to find common empty slots among the team members.
 - This feature can combine a few individual timetables from each of the team members and generate a list of the common empty slots. The user only needs to insert the timetable files into a folder called *planner*. Then, the user will be able to load the empty slots repeatedly.
 - The user can add a new group meeting (similar to the timetable feature), but I have added a validation, such that the group meeting must only be added to an empty slot.
-
-<div style="page-break-after: always;"></div>
-
 - In this feature, the newly-added group meeting will not be automatically written to the timetable files. This allows the user to make further modifications to the meeting itself, as well as to facilitate the possibility of adding new members to the team (adding a new timetable file). To save the meeting to each individual timetable, the user will then need to enter the `save` command.
 
 #### Contributions to the User Guide:
