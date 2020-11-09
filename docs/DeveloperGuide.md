@@ -593,11 +593,10 @@ Making sure the name of the appliance is found in the list.
 ### Switching On Appliance:
 
 Prerequisites: 
-1. Ensure that BedRoom1 is created: `create Bedroom1`
-2. Ensure that ac Appliance is added: `add ac l/Bedroom1 w/5000 t/aircon`
+Ensure that BedRoom1 is created: `create Bedroom1` and ac Appliance is added: `add ac l/Bedroom1 w/5000 t/aircon`.
 
 1. Test case: `on ac` <br>
-    Expected-printout: ADDING ac(5000W), located at BedRoom1 ......ADDED!
+    Expected-printout: Switching ac(5000W), located at BedRoom1 @ 25 Degrees.....ON
 2. Test case: `on ac2` <br>
     Expected-printout: Appliance or Location does not exist in the list.
 3. Test case: `on ac p/` <br> 
@@ -610,9 +609,10 @@ Prerequisites:
    Expected-printout: Please enter a valid numerical value.
    
 ### Switching Off Appliance:
-1. Ensure that BedRoom1 is created: `create Bedroom1`
-2. Ensure that ac Appliance is added: `add ac l/Bedroom1 w/5000 t/aircon`
-3. Ensure that ac is turned on for every test: `on ac`
+
+Prerequisites: 
+Ensure that BedRoom1 is created: `create Bedroom1` and ac Appliance is added: `add ac l/Bedroom1 w/5000 t/aircon`. Lastly, ensure that ac is turned on for every test: `on ac`
+
 1. Test case: `off ac` <br>
     Expected-printout: Switching: ac(5000W), located at BedRoom1 ......OFF
 2. Test case: `off ac2` <br>
@@ -636,17 +636,7 @@ Prerequisites:
     Expected-printout: Location: "BR_1" does not exist.   
 5. Test case: `list appliance l/BR_1`, assume that `BR_1` is created but no Appliance is added to `BR_1`<br>   
     Expected-printout: There is no Appliance in "BR_1". 
-1. Ensure that BedRoom1 is created: `create Bedroom1`
-2. Ensure that ac Appliance is added: `add ac l/Bedroom1 w/5000 t/aircon`
-3. Ensure that ac is turned on for every test: `on ac`
-1. Test case: `off ac` <br>
-    Expected-printout: Switching: ac(5000W), located at BedRoom1 ......OFF
-2. Test case: `off ac2` <br>
-    Expected-printout: Appliance or Location does not exist in the list.
-3. Test case: `off ac p/21` <br> 
-    Expected-printout: There should be no parameter for this command, please refer to 'help' command.
-4. Test case: `off BedRoom1` <br>
-   Expected-printout: All Appliances in "BedRoom1" are turned off 
+
 ### Listing 
 
 ### Saving data to disk: 
