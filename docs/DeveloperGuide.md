@@ -699,7 +699,7 @@ along with all the empty slots.
 
 The sequence diagram below explains how the load planner command is executed:
 
-![](diagrams/load_planner.png) <br/>
+![](diagrams/plannerCommand/load_planner.png) <br/>
 *<center/>Figure 2.26 Sequence diagram for LoadPlannerCommand</center> <br/>*
 
 <br>
@@ -711,7 +711,7 @@ The general flow of the saving process is as below:
 
 The sequence diagram below explains how the load planner command is executed:
 
-![](diagrams/save_planner.png) <br/>
+![](diagrams/plannerCommand/save_planner.png) <br/>
 *<center/>Figure 2.27 Sequence diagram for SavePlannerCommand</center> <br/>*
 
 
