@@ -857,7 +857,7 @@ Instruction:
 
 Expected output:
 
-![Flashcard_4_1](Images/FlashcardUG/Flashcard_4_1_resized.png)
+![Flashcard_4_1](Images/FlashcardUG/Flashcard_4_1.png)
 
 >**Useful information:**
 >* You can use this command from any mode to access the flashcard mode easily and quickly!
@@ -878,9 +878,7 @@ Example of usage:
 
 Expected output:
 
-![Flashcard_4_2](Images/FlashcardUG/Flashcard_4_2_resized.png)
-
-<div style="page-break-after: always;"></div>
+![Flashcard_4_2](Images/FlashcardUG/Flashcard_4_2.png)
 
 If you encounter any errors, take note of the following warning.
 
@@ -889,7 +887,7 @@ If you encounter any errors, take note of the following warning.
 >This is because “back” and "show answer" are used as commands to exit and reveal the answer in the test mode
 >respectively.
 >If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
->![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1_resized.png)
+>![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png)
 
 ### 4.3 Listing flashcards: `list`
 
@@ -901,9 +899,7 @@ Instruction:
 
 Expected output:
 
-![Flashcard_4_3](Images/FlashcardUG/Flashcard_4_3_resized1000.png)
-
-<div style="page-break-after: always;"></div>
+![Flashcard_4_3](Images/FlashcardUG/Flashcard_4_3.png)
 
 ### 4.4 Deleting flashcards: `delete`
 
@@ -920,7 +916,7 @@ Example of usage:
 
 Expected output:
 
-![Flashcard_4_4](Images/FlashcardUG/Flashcard_4_4_resized.png)
+![Flashcard_4_4](Images/FlashcardUG/Flashcard_4_4.png)
 
 >**Useful information:**
 >* You can use the `list` command to check the card index.
@@ -940,7 +936,7 @@ Instruction:
 
 Expected output:
 
-![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5_resized.png)
+![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png)
 
 >**Useful information:**
 >* User input in the test mode is not case sensitive. If the answer is correct but the case is different from
@@ -956,7 +952,7 @@ Instruction:
 
 Expected output:
 
-![Flashcard_4_6](Images/FlashcardUG/Flashcard_4_6_resized.png)
+![Flashcard_4_6](Images/FlashcardUG/Flashcard_4_6.png)
 
 <div style="page-break-after: always;"></div>
 
