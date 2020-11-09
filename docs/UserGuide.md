@@ -150,7 +150,7 @@ Example of usage:
 >The following example represents the case if you require help about the `add` command in timetable mode. 
 >First you type the command `help add`.
 >
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/help%20add.png?raw=true)
+>![](https://github.com/TYS0n1/tp/blob/master/docs/images/showhelpcommand%20timetable%20add.png?raw=true)
 >
 >Then you should see the following message to explain and instruct you on how to use the `add` command in timetable mode
 >
