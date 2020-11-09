@@ -968,11 +968,13 @@ Instruction:
 
 Expected output:
 
-![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png){:height="50%" width="50%"}
+![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png){:height="60%" width="60%"}
 
 >**Useful information:**
 >* User input in the test mode is not case sensitive. If the answer is correct but the case is different from
 >the stored answer, the answer will be accepted as the right answer.
+
+<div style="page-break-after: always;"></div>
 
 ### 4.6 Finding relevant flashcards: `find`
 
