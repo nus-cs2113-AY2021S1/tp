@@ -191,6 +191,8 @@ Expected output:
 
 ![](Images/GeneralUG/exitmode.png)
 
+<div style="page-break-after: always;"></div>
+
 ## Features 
 <!-- @@author lingsihui -->
 ## 1. Bookmark
@@ -227,6 +229,7 @@ Instructions:
 4. if you want to view the entire list of links in every category = `list -a`
 
 Expected output:  
+
 ![Bookmark_List](Images/BookmarkUG/Figure1.png)
 ![Bookmark_List_1Star_Cat](Images/BookmarkUG/Figure2.png)
 
@@ -254,6 +257,7 @@ Instruction:
 
 E.g. `bm 2`  
 Expected output:   
+
 ![Bookmark_bm_cat](Images/BookmarkUG/Figure3.png)
 
 >**Useful Information:**
@@ -283,6 +287,7 @@ Instruction:
 e.g. `cat entertainment`, `cat stocks`
 
 Expected output:   
+
 ![Bookmark_Add Category](Images/BookmarkUG/Figure5.png)
 
 
@@ -307,7 +312,9 @@ Instruction:
 1. `delete CATEGORY_NUMBER`  
 
 e.g. `delete 6`  
+
 Expected output:  
+
 ![Bookmark_1.4](Images/BookmarkUG/Figure6.png)
 
 **Useful Information:**
@@ -329,6 +336,7 @@ Instruction:
 1. `back` 
 
 Expected output:   
+
 ![Bookmark_back command](Images/BookmarkUG/Figure7.png)
 
 >**Useful Information:**
@@ -355,6 +363,7 @@ Instruction:
 2. `add LINK t->TITLE` e.g. `add https://nus-cs2113-ay2021s1.github.io/website/index.html t->Cs2113T`
 
 Expected output:   
+
 ![Bookmark_add link](Images/BookmarkUG/Figure8.png)
 
 **Useful Information:**
@@ -378,6 +387,7 @@ Instruction:
 e.g. `rm 1`
 
 Expected output:   
+
 ![Bookmark_1.8](Images/BookmarkUG/Figure10.png)
 
 >**Useful Information:**
@@ -398,6 +408,7 @@ Instruction:
 
 e.g. `star 1`
 Expected output:   
+
 ![Bookmark_star](Images/BookmarkUG/Figure11.png)
 
 >**Useful Information:** 
@@ -409,6 +420,9 @@ If you encounter any errors, take note of the following warnings.
 >**Warning:**
 >* Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to mark your links as starred. (Refer to [1.2](#12-going-into-each-category-bm-number)) 
 >* Ensure that the link number that you want to mark as star is valid. Error will be shown if the link number you have given is empty or is not valid. Refer to [1.1](#11-viewing-all-the-bookmarks-links-listlist--s-list--c-list--a) to find out the correct link number. 
+
+<div style="page-break-after: always;"></div>
+
 <!-- @@author slightlyharp -->
 ## 2. Timetable
 Do you find it a hassle to keep track of all your activities and Zoom links for online classes?
@@ -443,6 +457,7 @@ Instruction:
 1. `cd 3` / `cd timetable`
 
 Expected output:
+
 ![Timetable_2_1](Images/TimetableUG/Timetable_2_1.png)
 
 >**Useful information:**
@@ -460,6 +475,7 @@ Instruction:
 2. Answer the questions as prompted
 
 Expected output:
+
 ![Timetable_2_2](Images/TimetableUG/Timetable_2_2.png)
 
 >**Useful Information:**
@@ -487,6 +503,7 @@ Instruction:
 2. Answer the questions as prompted
 
 Expected output:
+
 ![Timetable_2_3](Images/TimetableUG/Timetable_2_3.png)
 
 >**Useful Information:** 
@@ -502,6 +519,7 @@ Instruction:
 1. `show link`
 
 Expected output:
+
 ![Timetable_2_4](Images/TimetableUG/Timetable_2_4.png)
 
 ### 2.5 Showing schedule: `show schedule`
@@ -512,6 +530,7 @@ Instruction:
 1. `show schedule`
 
 Expected output:
+
 ![Timetable_2_5](Images/TimetableUG/Timetable_2_5.png)
 
 ### 2.6 Showing Activities list: `list activity`
@@ -593,6 +612,8 @@ Expected output:
 
 <!-- @@author -->
 
+<div style="page-break-after: always;"></div>
+
 ## 3. Academic
 Have you ever had to dig through tons of emails to look for the contact of a particular TA 
 or sweat over your calculator when trying to estimate your CAPS this semester? 
@@ -625,6 +646,7 @@ Instruction:
 1. `cd 4` / `academic`
 
 Expected output:
+
 ![Academic_3_1](Images/AcademicUG/Academic_3_1.png)
 
 >**Useful information:**
@@ -643,6 +665,7 @@ Example of usage:
 will add a contact with the name Prof Lim, mobile number 81234567, and email E7654321@u.nus.edu.
 
 Expected output:  
+
 ![Academic_3_2](Images/AcademicUG/Academic_3_2.png)
 
 >**Warning:**
@@ -657,6 +680,7 @@ Instruction:
 1. `list contact`
 
 Expected output:
+
 ![Academic_3_3](Images/AcademicUG/Academic_3_3.png)
 
 ### 3.4 Starring a contact: `star contact INDEX`
@@ -673,6 +697,7 @@ Example of usage:
 `star contact 1` will mark the first contact in the list with a star.
 
 Expected output:
+
 ![Academic_3_4](Images/AcademicUG/Academic_3_4.png)
 
 ### 3.5 Deleting a contact: `delete contact INDEX`
@@ -689,6 +714,7 @@ Example of usage:
 `delete contact 1` will delete the first contact in the list.
 
 Expected output:
+
 ![Academic_3_5](Images/AcademicUG/Academic_3_5.png)
 
 ### 3.6 Adding a grade: `add grade n/MODULE_NAME  m/MC  g/GRADE`
@@ -704,6 +730,7 @@ Example of usage:
 will add a grade with the title CS2101 that has 4 credits and scored an A-.
 
 Expected output:  
+
 ![Academic_3_6](Images/AcademicUG/Academic_3_6.png)
 
 >**Warning:**
@@ -720,6 +747,7 @@ Instruction:
 1. `list grade`
 
 Expected output:
+
 ![Academic_3_7](Images/AcademicUG/Academic_3_7.png)
 
 ### 3.8 Checking current cap: `check cap`
@@ -731,6 +759,7 @@ Instruction:
 1. `check cap`
 
 Expected output:
+
 ![Academic_3_8](Images/AcademicUG/Academic_3_8.png)
 
 ### 3.9 Starring a grade: `star grade INDEX`
@@ -747,6 +776,7 @@ Example of usage:
 `star grade 1` will mark the first grade in the list with a star.
 
 Expected output:
+
 ![Academic_3_9](Images/AcademicUG/Academic_3_9.png)
 
 ### 3.10 SU-ing a grade: `su grade INDEX`
@@ -762,6 +792,7 @@ Example of usage:
 `su grade 1` will su the first grade in the list.
 
 Expected output:
+
 ![Academic_3_10](Images/AcademicUG/Academic_3_10.png)
 
 >**Warning:**
@@ -781,6 +812,7 @@ Example of usage:
 `delete grade 1` will delete the first grade in the list.
 
 Expected output:
+
 ![Academic_3_11](Images/AcademicUG/Academic_3_11.png)
 
 ### 3.12 Listing all the starred items in academic: `list star`
@@ -792,6 +824,7 @@ Instruction:
 1. `list star`
 
 Expected output:
+
 ![Academic_3_12](Images/AcademicUG/Academic_3_12.png)
 
 <div style="page-break-after: always;"></div>
@@ -900,6 +933,7 @@ Instruction:
 3. `show answer` / `back`
 
 Expected output:
+
 ![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5_resized.png)
 
 >**Useful information:**
@@ -915,6 +949,7 @@ Instruction:
 2. Enter the desired search term as prompted
 
 Expected output:
+
 ![Flashcard_4_6](Images/FlashcardUG/Flashcard_4_6_resized.png)
 
 ## FAQ
