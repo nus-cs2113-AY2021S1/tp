@@ -164,7 +164,7 @@ public class ModuleChecker {
             System.out.println("The Json data file does not exist! Please make sure you read the User Guide"
                     + " and download\nthe Json data file from our Github page!\n"
                     + "The Json data file and the JAR file must be placed in the same folder!\n"
-                    + "In Command Prompt, navigate to the working directory of the folder where you stored the files."
+                    + "In Command Prompt, navigate to the working directory of the folder where you stored the files.\n"
                     + "Please omit the error message below and carry out the above mentioned steps!\n");
         } catch (IOException e) {
             e.printStackTrace();
