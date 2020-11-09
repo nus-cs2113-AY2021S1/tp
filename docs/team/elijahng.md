@@ -16,13 +16,14 @@ My main contribution is the [`seedu.dietbook.list`](https://github.com/AY2021S1-
 [Reposense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=mxksowie)
 
 ## Enhancements Implemented
-- Implemented `FoodList`, `FoodListManager` and `ListFunctions` to store and retrieve data on the user's diet. This directly supports the command `add` and `list`. It also indirectly supports other commands such as `calculate` or storage/loading of data. A functional programming paradigm was compilmentarily used to reduce code repetition.
-- Implemented `DatedFoodEntry` and `FoodManager` to store the relevant data and provide DateTime functionalities (filtering/sorting by datetime) as well as support optional inputs in the `add` command. A fascade pattern was used to design this segment of code and obscure details via `FoodManager`.
+- Implemented [`FoodList`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/list/FoodList.java), `FoodListManager` and `ListFunctions` to store and retrieve data on the user's diet. This directly supports the command `add` and `list`. It also indirectly supports other commands such as `calculate` or storage/loading of data. A functional programming paradigm was compilmentarily used to reduce code repetition.
+- Implemented `DatedFoodEntry` and `FoodManager` to store the relevant data and provide DateTime functionalities (filtering/sorting by datetime) as well as support optional inputs in the `add` command. A fascade pattern was used to design this segment of code and obscure details via [`FoodManager`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/list/FoodManager.java). The `FoodManager` also supports with estimation of the missing inputs due to optional support.
 - Implemented class pathing and the use of Gradle resource files for the [database](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/database/DataBase.java).
+- added a common utility class [`StringFormater`](https://github.com/AY2021S1-CS2113-T14-4/tp/tree/master/src/main/java/seedu/dietbook/utils) that supports Python fstring-like formatting.
 
-## Contributions to DG
-- Added the `Model` section under `design`, this includes all UML diagrams in this section.
-- Added section in `implementation` describing the implementation of optional fields and estimated nutritional information, this includes all UML diagrams in this section.
+## Contributions to documentation
+- Added the `Model` section under `design` of the developer guide, this includes all UML diagrams in this section.
+- Added section in `implementation` of the developer guide describing the implementation of optional fields and estimated nutritional information, this includes all UML diagrams in this section.
 
 ## Contributions to team-based tasks:
 - Helped in last minute bug fix to database for v1.0 release. Helped team to use class pathing and Gradle build tasks to put together a jar with .txt files.
