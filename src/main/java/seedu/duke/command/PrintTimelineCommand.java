@@ -107,7 +107,7 @@ public class PrintTimelineCommand extends Command {
             System.out.println("Invalid input!\n"
                     + "Please key in the command in this format: \n"
                     + "1. print timeline\n2. print timeline week\n3. "
-                    + "print timeline month\n4. print timeline date [ddMMyy]");
+                    + "print timeline month\n4. print timeline date <ddMMyy>");
         }
     }
 
