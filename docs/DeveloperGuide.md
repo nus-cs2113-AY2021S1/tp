@@ -204,7 +204,7 @@ Since this is a valid command which modifies the data,
 
 1. The user enters `exit`, and the program terminates.
 
-##### Second Use
+##### Subsequent Use
 The same user starts the application again (on the same device as the first use).
 
 1. `ModTracker` creates a new `Storage` object 
