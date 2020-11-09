@@ -26,6 +26,7 @@
     * [View](#view-feature)
     * [Reminder](#reminder-feature)
     * [Extract](#extract-feature)    
+    * [Bye](#bye-feature)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
     * [Product scope](#product-scope)   
@@ -656,11 +657,21 @@ with no "." or ":" in it unlike some commands above. This is because it may resu
 
 For the detection of zoom link, the Regex pattern used first detects any URL starting with https:// or http://. It then checks whether the URL contains ".zoom." which we found the be common in most zoom links.
 
+#### Bye feature
 
+The Bye feature allows user to exit smoothly after saving all the files.
 
+Step 1. The user executes `bye` command to exit Scheduler.
 
+Step 2. `ByeCommand#execute()` is called and `ByeCommand` will set `isExit` to true.
 
+Step 3. Returning to `Duke`, `Duke` will call `Storage#saveAll()` to save all the files.
 
+Step 4. Before exiting, `Ui#printByeMessage()` will be called to print and exit the program smoothly.
+
+The following sequence diagram shows how the Bye feature works:
+
+![Sequence Diagram for Bye Command](./diagrams/ByeCommandSequenceDiagram.png)
 <div style="page-break-after: always;"></div>
  
 ## Documentation, logging, testing, configuration, dev-ops
