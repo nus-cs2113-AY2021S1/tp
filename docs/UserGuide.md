@@ -154,7 +154,7 @@ Format: `on [APPLIANCE_NAME]` or `on [APPLIANCE_NAME] p/[PARAMETER]` or `on [LOC
 
 * Range for `TEMPERATURE`: 16 - 30
 * Range for `SPEED`: 1-3
-* If no `PARAMETER` is provided, the appliance will turn on with default.
+* If no `PARAMETER` is provided, the appliance will turn on with their default parameter, which are: 25 for `TEMPERATURE` and 1 for `SPEED`
 
 Example: `on AIRCON1`
 
