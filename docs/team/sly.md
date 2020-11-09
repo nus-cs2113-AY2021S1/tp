@@ -19,4 +19,8 @@ My contribution for User Guide is on a section called save Manager. It details h
 
 #### Contribution to developer's guide
 My contribution of developer's guide is on a section called Storage utiliy as well as Save Manager manual testing and some user stories related to saving and
-loading. Under the Save Manager section I also have created class diagram and sequence diagram.
+loading. Under the Save Manager section I also have created a class diagram and sequence diagram. Under Storage component I have also created an architecture
+diagram and it's explaination.
+
+#### Contribution to team based tasks
+Contribution to weekly docs where we plan user stories next milestones etc.
