@@ -11,9 +11,9 @@
     * <a href="#ui">3.5 Ui Package</a> 
     * <a href="#storage">3.6 Storage Package</a> 
 * <a href="#implementation">4. Implementation</a>
-    * <a href="#store-imp">4.1 Storing data implementation</a> 
-    * <a href="#load-imp">4.2 Loading data implementation</a> 
-    * <a href="#export-imp">4.3 Exporting data implementation</a>
+    * <a href="#store-imp">4.1 Storing data</a> 
+    * <a href="#load-imp">4.2 Loading data</a> 
+    * <a href="#export-imp">4.3 Exporting data</a>
     * <a href="#parse-imp">4.4 Parsing commands</a>
     * <a href="#quiz-imp">4.5 Quiz</a>  
     * <a href="#sort-imp">4.6 Sorting tasks</a>
@@ -440,7 +440,7 @@ The ui package deals with handling user input and printing all the system output
 It consists of one class, Ui. 
 This class is responsible to print all messages to the command line. 
 The command classes call the methods in this class in order to print anything on the command line.
-This class also deaals with printing any messages when exceptions are encountered.
+This class also deals with printing any messages when exceptions are encountered.
 
 ### 3.6 Storage Package <a name="storage"></a>
 There are two classes inside this package, both of which are inside `Storage.java`. The following diagram shows the
