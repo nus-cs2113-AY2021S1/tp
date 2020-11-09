@@ -128,6 +128,11 @@ Available commands:
 - list bunny
 - filter bunny
 - save bunny
+- noun
+- verb
+- adj
+- list words
+- three words
 - list
 - list filter words
 - start
