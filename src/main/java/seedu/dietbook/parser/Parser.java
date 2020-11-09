@@ -10,6 +10,7 @@ import seedu.dietbook.Manager;
 import seedu.dietbook.checker.InputChecker;
 
 import java.time.LocalDateTime;
+import java.util.NoSuchElementException;
 
 //@@author tikimonarch
 /**
@@ -95,7 +96,7 @@ public class Parser {
      * @return name of the food that was added.
      * @throws DietException when the user input is of a wrong format.
      */
-    public static String getProcessedAdd(String userInput, FoodList foodList) throws DietException {
+    public static String getProcessedAdd(String userInput, FoodList foodList, DataBase dataBase) throws DietException {
         int portionSize = 1;
         int dataIndex = 0;
         int calorie = 0;
@@ -106,7 +107,6 @@ public class Parser {
         String trimmedParam;
         String[] processedParam;
         String[] paramList = {"x/", "n/", "k/", "c/", "p/", "f/"};
-        DataBase dataBase = new DataBase();
         if (userInput.contains("i/")) {
             paramList = new String[]{"x/", "i/"};
         }
@@ -173,7 +173,7 @@ public class Parser {
                 try {
                     Food searchedFood = dataBase.searchFoodByIndex(dataIndex);
                     return foodList.addFoodAtDateTime(portionSize, searchedFood, time);
-                } catch (IndexOutOfBoundsException e) {
+                } catch (NoSuchElementException e) {
                     throw new DietException("No such index!");
                 }
             }
@@ -183,7 +183,7 @@ public class Parser {
             try {
                 Food searchedFood = dataBase.searchFoodByIndex(dataIndex);
                 return foodList.addFood(portionSize, searchedFood);
-            } catch (IndexOutOfBoundsException e) {
+            } catch (NoSuchElementException e) {
                 throw new DietException("No such index!");
             }
         }

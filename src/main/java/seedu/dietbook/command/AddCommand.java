@@ -21,7 +21,6 @@ public class AddCommand extends Command {
             throw new DietException("Please enter your basic information first!");
         }
         InputChecker.checkSlashes(this.input);
-        ui.printNewFood(Parser.getProcessedAdd(this.input, manager.getFoodList()));
-        manager.setCalculator();
+        ui.printNewFood(Parser.getProcessedAdd(this.input, manager.getFoodList(), manager.getDataBase()));
     }
 }
