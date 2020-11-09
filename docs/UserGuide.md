@@ -509,7 +509,7 @@ command <code>/reset</code> to reset the data set and start the application on a
 ### 3.4.3. Exit the program: ```/exit```
 This command helps you exit the application.
 
-The format of this command is as follows:<br>
+Format:<br>
 <code>/exit</code>
 
 The application exits after displaying the following message.<br>
