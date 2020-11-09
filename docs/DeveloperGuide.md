@@ -149,7 +149,8 @@ Given the above alternatives, alternative 1 was used considering the implementat
 application.
 <!-- @@author -->
 
-### 3.2. Full Route Display (`/routemap` Feature)
+<!-- @@author Johnson-Yee -->
+### 3.2. Full Route Display (`/routemap` Feature) - Johnson
 
 The `/routemap <bus code>` is the command that has to entered by the user to see the full bus route of a user-specified
 bus route.
@@ -187,6 +188,7 @@ of busStops objects.
     projects.
     
 Given the above alternatives, alternative 1 was used considering the scalability of the application.
+<!-- @@author -->
 
 <!-- @@author EthanWong22 -->
 ### 3.3. Bus at bus stop finder (`/bus` Feature) - Wong Heng Chin
@@ -290,7 +292,8 @@ The following sequence diagram illustrates the steps taken by the program when t
 <img src="DG_Diagrams/AddFavSequence.png" alt="add fav" width=650>
 <!-- @@author -->
 
-### 3.7. Removing specific delete command (`/deletefav` Feature)
+<!-- @@author Johnson-Yee -->
+### 3.12 Removing specific delete command (`/deletefav` Feature)
 `/deletefav <index>` is the command to remove a favourite command in the user's list of favourite commands. It allows the
 user to customise the list of favourite commands to the user's liking.
 
@@ -303,6 +306,7 @@ index has been deleted.
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/deletefav` command.
 ![Sequence ](DG_Diagrams/DeleteFavCommand/DeleteFavSeq.png)
+<!-- @@author -->
 
 <!-- @@author EthanWong22 -->
 ### 3.8. Favourite command executor (`/execfav` Feature) - Wong Heng Chin
@@ -415,7 +419,10 @@ _Credits: The Levenshtein distance algorithm was adapted from
 [this site.](http://rosettacode.org/wiki/Levenshtein_distance#Java)_
 <!-- @@author -->
 
-### 3.11. Displaying most searched bus stop on start-up
+
+<!-- @@author Johnson-Yee -->
+### 3.11 Displaying most searched bus stop on start-up - Johnson
+
 This feature informs the user about their most searched bus stop.
 There is no function to explicitly call it and is executed only during Nav@NUS's start up.
 
@@ -436,6 +443,7 @@ The following sequence diagram illustrates the steps taken by the program on sta
 **Design Considerations**
 
 **_Aspect: Implementing search frequencies_**
+
 
 * **Alternative 1 (current choice):** Each value in the BusStops enumeration has a private integer
 variable called searchCount.
@@ -461,7 +469,8 @@ The following sequence diagram illustrates the steps taken by the program when t
 
 ## 4. Appendix A: Product Scope
 
-### 4.1. Target user profile
+<!-- @@author Johnson-Yee -->
+### 4.1. Target user profile - Johnson
 
 Nav@NUS targets people who are unfamiliar with the shuttle bus service in NUS Kent Ridge Campus 
 including students, professors and visitors.
@@ -470,12 +479,13 @@ These are people who:
  - prefer a desktop CLI app over other types
  - are new to NUS Kent Ridge Campus
   
-### 4.2. Value Proposition
+### 4.2. Value Proposition - Johnson
 
 Nav@NUS seeks to help the intended audience to achieve the following:
  - Efficient checking of bus routes in NUS
  - Fast viewing of dining options available at other locations
  - Personalised application suited to the user's needs
+<!-- @@author -->
 
 <!-- @@author wamikamalik -->
 ## 5. Appendix B: User Stories - Wamika
@@ -489,8 +499,10 @@ Nav@NUS seeks to help the intended audience to achieve the following:
 |v1.0|freshman/ anyone new to NUS|know the buses available at specific bus stops|I can better plan my trip around the campus in advance|
 |v2.0|frequent user|have a list of favourite commands|I can access my favourite commands quickly|
 |v2.0|frequent user|be able to customise my list of favourite commands|I can change the list according to my needs|
-|v2.0|frequent user|view my most searched bus stop|it can promptly remind me of the bus stop to key in|
+|v2.0|frequent user|view my most searched bus stop|I can be reminded of what to key in|
 |v2.0|frequent user|be able to change how I describe my favorite commands|I know when and why I usually use that command and so that I can use it accordingly later.|
+|v2.0|food connoisseur|know what dining options are available in my faculty|I can find food that suits my taste|
+|v2.0|freshman|know the locations and opening hours of the cafes in my faculty|I do not waste time looking for them|
 
 ## 6. Appendix C: Non-Functional Requirements - Wamika
 
@@ -540,7 +552,8 @@ This portion contains instructions on how to perform manual testing.
     Expected: An appropriate error message will be displayed.      
 <!-- @@author -->
 
-### E.3 Check for full bus route
+<!-- @@author Johnson-Yee -->
+### E.3 Check for full bus route - Johnson
 1. Executing a route map command to view full route of a selected bus
 - Prerequisites: List all buses available by executing `/allbus` command
 
@@ -555,6 +568,7 @@ Expected: No bus routes will be displayed as there is no such bus in our databas
 - Test case 3: `/routemap`<br>
 Expected: No bus routes will be displayed. Error details will be shown to remind users to type in
 the needed parameter.<br>
+<!-- @@author -->
 
 <!-- @@author EthanWong22 -->
 ### E.4 Check for buses at a bus stop - Wong Heng Chin
@@ -633,7 +647,8 @@ Expected: Message of the command `/liststops` already exists in your favourites 
 Expected: Similar to previous.
 <!-- @@author -->
 
-### E.8 Delete favourite command from favourite list
+<!-- @@author Johnson-Yee -->
+### E.8 Delete favourite command from favourite list - Johnson
 1. Deleting a favourite command from favourite list
 - Prerequisites: List all buses available by executing `/listfav` command. There are existing favourite commands in
 the favourite list.
@@ -649,7 +664,7 @@ Expected: No command executed.Error details will be shown to remind users to typ
 
 - Test case 3: `/deletefav`<br>
 Expected: No command executed.Error details will be shown to remind users to type in the needed parameter.<br>
-
+<!-- @@author -->
 
 <!-- @@author EthanWong22 -->
 ### E.9 Execute a favourite command from favourite list - Wong Heng Chin
@@ -695,4 +710,31 @@ Expected: No command executed.Error details will be shown to remind users to typ
         Step 1. add lines with no delimiter, "`|`" to the `FavList.txt` file.<br>
         Step 2. Run the jar file<br>
         Expected output: Message detailing corrupted data detailed at start and corrupted data removed from FavList.
+<!-- @@author -->
+
+<!-- @@author Johnson-Yee -->
+### E.12 Saving of search frequncies of each bus stop - Johnson
+1. Data is automatically saved in the `/data/FreqList.txt` directory of the jar file's home directory.
+
+2. Loading FreqList
+    - Prerequisites: `/data/FreqList.txt` contains search frequencies of **all** bus stops and contains only integers.
+    - The txt file contains a a series of integers that represent the search frequencies of each bus stops as ordered
+    in the enumeration BusStops class.
+    - Expected: The most searched bus stop will be displayed on start-up of application. If the text file is newly
+    initialised, a message would be displayed to inform users about this feature. 
+
+3. Dealing with corrupted data
+    - Prerequisite: `FreqList.txt` exists
+    - Test case 1: Missing entries in FreqList.txt"<br>
+        Step 1. Remove a few entries off the `FreqList.txt` file.<br>
+        Step 2. Run the jar file<br>
+        Expected output: Error details will be shown to inform users that corrupted data has been detected
+        and that all search frequencies will be initialised to zero.<br>
+        
+    - Test case 3: Senseless data in FreqList.txt <br>
+        Step 1. Add random letters into `FreqList.txt` file. <br>
+        Step 2. Run the jar file <br>
+        Expected output: Error details will be shown to inform users that corrupted data has been detected 
+        and that all search frequencies will be initialised to zero.<br>
+        
 <!-- @@author -->
