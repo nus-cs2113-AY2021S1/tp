@@ -212,10 +212,26 @@ The timetable component consists of 7 major classes as shown. The above figure i
  1. `Event` class is the abstract parent class for `Lesson` and `Activity`. 
  1. `Event` class also contains a number of `Duration` and it has a dependency on the `EvenType` enum.
 
-The figure below is the sequence diagram of how the classes interact with each other when 
-the main function make the run(command) API call.
+**Timetable Implementation**
+
+This section explains the details on how certain features are implemented in Timetable.
+
+The figure below is the sequence diagram of the major interactions between classes when
+the main function makes the run(command) API call and the command is "add class", 
+"show schedule", "show link", or "delete class" .
 
 ![timetable_sequence diagram](Images/timetable_sequence%20diagram.png)
+
+When command="add class" the `run(command)` method calls the `commandParse()` method from the `TimeTableParser` which the function
+will call `addClass()` function from the `TimeTableCommand` Class. New `Lesson` Class will be initialised based on user input.
+Following that a `addClassPeriod()` function will be called taking in the new lesson class initialised to add all the time slots
+into lesson class. This class will then be returned to `TimetableParser` class where it will call the `addEvent()` method in DateList
+to add the new `Lesson` Class into the arrayList within `DateList` Class. `WriteFile()` method in `Storage` will also be called to 
+save the infomation of the new `Lesson` class to the data file.
+
+Other possible commands that are not shown in the diagram will interact between classes in a similar way,
+where command will be passed to the TimeTableParser Class where it interprets the command and calls the respective
+function from the TimeTableCommand Class.
 
 <div style="page-break-after: always;"></div>
 
@@ -292,21 +308,31 @@ This section will describe in detail how the flashcard feature is implemented.
 
 The above diagram looks at the overall structure of how the flashcard component is being implemented. 
 This component is split into 4 different classes, their associations and multiplicity as explained in 
-the above Figure 7. 
+the above Figure. 
 1. The main class `FlashcardRun` will be accessed when the flashcard mode is called in `StudyIt` Class. 
 1. `FlashcardRun` class is associated with `FlashcardStorage` class that is used to store data in .txt file. 
 1.`FlashcardDeck` class which contains any number of `Flashcards`.
 
 **Flashcard Implementation**
 
+This section explains the details on how certain features are implemented in flashcard.
+
+When `FlashcardRun` is first initialised by `StudyIt`, it will construct 
+the `FlashcardDeck` class.
+
 ![Sequence Diagram when user input “add card” command](Images/addCard_sequenceDiagram.png)
 
-With reference to Figure 8, when `FlashcardRun` is first initialised by `StudyIt`, it will construct 
-the `FlashcardDeck` class. As an add card command is given by the user, `FlashcardRun` will take in the 
+With reference to the figure above, as an "add card" command is given by the user, `FlashcardRun` will take in the 
 command and call `addCard()` method in `FlashcardDeck` which constructs a new Flashcard object and stores 
 it inside the `FlashcardDeck` object.The `addCard()` function will then show the user the question and 
-answer of the flashcard that have been created.
+answer of the flashcard that has been created.
+
+Other possible commands that are not shown in the figure work in a similar way where command is parsed in `FlashcardRun` Class,
+and calls the corresponding function within the `FlashcardDeck` Class. `WriteToFile` function is called at the end of the
+process to update any changes to the deck to the data file.
+
 <!-- @@author -->
+
 ## Documentation, logging, testing, configuration, dev-ops
 ### Testing guide
 Running tests:  
