@@ -1,9 +1,8 @@
 @startuml
-
+mainframe **sd** bus route retrieval
 skinparam BoxPadding 20
-participant ":Duke"
+
 box logic #LightBlue
-participant ":Parser"
 participant ":RouteMapCommand"
 end box
 box model #A9DFDF
@@ -15,21 +14,15 @@ participant ":Ui"
 end box
 
 
-":Duke" -> ":Ui" : getUserInput()
-activate ":Duke"
-activate ":Ui"
-":Ui" --> ":Parser": String userInput
-deactivate ":Ui"
-
-activate ":Parser"
 create ":RouteMapCommand"
-":Parser" -> ":RouteMapCommand" :extractType()
+[-> ":RouteMapCommand" : executeCommand()
 activate ":RouteMapCommand"
-":RouteMapCommand" --> ":Parser"
+":RouteMapCommand" -> ":RouteMapCommand":checkBusCode("Bus code")
+activate ":RouteMapCommand"
+":RouteMapCommand" <-- ":RouteMapCommand"
 deactivate ":RouteMapCommand"
-":Parser" -> ":RouteMapCommand" : executeCommand()
-activate ":RouteMapCommand"
-":RouteMapCommand" -> "<<class>>\n:BusData" : selectBus();
+":RouteMapCommand" -> "<<class>>\n:BusData" : selectAndPrintBusRoute("Bus code");
+
 activate "<<class>>\n:BusData"
 loop number of bus routes
     "<<class>>\n:BusData" -> ":Bus" : equals()
@@ -49,10 +42,8 @@ activate ":Ui"
 ":Ui" --> ":RouteMapCommand"
 deactivate ":Ui"
 
-":RouteMapCommand" --> ":Parser"
+[<-- ":RouteMapCommand"
 deactivate ":RouteMapCommand"
-":Parser" --> ":Duke":Boolean isOngoing
-deactivate ":Parser"
 
 
 @enduml

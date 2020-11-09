@@ -44,24 +44,32 @@ public class Ui {
 
     public static void showError(Exception error) {
         if (error.toString() != "Possible Locs shown") {
-            printLine();
-            System.out.println(error);
-            printLine();
+            if (error.toString() == "No match found. To see the list of faculties in NUS, type /faculty") {
+                System.out.println(error);
+                printLine();
+            } else if (error.toString() == "No match found. Try searching for another outlet!") {
+                System.out.println(error);
+                printLine();
+            } else {
+                printLine();
+                System.out.println(error);
+                printLine();
+            }
         }
     }
 
     public static void printHelp() {
         printLine();
         System.out.println("Here are the range of commands:\n"
-                + "1. /route : Display possible direct bus from point to point\n"
-                + "2. /routemap: Display the route map with its intermediate bus stops\n"
-                + "3. /bus: Display buses available at each bus stop\n"
-                + "4. /allbus: List all buses available in NUS Zone a\n"
-                + "5. /liststops: List all bus stops in NUS\n"
-                + "6. /faculty: List all faculties in NUS\n"
-                + "7. /dine: Search for dining options within a faculty\n"
-                + "8. /dineinfo: Search for a specific dining outlet\n"
-                + "9. /addfav: Add a favourite command\n"
+                + "1.  /route : Display possible direct bus from point to point\n"
+                + "2.  /routemap: Display the route map with its intermediate bus stops\n"
+                + "3.  /bus: Display buses available at each bus stop\n"
+                + "4.  /allbus: List all buses available in NUS Zone A\n"
+                + "5.  /liststops: List all bus stops in NUS\n"
+                + "6.  /faculty: List all faculties in NUS\n"
+                + "7.  /dine: Search for dining options within a faculty\n"
+                + "8.  /dineinfo: Search for a specific dining outlet\n"
+                + "9.  /addfav: Add previous valid command as a favourite command\n"
                 + "10. /deletefav: Delete a favourite command\n"
                 + "11. /execfav: Execute a favourite command\n"
                 + "12. /descfav: Change the description for a favourite command\n"
@@ -125,9 +133,10 @@ public class Ui {
         printLine();
     }
 
-    private static void printMostSearchedBusStop() {
-        if (BusStops.mostSearchedBusStop() != null) {
-            System.out.println("Your most searched bus stop is: " + BusStops.mostSearchedBusStop().getName());
+    public static void printMostSearchedBusStop() {
+        BusStops mostSearchedBusStop = BusStops.mostSearchedBusStop();
+        if (mostSearchedBusStop != null) {
+            System.out.println("Your most searched bus stop is: " + mostSearchedBusStop.getName());
         } else {
             System.out.println("As you search more, your most frequently searched bus stop will appear here "
                     + "each time\nyou run this program!");
@@ -180,13 +189,9 @@ public class Ui {
     }
 
     public static void printDineInfoResult(ArrayList<DiningOptions> searchList) {
-        if (searchList.size() == 0) {
-            System.out.println("No match found.");
-        } else {
-            System.out.println("The stores that match your search:");
-            for (DiningOptions item : searchList) {
-                System.out.println("\n" + item.toString());
-            }
+        System.out.println("The stores that match your search:");
+        for (DiningOptions item : searchList) {
+            System.out.println("\n" + item.toString());
         }
     }
 

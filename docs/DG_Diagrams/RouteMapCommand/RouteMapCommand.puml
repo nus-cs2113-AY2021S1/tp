@@ -1,16 +1,25 @@
 @startuml
-
+hide circle
+skinparam classAttributeIconSize 0
 abstract class Command
+
 Class RouteMapCommand{
-executeCommand(): void
+-busCode: String
++executeCommand(): void
+-selectAndPrintBusRoute(: String) : void
+-checkBusCode(: String): void
 }
 Class Parser{
-{static} getCommand(): String
++extractType(): Boolean
 }
 Class BusData {
-{static} selectBus (:String) : Bus
++{static} selectBus (:String) : Bus
+}
+Class CustomException {
+-exception: ExceptionType
 }
 Class Bus {
+-busNumber : String
 }
 enum BusStops {
 PGP
@@ -18,9 +27,11 @@ KENTRIDGEMRTSTATION
 ...
 COLLEGEGREEN
 PGPR
++{static}FindBusStop(: String) : BusStops
 }
 Class Ui {
-{static} printFullRoute(:Bus) :void
++{static} printFullRoute(:Bus) :void
++{static} getCommand(): String
 }
 
 enum ExceptionType {
@@ -33,7 +44,7 @@ INVALID_COMMAND
 Command <|--right RouteMapCommand
 Parser "1"<--down RouteMapCommand
 RouteMapCommand ..right> BusData
-BusData --> "0..*" Bus
+BusData --> "*" Bus
 Bus ..> BusStops
 RouteMapCommand ..> CustomException :throws
 Parser ..> CustomException :throws

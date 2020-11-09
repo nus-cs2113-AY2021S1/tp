@@ -110,6 +110,17 @@ public enum BusStops {
     public static BusStops mostSearchedBusStop() {
         int maxSearch = 0;
         BusStops correspondingBusStop = null;
+        correspondingBusStop = findMaxSearchCount(maxSearch, correspondingBusStop);
+        return correspondingBusStop;
+    }
+
+    /**
+     * Finds bus stop with highest search frequency.
+     * If there are two bus stops with the same highest frequency, return first instance.
+     *
+     * @return bus Bus object, if found
+     */
+    private static BusStops findMaxSearchCount(int maxSearch, BusStops correspondingBusStop) {
         for (BusStops busStop : EnumSet.allOf(BusStops.class)) {
             if (busStop.searchCount > maxSearch) {
                 maxSearch = busStop.searchCount;

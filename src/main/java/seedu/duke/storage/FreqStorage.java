@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+/**
+ * Stores the search frequencies of all the bus stops present.
+ */
 public class FreqStorage extends Storage {
     private File file;
     private static final Logger LOGGER = Logger.getLogger(FreqStorage.class.getName());
@@ -86,17 +89,31 @@ public class FreqStorage extends Storage {
 
         while (fileScanner.hasNext() && !isCorrupted) {
             int currInt = 0;
-            try {
-                currInt = Integer.parseInt(fileScanner.nextLine());
-            } catch (NumberFormatException e) {
-                isCorrupted = true;
-                initialiseFile();
-                throw new CustomException(ExceptionType.FREQ_READ_FILE_FAIL);
-            }
+            currInt = parseSearchFreq(fileScanner);
             BusStops.values()[index].setCount(currInt);
             index++;
         }
         handlesCorruptedFile(index);
+    }
+
+    /**
+     * Parses integer from freqList.txt.
+     *
+     * @throws CustomException If file can't be updated
+     */
+    private int parseSearchFreq(Scanner fileScanner) throws CustomException {
+        int currInt;
+        try {
+            currInt = Integer.parseInt(fileScanner.nextLine());
+            if (currInt < 0) {
+                isCorrupted = true;
+            }
+        } catch (NumberFormatException e) {
+            isCorrupted = true;
+            initialiseFile();
+            throw new CustomException(ExceptionType.FREQ_READ_FILE_FAIL);
+        }
+        return currInt;
     }
 
     /**

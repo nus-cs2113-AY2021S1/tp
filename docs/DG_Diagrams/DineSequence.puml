@@ -31,7 +31,7 @@ alt isFound = true
     "<<class>>\n:Ui" --> ":DineCommand": results
     deactivate "<<class>>\n:Ui"
 else isFound = false
-    ":DineCommand" --> ":DineCommand": no match found
+    ":DineCommand" --> ":Parser"
 end
 ":DineCommand" --> ":DineCommand"
 deactivate ":DineCommand"
