@@ -279,6 +279,8 @@ The userEnteredLocation which was the argument parsed by the `Parser` will be us
 After the location is created, it will then return a new CommandResult class to indicate the result of this process. 
 
 If the userEnteredLocation already exists in the LocationList, it will return a new CommandResult class to indicate that the location already exists and could not be created.
+Likewise, if the userEnterLocation already exists in the ApplianceList, it will return a new CommandResult class to indicate that as such.
+This is to prevent duplicates name in both the ApplianceList and LocationList.
 
 The sequence diagram for `CreateCommand` is shown below:
 
@@ -292,7 +294,7 @@ will be parsed into the `RemoveCommand` class. The `RemoveCommand` class will ca
 `LocationList`, which will loop until the name of the location to be removed is found in the `LocationList`. 
 
 Next, the `RemoveCommand` class will call the `deleteByLocation` method in `ApplianceList`, which will loop to look for all the appliance in the location to be removed and delete the appliance. 
-If the name of the location to be removed is not found, the `RemoveCommand` will return the “location does not exist” message.
+If the name of the location to be removed is not found, the `RemoveCommand` will return the “Location does not exist.” message.
 
 The sequence diagram for `RemoveCommand` is shown below:
 
