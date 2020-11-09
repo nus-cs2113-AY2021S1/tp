@@ -4,6 +4,7 @@ import seedu.duke.CommandException;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarList;
+import seedu.duke.calendar.task.Task;
 
 /**
  * Prioritize the task as important.
@@ -25,7 +26,8 @@ public class PrioritizeCommand extends Command {
         int index;
         try {
             if (userInput.startsWith("*t")) {
-                index = Integer.parseInt(userInput.replace("*t", "").trim());
+                String[] command = userInput.split("\\*t", 2);
+                index = Integer.parseInt(command[1].trim());
             } else {
                 throw new CommandException("prioritize");
             }
@@ -48,6 +50,10 @@ public class PrioritizeCommand extends Command {
             throw new CommandException("invalid task action");
         }
         int calendarNumber = CalendarList.convertTaskNumberToCalendarNumber(indexOfTask, calendarList);
+
+        if (((Task) calendarList.getItem(calendarNumber)).getIsImportant()) {
+            throw new CommandException("important task");
+        }
 
         assert calendarNumber >= 0;
 
