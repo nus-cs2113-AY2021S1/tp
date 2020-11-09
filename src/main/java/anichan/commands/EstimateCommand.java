@@ -24,7 +24,7 @@ public class EstimateCommand extends Command {
     private static final int[] AVERAGE_TRANSLATOR_WORDS_PER_HOUR = {400, 500, 600};
     private static final Logger LOGGER = AniLogger.getAniLogger(EstimateCommand.class.getName());
 
-    private static final String INVALID_WORDS_PER_HOUR_ERROR = "Words per hour value cannot be zero!";
+    private static final String INVALID_WORDS_PER_HOUR = "Words per hour value cannot be zero!";
 
     private final String scriptFileName;
     private final int wordsPerHour;
@@ -61,7 +61,7 @@ public class EstimateCommand extends Command {
         int wordCount = fileContent.split(SPLIT_WHITESPACE).length;
         LOGGER.log(Level.INFO, wordCount + " words in the script (" + scriptFileName + ").");
 
-        assert (wordsPerHour > 0 || wordsPerHour == DEFAULT_WORDS_PER_HOUR) : INVALID_WORDS_PER_HOUR_ERROR;
+        assert (wordsPerHour > 0 || wordsPerHour == DEFAULT_WORDS_PER_HOUR) : INVALID_WORDS_PER_HOUR;
 
         StringBuilder commandResult = new StringBuilder();
         if (wordsPerHour != DEFAULT_WORDS_PER_HOUR) {
