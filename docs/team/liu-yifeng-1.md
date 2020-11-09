@@ -1,17 +1,5 @@
 # LIU YIFENG - Project Portfolio Page
 
-## Table of contents
-* [Overview](#overview)
-* [Summary of Contributions](#summary-of-contributions)
-  * [Code contributed](#code-contributed)
-  * [Enhancements implemented](#enhancements-implemented)
-    * [Enhancements to new features](#enhancements-to-new-features)
-    * [Enhancement to existing features](#enhancement-to-existing-features)
-  * [Contributions to documentation](#contributions-to-documentation)
-    * [Contributions to the DG](#contributions-to-the-dg)
-    * [Contributions to the UG](#contributions-to-the-ug)
-    * [Contributions to team-based tasks](#contributions-to-team-based-tasks)
-    * [Contributions beyond the project team](#contributions-beyond-the-project-team)
 ## Overview
 Our product, **_25HoursADay_** is a scheduling application catered for NUS students. 
 It is optimised for use via the Command Line Interface (CLI) and it serves as an efficient one stop application for our users to manage their time. 
