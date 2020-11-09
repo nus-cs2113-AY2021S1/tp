@@ -2,7 +2,7 @@
 
 ## Overview
 I am part of a team of 4 software engineering students and we were tasked to design and implement a Command Line Interface (CLI) desktop application for our team project. 
-Our application is called CCA Manager. 
+Our application is called **CCA Manager**. 
 
 ### About the project
 CCA Manager is a revolutionary all-in-one management tool that changes the way 
@@ -21,14 +21,14 @@ that I have contributed in this project.
  **New features:** \
 I added to the event feature in this project. Specifically  `CommandEventAdd`, `CommandEventDel`, `CommandEventList`  ,`CommandEventStatus`, `CommandSearchEvent` and `CommandEventCountdown`
 
-The user will be able to use `event addEvent` to add a new event to the list.   <br/>
-The user may also use `event delEvent <index>` or `event delEvent all` command to delete an existing event or all events in the list. <br/>
-To mark an event as completed, user can use `event done <index>` <br/>
-The user can use `event listEvent` to list all the events in the list. <br/>
-The user can use `event search` to find events. They have the option to:
+* The user will be able to use `event addEvent` to add a new event to the list.   <br/>
+* The user may also use `event delEvent <index>` or `event delEvent all` command to delete an existing event or all events in the list. <br/>
+* To mark an event as completed, user can use `event done <index>` <br/>
+* The user can use `event listEvent` to list all the events in the list. <br/>
+* The user can use `event search` to find events. They have the option to:
  - Search by Event date <br/>
  - Search by Event name <br/>
-The user can use   `event countdown` to see number of days left to the upcoming event. <br/>
+ * The user can use   `event countdown` to see number of days left to the upcoming event. <br/>
 
 **Enhancements Added:**
 * User will not be able add an event that matches in name and date with an existing event.
