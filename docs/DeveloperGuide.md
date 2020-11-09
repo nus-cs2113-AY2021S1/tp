@@ -499,7 +499,7 @@ A all-in-one solution for note-taking and managing your schedule. NotUS solves t
 
 ## <a id="userstories">4. User Stories</a>
 
-| Version |<div style="width:290px"> Target User </div>| Function/Feature | User's Benefit |
+| Version | <div style="width:290px">Target User</div> | Function/Feature | User's Benefit |
 |--------|----------|---------------|------------------|
 |v1.0| As a ... | I want to ... | So that I can ... |
 |v1.0|CEG student|Keep track of my notes|Be organized and find notes easily|
@@ -513,7 +513,7 @@ A all-in-one solution for note-taking and managing your schedule. NotUS solves t
 |v1.0|CEG student|Be able to read my notes|To revise before exams|
 |v1.0|CEG student|Be able to delete my notes|To clear up space and keep it more organized|
 
-| Version |<div style="width:290px"> Target User </div>| Function/Feature | User's Benefit |
+| Version | <div style="width:290px">Target User</div> | Function/Feature | User's Benefit |
 |--------|----------|---------------|------------------|
 |v2.0|Outgoing student|Able to add my social events to the timetable|View all my upcoming events and classes|
 |v2.0|Busy student|Be alerted if there are clashes in between my events and classes|Reschedule my plan|
@@ -540,7 +540,7 @@ A all-in-one solution for note-taking and managing your schedule. NotUS solves t
 |Technical|Programme should be platform independent|
 |Technical|Programme should work without an installer|
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ## <a id="gloss">6. Glossary</a>
 
@@ -552,8 +552,6 @@ A all-in-one solution for note-taking and managing your schedule. NotUS solves t
 * *SOC* - School of Computing
 * *FOE* - Faculty of Engineering
 * *CEG* - Computer Engineering
-
-<div style="page-break-after: always;"></div>
 
 ## <a id="testinstr">7. Instructions for Manual Testing</a>
 
