@@ -154,7 +154,7 @@ public class TimeTableCommand {
         while (isInvalid) {
             activityName = in.nextLine();
             if  (activityName.replace(" ", "").length() < 1) {
-                System.out.println("Please enter a valid module code");
+                System.out.println("Please enter a valid activity");
             } else {
                 isInvalid = false;
             }
