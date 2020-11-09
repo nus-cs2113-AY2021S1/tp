@@ -191,6 +191,8 @@ To find indirect bus routes:
 1. You type <code>/routemap <strong> AA2 </strong></code> into the CLI and press <kbd>Enter</kbd>.<br><br>
 <img src="UG_Figures/routemap4.png" alt="inputRouteMapCommand" width=650><br>
 
+<div style="page-break-after: always;"></div>
+
 2. The result will display the whole bus route of bus AA2.<br><br>
 <img src="UG_Figures/routemap1.png" alt="RouteMapCommand" width=650><br>
 
