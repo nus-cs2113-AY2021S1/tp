@@ -6,8 +6,7 @@ It is optimised for use via the Command Line Interface (CLI) and it serves as an
 <br/>
 Given below are my contributions to the project. <br/>
 ## Summary of Contributions
-### Code contributed:
-[RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jiawenlyu)
+### Code contributed: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jiawenlyu)
 ### Enhancements to New features:
 * Added ability to add lecture, lab, and tutorial events.
  ([\#15](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/15),
@@ -54,8 +53,7 @@ Given below are my contributions to the project. <br/>
    [\#90](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/90),
    [\#94](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/94))
 * Update the code as well as test files regularly to make sure it passes CI on GitHub.
-### Contributions to documentation:
-#### Contributions to the Developer Guide:
+### Contributions to the Developer Guide:
 * Added part of the `Design` to the Developer Guide.
   ([\#110](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/110))
 * Added implementation for the features `prioritize a task`, `print prioritized tasks`, `print progress`, `print suggestions`.
@@ -69,7 +67,7 @@ Given below are my contributions to the project. <br/>
    [\#228](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/228))
 * Added part of the user stories.
   ([\#165](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/165))
-#### Contributions to the User Guide:
+### Contributions to the User Guide:
 * Documented features `adding an event`, `prioritizing a task`, `printing important tasks`, 
  `printing progress`, and `giving suggestion`.
   ([\#179](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/179))
