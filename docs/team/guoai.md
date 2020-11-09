@@ -251,3 +251,14 @@ The following sequence diagram shows how the `Storage` works.
 sequentially. Each loading method calls the corresponding helper method (i.e. `loadTaskFromLine()`, `loadBookFromLine()`, 
 `loadLinkFromLine()`, `loadModuleFromLine()`, `loadExpenseFromLine()`) to load `Item`s from each line in the file. 
 3. After each command, `Duke` calls the `save()` method of `Storage` to save all the `Item`s in the list to files.
+
+### Item component
+
+`Item` is a super class with 5 subclasses inheriting it: `Task`, `Expense`, `Module`, `Link`, `Book`.
+
+Here is the class diagram for `Item` class and its subclasses.
+
+![ItemClassDiagram](./../images/ItemClassDiagram.png)
+
+The `Item` class and its subclasses:
+- Contains getters and setters to retrieve and set the attributes.
