@@ -42,10 +42,6 @@ public class DeleteCommand extends Command {
                 deletionDate = LocalDate.parse(deletionDate, DateManager.formatter).format(DateManager.formatter);
                 ExerciseList exerciseList = listManager.getExerciseList();
                 boolean isValidDate = false;
-                if (!command.split(SPLIT_SPACE)[2].matches("\\d+")) {
-                    Ui.printCustomError("Sorry, index deletion must be a positive number");
-                    return;
-                }
                 int deletionIndex = Integer.parseInt(command.split(SPLIT_SPACE)[2]);
                 for (int i = 0; i < exerciseList.getSize(); i++) {
                     if (exerciseList.getExercise(i).getDate().equals(deletionDate)) {
@@ -73,10 +69,6 @@ public class DeleteCommand extends Command {
                 deletionDate = LocalDate.parse(deletionDate, DateManager.formatter).format(DateManager.formatter);
                 FoodList foodList = listManager.getFoodList();
                 boolean isValidDate = false;
-                if (!command.split(SPLIT_SPACE)[2].matches("\\d+")) {
-                    Ui.printCustomError("Sorry, index deletion must be a positive number");
-                    return;
-                }
                 int deletionIndex = Integer.parseInt(command.split(SPLIT_SPACE)[2]);
                 for (int i = 0; i < foodList.getSize(); i++) {
                     if (foodList.getFood(i).getDate().equals(deletionDate)) {
