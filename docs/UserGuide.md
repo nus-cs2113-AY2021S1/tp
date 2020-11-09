@@ -6,6 +6,9 @@ The purpose of this user guide is to provide you with all the necessary informat
 around NUS campus via the school's shuttle service.<br>
 
 ## Table of Contents
+{:toc}
+
+
 - [1. Overview](#1-overview)
   * [1.1 What is Nav@NUS?](#11-what-is-navnus)
   * [1.2 About the User Guide](#12-about-the-user-guide)
@@ -37,8 +40,6 @@ around NUS campus via the school's shuttle service.<br>
 - [4. FAQ](#4-faq)
 - [5. Command Summary](#5-command-summary)
 - [6. Glossary](#6-glossary)
-
-{:toc}
 
 ## 1. Overview
 ### 1.1 What is Nav@NUS?
