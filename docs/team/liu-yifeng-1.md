@@ -4,15 +4,12 @@
 Our product, **_25HoursADay_** is a scheduling application catered for NUS students. 
 It is optimised for use via the Command Line Interface (CLI) and it serves as an efficient one stop application for our users to manage their time. 
 
-Given below are my contributions to the project.
-
 ## Summary of Contributions
 ### Code contributed:
 For code contribution, please visit this [website](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=liu-yifeng-1&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=LIU-YiFeng-1&tabRepo=AY2021S1-CS2113T-T12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other) 
 for more details.
 
-### Enhancements implemented:
-#### Enhancements to new features:
+### Enhancements to new features:
 * Added ability to print all tasks and all events separately. (`print events` and `print tasks`)
  ([\#10](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/10))
   * What it does: It allows the user to have an easy overview of all the events and tasks stored in the program.
@@ -31,7 +28,7 @@ for more details.
    user entered the correct information, so as to present the user with accurate information.
    * Highlights: This feature is functional with or without the Internet.
   
-#### Enhancement to existing features:
+### Enhancement to existing features:
 * Shorten and Standardised the user command input format to make the code more readable.
   ([\#56](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/56))
 * Enabled school events (such as Lecture, Tutorial and Lab session) to be added recursively.
@@ -45,9 +42,7 @@ for more details.
 * Wrote Junit tests to increase coverage.
   ([\#124](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/124))
   
-### Contributions to documentation:
-
-#### Contributions to the DG:
+### Contributions to the DG:
 * Added the Setting Up & Getting started section.
   ([\#148](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/148),
   [\#149](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/149)
@@ -62,7 +57,7 @@ for more details.
   [\#284](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/284)
   )
 
-#### Contributions to the UG:
+### Contributions to the UG:
 * Drafted UG based on what we had for CS2101 and documented the summary of command section.
   ([\#107](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/107))
 * Updated the UG with expected output screenshots.
@@ -74,13 +69,13 @@ for more details.
   [\#296](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/296)
   )
 
-#### Contributions to team-based tasks:
+### Contributions to team-based tasks:
 * Provided feedbacks for Oral Presentation and volunteered myself doing some submissions on Luminus.
 * Reviewed others' PR and provided feedback.
   ([\#20](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/20))
 * Updated both the user and developer guides that are not specific to my features and enhancements.
 
-#### Contributions beyond the project team:
+### Contributions beyond the project team:
 * Reported bugs in other team's project during mock PE.
   ([\#1](https://github.com/LIU-YiFeng-1/ped/issues/1),
   [\#2](https://github.com/LIU-YiFeng-1/ped/issues/2),
