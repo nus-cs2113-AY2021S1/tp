@@ -241,7 +241,7 @@ This requires the model classes to implement two methods required for JSON seria
 - `toJson()`: Contains logic required to convert the model object into JSON string.  
 - `fromJson()`: Contains logic required to convert JSON object into its respective model class.    
 
-## 4. <a id="implentation">Implementation</a>
+## 4. <a id="implementation">Implementation</a>
 ### 4.1. <a id="project">Project</a>
 ![Figure 4.1: Project Class Diagram](./image/developerguide/ProjectClassDiagram.png
  "Project Class Diagram")
