@@ -66,8 +66,22 @@ public class BrowseParser extends CommandParser {
         if (paramGiven.length > 1) {
             parameterParser(paramGiven);
             LOGGER.log(Level.INFO, BROWSE_SETTINGS_CHANGED_INFO);
+        } else {
+            checkForExtraParam(paramGiven[0]);
         }
         return new BrowseCommand(sortType, order, page);
+    }
+
+    /**
+     * Checks the default browse for any additional input which are invalid.
+     *
+     * @param extraParamCheck the parameter to check
+     * @throws AniException if additional input was found
+     */
+    private void checkForExtraParam(String extraParamCheck) throws AniException {
+        if (!extraParamCheck.isBlank()) {
+            throw new AniException(extraParamCheck.trim() + INVALID_OPTION);
+        }
     }
 
     /**
@@ -134,9 +148,7 @@ public class BrowseParser extends CommandParser {
      */
     protected boolean firstSplitHandler(int paramLoops, String param) throws AniException {
         if (paramLoops == FIRST_LOOP) {
-            if (!param.isBlank()) {
-                throw new AniException(param + INVALID_OPTION);
-            }
+            checkForExtraParam(param);
             return true;
         }
         return false;
