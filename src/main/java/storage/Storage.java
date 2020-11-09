@@ -114,7 +114,7 @@ public class Storage {
      * @throws LoadingException represents the Events is not correctly created
      */
     public UserInfo loadUserInfo() throws LoadingException {
-        UserInfo userInfo = null;
+        UserInfo userInfo = new UserInfo();
         try {
             Scanner s = new Scanner(new File(filePaths[1]));
             if (s.hasNext()) {

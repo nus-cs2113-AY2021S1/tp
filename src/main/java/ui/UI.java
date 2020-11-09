@@ -66,6 +66,7 @@ public class UI {
         } else {
             helloWithName(userInfo.getName());
         }
+
         System.out.println("Hello from\n" + LOGO);
         System.out.println("What can I do for you?");
     }

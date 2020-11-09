@@ -66,5 +66,6 @@ public class AutoClearCommand extends Command {
                 storage.writeFile(events.getEventList());
             }
         }
+
     }
 }
