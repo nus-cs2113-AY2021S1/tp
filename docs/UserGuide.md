@@ -497,7 +497,7 @@ Returns to the Admin level.
 
 For instance, you are currently in Module level `CS2113T` and want to return to the Admin level, the steps to do so are shown below:
 
-* Step 1: Enter the command `back`and **press *[Enter]*** to return to the previous level which is the module level: <br>
+* Step 1: Enter the command `back`and **press *[Enter]*** to return to the previous level which is the Admin level: <br>
 
 <p align="center">
   <img src="UG_Images/back.png" width="700" alt="Back Command"/>
@@ -772,7 +772,7 @@ Now that you know how to make KAJI manage your Database of revision content for 
 
 **You don't have to do a thing** to enjoy the benefits of Spaced Repetition. Everything is scheduled for you, so all you have to do is to use the commands [`due`](#) and [`preview`](#) to view what chapters are due and complete the revision  for them accordingly. 
 
-Despite that, this **does not mean that you cannot customise** the scheduling process. KAJI allows you to [`reschedule`](#451) and [`exclude`](#451) Chapters manually if you wish to do so, but more on that later. First, let us get into the specific introduction of each command.
+Despite that, this **does not mean that you cannot customise** the scheduling process. KAJI allows you to `reschedule`, `include` and `exclude` Chapters manually if you wish to do so, but more on that later. First, let us get into the specific introduction of each command.
 <br><br>
 
 ### 3.4.1. Listing the chapters due for today: `due`
