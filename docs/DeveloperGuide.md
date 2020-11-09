@@ -70,7 +70,7 @@ The **main component** of Study It helps user access each of these components.
 It processes the user input, provides general functionalities to traverse the software and other
 helpful functionalities. This will be further explained under Study It's design later.
 
-### Architecture
+### **Architecture**
 This section describes the overall architecture of Study It.
 
 ![Architecture Diagram](Images/ArchitectureDiagrams/architecture.png)
@@ -278,7 +278,7 @@ In terms of general structure, it is largely similar to that of `GradeBook`'s.
 This section will describe in detail how the flashcard feature is implemented.
 
 
-![Flashcard Component Class Diagram](Images/Flashcard_Class.png)
+![Flashcard Component Class Diagram](Images/flashcard%20class%20diagram.png)
 
 The above diagram looks at the overall structure of how the flashcard component is being implemented. 
 This component is split into 4 different classes, their associations and multiplicity as explained in 
