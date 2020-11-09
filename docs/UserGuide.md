@@ -395,13 +395,13 @@ Format: `tag-n /i INDEX /tag TAG [TAG COLOR] [/tag TAG]...`
 
 💡 If the user tries to tag a non-existing tag to a note, the application will automatically create a new tag, and add the tag to the note.
 
+<div style="page-break-after: always;"></div>
+
 Example of usage: 
 
 `tag-n /i 1 /tag CS2113`
 
 `tag-n /i 1 /tag CS2113 /tag important`
-
-<div style="page-break-after: always;"></div>
 
 Expected output:
 
@@ -460,6 +460,9 @@ Format: `add-e /t TITLE /timing DATETIME [/end DATETIME] [/repeat REPEAT] [/stop
 
 - Events have a default duration of 1 hour if [/end] is not specified.
 - Events must end on the same day they start.
+
+<div style="page-break-after: always;"></div>
+
 - Events cannot end before they start
 - Specifying [/end DATETIME] will set the event to end a specific time.
 - Specifying [/repeat RECURRING] will set the event as a recurring event.
@@ -489,6 +492,8 @@ Format: `edit-e /i INDEX [/t TITLE] [/timing DATETIME] [/end DATETIME] [/repeat 
 - At least one of the optional fields must be provided [/t TITLE], [/timing DATETIME], [/end DATETIME], [/repeat REPEAT], [/stop REPEAT_END], [/remind-add REMIND], [/remind-drop REMIND], [/remind-clear] [.
 - Existing values will be updated to the input values.
 - End date time must be on the same day as start date time.
+
+<div style="page-break-after: always;"></div>
 
 - Specifying [/timing DATETIME] without [/end DATETIME] will have event duration maintained and end datetime changed. If end datetime would be past 2359, end datetime would be set at 2359.
 - Specifying [/repeat RECURRING] will set the event that type of event.
@@ -523,6 +528,8 @@ Format: `list-e [/timing Year] [/timing Year-Month]`
 - Specifying [/timing Year-Month] will display all events for that month. Will include repeated events. <br>
 💡 Year format pattern "YYYY-MM”.
 
+<div style="page-break-after: always;"></div>
+
 Example of usage: 
 
 `list-e /timing 2020-10`
@@ -550,6 +557,8 @@ Expected output:
    <img alt="remindEvent" src="screenshots/remindEvent.png"/>
 </p>
 
+<div style="page-break-after: always;"></div>
+
 #### <a id="delete-e"><ins>3.20 Delete Event:</ins> `delete-e`</a>
 Adds a new item to the list of todo items.
 
@@ -576,7 +585,7 @@ Example of usage:
 
 `exit`
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ## <a id="faq">4. FAQ</a>
 
@@ -592,7 +601,7 @@ Example of usage:
 
 **A**: Type the command `help` for a list of useful commands.
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ## <a id="command">5. Command Summary</a>
 
