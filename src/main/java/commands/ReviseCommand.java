@@ -50,6 +50,14 @@ public class ReviseCommand extends Command {
         this.reviseIndex = reviseIndex;
     }
 
+    /**
+     * Gets the chapter object based on reviseIndex.
+     *
+     * @param reviseIndex index of chapter to revise
+     * @param access access object of user
+     * @return chapter object to revise
+     * @throws IndexOutOfBoundsException if index of chapter provided is not found
+     */
     private Chapter getChapter(int reviseIndex, Access access) throws IndexOutOfBoundsException {
         Chapter chapter;
         try {
@@ -60,6 +68,15 @@ public class ReviseCommand extends Command {
         }
     }
 
+    /**
+     * Get the list of card objects in the chapter to be revised.
+     *
+     * @param access access object of the user
+     * @param storage to get the cards from storage file
+     * @param toRevise chapter object to revise
+     * @return list of card objects in the chapter to be revised
+     * @throws FileNotFoundException
+     */
     private ArrayList<Card> getCards(Access access, Storage storage, Chapter toRevise)
             throws FileNotFoundException {
         ArrayList<Card> allCards;
@@ -72,6 +89,16 @@ public class ReviseCommand extends Command {
         return allCards;
     }
 
+    /**
+     * Shows the contents of each flashcard during revision.
+     *
+     * @param count flashcard number
+     * @param c card object that is currently being revised
+     * @param ui ui object to print contents of the flashcard
+     * @param repeatCards list of card objects that user could not answer
+     * @param scanner to take in user input
+     * @return
+     */
     private int reviseCard(int count, Card c, Ui ui, ArrayList<Card> repeatCards, Scanner scanner) {
         ui.showToUser("\nQuestion " + count + ":");
         ui.showCardRevision(c, scanner);
@@ -80,6 +107,14 @@ public class ReviseCommand extends Command {
         return ++count;
     }
 
+    /**
+     * Executes the ReviseCommand by calling the relevant methods.
+     *
+     * @param ui ui which the command uses to print messages
+     * @param access access which the command uses to get the modules, chapters or cards
+     * @param storage storage which the command uses to load or write data to storage files
+     * @throws IOException if there is error in loading or writing data to storage files
+     */
     @Override
     public void execute(Ui ui, Access access, Storage storage) throws IOException {
         Chapter toRevise = getChapter(reviseIndex, access);
@@ -117,6 +152,14 @@ public class ReviseCommand extends Command {
         HistoryCommand.addHistory(access, storage, reviseIndex);
     }
 
+    /**
+     * Prompts user to confirm whether he wants to start revision on a chapter that is not due.
+     *
+     * @param ui ui object to print the prompt
+     * @param toRevise chapter object to be revised
+     * @param scanner scanner object to take in user input
+     * @return boolean value of whether user wants to revise the chapter
+     */
     private boolean promptNotDue(Ui ui, Chapter toRevise, Scanner scanner) {
         StringBuilder prompt = new StringBuilder();
         prompt.append(String.format(MESSAGE_CHAPTER_NOT_DUE, toRevise));
@@ -142,6 +185,16 @@ public class ReviseCommand extends Command {
         return notRevising;
     }
 
+    /**
+     * Gets user rating for a flashcard.
+     *
+     * @param ui ui object to get user's rating if it is invalid
+     * @param repeatCards list of card objects that user could not answer
+     * @param c card object that is currently being revised
+     * @param input user's rating for the flashcard
+     * @param scanner scanner object to take in user's input if it is invalid
+     * @return list of card objects which user could not answer after rating
+     */
     private ArrayList<Card> rateCard(Ui ui, ArrayList<Card> repeatCards,
                                            Card c, String input, Scanner scanner) {
         boolean isInvalid = true;
@@ -174,6 +227,14 @@ public class ReviseCommand extends Command {
         return repeatCards;
     }
 
+    /**
+     * Repeats revision for cards which user could not answer.
+     *
+     * @param ui ui object to pass to revise card for printing of contents of flashcard
+     * @param cards list of card objects to be revised again
+     * @param count current flashcard count
+     * @param scanner scanner object to take in user input
+     */
     private void repeatRevision(Ui ui, ArrayList<Card> cards, int count, Scanner scanner) {
         while (cards.size() != 0) {
             ArrayList<Card> repeatCards = new ArrayList<>();
