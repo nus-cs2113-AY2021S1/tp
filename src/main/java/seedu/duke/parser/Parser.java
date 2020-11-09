@@ -75,6 +75,7 @@ public class Parser {
             checkAllowedArguments(argumentsMap, CalendarCommand.ALLOWED_ARGUMENTS);
             return new CalendarCommand(argumentsMap);
         case CategoryCommand.COMMAND_WORD:
+            checkAllowedArguments(argumentsMap, CategoryCommand.ALLOWED_ARGUMENTS);
             try {
                 Integer.parseInt(description);
             } catch (NumberFormatException e) {
