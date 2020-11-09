@@ -167,9 +167,9 @@ as a string variable in the command)
 returned. Else, null is returned.
 4. Calls `Ui#printFullRoute()` to display full route of the specified bus.
 
-The following sequence diagram explains the above steps when the user enters `/routemap busCode`.
-![Overview](DG_Diagrams/RouteMapCommand/RouteMapCommandOverallSeq.png)
-The following sequence diagrams explain the interactions for bus route retrieval.
+The following sequence diagram explains the above steps when the user enters `/routemap busCode`.<br>
+![Overview](DG_Diagrams/RouteMapCommand/RouteMapCommandOverallSeq.png)<br>
+The following sequence diagrams explain the interactions for bus route retrieval.<br>
 ![Internal](DG_Diagrams/RouteMapCommand/RouteMapCommandSeq.png)
 
 **Design Considerations**
@@ -189,7 +189,7 @@ of busStops objects.
 Given the above alternatives, alternative 1 was used considering the scalability of the application.
 
 <!-- @@author EthanWong22 -->
-### 3.. Bus at bus stop finder (`/bus` Feature) - Wong Heng Chin
+### 3.3. Bus at bus stop finder (`/bus` Feature) - Wong Heng Chin
 
 `/bus <bus stop>` is the command to execute to see buses which stop at a specific bus stop.<br>
 
@@ -212,7 +212,7 @@ The following sequence diagram explains the interactions omitted in the main dia
 <!-- @@author -->
 
 <!-- @@author Lezn0 -->
-### 3.3. List All stops (`/liststops` Feature) - Yuxin
+### 3.4. List All stops (`/liststops` Feature) - Yuxin
 `/liststops` is the command which prints all bus stops declared in the BusStops enum.
 
 The `ListStopsCommand#executeCommand()` method of ListStopsCommand Class executes the command in the following steps:
@@ -221,7 +221,7 @@ The `ListStopsCommand#executeCommand()` method of ListStopsCommand Class execute
     - Close names for bus stops will also be printed if it has one.
     
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/liststops` command. <br>
-![add favourites](DG_Diagrams/ListStopsSequence.png)
+<img src="DG_Diagrams/ListStopsSequence.png" alt="list stops" width=500>
 
 **Design Considerations**
 
@@ -239,7 +239,7 @@ Given the above alternatives, alternative 1 was used considering the integration
 <!-- @@author -->
 
 <!-- @@author mrwsy1 -->
-### 3.7. Dining options finder (`/dine` Feature) - Shuyi
+### 3.5. Dining options finder (`/dine` Feature) - Shuyi
 
 `/dine <faculty>` is the command that has to be entered by the user to see all the dining options available in the 
 specified faculty.
@@ -253,9 +253,9 @@ The `DineCommand#executeCommand()` method of DineCommand Class executes the comm
         + Throws an exception if `isFound` is false.
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/dine` command.<br>
-![bus data](DG_Diagrams/DineSequence.png)
+<img src="DG_Diagrams/DineSequence.png" alt="dine" width=450>
 
-### 3.8 Find specific dining outlets (`/dineinfo` Feature) - Shuyi
+### 3.6. Find specific dining outlets (`/dineinfo` Feature) - Shuyi
 
 `/dineinfo <outlet>` is the command that has to be entered by the user to see information of a specified dining outlet.
 
@@ -267,7 +267,7 @@ The `DineInfoCommand#executeCommand()` method of DineInfoCommand Class executes 
     + Calls `Ui#printDineInfoResult()` method to print the data in `searchList` if it is not empty.
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/dineinfo` command. <br>
-![bus data](DG_Diagrams/DineInfoSequence.png)
+<img src="DG_Diagrams/DineInfoSequence.png" alt="dine info" width=450>
 <!-- @@author -->
 
 
@@ -287,10 +287,10 @@ The `AddFavCommand#executeCommand()` method of AddFavCommand Class executes the 
     - If the there are no duplicate Fav objects, Fav object created will be added to the FavList.
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/addfav` command. <br>
-![add favourites](DG_Diagrams/AddFavSequence.png)
+<img src="DG_Diagrams/AddFavSequence.png" alt="add fav" width=650>
 <!-- @@author -->
 
-### 3.12 Removing specific delete command (`/deletefav` Feature)
+### 3.7. Removing specific delete command (`/deletefav` Feature)
 `/deletefav <index>` is the command to remove a favourite command in the user's list of favourite commands. It allows the
 user to customise the list of favourite commands to the user's liking.
 
@@ -305,7 +305,7 @@ The following sequence diagram illustrates the steps taken by the program when t
 ![Sequence ](DG_Diagrams/DeleteFavCommand/DeleteFavSeq.png)
 
 <!-- @@author EthanWong22 -->
-### 3.5. Favourite command executor (`/execfav` Feature) - Wong Heng Chin
+### 3.8. Favourite command executor (`/execfav` Feature) - Wong Heng Chin
 `/execfav <index>` is the command to execute a command with the specific index in the list of favourite commands. <br>
 
 The command is executed in the following steps:
@@ -339,7 +339,7 @@ Therefore, choosing commands based on index (alternative 1) is easier to impleme
 <!-- @@author -->
 
 <!-- @@author wamikamalik -->
-### 3.6. Modifying the description of a favourite command (`/descfav` Feature) - Wamika
+### 3.9. Modifying the description of a favourite command (`/descfav` Feature) - Wamika
 `/descfav <index> /to <newDescription>` command allows the user to change the current description of their favourite command
 at location **index** in the list to **newDescription**.
 
@@ -415,7 +415,7 @@ _Credits: The Levenshtein distance algorithm was adapted from
 [this site.](http://rosettacode.org/wiki/Levenshtein_distance#Java)_
 <!-- @@author -->
 
-### 3.11 Displaying most searched bus stop on start-up
+### 3.11. Displaying most searched bus stop on start-up
 This feature informs the user about their most searched bus stop.
 There is no function to explicitly call it and is executed only during Nav@NUS's start up.
 
