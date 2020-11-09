@@ -1,6 +1,7 @@
 package commands;
 
 import access.Access;
+import exception.ExclusionFileException;
 import manager.admin.Admin;
 import manager.chapter.Chapter;
 import manager.module.Module;
@@ -22,6 +23,7 @@ import static common.Messages.CHAPTER;
 import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author neojiaerm
 public class RemoveChapterCommandTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
@@ -68,7 +70,7 @@ public class RemoveChapterCommandTest {
     }
 
     @Test
-    public void execute_invalidIndex_expectException() throws IOException {
+    public void execute_invalidIndex_expectException() throws IOException, ExclusionFileException {
         RemoveChapterCommand command = new RemoveChapterCommand(1);
         command.execute(ui, access, storage);
         String expectedResult = String.format(MESSAGE_INVALID_INDEX_RANGE, CHAPTER).trim();
@@ -76,7 +78,7 @@ public class RemoveChapterCommandTest {
     }
 
     @Test
-    public void execute_validIndex_expectSuccess() throws IOException {
+    public void execute_validIndex_expectSuccess() throws IOException, ExclusionFileException {
         RemoveChapterCommand command = new RemoveChapterCommand(0);
         command.execute(ui, access, storage);
         String expectedResult = String.format(MESSAGE_SUCCESS, CHAPTER) + "chapter1" + "\n"

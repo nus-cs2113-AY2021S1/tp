@@ -56,7 +56,11 @@ public class IncludeCommand extends Command {
         String moduleName = ui.getIncludedModuleName(type);
         String chapterName = ui.getIncludedChapterName(moduleName);
         try {
-            storage.removeChapterFromExclusionFile(moduleName,chapterName);
+            boolean result = storage.removeChapterFromExclusionFile(moduleName,chapterName);
+            if (!result) {
+                throw new InvalidInputException("Sorry, the Chapter: " + chapterName + " could not "
+                        + "be included as it does not exist.");
+            }
             String exclusionTarget = String.format(PRINT_FORMAT_CHAPTER, moduleName, chapterName);
             return String.format(INCLUSION_SUCCESS_MESSAGE, exclusionTarget);
         } catch (FileNotFoundException e) {
@@ -73,7 +77,7 @@ public class IncludeCommand extends Command {
             String exclusionTarget = String.format(PRINT_FORMAT_MODULE, moduleName);
             return String.format(INCLUSION_SUCCESS_MESSAGE, exclusionTarget);
         } catch (FileNotFoundException e) {
-            throw new InvalidInputException("Sorry, the Module: " + moduleName + "could not be included as it "
+            throw new InvalidInputException("Sorry, the Module: " + moduleName + " could not be included as it "
                     + "does not exist.");
         }
     }
