@@ -1,4 +1,4 @@
-# Minh Thong - Project Portfolio Page
+# Yu Xuan - Project Portfolio Page
 
 ## 1.Overview
 ### 1.1.Project overview
@@ -24,14 +24,11 @@ https://github.com/AY2021S1-CS2113T-W11-4/tp/issues
 
 
 ### 2.2.Features covered
-* Designing and implementing the family of WritingList class, which is closely related to goal of the project(creating a writing assistant application)
-* Writings' general management (including adding writings to and extracting writings from the database)
-* Reset and clear command
-* Registration protocol
+* Implemented the Word List class, as well as the Words class, together with its sub classes, Noun, Verb, and Adjective.
+* Implemented the "Three Words" function, which generates three random words for the user.
 
 ### 2.3.Leadership/Mentorship covered
 * Helps other team's members be familiar with features that they've overlooked on Github or on Intellij
 * Always take an eye on module's requirements and remind other team's members on tasks needed to be done to get credits on module's tpProgressDashboard
 
 ### Link to code contribution
-https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=promethees&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other
