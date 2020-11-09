@@ -59,8 +59,8 @@ Please also take note of the labels on command formatting:
     * [Launch bookmarks from module, slot:](#launchtimeslot)  **launch**
   * [5.4 Planner mode](#plannermode)
     * [Load planner:](#loadplanner) **load**
-    * [Show planner:](#showplanner) **show**
     * [Add meeting:](#addmeeting) **add**
+    * [Show planner:](#showplanner) **show**
     * [Save planner:](#saveplanner) **save**
 * [6.0 FAQ](#faq)
 * [7.0 Command Summary](#command-summary)
@@ -645,9 +645,10 @@ Example of usage:
 
 <br>
 
+<!-- @@author jusufnathanael -->
 
 <a name="plannermode"></a>  
-### 5.4. Planner Mode  
+### 5.4. Planner Mode (Jusuf)
 
 <a name="loadplanner"></a>  
 #### 5.4.1. Load planner: `load`  
@@ -706,6 +707,7 @@ Saves the newly added slot(s) to each individual timetables.
 ```
 Format: save
 ```
+<!-- @@author -->
 
 <br/><br/> 
 ## 6.0 FAQ  
