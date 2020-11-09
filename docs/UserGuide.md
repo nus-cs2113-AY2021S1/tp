@@ -216,7 +216,7 @@ This section contains 8 commands:
 * 1.7 : [Deleting a link](#17-deleting-a-link-rm-link_number-)
 * 1.8 : [Starring / Unstarring a link](#18-marking-unmarking-a-link-as-a-starred-link-star-link_number)
 
-###1.1 Viewing all the bookmarks links: `list`,`list -s`, `list -c`, `list -a`
+### 1.1 Viewing all the bookmarks links: `list`,`list -s`, `list -c`, `list -a`
 
 Are you trying to find your links by entering into each category to view your links?
 You might want to have an easy way to view the overview of your links. 
