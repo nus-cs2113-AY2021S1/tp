@@ -11,50 +11,50 @@ This section summarises my contributions in terms of documentation, coding and o
 
 #### Enhancements Implemented
 ##### 1. Sprint Management
-* For v1.0 SCRUMptious
-    * Add support to create sprint iteration in project.
-    * Add support to add tasks from backlog to sprint.
-    * Add support to remove task from sprints.
-    * Add support to allocate multiple tasks to multiple users.
-    
-    **Pull Request:** [#33](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/33) 
+I have implemented a set of commands to facilitate the management of Sprints (Iterations broken down from a project), which covers 
+functionalities such as Add/Edit Sprints, Add/Remove tasks to Sprints, Allocate/Deallocate tasks to members. I have also 
+added support to execute these commands across multiple projects/sprints, in accordance to our teams version 2.0 update for
+multiple project management.
+
+
+**Pull Request:** 
+    [#33](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/33) 
     [#67](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/67) 
     [#71](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/71)
     [#91](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/91)
-
-* For v2.0 SCRUMptious
-    * Add support to edit sprint.
-    * Add support to deallocate task from users.
-    * Update all Sprint Commands to work on multiple projects/sprints.
-    
-    **Pull Request:** 
     [#112](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/112)
     [#123](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/123) 
-##### 2. Parser
-* Implement DateTimeParser to facilitate the parsing of String to LocalDate object.
-    * Add support to calculate the difference between two LocalDate object
-    * Add support to print custom error for invalid dates in correct format. (E.g. 20200231)
-* Implement SprintParser(extended Parser) to facilitate validation of user specified parameters.
-    
-    **Pull Request:** 
+ 
+##### 2. Parsers
+In regard to sprint creations, a date object is required to facilitate the duration for each Sprint. Thus, I have implemented
+a DateTime parser that will parse a user input (String) to the required format (DateTime/LocalDate). The parser will 
+pint custom error for invalid dates in correct format. (E.g. 20200231) to better inform user about the incorrect input.
+In addition, the parser also includes a method that will calculate the difference between two LocalDate object.
+
+
+A SprintParser (extended Parser) is also added to facilitate parsing and validation of user specified parameters for all Sprint related commands.
+
+**Pull Request:** 
     [#123](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/123) 
     [#193](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/193) 
     [#221](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/221) 
+
 ##### 3. Logger
-* Add a test logger for v1.0.
-* Implement ScrumLogger to facilitate all logging.
-    * Add support to generate log in different platform.
-    
-    **Pull Request:** 
+I have also updated the test logger which previous I added for v1.0 into ScrumLogger which can be used to facilitate all
+logging activities for the whole program. 
+
+
+**Pull Request:** 
     [#87](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/87) 
     [#193](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/193) 
     [#226](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/226)
 ##### 4. Ui
-* Implement the Ui component for v1.0
-    * Add support to handle interruption (CTRL+C) from user
-* Design toString method for all model classes to facilitate printing of information 
+At the initial phase of the project, I was in charged of break down the project into major components (Main, Ui, Parser, Command and Model).
+I was therefore assigned to work on the Ui component to add the basic skeleton code to receive input/deliver output to users.
+In addition, I was in charged of designing the output (toString()) of all the model classes to facilitate the printing of command output. 
 
-    **Pull Request:** 
+
+**Pull Request:** 
     [#60](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/60) 
     [#71](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/71)
     [#123](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/123)
@@ -76,24 +76,22 @@ This section summarises my contributions in terms of documentation, coding and o
 [#135](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/135) 
 
 #### Documentation
-##### User Guide  
-* For v1.0 User Guide (Pull Request: [#80](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/80))
+##### User Guide 
   * Add detailed guide for all Sprint Commands 
   * Add navigability by including hyperlinks for _**Table of Contents**_.
   * Add _**Command Summary**_.
   * Standardise format for command description.
-  
-* For v2.0 User Guide (Pull Request: [#130](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/130) [#132](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/132))
   * Standardise formats for user guide (Bulletin, numbering and _**Table of Contents**_)
   * Update guide for all Sprint Commands V2.0
   * Update _**4. Command Summary**_.
   
-##### Developer Guide (Pull Request: [#129](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/129))
+ Pull Request: [#80](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/80) [#130](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/130) [#132](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/132))
+##### Developer Guide 
 * Model component  
   * Updated model component section under Architecture
 * Sprint related implementation  
     * Added description for all Sprint Commands
-    
+(Pull Request: [#129](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/129))
 #### Other Contributions
 * Reviewed bugs for other team's developer guide. [[CS2113T-F14-4] NUSchedule](https://github.com/nus-cs2113-AY2021S1/tp/pull/131)  
 * Reported bugs for other team's program during PE dry run. [[CS2113-T13-3] WhereGotTime' bugs](https://github.com/chocomango/ped/issues)  
