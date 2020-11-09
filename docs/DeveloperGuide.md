@@ -1,7 +1,7 @@
 # Developer Guide
 
 ## Table of Contents
-
+// update later on <br>
 [Introduction](#introduction) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Purpose](#purpose) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Scope](#scope) <br>
@@ -26,25 +26,20 @@
 
 ## Introduction
 
+### Background
+Fluffle is a **desktop app for creative writers**, optimized for use via a **Command Line Interface (CLI)**. It aids users in creating and managing their writings and ideas. As a fast-typing writer, this CLI app is highly suitable for you.
+
 ### Purpose
 This document specified architecture and software design decisions for the creative writing assistant, Fluffle. 
 
 ### Scope
-This describes the software architecture and software design decisions for the implementation of Fluffle. The intended 
-audience of this document is the developers, designers, and software testers of Fluffle.
+This describes the software architecture and software design decisions for the implementation of Fluffle. The intended audience of this document is the developers, designers, and software testers of Fluffle.
 
 ### Design Goals
-Creating an app which improves users’ ability of writing and creativity. Developers should work closely with CS2113T’s 
-module instructors, who represent technical advisors and CS2101’s module instructors, who represent non-technical 
-advisors. By adhering to these tutors’ specific requirements, which imitate industrial professional standards, 
-beginner software engineers will be able to levitate their expertises and mindset in the process of developing 
-and presenting a new product.
+Our goal is to create an app which improves users’ ability of writing and creativity. Developers should work closely with CS2113T’s module instructors, who represent technical advisors and CS2101’s module instructors, who represent non-technical advisors. By adhering to these tutors’ specific requirements, which imitate industrial professional standards, beginner software engineers will be able to levitate their expertises and mindset in the process of developing and presenting a new product.
 
 ### Maintainability
-With the aim of increasing maintainability of Fluffle, separated packages and classes were implemented in strict 
-compliance with Object-oriented Programming. Since it is important to be able to easily change functionality of one 
-class without disturbing other dependent classes, each class only serves one purpose to reduce dependency on other 
-classes. With low coupling and high cohesion, subsequent developers can make minimal effort in maintaining Fluffle.
+With the aim of increasing maintainability of Fluffle, separated packages and classes were implemented in strict compliance with Object-oriented Programming. Since it is important to be able to easily change functionality of one class without disturbing other dependent classes, each class only serves one purpose to reduce dependency on other classes. With low coupling and high cohesion, subsequent developers can make minimal effort in maintaining Fluffle.
 
 ## Definitions
 
@@ -65,20 +60,33 @@ classes. With low coupling and high cohesion, subsequent developers can make min
 
 ⚠ **Caution:**
 
-Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
+You should follow the steps with caution. Otherwise, things will not work.
 </div>
 
 First, **fork** this repo, and **clone** the fork into your computer.
 
 If you plan to use Intellij IDEA (highly recommended):
 1. **Configure the JDK**: Follow the guide [_[se-edu/guides] IDEA: Configuring the JDK_](https://se-education.org/guides/tutorials/intellijJdk.html) to to ensure Intellij is configured to use **JDK 11**.
-1. **Import the project as a Gradle project**: Follow the guide [_[se-edu/guides] IDEA: Importing a Gradle project_](https://se-education.org/guides/tutorials/intellijImportGradleProject.html) to import the project into IDEA.<br>
+1. **Import the project as a Gradle project**: Follow the guide [_[se-edu/guides] IDEA: Importing a Gradle project_](https://se-education.org/guides/tutorials/intellijImportGradleProject.html) to import the project into IntelliJ IDEA.<br>
   :exclamation: Note: Importing a Gradle project is slightly different from importing a normal Java project.
 1. **Verify the setup**:
-   1. Run the `java -jar duke.jar` and try a few commands.
-   2. [Run the tests](Testing.md) to ensure they all pass. 
-//Note: should ask team W11-02 the permission for the above part.
-//Note: No need to create another testing.md, i have created a testing section below we can put all the things there
+   1. In IntelliJ IDEA, choose to run `Duke.main()`. Gradle will need some time to build the project at first.
+   1. If your setup is correct, you should see something like below:
+```
+--------------------------------------------------------------
+Write a story with
+  ______ _        __  __ _
+ |  ____| |      / _|/ _| |
+ | |__  | |_   _| |_| |_| | ___
+ |  __| | | | | |  _|  _| |/ _ \
+ | |    | | |_| | | | | | |  __/
+ |_|    |_|\__,_|_| |_| |_|\___|
+--------------------------------------------------------------
+Hello User! Welcome to Fluffle!
+What can I do for you?
+--------------------------------------------------------------
+What is your name?
+```
 
 ## Design
 
@@ -108,9 +116,7 @@ The design of Fluffle contains four main components:
 - Word Manager component
 - Name Manager component
 
-All components can be accessed by the user through Fluffle's UI. 
-On loading Fluffle, all components will be loaded from the storage. 
-On exiting Fluffle, all components will be saved to the storage.
+All components can be accessed by the user through Fluffle's UI. On loading Fluffle, all components will be loaded from the storage. On exiting Fluffle, all components will be saved to the storage.
 
 ### Writing Manager Component
 
@@ -285,8 +291,9 @@ Put methods of testing here !!! JUnit test, Unit testing, integration testing, .
 #### Target user profile
 
 The target user group are creative writers.
-* Writers who enjoy digitally typing up their works and thus can integrate using our CLI based app into their workflow
-* Writers who enjoy creating short pieces but lack the organisation to do so
+* Writers who enjoy digitally typing up their works and thus can integrate using our CLI based app into their workflow.
+* Writers who enjoy creating short pieces but lack the organisation to do so.
+* Writers who want to improve their creative writing skills and need a proper way to achieve it.
 
 ### Appendix B: Value proposition
 
@@ -359,25 +366,4 @@ What is your name?
     1. `list word`: to view your word list.
 7. If you want to shutdown Fluffle, use the command `exit`.
 
-Following are the commands to help you test Fluffle manually.
-
-### Basic commands
-
-### Words list command
-
-### Bunnies list command
-
-### Names list command
-
-### Writings list command
-#### Getting reminders for your writings schedules for a specific day: `remind`
-* Test case: `remind 01/12/2020`. 
-* Expected output:
-```
-On 01/12/2020, you should continue on the following writing(s):
-1.
-  Id: 222
-  Title: CS2113T Final
-```
-
-For a more specific explanation of the commands, visit our User Guide [here](https://ay2021s1-cs2113t-w11-4.github.io/tp/UserGuide.html).
+**For a more specific explanation and demonstration of the commands, visit our User Guide [here](https://ay2021s1-cs2113t-w11-4.github.io/tp/UserGuide.html).**
