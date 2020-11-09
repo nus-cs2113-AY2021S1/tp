@@ -541,8 +541,8 @@ public class Ui {
         case "find":
             System.out.println("Error: Please key in the find command in this format: \n"
                     + "1. /f <keyword>\n"
-                    + "2. /ft <task_number>\n"
-                    + "3. /fe <event_number");
+                    + "2. /ft <keyword>\n"
+                    + "3. /fe <keyword>");
             break;
         case "file not found":
             System.out.println("The file can not be found.");
