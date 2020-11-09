@@ -4,7 +4,8 @@ title : Nazryl Bin Khairil Idham Lim - Project Portfolio Page
 ---
 
 <!-- @@author nazryl -->
-## Overview
+**Overview**
+
 NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking application for keyboard-inclined users. NotUS allows for users to categorize notes by tagging as well as pinning the more important notes. NotUS is also designed to assist in planning timetables to highlight possible clashes.
 
 *Roles (short for ‘in charge of role’): Description*
@@ -12,9 +13,10 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 - Architecture: Worked with Jun Xiang on setting up the project, planned on logic of the project structure. Provides coding standards for engineers to follow.
 - In-charge of `add-n`,`delete-n`, `edit-n` of the code:  Handle area of notes and notebook.
 
-## Summary of Contributions
+**Summary of Contributions**
 
-### Features implemented
+*Features implemented*
+
 1\. Set up the skeleton code used in the project, including the following [classes](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/6):
 * `Notebook`
 * `Note`
@@ -54,27 +56,32 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 
 10\. Edited v1.0 and v2.1 demo videos.
 
-### Enhancements to existing features
+*Enhancements to existing features*
+
 1\. Multiple improvements/bug-fixes made for [`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/111), [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/88) and [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/180) after each milestone.
 
-### Code contributed
+*Code contributed*
+
 [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=nazryl&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other) to view a report of the code contribution.
 
 <div style="page-break-after: always;"></div>
 
-### Contributions to User Guide
+*Contributions to User Guide*
+
 1\. Maintain portions on commands related to Note
 * [`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/182)
 * [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/32)
 * [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/141)
 
-### Contributions to Developer Guide
+*Contributions to Developer Guide*
+
 1\. Maintain Commands section on:
 * [AddNoteCommand](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/109)
 
 2\. [Notebook](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/128)
 
-### Community
+*Community*
+
 - Reviewed some of the PRs to ensure the Classes and functions follow the project architecture as well code logic of the program.
 [#29](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/29)
 [#47](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/47)

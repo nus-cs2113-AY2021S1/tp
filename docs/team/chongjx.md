@@ -4,7 +4,8 @@ title : Jun Xiang - Project Portfolio Page
 ---
 
 <!-- @@author chongjx -->
-## Overview
+**Overview**
+
 NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking application for keyboard-inclined users. NotUS allows for users to categorize notes by tagging as well as pinning the more important notes. NotUS is also designed to assist in planning timetables to highlight possible clashes.
 
 *Roles (short for ‘in charge of role’): Description*
@@ -13,9 +14,10 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 - Software Architect: Designed the software  architecture of the programme with Nazryl. Ensures the logic of the code structure. 
 - Integration: Worked with Ramana for the versioning of the code, maintaining the code repository, integrating various parts of the software to create a whole.
 
-## Summary of Contributions
+**Summary of Contributions**
 
-### Features implemented
+*Features implemented*
+
 1\. Implemented `TaggableObject` class which is inherited by `Note` and `Event`. 
 - Taggable objects can have multiple tags and different Taggable objects can share same tag(s). They can also be filtered by their tags.
 
@@ -36,15 +38,18 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 
 7\. Implemented `Formatter` class which formats the different objects, such as Note, Event and String with a specified layout into a String to be printed.
     
-### Code contributed
+*Code contributed*
+
 [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chongjx&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-### Project management
+*Project management*
+
 - Set up the framework of the programme for team members to work on.
 - Managed code cleanup before every release.
 - Managed releases `v1.0`, `v2.0` and `v2.1` on GitHub
 
-### Contributions to User Guide
+*Contributions to User Guide*
+
 Added documentation for following features:
 
 1\. [Section 3.11 Create Tags](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#create-t)
@@ -57,7 +62,8 @@ Added documentation for following features:
 
 5\. [Section 3.15 Delete Tags](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#delete-t)
 
-### Contributions to Developer Guide
+*Contributions to Developer Guide*
+
 Added implementation details for the following:
 
 1\. [Section 2.1 Architecture Overview](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#overview)
@@ -81,7 +87,8 @@ Added implementation details for the following:
 
 9\. [Section 8.2 List of Command Classes](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#XYZCommands)
 
-### Community
+*Community*
+
 1\. Reviewed most of the PRs to ensure the Classes and functions follow the project architecture as well code logic of the programme.
 - Reviewed a total of 66 PRs out of 114 PRs, with [167 comments](https://nus-cs2113-ay2021s1.github.io/dashboards/contents/tp-comments.html), dated 7/11/2020.
 
@@ -89,7 +96,8 @@ Added implementation details for the following:
 
 3\. Contributed to forum discussions on usage of Jcolor and jansi libraries. ([#86](https://github.com/nus-cs2113-AY2021S1/forum/issues/86) and [#93](https://github.com/nus-cs2113-AY2021S1/forum/issues/93))
 
-### Tools:
+*Tools*
+
 1\. Integrated a third party library [(JColor)](https://github.com/dialex/JColor) to the project. [(#37)](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/37)
 
 2\. Integrated a third party libaray [(jansi)](https://fusesource.github.io/jansi) to the project. [(#87)](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/87)
