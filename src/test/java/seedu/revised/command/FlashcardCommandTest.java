@@ -35,7 +35,8 @@ public class FlashcardCommandTest {
             throws RepeatedFlashcardException, InvalidFlashcardException {
         addCommand = new AddFlashcardCommand("add How to get Speed from Velocity and Time; Velocity*Time");
         addCommand.execute(topic);
-        assertEquals("Q: How to get Speed from Velocity and Time\n   A: Velocity*Time", topic.getFlashcards().get(3).toString());
+        assertEquals("Q: How to get Speed from Velocity and Time\n   A: Velocity*Time",
+                topic.getFlashcards().get(3).toString());
     }
 
     @Test

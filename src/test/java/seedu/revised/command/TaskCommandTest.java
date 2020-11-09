@@ -53,7 +53,8 @@ public class TaskCommandTest {
             throws TaskDeadlineException {
         addDeadlineCommand = new AddDeadlineCommand("deadline Report /by 23:59 20-10-2020");
         addDeadlineCommand.execute(tasks);
-        assertEquals("[D][\u2718] Report (by: 11:59 PM 20 Oct 2020)", tasks.getList().get(0).toString());
+        assertEquals("Report", tasks.getList().get(0).getDescription());
+        assertEquals("2020-10-20T23:59", tasks.getList().get(0).getDateTime().toString());
     }
 
     @Test
@@ -73,7 +74,9 @@ public class TaskCommandTest {
             throws TaskEventException {
         addEventCommand = new AddEventCommand("event Finals /at 14:00 21-11-2020");
         addEventCommand.execute(tasks);
-        assertEquals("[E][\u2718] Finals (at: 2:00 PM 21 Nov 2020)", tasks.getList().get(2).toString());
+        assertEquals("Finals", tasks.getList().get(2).getDescription());
+        assertEquals("2020-11-21T14:00", tasks.getList().get(2).getDateTime().toString());
+
     }
 
     @Test
@@ -93,7 +96,7 @@ public class TaskCommandTest {
             throws TaskTodoException {
         addTodoCommand = new AddTodoCommand("Todo Draw mindmap of speed topic");
         addTodoCommand.execute(tasks);
-        assertEquals("[T][\u2718] Draw mindmap of speed topic", tasks.getList().get(3).toString());
+        assertEquals("Draw mindmap of speed topic", tasks.getList().get(3).getDescription());
     }
 
     @Test
@@ -125,7 +128,7 @@ public class TaskCommandTest {
     public void doneTaskCommand_validCommand_returnsIndex() {
         doneCommand = new DoneTaskCommand("done 2");
         doneCommand.execute(tasks);
-        assertEquals("[E][\u2718] Exam (at: 12:00 PM 13 Nov 2020)", tasks.getList().get(2).toString());
+        assertEquals(true, tasks.getList().get(1).getIsDone());
     }
 
     @Test
