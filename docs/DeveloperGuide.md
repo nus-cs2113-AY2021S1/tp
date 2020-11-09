@@ -17,7 +17,8 @@ such that you will have an easy reference for understanding the features impleme
 The guide outlines the architecture and design decisions for the implementation of WatchNext.The intended audience of this 
 document are the developers, testers and future contributors of WatchNext.
    
-
+ <div style="page-break-after: always;"></div>
+ 
 ## 2. Setting up
 This section will show you the requirements that you need to fulfill in order to quickly start contributing to this project in no time!
 
@@ -242,6 +243,8 @@ to the show. The `addreview` command is invoked by the `InputParser` method `par
 **Step 5**
 
 * The changes are reflected back to the user. Concurrently, the changes will be saved to the showList.txt file.
+
+ <div style="page-break-after: always;"></div>
 
 ### ChangeRatingCommand
 The `changerating` command changes the rating of the desired show.
@@ -723,6 +726,7 @@ Expected: A message acknowledging the change. `Updated show details.`
 4. Test case: `season 3` followed by `episode 10,10,10` followed by `done`<br>
 Expected: A message acknowledging the change. `Updated show details.`
 
+ <div style="page-break-after: always;"></div>
 
 ### Managing Reviews and Ratings
 
