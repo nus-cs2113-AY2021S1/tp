@@ -879,7 +879,7 @@ The task [[v] return Harry Potter (by: tmr 2pm)] has been deleted!
 
 If you like customising your own list, you can do so by categorising your books and quotes.
 
-Note: All categories will be stored in **lower-case** format.
+*Note: All categories will be stored in **lower-case** format.*
 
 #### 4.4.1 Add categories: `add -c`
 
@@ -899,8 +899,8 @@ Example of usage:
 2. `add -c inspirational -q 1`
 
 Context:
-* The book *Harry Potter* is assigned with a BOOK_NUMBER of 1.
-* The quote *"Life is Great"* is assigned with a QUOTE_NUMBER of 1.
+* Assuming the book *Harry Potter* exists with an index of 1.
+* Assuming the quote *"Life is Great"* exists with an index of 1.
 
 Expected outcome 1:
 ```
@@ -924,7 +924,7 @@ Format: `list -c`
 
 Example of usage: `list -c`
 
-Context: The *action* category has been previously added and assigned to 2 items.
+Context: Assuming the category *action* has been previously added and assigned to 2 items.
 
 Expected outcome:
 ```
@@ -970,8 +970,8 @@ Example of usage:
 3. `delete -c inspirational -q 1`
 
 Context:
-* The book *Harry Potter* is assigned with a BOOK_NUMBER of 1.
-* The quote *"Life is Great"* is assigned with a QUOTE_NUMBER of 1.
+* Assuming the book *Harry Potter* exists, has an index of 1, and tagged with the category *fantasy*.
+* Assuming the quote *"Life is Great"* exists, has an index of 1, and tagged with the category *inspirational*.
 
 Expected outcome 1:
 ```
@@ -1002,6 +1002,8 @@ Format: `edit -c OLD_CATEGORY /to NEW_CATEGORY`
 
 Example of usage: `edit -c fantasy /to romance`
 
+Context: Assuming the category *fantasy* still exists.
+
 Expected outcome:
 ```
 ----------------------------------------------------------
@@ -1016,6 +1018,8 @@ Find existing categories related to a keyword.
 Format: `find -c KEYWORD`
 
 Example of usage: `find -c man`
+
+Context: Assuming the category *romance* has been previously added.
 
 Expected outcome:
 ```
@@ -1207,6 +1211,7 @@ Add category:                                       add -c CATEGORY {[-b BOOK_TI
 Delete category:                                    delete -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}
 List categories:                                    list -c [CATEGORY]
 Edit category:                                      edit -c OLD_CATEGORY /to NEW_CATEGORY
+Find category:                                      find -c KEYWORD
 ------------------------------------------------------------------------------------------------------------------------
                             5. Rating System
 ------------------------------------------------------------------------------------------------------------------------
@@ -1214,7 +1219,7 @@ Add rating:                                         add -r RATING_SCORE BOOK_NUM
 Delete rating:                                      delete -r BOOK_NUMBER
 List ratings:                                       list -r [RATING_SCORE]
 Edit rating:                                        edit -r RATING_SCORE BOOK_NUMBER
-Find ratings:                                        find -r KEYWORD
+Find ratings:                                       find -r KEYWORD
 ------------------------------------------------------------------------------------------------------------------------
                             Other useful commands
 ------------------------------------------------------------------------------------------------------------------------

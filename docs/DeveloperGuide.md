@@ -463,7 +463,6 @@ A `Category` object holds the following attributes:
 * A `String` object that holds the category name in **lower-case** format.
 * A `BookList` object that stores a list of `Book` objects tagged with the specified category name.
 * A `QuoteList` object that stores a list of `Quote` objects tagged with the specified category name.
-* An `int` value that indicates the total number of books/quotes tagged under the specified category.
 
 #### 4.4.1 Add Categories
 
