@@ -511,6 +511,8 @@ Here's a list of all items:
    └─ 1. [D][N] Final Project (by: 11:59 PM 11 Nov 2020)
 ____________________________________________________________
 ```
+
+### Topic commands
 #### 3.2.4 Adding a topic: `add` <a name="add-topic"></a>
 
 Adds a topic to the current subject.
@@ -627,6 +629,7 @@ Type help for all available commands
 ____________________________________________________________
 ```
 
+### Task commands
 #### 3.2.8 Adding a 'todo' task: `todo` <a name="todo"></a>
 
 Adds a todo task.
@@ -636,6 +639,13 @@ Format: `todo [DESCRIPTION]`
 - Adds a todo task with a description of `[DESCRIPTION]`.
 - The application will print the description of the todo task you have added into the task list, 
 as well as the amount of tasks in the task list on the command line.
+- The format for task when the application is printing out information is:
+`[T/D/E][Y/N] TASK DESCRIPTION`
+    * T - Todo
+    * D - Deadline
+    * E - Event
+    * Y - Done
+    * N - Not done yet
 
 Example of usage: 
 ```
@@ -651,6 +661,8 @@ Now you have 2 tasks in the list.
 ____________________________________________________________
 ```
 
+>
+
 #### 3.2.9 Adding a 'deadline' task - `deadline` <a name="deadline"></a>
 
 Adds a deadline task.
@@ -661,6 +673,13 @@ Format: `deadline [DESCRIPTION] /by [TIME]`
 - A deadline must have a `[TIME]`. If you do not wish to set a time, add a <a href="#todo">todo</a> instead.
 - The application will print the description of the deadline task you have added into the task list, 
 as well as the amount of tasks in the task list on the command line.
+- The format for task when the application is printing out information is:
+`[T/D/E][Y/N] TASK DESCRIPTION`
+    * T - Todo
+    * D - Deadline
+    * E - Event
+    * Y - Done
+    * N - Not done yet
 
 > 📝️️ **_NOTE:_** Add the time using the HH:MM DD-MM-YYYY format. 
 
@@ -688,6 +707,13 @@ Format: `event [DESCRIPTION] /at [TIME]`
 - An event must have a `[TIME]`. If you do not wish to set a time, add a <a href="#todo">todo</a> instead.
 - The application will print the description of the event task you have added into the task list, 
 as well as the amount of tasks in the task list on the command line.
+- The format for task when the application is printing out information is:
+`[T/D/E][Y/N] TASK DESCRIPTION`
+    * T - Todo
+    * D - Deadline
+    * E - Event
+    * Y - Done
+    * N - Not done yet
 
 > 📝️️ **_NOTE:_** Add the time using the HH:MM DD-MM-YYYY format. 
 
