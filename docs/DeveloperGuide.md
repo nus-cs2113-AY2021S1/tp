@@ -1402,8 +1402,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
     
     2.  Test case: `watchlist -n newWatchlist`. <br/>
     Expected: A empty watchlist named "newWatchlist" is created, and a message indicating the watchlist was created successfully is printed. 
-    However, if the current workspace already has a watchlist named "newWatchlist", then, a message indicating the watchlist creation failed due to a non-unique watchlist name provided is printed.
-        
+
     3.  Other incorrect commands to try: 
         1.  `watchlist -n`.
         2.  `watchlist -n x` (where x is a watchlist name that is not unique in the current workspace, exceeds 30 characters, contains non-alphanumeric characters, or contain spaces only).
