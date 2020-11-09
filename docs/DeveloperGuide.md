@@ -1107,8 +1107,8 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 ## Appendix B: User Stories
 
-| Version | As a ... | I want to ... | So that I ... |
-| --- | --- | --- | --- |
+| Version | As a ... | I want to ...        | So that I ...                                               |
+| ------- | -------- | -------------------- | ----------------------------------------------------------- |
 | v1.0 | user | create new watchlist | can keep track of anime easily based on my defined criteria |
 | v1.0 | user | add and remove an anime to a watchlist | can organise my anime into the defined criterion |
 | v1.0 | forgetful user | find out all watchlist I have created | can find out what watchlist I have |
