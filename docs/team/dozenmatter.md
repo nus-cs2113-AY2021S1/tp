@@ -22,10 +22,10 @@ Please click [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdow
 #### 1. Category Management feature
 
 **What it does:**
-* The user may use `add -c` command to add multiple categories to an existing book and quote.
-* The user may use `edit -c` or `delete -c` commands to edit the existing category name or delete the existing categories respectively.
-* The user may use `list -c` to list all their existing categories or to list items tagged under a specified category.
-* The user may also use `find -c` to find categories that contains the specified keyword.
+* The user may use the `add -c` or `delete -c` command to add / remove multiple categories to / from an existing book and quote.
+* The user may use the `edit -c` command to edit the existing category name.
+* The user may use the `list -c` command to list all existing categories or to list all items tagged under a specified category.
+* The user may also use the `find -c` command to find categories that contains the specified keyword.
     
 **Justification:**
 The Category Management feature is designed to allow users to categorise their existing books and quotes in Quotesify.
@@ -44,11 +44,9 @@ The aim is to provide the user a basic statistic on the number of items under ea
 **Justification:**
 The Storage is a must-have component for Quotesify as it would have defeated the purpose if a user's favourite books or quotes only lasts on runtime.
     
-### Contributions to the UG:
+### Contributions to the UG and DG:
 * I have contributed to all parts relating to Category Management in the UG.
 * I have contributed to the Quick Start and FAQ sections of the UG.
-
-### Contributions to the DG:
 * I have contributed to all parts relating to Category Management in the DG, including all UML diagrams.
 * I have contributed largely to the Design section of the DG.
 

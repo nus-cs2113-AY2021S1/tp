@@ -938,7 +938,9 @@ Here is the list of all categories:
 
 #### 4.4.3 List items in a category: `list -c`
 
-List all books and quotes tagged under the specified category name.
+List all books and quotes tagged under the specified category name. 
+
+*Note: Each item is numbered by its BOOK_NUMBER or QUOTE_NUMBER from its respective list.*
 
 Format: `list -c CATEGORY`
 
