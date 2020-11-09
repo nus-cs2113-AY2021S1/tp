@@ -1,6 +1,6 @@
 # Lee Hao Yuan - Project Portfolio Page
 
-## Overview
+## Project: ModTracker
 _ModTracker_ is a desktop app for NUS students to track the time spent 
 as well as tasks to do for each of their modules.
 It helps students to prioritise their work and 
@@ -9,7 +9,7 @@ This app uses a Command Line Interface (CLI).
 
 
 ## Summary of Contributions
-This section details my contribution in this project. The detailed contributions can be found in subsequent sections.
+The following subsections detail my contributions in this project.
 
 ### Code Contributed
 * All the code contributed by me in this project can be found in this 
