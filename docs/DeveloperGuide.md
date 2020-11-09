@@ -693,3 +693,30 @@ Expected: No command executed.Error details will be shown to remind users to typ
         Step 2. Run the jar file<br>
         Expected output: Message detailing corrupted data detailed at start and corrupted data removed from FavList.
 <!-- @@author -->
+
+<!-- @@author Johnson-Yee -->
+### E.12 Saving of search frequncies of each bus stop - Johnson
+1. Data is automatically saved in the `/data/FreqList.txt` directory of the jar file's home directory.
+
+2. Loading FreqList
+    - Prerequisites: `/data/FreqList.txt` contains search frequencies of **all** bus stops and contains only integers.
+    - The txt file contains a a series of integers that represent the search frequencies of each bus stops as ordered
+    in the enumeration BusStops class.
+    - Expected: The most searched bus stop will be displayed on start-up of application. If the text file is newly
+    initialised, a message would be displayed to inform users about this feature. 
+
+3. Dealing with corrupted data
+    - Prerequisite: `FreqList.txt` exists
+    - Test case 1: Missing entries in FreqList.txt"<br>
+        Step 1. Remove a few entries off the `FreqList.txt` file.<br>
+        Step 2. Run the jar file<br>
+        Expected output: Error details will be shown to inform users that corrupted data has been detected
+        and that all search frequencies will be initialised to zero.<br>
+        
+    - Test case 3: Senseless data in FreqList.txt <br>
+        Step 1. Add random letters into `FreqList.txt` file. <br>
+        Step 2. Run the jar file <br>
+        Expected output: Error details will be shown to inform users that corrupted data has been detected 
+        and that all search frequencies will be initialised to zero.<br>
+        
+<!-- @@author -->
