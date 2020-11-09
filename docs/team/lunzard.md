@@ -23,6 +23,7 @@ The link to the code contributed by me can be found
 I implemented the Progress Tracker feature (Bookmark Management and Task Management) of Quotesify:
 
 1. Bookmark Management
+
 **What it does:**
 * The user may use the `bookmark -b /pg` command to add bookmarks to existing books in the BookList of Quotesify.
 * The user may also use the same `bookmark -b /pg`command to update existing bookmarks of Books 
@@ -74,8 +75,8 @@ including the UML diagrams.
 * I also maintained the cohesiveness and formatting of the documentation.
 
 ### Contributions to team-based tasks:
-* PRs reviewed: #81, #170, #172, #178, #292
-* I contributed brainstorming in User Stories which can be found [here](https://github.com/dozenmatter/tp-stories/projects/1)
+* I helped given suggestions ot other teammates.
+* I contributed brainstorming in User Stories which can be found [here](https://github.com/dozenmatter/tp-stories/projects/1).
 
 ### Contributions beyond the project team: 
 * I tested applications and reported bugs and offered suggestions for other teams to consider 

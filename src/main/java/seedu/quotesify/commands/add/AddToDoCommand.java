@@ -9,17 +9,41 @@ import seedu.quotesify.ui.TextUi;
 
 import java.util.logging.Level;
 
+//@@author lunzard
+
+/**
+ * Represents the command to add tasks to Quotesify's ToDolist.
+ */
 public class AddToDoCommand extends AddCommand {
+
+    /**
+     * Constructor for the AddToDo Command.
+     *
+     * @param arguments Inputs by the user.
+     */
     public AddToDoCommand(String arguments) {
         super(arguments);
     }
 
+    /**
+     * Executes the AddToDo Command.
+     *
+     * @param ui Ui of the program.
+     * @param storage Storage of the program.
+     */
     public void execute(TextUi ui, Storage storage) {
         ToDoList toDos = (ToDoList) ListManager.getList(ListManager.TODO_LIST);
         ToDo newToDo = addToDo(toDos, ui);
         ui.printAddToDo(newToDo);
     }
 
+    /**
+     * Add new tasks to the ToDoList.
+     *
+     * @param toDos ToDoList in Quotesify.
+     * @param ui Ui of the program.
+     * @return Task that is added.
+     */
     private ToDo addToDo(ToDoList toDos, TextUi ui) {
         String[] taskNameAndDeadline = information.split("/by", 2);
         ToDo newToDo = null;
