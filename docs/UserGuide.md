@@ -455,7 +455,7 @@ Instruction:
 e.g. `star 1`
 Expected output:   
 
-![Bookmark_star](Images/BookmarkUG/Figure11.png)
+![Bookmark_star](Images/BookmarkUG/Figure11.png){: width=90% height=90%}
 
 >**Useful Information:** 
 >* It is the same command for marking and unmarking any links. For example, if link 1 is not starred, star 1  will mark the link as starred. And if link 1 is starred, star 1 will unmark link 1. 
