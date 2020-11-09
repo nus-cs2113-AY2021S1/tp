@@ -359,4 +359,12 @@ estimate -wph 1 -hello
 estimate -wph -hello
   estimate  do-not-exist-file.txt
   estimate  do-not-exist-file.txt  -wph    123
+  estimate /.txt
+  estimate \.txt
+  estimate ?.txt
+  estimate :.txt
+  estimate *.txt
+  estimate <.txt
+  estimate >.txt
+  estimate |.txt
 exit
