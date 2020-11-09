@@ -13,7 +13,7 @@ public class FlashcardStorage {
 
     public ArrayList<Flashcard> flashcardDeck;
     private final File file;
-    private final String dirPath = "data";
+    private static final String dirPath = "data";
     private final String filePath;
 
     public FlashcardStorage(String filePath) throws IOException {
