@@ -67,7 +67,6 @@ important details, generalize certain components/interactions, break diagram int
 ### Review/mentoring contributions
 * Reviewed [PR #74](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/74)
     * Comprehensive checking of code, and many suggestions on improvement
-* Provided suggestions on code structure and DG structure.
+* Provided suggestions on code structure and DG structure via WhatsApp chats
 
-### Contributions to Developer Guide (Extracts)
 
