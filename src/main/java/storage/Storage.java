@@ -111,9 +111,9 @@ public class Storage {
         StorageWrite.removeModuleFromExclusionFile(moduleName, filePath);
     }
 
-    public void removeChapterFromExclusionFile(String moduleName, String chapterName) throws FileNotFoundException,
+    public boolean removeChapterFromExclusionFile(String moduleName, String chapterName) throws FileNotFoundException,
             ExclusionFileException {
-        StorageWrite.removeChapterFromExclusionFile(moduleName, chapterName, filePath);
+        return StorageWrite.removeChapterFromExclusionFile(moduleName, chapterName, filePath);
     }
 
     public ArrayList<Card> loadCard(String module, String chapter) throws FileNotFoundException {
