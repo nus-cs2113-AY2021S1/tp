@@ -46,6 +46,7 @@ place it in an empty folder
 </p>
 
 **Setting up the project on your PC**
+
 First, **fork** this repo, and **clone** the fork into your computer.
 
 If you plan to use Intellij IDEA (highly recommended):
@@ -170,7 +171,7 @@ each mode’s functionality.
 
 This bookmark section consists of how the bookmark feature is implemented. 
 The bookmark feature is implemented similarly to the main architecture, however, 
-in a smaller scale and a more bookmark-specific way. Figure 1 illustrates the general overview, 
+in a smaller scale and a more bookmark-specific way. The figure below illustrates the general overview, 
 the associations and the multiplicity of the bookmark classes.
 
 ![Bookmark Class Diagram](Images/BookmarkDG/BookmarkRun_Class.png)
@@ -179,17 +180,17 @@ the associations and the multiplicity of the bookmark classes.
 
 The bookmark component consists of six major classes: `BookmarkRun`, `BookmarkStorage`, `BookmarkUi`, 
 `BookmarkCategory`, `BookmarkList` and `BookmarkParser`. 
-As shown in figure 1, `BookmarkRun` is 
+As shown in the figure above, `BookmarkRun` is 
 * The main class to be called when the bookmark mode is accessed.
 * The main class to access other bookmark classes.
 
-Given below, Figure 2, is the sequence diagram of how the classes interact with each 
+The figure given below is the sequence diagram of how the classes interact with each 
 other when bookmark mode is accessed from the main function.
 
 ![Bookmark Sequence Diagram](Images/BookmarkDG/Sequence_Diagram.png)
 
 The bookmark component has two modes: the main bookmark mode and the category mode. 
-As shown in Figure 2, when `BookmarkRun` is called, 
+As shown in the figure above, when `BookmarkRun` is called, 
 `BookmarkParser` will be called and return a `BookmarkCommand`. 
 Afterwards, `BookmarkRun` will then call `executeCommand` in `BookmarkCommand` which executes 
 the intended actions. Then, it will call `getCategorymode` to get the current mode the user is in. 
@@ -199,11 +200,11 @@ the intended actions. Then, it will call `getCategorymode` to get the current mo
 A more detailed explanation of `BookmarkCommand`, `BookmarkCategory` and `BookmarkList` will be 
 shown below. `BookmarkUi` and `BookmarkStorage` follow the same design implementations as the main 
 architecture. The below figure shows the command classes available and they are called based on the 
-`BookmarkParser` class as illustrated in Figure 2. 
+`BookmarkParser` class as illustrated in the figure above. 
 
 ![BookmarkCommand ClassDiagram](Images/BookmarkDG/bookmarkCommand_Class.png)
 
-Figure 4 shows a more detailed sequence diagram of how the `BookmarkCategory`, `BookmarkCommand` 
+The figure below shows a more detailed sequence diagram of how the `BookmarkCategory`, `BookmarkCommand` 
 and `BookmarkList` interacts with each other for the scenario when the user input an `AddLinkCommand` 
 in Bookmark mode.
 
@@ -331,7 +332,7 @@ This component is split into 4 different classes, their associations and multipl
 the above Figure. 
 1. The main class `FlashcardRun` will be accessed when the flashcard mode is called in `StudyIt` Class. 
 1. `FlashcardRun` class is associated with `FlashcardStorage` class that is used to store data in .txt file. 
-1.`FlashcardDeck` class which contains any number of `Flashcards`.
+1. `FlashcardDeck` class which contains any number of `Flashcards`.
 
 **Flashcard Implementation**
 
@@ -344,7 +345,7 @@ the `FlashcardDeck` class.
 
 With reference to the figure above, as an "add card" command is given by the user, `FlashcardRun` will take in the 
 command and call `addCard()` method in `FlashcardDeck` which constructs a new Flashcard object and stores 
-it inside the `FlashcardDeck` object.The `addCard()` function will then show the user the question and 
+it inside the `FlashcardDeck` object. The `addCard()` function will then show the user the question and 
 answer of the flashcard that has been created.
 
 Other possible commands that are not shown in the figure work in a similar way where command is parsed in `FlashcardRun` Class,
@@ -368,7 +369,7 @@ Type of Tests
 This project has 5 types of tests. 4 tests to test each feature and 1 test to test the main integration of the whole application.
 
 ### Logging guide
-We are using java.util.logging package for logging 
+We are using java.util.logging package for logging.
 The StudyItLog class is used to manage the logging levels and logging destinations.
 Log messages are output through the console and to a  .log file.
 The output logging level can be controlled using .setlevel( )
@@ -380,7 +381,7 @@ When choosing a level for a log message, follow the following conventions:
 
 
 ### DevOps Guide 
-Build automation  
+Build automation:
 This project uses Gradle for build automation management.
 ./gradlew build - check for checkstyle error and runs all tests
 Code coverage
