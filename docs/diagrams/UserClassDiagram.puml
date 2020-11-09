@@ -1,0 +1,31 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam Shadowing false
+skinparam MinClassWidth 100
+skinparam Class {
+    BorderThickness 1
+    BorderColor #000000
+}
+hide circle
+
+class User {
+    - name : String
+    - age : int
+    - height : double
+    - weight : double
+    - gender : String
+    - userFitnessLevel : int
+    + setup() : void
+    + calculateCalorieBurnt(ExerciseList exerciseList, String date) : Calorie
+    + calculateCalorieConsumed(FoodList foodList, String date) : Calorie
+    + calculateCalorie(FoodList foodList, ExerciseList exerciseList, String date) : Calorie
+}
+
+
+note right
+get and set methods
+for attributes are
+omitted for brevity
+end note
+
+@enduml

@@ -1,0 +1,61 @@
+@startuml
+skinparam Shadowing false
+
+participant ":Fitr"
+participant "<<class>>\n:Parser"
+
+activate ":Fitr"
+":Fitr" -> "<<class>>\n:Parser" ++ : parse("edit name Tom")
+
+create ":EditCommandParser"
+"<<class>>\n:Parser" -> ":EditCommandParser" ++
+return
+
+|||
+
+"<<class>>\n:Parser" -> ":EditCommandParser" ++ : editCommand()
+create ":EditProfileCommand"
+":EditCommandParser" -> ":EditProfileCommand" ++
+return
+
+":EditCommandParser" --> "<<class>>\n:Parser"
+deactivate ":EditCommandParser"
+'To position the delete symbol below activation bar
+":EditCommandParser" -[hidden]-> "<<class>>\n:Parser"
+destroy ":EditCommandParser"
+return
+
+":Fitr" -> ":EditProfileCommand" : execute()
+activate ":EditProfileCommand"
+":EditProfileCommand" -> ":EditProfileCommand" ++ : editName()
+":EditProfileCommand" -> ":User" : setName("Tom", isEdit)
+activate ":User"
+":User" --> ":EditProfileCommand"
+deactivate ":User"
+return
+":EditProfileCommand" -> ":StorageManager" : writeUserProfile()
+activate ":StorageManager"
+return
+":EditProfileCommand" -> "<<class>>\n:Ui" : printCustomMessage()
+activate "<<class>>\n:Ui"
+return
+return
+":EditProfileCommand" -[hidden]-> "<<class>>\n:Parser"
+destroy ":EditProfileCommand"
+
+
+
+deactivate ":EditProfileCommand"
+
+
+
+
+
+
+'To position the delete symbol below activation bar
+deactivate ":Fitr"
+
+
+
+hide footbox
+@enduml

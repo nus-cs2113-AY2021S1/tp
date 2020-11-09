@@ -1,0 +1,27 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+skinparam Shadowing false
+skinparam MinClassWidth 100
+
+hide circle
+hide empty members
+
+class RecommendCommand
+class StandardExercise
+class StandardExerciseList
+class StandardExerciseStorage
+
+
+class Fitr
+class Recommender
+
+RecommendCommand <.up Fitr
+RecommendCommand ..> Parser
+Parser <.. Fitr
+RecommendCommand ..> Recommender
+Recommender -->"4" StandardExerciseList
+Recommender ..> StandardExerciseStorage
+StandardExercise "*"-up-o StandardExerciseList
+
+@enduml

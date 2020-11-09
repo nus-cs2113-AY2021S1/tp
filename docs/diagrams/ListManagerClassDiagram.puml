@@ -1,0 +1,31 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam Shadowing false
+skinparam MinClassWidth 100
+
+hide circle
+hide empty members
+
+skinparam Class {
+    BorderThickness 1
+    BorderColor #000000
+}
+
+class Fitr
+class ListManager
+class StorageManager
+class ExerciseList
+class FoodList
+class GoalList
+
+Fitr --> "1" ListManager
+
+ListManager .r.> StorageManager
+ListManager --> "1" ExerciseList
+ListManager --> "1" FoodList
+ListManager --> "1" GoalList
+
+FoodList o-- "*" Food
+ExerciseList o-- "*" Exercise
+GoalList o-- "*" Goal
+@enduml
