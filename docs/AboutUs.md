@@ -11,4 +11,4 @@ Display | Name | Github Profile | Portfolio
 
 ![](https://via.placeholder.com/100.png?text=Photo) | Zhang Shenjia | [Github](https://github.com/jessicazhang617) | [Portfolio](docs/team/shenjia.md)
 
-![](https://via.placeholder.com/100.png?text=Photo) | Zhang Danrui | [Github](https://github.com/zhangcaicai123) | [Portfolio](https://github.com/AY2021S1-CS2113T-F11-2/tp/blob/master/docs/team/zhangdanrui.md)
+![](https://via.placeholder.com/100.png?text=Photo) | Zhang Danrui | [Github](https://github.com/zhangcaicai123) | [Portfolio](https://github.com/AY2021S1-CS2113T-F11-2/tp/blob/master/docs/team/zhangcaicai123.md)
