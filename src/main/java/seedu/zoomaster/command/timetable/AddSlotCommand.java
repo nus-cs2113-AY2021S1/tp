@@ -47,12 +47,14 @@ public class AddSlotCommand extends Command {
     }
 
     /**
-     * Adds the slot to the slot list and saves the slots list in the text file.
+     * Adds modules, slots, module bookmarks and slot bookmarks into the timetable.
+     * Supports one-shot-command when adding multiple multiple components to a module by using the separator ',' to
+     * separate the addition of each component.
      *
      * @param bookmarks The list of bookmarks
      * @param timetable The timetable
      * @param ui The user interface
-     * @throws ZoomasterException Some exception // ADD MORE COMMENTS
+     * @throws ZoomasterException if the module code is invalid.
      */
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws ZoomasterException {
@@ -64,7 +66,8 @@ public class AddSlotCommand extends Command {
         } else if (!isValidModule(moduleCode)) {
             throw new ZoomasterException(ZoomasterExceptionType.INVALID_MODULE);
         } else {
-            module = timetable.addModule(moduleCode);
+            module = new Module(moduleCode);
+            timetable.addModule(module);
             message += moduleCode + " added" + System.lineSeparator();
         }
 
@@ -121,7 +124,7 @@ public class AddSlotCommand extends Command {
                 newSlot = module.getSlot(lesson, day, startTime, endTime);
                 message += "  Slot already exists." + System.lineSeparator();
             } else {
-                if (startTime.isAfter(endTime) || startTime.equals(endTime)) {
+                if (Timetable.isTimeAGreaterEqualsTimeB(startTime, endTime)) {
                     throw new ZoomasterException(ZoomasterExceptionType.INVALID_TIME_FORMAT,
                             "  Invalid time for slot. (" + slotAndBookmark.get(2) + " " + slotAndBookmark.get(3) + ")");
                 } else if (timetable.isOverlapTimeSlot(day, startTime, endTime)) {

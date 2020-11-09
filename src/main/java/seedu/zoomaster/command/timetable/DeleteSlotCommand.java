@@ -12,6 +12,15 @@ import seedu.zoomaster.slot.Timetable;
 //@@author xingrong123
 public class DeleteSlotCommand extends Command {
     public static final String DEL_KW = "delete";
+    private static final String DELETE_BOOKMARKS_MSG = "deleted bookmarks from ";
+    private static final String BOOKMARKS_KW = "bookmarks";
+    private static final String DELETE_MODULE_MSG = "deleted module: ";
+    private static final String DELETE_SLOT_MSG = "deleted ";
+    private static final int INPUT_LIMIT = 3;
+    private static final int MODULE_INDEX = 0;
+    private static final int SECOND_INPUT = 1;
+    private static final int BOOKMARK_INDEX = 2;
+    private static final String FROM = " from ";
     private String moduleCode;
     private Integer slotIndex = null;
     private boolean deleteBookmarks = false;
@@ -20,7 +29,8 @@ public class DeleteSlotCommand extends Command {
      * Constructs a new DeleteSlotCommand instance and stores the information of the Slot given by the input.
      *
      * @param command The user input command.
-     * @throws ZoomasterException if input command is invalid.
+     * @throws ZoomasterException if details is blank, if there is no spacing after the command keyword or if
+     *     the input after the module code is not the bookmarks keyword or a slot index.
      */
     public DeleteSlotCommand(String command) throws ZoomasterException {
         assert command.startsWith(DEL_KW);
@@ -32,16 +42,16 @@ public class DeleteSlotCommand extends Command {
         if (!details.startsWith(" ")) {
             throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
         }
-        String[] deleteCommands = details.trim().split("\\s+", 3);
-        moduleCode = deleteCommands[0];
+        String[] deleteCommands = details.trim().split("\\s+", INPUT_LIMIT);
+        moduleCode = deleteCommands[MODULE_INDEX];
 
         try {
-            String bookmarksOrSlotCommand = deleteCommands[1];
-            if (bookmarksOrSlotCommand.trim().compareTo("bookmarks") == 0) {
+            String bookmarksOrSlotCommand = deleteCommands[SECOND_INPUT];
+            if (bookmarksOrSlotCommand.trim().compareTo(BOOKMARKS_KW) == 0) {
                 deleteBookmarks = true;
             } else {
                 slotIndex = Integer.parseInt(bookmarksOrSlotCommand) - 1;
-                if (deleteCommands[2].trim().compareTo("bookmarks") == 0) {
+                if (deleteCommands[BOOKMARK_INDEX].trim().compareTo(BOOKMARKS_KW) == 0) {
                     deleteBookmarks = true;
                 }
             }
@@ -51,7 +61,6 @@ public class DeleteSlotCommand extends Command {
         } catch (NumberFormatException e) {
             throw new ZoomasterException(ZoomasterExceptionType.NON_INTEGER_INPUT);
         }
-
     }
 
     /**
@@ -70,20 +79,24 @@ public class DeleteSlotCommand extends Command {
         } else {
             Module module = timetable.getModule(moduleCode);
 
-            if (slotIndex == null && !deleteBookmarks) { // delete module
+            if (slotIndex == null && !deleteBookmarks) {
+                // delete module
                 timetable.deleteModule(module);
-                message += "deleted module: " + moduleCode + System.lineSeparator();
-            } else if (slotIndex != null && !deleteBookmarks) { // delete slot
+                message += DELETE_MODULE_MSG + moduleCode + System.lineSeparator();
+            } else if (slotIndex != null && !deleteBookmarks) {
+                // delete slot
                 Slot slot = module.getSlot(slotIndex);
                 module.removeSlot(slot);
-                message += "deleted " + slot + " from " + moduleCode + System.lineSeparator();
-            } else if (slotIndex == null && deleteBookmarks) { // delete module bookmark
+                message += DELETE_SLOT_MSG + slot + FROM + moduleCode + System.lineSeparator();
+            } else if (slotIndex == null) {
+                // delete module bookmarks
                 module.removeAllBookmarks();
-                message += "deleted bookmarks from " + moduleCode + System.lineSeparator();
-            } else if (slotIndex != null && deleteBookmarks) { // delete slot bookmarks
+                message += DELETE_BOOKMARKS_MSG + moduleCode + System.lineSeparator();
+            } else {
+                // delete slot bookmarks
                 Slot slot = module.getSlot(slotIndex);
                 slot.removeAllBookmarks();
-                message += "deleted bookmarks from " + slot.getDay() + " " + slot + " from "
+                message += DELETE_BOOKMARKS_MSG + slot.getDay() + " " + slot + FROM
                         + moduleCode + System.lineSeparator();
             }
 

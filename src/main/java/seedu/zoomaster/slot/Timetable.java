@@ -98,7 +98,7 @@ public class Timetable {
 
 
     //@@author TYS0n1
-    public boolean isTimeAGreaterEqualsTimeB(LocalTime timeA, LocalTime timeB) {
+    public static boolean isTimeAGreaterEqualsTimeB(LocalTime timeA, LocalTime timeB) {
         boolean isGreaterEquals = false;
         if (timeA.isAfter(timeB) || timeA.equals(timeB)) {
             isGreaterEquals = true;
@@ -146,7 +146,8 @@ public class Timetable {
         if (moduleExists(newModuleCode)) {
             newModule = getModule(newModuleCode);
         } else {
-            newModule = addModule(newModuleCode);
+            newModule = new Module(newModuleCode);
+            addModule(newModule);
         }
 
         newModule.addSlot(slot);
