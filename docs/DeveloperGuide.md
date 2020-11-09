@@ -594,28 +594,28 @@ Making sure the name of the appliance is found in the list.
 ### Switching On Appliance:
 
 Prerequisites: 
-Ensure that BedRoom1 is created: `create Bedroom1` and ac Appliance is added: `add ac l/Bedroom1 w/5000 t/aircon`.
+Ensure that Bedroom1 is created: `create Bedroom1` and ac Appliance is added: `add ac l/Bedroom1 w/5000 t/aircon`.
 
 1. Test case: `on ac` <br>
-    Expected-printout: Switching ac(5000W), located at BedRoom1 @ 25 Degrees.....ON
+    Expected-printout: Switching ac(5000W), located at Bedroom1 @ 25 Degrees.....ON
 2. Test case: `on ac2` <br>
     Expected-printout: Appliance or Location does not exist in the list.
 3. Test case: `on ac p/` <br> 
     Expected-printout: Empty Parameter detected! Please follow format and enter required parameters.
 4. Test case: `on ac p/21` , assume `ac` was not on.<br>
-   Expected-printout: Switching ac(5000W), located at BedRoom1 @ 21 Degrees.....ON
+   Expected-printout: Switching ac(5000W), located at Bedroom1 @ 21 Degrees.....ON
 5. Test case: `on Bedroom1` , assume `ac` was on.<br>
-   Expected-printout: All Appliances in "BedRoom1" are turned on 
+   Expected-printout: All Appliances in "Bedroom1" are turned on 
 6. Test case: `on ac p/hundred`<br>
    Expected-printout: Please enter a valid numerical value.
    
 ### Switching Off Appliance:
 
 Prerequisites: 
-Ensure that BedRoom1 is created: `create Bedroom1` and ac Appliance is added: `add ac l/Bedroom1 w/5000 t/aircon`. Lastly, ensure that ac is turned on for every test: `on ac`
+Ensure that Bedroom1 is created: `create Bedroom1` and ac Appliance is added: `add ac l/Bedroom1 w/5000 t/aircon`. Lastly, ensure that ac is turned on for every test: `on ac`
 
 1. Test case: `off ac` <br>
-    Expected-printout: Switching: ac(5000W), located at BedRoom1 ......OFF
+    Expected-printout: Switching: ac(5000W), located at Bedroom1 ......OFF
 2. Test case: `off ac2` <br>
     Expected-printout: Appliance or Location does not exist in the list.
 3. Test case: `off ac p/21` <br> 
