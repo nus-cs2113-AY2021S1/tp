@@ -107,6 +107,11 @@ public class StorageWrite {
     }
 
     //@@author Zhu-Ze-Yu
+    /**
+     * Creates the history directory.
+     *
+     * @throws IOException if there is an error when loading from storage file
+     */
     public static void createHistoryDir() throws IOException {
         File f = new File("data/history");
         createDir(f);
@@ -179,10 +184,14 @@ public class StorageWrite {
         updateExclusionFile(excludedChapters, filePath);
     }
 
-    private static void deleteEntryFromExclusionFile(String moduleName, ArrayList<String> excludedChapters,
+    private static boolean deleteEntryFromExclusionFile(String moduleName, ArrayList<String> excludedChapters,
                                                      String chapterName) {
         String chapterEntry = "Module: " + moduleName + "; Chapter: " + chapterName;
+        if (!(excludedChapters.contains(chapterEntry))) {
+            return false;
+        }
         excludedChapters.remove(chapterEntry);
+        return true;
     }
 
     /**
@@ -218,14 +227,24 @@ public class StorageWrite {
      * @throws ExclusionFileException if unable to load or update the Exclusion File.
      */
     //@@author Darticune
-    protected static void removeChapterFromExclusionFile(String moduleName, String chapterName, String filePath)
+    protected static boolean removeChapterFromExclusionFile(String moduleName, String chapterName, String filePath)
             throws FileNotFoundException, ExclusionFileException {
         ArrayList<String> excludedChapters = Storage.loadExclusionFile(filePath);
-        deleteEntryFromExclusionFile(moduleName, excludedChapters, chapterName);
+        boolean result = deleteEntryFromExclusionFile(moduleName, excludedChapters, chapterName);
         updateExclusionFile(excludedChapters, filePath);
+        return result;
     }
 
     //@@author Zhu-Ze-Yu
+    /**
+     * Saves all the flashcards of the specified {@code chapter}.
+     *
+     * @param cards list of cards
+     * @param module module name of the chapters
+     * @param chapter chapter name of the flashcards
+     * @param filePath of the storage file
+     * @throws IOException if there is an error when loading from storage file
+     */
     protected static void saveCards(CardList cards, String module, String chapter, String filePath)
             throws IOException {
         FileWriter fw = new FileWriter(filePath + "/" + module + "/" + chapter + ".txt");

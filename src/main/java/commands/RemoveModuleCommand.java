@@ -2,6 +2,7 @@ package commands;
 
 import access.Access;
 import common.KajiLog;
+import exception.ExclusionFileException;
 import manager.admin.ModuleList;
 import manager.module.Module;
 import storage.Storage;
@@ -41,7 +42,7 @@ public class RemoveModuleCommand extends RemoveCommand {
      * @throws IOException if there is error in loading or writing data to storage files
      */
     @Override
-    public void execute(Ui ui, Access access, Storage storage) throws IOException {
+    public void execute(Ui ui, Access access, Storage storage) throws IOException, ExclusionFileException {
         String result = removeModule(access, storage);
         ui.showToUser(result);
     }
@@ -54,7 +55,7 @@ public class RemoveModuleCommand extends RemoveCommand {
      * @return result of removing the module
      * @throws IOException if there is an error removing the module
      */
-    private String removeModule(Access access, Storage storage) throws IOException {
+    private String removeModule(Access access, Storage storage) throws IOException, ExclusionFileException {
         assert access.isAdminLevel() : "Not admin level";
         try {
             ModuleList modules = access.getAdmin().getModules();
@@ -62,6 +63,7 @@ public class RemoveModuleCommand extends RemoveCommand {
             Module module = allModules.get(removeIndex);
             File directory = new File(storage.getFilePath() + "/" + module.toString());
             logger.info("Deleting module: " + module.toString());
+            storage.removeModuleFromExclusionFile(module.getModuleName());
             boolean isRemoved = storage.deleteDirectory(directory);
             if (!isRemoved) {
                 throw new IOException("There was a problem deleting module in directory.");

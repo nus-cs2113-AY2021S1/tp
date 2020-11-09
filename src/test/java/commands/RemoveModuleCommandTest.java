@@ -1,6 +1,7 @@
 package commands;
 
 import access.Access;
+import exception.ExclusionFileException;
 import manager.admin.Admin;
 import manager.module.Module;
 import org.junit.jupiter.api.AfterEach;
@@ -21,6 +22,7 @@ import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 import static common.Messages.MODULE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author neojiaern
 public class RemoveModuleCommandTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
@@ -61,7 +63,7 @@ public class RemoveModuleCommandTest {
     }
 
     @Test
-    public void execute_invalidIndex_expectException() throws IOException {
+    public void execute_invalidIndex_expectException() throws IOException, ExclusionFileException {
         RemoveModuleCommand command = new RemoveModuleCommand(1);
         command.execute(ui, access, storage);
         String expectedResult = String.format(MESSAGE_INVALID_INDEX_RANGE, MODULE).trim();
@@ -69,7 +71,7 @@ public class RemoveModuleCommandTest {
     }
 
     @Test
-    public void execute_validIndex_expectSuccess() throws IOException {
+    public void execute_validIndex_expectSuccess() throws IOException, ExclusionFileException {
         RemoveModuleCommand command = new RemoveModuleCommand(0);
         command.execute(ui, access, storage);
         String expectedResult = String.format(MESSAGE_SUCCESS, MODULE) + "CS2113T" + "\n"

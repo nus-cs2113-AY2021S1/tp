@@ -6,18 +6,18 @@ skinparam classBackgroundColor LOGIC_COLOR
 
 package Logic {
 
-package Parser {
+package parser {
 Class Parser
 Class XYZCommandParser
 Class ParserUtil
 }
 
-package Command {
+package commands {
 Class XYZCommand
 Class "{abstract}\nCommand" as Command
 }
 
-package Scheduler {
+package scheduler {
 Class Scheduler
 }
 }

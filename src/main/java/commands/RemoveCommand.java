@@ -1,6 +1,7 @@
 package commands;
 
 import access.Access;
+import exception.ExclusionFileException;
 import storage.Storage;
 import ui.Ui;
 
@@ -26,7 +27,7 @@ public abstract class RemoveCommand extends Command {
     protected static final String MESSAGE_COUNT = "Now you have %1$d %2$s(s) in the list.";
 
     @Override
-    public abstract void execute(Ui ui, Access access, Storage storage) throws IOException;
+    public abstract void execute(Ui ui, Access access, Storage storage) throws IOException, ExclusionFileException;
 
     /**
      * Constructs the result of the command execution.
