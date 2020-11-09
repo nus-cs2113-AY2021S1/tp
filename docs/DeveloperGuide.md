@@ -1215,8 +1215,8 @@ If you wish to add new checks, simply add the check file with a filename `check-
 3.  Enter the command `java -jar AniChan.jar` to launch **AniChan**.
 4.  Program will prompt for `Name` and `Gender` of user, thereafter **AniChan** will be ready for use.
 
-> :bulb: AniChan's Input Prompt: 
-> <br/> <br/> ![AniChan's Input Prompt](images/AniChan-Input-Prompt.png) <br/> *Figure 36: AniChan's Input Prompt*
+> :bulb: **AniChan**'s Input Prompt: 
+> <br/> <br/> ![AniChan's Input Prompt](images/AniChan-Input-Prompt.png) <br/> *Figure 36: **AniChan**'s Input Prompt*
 
 #### Shutdown
 
