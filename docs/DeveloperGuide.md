@@ -206,11 +206,13 @@ word removed. This is done using the `split` method of the `String` class, then 
 1. The method then invokes the `removeArgumentsFromCommand` method to parse and remove optional arguments from the full
 command. This is done using regular expression parsing which is detailed in the next section. The results are returned
 to the `parse` method and stored in `description`.
-1. The method then invokes the `getArgumentsFromRegex` method to parse the optional arguments from the full command.
+1. The method then invokes the `getArgumentsFromRegex` method when the `rootCommand` is not `"find"` to parse the optional arguments from the full command.
 The results are stored in a `HashMap<String, String>`, which is a `HashMap` of key-value pairs, similar to the form of the
 optional argument (`<key>/<value>`). The results are returned to the `parse` method and stored as `argumentsMap`.
 1. The method then checks the `rootCommand` and decides which `Command` to return, which calls `CommandCreator`
 methods with the parsed `argumentsMap`, `description`, and `commandString`.
+1. For certain commands, `checkAllowedArguments` method is called to ensure that the user did not pass in invalid arguments for that given command, and throws an error if there are invalid arguments.
+1. For single-word commands like `bye`, `checkFullCommand` method is called to ensure that the full command corresponds to the command word, and rejects commands like `bye 3`.
 1. The results of the `CommandCreator` methods are returned as a `Command` back to the invoker of the `parse` method.
 
 #### Regular expression parsing
