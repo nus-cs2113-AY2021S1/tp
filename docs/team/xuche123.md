@@ -21,11 +21,11 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-   * Added documentation for the features `edit` and `sort` [\#72]()
-   * Added sections on Introduction, quick start and command summary [\#78](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/78/files)
+    * Added documentation for the features `edit` and `sort` [\#72]()
+    * Added sections on Introduction, quick start and command summary [\#78](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/78/files)
   * Developer Guide:
-   * Added implementation details and sequence diagrams of the `edit` and `sort` feature. [\#167](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/167)
-   * Added sections on Introduction, Architecture, Documentation and Appendix [\#74](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/74), [\#171](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/171)
+    * Added implementation details and sequence diagrams of the `edit` and `sort` feature. [\#167](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/167)
+    * Added sections on Introduction, Architecture, Documentation and Appendix [\#74](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/74), [\#171](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/171)
 
 * **Community**:
   * Revied developer guide for team [Study It](https://github.com/nus-cs2113-AY2021S1/tp/pulls?q=is%3Aopen+is%3Apr+CS2113T-T12-1+).
