@@ -339,35 +339,35 @@ Given below is an example usage scenario and how the add time command behaves at
 >updated.
 >
 
-1. The user launches the application and does all the required steps to add a module with module code `CS2113T`
+1. The user launches the application and does all required steps to add a module with module code `CS2113T`
 to a list of modules. This is done by inputting the command `addmod CS2113T`.
 
-1. The user now types in a command: `addtime CS2113T 2 4`. This calls the add time command from `Parser`.
+1. The user now types in a command: `addtime CS2113T 2 4`. This calls the addtime command from `Parser`.
 `Parser` then calls the `addTime()` method in `ModuleList` and passes `CS2113T`,`2` and `4` as parameters into the
 method. 
 
 1. Within the `addTime()` function, it will first check if the module code is valid by calling
-`checkIfModuleValid()` function. If the module code is valid, `checkIfModuleValid()` function will return true.
+`checkIfModuleValid()` function. If the module code is valid, the `checkIfModuleValid()` function will return true.
 
-1. Within the `addTime()` function, it will then check if the module exists in the module list storage by calling
+1. Within the `addTime()` function, it will check if the module exists in the module list storage by calling
 `checkIfModuleExist()` function. If the module does exist, the `checkIfModuleExist()` function will return true.
 
-1. Within the `addTime()` function, it will then check if the time input is valid by calling
+1. Within the `addTime()` function, it will check if the time input is valid by calling
 `checkIfTimeValid()` function. If the time input is valid, the `checkIfTimeValid()` function will return true.
 
-1. Within the `addTime()` function, it will then check if the week input is valid by calling
+1. Within the `addTime()` function, it will check if the week input is valid by calling
 `checkIfWeekValid()` function. If the week input is valid, the `checkIfWeekValid()` function will return true.
 
-1. Within the `addTime()` function, it will then check if the hours the user wishes to add will cause the total time
+1. Within the `addTime()` function, it will check if the hours the user wishes to add will cause the total time
 to exceed 99 hours by 
 calling the `doesTimeExceed99()` function. If the time does exceed 99, the `doesTimeExceed99()`
 function will return true.
 
-1. A time of `2` hours in academic week `4` will now be added to the actual workload of the `CS2113T` module. 
+1. A time of `2` hours in academic week `4` is added to the actual workload of the `CS2113T` module. 
 
-1. The system will print the string `2 hours have been added to CS2113T`
+1. The system will print the output string `2 hours have been added to CS2113T`
 
-1. The actual workload is updated in storage.
+1. The actual workload gets updated in storage.
 
 The following sequence diagram illustrates what happens when a user executes `addTime CS2113T 2 4`.
 
@@ -376,12 +376,12 @@ The following sequence diagram illustrates what happens when a user executes `ad
 
 #### Design Considerations
 
-* **Alternative 1 (current choice)**: adding time with academic weeks associated
-    * Pros: Easy to manage for user as the user only needs to focus on the current academic week to track his workload
-    * Cons: User might prefer to manage his time spent in totality
-* **Alternative 2**: adding time in totality 
-    * Pros: Able to cumulatively add time and manage workload based on overall total time spent.
-    * Cons: May not be useful to know total time spent as workload may be better managed weekly.
+* **Alternative 1 (current choice)**: adding time with academic weeks associated in input
+    * Pros: Easier to manage for user as user only needs to focus on the current academic week to track his workload
+    * Cons: The user might prefer to manage his time spent in totality
+* **Alternative 2**: adding time in totality (without indication of weeks)
+    * Pros: Able to cumulatively add time and manage workload based on the overall total time spent.
+    * Cons: May not be very useful to know total time spent as workload may be better managed weekly.
 
 
 ### 4.4 Minus Time <a name="4.4"></a>
@@ -410,41 +410,41 @@ Given below is an example usage scenario and how the minus time command behaves 
 >
 
 1. The user launches the application and does all the required steps to add a module with module code `CS2113T`
-to a list of modules. This is done by inputting the command `addmod CS2113T`.
+to a list of modules. This is done by input of the command `addmod CS2113T`.
 
 1. The user then does all the required steps to add `2` hours of time spent in academic week `4` on `CS2113T`. This
-is done by inputting the command `addtime CS2113T 2 4`.
+is done by input of the command `addtime CS2113T 2 4`.
 
-1. The user now types in a command: `minustime CS2113T 2 4`. This calls the minus time command from `Parser`.
+1. The user now types in a command: `minustime CS2113T 2 4`. This calls the minustime command from `Parser`.
 `Parser` then calls the `minusTime()` method in `ModuleList` and passes `CS2113T`,`2` and `4` as parameters into the
 method.
 
 1. Within the `minusTime()` function, it will first check if the module code is valid by calling
 `checkIfModuleValid()` function. If the module code is valid, `checkIfModuleValid()` function will return true.
 
-1. Within the `minusTime()` function, it will then check if the module exists in the module list storage by calling
+1. Within the `minusTime()` function, it will check if the module exists in the module list storage by calling
 `checkIfModuleExist()` function. If the module does exist, the `checkIfModuleExist()` function will return true.
 
-1. Within the `minusTime()` function, it will then check if the time input is valid by calling
+1. Within the `minusTime()` function, it will also check if the time input is valid by calling
 `checkIfTimeValid()` function. If the time input is valid, the `checkIfTimeValid()` function will return true.
 
-1. Within the `minusTime()` function, it will then check if the week input is valid by calling
+1. Within the `minusTime()` function, it will subsequently check if the week input is valid by calling
 `checkIfWeekValid()` function. If the week input is valid, the `checkIfWeekValid()` function will return true.
 
 1. Within the `minusTime()` function, it will then check if there is an existing actual workload for this module by
 calling the `doesActualTimeExist()` function. If the module has an existing workload, the `doesActualTimeExist()`
 function will return true.
 
-1. Within the `minusTime()` function, it will then check if the hours the user wish to remove is more than the
+1. Within the `minusTime()` function, it will lastly check if the hours the user wish to remove is more than the
 existing hours by
 calling the `doesHoursExceedTotal()` function. If the module has an existing workload, the `doesHoursExceedTotal()`
 function will return true.
 
-1. A time of `2` hours in academic week `4` will now be removed from the actual workload of the `CS2113T` module. 
+1. A time of `2` hours in academic week `4` will be removed from the actual workload of the `CS2113T` module. 
 
-1. The system will print the string `2 hours have been removed from CS2113T`
+1. The system will print the output string `2 hours have been removed from CS2113T`
 
-1. The actual workload is updated in storage.
+1. The actual workload gets updated in storage.
 
 The following sequence diagram illustrates what happens when a user executes `minusTime CS2113T 2 4`.
 
@@ -453,12 +453,12 @@ The following sequence diagram illustrates what happens when a user executes `mi
 
 #### Design Considerations
 
-* **Alternative 1 (current choice)**: removing time with academic weeks associated
-    * Pros: Easy to manage for user as the user only needs to focus on the current academic week to track his workload
-    * Cons: User might prefer to manage his time spent in totality
-* **Alternative 2**: minus time in totality 
-    * Pros: Able to cumulatively remove time and manage workload based on overall total time spent.
-    * Cons: May not be useful to know total time spent as workload may be better managed weekly.
+* **Alternative 1 (current choice)**: removing time with academic weeks associated in input
+    * Pros: Easier to manage for user as the user only needs to focus on the current academic week to track workload
+    * Cons: User might prefer to manage time spent in totality
+* **Alternative 2**: minus time in totality (without indication of weeks)
+    * Pros: Able to cumulatively remove time and manage workload based on overall total time spent in all weeks.
+    * Cons: May not be very useful to know total time spent as workload may be better managed weekly.
     
 ### 4.5 Edit Time <a name="4.5"></a>
 The edit time feature edits the actual workload for a specific module as indicated by the user. 
@@ -479,40 +479,41 @@ Given below is an example usage scenario and how the edit time command behaves a
 >
  
 1. The user launches the application and does all the required steps to add a module with module code `CS2113T`
-to a list of modules. This is done by inputting the command `addmod CS2113T`.
+to a list of modules. This is done by input of the command `addmod CS2113T`.
  
-1. The user now types in a command: `edittime CS2113T 2 4`. This calls the edit time command from `Parser`.
+1. The user now types in a command: `edittime CS2113T 2 4`. This calls the edittime command from `Parser`.
 `Parser` then calls the `editTime()` method in `ModuleList` and passes `CS2113T`,`2` and `4` as parameters into the
 method. 
  
 1. Within the `editTime()` function, it will first check if the module code is valid by calling
 `checkIfModuleValid()` function. If the module code is valid, `checkIfModuleValid()` function will return true.
  
-1. Within the `editTime()` function, it will then check if the module exists in the module list storage by calling
-`checkIfModuleExist()` function. If the module does exist, the `checkIfModuleExist()` function will return true.
+1. Within the `editTime()` function, it will subsequently check if the module exists in the module list storage by 
+calling `checkIfModuleExist()` function. 
+If the module does exist, the `checkIfModuleExist()` function will return true.
 
-1. Within the `editTime()` function, it will then check if the time input is valid by calling
+1. Within the `editTime()` function, it will next check if the time input is valid by calling
 `checkIfTimeValid()` function. If the time input is valid, the `checkIfTimeValid()` function will return true.
 
-1. Within the `editTime()` function, it will then check if the week input is valid by calling
+1. Within the `editTime()` function, it will lastly check if the week input is valid by calling
 `checkIfWeekValid()` function. If the week input is valid, the `checkIfWeekValid()` function will return true.
  
-1. A time of `2` hours in academic week `4` will now be the new actual workload of the `CS2113T` module. 
+1. A time of `2` hours in academic week `4` will be the new actual workload of the `CS2113T` module. 
  
-1. The system will print the string 
+1. The system will print the output string 
  `2 hours have been added to CS2113T`
  `2 hours have been spent on this module in week 4`
  
-1. The actual workload is updated in storage.
+1. The actual workload gets updated in storage.
  
 #### Design Considerations
 
-* **Alternative 1 (current choice)**: time input is rounded off to 1 decimal place.
-    * Pros: Easy to store and easier for user to view. Also provides conistency throughout the app.
-    * Cons: User might prefer to manage his time spent super precisely with high number of decimal places
-* **Alternative 2**: time input is left unedited.
-    * Pros: User input is what exactly what he or she inputted.
-    * Cons: May not be easy to view the time spent when it has too many decimal places.
+* **Alternative 1 (current choice)**: time input rounded off to 1 decimal place.
+    * Pros: Easy to store and easier for user to view. Also provides consistency throughout the app.
+    * Cons: User might prefer to manage his time spent more precisely with high number of decimal places
+* **Alternative 2**: time input left unedited.
+    * Pros: App takes in exactly what user inputted.
+    * Cons: May not be easy to view the time when the actual time spent has too many decimal places.
 
 ### 4.6 View modules <a name="4.6"></a>
 
