@@ -12,7 +12,7 @@ part, I have created a save and load manager that maintain copies of past saves 
 
 ##### Version one
 - Implemented saving and loading of tracker classes upon entry and exit from the program.
-- Main function implementation as well as main menu.
+- Main function implementation as well as main menu implementation.
 ##### Version two
 - Implemented save manager that allows adding, loading and deleting of multiple saves.
 - Made sure saving is done the moment a change is made instead of only during program exit.
