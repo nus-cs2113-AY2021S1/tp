@@ -26,6 +26,9 @@ public class CommandFinanceAdd extends Command {
         }
         String[] contents = input.trim().split(" ");
         int length = contents.length;
+        if (length <= 1) {
+            return "Syntax: finance addLog ITEM ITEM_VALUE";
+        }
         String item = "";
         for (int i = 0; i < length - 1; i++) {
             if (i == length - 2) {
@@ -58,7 +61,7 @@ public class CommandFinanceAdd extends Command {
 
     @Override
     public String help() {
-        return "Syntax: hr addLog title value";
+        return "Syntax: finance addLog ITEM ITEM_VALUE";
     }
 
     public int validate(UserInput ui) {

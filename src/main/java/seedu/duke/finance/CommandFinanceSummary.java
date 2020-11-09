@@ -17,7 +17,7 @@ public class CommandFinanceSummary extends Command {
 
     @Override
     public String help() {
-        return "The format of input to show finance list is: finance summary";
+        return "Syntax: finance summary";
     }
 
     public int validate(UserInput ui) {
