@@ -44,7 +44,7 @@ DietBook is a Command Line Interface (CLI) desktop application designed mainly _
 * Helped in managing `v1.0` release
 * Managed release [DietBook v2.0](https://github.com/AY2021S1-CS2113-T14-4/tp/releases/tag/v2.0.2) on GitHub
 * Authored more than 45 [Issues](https://github.com/AY2021S1-CS2113-T14-4/tp/issues/created_by/HengFuYuen) in the team repo issue tracker
-* Helped in bug catching/fixing (examples: [#40](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/40) [#104](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/104) [#61](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/61) [#105](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/105)) [#199](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/199/files)
+* Helped in bug catching/fixing (examples: [#40](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/40) [#104](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/104) [#61](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/61) [#105](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/105) [#199](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/199/files))
 * Configure the build.gradle file [#46](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/46/files) [#68](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/68)
 * Helped in setting up the tP Organisation and Team Repo - Set up a `developers` team in the organisation, enabled the issue tracker, updated the labels in issue tracker and created the milestones used for managing the project
 * Refer to [Documentation](#documentation) section for contributions to user guide, developer guide, etc that are not specific to a feature
@@ -52,7 +52,7 @@ DietBook is a Command Line Interface (CLI) desktop application designed mainly _
 #### Review/mentoring contributions
 
 * Reviewed more than 30 [PRs](https://github.com/AY2021S1-CS2113-T14-4/tp/pulls?q=is%3Apr+is%3Aopen+reviewed-by%3A%40me+) most of which contains only trivial comments
-* Reviewed about 5-10 PRs with non-trivial review comments (examples: [#14](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/14) [#40](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/40) [#71](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/71) [#166](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/166) [#199](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/191))
+* Reviewed about 5-10 PRs with non-trivial review comments (examples: [#14](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/14) [#40](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/40) [#71](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/71) [#166](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/166) [#191](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/191))
 
 #### Contributions beyond the project team
 
