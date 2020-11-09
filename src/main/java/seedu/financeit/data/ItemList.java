@@ -43,6 +43,7 @@ public abstract class ItemList {
         paramTypeFirst = paramType;
         this.indexToModify = index;
     }
+
     //@@author Artemis-Hunt
     /**
      * Add the given item and sort the list according to the given comparator.
