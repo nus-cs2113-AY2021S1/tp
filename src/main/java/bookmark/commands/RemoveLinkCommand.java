@@ -21,6 +21,18 @@ public class RemoveLinkCommand extends BookmarkCommand {
         assert categoryNumber >= 0 : "Missing category number";
     }
 
+    /**
+     * Remove existing BookmarkCategory from ArrayList after evaluating bookmark category number.
+     *
+     * @param ui prints output message
+     * @param categories remove category to array list
+     * @param storage remove category from file
+     * @throws EmptyBookmarkException if category number is empty
+     * @throws NumberFormatException if number is not the input
+     * @throws IndexOutOfBoundsException if number exceed large number
+     * @throws InvalidBookmarkException if bookmark category number is invalid (0, more than category size).
+     */
+
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories, BookmarkStorage storage) {
         try {
             if (categoryNumber == 0) {
