@@ -35,7 +35,7 @@ public class Messages {
     public static final String MESSAGE_MANUAL_TROUBLESHOOT_PROMPT = "Otherwise, consider going through the "
             + "troubleshooting steps provided in our User Guide to fix the problem manually.";
     public static final String MESSAGE_FACTORY_RESET_INVALID_INPUT_PROMPT = "Please enter [y/n] only!";
-    public static final String MESSAGE_FACTORY_RESET_SUCCESSFUL = "Reset successful! Please relaunch Plan&Score.";
+    public static final String MESSAGE_FACTORY_RESET_SUCCESSFUL = "Reset successful!";
     public static final String MESSAGE_FACTORY_RESET_FAILED_OR_CANCELLED = "Reset failed/cancelled. "
             + "Please follow troubleshooting steps provided in our User Guide to reset Plan&Score.";
     public static final String MESSAGE_INCOMPLETE_LIST_PARAMETERS = "Please tell me what you want to be listed! "
