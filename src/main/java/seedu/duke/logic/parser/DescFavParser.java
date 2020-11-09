@@ -94,6 +94,9 @@ public class DescFavParser extends Parser {
      */
     private int checkIndex(String index) throws CustomException {
         try {
+            if(index.trim().isEmpty()) {
+                throw new CustomException(ExceptionType.EMPTY_INDEX);
+            }
             int rawIndex = Integer.parseInt(index.trim());
             return rawIndex;
         } catch (NumberFormatException error) {
