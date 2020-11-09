@@ -40,6 +40,8 @@ import exception.EmptyRepeatException;
 import exception.EmptyStudyTimeDateException;
 import exception.InvalidEditLocationException;
 import exception.InvalidEditTypeException;
+import exception.InvalidEventIndexException;
+import exception.InvalidLocationException;
 import exception.InvalidNumWeekException;
 import exception.InvalidSortCriteriaException;
 import exception.NoEndTimeClassException;
@@ -150,6 +152,22 @@ public abstract class Parser {
         }
 
         //this block deals with locate command
+        if (words[0].equalsIgnoreCase(LOCATE_EVENT)) {
+            if (words.length == 1) {
+                throw new EmptyLocationException();
+            } else if (locations.checkIfInteger(words[1])) {
+                int eventNum = Integer.parseInt(words[1]);
+                if (eventNum >= size || eventNum < 0) {
+                    throw new InvalidEventIndexException();
+                } else {
+                    return new LocateCommand(words[1]);
+                }
+            } else if (!locations.checkValidLocation(words[1])) {
+                throw new InvalidLocationException();
+            } else {
+                return new LocateCommand(words[1]);
+            }
+        }
         if (words[0].equalsIgnoreCase(LOCATE_EVENT) && words.length > 1) {
             return new LocateCommand(words[1]);
         } else if (words[0].equalsIgnoreCase(LOCATE_EVENT) && words.length == 1) {
