@@ -18,12 +18,12 @@ enhancements.
 Refer to the guide [Setting up and getting started](https://github.com/AY2021S1-CS2113T-F14-3/tp/blob/master/README.md#duke-project-template).
 
 <!-- @@author wamikamalik -->
-## 2. Design
+## 2. Design - Wamika
 
 This section describes the design and implementation of the product. It has been divided into two sections: Architecture 
 and Implementation. 
 
-### 2.1. Architecture - Wamika
+### 2.1. Architecture
 
 The architecture diagram given in the figure below explains the high-level design of the App. 
 
