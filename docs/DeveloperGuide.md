@@ -747,7 +747,7 @@ Below are the steps required for manual testing of termiNus
 ### Adding items
 1. Adding a task
     - Test case: `add task tP submission c/CS2113 p/1 date/09-11-2020` <br>
-      Expected: task `tP submission` is added to the task list, with priority of `1`, categroy of `CS2113`, and 
+      Expected: task `tP submission` is added to the task list, with priority of `1`, category of `CS2113`, and 
       a date of `09 Nov 2020`.
       
 2. Adding a recurring task
@@ -872,7 +872,7 @@ Prerequisite: list the complete task list using `list` command. Multiple tasks i
 Prerequisite: list the complete task list using `list` command. Multiple tasks in the list.
 
 - Test case: `date 2 date/02-01-2021` <br>
-  Expected: the date of the second task in the task list iis set as `02 Jan 2021`.
+  Expected: the date of the second task in the task list is set as `02 Jan 2021`.
   
 ### Printing the task calendar
 - Test case: `calendar d/3` <br>
