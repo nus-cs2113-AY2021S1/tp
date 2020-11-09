@@ -719,7 +719,7 @@ Format: save
 
   
 **A**: Some users might encounter a start-up screen that looks like this. <br></br>
-![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/bugphoto.png)
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/buglogo.png)
 
 This is only a visual bug. Other than the weird looking logo, Zoomaster will work as per normal. No
 need to worry!
