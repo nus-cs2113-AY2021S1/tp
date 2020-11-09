@@ -7,10 +7,10 @@
 ### Summary of Contributions
 
 *   **New Feature:** Added the ability to estimate the time needed to translate a script.
-    *   What it does: Allows the user to figure out the time needed to translate a script based on the amount of words they can translate in an hour (defined as words per hour), or by using the average translator's speed (3 different words per hour values).
+    *   What it does: Allows the user to figure out the time needed to translate a script based on the amount of words they can translate in an hour (words per hour), or by using the average translator's speed (3 different words per hour values) to generate 3 timings.
     *   Justification: Being able to estimate the time needed more accurately can help the user in better managing and planning their time.
-    *   Highlights: A file name could contain special characters, whitespaces, and even file extensions, and that makes the validation process highly complicated, hence, this feature would need to perform extensive checks to ensure a single valid file is provided. Moreover, there is an optional parameter that needs to be validated, and it should not be missed or be accidentally validated as part of the file name.
-    
+    *   Highlights: The challenge in this implementation is in ensuring a single valid file is provided, since the file name is a user input, it could contain special characters, whitespaces, file extensions, and even invalid file name characters. Hence, it needs to consider all these factors to ensure a valid file is provided for estimation. Moreover, it also needs to ensure the optional parameter is not accidentally validated as part of the file name.
+                
 *   **New Feature:** Added the ability to create, list, select, and delete watchlist.
     *   What it does: Allows the user to create, list, select, and delete watchlist.
     *   Justification: This feature provides the user with a way to keep track of animes and group them based on their own criteria, and this helps them to be more organized.
@@ -24,8 +24,8 @@
 *   **New Feature:** Added the ability to save and load user data automatically.
     *   What it does: Helps the user to automatically save their profile details into the file `user.txt`, and load these data automatically when the application is launched.
     *   Justification: This allows the application to greet the user so they can feel welcomed.
-    *   Highlights: During the loading of user data, the data would be validated to ensure it is not corrupted (e.g. invalid name or gender), and it not loaded if it is corrupted. In addition, the failure to load the user data does not prevent existing watchlist and bookmark data from being loaded.
-
+    *   Highlights: The user data that is loaded needs to be validated to ensure it is not corrupted (e.g. invalid name or gender), and it should not be loaded if it is corrupted. Also, it needs to ensure that the failure to load user data should not prevent the watchlist and bookmark data from being loaded.
+    
 *   **Code Contributed:** [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=ongdezhi&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=OngDeZhi&tabRepo=AY2021S1-CS2113T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other).
 
 *   **Documentation:**
@@ -44,5 +44,5 @@
     *   Contributed to User Guide formatting: [#199](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/199), [#226](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/226).
 
 *   **Beyond Project Team Tasks**
-    *   Reported bugs and offered suggestions for other team in PE-D.
-    *   Reviewed other team's User Guide and Developer Guide.
+    *   Reported bugs and offered suggestions for a team in PE-D.
+    *   Reviewed other teams' User Guide and Developer Guide.
