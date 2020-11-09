@@ -40,7 +40,7 @@ public class Command {
             Ui.printHighlight(bookmarkRun, academicRun);
         } else if (StudyIt.getCurrentMode() != Mode.MENU) {
             // Run the mode specific commands if the input is none of the general command
-            handleNonGeneralCommand(command, commandType, bookmarkRun, flashcardRun, timeTableRun,
+            handleNonGeneralCommand(command, bookmarkRun, flashcardRun, timeTableRun,
                     academicRun);
         } else {
             assert commandType == CommandType.UNIDENTIFIABLE : "This command should be unidentifiable";
@@ -52,14 +52,12 @@ public class Command {
      * Handles the non-general command such as commands under different modes.
      *
      * @param command raw string of the user input
-     * @param commandType identifies the command type
      * @param bookmarkRun Main component for bookmark mode
      * @param flashcardRun Main component for flashcard mode
      * @param timeTableRun Main component for timetable mode
      * @param academicRun Main component for academic mode
      */
-    public static void handleNonGeneralCommand(String command, CommandType commandType,
-                                               BookmarkRun bookmarkRun,
+    public static void handleNonGeneralCommand(String command, BookmarkRun bookmarkRun,
                                                FlashcardRun flashcardRun, TimeTableRun timeTableRun,
                                                AcademicRun academicRun) {
         Mode currentMode = StudyIt.getCurrentMode();

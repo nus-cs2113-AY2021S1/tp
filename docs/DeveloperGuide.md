@@ -169,7 +169,7 @@ As shown in figure 1, `BookmarkRun` is
 Given below, Figure 2, is the sequence diagram of how the classes interact with each 
 other when bookmark mode is accessed from the main function.
 
-![Bookmark Sequence Diagram](Images/BookmarkDG/Sequence_Bookmark.png)
+![Bookmark Sequence Diagram](Images/BookmarkDG/Sequence_Diagram.png)
 
 The bookmark component has two modes: the main bookmark mode and the category mode. 
 As shown in Figure 2, when `BookmarkRun` is called, 
