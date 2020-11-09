@@ -2,6 +2,7 @@ package commands;
 
 import access.Access;
 import common.KajiLog;
+import exception.ExclusionFileException;
 import manager.chapter.Chapter;
 import manager.module.ChapterList;
 import storage.Storage;
@@ -41,7 +42,7 @@ public class RemoveChapterCommand extends RemoveCommand {
      * @throws IOException if there is error in loading or writing data to storage files
      */
     @Override
-    public void execute(Ui ui, Access access, Storage storage) throws IOException {
+    public void execute(Ui ui, Access access, Storage storage) throws IOException, ExclusionFileException {
         String result = removeChapter(access, storage);
         ui.showToUser(result);
     }
@@ -54,7 +55,7 @@ public class RemoveChapterCommand extends RemoveCommand {
      * @return result of removing the chapter
      * @throws IOException if there is an error removing the chapter
      */
-    private String removeChapter(Access access, Storage storage) throws IOException {
+    private String removeChapter(Access access, Storage storage) throws IOException, ExclusionFileException {
         assert access.isModuleLevel() : "Not module level";
         try {
             ChapterList chapters = access.getModule().getChapters();
@@ -63,6 +64,7 @@ public class RemoveChapterCommand extends RemoveCommand {
             File directory = new File(storage.getFilePath() + "/" + access.getModule()
                     + "/" + chapter.toString() + ".txt");
             logger.info("Deleting chapter: " + chapter.toString());
+            storage.removeChapterFromExclusionFile(access.getModule().getModuleName(), chapter.toString());
             boolean isRemoved = storage.deleteDirectory(directory);
             boolean isRemovedFromDue = storage.removeChapterFromDue(
                     access.getModule().toString(), chapter.toString());
