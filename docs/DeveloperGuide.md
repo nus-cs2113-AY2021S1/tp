@@ -49,8 +49,8 @@ Wan Shi Jie Brendan<br>
     * [4.16 User Info](#416-user-info) <br>
 * [5. Documentation](#5-documentation) <br>
 * [6. Testing](#6-testing)<br>
-* [Appendix A. Product scope](#appendix-a-product-scopea-idproduct_scopea)<br>
-* [Appendix B.User stories](#appendix-b-user-storiesa-idstoriesa)<br>
+* [Appendix A. Product scope](#appendix-a-product-scope)<br>
+* [Appendix B.User stories](#appendix-b-user-stories)<br>
 * [Appendix C. Non-functional requirements](#appendix-c-non-functional-requirements)<br>
 * [Appendix D. Instructions for manual testing](#appendix-d-instructions-for-manual-testing)
 
@@ -406,7 +406,7 @@ JUnit is used to write tests for the project. Learn more about JUnit [here](http
 If you are using IntelliJ, you can run all test by right-clicking on the `test/java` folder and selecting `Run 'Tests'` or press `CRTL` + `SHIFT` + `F10`
 on your keyboard. Alternatively, you can open a console and run the command `gradelw clean test` (Mac/linus: `.gradlew clean test`).  
 
-## Appendix A: Product scope<a id="product_scope"></a>
+## Appendix A: Product scope
   
 ### User profile
   
@@ -418,13 +418,13 @@ __Target user profile:__
 * prefers using Command Line Interface (CLI) apps
 * prefers typing instead of mouse interactions
 
-### Value proposition<a id="value_proposition"></a>
+### Value proposition
   
 NUSchedule aims to assist the target audience with:  
 * managing all their events in one application (personal or work)
 * easily finding out about the location of their events 
 
-## Appendix B: User stories<a id="stories"></a>
+## Appendix B: User stories
   
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
