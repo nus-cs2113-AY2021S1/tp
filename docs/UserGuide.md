@@ -483,7 +483,9 @@ Let's say you want to reschedule the due date to `2020-12-20` for the chapter `C
 ### 3.3. Chapter Level
 This section introduces the syntax and usages of the commands for the features that are available at the **Chapter Level**.<br>
 Ensure that you are at the **Chapter Level** before trying the commands in the next few sections:<br>
-<img src="UG_Images/ChapterLevel.png" width="600" alt="Chapter Level"/>
+<p align="center">
+  <img src="UG_Images/ChapterLevel.png" width="600" alt="Chapter Level"/>
+</p>
 
 #### 3.3.1. Adding a flashcard: `add`
 (by Jane)
