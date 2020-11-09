@@ -382,7 +382,7 @@ Given below are the instructions to test the app manually.
 
 1. Initial Launch
    1. Verify that you have Java 11 or above installed in your computer by running `java --version`.
-   2. Download the latest `trippie.jar` from [here](https://github.com/AY2021S1-CS2113T-W11-2/tp/releases/tag/v2.0).
+   2. Download the latest `trippie.jar` from [here](https://github.com/AY2021S1-CS2113T-W11-2/tp/releases/tag/v2.1).
    3. Copy the file to a folder where you want to run it from.
    4. Using a command line tool, navigate to the path of `trippie.jar`, by entering `cd path/to/file`
        * If your operating system is Windows, use Command Prompt.

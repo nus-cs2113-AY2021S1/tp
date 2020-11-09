@@ -1,10 +1,7 @@
 # Testing Guide
 
-<center>
-
 ![Trippie Logo](https://i.imgur.com/jSwGL7O.png)
 
-</center>
 <!-- @@author ShawnTanzc -->
 ## Table of Content
 * [1.0 Introduction](#10-Introduction)
