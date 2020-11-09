@@ -20,7 +20,7 @@ behind the way we implemented different features and its logic flow. With this, 
 develop Zoomaster without confusion or introduce unwanted bugs to the App.
 
 ### Scope
-First, the guide will help you set up Zoomaster in its current iteration so that you can familiarise with it. <br/> 
+First, the guide will help you set up Zoomaster in its current iteration so that you can familiarise yourself with it. <br/> 
 Secondly, the guide will explain the design of Zoomaster and its various components. <br/>
 Next, the guide will showcase how we implement various features into Zoomaster with 
 step by step explanations and diagram. <br/>
@@ -63,7 +63,7 @@ major sections but still larger than normal paragraphs to distinguish them.
 
 <a name="getting-started"></a>
 ## **Getting Started**
-First, download the source cod and jar file of Zoomaster [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/releases).
+First, download the source code and jar file of Zoomaster [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/releases).
 
 Next, follow the startup procedures as stated in the 
 [User Guide](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/UserGuide.md) and familiarize yourself with 
@@ -104,7 +104,7 @@ The diagram below shows a class-level diagram for Zoomaster. <br/></br>
 
 **API**:`Zoomaster.java`
 
-The Initialization component is responsive for setting up Zoomaster for it to be used by users. 
+The Initialization component is responsible for setting up Zoomaster for it to be used by users. 
 
 It consists of `Zoomaster`, `Ui`, `Storage`, `BookmarkList`, `Timetable` and `Module` classes.
 
@@ -128,7 +128,7 @@ allowing the app to output in colour. <br/>
 The UI also receives input from the User using a `Scanner` object. It returns the input as a String 
 to the main function. <br/>
 
-In addition, the UI contains the different exception and error messages which can be displayed. 
+In addition, the UI contains the different exceptions and error messages which can be displayed. 
 When a particular exception is thrown (eg. **UNKNOWN_INPUT**), the corresponding method is called in UI to 
 print out the error message (**printUnknownInputMessage()**). 
 
@@ -219,8 +219,8 @@ Its main role is:
 
 The Storage component is responsible for saving and retrieving Zoomaster data to and from an external text file.
 
-It uses `Gson` library to encode temporary data from Temp List into a HTML format. Then it writes the encoded data to 
-an external text file. On the other hand, it decodes the HTML format from the external text file and update the 
+It uses `Gson` library to encode temporary data from Temp List into an HTML format. Then it writes the encoded data to 
+an external text file. On the other hand, it decodes the HTML format from the external text file and updates the 
 Temp List of Zoomaster.
 
 The only class carrying out the component's function is the `Storage` class.
@@ -240,8 +240,8 @@ Its main role is:
 
 * Store Zoomaster data
 
-In addition, the filepath to the directory containing the jar file is obtained by the getJarFilePath() method in `Zoomaster`.
-The files are saved using this filepath, allowing them to be saved in the same directory as the jar file. This allows for more convenient running of Zoomaster, as the user does not have to switch to the same directory of the jar file when running the application.
+In addition, the file path to the directory containing the jar file is obtained by the getJarFilePath() method in `Zoomaster`.
+The files are saved using this file path, allowing them to be saved in the same directory as the jar file. This allows for more convenient running of Zoomaster, as the user does not have to switch to the same directory of the jar file when running the application.
 
 
 ## **Implementation**
@@ -255,8 +255,8 @@ expected outcomes of each feature and the design considerations.
 
 Zoomaster has three modes for users to interact in. First, bookmark mode has the list of bookmarks with links to online resources. 
 Secondly, timetable mode has a list of timetable slots. Lastly, planner mode which helps users plan their timetable. 
-To simplify input commands for users, all lists has the same keywords for adding, deleting, and showing items in the lists. 
-Hence, by having separating both list into different modes allows both lists to access the same keywords without causing conflicts when parsing commands.
+To simplify input commands for users, all lists have the same keywords for adding, deleting, and showing items in the lists. 
+Hence, separating both lists into different modes allows both lists to access the same keywords without causing conflicts when parsing commands.
 
 In this section, I will refer to *input command* and *input parameter*. <br></br>
 * *input command* refers to the string of characters the user has typed into the command line and entered into the program. Eg. "mode bookmark" is an *input command* <br></br>
@@ -290,7 +290,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 1. First, the program checks if the length of the input command is more than 5. Any input command of length less than 5 is
 an invalid mode command. This is because mode command requires an input parameter separated by a space hence "mode " or "mode1"
-are examples of invalid mode commands with length of less than 5. If this is so, it throws an invalid mode message to tell the
+are examples of invalid mode commands with a length of less than 5. If this is so, it throws an invalid mode message to tell the
 user the valid modes of Zoomaster. Else, it continues to the next step.
 
 2. Secondly, the program checks if the input parameter corresponds to a valid mode of Zoomaster.
@@ -318,7 +318,7 @@ user the valid modes of Zoomaster.
 <a name="show-timetable"></a>
 ### Show timetable feature (Tan Yu Shing)
 Users can see the timetable they have created in the App using the **show** command. 
-They can see complete timetable from monday to sunday, the timetable of a specified day of the week or the timetable today. 
+They can see the complete timetable from monday to sunday, the timetable of a specified day of the week or the timetable today. 
 The commands for these are **show**, **show {DAY}** eg. **show mon**, **show tue** and **show today**. <br></br>
 
 In this section, I will refer to *input command* and *input parameter*. <br></br>
@@ -328,14 +328,14 @@ Eg. "show today" is an *input command* <br></br>
 Eg. "show sun", "show" is the identifier string of the command and "sun" is the *input parameter*.
 
 #### Implementation
-This feature extends the command class. It is a simple retrieval algorithm which firstly gets data from the Timetable class. Then sorts it by timing and add additional indicators for the users. And finally, prints it our using the User Interface. </br> It uses SlotContainer class sortSlotsByTime method to help sort the list of lessons and it's module code by timing. </br>
+This feature extends the command class. It is a simple retrieval algorithm which firstly gets data from the Timetable class. Then sorts it by timing and add additional indicators for the users. And finally, prints it out using the User Interface. </br> It uses SlotContainer class sortSlotsByTime method to help sort the list of lessons and it's module code by timing. </br>
 Additionally, it implements the following operations:
-* getMessageSlotsInADay(List<Module> **modules**, List<Slot> **slots**, String **day**) - Retreives all the lesson **slots** and it's respective **module** code on the **day** specified. It then sorts the lessons by timing and returns it as a **message string**. </br> If valid, additional formatting such as current lesson indicator or current time indicator is added to the **message string**.
-* getMessageTimetable(List<Module> **modules**, List<Slot> **slots**) - Retreives all the lesson **slots** and it's respective **module** code for the whole week. It then sorts the lessons by timing and returns it as a **message string**.  </br> If valid, additional formatting such as current lesson indicator or current time indicator is added to the **message string**.
-* getMessageLessonAtTime(List<Module> **modules**, List<Slot> **slots**, String **dayInput**) - Decodes the mode the user wants the timetable to be printed out in using **dayInput**. </br> Then calls the appropriate methods such as getMessageSlotsInADay and getMessageTimetable to get the **message string** which is then returned to the execute function to be printed out by the User Interface. If the the timetable is empty or an invalid **dayInput** is given, an **exception** is thrown to tell users their mistake.
+* getMessageSlotsInADay(List<Module> **modules**, List<Slot> **slots**, String **day**) - Retrieves all the lesson **slots** and it's respective **module** code on the **day** specified. It then sorts the lessons by timing and returns it as a **message string**. </br> If valid, additional formatting such as current lesson indicator or current time indicator is added to the **message string**.
+* getMessageTimetable(List<Module> **modules**, List<Slot> **slots**) - Retrieves all the lesson **slots** and it's respective **module** code for the whole week. It then sorts the lessons by timing and returns it as a **message string**.  </br> If valid, additional formatting such as current lesson indicator or current time indicator is added to the **message string**.
+* getMessageLessonAtTime(List<Module> **modules**, List<Slot> **slots**, String **dayInput**) - Decodes the mode the user wants the timetable to be printed out in using **dayInput**. </br> Then calls the appropriate methods such as getMessageSlotsInADay and getMessageTimetable to get the **message string** which is then returned to the execute function to be printed out by the User Interface. If the timetable is empty or an invalid **dayInput** is given, an **exception** is thrown to tell users their mistake.
 * hasLessonNow(Slot **slot**) - Checks if a **slot** timing is overlapping with the current system time. Returns a **boolean** true or false based on the check.
-* getIndicatorMessage() - Returns a **String** containing a indicator with the current system time.
-* getHighlighBoxUpperMessage() - Returns a **String** containing a indicator with a message "lesson now".
+* getIndicatorMessage() - Returns a **String** containing an indicator with the current system time.
+* getHighlighBoxUpperMessage() - Returns a **String** containing an indicator with a message "lesson now".
 * getHighlighBoxLowerMessage() - Returns a **String** containing a indicator.
 
 Given below is a sequence diagram of how printing the timetable occurs. <br/></br>
@@ -350,7 +350,7 @@ Given below is a sequence diagram of how printing the timetable occurs. <br/></b
 
 1. When Zoomaster gets a command from the user to show the timetable, a new ShowTimetableCommand object is created.
 
-2. The ShowTimetableCommand decodes the input command to retrieve the way the user wishes to view the timetable in.
+2. The ShowTimetableCommand decodes the input command to retrieve the way the user wishes to view the timetable.
 
 3. If an invalid input day is entered by the user, the input day will be set as **null**.
 
@@ -365,13 +365,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 1. First, the program checks if the input command is just "show". This corresponds to the user requesting the full timetable.
 Hence, it sets **day** variable as "ALL" and moves on to the Execute step, step 6. Else it continues to decode the input command.
 
-2. Secondly, the program checks for spacing error in the command. Show command requires a spacing after "show" help decode the input command.
+2. Secondly, the program checks for spacing error in the command. Show command requires a space after "show" help decode the input command.
 Hence, if there is no space after "show", the program throws an Unknown Input ZoomasterException and shows the list of valid commands.
 
 3. Next, the program checks if the input parameter is "today". This corresponds to the user requesting the timetable on the day of the current system time.
 Hence, it sets **day** variable as the day of the current system time and moves on to the Execute step, step 6. Else it continues to further check the input command.
 
-4. Afterwards, the program checks if the input parameter corresponds to a valid day of the week in its three letter abbreviation.
+4. Afterwards, the program checks if the input parameter corresponds to a valid day of the week in its three-letter abbreviation.
 If so, it sets **day** variable as that of input parameter and moves on to the Execute step, step 6.
 
 5. Else, if the input parameter does not correspond to any of the valid inputs. The program sets **day** variable as "NULL".
@@ -396,7 +396,7 @@ If so, it sets **day** variable as that of input parameter and moves on to the E
 * **Alternative 3:** Using `show timetable` keyword and a valid `DAY(optional)` input.
     * Pros: Less complex code. An additional keyword allows program to easily recognise show timetable feature.
     * Cons: Less user-friendly. Users have to type an additional phrase to show their timetable. Experienced users
-    whom can memorise the command would not encounter the error message of Alternative 1, thus would find typing the
+    who can memorise the command would not encounter the error message of Alternative 1, thus would find typing the
     additional keyword troublesome.
 
 <!-- @@author -->
@@ -444,7 +444,7 @@ entered by the user already exists in the timetable. If it does not exist, then 
 
 3. The code will then check if the command is to add a module bookmark or a lesson slot, and do so accordingly.
 
-4. If the command is to add a lesson slot, then there will be check for a bookmark entry in the command. 
+4. If the command is to add a lesson slot, then there will be a check for a bookmark entry in the command. 
 If there is one, then the bookmark will be added to the lesson slot.
 
 5. Loop to step 3 if there are additional commands which have not been executed.
@@ -454,7 +454,7 @@ If there is one, then the bookmark will be added to the lesson slot.
 #### Design consideration:
 
 ##### Aspect: How to enable fast typing users to add modules, slots and related bookmarks faster
-* **Alternative 1 (Current choice):** allow one shot command to add slots and bookmarks to a module
+* **Alternative 1 (Current choice):** allow one-shot command to add slots and bookmarks to a module
     * Pros: Fast typers can input faster
     * Cons: Difficult to implement
 * **Alternative 2:** separate adding of modules, lesson slots and related bookmarks into different commands
@@ -543,7 +543,7 @@ loadModuleList() method.
 
 6. If the ArrayList value is not null (Connection was successful), it is saved locally using the saveModuleList() method.
 7. The ArrayList value is then returned to `Zoomaster`, which stores it as a static ArrayList in `Module`. This ArrayList is then used to validate modules.
-8. To be validated, the module to be added must exists in the ArrayList. However, if the ArrayList is null (Failed to Connect), the validation will always 
+8. To be validated, the module to be added must exist in the ArrayList. However, if the ArrayList is null (Failed to Connect), the validation will always 
 return true. This is to allow the application to still be usable, although without the module validation feature.
 
 #### Design consideration:
@@ -560,7 +560,7 @@ Since the application is primarily based on launching URLs, having an internet c
 application to function. Hence, the cons of the first alternative is not significant.
 
 ##### Aspect: How to increase usability among different users
-* **Alternative 1 (Current choice):** Module list is a saved as a editable txt file
+* **Alternative 1 (Current choice):** Module list is saved as a editable txt file
     * Pros: Allows for editing of module list to include non-NUS modules
     * Cons: App start up takes a longer time as module list has to be loaded .
 * **Alternative 2:** Store the module list within the jar file file itself.
@@ -572,7 +572,7 @@ Since the start up time for the app after loading the module list from online is
 
 <a name="extendedhelpcommand"></a>
 ### Extended HelpCommand feature (Zhan Hao)
-This feature allows user to query more about the different commands available in the different modes. This is to allow quick typist to 
+This feature allows the user to query more about the different commands available in the different modes. This is to allow quick typist to 
 have a fast way to reference the purpose and format of the commands without having to consult the User Guide.
 
 This command will be sensitive to the current mode of the application. For example, the command `help add` would print different text in 
@@ -599,7 +599,7 @@ Below is a sequence diagram of the extended HelpCommand.
 
 
 1. From Figure 2.20, when Zoomaster calls parse() on user input and Parser parses it as a HelpCommand, HelpCommand will check if the details 
-are not empty, then validate if the details match a valid command based on the current mode (not shown in diagram). If the details are not valid, 
+are not empty, then validate if the details match a valid command based on the current mode (not shown in the diagram). If the details are not valid, 
 an exception is thrown. Zoomaster will then call the execute() method on HelpCommand.
 
 2. From Figure 2.21, if the details are empty, the HelpCommand will call the printHelpMessage() in Ui command without the details. Ui will retrieve the 
@@ -705,7 +705,7 @@ The sequence diagram below explains how this feature is executed:
 This feature is an extension of the timetable feature that allows users to find common empty slots from each individual timetable. The users can then add a new meeting, and the app will automatically write the meeting to each timetable.
 
 Below is the general flow on how the mechanism works:
-1. The different timetables must first be loaded to the `planner` folder manually.
+1. The different timetables must first be loaded into the `planner` folder manually.
 2. In the app, the user can enter the `load` command to load all the timetables and initialise the common empty slots.
 3. To view the slots, the user can enter the `show` command with or without the day (optional).
 4. The user can also call the `add` command to add a new meeting, similar to the timetable feature.
@@ -713,7 +713,7 @@ Below is the general flow on how the mechanism works:
 
 <br>
 
-Some of the key features of the planner mode is the `load` and `save` commands.
+Some of the key features of the planner mode are the `load` and `save` commands.
 
 The general flow of the loading process is as below:
 1. First, the command clear all the modules in the planner timetable.
@@ -745,7 +745,7 @@ The sequence diagram below explains how the load planner command is executed:
 
 * **Alternative 1 (Current choice):** Manually load the individual timetables and save the new meetings (slots and bookmarks) to the timetables.
     * Pros: User can decide when to save the newly added meetings (still allow some changes).
-    * Cons: In case that the program crashes, the meeting will not be saved.
+    * Cons: In case the program crashes, the meeting will not be saved.
 * **Alternative 2:** Automatically load and save the individual timetables per every command.
     * Pros: Any changes will be automatically saved, in case that the program crashes
     * Cons: Hard to implement
@@ -768,7 +768,7 @@ The sequence diagram below explains how the load planner command is executed:
 Zoomaster was developed during the coronavirus pandemic whereby many NUS classes have been transitioned towards online lessons. 
 NUS lessons are mainly conducted on Zoom video conferencing software. 
 However, as Zoom does not store recurring nor past meetings, it is hard for students to easily access their online lessons. 
-Hence, Zoomaster helps to organise students’ Zoom links for easy access to their lesson.
+Hence, Zoomaster helps to organise students’ Zoom links for easy access to their lessons.
 
 <a name="appendix-b"></a>
 ## **Appendix B: User Stories**
@@ -794,7 +794,7 @@ Hence, Zoomaster helps to organise students’ Zoom links for easy access to the
 ## **Appendix C: Non-Functional Requirements**
 
 1. The App should work on any mainstream OS as long as it has Java `11` installed.
-2. A user with above average typing speed should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. A user with above-average typing speed should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 <a name="appendix-d"></a>
 ## **Appendix D Glossary**
@@ -823,7 +823,7 @@ Hence, Zoomaster helps to organise students’ Zoom links for easy access to the
 <a name="appendix-e-basic"></a>
 **Basics**
 1. Initial launch
-    1. Download the jar file and copy into an empty folder.
+    1. Download the jar file and copy it into an empty folder.
     2. Open the command prompt and change directory to the location of the jar file.
     3. Enter `java -jar zoomaster.jar` in the command line. You should expect to see the welcome screen of the application.
 2. Testing
