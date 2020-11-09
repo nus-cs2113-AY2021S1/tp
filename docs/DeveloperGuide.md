@@ -2,6 +2,7 @@
 
 ## Table of Contents
 [Introduction](#introduction) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Background](#background) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Purpose](#purpose) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Scope](#scope) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Design Goals](#design-goals) <br>
