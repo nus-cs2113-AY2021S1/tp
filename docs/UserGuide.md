@@ -231,7 +231,7 @@ Now that more lessons are moving online, are you managing your links well? You m
 want to save your time finding your zoom links in your email inbox and save all your 
 links in the bookmark feature to access them easily! The bookmark mode enables you to 
 compile all your links in one destination and even categorise them into different groups. 
-After entering the bookmark mode (refer to General Command 2), use the following commands to 
+After entering the bookmark mode (refer to [General Command 2](#2-changes-the-current-mode-cd-mode_name-or-mode_index)), use the following commands to 
 navigate around bookmark mode. 
 
 This section contains 8 commands: 
