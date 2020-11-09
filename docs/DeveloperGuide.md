@@ -116,7 +116,7 @@ The 'Ui' component is in charge of handling input from users and system output.
 
 #### Command Component
 
-![Diagram for commmand](./diagrams/Command.jpg)
+![Diagram for command](./diagrams/Command.jpg)
 
 API: [Command.java](https://github.com/AY2021S1-CS2113T-T12-4/tp/blob/master/src/main/java/seedu/duke/command/Command.java) 
 1. `Parser` class to parse the user command 
@@ -366,7 +366,7 @@ The original event is now cloned as shown in the following sequence diagram.
 
 ##### Step 5: Add the cloned activity
 
-The cloned activity will now have its date set to be `repeatDate`. This new activity is now added into the `repeatEventList` as shwon in the following diagram.
+The cloned activity will now have its date set to be `repeatDate`. This new activity is now added into the `repeatEventList` as shown in the following diagram.
 
 ![Sequence Diagram for Repeat Command step 5](./diagrams/repeatstep5.jpg)
 
