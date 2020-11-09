@@ -8,5 +8,18 @@ During peak hours, people may not be able to know the dining situation and the d
 
 ### Code contributed: RepoSense link see from [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=WYing333&tabRepo=AY2021S1-CS2113-T16-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code).
 
+### Contributions to documentation: 
+#### User Guide:
+Created the table of content of User Guide and wrote the detailed explanation after content 3.5. Added pictures and managed their links.
+#### Developer Guide: 
+Created the table of content of Developer Guide and wrote the detailed explanation except content 4, which is implementation part. Added pictures including UML diagrams of find, delete, and print order and managed their links.
 
+### Project management:
+Managed releases v2.1 on GitHub. (1 release)
+
+### Enhancements to existing features:
+Wrote tests for existing features to increase test coverage.
+
+### Contributions to team-based tasks: 
+We work as a team, we always meet and work together. Everyone tried to contribute to every part. Thank you!
 

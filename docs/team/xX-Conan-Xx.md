@@ -8,3 +8,6 @@ They also can check the comments of the dishes and operating hours of the stalls
 
 ### Summary of Contributions
 Code contributed: see from [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=xX-Conan-Xx&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other).
+### Contributions to the DG: UML diagrams.
+### Contributions to the UG: 
+### Contributions to team-based tasks: We work as a team, we always meet and work together. Everyone tried to contribute to every part. Thank you!
