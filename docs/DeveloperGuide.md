@@ -8,6 +8,8 @@ title: Developer Guide
 This developer guide aims to provide an overview of Nav@NUS to aid developers in creating extensions or making 
 enhancements.
 
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 
 * Table of Contents
@@ -273,7 +275,7 @@ The following sequence diagram illustrates the steps taken by the program when t
 <!-- @@author -->
 
 
-### 3.4. Favourite command adder (`/addfav` Feature) - Yuxin
+### 3.7. Favourite command adder (`/addfav` Feature) - Yuxin
 
 `/addfav <description>` is the command that has to be entered by the user to add a previous valid command in to the user's 
 list of favourites.
@@ -293,7 +295,7 @@ The following sequence diagram illustrates the steps taken by the program when t
 <!-- @@author -->
 
 <!-- @@author Johnson-Yee -->
-### 3.12 Removing specific delete command (`/deletefav` Feature)
+### 3.8. Removing specific delete command (`/deletefav` Feature)
 `/deletefav <index>` is the command to remove a favourite command in the user's list of favourite commands. It allows the
 user to customise the list of favourite commands to the user's liking.
 
@@ -309,7 +311,7 @@ The following sequence diagram illustrates the steps taken by the program when t
 <!-- @@author -->
 
 <!-- @@author EthanWong22 -->
-### 3.8. Favourite command executor (`/execfav` Feature) - Wong Heng Chin
+### 3.9. Favourite command executor (`/execfav` Feature) - Wong Heng Chin
 `/execfav <index>` is the command to execute a command with the specific index in the list of favourite commands. <br>
 
 The command is executed in the following steps:
@@ -343,7 +345,7 @@ Therefore, choosing commands based on index (alternative 1) is easier to impleme
 <!-- @@author -->
 
 <!-- @@author wamikamalik -->
-### 3.9. Modifying the description of a favourite command (`/descfav` Feature) - Wamika
+### 3.10. Modifying the description of a favourite command (`/descfav` Feature) - Wamika
 `/descfav <index> /to <newDescription>` command allows the user to change the current description of their favourite command
 at location **index** in the list to **newDescription**.
 
@@ -397,7 +399,7 @@ the description is different from what is already stored.
 While alternative 2 would place all checks in one place, it can be tedious to test or debug. Therefore, alternative 1 
 was chosen. It also made the code look neater and more readable. 
 
-### 3.10. Performing similarity checks - Wamika
+### 3.11. Performing similarity checks - Wamika
 This feature provides the user with suggestions for possible spelling errors, if any. It does not require any explicit 
 instruction or command from the user and runs every time the user enters a `/route` or `/bus` command.<br>
 The following steps explain how the similarity checks are performed.
@@ -421,7 +423,7 @@ _Credits: The Levenshtein distance algorithm was adapted from
 
 
 <!-- @@author Johnson-Yee -->
-### 3.11 Displaying most searched bus stop on start-up - Johnson
+### 3.12.1 Displaying most searched bus stop on start-up - Johnson
 
 This feature informs the user about their most searched bus stop.
 There is no function to explicitly call it and is executed only during Nav@NUS's start up.
@@ -444,7 +446,6 @@ The following sequence diagram illustrates the steps taken by the program on sta
 
 **_Aspect: Implementing search frequencies_**
 
-
 * **Alternative 1 (current choice):** Each value in the BusStops enumeration has a private integer
 variable called searchCount.
     + _Pros:_ It is easier to maintain and updating of bus stops are easier to implement. It provides a template to be
@@ -457,7 +458,7 @@ variable called searchCount.
     
 Given the above alternatives, alternative 1 was used considering the integration of other commands.
 
-### 3.11.1 Resetting search frequencies of bus stops (`/reset` Feature)
+#### 3.12.1 Resetting search frequencies of bus stops (`/reset` Feature)
 This feature allows the user to reset the search frequencies of all bus stops.
 
 The `ResetSearchFreqCommand#executeCommand()` method of ResetSearchFreqCommand Class executes the command in the following steps:
@@ -625,6 +626,7 @@ the needed parameter.<br>
     - Other incorrect commands to test: `/dineinfo caffe` (keyword has been misspelled)<br>
     Expected: Similar to previous.<br> 
 <!-- @@author -->
+
 <!-- @@author Lezn0 -->
 ### E.7 Add a favourite command - Yuxin
 1. Adding a command to the list of favourites.
