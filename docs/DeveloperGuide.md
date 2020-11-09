@@ -2,9 +2,9 @@
 
 ## Table of contents
 - [Introduction](#introduction)
-  * [What is *25HoursADay*?](#what-is-25hoursaday-?)
+  * [What is 25HoursADay](#what-is-25hoursaday)
   * [Purpose and scope](#purpose-and-scope)
-- [Setting Up & Getting started](#setting-up-&-getting-started)
+- [Setting Up and Getting started](#setting-up-and-getting-started)
   * [Setting up](#setting-up)
   * [Getting started](#getting-started)
 - [Design](#design)
@@ -60,7 +60,7 @@
 ## Introduction
 This section provides an introduction to the developer guide for *25HoursADay*.
 
-### What is *25HoursADay*?
+### What is 25HoursADay
 *25HoursADay* is a scheduling app optimized for users via a convenient yet powerful Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, *25HoursADay* can schedule your tasks and events faster than traditional GUI apps.
 
 ### Purpose and scope
@@ -68,7 +68,7 @@ The purpose of this developer guide is to describe the architecture and software
 
 The intended audience of this guide are the developers and software testers of *25HoursADay*.
 
-## Setting Up & Getting started
+## Setting Up and Getting started
 This section provides on setting up the *25HoursADay* application.
 
 ### Setting up
