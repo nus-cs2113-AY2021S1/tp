@@ -897,6 +897,8 @@ If you encounter any errors, take note of the following warning.
 >If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
 >![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 4.3 Listing flashcards: `list`
 
 If you wish to review the content that is currently in the flashcard deck, this command can display all flashcards that
@@ -908,6 +910,8 @@ Instruction:
 Expected output:
 
 ![Flashcard_4_3](Images/FlashcardUG/Flashcard_4_3.png)
+
+<div style="page-break-after: always;"></div>
 
 ### 4.4 Deleting flashcards: `delete`
 
@@ -941,6 +945,8 @@ Instruction:
 1. `test`
 2. Answer the questions as prompted
 3. `show answer` / `back`
+
+<div style="page-break-after: always;"></div>
 
 Expected output:
 
