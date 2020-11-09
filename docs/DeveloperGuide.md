@@ -11,79 +11,31 @@
 [Design](#design) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Technological view](#technological-overview) <br>
 [Architecture](#architecture) <br>
-[Writing Manager Component](#writing-manager-component) <br>
-[Bunny Manager Component](#bunny-manager-component) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Saving bunnies via the program commands](#saving-bunnies-via-the-program-commands) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Loading bunnies directly into the bunny.txt file](#loading-bunnies-directly-into-the-bunnytxt-file) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Usage and storage](#usage-and-storage) <br>
-[Word Manager Component](#word-manager-component) <br>
-[Name Manager Component](#name-manager-component) <br>
-[Implementation](#implementation) <br>
-[User interaction overview](#user-interaction-overview) <br>
-[Writing Features](#writing-features) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Constitution (member classes)](#constitution-member-classes) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Getting reminder for writings scheduled on a specific date](#getting-reminder-for-writings-scheduled-on-a-specific-date) <br>
-[Word Features](#word-features) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Adding a `noun`](#adding-a-noun) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Adding a `verb`](#adding-a-verb) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Adding an `adjective`](#adding-an-adjective) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Listing words](#listing-words) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Generating three random words](#generating-three-random-words) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Filtering words](#filtering-words) <br>
-[Bunny class family overivew](#bunny-class-family-overivew) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [`BunnyList`, `BunnyFilter`, and `DeleteBunny` class overview](#bunnylist-bunnyfilter-and-deletebunny-class-overview) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [`BunnySaver` and `BunnyLoader` class overview](#bunnysaver-and-bunnyloader-class-overview) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [`GenBunny` class overview](#genbunny-class-overview) <br>
-[Bunny command implementations](#bunny-command-implementations) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Adding bunny idea `bunny`](#adding-bunny-idea-bunny) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Listing bunny ideas `list bunny`](#listing-bunny-ideas-list-bunny) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Filtering bunny ideas: `filter bunny`](#filtering-bunny-ideas-filter-bunny) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Saving bunny ideas: `save bunny`](#saving-bunny-ideas-save-bunny) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Deleting a bunny idea: `delete bunny`](#deleting-a-bunny-idea-delete-bunny) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Generating a random bunny idea: `random bunny`](#generating-a-random-bunny-idea-random-bunny) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Resetting the entire list of Bunny ideas: `reset bunny`](#resetting-the-entire-list-of-bunny-ideas-reset-bunny) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Project Overview](#project-overview) <br>
+[Writings class family](#writings-class-family) <br>
+[Filter words class family](#filter-words-class-family--word-family) <br>
+[Bunny class family](#bunny-class-family) <br>
 [Names class family](#names-class-family) <br>
-[ClearLoader class](#clearloader-class) <br>
-[Aesthetic components](#aesthetic-components) <br>
-[Changing line divider in Fluffle: `divider`](#changing-line-divider-in-fluffle-divider) <br>
-[Testing](#testing) <br>
-[Using JUnit test](#using-junit-test) <br>
-[Using Gradle](#using-junit-test) <br>
-[Appendices](#appendices) <br>
-[Appendix A: Product scope](#appendix-a-product-scope) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Target user profile](#target-user-profile) <br>
-[Appendix B: Value proposition](#appendix-b-value-proposition) <br>
-[Appendix C: User Stories](#appendix-c-user-stories) <br>
-[Appendix D: Non-Functional Requirements](#appendix-d-non-functional-requirements) <br>
-[Appendix E: Instructions for manual testing](#appendix-e-instructions-for-manual-testing) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Launch and Shutdown](#launch-and-shutdown) <br>
-
-
-[Jump to top](#developer-guide)
+[Product scope](#appendix-a-product-scope) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Target user profile](#target-user-profile) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Value proposition](#appendix-b-value-proposition) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[User Stories](#appendix-c-user-stories) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Non-Functional Requirements](#appendix-d-non-functional-requirements) <br>
+[Instruction for manual testing](#instructions-for-manual-testing) <br>
 
 ## Introduction
-
-[Jump to top](#developer-guide)
 
 ### Background
 Fluffle is a **desktop app for creative writers**, optimized for use via a **Command Line Interface (CLI)**. It aids users in creating and managing their writings and ideas. As a fast-typing writer, this CLI app is highly suitable for you.
 
-[Jump to top](#developer-guide)
-
 ### Purpose
 This document specified architecture and software design decisions for the creative writing assistant, Fluffle. 
-
-[Jump to top](#developer-guide)
 
 ### Scope
 This describes the software architecture and software design decisions for the implementation of Fluffle. The intended audience of this document is the developers, designers, and software testers of Fluffle.
 
-[Jump to top](#developer-guide)
-
 ### Design Goals
 Our goal is to create an app which improves users’ ability of writing and creativity. Developers should work closely with CS2113T’s module instructors, who represent technical advisors and CS2101’s module instructors, who represent non-technical advisors. By adhering to these tutors’ specific requirements, which imitate industrial professional standards, beginner software engineers will be able to levitate their expertises and mindset in the process of developing and presenting a new product.
-
-[Jump to top](#developer-guide)
 
 ### Maintainability
 With the aim of increasing maintainability of Fluffle, separated packages and classes were implemented in strict compliance with Object-oriented Programming. Since it is important to be able to easily change functionality of one class without disturbing other dependent classes, each class only serves one purpose to reduce dependency on other classes. With low coupling and high cohesion, subsequent developers can make minimal effort in maintaining Fluffle.
@@ -144,8 +96,6 @@ What is your name?
 ## Design
 
 The following sections describe the high-level overview of our application, Fluffle.
-
-[Jump to top](#developer-guide)
 
 ### Technological overview
 The Integrated Development Environment, IntelliJ, is used to develop our program. The program is written in Java, and uses Gradle for building and testing purposes. Our source code is mostly original, with some functions imported from the java.util package. The remaining packages and classes which form the structure of our program are independently developed.
@@ -212,7 +162,7 @@ number of plot bunnies: 2
 
 Since the program only searches for the idea and genre tag, it is lenient when reading in the bunny such that if the user keys in the wrong line divider or index it can still read it in. It can excuse spacing and typo as long as each Bunny is listed with an idea tag followed by its corresponding genre tag. This makes it easy for the user to directly edit the `bunny.txt` file if they wish. It will read the file until it can no longer has a next line in `bunny.txt` to read from.
 
-#### Usage and storage 
+#### Usage and storage
 The diagram above is describes the storage of the Bunny ideas in Fluffle. 
 
 ![Bunny Manager Component](graphics/diagrams/Bunny_manager_component.png)
@@ -222,22 +172,22 @@ Transferring `Bunny` ideas from the `bunniesList` to the `bunny.txt` file via th
 * When the user calls the `save bunny` command from the CLI, the Bunny from bunnies list are read by `saveAllBunny` command.
 * The `bunniesList` ArrayList is passed by the `commandExecutor` function in the `CommandExecutor` class.
 * The `saveAllBunny` command first prints the number of `Bunny` objects found in the `bunnyList` as follows:
-    ```
-    number of plot bunnies: 10
-    --------------------------------------------------------------
-    ```
+```
+number of plot bunnies: 10
+--------------------------------------------------------------
+```
 
 * The `BunnySaver` class formats the idea and genre into neatly tagged strings, numbered following their index in the ArrayList and seperated by plain line dividers as follows:
-    ```
-    1.
-      idea: bunny idea 1
-      genre: none
-    --------------------------------------------------------------
-    2.
-      idea: test idea 2
-      genre: none
-    --------------------------------------------------------------
-    ```
+```
+1.
+  idea: bunny idea 1
+  genre: none
+--------------------------------------------------------------
+2.
+  idea: test idea 2
+  genre: none
+--------------------------------------------------------------
+```
 
 Transferring `Bunny` ideas from the `bunny.txt` to the `bunniesList` file via the BunnyLoader:
 * The `BunnyLoader` class handles the loading of saved `Bunny` objects from the `bunny.txt` file into the `bunniesList`. 
@@ -265,11 +215,17 @@ The operations that can be done on the words list are:
 
 ### Name Manager Component
 
-[Jump to top](#developer-guide)
+Given below is the overall architecture of Name Component.
+
+![NameComponent](graphics/diagrams/Names.PNG)
+<p align = "center"><i><b>Figure 2: Name Manager Architecture</b></i></p>
+
+Fluffle can hold a list of names for your reference when writing. The names are stored in a text file named `Names.txt`. Some operations that can be done on names are:
+- Adding a new name.
+- Removing an exisiting name.
+- Generating a random name.
 
 ## Implementation
-
-[Jump to top](#developer-guide)
 
 ### User interaction overview
 ![UML sequence diagram for user interaction](graphics/diagrams/Sequence_diagram_general_command.png)
@@ -448,7 +404,7 @@ The `reset bunny` command simply calls `clearAllBunny` function to clear the `bu
 ![Names UML Class Diagram](graphics/diagrams/classDiagram_Names.png)
 <p align = "center"><i><b>Figure 10: Names UML Class Diagram</b></i></p>
 
-#### Overview of main functions
+#### Overview of main function
 
 The above class diagram (Figure 10) describes the overall architecture of the name list functionalities. The `Names` class has the protected ArrayList of names, `nameList`, that is accessed by the `Names` class method `getName` which randomly gets a selected name from the `nameList` ArrayList. Similarly, `nameList` is also accessed by the `Names` class which contains the `filterNames` function which can filter through the list and obtain names with specified keywords using the command `filter name <NAME>`, where the user may choose to omit the `NAME` when running the command. Similarly, `nameList` is also accessed by the `Names` class which contains the `listNames` function which displays all the names stored in the `nameList` ArrayList. This is the same as the `filterNames` function when given no input String. Similarly, `nameList` is also accessed by the `Names` class which contains the `addName` function which adds a name to the list of names stored in the `nameList` ArrayList using the command `add name <NAME>`. The `NAME` cannot be omitted. Similarly, `nameList` is also accessed by the `Names` class which contains the `deleteName` function which removes a name from the list of names stored in the `nameList` ArrayList. The command to do this is `delete name <INDEX>`. The `INDEX` cannot be omitted, and the range of the `INDEX` can be determined from the `listNames` function above.
 
@@ -459,32 +415,6 @@ The `NamesDB` class accesses the `nameList` and overwrites the current `Names.tx
 #### Names Exception Handling
 
 As shown in Figure 10, both the NamesDB class and the Names class will create the `NameException` class. This is a subclass that inherits from the `Exception` superclass and passes the exception message to the superclass. In the event of an exception, it is thrown from the methods in `NamesDB` class and `Names` class and handled by the `NameException` class.
-
-[Jump to top](#developer-guide)
-
-### Names method implementation
-
-#### `getName` method
-
-Loads the database first so we are working with the latest version of the database. Generates a random number within a range and using that number, we can use it as an index and get a random name from `nameList`. Exceptions are also handled properly.
-
-#### `filterNames` method
-
-Loads the database first so we are working with the latest version of the database. Uses filtering to get the list of names matching the String provided. Returns a collection from the `filteredNames` and checks if any names were matched during the filter. If none, then outputs none and if any are found, all are printed. Exceptions are handled properly using the `NameException` class.
-
-#### `listNames` method
-
-Loads the database first so we are working with the latest version of the database. Prints the list of names found in the updated `nameList`. Checks if there are no names stored in `nameList` and prints an appropriate message.
-
-#### `addName` method
-
-Loads the database first so we are working with the latest version of the database. Strips the given name of all extra white spaces and adds it the ArrayList of names named `nameList`. `nameList` is then passed to `NamesDB`'s method called `updateDB`. `updateDB` will then update the text file stored locally named `Names.txt`. Outputs the success of adding a name if successful and throws Exception to `NameException` if invalid.
-
-#### `deleteName` method
-
-Loads the database first so we are working with the latest version of the database. Using the index received, parse the index accordingly. Will handle exceptions in the case the index is not valid. The index will be used to remove the name entry at that index minus one in the `nameList` ArrayList. The updated `nameList` is then passed to the `NamesDB`'s method called `updateDB`. `updateDB` will then update the text file stored locally named `Names.txt`. Outputs the success of deleting a name if successful and throws Exception to `NameException` if invalid.
-
-[Jump to top](#developer-guide)
 
 ### ClearLoader class
 ![ClearLoader Class sequence diagram](graphics/diagrams/ClearLoader_Sequencediagram.png)
@@ -508,8 +438,6 @@ Loads the database first so we are working with the latest version of the databa
 
 ## Aesthetic components
 
-[Jump to top](#developer-guide)
-
 ### Changing line divider in Fluffle: `divider`
 The line divider is saved as a static string in the `UI` class. When the `divider` command is detected, the `changeLineDivider` method from the UI class is called to parse the selected line divider option and the `getDivider` method retrives the new divider String from the `Logos` class and saves it as the new `currentLineDivider` String in the `UI`.
 
@@ -525,16 +453,12 @@ If you are using IntelliJ IDEA with Gradle, there are two ways to run tests for 
 - To run all test, in IntelliJ, right click on `test/java/seedu.duke` and choose `Run Tests in 'seedu.duke'`
 - To run test on a separate package/class/method, right click on that package/class/method in `test` directory and choose `Run 'NAME'`.
 
-[Jump to top](#developer-guide)
-
 ### Using Gradle
 - To run all test, open the terminal in IntelliJ IDEA, move to the root folder of the project and key in `gradlew clean test` for Windows (`./gradlew clean test` for Mac OS/Linux).
 
 [Jump to top](#developer-guide)
 
 ## Appendices
-
-[Jump to top](#developer-guide)
 
 ### Appendix A: Product scope
 #### Target user profile
@@ -582,7 +506,7 @@ The application aims to provide the writer with the following services:
 
 - Should be a Command-line Interface application.
 - Should work on any common Operating System (Windows, Linux or OS-X platform) as long as Java 11 is installed in the system.
-- Should be user-friendly to new and expert creative writers with average or fast typing speed.
+- Should be user-friendly to new and expert creative writers with average typing speed.
 - Should help creative writers do their tasks faster by commands rather than any other programs that uses mouses and other pointing devices.
 - Should display characters in ISO basic Latin alphabet and basic numbers correctly.
 - Should have local storage of editable text files (.txt).
@@ -594,8 +518,6 @@ The application aims to provide the writer with the following services:
 
 ### Appendix E: Instructions for manual testing
 Given below are the instructions to test Fluffle manually.
-
-[Jump to top](#developer-guide)
 
 #### Launch and Shutdown
 Following are the instructions to launch and shutdown Fluffle
@@ -628,3 +550,4 @@ What is your name?
 **For a more specific explanation and demonstration of the commands, visit our User Guide [here](https://ay2021s1-cs2113t-w11-4.github.io/tp/UserGuide.html).**
 
 [Jump to top](#developer-guide)
+
