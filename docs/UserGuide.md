@@ -1083,7 +1083,9 @@ Let's say today is 2020-11-09 and you want to view the revision history today:
     <img src="UG_Images/history2.png" alt="History 2"/>
 </p>
 
-* If you have not revised in 2020-11-09 this result will be displayed.<br>
+<div style="page-break-after: always;"></div>
+
+* If you have not revised on 2020-11-09 this result will be displayed.<br>
 
 <p align="center">
     <img src="UG_Images/history3.png" alt="History 3"/>
@@ -1160,6 +1162,8 @@ You can exit Kaji by using this command.
 | Preview | `preview` |
 | Exclude | `exclude MODULE_OR_CHAPTER` <br> e.g. `exclude module` or `exclude chapter` |
 | Include | `include MODULE_OR_CHAPTER` <br> e.g. `include module` or `include chapter` |
+
+<div style="page-break-after: always;"></div>
 
 ### 4.5. General
 
