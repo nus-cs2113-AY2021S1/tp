@@ -54,7 +54,7 @@ The following are my contributions to the project.
 * Developer Guide:
   * Added the implementation details for the flashcard component, including the UMLs used in that section.
   
- ### Community:
+### Community:
  
  * Reported bugs and suggestions to teammates: 
     * [#127](https://github.com/AY2021S1-CS2113T-T12-1/tp/pull/127)
