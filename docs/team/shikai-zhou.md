@@ -21,23 +21,45 @@ This is a summary of the enhancements I implemented:
 - Wrote UpdateTimeLimitCommand [#54](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/54)
 - Wrote the TimeParser Utility [#121](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/121)
 - JUnit Test Code for the commands above [#38](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/38)
-- Parts of InputParser that relates to the above functionalities
+- Parts of InputParser and Ui that relates to the above functionalities [#211](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/211)
+# Issues Fixed
 - Bug Fixes for UpdateShowEpisodeProgressCommand [#147](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/147)
 - Bug Fixes for UpdateShowSeasonCommand [#150](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/150)
+- Fixed issues raised during testing and mock PE [#198](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/198), [#200](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/200),
+[#188](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/188), [#180](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/180), [#181](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/181), [#182](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/182) 
+- And other smaller bugs.
 
 # Contributions to documentation
 ## Contributions to the User Guide
-As the lead developer for the Add and Edit Commands, I wrote the user guide sections for Add and Edit. In addition,
- I helped to edit and review other parts such as the Introduction section and Features section. 
- I also made the UML diagram for the editCommand command flow.
+
+As the lead developer for the Add and Edit Commands, I wrote the user guide sections for Add and Edit.
  
+In addition, I added the `How to use this guide?` section and helped to edit and review other parts such as the Introduction section and Features section. 
+
+Lastly, I also helped to touch up the language and style of the User Guide for a more consistent reading experience.
+
 ## Contributions to the Developer Guide 
-For the Developer Guide, I wrote the sections for AddCommand, EditCommand, UpdateShowEpisodeProgressCommand and 
-UpdateShowSeasonCommand. I also cowrote the manual testing portion and DevOps section.
 
-# Review/mentoring contributions: Links to PRs reviewed, instances of helping team members in other ways
+For the Developer Guide, 
 
-I actively tested the code and found many issues. Apart from, that I also reviewed code from my fellow members and gave
-suggestions to improve code quality.
+- I wrote the sections for AddCommand, EditCommand, UpdateShowEpisodeProgressCommand and 
+UpdateShowSeasonCommand. 
+ 
+- made the UML diagram for the editCommand command flow.
 
-PR reviewed: [#26](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/26),
+- contributed to the manual testing portion and DevOps section. 
+
+## Contributions to team-based task
+
+- Wrote User Stories
+
+- Helped set up the team's repo
+
+- Released v1.0 Jar
+
+# Review/mentoring contributions
+
+I actively tested the code and found many issues. Apart from that, I also reviewed code from my fellow members, gave
+suggestions to improve code quality and suggested potential solutions to the problems my team faced.
+
+PRs reviewed: [#26](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/26), [#36](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/26)
