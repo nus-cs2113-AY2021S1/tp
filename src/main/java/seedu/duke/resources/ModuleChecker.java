@@ -91,6 +91,8 @@ public class ModuleChecker {
 
     /**
      * Generate a hashmap which maps the module code to a NusModule object/class.
+     * Referred to the code example from programcreek.
+     * (here is the link:https://www.programcreek.com/java-api-examples/?api=com.alibaba.fastjson.JSON)
      *
      * @return generatedNusModsList  a hash map containing the module code information only.
      */
