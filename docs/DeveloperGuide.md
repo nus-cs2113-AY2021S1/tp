@@ -183,8 +183,9 @@ of busStops objects.
     projects.
     
 Given the above alternatives, alternative 1 was used considering the scalability of the application.
+
 <!-- @@author Lezn0 -->
-###3.3. List All stops (/liststops Feature) - Yuxin
+### 3.3. List All stops (/liststops Feature) - Yuxin
 `/liststops` is the command which prints all bus stops declared in the BusStops enum.
 
 The `ListStopsCommand#executeCommand()` method of ListStopsCommand Class executes the command in the following steps:
