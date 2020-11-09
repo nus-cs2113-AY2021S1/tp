@@ -19,7 +19,7 @@ public class AddFavCommand extends Command {
     private Fav item;
 
     public AddFavCommand(String inputCommand, String description) {
-        if(inputCommand!=null) {
+        if (inputCommand != null) {
             inputCommand = inputCommand.replaceAll("\\s+", " ");
         }
         this.command = inputCommand;
