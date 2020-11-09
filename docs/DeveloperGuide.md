@@ -149,7 +149,7 @@ The `UserData`
 
 #### Storage Component
 
-![Diagram for storage class](./diagrams/classDiagramStorage.jpg)
+![Diagram for storage class](./diagrams/storageclass.jpg)
 
 API [Storage.java](https://github.com/AY2021S1-CS2113T-T12-4/tp/blob/master/src/main/java/seedu/duke/storage/Storage.java) 
 
@@ -165,14 +165,18 @@ How does the storage component load files
 - The event strings are converted to actual events using their respective class constructors
 
 The following object diagram shows the state of the storage object upon completion of converting each txt file to their respective events.
-![Diagram for storageOverall](./diagrams/object_diagram_storage_before.png)
+![Diagram for storageLoadBefore](./diagrams/object_diagram_storage_before.png)
 
 - The events are stored within the UserData object to be used by the program
 
 The following object diagram illustrates the state of the storage object upon completion of this step
-![Diagram for storageOverall](./diagrams/object_diagram_storage_after.png)
+![Diagram for storageLoadAfter](./diagrams/object_diagram_storage_after.png)
 
 How does the storage component save files
+
+The following diagram is a sequence diagram showing the process of saving information
+ ![Diagram for storageSave](./diagrams/savefull.png)
+ 
 - The storage component will first retrieve the correct EventList from the UserData.
 - It will next send this EventList into the StorageParser
 - The StorageParser uses its functions to convert the events into string representations
@@ -189,6 +193,21 @@ In this section, the features implemented will be explained using various UML di
 
 The help feature in the program allows the user to extract out help information for a specified command. Information for help is stored in a file titled `helpfile.txt` located in the `resources` folder of the project
 
+When the help command is executed, help looks through `helpfile.txt` for information about the command requested. The following section shows how the help information for `calendar` is stored:
+
+```
+begin calendar
+calendar - displays your events in chronological order
+Format: calendar
+
+Enter calendar into the terminal. Your events will be displayed in chronological order, day by day
+To advance to the next day, press the enter key
+To terminate the function early, press the 'q' key
+
+end calendar
+```
+
+The `begin calendar` and `end calendar` serves as brackets to tell the help function what information to print from the help file. 
 
 #### Add feature
 
@@ -335,14 +354,14 @@ The following sequence diagram shows how `CalendarCommand#execute()` works:
 #### Repeat feature
 
 The repeat feature on the program allows for the user to be able to make certain events repeat several times over a defined time period.
-For instance, the user can request for a personal event to be repeated monthly for four months. To run the program, the user will need to key in the command `repeat [event type] [index] [timeUnit] [count]`
+For instance, the user can request for a personal event to be repeated monthly for four months. To run the program, the user will need to key in the command `repeat EVENT_TYPE; INDEX; TIME_UNIT; COUNT`
 
 |Argument| Description |
 |--------|----------|
-|event type|What type of event is to be repeated? Accepted arguments are `personal`, `timetable` or `zoom`|
-|index|Index number of the event to be repeated that is stored on the Event List|
-|timeUnit|For what unit of time each event is to be repeated. Accepted arguments are `daily`, `weekly` and `monthly`|
-|count|Integer indicating how many times the event is to be repeated|
+|EVENT_TYPE|What type of event is to be repeated? Accepted arguments are `personal`, `timetable` or `zoom`|
+|INDEX|Index number of the event to be repeated that is stored on the Event List|
+|TIME_UNIT|For what unit of time each event is to be repeated. Accepted arguments are `daily`, `weekly` and `monthly`|
+|COUNT|Integer indicating how many times the event is to be repeated|
 
 For example, to repeat a personal event located at index 2 for 3 days, the user will key in this: `repeat personal 2 daily 3`.
 
