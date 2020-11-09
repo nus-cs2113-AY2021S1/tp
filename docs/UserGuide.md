@@ -13,7 +13,7 @@
     * [Adding an event](#adding-an-event)
         * [Adding an activity event](#adding-an-activity-event)
         * [Adding an examination event](#adding-an-examination-event)
-        * [Adding recurring laboratory session event](#adding-recurring-laboratory-session-events)
+        * [Adding recurring laboratory events](#adding-recurring-laboratory-events)
         * [Adding recurring lecture event](#adding-recurring-lecture-events)
         * [Adding recurring tutorial event](#adding-recurring-tutorial-events)
     * [Adding additional information of an event](#adding-additional-information-to-an-event)
