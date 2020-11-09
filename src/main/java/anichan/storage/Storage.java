@@ -6,6 +6,7 @@ import anichan.logger.AniLogger;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +21,7 @@ public abstract class Storage {
 
     private static final String EMPTY_STRING = "";
     private static final String FILE_DOES_NOT_EXIST = "File does not exist.";
+    private static final String FILE_CONTAINS_INVALID_CHARACTER = "File name contains invalid characters!";
     private static final String WRITE_TO_FILE_FAILED = "Failed to write to file.";
 
     protected static final int MAX_ANIME_INDEX = 510;
@@ -40,6 +42,10 @@ public abstract class Storage {
         } catch (IOException exception) {
             LOGGER.log(Level.INFO, "File does not exist at: " + filePath);
             throw new AniException(FILE_DOES_NOT_EXIST);
+        } catch (InvalidPathException exception) {
+            // Invalid characters not caught in parser.
+            LOGGER.log(Level.INFO, "File name contains invalid characters: " + filePath);
+            throw new AniException(FILE_CONTAINS_INVALID_CHARACTER);
         }
 
         return fileContent;
