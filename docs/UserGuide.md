@@ -244,6 +244,11 @@ This section contains 8 commands:
 * 1.7 : [Deleting a link](#17-deleting-a-link-rm-link_number-)
 * 1.8 : [Starring / Unstarring a link](#18-marking-unmarking-a-link-as-a-starred-link-star-link_number)
 
+>**Warning**
+>If you edit the data file wrongly, the bookmark feature will not be able to take in the correct category name, and links. 
+>If you encounter any errors after handling the bookmark data file, refer to [FAQ](#faq)
+
+
 <div style="page-break-after: always;"></div>
 
 ### 1.1 Viewing all the bookmarks links: `list`,`list -s`, `list -c`, `list -a`
@@ -1062,6 +1067,17 @@ feel free to refer to the About Us page and contact any of the developers.
 
 **A**: As this app is still under development, there are many features we would like to add in the future.
 Do feedback to us what features you would like to see in Study It!
+
+**Q**: What to do if bookmark data does not load properly after changing the bookmark.txt file?
+
+**A**: This is for users who editted the bookmark.txt file in the data folder. If you encounter trouble after editing the data file, 
+you can do one of the following steps: 
+* revert the changes in the data file.
+* delete the bookmark data file.
+* ensure the bookmark data file are stored in the correct format. This is the following format: 
+    * CategoryName = links \| links \| \|STAR\|links \| links t->title 
+    * Each link is separated with a " \| ".
+    * A starred link has \|STAR\| in front of the link. A link with a title has " t->" infront of the title. (Take note of the space in front of -)
 
 <div style="page-break-after: always;"></div>
 
