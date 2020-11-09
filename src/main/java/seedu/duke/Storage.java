@@ -11,6 +11,7 @@ import seedu.duke.calendar.event.Tutorial;
 import seedu.duke.calendar.task.Deadline;
 import seedu.duke.calendar.task.Task;
 import seedu.duke.calendar.task.Todo;
+import seedu.duke.resources.ModuleChecker;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -169,10 +170,10 @@ public class Storage {
                 break;
             }
             countFileTasks++;
+            addItemToCalendarList(calendarList, item);
             markTaskAsDone(item, taskInFile);
             markEventAsOver(item, taskInFile);
             markTaskAsImportant(item, taskInFile);
-            addItemToCalendarList(calendarList, item);
             loadAdditionInformation(item, taskInFile, num);
         }
     }
@@ -190,6 +191,10 @@ public class Storage {
         if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")
                 || taskInFile[EVENT_MODULE_CODE].equals("") || taskInFile[EVENT_VENUE].equals("")) {
             System.out.println("date or time in file is lost in exam: " + taskInFile[EVENT_MODULE_CODE]);
+            return null;
+        }
+        if (!isValid(taskInFile)) {
+            System.out.println("module code incorrect in exam: " + taskInFile[EVENT_MODULE_CODE]);
             return null;
         }
         try {
@@ -218,6 +223,10 @@ public class Storage {
             System.out.println("date or time in file is lost in lab: " + taskInFile[EVENT_MODULE_CODE]);
             return null;
         }
+        if (!isValid(taskInFile)) {
+            System.out.println("module code incorrect in lab: " + taskInFile[EVENT_MODULE_CODE]);
+            return null;
+        }
         try {
             date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
             time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
@@ -244,6 +253,10 @@ public class Storage {
             System.out.println("date or time in file is lost in tut: " + taskInFile[EVENT_MODULE_CODE]);
             return null;
         }
+        if (!isValid(taskInFile)) {
+            System.out.println("module code incorrect in tutorial: " + taskInFile[EVENT_MODULE_CODE]);
+            return null;
+        }
         try {
             date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
             time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
@@ -268,6 +281,10 @@ public class Storage {
         if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")
                 || taskInFile[EVENT_MODULE_CODE].equals("") || taskInFile[EVENT_VENUE].equals("")) {
             System.out.println("date or time in file is lost in lec: " + taskInFile[EVENT_MODULE_CODE]);
+            return null;
+        }
+        if (!isValid(taskInFile)) {
+            System.out.println("module code incorrect in lec: " + taskInFile[EVENT_MODULE_CODE]);
             return null;
         }
         try {
@@ -398,5 +415,17 @@ public class Storage {
                 }
             }
         }
+    }
+
+    /**
+     * Checks if the module code in the command is valid.
+     *
+     * @param taskInFile   data in file.
+     * @return isValid  True if the module code is valid, FALSE otherwise.
+     */
+    private static boolean isValid(String[] taskInFile) {
+        ModuleChecker moduleChecker = new ModuleChecker();
+        String moduleCode = taskInFile[2];
+        return moduleChecker.isModuleValid(moduleCode);
     }
 }
