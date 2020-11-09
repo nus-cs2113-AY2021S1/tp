@@ -122,6 +122,15 @@ The `Command` object:
 - Is executed by the `Duke` object.
 - Prints the output to the user through the `Ui` component.
 
+### CommandCreator component
+
+The `CommandCreator` represents a class with methods that generate `Commands` from parsed arguments from `Parser` class.
+
+The `CommandCreator` class:
+- Takes in arguments as needed by `Parser` class.
+- Splits the arguments further into more parts if the `Command` has more arguments in the description.
+- Returns a `Command` subclass object depending on the method that was called.
+
 <!-- @@author GuoAi -->
 ### Storage component  
 
@@ -151,7 +160,13 @@ This section describes how certain features are implemented.
 <!-- @@author iamchenjiajun -->
 ### Parser
 
-This section describes how the `Parser` class works.
+The `Parser` class is a class that takes in a single line of the user's command and returns a corresponding `Command` that can be executed.
+
+The `Parser` object:
+- Expose functions to allow `Model` to pass in the user's full command to be parsed.
+- Uses regular expressions to parse the user's arguments into several parts.
+- Passes these parts to `CommandCreator` to create the corresponding command.
+- Returns the `Command` to `Model` that can be executed.
 
 #### High level description
 
@@ -191,11 +206,13 @@ word removed. This is done using the `split` method of the `String` class, then 
 1. The method then invokes the `removeArgumentsFromCommand` method to parse and remove optional arguments from the full
 command. This is done using regular expression parsing which is detailed in the next section. The results are returned
 to the `parse` method and stored in `description`.
-1. The method then invokes the `getArgumentsFromRegex` method to parse the optional arguments from the full command.
+1. The method then invokes the `getArgumentsFromRegex` method when the `rootCommand` is not `"find"` to parse the optional arguments from the full command.
 The results are stored in a `HashMap<String, String>`, which is a `HashMap` of key-value pairs, similar to the form of the
 optional argument (`<key>/<value>`). The results are returned to the `parse` method and stored as `argumentsMap`.
 1. The method then checks the `rootCommand` and decides which `Command` to return, which calls `CommandCreator`
 methods with the parsed `argumentsMap`, `description`, and `commandString`.
+1. For certain commands, `checkAllowedArguments` method is called to ensure that the user did not pass in invalid arguments for that given command, and throws an error if there are invalid arguments.
+1. For single-word commands like `bye`, `checkFullCommand` method is called to ensure that the full command corresponds to the command word, and rejects commands like `bye 3`.
 1. The results of the `CommandCreator` methods are returned as a `Command` back to the invoker of the `parse` method.
 
 #### Regular expression parsing
@@ -711,6 +728,7 @@ Below are the steps required for manual testing of termiNus
     1. Download the latest version of `termiNus` from [here](https://github.com/AY2021S1-CS2113-T14-3/tp/releases/latest) 
     and copy the jar file to an empty folder.
     2. Open a command line window in the same directory and launch termiNus by typing `java -jar termiNus.jar` and press enter.
+
 2. Shutdown <br>
     1. Input `bye` to exit the program.
 
@@ -756,6 +774,7 @@ Below are the steps required for manual testing of termiNus
 6. Adding an expense item
     - Test case: `spend lunch v/4 currency/SGD date/2020-11-08` <br>
       Expected: a `4.00` `SGD` expense on `lunch` on `Sunday, November 8,2020` is added to the expense list.
+    
     - Test case: `spend book v/15`
       Expected: a `15.00` `SGD` expense on `book` on the current day is added to the expense list. 
       (By default, if `currency/` and `date/` arguments are not specified, termiNus will assume the currency is `SGD` 
@@ -802,11 +821,58 @@ Below are the steps required for manual testing of termiNus
     - Test case: `list expenses` <br>
       Expected: the complete list of expenses is displayed, followed by the total expenses calculated for 
       the current day, week, month, and year.
+    
     - Test case: `list expenses date/2020-11-09` <br>
       Expected: the list of expenses on `Sunday, November 8, 2020` is displayed, followed by the total expenses 
       caculated for the given day.
+    
     - Test case: `list expenses for/week` <br>
       Expected: the list of expenses for the current week is displayed.
+
+### Marking an item as done
+Prerequisite: list the desired item list using `list` command. Multiple items in the list.
+
+1. Marking a task as done
+    - Test case: `done task 1` <br>
+      Expected: the first task in the task list is marked as done `Y`.
+      
+2. Marking a module as completed
+    - Test case: `done module 1` <br>
+      Expected: the first module in the module list is marked as completed `CM`.
+      
+3. Marking a book as returned
+    - Test case: `return 2` <br>
+      Expected: the second book in the book list is marked as returned `R`.
+
+### Setting the priority of a task
+Prerequisite: list the complete task list using `list` command. Multiple tasks in the list.
+
+- Test case: `set 3 p/2` <br>
+  Expected: the priority of the third task in the task list is set as `2`.
+  
+### Setting the category of a task
+Prerequisite: list the complete task list using `list` command. Multiple tasks in the list.
+
+- Test case: `category 2 c/CS2113` <br>
+  Expected: the category of the second task in the task list is set as `CS2113`.
+
+### Setting the date of a task
+Prerequisite: list the complete task list using `list` command. Multiple tasks in the list.
+
+- Test case: `date 2 date/02-01-2021` <br>
+  Expected: the date of the second task in the task list iis set as `02 Jan 2021`.
+  
+### Printing the task calendar
+- Test case: `calendar d/3` <br>
+  Expected: the tasks for the current day and for the next `3` days are output separately as a calendar.
+
+### Searching for tasks with keywords
+- Test case: `find tP` <br>
+  Expected: the tasks containting the keyword `tP` are displayed.
+  
+- Test case: `find t` <br>
+  Expected: an information is printed out to informing there is no matching tasks, since there is no keyword `t` in 
+  any task in the list and incomplete keywords are not allowed.
 
 ### Deleting items
 Prerequisite: list the desired item list using `list` command. Multiple items in the list.
@@ -857,56 +923,13 @@ Prerequisite: list the desired item list using `list` command. Multiple items in
       
     - Test case: `delete expense 10` <br>
       Expected: an error message is printed, since the expense index does not exist.
+    
     - Test case: `delete expenses date/2020-11-09` <br>
       Expected: all the expenses on `Sunday, November 8, 2020` are removed from the expense list.
+   
     - Test case: `delete expense date/2020-11-09` <br>
       Expected: an error message is printed indicating invalid index, since the delete command for expenses on a certain
       day should be `expenses` instead of `expense` in the input.
-
-### Marking an item as done
-Prerequisite: list the desired item list using `list` command. Multiple items in the list.
-
-1. Marking a task as done
-    - Test case: `done task 1` <br>
-      Expected: the first task in the task list is marked as done `Y`.
-      
-2. Marking a module as completed
-    - Test case: `done module 1` <br>
-      Expected: the first module in the module list is marked as completed `CM`.
-      
-3. Marking a book as returned
-    - Test case: `return 2` <br>
-      Expected: the second book in the book list is marked as returned `R`.
-
-### Setting the priority of a task
-Prerequisite: list the complete task list using `list` command. Multiple tasks in the list.
-
-- Test case: `set 3 p/2` <br>
-  Expected: the priority of the third task in the task list is set as `2`.
-  
-### Setting the category of a task
-Prerequisite: list the complete task list using `list` command. Multiple tasks in the list.
-
-- Test case: `category 2 c/CS2113` <br>
-  Expected: the category of the second task in the task list is set as `CS2113`.
-
-### Setting the date of a task
-Prerequisite: list the complete task list using `list` command. Multiple tasks in the list.
-
-- Test case: `date 2 date/02-01-2021` <br>
-  Expected: the date of the second task in the task list iis set as `02 Jan 2021`.
-  
-### Printing the task calendar
-- Test case: `calendar d/3` <br>
-  Expected: the tasks for the current day and for the next `3` days are output separately as a calendar.
-
-### Searching for tasks with keywords
-- Test case: `find tP` <br>
-  Expected: the tasks containting the keyword `tP` are displayed.
-  
-- Test case: `find t` <br>
-  Expected: an information is printed out to informing there is no matching tasks, since there is no keyword `t` in 
-  any task in the list and incomplete keywords are not allowed.
 
 ### Clearing all items
 - Test case: `clear all` <br>
