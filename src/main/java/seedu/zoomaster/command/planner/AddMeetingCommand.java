@@ -5,6 +5,7 @@ import seedu.zoomaster.bookmark.BookmarkList;
 import seedu.zoomaster.command.timetable.AddSlotCommand;
 import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.exception.ZoomasterExceptionType;
+import seedu.zoomaster.slot.Day;
 import seedu.zoomaster.slot.Module;
 import seedu.zoomaster.slot.Slot;
 import seedu.zoomaster.slot.Timetable;
@@ -61,6 +62,9 @@ public class AddMeetingCommand extends AddSlotCommand {
         } else {
             String lesson = slotAndBookmark.get(0);
             String day = slotAndBookmark.get(1);
+            if (!Day.isDay(day)) {
+                throw new ZoomasterException(ZoomasterExceptionType.INVALID_TIMETABLE_DAY, "  invalid day");
+            }
             LocalTime startTime;
             LocalTime endTime;
             try {
