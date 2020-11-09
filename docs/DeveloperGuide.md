@@ -218,8 +218,8 @@ are linked to each other.
 
 The `RouteMapCommand#executeCommand()` method of RouteMapCommand Class executes the command in the following steps:
 1. Calls `RouteMapCommand#selectAndPrintBusRoute()`to attempt to retrieve user-specified bus code. (Bus code is stored
-as a string variable in the command)
-2. Calls `RouteMapCommand#checkBusCode()` to make sure bus code entered by the user is not empty or a white-space.
+as a string variable in the command)<br>
+2. Calls `RouteMapCommand#checkBusCode()` to make sure bus code entered by the user is not empty or a white-space.<br>
 <div style="page-break-after: always;"></div>
 3. Calls static `BusData#selectBus()` to find the user-specified bus in the bus data list. If found, the Bus object will be 
 returned. Else, null is returned.<br>
