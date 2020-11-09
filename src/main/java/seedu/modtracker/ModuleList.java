@@ -1,8 +1,6 @@
 package seedu.modtracker;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.FileHandler;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -205,7 +203,6 @@ public class ModuleList {
             String modCode = modInfo[1];
             modCode = modCode.trim();
             modCode = modCode.toUpperCase();
-
             if (!checkIfModuleValid(modCode)) {
                 ui.printAddModError(toPrint);
                 ui.printInvalidModuleType(toPrint);
@@ -239,7 +236,7 @@ public class ModuleList {
      * @param storage storage object where data is stored.
      */
     public void addExp(String input, boolean toPrint, Storage storage) {
-        
+
         try {
 
             String[] modInfo = input.trim().split(" ", 3);
