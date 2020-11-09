@@ -123,7 +123,7 @@ public class StorageLoad {
     }
 
     /**
-     * For each module in modules, collate the chapters within as DueChapters in print form
+     * For each module in modules, collate the chapters within as DueChapters in print form.
      * @param ui ui which the command uses to print messages
      * @param excludedChapters Chapters that are in the Exclusion List and should not be added into the output
      *                         ArrayList of DueChapters

@@ -65,7 +65,7 @@ public class StorageWrite {
     }
 
     /**
-     * Writes the contents of excludedChapters into the Exclusion File
+     * Writes the contents of excludedChapters into the Exclusion File.
      * @param excludedChapters ArrayList of String that comprises all the Chapters that are to be excluded from
      *                         scheduling.
      * @param filePath Filepath to the Admin level.
@@ -113,7 +113,7 @@ public class StorageWrite {
     }
 
     /**
-     * Writes the Chapter Deadline into the Chapter's dueFile
+     * Writes the Chapter Deadline into the Chapter's dueFile.
      * @param dueBy New Deadline to be updated
      * @param chapterDueFilePath path to the Chapter's dueFile
      * @throws IOException if there are errors with writing into the Chapter's dueFile.

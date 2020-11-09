@@ -27,7 +27,7 @@ public class Scheduler {
     }
 
     /**
-     * Returns if the specified deadline is due in "increment" number of days from today
+     * Returns if the specified deadline is due in "increment" number of days from today.
      * @param dueBy deadline to be checked.
      * @return boolean for if the deadline is due in "increment" number of days from today.
      */
