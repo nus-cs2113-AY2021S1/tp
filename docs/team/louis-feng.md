@@ -10,4 +10,5 @@ They also can check the comments of the dishes and operating hours of the stalls
 Code contributed: see from [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=louis-feng&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other).
 ### Contributions to the DG: Implementation part including the UML diagrams.
 ### Contributions to the UG: Instructions for order part.
-### Contributions to team-based tasks: 
+### Contributions to team-based tasks: We work as a team, we always meet and work together. Everyone tried to contribute to every part. Thank you!
+
