@@ -26,6 +26,7 @@ import java.util.Scanner;
 /**
  * Represents the local file used to store the task list data.
  */
+//@@author zhangyilin0203
 public class Storage {
 
     private static final int TYPE = 0;
@@ -190,7 +191,7 @@ public class Storage {
         LocalDate date;
         if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")
                 || taskInFile[EVENT_MODULE_CODE].equals("") || taskInFile[EVENT_VENUE].equals("")) {
-            System.out.println("date or time in file is lost in exam: " + taskInFile[EVENT_MODULE_CODE]);
+            System.out.println("element in file is lost in exam: " + taskInFile[EVENT_MODULE_CODE]);
             return null;
         }
         if (!isValid(taskInFile)) {
@@ -220,7 +221,7 @@ public class Storage {
         LocalDate date;
         if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")
                 || taskInFile[EVENT_MODULE_CODE].equals("") || taskInFile[EVENT_VENUE].equals("")) {
-            System.out.println("date or time in file is lost in lab: " + taskInFile[EVENT_MODULE_CODE]);
+            System.out.println("element in file is lost in lab: " + taskInFile[EVENT_MODULE_CODE]);
             return null;
         }
         if (!isValid(taskInFile)) {
@@ -250,7 +251,7 @@ public class Storage {
         LocalDate date;
         if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")
                 || taskInFile[EVENT_MODULE_CODE].equals("") || taskInFile[EVENT_VENUE].equals("")) {
-            System.out.println("date or time in file is lost in tut: " + taskInFile[EVENT_MODULE_CODE]);
+            System.out.println("element in file is lost in tut: " + taskInFile[EVENT_MODULE_CODE]);
             return null;
         }
         if (!isValid(taskInFile)) {
@@ -280,7 +281,7 @@ public class Storage {
         LocalDate date;
         if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")
                 || taskInFile[EVENT_MODULE_CODE].equals("") || taskInFile[EVENT_VENUE].equals("")) {
-            System.out.println("date or time in file is lost in lec: " + taskInFile[EVENT_MODULE_CODE]);
+            System.out.println("element in file is lost in lec: " + taskInFile[EVENT_MODULE_CODE]);
             return null;
         }
         if (!isValid(taskInFile)) {
@@ -408,11 +409,9 @@ public class Storage {
      */
     private static void loadAdditionInformation(CalendarItem item, String[] taskInFile, int num) {
         if (item instanceof Event) {
-            if (!taskInFile[EVENT_ADDITION_INFO].equals("0")) {
-                int i;
-                for (i = 1; i <= num - EVENT_ADDITION_INFO - 1; i++) {
-                    ((Event) item).setAdditionalInformation(taskInFile[i + EVENT_ADDITION_INFO]);
-                }
+            int i;
+            for (i = 1; i <= num - EVENT_ADDITION_INFO - 1; i++) {
+                ((Event) item).setAdditionalInformation(taskInFile[i + EVENT_ADDITION_INFO]);
             }
         }
     }

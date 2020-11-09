@@ -39,14 +39,21 @@ Given below are my contributions to the project. <br/>
   * Highlights: This feature is able to print all the calendar items in a timeline format, so that it presents 
   how many tasks the user have on each day. Timelines provide a simple visual overview of all the items the user
   has, and help the user with better time management.
-  
+
 #### Enhancement to existing features:
 * Standardised the `getDescription()` function that returns the details of calendar items.
   ([\#72](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/72))
 * Wrote Junit tests to increase coverage.
   ([\#180](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/180))
-* Wrote the `inputDateProcessor` that converts user input Strings into LocalDate.
-  
+* Wrote the `inputDateProcessor` function that converts input time Strings into LocalDate.
+
+### Contributions to team-based tasks:
+* Reviewed team members' PR, and provided suggestions.
+  ([\#20](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/20),
+   [\#22](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/22))
+* Update the code and test files regularly to make sure it passes CI on GitHub.
+
+
 ### Contributions to documentation:
 #### Contributions to the Developer Guide:
 * Added the documentation guide, testing guide and logging guide to the Developer Guide.
