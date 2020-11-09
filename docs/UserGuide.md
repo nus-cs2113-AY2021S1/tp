@@ -18,13 +18,12 @@ around NUS campus via the school's shuttle service.<br>
 - [2. Quick Start - Johnson Yee](#2-quick-start---johnson-yee)
 - [3. Features](#3-features)
   * [3.1. Bus Features](#31-bus-features)
-    + [3.1.1. List available help: ```/help``` -Yuxin](#311-list-available-help-help---yuxin)
-    + [3.1.2. Check for direct bus: ```/route``` - Wamika](#312-check-for-direct-bus-route---wamika)
-    + [3.1.3. Check bus route: ```/routemap``` - Johnson Yee](#313-check-bus-route-routemap---johnson-yee)
-    + [3.1.4. Check for buses at a bus stop: ```/bus``` - Wong Heng Chin](#314-check-for-buses-at-a-bus-stop-bus---wong-heng-chin)
-    + [3.1.5. List all bus available in NUS ```/allbus``` - Shuyi](#315-list-all-bus-available-in-nus-allbus---shuyi)
-    + [3.1.6. List all bus stops in NUS: ```/liststops``` - Yuxin](#316-list-all-bus-stops-in-nus-liststops---yuxin)
-    + [3.1.7. List all faculties in NUS: ```/faculty``` - Shuyi](#317-list-all-faculties-in-nus-faculty---shuyi)
+    + [3.1.1. Check for direct bus: ```/route``` - Wamika](#311-check-for-direct-bus-route---wamika)
+    + [3.1.2. Check bus route: ```/routemap``` - Johnson Yee](#312-check-bus-route-routemap---johnson-yee)
+    + [3.1.3. Check for buses at a bus stop: ```/bus``` - Wong Heng Chin](#313-check-for-buses-at-a-bus-stop-bus---wong-heng-chin)
+    + [3.1.4. List all buses available in NUS ```/allbus``` - Shuyi](#314-list-all-buses-available-in-nus-allbus---shuyi)
+    + [3.1.5. List all bus stops in NUS: ```/liststops``` - Yuxin](#315-list-all-bus-stops-in-nus-liststops---yuxin)
+    + [3.1.6. List all faculties in NUS: ```/faculty``` - Shuyi](#316-list-all-faculties-in-nus-faculty---shuyi)
   * [3.2. Dine Features](#32-dine-features)
     + [3.2.1. Search for dining options within a faculty: ```/dine``` - Shuyi](#321-search-for-dining-options-within-a-faculty-dine---shuyi)
     + [3.2.2. Search for specific dining outlet: ```/dineinfo``` - Shuyi](#322-search-for-specific-dining-outlet-dineinfo---shuyi)
@@ -37,9 +36,10 @@ around NUS campus via the school's shuttle service.<br>
     + [3.3.6. Clear the list of favourite commands: `/clearfav` - Shuyi](#336-clear-the-list-of-favourite-commands-clearfav---shuyi)
   * [3.4. Common Features](#34-common-features)
     + [3.4.1. Checking for similar locations - Wamika](#341-checking-for-similar-locations---wamika)
-    + [3.4.2. Reset frequent search data: ```/reset``` - Johnson Yee](#342-reset-frequent-search-data-reset---johnson-yee)
-    + [3.4.3. Exit the program: ```/exit```](#343-exit-the-program-exit)
-    + [3.4.4. Display most searched bus stop on start-up - Johnson Yee](#344-display-most-searched-bus-stop-on-start-up---johnson-yee)
+    + [3.4.2. Display most searched bus stop on start-up - Johnson Yee](#342-display-most-searched-bus-stop-on-start-up---johnson-yee)
+    + [3.4.3. Reset frequent search data: ```/reset``` - Johnson Yee](#343-reset-frequent-search-data-reset---johnson-yee)
+    + [3.4.4. List available help: ```/help``` -Yuxin](#344-list-available-help-help---yuxin)
+    + [3.4.5. Exit the program: ```/exit```](#345-exit-the-program-exit)
 - [4. FAQ](#4-faq)
 - [5. Command Summary](#5-command-summary)
 - [6. Glossary - Wamika](#6-glossary---wamika)
@@ -122,18 +122,8 @@ There are 18 features available in Nav@NUS. The following are instructions for u
 ### 3.1. Bus Features
 This section provides the instruction for all features categorised under the main feature of navigation by bus.
 
-<!-- @@author Lezn0-->
-#### 3.1.1. List available help: ```/help``` - Yuxin
-This command lists a set of features along with their respective commands available to users.
-
-Format:<br> <code>/help</code>
-
-The expected outcome is as follows:<br><br>
-<img src="UG_Figures/help1.png" alt="inputCommand" width=600><br>
-<!-- @@author -->
-
 <!-- @@author wamikamalik -->
-#### 3.1.2. Check for direct bus: ```/route``` - Wamika
+#### 3.1.1. Check for direct bus: ```/route``` - Wamika
 This command displays all bus routes from one location to another that do not require changing buses.
 
 Format: <br>
@@ -173,7 +163,7 @@ below.<br><br>
 <!-- @@author -->
 
 <!-- @@author Johnson-Yee -->
-#### 3.1.3. Check bus route: ```/routemap``` - Johnson Yee
+#### 3.1.2. Check bus route: ```/routemap``` - Johnson Yee
 This command displays the full route of the bus that you have specified.
 
 Format: <br><code>/routemap <strong>bus code</strong></code> <br>
@@ -215,7 +205,7 @@ which is relatively more crowded than other bus stops.<br><br>
 3. With this information, you could explore other bus routes to your destination.
 <!-- @@author -->
 
-#### 3.1.4. Check for buses at a bus stop: ```/bus``` - Wong Heng Chin
+#### 3.1.3. Check for buses at a bus stop: ```/bus``` - Wong Heng Chin
 This command displays all buses available at a specific bus stop.
 
 Format: <br>
@@ -248,7 +238,7 @@ These are the steps to fix the mistake:
 <img src="UG_Figures/bus1.png"><br>
 
 <!-- @@author mrwsy1 -->
-#### 3.1.5. List all bus available in NUS ```/allbus``` - Shuyi
+#### 3.1.4. List all buses available in NUS ```/allbus``` - Shuyi
 This command lists all buses available in NUS with their respective routes.
 
 Format:<br> 
@@ -265,7 +255,7 @@ To see the complete list of buses:
 <!-- @@author -->
 
 <!-- @@author Lezn0 -->
-#### 3.1.6. List all bus stops in NUS: ```/liststops``` - Yuxin
+#### 3.1.5. List all bus stops in NUS: ```/liststops``` - Yuxin
 This command lists all bus stops in NUS.
 
 Format:<br> 
@@ -282,7 +272,7 @@ To see the description of each location:
 <!-- @@author -->
 
 <!-- @@author mrwsy1 -->
-#### 3.1.7. List all faculties in NUS: ```/faculty``` - Shuyi
+#### 3.1.6. List all faculties in NUS: ```/faculty``` - Shuyi
 This command lists out all faculties in NUS.
 Format:<br> 
 <code>/faculty</code> <br>
@@ -510,7 +500,7 @@ These are the steps to follow:
 <!-- @@author -->
 
 ### 3.4. Common Features
-This section provides the instruction for all features categorised under the common features.
+This section provides the instruction for all the common features.
 
 <!-- @@author wamikamalik -->
 #### 3.4.1. Checking for similar locations - Wamika
@@ -534,7 +524,21 @@ as shown in the figure below.<br><br>
 <!-- @@author -->
 
 <!-- @@author Johnson-Yee -->
-#### 3.4.2. Reset frequent search data: ```/reset``` - Johnson Yee
+#### 3.4.2. Display most searched bus stop on start-up - Johnson Yee
+This feature displays the most searched bus stop to remind you of what to type in when using 
+the navigation functions. 
+
+>The application executes this command on start-up and does not require any explicit command to use this feature.
+
+**Examples of usage**
+
+On start-up, you will receive a prompt of your most searched bus stop. This personalises your application and gives you
+the memory jolt of what to key in. <br>
+<img src="UG_Figures/displayfreq.png" alt="Search Freq Prompt" width=400><br>
+<!-- @@author -->
+
+<!-- @@author Johnson-Yee -->
+#### 3.4.3. Reset frequent search data: ```/reset``` - Johnson Yee
 This command resets the data set used to display most frequently search bus stop on application start-up.
 
 Format:<br> <code>/reset</code>
@@ -548,7 +552,17 @@ command <code>/reset</code> to reset the data set and start the application on a
 <img src="UG_Figures/freq1.png" alt="Correct input message" width=600><br>
 <!-- @@author -->
 
-#### 3.4.3. Exit the program: ```/exit```
+<!-- @@author Lezn0-->
+#### 3.4.4. List available help: ```/help``` - Yuxin
+This command lists a set of features along with their respective commands available to users.
+
+Format:<br> <code>/help</code>
+
+The expected outcome is as follows:<br><br>
+<img src="UG_Figures/help1.png" alt="inputCommand" width=600><br>
+<!-- @@author -->
+
+#### 3.4.5. Exit the program: ```/exit```
 This command helps you exit the application.
 
 Format:<br>
@@ -558,20 +572,6 @@ The application exits after displaying the following message.<br>
 ```
 So long buddy!
 ```
-
-<!-- @@author Johnson-Yee -->
-#### 3.4.4. Display most searched bus stop on start-up - Johnson Yee
-This feature displays the most searched bus stop to remind you of what to type in when using 
-the navigation functions. 
-
->The application executes this command on start-up and does not require any explicit command to use this feature.
-
-**Examples of usage**
-
-On start-up, you will receive a prompt of your most searched bus stop. This personalises your application and gives you
-the memory jolt of what to key in. <br>
-<img src="UG_Figures/displayfreq.png" alt="Search Freq Prompt" width=400><br>
-<!-- @@author -->
 
 ## 4. FAQ
 This section addresses some common questions to aid in possible issues faced.
