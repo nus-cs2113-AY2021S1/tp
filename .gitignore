@@ -12,13 +12,11 @@ src/main/resources/docs/
 .DS_Store
 *.iml
 bin/
-data/events.txt
+data/
 
-<<<<<<< HEAD
+
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
-data/events.txt
-=======
->>>>>>> Coding_Standard
+
 src/main/java/META-INF/MANIFEST.MF
-data/UserInfo.txt
+

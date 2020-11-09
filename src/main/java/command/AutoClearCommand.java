@@ -56,15 +56,16 @@ public class AutoClearCommand extends Command {
      * @throws WritingFileException the file is not correctly written.
      */
     public static void autoClear(EventList events, Storage storage, UserInfo userInfo) throws WritingFileException {
-        if (userInfo.isAutoClear() && events != null) {
-            if (events.getSize() != 0) {
-                try {
-                    events.clearBefore(LocalDate.now().minusMonths(1));
-                } catch (EmptyEventListException e) {
-                    return;//this exception is unreachable because of the if condition
+            if (userInfo.isAutoClear() && events != null) {
+                if (events.getSize() != 0) {
+                    try {
+                        events.clearBefore(LocalDate.now().minusMonths(1));
+                    } catch (EmptyEventListException e) {
+                        return;//this exception is unreachable because of the if condition
+                    }
+                    storage.writeFile(events.getEventList());
                 }
-                storage.writeFile(events.getEventList());
             }
-        }
+
     }
 }
