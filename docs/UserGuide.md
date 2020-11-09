@@ -195,6 +195,8 @@ Example of usage:
 
 `view-n /t JavaDocs`
 
+<div style="page-break-after: always;"></div>
+
 Expected output:
 
 <p align="center">
@@ -288,6 +290,8 @@ Format: `archive-n [/i INDEX] [/t TITLE]`
 - The archived note will no longer be visible in the main notebook. To view the list of archived notes refer to [`list-n`](#list-n). 
 - The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …).
 - At least one of the optional fields must be provided.
+
+<div style="page-break-after: always;"></div>
  
 Example of usage: 
 
@@ -364,6 +368,8 @@ Example of usage:
 
 `create-t /tag important red /tag CS2113 blue`
 
+<div style="page-break-after: always;"></div>
+
 Expected output:
 
 <p align="center">
@@ -399,6 +405,8 @@ Example of usage:
 
 `tag-n /i 1 /tag CS2113 /tag important`
 
+<div style="page-break-after: always;"></div>
+
 Expected output:
 
 <p align="center">
@@ -422,11 +430,13 @@ Example of usage:
 
 `tag-e /i 1 /tag CS2113 /tag important`
 
+<div style="page-break-after: always;"></div>
+
+Expected output:
+
 <p align="center">
    <img alt="tagEvent" src="screenshots/tagEvent.png"/>
 </p>
-
-Expected output:
 
 #### <a id="delete-t"><ins>3.15 Delete Tags:</ins> `delete-t`</a>
 Deletes a tag from the list of tags and remove the tag from the related notes and events.
