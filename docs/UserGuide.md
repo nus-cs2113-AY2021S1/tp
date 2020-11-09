@@ -441,14 +441,70 @@ Output example:
 Bye! Hope to see you again soon!
 ```
  
-#### Saving the DietBook: `Coming soon!`
+#### Saving the DietBook:
  
 Saves the DietBook data when the exit command have been input. The saved data is in 2 files: UserInfo.txt and FoodList.txt.
- 
+*Also saves data whenever there is a change in either Person or FoodList data after commands such as `add`, `clear`,`delete` and `editinfo`with no message printed.
+
 Output example:
  
 ```
 Your data has been saved successfully.
+```
+
+#### Loading existing FoodList and Person data into the DietBook:
+ 
+Saved data of FoodList and Person loaded if available.
+*New file created when saving if no existing data.
+
+Output example:
+
+*With existing data
+ 
+```
+Loading personal information...
+Loading personal food data...
+_____________________________________________________________________________________________________________________________________
+_______  __ ______ ________ _______   ______   ______  __    __
+|   __  \|  |   ___|__    __|   __  \ /  __  \ /  __  \|  | /  /
+|  |  |  |  |  |___   |  |  |  |__|  |  |  |  |  |  |  |  |/  /
+|  |  |  |  |   ___|  |  |  |   __  <|  |  |  |  |  |  |     /
+|  |__|  |  |  |___   |  |  |  |__|  |  |__|  |  |  |  |  |\  \
+|_______/|__|______|  |__|  |_______/ \______/ \______/|__| \__\
+
+Welcome back to DietBook tik!
+All your previous data has been successfully loaded and you may start by entering any valid commands. 
+If you require a list of valid commands, you can enter: help
+_____________________________________________________________________________________________________________________________________
+
+```
+
+ *Without existing data
+ 
+```
+Loading personal information...
+_____________________________________________________________________________________________________________________________________
+Person data file not found! Creating new personal data....
+_____________________________________________________________________________________________________________________________________
+Loading personal food data...
+_____________________________________________________________________________________________________________________________________
+FoodList data file not found! Creating new food list...
+_____________________________________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________________________________
+_______  __ ______ ________ _______   ______   ______  __    __
+|   __  \|  |   ___|__    __|   __  \ /  __  \ /  __  \|  | /  /
+|  |  |  |  |  |___   |  |  |  |__|  |  |  |  |  |  |  |  |/  /
+|  |  |  |  |   ___|  |  |  |   __  <|  |  |  |  |  |  |     /
+|  |__|  |  |  |___   |  |  |  |__|  |  |__|  |  |  |  |  |\  \
+|_______/|__|______|  |__|  |_______/ \______/ \______/|__| \__\
+
+Hello! Welcome to DietBook!
+I am Diet, your guide to using DietBook. How may I address you?
+Please input your name or nickname in the following format:
+  name YOUR_NAME_OR_NICKNAME 
+  Example: name Jack";
+_____________________________________________________________________________________________________________________________________
+
 ```
 
 ## FAQ
