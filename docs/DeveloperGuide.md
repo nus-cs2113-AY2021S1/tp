@@ -111,7 +111,7 @@ instances to perform add, remove or edit operations on the ```Ledgers``` or ```E
 * Utility Model sub-components
     * Goal
         * Used by the `GoalTracker`. The user can set their income or expense goals by creating a `Goal` instance. They can then be compared against with total entry amounts recorded by the user, whereby the `GoalTracker` will report the progress of the user towards the `Goal` that they set. 
-        * More information can be found in the [GoalTracker section](#goalTracker).
+        * More information can be found in the [GoalTracker section](#goal-Tracker).
     * AccountSaver
         * Stores account information of the user.
         * More details can be found in the [FinanceTools section](#financeTools).
