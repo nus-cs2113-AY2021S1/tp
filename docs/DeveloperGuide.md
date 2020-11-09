@@ -344,7 +344,7 @@ This section shows how the developer guide is documented.
 We use Markdown for writing documentation.
 
 #### Setting up and maintaining the project website
-- We use [Jekyll](https://jekyllrb.com/) to manage documentation.  
+- We use [Cayman](https://pages-themes.github.io/cayman/) to manage documentation.  
 - The docs/ folder is used for documentation.  
 - To learn how to set it up and maintain the project website, follow the guide [[se-edu/guides] Using Jekyll for project documentation](https://se-education.org/guides/tutorials/jekyll.html).
 
