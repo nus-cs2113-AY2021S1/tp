@@ -3,6 +3,7 @@ package seedu.eduke8.note;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class NoteTest {
 
@@ -16,12 +17,19 @@ public class NoteTest {
     }
 
     @Test
+    void noteConstructor_nullDescriptionArgument_expectsAssertionError() {
+        assertThrows(AssertionError.class, () -> {
+            new Note(null, null);
+        });
+    }
+
+    @Test
     void getsNoteDescription_returnsNoteDescription() {
         assertEquals(TEST_NAME, note.getDescription());
     }
 
     @Test
-    void getsNoteName_returnsNoteName() {
+    void getsNoteText_returnsNoteText() {
         assertEquals(TEST, note.getNoteText());
     }
 }
