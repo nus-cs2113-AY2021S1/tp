@@ -140,7 +140,7 @@ This feature allows users to edit their personal information after it has been e
 * [`editinfo`](https://ay2021s1-cs2113-t14-4.github.io/tp/UserGuide.html#editing-user-information-editinfo): Edits the user information stored in the application.<br/>
 The command is implemented in such a way that **one or more changes to the personal information can be made** using a single command. Below are some examples of valid commands. 
     * `editinfo a/22`: Edits the age of the user to `22`
-    * `editinfo a/22 c/80`: Edits the age of the user to `22` and the current weight to `80kg`.
+    * `editinfo a/22 c/80`: Edits the age of the user to `22` and the current weight to `80`.
     * `editinfo n/Jane g/F a/22 h/165 o/70 c/63 t/60 f/3`: Edit the name, gender, age, height, original, current and target weight as well as the fitness level of the user to `Jane`, `female`, `22`,`165`, `70`, `63`, `60` and `You engage in moderate amount of exercise or have a job that requires moderate physical activity.` respectively.
 
 **Main classes and methods used**: 
@@ -309,3 +309,63 @@ DietBook is designed to **track the food and different kinds of nutritional inta
 * _Database_ - Contains a list of commonly found food items in the National University of Singapore
 
 ## Instructions for manual testing
+
+Given below are instructions to test the app manually.
+
+### Entering user information
+
+1. Entering name or nickname into the application
+    1. Test case: `name Tom and Jerry`<br/>
+    Expected: The name `Tom and Jerry` will be stored in the system and a message prompting the user to enter all other details will be displayed.
+    1. Test case: `name *1*`<br/>
+    Expected: The name `*1*` will be stored in the system and a message prompting the user to enter all other details will be displayed.
+    1. Test case: `name Ja/ck`<br/>
+    Expected: No name will not be stored in the system and an error message will be displayed.
+    1. Test case: `nameJack`<br/>
+    Expected: Similar to previous.
+    1. Test case: `name`<br/>
+    Expected: Similar to previous.
+    1. Test case: `Name Jack`<br/>
+    Expected: Similar to previous.
+    
+1. Entering other personal information into the application (all seven pieces of information is required e.g. age, height, etc)
+    1. Test case: `info g/M a/21 h/175 o/85 c/85 t/75 f/2`<br/>
+    Expected: All information is stored in the system and a message stating that initialising is complete will be displayed.
+    1. Test case: `info o/85 a/21 f/2 h/175 g/M c/85 t/75` (where parameters can be entered in any order)<br/>
+    Expected: Similar to previous.
+    1. Test case: `info g/Ma/21h/175 o/85 c/85 t/75 f/2` (where there are no spaces between the different parameters)<br/>
+    Expected: Similar to previous.
+    1. Test case: `Info o/85 a/21 F/2 h/175 g/M c/85 t/75` (where any letter of the command word or parameter tags are capitalised)<br/>
+    Expected: The information is not stored in the system and an error message will be displayed.
+    1. Test case: `infog/M a/21 h/175 o/85 c/85 t/75 f/2` <br/>
+    Expected: Similar to previous.
+    1. Test case: `info g/M a/21 h/175 o/85 c/85 t/75 f/2 z/9` (where extra parameters,parameter tags or words are present)<br/>
+    Expected: Similar to previous.
+    1. Test case: `info g//F a/21 h/175 o/85 c/85 t/75 f/2` (where `/` or any other special characters is used inappropriately)<br/>
+    Expected: Similar to previous.
+    1. Test case: `info g/f a/160 h/500 o/900 c/85 t/75.6 f/7`(where age, height, weights, gender and fitness level are not within the valid ranges or not valid - refer to [User Guide](UserGuide.md) for more information)<br/> 
+    Expected: Similar to previous.
+    1. Test case: `info a/21` (where any of the required parameters are missing)<br/>
+    Expected: Similar to previous.
+    
+### Editing user information
+
+1. Editing user information store in the application (one or more change(s) is/are allowed)<br/>
+    1. Test case: `editinfo n/Jane`<br/>
+    Expected: User's personal information is displayed and the name of the user is updated to `Jane`.
+    1. Test case: `editinfo a/22 c/80` (where variable number of information is changed)<br/>
+    Excepted: User's personal information is displayed and the age of the user is updated to `22` while the current weight is updated to `80`.
+    1. Test case: `editinfo`<br/>
+    Expected: User's personal information is not updated and an error message is displayed.
+
+Refer to [Entering User Information Section under Instructions for manual testing](#entering-user-information) for **similar** test cases that can be used for testing.
+
+### Viewing user information
+
+1. Viewing user personal information stored in the application 
+    1. Test case: `userinfo`<br/>
+    Expected: User's personal information is displayed.
+    1. Test case: `userinfo userinfo`<br/>
+    Expected: User's personal information will not be displayed. Error message will be shown to user.
+    1. Test case: `Userinfo`<br/>
+    Expected: Similar to previous.
