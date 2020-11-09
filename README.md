@@ -1,6 +1,6 @@
-# Duke project template
+![Our Logo](https://i.ibb.co/VxzKbbz/a1.png)
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+This document guides you through the process of using this project directory.
 
 ## Setting up in Intellij
 
@@ -8,38 +8,20 @@ Prerequisites: JDK 11 (use the exact version), update Intellij to the most recen
 
 1. **Configure Intellij for JDK 11**, as described [here](https://se-education.org/guides/tutorials/intellijJdk.html).
 1. **Import the project _as a Gradle project_**, as described [here](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
-1. **Verify the set up**: After the importing is complete, locate the `src/main/java/seedu/duke/Duke.java` file, right-click it, and choose `Run Duke.main()`. If the setup is correct, you should see something like the below:
-   ```
-   > Task :compileJava
-   > Task :processResources NO-SOURCE
-   > Task :classes
-   
-   > Task :Duke.main()
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   
-   What is your name?
-   ```
-   Type some word and press enter to let the execution proceed to the end.
+1. **Verify the set up**: After the importing is complete, locate the `src/main/java/cheatlogs/CheatLogs.java` file, right-click it, and choose `Run CheatLogs.main()`. If the setup is correct, you should see something like the image below:
+
+![CheatLogs welcome screen](https://i.ibb.co/L6LmYGZ/mainMenu.png)
+
+Type some word and press enter to let the execution proceed to the end.
 
 ## Build automation using Gradle
 
 * This project uses Gradle for build automation and dependency management. It includes a basic build script as well (i.e. the `build.gradle` file).
 * If you are new to Gradle, refer to the [Gradle Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/gradle.html).
 
-## Testing
-
-### I/O redirection tests
-
-* To run _I/O redirection_ tests (aka _Text UI tests_), navigate to the `text-ui-test` and run the `runtest(.bat/.sh)` script.
-
 ### JUnit tests
 
-* A skeleton JUnit test (`src/test/java/seedu/duke/DukeTest.java`) is provided with this project template. 
+* There are a number of JUnit tests that are provided for you to test the various features of CheatLogs.
 * If you are new to JUnit, refer to the [JUnit Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/junit.html).
 
 ## Checkstyle
@@ -53,7 +35,7 @@ The project uses [GitHub actions](https://github.com/features/actions) for CI. W
 
 ## Documentation
 
-`/docs` folder contains a skeleton version of the project documentation.
+`/docs` folder contains a few important documents featuring different aspects of this project.
 
 Steps for publishing documentation to the public: 
 1. If you are using this project template for an individual project, go your fork on GitHub.<br>

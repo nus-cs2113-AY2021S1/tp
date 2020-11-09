@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<main>
+    <favourite>NO</favourite>
+    <subject>C</subject>
+    <contents>
+    There are several data types in a C program. These are the few native datatypes that is available in C:
+        1. char             | -128 to 127 or 0 to 255
+        2. unsigned char    | 0 to 255
+        3. signed char      | -128 to 127
+        4. int              | -32,768 to 32,767 or -2,147,483,648 to 2,147,483,647
+        5. unsigned int     | 0 to 65,535 or 0 to 4,294,967,295
+        6. short            | -32,768 to 32,767
+        7. unsigned short   | 0 to 65,535
+        8. long             | -9223372036854775808 to 9223372036854775807
+        9. unsigned long    | 0 to 18446744073709551615
+        10. float           | 1.2E-38 to 3.4E+38 (6 decimal places)
+        11. double          | 2.3E-308 to 1.7E+308 (15 decimal places)
+        12. long double     | 3.4E-4932 to 1.1E+4932 (19 decimal places)
+
+    ```
+    #include &lt;stdio.h&gt;
+    #include &lt;stdlib.h&gt;
+    #include &lt;limits.h&gt;
+    #include &lt;float.h&gt;
+
+    int main(int argc, char** argv) {
+
+        printf("CHAR_BIT    :   %d\n", CHAR_BIT);
+        printf("CHAR_MAX    :   %d\n", CHAR_MAX);
+        printf("CHAR_MIN    :   %d\n", CHAR_MIN);
+        printf("INT_MAX     :   %d\n", INT_MAX);
+        printf("INT_MIN     :   %d\n", INT_MIN);
+        printf("LONG_MAX    :   %ld\n", (long) LONG_MAX);
+        printf("LONG_MIN    :   %ld\n", (long) LONG_MIN);
+        printf("SCHAR_MAX   :   %d\n", SCHAR_MAX);
+        printf("SCHAR_MIN   :   %d\n", SCHAR_MIN);
+        printf("SHRT_MAX    :   %d\n", SHRT_MAX);
+        printf("SHRT_MIN    :   %d\n", SHRT_MIN);
+        printf("UCHAR_MAX   :   %d\n", UCHAR_MAX);
+        printf("UINT_MAX    :   %u\n", (unsigned int) UINT_MAX);
+        printf("ULONG_MAX   :   %lu\n", (unsigned long) ULONG_MAX);
+        printf("USHRT_MAX   :   %d\n", (unsigned short) USHRT_MAX);
+
+        printf("Storage size for float : %d \n", sizeof(float));
+        printf("FLT_MAX     :   %g\n", (float) FLT_MAX);
+        printf("FLT_MIN     :   %g\n", (float) FLT_MIN);
+        printf("-FLT_MAX    :   %g\n", (float) -FLT_MAX);
+        printf("-FLT_MIN    :   %g\n", (float) -FLT_MIN);
+        printf("DBL_MAX     :   %g\n", (double) DBL_MAX);
+        printf("DBL_MIN     :   %g\n", (double) DBL_MIN);
+        printf("-DBL_MAX     :  %g\n", (double) -DBL_MAX);
+        printf("Precision value: %d\n", FLT_DIG );
+        return 0;
+    }
+    </contents>
+</main>

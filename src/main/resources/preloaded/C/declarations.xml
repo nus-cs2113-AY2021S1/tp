@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<main>
+    <favourite>NO</favourite>
+    <subject>C</subject>
+    <contents>
+    There are ways to declare the variables in  C program.
+    Declarations in C can be made by typing the datatype and the variable name.
+    The datatype of the variable must be a valid datatype, including char, int, double, or other user defined variables.
+
+    data_type variable_name
+
+    For example, to declare an integer you can do:
+    ```
+    int numberOne;
+    ```
+
+    During your declaration, you can also put in the initial value (initialize) of the variable.
+    ```
+    int numberOne = 1;
+    ```
+    In a C program, a variable must be declared at the top of the program.
+    This is to allocate specific amount of memory for the program.
+    </contents>
+</main>

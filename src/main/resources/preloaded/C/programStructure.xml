@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<main>
+    <favourite>NO</favourite>
+    <subject>C</subject>
+    <contents>
+    This is an example of a C program. The main specifies the main entrance and exit point of the program.
+    ```
+    #include &lt;stdlib.h&gt; // preprocessor directives
+    #include &lt;stdio.h&gt;
+
+    int main(void){
+        /*
+         * enter your main code here
+         */
+        ...
+        return 0;
+    }
+    ```
+    </contents>
+</main>

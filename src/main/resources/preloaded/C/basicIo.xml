@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<main>
+    <favourite>NO</favourite>
+    <subject>C</subject>
+    <contents>
+    There are several input and output throughputs in a C program.
+    However, for this cheatsheet we will cover the basics, that is the standard input output
+
+    stdout : Standard Output
+    stdin : Standard Input
+    stderr : Standard error
+
+    For C, there are there basic input and output methods.
+    1.  getchar() and putchar() function
+        getchar() function will return a char from the user input.
+        ```
+        char c = getchar();
+        ```
+
+        putchar() function will print a character into the screen.
+        ```
+        puthcar(c); // ths function will print c to the monitor
+        ```
+    2.  printf() and scanf() function
+        printf function will print the content inside the brackets
+        ```
+        int a = 5;
+        char b = 'b';
+        float c = 5.85;
+        printf("The value of a=%d, b=%c, c=%f ",a,b,c);
+        ```
+        scanf function will take in the user input from the keyboard and puts it into an address
+        ```
+        scanf("%d, &amp;a)
+        scanf("%c, &amp;b)
+        scanf("%f, &amp;c);
+        ```
+        In the scanf and printf function, you need to specify the datatype of variables you want to print.
+        %d denotes an int
+        $c denotes a char
+        %f denotes a float (%n.mf -> n denotes the number of characters, m denotes how many decimal points in the number)
+    </contents>
+</main>

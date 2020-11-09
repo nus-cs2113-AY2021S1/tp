@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<main>
+    <favourite>NO</favourite>
+    <subject>C</subject>
+    <contents>
+    Programming languages provide various control structures that allow for more complicated execution paths.
+
+    A loop statement allows us to execute a statement or group of statements multiple times. Given below is the general form of a loop statement in most of the programming languages −
+
+    Loop Architecture
+    C programming language provides the following types of loops to handle looping requirements.
+
+    Sr.No.	Loop Type &amp; Description
+        1	while loop
+            Repeats a statement or group of statements while a given condition is true. It tests the condition before executing the loop body.
+
+        2	for loop
+            Executes a sequence of statements multiple times and abbreviates the code that manages the loop variable.
+
+        3	do...while loop
+            It is more like a while statement, except that it tests the condition at the end of the loop body.
+
+        4	nested loops
+            You can use one or more loops inside any other while, for, or do..while loop.
+
+    Loop Control Statements
+    Loop control statements change execution from its normal sequence. When execution leaves a scope, all automatic objects that were created in that scope are destroyed.
+
+    C supports the following control statements.
+
+    Sr.No.	Control Statement &amp; Description
+    1	break statement
+        Terminates the loop or switch statement and transfers execution to the statement immediately following the loop or switch.
+
+    2	continue statement
+        Causes the loop to skip the remainder of its body and immediately retest its condition prior to reiterating.
+
+    3	goto statement
+        Transfers control to the labeled statement.
+
+    Adapted from https://www.tutorialspoint.com/cprogramming/c_loops.htm
+    </contents>
+</main>
