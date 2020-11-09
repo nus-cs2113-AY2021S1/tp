@@ -18,6 +18,9 @@ and [database resource](https://github.com/AY2021S1-CS2113-T14-4/tp/tree/master/
 
 #### Documentation
 
+**User Guide**
+* Edit [database section](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/docs/UserGuide.md#features-related-to-the-food-database) for V2.1
+
 **Developer Guide**
 * Added the [saveload section](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/docs/DeveloperGuide.md#saveload-feature) with the UML diagrams
 * added the [database section](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/docs/DeveloperGuide.md#database-feature) with the UML diagrams

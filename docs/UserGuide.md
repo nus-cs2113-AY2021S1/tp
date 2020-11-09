@@ -178,34 +178,43 @@ Format: `data`
 Output example:
 ```
 Here are the food items in the database:
-  1. Prawn Mee Soup(Dry)(Large) | calorie : 490 | protein : 0 | carbohydrate : 0 | fats : 0
-  2. Prawn Mee Soup(Dry)(Small) | calorie : 390 | protein : 0 | carbohydrate : 0 | fats : 0
-  3. Fried Hokkien Prawn Mee(Large) | calorie : 470 | protein : 0 | carbohydrate : 0 | fats : 0
-  4. Fried Hokkien Prawn Mee(Small) | calorie : 350 | protein : 0 | carbohydrate : 0 | fats : 0
-  5. Clay Pot Chicken | calorie : 440 | protein : 0 | carbohydrate : 0 | fats : 0
-  6. Black Pepper Chicken | calorie : 490 | protein : 0 | carbohydrate : 0 | fats : 0
-  7. Ayam Penyet Set | calorie : 699 | protein : 0 | carbohydrate : 0 | fats : 0
-  8. Steamed Chicken Set  | calorie : 475 | protein : 0 | carbohydrate : 0 | fats : 0
-  9. Ikan Grouper Penyet Set | calorie : 669 | protein : 0 | carbohydrate : 0 | fats : 0
-  10. Bouillabaisse with cock crab and poached lobster | calorie : 520 | protein : 35 | carbohydrate : 45 | fats : 56
-  11. Chicken wings with Reblochon pomme pur??e | calorie : 450 | protein : 32 | carbohydrate : 25 | fats : 66
-  12. Sea bass with prawn tortellini, fennel pur??e and white wine sauce | calorie : 530 | protein : 25 | carbohydrate : 76 | fats : 43
+  1. Prawn Mee Soup(Dry)(Large) | calorie : 490 | protein : 20 | carbohydrate : 30 | fats : 26
+  2. Prawn Mee Soup(Dry)(Small) | calorie : 390 | protein : 15 | carbohydrate : 25 | fats : 19
+  3. Fried Hokkien Prawn Mee(Large) | calorie : 470 | protein : 20 | carbohydrate : 40 | fats : 20
+  4. Fried Hokkien Prawn Mee(Small) | calorie : 350 | protein : 15 | carbohydrate : 30 | fats : 15
+  5. Clay Pot Chicken | calorie : 440 | protein : 15 | carbohydrate : 34 | fats : 15
+  6. Black Pepper Chicken | calorie : 490 | protein : 16 | carbohydrate : 34 | fats : 16
+  7. Ayam Penyet Set | calorie : 699 | protein : 30 | carbohydrate : 45 | fats : 30
+  8. Steamed Chicken Set  | calorie : 475 | protein : 20 | carbohydrate : 35 | fats : 20
+  9. Ikan Grouper Penyet Set | calorie : 669 | protein : 40 | carbohydrate : 50 | fats : 50
+  10. kimchi fried rice | calorie : 520 | protein : 35 | carbohydrate : 45 | fats : 56
+  11. ginseng chicken | calorie : 450 | protein : 32 | carbohydrate : 25 | fats : 66
+  12. ramen | calorie : 530 | protein : 25 | carbohydrate : 76 | fats : 43
+  13. gong cha green tea | calorie : 100 | protein : 0 | carbohydrate : 0 | fats : 0
+  14. gong cha ooloong tea | calorie : 100 | protein : 0 | carbohydrate : 0 | fats : 0
+  15. gong cha bubble tea | calorie : 200 | protein : 0 | carbohydrate : 0 | fats : 0
 ```
 
-#### To add a food from the database: `add` `Coming Soon!`
+#### To add food from the database: `add` 
 
 Adds a desired food in the database into the DietBook.
 
-Format: `add n/FOOD_NAME x/PORTION_SIZE`
+Format: `add i/FOOD_INDEX x/PORTION_SIZE [yyyy-mm-ddTHH:MM]`
+
+Note : optional date time input, if not provided, the entry will have the current date time stamp
+Inputting a future date time is not allowed.
 
 Example of Usage:
-* `add n/Prawn Mee x/1` adds the first instance of food with a name that contains Prawn Mee with a portion of 1.
+* `add i/1 x/1` adds the food in the data base with index 1 with a portion of 1 at the current time
+* `add i/3 x/2 2020-11-02T12:30` adds the food with index 3 with a portion of 2 at date and time 2 nov 2020 12:30
 
 Output example:
 ```
-Here are the food items in DietBook:
-   1. Prawn Mee Soup(Dry)(Large) | calorie : 490 | protein : 0 | carbohydrate : 0 | fats : 0 -- (1)
+  1. Prawn Mee Soup(Dry)(Large) | calorie : 490 | protein : 20 | carbohydrate : 30 | fats : 26 -- (1) [09 Nov 2020 2238]
+  2. Fried Hokkien Prawn Mee(Large) | calorie : 470 | protein : 20 | carbohydrate : 40 | fats : 20 -- (2) [02 Nov 2020 1230]
 ```
+
+
 
 ### Features related to the food list
 
@@ -442,6 +451,8 @@ Your data has been saved successfully.
 **Q**: How do I transfer my data to another computer? 
 
 **A**: Either download `dietbook.jar` on the other computer and overwrite the empty data files with the data files from your previous computer or copy the whole DietBook home folder from the previous computer to the new computer.
+data from v2.1 is **NOT** compatible with earlier data. The data is found in `C/Users/{User name}/dietbook`. As of v2.1 the food list data is found in the folder
+`Food##PORTION###dDATE##folder` and the Personal data is found in the folder `PERSONA_IS_NO_SUCH_PERSOOSOOSNSNSNS`.
 
 ## Command Summary
 
