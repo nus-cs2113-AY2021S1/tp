@@ -61,10 +61,14 @@ public class UI {
      */
     public void printGreetingMessage(UserInfo userInfo) {
         printLine();
-        if (userInfo.getName().isBlank()) {
+        try {
+            if (userInfo.getName().isBlank()) {
+                System.out.println("I am NUSchedule! What's your name?");
+            } else {
+                helloWithName(userInfo.getName());
+            }
+        } catch (NumberFormatException e) {
             System.out.println("I am NUSchedule! What's your name?");
-        } else {
-            helloWithName(userInfo.getName());
         }
         System.out.println("Hello from\n" + LOGO);
         System.out.println("What can I do for you?");
