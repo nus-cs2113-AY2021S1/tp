@@ -88,7 +88,7 @@ public class UiMessage {
     public static final String ADD_TODO_COMMAND = "Add task:                                                        "
             + "add -t TASK /by DEADLINE";
     public static final String ADD_CATEGORY_COMMAND = "Add category:                                                "
-            + "    " + "add -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}";
+            + "    " + "add -c CATEGORY {[-b BOOK_NUMBER] | [-q QUOTE_NUMBER]}";
     public static final String ADD_RATING_COMMAND = "Add rating:                                                    "
             + "  " + "add -r RATING_SCORE BOOK_NUMBER";
     public static final String ADD_BOOKMARK_COMMAND = "Add bookmark:                                                "
@@ -105,7 +105,7 @@ public class UiMessage {
     public static final String DELETE_TODO_COMMAND = "Delete task:                                                  "
             + "   " + "delete -t TASK_NUMBER";
     public static final String DELETE_CATEGORY_COMMAND = "Delete category:                                          "
-            + "       " + "delete -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}";
+            + "       " + "delete -c CATEGORY {[-b BOOK_NUMBER] | [-q QUOTE_NUMBER]}";
     public static final String DELETE_RATING_COMMAND = "Delete rating:                                              "
             + "     " + "delete -r BOOK_NUMBER";
 

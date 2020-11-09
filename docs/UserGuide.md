@@ -1184,10 +1184,10 @@ Find book:                                                       find -b KEYWORD
 ---------------------------------------------------------------------------------------------------------------------------------------
                                 2. Quote Management
 ---------------------------------------------------------------------------------------------------------------------------------------
-Add quote:                                                       add -q QUOTE [/from BOOK_TITLE] [/by AUTHOR]
+Add quote:                                                       add -q QUOTE {[/by AUTHOR] [/from REFERENCE]}
 Delete quote:                                                    delete -q QUOTE_NUMBER
-List quotes:                                                     list -q [/by AUTHOR] [/from BOOK_TITLE]
-Edit quote:                                                      edit -q QUOTE_NUMBER /to NEW_QUOTE [/by AUTHOR] [/from BOOK_TITLE]
+List quotes:                                                     list -q {[/by AUTHOR] [/from REFERENCE]}
+Edit quote:                                                      edit -q QUOTE_NUMBER /to NEW_QUOTE {[/by AUTHOR] [/from REFERENCE]}
 Find quote:                                                      find -q QUOTE_NUMBER
 Add quote reflection:                                            add -qr QUOTE_NUMBER /reflect REFLECTION
 Delete quote reflection:                                         delete -qr QUOTE_NUMBER
@@ -1210,8 +1210,8 @@ Mark task as done:                                               done -t TASK_NU
 ---------------------------------------------------------------------------------------------------------------------------------------
                                 4. Category Management
 ---------------------------------------------------------------------------------------------------------------------------------------
-Add category:                                                    add -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}
-Delete category:                                                 delete -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}
+Add category:                                                    add -c CATEGORY {[-b BOOK_NUMBER] | [-q QUOTE_NUMBER]}
+Delete category:                                                 delete -c CATEGORY {[-b BOOK_NUMBER] | [-q QUOTE_NUMBER]}
 List categories:                                                 list -c [CATEGORY]
 Edit category:                                                   edit -c OLD_CATEGORY /to NEW_CATEGORY
 Find category:                                                   find -c KEYWORD
@@ -1297,7 +1297,7 @@ Enter the following command | To do this
 `add -q QUOTE {[/by AUTHOR] [/from REFERENCE]}` | Add quote
 `add -qr QUOTE_NUMBER /reflect REFLECTION` | Add quote reflection
 `add -t TASK /by DEADLINE` | Add task
-`add -c CATEGORIES {[-b BOOK_TITLE] [-q QUOTE_NUMBER]}` | Add categories
+`add -c CATEGORIES {[-b BOOK_NUMBER] [-q QUOTE_NUMBER]}` | Add categories
 `add -r RATING_SCORE BOOK_NUMBER` | Add rating
 `bookmark -b BOOK_NUMBER /pg PAGE_NUMBER` | Add bookmark
 `list -b [/by AUTHOR]` | List books
@@ -1320,7 +1320,7 @@ Enter the following command | To do this
 `delete -qr QUOTE_NUMBER` | Delete quote reflection
 `delete -bm BOOK_NUMBER` | Delete bookmark
 `delete -t TASK_NUMBER` | Delete task
-`delete -c CATEGORIES {[-b BOOK_TITLE] [-q QUOTE_NUMBER]}` | Delete categories
+`delete -c CATEGORIES {[-b BOOK_NUMBER] [-q QUOTE_NUMBER]}` | Delete categories
 `delete -r BOOK_NUMBER` | Delete rating
 `find -b KEYWORD` | Find books
 `find -q KEYWORD` | Find quotes
