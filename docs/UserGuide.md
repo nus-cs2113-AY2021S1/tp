@@ -224,6 +224,8 @@ Here are some key pointers:
 * Do not need to add parameter `admin` after `list`.
 * All list commands have the same command word `list`. 
 
+<div style="page-break-after: always;"></div>
+
 **Example:**
 
 * Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
