@@ -133,7 +133,7 @@ The *Data Component Diagram* shown above explains the high-level design of the D
 
 ### Detailed Data Component 
 
-The *Detailed Data Component* shown above explains the summarised model of SmartHomeBot. The four appliances classes are extended
+The *Detailed Data Component* shown above explains the summarised data of SmartHomeBot. The four appliances classes are extended
 from the abstract appliance class. 
 
 ![Detailed Data Component](images/diagrams/ClassDiagram_DetailedData.png)  <br>
