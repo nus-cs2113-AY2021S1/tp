@@ -366,10 +366,10 @@ The application aims to provide the writer with the following services:
 - Should work for single user.
 - Should work without Internet connection.
 
-## Instructions for manual testing
+### Appendix E: Instructions for manual testing
 Given below are the instructions to test Fluffle manually.
 
-### Launch and Shutdown
+#### Launch and Shutdown
 Following are the instructions to launch and shutdown Fluffle
 
 1. Verify that you have `Java11` or above version installed by typing `java --version` to your computer's terminal (Command Prompt for Windows, Terminal for MacOS)
