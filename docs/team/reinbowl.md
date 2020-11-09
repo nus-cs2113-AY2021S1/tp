@@ -29,7 +29,9 @@ Given below are my contributions to the project.
     * What it does: Allows the user to set a goal which is different from an event in that goal is a motivation.
     * Justification: This feature allows user to remind themselves of their current goal in the midst of their busy
     schedule.
-    
+
+<div style="page-break-after: always;"></div>
+
 * **New Feature**: Added the ability to format events into a calendar.
     * What it does: Allows the user to list events in the chronological order and in a format that is easy to read.
     * Justification: This features allows user to sort their events according to date and time which every scheduler
