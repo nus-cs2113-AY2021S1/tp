@@ -45,10 +45,10 @@ press ENTER. The display similar to the below should appear in a few seconds.
 e.g. typing `exit` and pressing Enter, it will exit the program.
 Some example commands you can try:
     *   `create Bedroom1`: 
-         Creates a 'location' named "Bedroom 1" in SmartHomeBot. 
+         Creates a 'location' named "Bedroom1" in SmartHomeBot. 
          
     *   `remove Bedroom1`: 
-         Remove a 'location' named "Bedroom 1" in SmartHomeBot.
+         Remove a 'location' named "Bedroom1" in SmartHomeBot.
             
     *   `list location`: 
          Lists all the location.
