@@ -63,6 +63,8 @@ Added implementation details for the following:
 
 2\. [Section 2.3 Parser & ParserManager](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#parserManager)
 
+<div style="page-break-after: always;"></div>
+
 3\. [Section 2.4 Commands](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#commands)
 - Class diagram of Command Class, Figure 6
 
