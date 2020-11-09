@@ -52,6 +52,12 @@ public class FlashcardCommandTest {
     }
 
     @Test
+    public void addFlashcardCommand_FlashcardWithoutSemicolon_throwsException() {
+        addCommand = new AddFlashcardCommand("add What is the formula for speed? Speed=Distance/Time.");
+        assertThrows(InvalidFlashcardException.class, () -> addCommand.execute(topic));
+    }
+
+    @Test
     public void deleteFlashcardCommand_validCommand_returnsIndex() {
         deleteCommand = new DeleteFlashcardCommand("delete 2");
         deleteCommand.execute(topic);
@@ -63,4 +69,5 @@ public class FlashcardCommandTest {
         deleteCommand = new DeleteFlashcardCommand("delete What is the Speed of Light?");
         assertThrows(NumberFormatException.class, () -> deleteCommand.execute(topic));
     }
+
 }
