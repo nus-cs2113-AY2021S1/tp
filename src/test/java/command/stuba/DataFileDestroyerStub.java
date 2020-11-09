@@ -8,8 +8,8 @@ public class DataFileDestroyerStub extends DataFileDestroyer {
     boolean isDataDestroyed;
 
     public DataFileDestroyerStub(CheatSheetList list) {
-       super(null, list);
-       isDataDestroyed = false;
+        super(null, list);
+        isDataDestroyed = false;
     }
 
     public void reset() {
@@ -18,11 +18,11 @@ public class DataFileDestroyerStub extends DataFileDestroyer {
 
     @Override
     public void executeFunction(String name) {
-//        try {
-//            cheatSheetList.remove(name);
-//        } catch (CommandException e) {
-//            isDataDestroyed = false;
-//        }
+        isDataDestroyed = true;
+    }
+
+    @Override
+    public void executeFunction() {
         isDataDestroyed = true;
     }
 }
