@@ -24,6 +24,16 @@ public class AddLinkCommand extends BookmarkCommand {
         assert categoryNumber >= 0 : "Missing category number";
     }
 
+    /**
+     * Adds new BookmarkLink to ArrayList after evaluating category link.
+     *
+     * @param ui prints output message
+     * @param categories add link to array list
+     * @param storage store new link to file
+     * @throws EmptyBookmarkException if category name is empty
+     * @throws ExistingBookmarkException if bookmark category already exist
+     * @throws InvalidBookmarkException if bookmark link is invalid.
+     */
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories, BookmarkStorage storage) {
         try {
             if (categoryNumber == 0) {
