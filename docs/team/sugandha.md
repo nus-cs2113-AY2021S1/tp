@@ -35,8 +35,9 @@ and keep track of their deadlines, tasks and any other important dates. It is wr
     
 * **Contributions to the UG:** 
     * Table of contents
-    * Topic Level Features
+    * All Topic Level Features
     * Improvements on any grammatical or syntax errors
+    * Help commands in Main, Subject and Topic Level features
 
 * **Contributions to the DG:** 
     * Table of Contents
