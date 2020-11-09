@@ -21,10 +21,10 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `edit` and `sort` [\#72](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/72)
+    * Added documentation for the features `edit` and `sort` [\#167](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/167)
     * Added sections on Introduction, quick start and command summary [\#78](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/78)
   * Developer Guide:
-    * Added implementation details and sequence diagrams of the `edit` and `sort` feature. [\#167](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/167)
+    * Added implementation details and sequence diagrams of the `edit` and `sort` feature. [\#171](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/171)
     * Added sections on Introduction, Architecture, Documentation and Appendix [\#74](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/74), [\#171](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/171)
 
 * **Community**:
