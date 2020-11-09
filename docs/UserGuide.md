@@ -544,7 +544,7 @@ In this way, you can have a better picture of the tasks on hand!
 
 Format: `print tasks`
 
-Note: The space in the command above is mandatory!
+Note: The space in the command above is mandatory and should only have 1 spacing.
 
 Example:
 
@@ -569,7 +569,7 @@ to display all events saved in the application. This feature will definitely sav
 
 Format: `print events`
 
-Note: The space in the command above is mandatory!
+Note: The space in the command above is mandatory and should only have 1 spacing.
 
 Example:
 
@@ -594,7 +594,7 @@ you can type `print *` command to view the list of important tasks together with
                                                     
 Format: `print *`
 
-Note: The space in the command above is mandatory!
+Note: The space in the command above is mandatory and should only have 1 spacing.
 
 Example:
 
@@ -614,7 +614,7 @@ you can type  `print progress` command to see the fraction and percentage propor
 
 Format: `print progress`
 
-Note: The space in the command above is mandatory!
+Note: The space in the command above is mandatory and should only have 1 spacing.
 
 Example:
 
@@ -658,7 +658,7 @@ Print the personal calendar including all calendar items, with todo items (which
 
 Format: `print timeline`
 
-Note: The space in the command above is mandatory!
+Note: The space in the command above is mandatory and should only have 1 spacing.
 
 Example:
 
@@ -677,7 +677,7 @@ Wanting to find out what is going to happen in the next 7 days? `print timeline 
 
 Format: `print timeline week`
 
-Note: The space in the command above is mandatory!
+Note: The space in the command above is mandatory and should only have 1 spacing between each command parameters.
 
 Example:
 
@@ -697,7 +697,7 @@ Wanting to find out what is going to happen in the next 31 days? `print timeline
 
 Format: `print timeline month`
 
-Note: The space in the command above is mandatory!
+Note: The space in the command above is mandatory and should only have 1 spacing between each command parameters.
 
 Example:
 
@@ -718,7 +718,7 @@ Wanting to find out what is going to happen before a specific date? `print timel
 
 Format: `print timeline date <date>`
 
-Note: The spaces in the command above are mandatory!
+Note: The space in the command above is mandatory and should only have 1 spacing between each command parameters.
 
 Example:
 
@@ -767,7 +767,7 @@ The exam with the closest date will be printed first.
 
 Format: `countdown exams`
 
-Note: The space in the command above is mandatory!
+Note: The space in the command above is mandatory and should only have 1 spacing.
 
 Example:
 
@@ -790,7 +790,7 @@ The deadline with the closest due date will be printed first.
 
 Format: `countdown deadlines`
 
-Note: The space in the command above is mandatory!
+Note: The space in the command above is mandatory and should only have 1 spacing.
 
 Example:
 
