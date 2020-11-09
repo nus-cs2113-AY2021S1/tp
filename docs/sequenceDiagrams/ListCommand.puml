@@ -2,7 +2,7 @@
 
 participant "command:ListCommand" as ListCommand
 participant "timetable:Timetable" as Timetable
-participant ":AthenaUI" as AthenaUI
+participant "athenaUi:AthenaUi" as AthenaUi
 
 title List
 hide footbox
@@ -11,13 +11,14 @@ hide footbox
 
 ListCommand->Timetable**:
 activate Timetable
-Timetable -> Timetable: populateTimetable()
+Timetable -> Timetable++: populateTimetable()
+return
 return
 
-ListCommand->AthenaUI++: printTimetable()
-AthenaUI -> Timetable++: toString()
+ListCommand->AthenaUi++: printTimetable()
+AthenaUi -> Timetable++: toString()
 return output
-AthenaUI-->ListCommand--:
+AthenaUi-->ListCommand--:
 
 <--ListCommand--
 @enduml 
