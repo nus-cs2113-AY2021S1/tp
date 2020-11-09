@@ -5,6 +5,8 @@ import seedu.zoomaster.bookmark.BookmarkList;
 import seedu.zoomaster.command.Command;
 import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.exception.ZoomasterExceptionType;
+import seedu.zoomaster.slot.Day;
+import seedu.zoomaster.slot.Module;
 import seedu.zoomaster.slot.Slot;
 import seedu.zoomaster.slot.Timetable;
 
@@ -81,15 +83,30 @@ public class EditSlotCommand extends Command {
 
         switch (fieldToEdit) {
         case FIELD_KW_MODULE:
-            timetable.moveSlotToAnotherModule(day, indexInDay, matcher.group("firstArgument"));
-            message = "Slot moved to " + matcher.group("firstArgument").toUpperCase();
+            if (Module.isValidModule(matcher.group("firstArgument").toUpperCase())) {
+                timetable.moveSlotToAnotherModule(day, indexInDay, matcher.group("firstArgument"));
+                message = "Slot moved to " + matcher.group("firstArgument").toUpperCase();
+            } else {
+                throw new ZoomasterException(ZoomasterExceptionType.INVALID_MODULE);
+            }
             break;
         case FIELD_KW_TITLE:
             slot = timetable.getSlotByIndexInDay(day, indexInDay);
             slot.setTitle(matcher.group("firstArgument"));
             message = "Slot title changed to " + matcher.group("firstArgument");
+
             break;
         case FIELD_KW_TIME:
+
+            try {
+                String firstArgument = matcher.group("firstArgument");
+                String startTime = matcher.group("startTime");
+                String endTime = matcher.group("endTime");
+            } catch (IllegalStateException e) {
+                throw new ZoomasterException(ZoomasterExceptionType.INVALID_TIME_FORMAT);
+            }
+
+
             slot = timetable.getSlotByIndexInDay(day, indexInDay);
             message = changeSlotTime(
                     slot,
@@ -97,6 +114,7 @@ public class EditSlotCommand extends Command {
                     matcher.group("startTime"),
                     matcher.group("endTime"),
                     timetable);
+
             break;
         default:
             message = "Unrecognized field!";
@@ -119,16 +137,27 @@ public class EditSlotCommand extends Command {
         LocalTime startTime;
         LocalTime endTime;
 
+
         try {
             startTime = LocalTime.parse(startTimeInput);
             endTime = LocalTime.parse(endTimeInput);
-        } catch (DateTimeParseException e) {
-            throw new ZoomasterException(ZoomasterExceptionType.INVALID_TIME_FORMAT);
+        } catch (DateTimeParseException | NullPointerException e) {
+            throw new ZoomasterException(ZoomasterExceptionType.INVALID_EDIT_INPUT);
         }
 
+        if (!Day.isDay(dayInput)) {
+            throw new ZoomasterException(ZoomasterExceptionType.INVALID_TIMETABLE_DAY);
+        }
+
+        Module slotModule = timetable.getModuleContainingSlot(slot);
+        slotModule.removeSlot(slot);
+
         if (timetable.isOverlapTimeSlot(dayInput, startTime, endTime)) {
+            slotModule.addSlot(slot);
             return "Timing clashes with another slot!";
         }
+
+        slotModule.addSlot(slot);
 
         slot.setDay(dayInput);
         slot.setStartTime(startTime);
