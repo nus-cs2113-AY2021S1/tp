@@ -935,6 +935,8 @@ Expected output:
 >**Useful information:**
 >* You can use the `list` command to check the card index.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.5 Testing content:`test`
 
 Grading your own work is one of the best ways to revise as it helps you effectively retain information.
@@ -952,7 +954,7 @@ Instruction:
 
 Expected output:
 
-![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png)
+![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5_resized.png)
 
 >**Useful information:**
 >* User input in the test mode is not case sensitive. If the answer is correct but the case is different from
