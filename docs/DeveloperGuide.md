@@ -93,10 +93,10 @@ NotUS manages the flow of the application. On launch, it will create the necessa
   <br><em>Figure 2</em>
 </p>
 
-<div style="page-break-after: always;"></div>
-
 💡 The lifeline for Parser and Command should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram. This applies to the rest of the sequence diagrams in the document. <br>
 💡 Due to a limitation of PlantUML, some of the sequence diagrams may have the destroy marker (X) immediately at the end of the activation bar when there should be a gap before the object is deleted.
+
+<div style="page-break-after: always;"></div>
 
 #### <a id="parserManager"><ins>2.3 Parser & ParserManager</ins></a>
 
