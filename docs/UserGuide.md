@@ -876,10 +876,9 @@ Here is a key point:
 
 Example of usage: 
 * Step 1: Type `help` into the command prompt and press `Enter` to execute it.<br>
-![Help](UG_Images/help.png)
+![Help 1](UG_Images/help1.png)
 * Step 2: Part the result for the list of commands will be displayed as shown.<br>
-![Help List Beginning](UG_Images/help1.png)
-![Help list Ending](UG_Images/help2.png)
+![Help 2](UG_Images/help2.png)
 * After knowing what are the commands, you can try any commands on the correct level.
 
 #### 3.5.2. Viewing the revision history: `history`
@@ -897,12 +896,12 @@ Here are some key points:
 * If you enter `history DATE`, the `DATE` need to be in the format of yyyy-mm-dd, then Kaji will show the revision completed on the given date.
 
 Example of usage: 
-Let's say today is 2020-11-11 and you want to view the revision history today:
-* Step 1: Type `history` or `history 2020-11-11` into the command prompt and press `Enter` to execute it.<br>
+Let's say today is 2020-11-09 and you want to view the revision history today:
+* Step 1: Type `history` or `history 2020-11-09` into the command prompt and press `Enter` to execute it.<br>
 <img src="UG_Images/history1.png" width="600" alt="history 1"/>
 * Step 2: The result for the list of history will be displayed as shown.<br>
 <img src="UG_Images/history2.png" width="600" alt="history 2"/>
-* If you have not revised in 2020-11-11 this result will be displayed.<br>
+* If you have not revised in 2020-11-09 this result will be displayed.<br>
 <img src="UG_Images/history3.png" width="600" alt="history 3"/>
 * After knowing the revision you have completed, you can try any commands on the correct level.
 
@@ -918,6 +917,7 @@ Example of usage:
 <img src="UG_Images/exit1.png" width="600" alt="exit 1"/>
 * Step 2: The result for the exit will be displayed as shown.<br>
 <img src="UG_Images/exit2.png" width="600" alt="exit 2"/>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. Command Summary

@@ -15,10 +15,15 @@ Given below are my contributions to the project.
 * **Enhancement implemented:** Save the revision completed in the session/in a day.
 * **Documentation:**
     * User Guide:
-        * Added the overview section
-        * Added the description for the features: `list modules/chapters/flashcards`, `edit module`, `view history` and `exit`
-        * Added command summary
+        * Added the overview section.
+        * Added the description for the features: `list modules/chapters`.
+        * Added the description for the feature `edit module`.
+        * Added the description for the feature `help`.
+        * Added the description for the feature `view history`.
+        * Added the description for the feature `exit`.
+        * Added command summary.
     * Developer Guide:
-        * Added overall architecture diagram 
-        * Added implementation details of the `ListModulesCommand`, `ListChaptersCommand`, `ListCardsCommand` and `HistoryCommand` features. 
+        * Added overall architecture diagram.
+        * Added implementation details of the `ListModulesCommand`, `ListChaptersCommand` and `ListCardsCommand` features.
+        * Added implementation details of the `HistoryCommand` feature. 
         
