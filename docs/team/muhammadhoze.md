@@ -26,8 +26,8 @@ This section gives a summary of my contributions towards our project.
 
 2. Finding **tasks** based on a keyword (FindCommand class)
     * *what it does*: Allow students to find their tasks easily with the help of this command rather than manually searching through the list.
-    [FindCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/blob/master/src/main/java/seedu/duke/commands/FindCommand.java)
-    However, this was modified to finding item specific {tasks,links,books,expenses,modules} by my teammate
+    [FindCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/blob/master/src/main/java/seedu/duke/commands/FindCommand.java) <br>
+    *However, this was modified to finding item specific {tasks,links,books,expenses,modules} by my teammate*
 
 3. Clearing **all** data which includes tasks, modules, web links, books (ClearCommand class)
     * *what it does*: Allow students to clear everything and start afresh every new semester.
