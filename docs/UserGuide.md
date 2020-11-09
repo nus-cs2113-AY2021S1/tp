@@ -146,9 +146,9 @@ Format: `add module <module code> <optional/compulsory arguments>`
 🚩: Duplicate module code in the same semester will **not be allowed**. 
 
 List of `<optional arguments>`:
-- `d/<1 or 0>` sets whether a module is completed or not *(1 for completed, 0 for incomplete)*.
+- `d/<1 or 0>` sets whether a module is "completed" or not *(1 for "completed", 0 for "incomplete")*.
 
-🚩: Modules will be **set to complete by default** if `d/<1 or 0>` is not provided. This feature lets users add incomplete modules and compute a projected CAP when `list modules` is entered.
+🚩: Modules will be **"completed" by default** if `d/<1 or 0>` is not provided. This feature lets users add "incomplete" modules and compute a projected CAP when `list modules` is entered.
 
 List of `<compulsory arguments>`:
 - `g/<grade>` grade of the module in **caps** (`A+`, `A`, `A-`, etc).
@@ -179,7 +179,7 @@ Output:
     ____________________________________________________________
 ```
 
-🚩: `[CM]` indicates a completed module, and `[IC]` indicates an incomplete module.
+🚩: `[CM]` indicates a "completed" module, and `[IC]` indicates an "incomplete" module.
 
 ### Adding a weblink: `add link`
 Add a link for lecture/tutorial sessions through zoom.
@@ -419,7 +419,11 @@ Output:
 ```
 
 ### Displaying modules on list: `list modules`
-List all the modules in the module list and shows the computed, projected CAP and completed MCs.
+List all the modules in the module list and shows the current CAP, projected CAP and completed MCs.
+
+🚩: Current CAP is computed from "completed" modules, and projected CAP is computed from all modules.
+
+🚩: Completed MCs are computed from "completed" modules.
 
 Format: `list modules`
 
@@ -443,6 +447,8 @@ Output:
      Total MCs completed: 12
     ____________________________________________________________
 ```
+
+🚩: `[CM]` indicates a "completed" module, and `[IC]` indicates an "incomplete" module.
 
 ### Displaying expense items on list: `list expenses`
 List all the expense items in the expense list and shows total amount of money spent for each currency and the current 
@@ -683,7 +689,7 @@ Output:
 ```
     ____________________________________________________________
      Noted. I've removed this module:
-       [A+] CS1010 (4 MC) (AY1920S1)
+       [CM][A+] CS1010 (4 MC) (AY1920S1)
      Now you have 7 module(s) in the list.
     ____________________________________________________________
 ```
