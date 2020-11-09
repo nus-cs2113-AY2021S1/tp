@@ -37,8 +37,9 @@ class GoalStorageTest {
     }
 
     @Test
-    public void loadGoalList_invalidGoalData_exceptionThrown() throws Exception {
+    public void loadGoalList_invalidGoalData_invalidDataRemoved() throws Exception {
         GoalStorage goalStorage = new GoalStorage("src/test/data/StorageTest/InvalidGoalData.txt");
-        assertThrows(InvalidFileFormatException.class, goalStorage::loadGoalList);
+        ArrayList<Goal> actualGoalList = goalStorage.loadGoalList();
+        assertEquals(0, actualGoalList.size());
     }
 }
