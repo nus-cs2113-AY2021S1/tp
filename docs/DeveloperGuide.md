@@ -207,7 +207,7 @@ of busStops objects.
     
 Given the above alternatives, alternative 1 was used considering the scalability of the application.
 <!-- @@author Lezn0 -->
-###3.3. List All stops (/liststops Feature)
+###3.3. List All stops (/liststops Feature) - Yuxin
 `/liststops` is the command which prints all bus stops declared in the BusStops enum.
 
 The `ListStopsCommand#executeCommand()` method of ListStopsCommand Class executes the command in the following steps:
@@ -215,8 +215,7 @@ The `ListStopsCommand#executeCommand()` method of ListStopsCommand Class execute
     - The `BusStops#listStops()` method iterate through all bus stops declared in the BusStops enum class.
     - Close names for bus stops will also be printed if it has one.
     
-The following sequence diagram illustrates the steps taken by the program when the user calls the `/liststops` command.
-
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/liststops` command. <br>
 ![add favourites](DG_Diagrams/ListStopsSequence.png)
 
 #### Design Considerations
@@ -232,7 +231,7 @@ The following sequence diagram illustrates the steps taken by the program when t
     
 Given the above alternatives, alternative 1 was used considering the integration of other commands.
 
-### 3.4. Favourite command adder (`/addfav` Feature)
+### 3.4. Favourite command adder (`/addfav` Feature) - Yuxin
 
 `/addfav <description>` is the command that has to be entered by the user to add a previous valid command in to the user's 
 list of favourites.
@@ -247,8 +246,7 @@ The `AddFavCommand#executeCommand()` method of AddFavCommand Class executes the 
     Fav objects within the list that contains the same command.
     - If the there are no duplicate Fav objects, Fav object created will be added to the FavList.
 
-The following sequence diagram illustrates the steps taken by the program when the user calls the `/addfav` command.
-
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/addfav` command. <br>
 ![add favourites](DG_Diagrams/AddFavSequence.png)
 <!-- @@author -->
 
@@ -357,7 +355,7 @@ The `DineCommand#executeCommand()` method of DineCommand Class executes the comm
     + Sets the `isFound` parameter to **false** if there is no match.
         + Throws an exception if `isFound` is false.
 
-The following sequence diagram illustrates the steps taken by the program when the user calls the `/dine` command.
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/dine` command.<br>
 ![bus data](DG_Diagrams/DineSequence.png)
 
 ### 3.8 Find specific dining outlets (/dineinfo Feature) - Shuyi
@@ -371,7 +369,7 @@ The `DineInfoCommand#executeCommand()` method of DineInfoCommand Class executes 
     + Throws an exception if `searchList` is empty.
     + Calls `Ui#printDineInfoResult()` method to print the data in `searchList` if it is not empty.
 
-The following sequence diagram illustrates the steps taken by the program when the user calls the `/dineinfo` command.
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/dineinfo` command. <br>
 ![bus data](DG_Diagrams/DineInfoSequence.png)
 <!-- @@author -->
 
@@ -629,7 +627,7 @@ the needed parameter.<br>
     Expected: Similar to previous.<br> 
 <!-- @@author -->
 <!-- @@author Lezn0 -->
-### E.7 Add a favourite command 
+### E.7 Add a favourite command - Yuxin
 1. Adding a command to the list of favourites.
 - Prerequisites: Executed a command.
 - Test case: <br>
