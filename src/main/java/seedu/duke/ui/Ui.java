@@ -52,8 +52,15 @@ public class Ui {
      * @param event Event object that is being repeated for the specified time by the user
      */
     public void printRepeatAdd(Event event) {
+
         System.out.println(event);
-        System.out.println("is now repeating " + event.getRepeatType() + " for " + event.getRepeatCount() + " times.");
+        if (event.getRepeatCount() == 0) {
+            System.out.println("is no longer a repeated event");
+        } else {
+            System.out.println("is now repeating " + event.getRepeatType() + " for "
+                    + event.getRepeatCount() + " times.");
+        }
+
     }
 
     /**

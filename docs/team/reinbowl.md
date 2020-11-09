@@ -2,14 +2,22 @@
 
 ## Overview
 
-Scheduler--; is a desktop app for managing deadlines from different sources.
+Scheduler--; (S--) is a desktop app for managing deadlines from different sources.
 The user will use a Command Line Interface to control it.
 It is specially designed for Computing students who are comfortable in using CLI and have Git project deadlines as well
 as consolidated Zoom session links due which will suit home based learning in this COVID period.
 
 Given below are my contributions to the project.
 
-### Summary of Contributions
+## Summary of Contributions
+
+* **New Feature**: Added the structure to store user's data.
+    * What it does: Allows the user's data to be stored and accessed of easily during the program runtime.
+    * Justification: This feature is essential to keep track of the user's data in a manner that is not complicated and
+    can then be retrieved with simple code.
+    * Highlights: Because of the different data to keep track of, having a single list of event was not an ideal
+    solution. Multiple lists and each list with a name to keep track of the data had to be implemented for easy tracking
+    of the different data. 
 
 * **New Feature**: Added the ability to list events.
     * What it does: Allows the user to list events of a specific type or all events according to the order the events
@@ -21,7 +29,9 @@ Given below are my contributions to the project.
     * What it does: Allows the user to set a goal which is different from an event in that goal is a motivation.
     * Justification: This feature allows user to remind themselves of their current goal in the midst of their busy
     schedule.
-    
+
+<div style="page-break-after: always;"></div>
+
 * **New Feature**: Added the ability to format events into a calendar.
     * What it does: Allows the user to list events in the chronological order and in a format that is easy to read.
     * Justification: This features allows user to sort their events according to date and time which every scheduler
@@ -38,17 +48,18 @@ Given below are my contributions to the project.
     * Ensure that issues are assigned and were done in time for each milestone.
 
 * **Enhancements to existing features**:
-    * Updated repeat command and its data structure. (Pull requests [\#83](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/83))
+    * Add DateTimeParser to accept different formats build upon Java DateTime parse. (Pull request [\#30](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/30))
+    * Updated repeat command and its data structure. (Pull request [\#83](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/83))
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `list`, `goal` and `calendar`. (Pull requests [\#161](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/161))
+        * Added documentation for the features `list`, `goal` and `calendar`. (Pull request [\#161](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/161))
         
     * Developer Guide:
-        * Added the architecture details. (Pull requests [\#126](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/126))
-        * Added implementation details of the `list` feature.
-        * Added implementation details of the `goal` feature. (Pull requests [\#96](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/96))
-        * Added implementation details of the `calendar` feature.
+        * Added the architecture details. (Pull request [\#126](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/126))
+        * Added implementation details of the `list` feature. (Pull request [\#126](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/126))
+        * Added implementation details of the `goal` feature. (Pull request [\#96](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/96))
+        * Added implementation details of the `calendar` feature. (Pull request [\#255](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/255))
     
 * **Community**:
     * Assisted with peer review for other group's PR 
