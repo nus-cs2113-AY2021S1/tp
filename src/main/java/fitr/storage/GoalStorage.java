@@ -55,8 +55,7 @@ public class GoalStorage {
      * @return an ArrayList of Goal objects
      * @throws FileNotFoundException if the file is not found
      */
-    public ArrayList<Goal> loadGoalList() throws FileNotFoundException, ArrayIndexOutOfBoundsException,
-            InvalidFileFormatException {
+    public ArrayList<Goal> loadGoalList() throws FileNotFoundException, ArrayIndexOutOfBoundsException {
         LOGGER.fine("Attempting to read file: " + goalListPath);
         ArrayList<Goal> goalList = new ArrayList<>();
         String line;
@@ -147,7 +146,7 @@ public class GoalStorage {
         }
     }
 
-    private static boolean isValidSmartGoalCalorie(String goalDescription) throws NumberFormatException{
+    private static boolean isValidSmartGoalCalorie(String goalDescription) throws NumberFormatException {
         if (goalDescription.contains(KEYWORD_FOOD_LESS_THAN)
                 || goalDescription.contains(KEYWORD_EXERCISE_LESS_THAN)) {
             return !((Integer.parseInt(goalDescription.split(SPLIT_SPACE)[3]) >= 100000
@@ -155,7 +154,8 @@ public class GoalStorage {
         } else if (goalDescription.contains(KEYWORD_FOOD_MORE_THAN)
                 || goalDescription.contains(KEYWORD_EXERCISE_MORE_THAN)) {
             return !((Integer.parseInt(goalDescription.split(SPLIT_SPACE)[3]) >= 100000)
-                    || (Integer.parseInt(goalDescription.split(SPLIT_SPACE)[3]) < 0));
+                    || (Integer.parseInt(goalDescription.split(SPLIT_SPACE)[3]) < 0)
+                    || ((goalDescription.split(SPLIT_SPACE)[3]).equals("-0")));
         }
         return true;
     }

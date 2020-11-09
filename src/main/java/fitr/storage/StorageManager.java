@@ -79,7 +79,7 @@ public class StorageManager {
         try {
             goalStorage.writeGoalList(new GoalList(goalStorage.loadGoalList()), foodList, exerciseList, user);
             return goalStorage.loadGoalList();
-        } catch (InvalidFileFormatException | ArrayIndexOutOfBoundsException | DateTimeParseException e) {
+        } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
             Ui.printCustomError("Error: Invalid goal file - new goal list created!");
             goalStorage.writeGoalList(new GoalList(), foodList, exerciseList, user);
             return new ArrayList<>();
