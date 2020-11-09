@@ -22,14 +22,14 @@ E-Duke-8 (pronounced "Educate") helps CS2113/T students learn and understand sof
 - **Enhancements to existing features:**
     - Increased flexibility of parsing quiz commands by allowing the topic field and number of questions field to be interchangeable in position. (Pull request [#126](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/126))
     - Added parser logic in order to be able to read in additional white spaces without losing the user input. (Pull request [#227](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/227))
-    - Implemented JUnit Testing for some Command classes, BookmarkList class and Parser classes  . (Pull request [#226](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/226)), [#132](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/132))
+    - Implemented JUnit Testing for some Command classes, BookmarkList class and Parser classes  . (Pull request [#226](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/226), [#132](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/132))
     
 - **Documentation:**
     - User Guide:
-        - Added documentation for the `bookmarks` feature. [#169](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/169)
+        - Added documentation for the `bookmark` feature. [#169](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/169)
     - Developer Guide:
         - Added documentation for the Logic Component of the Developer Guide. [#123](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/123), [#138](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/138)  
 
 - **Community:**
-    - PRs reviewed (with non-trivial review comments): [#51](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/51), [#59](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/59), [#207](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/207) ,[#212](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/212)
-    - Reported bugs and suggestions for other teams in the class. [#1](https://github.com/josephhhhhhhhh/ped/issues/1), [#2](https://github.com/josephhhhhhhhh/ped/issues/2), [#3](https://github.com/josephhhhhhhhh/ped/issues/3), [#4](https://github.com/josephhhhhhhhh/ped/issues/4), [#5](https://github.com/josephhhhhhhhh/ped/issues/5), [#6](https://github.com/josephhhhhhhhh/ped/issues/6), [#7](https://github.com/josephhhhhhhhh/ped/issues/7), [#8](https://github.com/josephhhhhhhhh/ped/issues/8),
+    - PRs reviewed (with non-trivial review comments): [#51](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/51), [#59](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/59), [#207](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/207), [#212](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/212)
+    - Reported bugs and suggestions for other teams in the class. [#1](https://github.com/josephhhhhhhhh/ped/issues/1), [#2](https://github.com/josephhhhhhhhh/ped/issues/2), [#3](https://github.com/josephhhhhhhhh/ped/issues/3), [#4](https://github.com/josephhhhhhhhh/ped/issues/4), [#5](https://github.com/josephhhhhhhhh/ped/issues/5), [#6](https://github.com/josephhhhhhhhh/ped/issues/6), [#7](https://github.com/josephhhhhhhhh/ped/issues/7), [#8](https://github.com/josephhhhhhhhh/ped/issues/8)
