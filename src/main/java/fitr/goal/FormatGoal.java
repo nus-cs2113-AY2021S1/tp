@@ -34,7 +34,11 @@ public class FormatGoal {
                     throw new FitrException();
                 }
                 String targetCalories = removeLeadingZeros(goalDescription.substring(1).trim());
-                if (Integer.parseInt(targetCalories) >= 100000 || Integer.parseInt(targetCalories) < 0) {
+                try {
+                    if (Integer.parseInt(targetCalories) >= 100000 || Integer.parseInt(targetCalories) < 0) {
+                        throw new UpperBoundMoreThanException();
+                    }
+                } catch (NumberFormatException e) {
                     throw new UpperBoundMoreThanException();
                 }
                 String wordCalorie = (Integer.parseInt(targetCalories) == 1) ? (SPACE_STRING + KEYWORD_CALORIE)
@@ -50,7 +54,11 @@ public class FormatGoal {
                     throw new FitrException();
                 }
                 String targetCalories = removeLeadingZeros(goalDescription.substring(1).trim());
-                if (Integer.parseInt(targetCalories) >= 100000 || Integer.parseInt(targetCalories) <= 0) {
+                try {
+                    if (Integer.parseInt(targetCalories) >= 100000 || Integer.parseInt(targetCalories) <= 0) {
+                        throw new UpperBoundLessThanException();
+                    }
+                } catch (NumberFormatException e) {
                     throw new UpperBoundLessThanException();
                 }
                 String wordCalorie = (Integer.parseInt(targetCalories) == 1) ? (SPACE_STRING + KEYWORD_CALORIE)
