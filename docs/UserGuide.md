@@ -1008,16 +1008,16 @@ Format: `bye`
 In this section, you can find some frequently asked questions(FAQ).
 
 **Q**: How do I transfer my data to another computer? <br>
-**A**:
+**A**: Transfer your data by copying the data file and Scheduler.jar
 
 **Q**: What if I run into bugs while using Scheduler--;? <br>
-**A**:
+**A**: If you run into bugs that cause the program to crash, please contact us at scheduler@gmail.com with the logging.txt. 
 
 **Q**: What if I have any suggestions for Scheduler--? <br>
-**A**:
+**A**: Feel free to drop us an email at scheduler@gmail.com 
 
 **Q**: Can I create 2 events on the same date and time? <br>
-**A**:
+**A**: Yes you can. We are allowing this function so that you can add an event that does not require your presence.
 
 <div style="page-break-after: always;"></div>
 
