@@ -231,7 +231,7 @@ Now that more lessons are moving online, are you managing your links well? You m
 want to save your time finding your zoom links in your email inbox and save all your 
 links in the bookmark feature to access them easily! The bookmark mode enables you to 
 compile all your links in one destination and even categorise them into different groups. 
-After entering the bookmark mode (refer to General Command 2), use the following commands to 
+After entering the bookmark mode (refer to [General Command 2](#2-changes-the-current-mode-cd-mode_name-or-mode_index)), use the following commands to 
 navigate around bookmark mode. 
 
 This section contains 8 commands: 
@@ -243,6 +243,11 @@ This section contains 8 commands:
 * 1.6 : [Adding a link to your chosen category](#16-adding-a-link-to-your-chosen-category-add-link--add-link-t-title)
 * 1.7 : [Deleting a link](#17-deleting-a-link-rm-link_number-)
 * 1.8 : [Starring / Unstarring a link](#18-marking-unmarking-a-link-as-a-starred-link-star-link_number)
+
+>**Warning**
+>If you edit the data file wrongly, the bookmark feature will not be able to take in the correct category name, and links. 
+>If you encounter any errors after handling the bookmark data file, refer to [FAQ](#faq)
+
 
 <div style="page-break-after: always;"></div>
 
@@ -355,14 +360,14 @@ Expected output:
 
 ![Bookmark_1.4](Images/BookmarkUG/Figure6.png)
 
-**Useful Information:**
-* You can only use this command in bookmark main.  (Refer to [1.5](#15-going-back-to-bookmark-main-back) to go back to the bookmark main)
+>**Useful Information:**
+>* You can only use this command in bookmark main.  (Refer to [1.5](#15-going-back-to-bookmark-main-back) to go back to the bookmark main)
 
 Before deleting a category, take note of the following warnings. 
 
-**Warning:**
-* Ensure that the category NUMBER that you have chosen is valid. Error will be shown if the category NUMBER does not exist, or the NUMBER you have entered is not a number. To find out the valid category NUMBER, view the list of category available. (Refer to [1.1](#11-viewing-all-the-bookmarks-links-listlist--s-list--c-list--a))
-* CAUTION: Make sure to check all your links before deleting. Deleting a category will delete all the bookmarks in the category! 
+>**Warning:**
+>* Ensure that the category NUMBER that you have chosen is valid. Error will be shown if the category NUMBER does not exist, or the NUMBER you have entered is not a number. To find out the valid category NUMBER, view the list of category available. (Refer to [1.1](#11-viewing-all-the-bookmarks-links-listlist--s-list--c-list--a))
+>* CAUTION: Make sure to check all your links before deleting. Deleting a category will delete all the bookmarks in the category! 
 
 <div style="page-break-after: always;"></div>
 
@@ -408,7 +413,7 @@ Expected output:
 
 ![Bookmark_add link](Images/BookmarkUG/Figure8.png)
 
-**Useful Information:**
+>**Useful Information:**
 >* You can only use this command after choosing your category. (Refer to [1.2](#12-going-into-each-category-bm-number))
 >* You can only bookmark unique links within your category. Refer to the following figure.  
 >![Bookmark_not unique link](Images/BookmarkUG/Figure9.png)
@@ -417,7 +422,7 @@ If you encounter any errors, take note of the following warnings.
 
 >**Warning:** 
 >* Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to add your links. (Refer to [1.2](#12-going-into-each-category-bm-number)) 
->* Ensure that the link added is valid. Error will be shown if the link you have given is empty or is not valid (contains " ", "|" or does not contain “.”). 
+>* Ensure that the link added is valid. Error will be shown if the link you have given is empty or is not valid (contains " ", "\|" or does not contain “.”). 
 
 <div style="page-break-after: always;"></div>
 
@@ -453,9 +458,10 @@ Instruction:
 1. `star LINK_NUMBER`  
 
 e.g. `star 1`
+
 Expected output:   
 
-![Bookmark_star](Images/BookmarkUG/Figure11.png)
+![Bookmark_star](Images/BookmarkUG/Figure11.png){:width="30%" height="30%"}
 
 >**Useful Information:** 
 >* It is the same command for marking and unmarking any links. For example, if link 1 is not starred, star 1  will mark the link as starred. And if link 1 is starred, star 1 will unmark link 1. 
@@ -491,7 +497,7 @@ This section contains 10 commands to navigate the Timetable mode:
 * [2.7. Showing classes list](#27-showing-class-list-list-class)
 * [2.8. Deleting an activity](#28-deleting-an-activity-delete-activity-index)
 * [2.9. Deleting a class](#29-deleting-a-class-delete-class-index)
-* [2.10 Removing all past events](#210-removing-all-past-event-clean-up)
+* [2.10 Removing all past events](#210-removing-all-past-events-clean-up)
 
 <div style="page-break-after: always;"></div>
 
@@ -1061,6 +1067,17 @@ feel free to refer to the About Us page and contact any of the developers.
 
 **A**: As this app is still under development, there are many features we would like to add in the future.
 Do feedback to us what features you would like to see in Study It!
+
+**Q**: What to do if bookmark data does not load properly after changing the bookmark.txt file?
+
+**A**: This is for users who editted the bookmark.txt file in the data folder. If you encounter trouble after editing the data file, 
+you can do one of the following steps: 
+* revert the changes in the data file.
+* delete the bookmark data file.
+* ensure the bookmark data file are stored in the correct format. This is the following format: 
+    * CategoryName = links \| links \| \|STAR\|links \| links t->title 
+    * Category name and the links are separated with a " = " and each link is separated with a " \| ". (Take note of the space before and after the symbols)
+    * A starred link has \|STAR\| in front of the link. A link with a title has " t->" infront of the title. (Take note of the space in front of t->)
 
 <div style="page-break-after: always;"></div>
 
