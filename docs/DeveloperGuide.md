@@ -320,9 +320,23 @@ The sequence diagram below shows what happens when user enters `help`:
 This feature allows users to repeat all classes in the current week or a selected event for several weeks.
 
 ### 4.10 Delete<a id="delete"></a>
-This feature allows the user to delete unwanted events. `DeleteCommand#Execute` deletes the specified event in the following steps:  
+This feature allows the user to delete unwanted events. `DeleteCommand#Execute` deletes the specified event in the 
+following steps:  
+
+Step 1. The user enters `delete NUMBER` where `NUMBER` refers to the index of the command to be deleted. The user input is parsed by the Parser class which creates a new `DeleteCommand` object.
+
+Step 2. `Eventlist#remove()` is called which will delete the event with the specified index.
 
 ### 4.11 Find<a id="find"></a>
+This feature allows the user to filter his/her events by a particular keyword. This command will search through all the events and find events that have descriptions
+containing the search criteria. The process takes place in the following steps:
+
+Step 1. The user enters `find CRITERIA` which will be parsed by the `Parser` class. The `Parser` class will create a new `FindCommand`
+object.
+
+Step 2. `EventList#filterWith()` will be called which will create a ArrayList containing events that match the specified criteria.
+
+Step 3. `UI#printFilteredEventList` is called to print out the events.
 
 ### 4.12 Find based on date<a id="date"></a>
 
