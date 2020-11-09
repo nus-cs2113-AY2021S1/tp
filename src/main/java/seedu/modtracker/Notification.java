@@ -7,8 +7,10 @@ import static seedu.modtracker.ModuleList.modList;
 
 public class Notification {
 
-    public static int numOfNotification = 0;
-    public static int currentWeek;
+    private static int numOfNotification = 0;
+    private static final int MIN_WEEK = 1;
+    private static final int MAX_WEEK = 13;
+    private static int currentWeek;
     public static final String ON_TRACK = "You are on track in week %d. Well Done!";
     public static final String MAINTAIN = "Keep up the good work!";
     public static final String SUCCESS = "Good time management boosts productivity!";
@@ -29,7 +31,7 @@ public class Notification {
 
     //update week number based on user input
     public void updateCurrentWeek() {
-        currentWeek = 13;
+        currentWeek = MAX_WEEK;
         while (currentWeek > 0) {
             for (Module mod : modList) {
                 if (hasExpAndAct(mod)) {
@@ -87,6 +89,9 @@ public class Notification {
     public void printNotification(ModuleList list) {
         numOfNotification = getNumNotification(list);
         if (numOfNotification == 0 || currentWeek == 0) {
+            if (currentWeek == 0) {
+                currentWeek = MIN_WEEK;
+            }
             System.out.printf((ON_TRACK) + "%n", currentWeek);
             randomise(lines);
             return;
