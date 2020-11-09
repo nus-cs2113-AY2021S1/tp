@@ -103,7 +103,7 @@ public class BookmarkUi {
             }
         }
         if (i == 0) {
-            System.out.println("\t<empty>");
+            System.out.println("<empty>");
         }
 
     }
