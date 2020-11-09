@@ -36,13 +36,10 @@ public class CreateLedgerHandler extends ParamHandler {
         return handler;
     }
 
-    public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
-        try {
-            this.ledger = new Ledger();
-            this.handleParams(packet);
-        } catch (ItemNotFoundException exception) {
-            // Fall-through
-        }
+    public void handlePacket(CommandPacket packet)
+        throws InsufficientParamsException, ItemNotFoundException {
+        this.ledger = new Ledger();
+        this.handleParams(packet);
     }
 
     @Override

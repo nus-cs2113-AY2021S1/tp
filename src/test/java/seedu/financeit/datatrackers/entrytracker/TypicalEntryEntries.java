@@ -3,6 +3,7 @@ package seedu.financeit.datatrackers.entrytracker;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.exceptions.IncompatibleParamsException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
+import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.datatrackers.entrytracker.entryhandlers.CreateEntryHandler;
 import seedu.financeit.testutil.TestUtil;
 import seedu.financeit.utils.ParamChecker;
@@ -43,7 +44,7 @@ public class TypicalEntryEntries {
         CreateEntryHandler createEntryHandler = CreateEntryHandler.getInstance();
         try {
             createEntryHandler.handlePacket(this.packet);
-        } catch (InsufficientParamsException | IncompatibleParamsException exception) {
+        } catch (InsufficientParamsException | IncompatibleParamsException | ItemNotFoundException exception) {
             //Fall through
         }
         return createEntryHandler.getCurrEntry();
@@ -83,7 +84,7 @@ public class TypicalEntryEntries {
         try {
             createEntryHandler.handlePacket(packet);
             this.packet = packet;
-        } catch (InsufficientParamsException | IncompatibleParamsException exception) {
+        } catch (Exception exception) {
             //Fall through
         }
         return createEntryHandler.getCurrEntry();
@@ -123,7 +124,7 @@ public class TypicalEntryEntries {
         try {
             createEntryHandler.handlePacket(packet);
             this.packet = packet;
-        } catch (InsufficientParamsException | IncompatibleParamsException exception) {
+        } catch (Exception exception) {
             //Fall through
         }
         return createEntryHandler.getCurrEntry();

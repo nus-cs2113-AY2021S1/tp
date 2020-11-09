@@ -159,7 +159,7 @@ public class EntryTracker {
 
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s created!", entry.getName()));
-        } catch (InsufficientParamsException | IncompatibleParamsException exception) {
+        } catch (InsufficientParamsException | IncompatibleParamsException | ItemNotFoundException exception) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         } catch (DuplicateInputException exception) {

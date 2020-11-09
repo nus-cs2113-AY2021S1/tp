@@ -49,17 +49,13 @@ public class CreateEntryHandler extends ParamHandler {
     }
 
     public void handlePacket(CommandPacket packet)
-        throws InsufficientParamsException, IncompatibleParamsException {
-        try {
-            this.entry = new Entry();
-            this.handleParams(packet);
-            checkCatAndEntryType();
-        } catch (ItemNotFoundException exception) {
-            // Fall-through
-        }
+        throws InsufficientParamsException, IncompatibleParamsException, ItemNotFoundException {
+        this.entry = new Entry();
+        this.handleParams(packet);
+        checkCatAndEntryType();
     }
 
-    public void checkCatAndEntryType() throws InsufficientParamsException, IncompatibleParamsException {
+    public void checkCatAndEntryType() throws IncompatibleParamsException {
         switch (this.entry.getEntryType()) {
         case EXP:
             if (!CategoryMap.expenseCategories.contains(this.entry.getCategory())) {

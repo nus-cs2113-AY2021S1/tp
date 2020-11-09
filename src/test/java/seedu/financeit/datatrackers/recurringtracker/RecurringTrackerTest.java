@@ -66,6 +66,7 @@ public class RecurringTrackerTest {
                 editHandler.handlePacket(testPacket);
             }
             entry = editHandler.getEntry();
+
         } catch (Exception exception) {
             fail("Unexpected exception! " + exception.getMessage());
         }
@@ -116,7 +117,6 @@ public class RecurringTrackerTest {
         }
         assertEquals(ENTRIES_TO_CREATE, RecurringTracker.getEntries().getListSize());
     }
-
 
     @Test
     public void handleNewEntry_missingParams_entryNotCreated() {
