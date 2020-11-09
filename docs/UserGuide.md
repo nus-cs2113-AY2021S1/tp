@@ -235,7 +235,6 @@ Output:
    
    ![](images/user_guide/listCommand3.png) 
 
-
 <br/><br/> 
 ### Displaying the recorded usage of appliance: `usage`
 Display the current power usage of all appliances and total power consumption monitored within SmartHomeBot. 
@@ -245,7 +244,6 @@ Format: `usage`
 Output: 
    
    ![](images/user_guide/usageCommand.png) 
-
 
 <br/><br/> 
 ### Resetting all power usage in application: `p_reset`
@@ -258,7 +256,6 @@ Output:
    
    ![](images/user_guide/p_resetCommand.png) 
 
-
 <br/><br/> 
 ### Exiting the application: `exit`
 Exits the application and switch off all appliances within SmartHomeBot. The monitoring of all appliances will be stop.
@@ -268,12 +265,14 @@ Format: `exit`
 Output: 
 
    ![](images/user_guide/ExitMessage.png) 
+   
 <br/><br/>
 
-### Saving the data
+## Saving the data
 SmartHomeBot will auto-save the task list data in the hard disk after 
 any command that changes the data. There is no need to save manually.
 
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
