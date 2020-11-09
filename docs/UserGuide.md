@@ -169,7 +169,6 @@ The process is terminated. Your existing data is kept
  ```
 
  >  **[NOTE]**
- >  * The overwrite prompt is not present in v2.0 of **WatchNext**, but will be available in future iterations.
  >
  >  * The `<DURATION OF EPISODE>` input, which is `25` in the Friends example, is in minutes.
  >
