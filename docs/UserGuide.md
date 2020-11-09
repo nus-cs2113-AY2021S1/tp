@@ -344,7 +344,7 @@ Format: `deletetime <module code> <week number>`
 * The `module code` needs to be valid.
 * The `module code` exists in the database.
 * The `week number` must be a whole number between 1 and 13 inclusive.
-* There is an input in the actual time of the `module code`.
+* There is an input in the actual time of the `module code` for that week.
 
 
 Example of usage:
@@ -429,7 +429,7 @@ The notification will give the user an update
 on the progress of the current week.
 The program determines the current week based on
 the latest week that has at least one actual time input. 
-If there is no actual time input in any weeks, it will be considered as week 1.
+If there is no actual time input in any week, it will be considered as week 1.
 
 Format: `open`
 
@@ -437,10 +437,10 @@ Example of usage:
 
 `open`
 
-A possible expected output:
+A possible expected output (when user spends too little time on CS1010 in week 2):
 
 ```
-Oh no! It appears you are spending too little time on CS1010.
+Oh no! It appears you are spending too little time on CS1010 in week 2.
    
 The harder you work, the closer you are to success!
 ````
