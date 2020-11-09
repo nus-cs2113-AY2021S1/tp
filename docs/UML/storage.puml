@@ -7,11 +7,11 @@ skinparam classBackgroundColor LOGIC_COLOR
 
 Class HiddenOutside #FFFFFF
 
-package logic {
+package Logic {
     Class HiddenModel #FFFFFF
 }
 
-package storage {
+package Storage {
 
     Class Storage STORAGE_COLOR
     Class StorageLoad STORAGE_COLOR
@@ -19,7 +19,7 @@ package storage {
     Class StorageWrite STORAGE_COLOR
 }
 
-logic .down.> Storage
+Logic .down.> Storage
 HiddenOutside .up.> Storage
 
 Storage .right.> StorageLoad

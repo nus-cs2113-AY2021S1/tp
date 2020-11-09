@@ -95,7 +95,7 @@ Refer to [Features](#3-features) below for details of each command.
 #### 1.4.2. Schedule Management
 Your biggest reason to use KAJI lies in KAJI's ability to provide you with the full benefits of "Spaced Repetition" without you having to do the tedious manual work involved. To accomplish this, KAJI comes with an automated Schedule Management feature that will facilitate the "Spaced Repetition" scheduling process for you. 
 
-To find out more about how you can utilise the feature and even customise it to your liking, find out more [below](#45-viewing-and-customising-the-schedule-feature).
+To find out more about how you can utilise the feature and even customise it to your liking, find out more [below](#45-scheduling-in-kaji).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -354,6 +354,10 @@ Format: `go CHAPTER_INDEX`
 Example: <br>
 For instance, you are currently in Module level `Module` and want to head to Chapter level `Chapter1` , the steps to
  do so are shown below:
+
+<p align="center">
+  <img src="UG_Images/moduleGoPrompt.png" alt="Go prompt"/>
+</p>
 
 * Step 1: Enter the command `go 1` to head down to the Chapter level below: <br>
 
@@ -758,11 +762,7 @@ Example of ***`exclude module`***
 * ***Step 2***: Key the **Module name** that you wish to exclude from your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
-  <img src="UG_Images/excludeModuleModulePrompt.png" alt="Exclude Command Module mode: ModuleName Prompt"/>
-</p>
-
-<p align="center">
-  <img src="UG_Images/excludeModuleModuleFilled.png" alt="Exclude Command Module mode: ModuleName Filled"/>
+  <img src="UG_Images/excludeModuleModule.png" alt="Exclude Command Module mode: ModuleName Filled"/>
 </p>
 
 * ***Upon completion***: This is what you will see:
@@ -781,21 +781,13 @@ Example of ***`exclude chapter`***
 * ***Step 2***: Key the **Module name** of the Module that contains Chapter that you wish to exclude from your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
-  <img src="UG_Images/excludeChapterModulePrompt.png" alt="Exclude Command Module mode: ModuleName Prompt"/>
-</p>
-
-<p align="center">
-  <img src="UG_Images/excludeChapterModuleFilled.png" alt="Exclude Command Module mode: ModuleName Filled"/>
+  <img src="UG_Images/excludeChapterModule.png" alt="Exclude Command Module mode: ModuleName Prompt"/>
 </p>
 
 * ***Step 3***: Key the **Chapter name** that you wish to exclude from your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
-  <img src="UG_Images/excludeChapterChapterPrompt.png" alt="Exclude Command Chapter mode: ChapterName Prompt"/>
-</p>
-
-<p align="center">
-  <img src="UG_Images/excludeChapterChapterFilled.png" alt="Exclude Command Chapter mode: ChapterName Filled"/>
+  <img src="UG_Images/excludeChapterChapter.png" alt="Exclude Command Chapter mode: ChapterName Filled"/>
 </p>
 
 * ***Upon completion***: This is what you will see:
@@ -836,11 +828,7 @@ Example of ***`include module`***
 * ***Step 2***: Key the **Module name** that you wish to include back into your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
-  <img src="UG_Images/includeModuleModulePrompt.png" alt="Include Command Module mode: ModuleName Prompt"/>
-</p>
-
-<p align="center">
-  <img src="UG_Images/includeModuleModuleFilled.png" alt="Include Command Module mode: ModuleName Filled"/>
+  <img src="UG_Images/includeModuleModule.png" alt="Include Command Module mode: ModuleName Filled"/>
 </p>
 
 * ***Upon completion***: This is what you will see:
@@ -850,8 +838,8 @@ Example of ***`include module`***
 </p>
 
 
-Example of ***`exclude chapter`***
-* ***Step 1***: Key the **`exclude chapter`** command **into the prompt** as shown below and **press *[Enter]***
+Example of ***`include chapter`***
+* ***Step 1***: Key the **`include chapter`** command **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
   <img src="UG_Images/includeChapter.png" alt="Include Command Chapter mode: ChapterName Command"/>
@@ -860,21 +848,13 @@ Example of ***`exclude chapter`***
 * ***Step 2***: Key the **Module name** of the Module that contains the Chapter that you wish to include back into your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
-  <img src="UG_Images/includeChapterModulePrompt.png" alt="Include Command Chapter mode: ModuleName Prompt"/>
-</p>
-
-<p align="center">
-  <img src="UG_Images/includeChapterModuleFilled.png" alt="Include Command Chapter mode: ModuleName Filled"/>
+  <img src="UG_Images/includeChapterModule.png" alt="Include Command Chapter mode: ModuleName Prompt"/>
 </p>
 
 * ***Step 3***: Key the **Chapter name** that you wish to include back into your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
-  <img src="UG_Images/includeChapterChapterPrompt.png" alt="Include Command Chapter mode: ChapterName Prompt"/>
-</p>
-
-<p align="center">
-  <img src="UG_Images/includeChapterChapterFilled.png" alt="Include Command Chapter mode: ChapterName Filled"/>
+  <img src="UG_Images/includeChapterChapter.png" alt="Include Command Chapter mode: ChapterName Prompt"/>
 </p>
 
 * ***Upon completion***: This is what you will see:

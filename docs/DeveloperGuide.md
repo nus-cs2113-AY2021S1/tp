@@ -201,14 +201,14 @@ The Storage component consists of the `Storage`, `StorageWrite`, `StorageParser`
 
 <p align="center">
   <img src="DG_Images/storage.png" width="600" alt="Storage Class Diagram"/>
-  <br/>Figure <>. Architecture diagram of Storage component  
+  <br/>Figure <>. Class diagram of Storage component  
 </p>
 
 The Storage component
-* can save the User's database of Modules, Chapters and Cards as directories, text files and text within the data directory respectively.
-* Can parse the contents of the database stored in the data directory back into the software to load the User's database back into KAJI as Modules, Chapters and Cards
-* can save the due dates for a Chapter into a text file within the dues directory located in the Module directory that contains it 
-* can parse the due dates into LocalDate objects from the dues directory so that KAJI can load utilise them.
+* can save the User's database of `Module`s, `Chapter`s and `Card`s as directories, text files and text within the data directory respectively.
+* can parse the contents of the database stored in the data directory back into the software to load the User's database back into KAJI as `Module`s, `Chapter`s and `Card`s
+* can save the due dates for a `Chapter` into a text file within the dues directory located in the `Module` directory that contains it.
+* can parse the due dates into LocalDate objects from the dues directory so that KAJI can utilise them.
 * can save the exclusions from the scheduling feature into a text file "exclusions.txt" within the "admin" directory.
 * can parse the exclusions into an ArrayList<String> so that KAJI can determine which chapters are excluded.
 

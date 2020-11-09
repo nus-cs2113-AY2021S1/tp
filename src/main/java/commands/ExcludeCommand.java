@@ -8,7 +8,10 @@ import ui.Ui;
 
 import java.io.FileNotFoundException;
 
-
+/**
+ * Adds Chapters to the Exclusion List stored in the Exclusion File so that these Chapters will not be scheduled by
+ * KAJI.
+ */
 public class ExcludeCommand extends Command {
     public static final String EXCLUDE_COMMAND_OPTION_MODULE = "module";
     public static final String EXCLUDE_COMMAND_OPTION_CHAPTER = "chapter";
@@ -23,14 +26,13 @@ public class ExcludeCommand extends Command {
     public static final String PRINT_FORMAT_MODULE = "Module: %s";
     public static final String PRINT_FORMAT_CHAPTER = "Module: %s; Chapter: %s";
 
+    /**
+     * Constructor for the ExcludeCommand class. Assigns the command argument that the "exclude" command was called with
+     * as the type of the command.
+     * @param type Command argument that the command was called with.
+     */
     public ExcludeCommand(String type) {
         this.type = type;
-    }
-
-    @Override
-    public void execute(Ui ui, Access access, Storage storage) throws InvalidInputException, ExclusionFileException {
-        String result = attemptToExclude(ui, storage);
-        ui.showToUser(result);
     }
 
     private String attemptToExclude(Ui ui, Storage storage) throws ExclusionFileException,
@@ -75,6 +77,25 @@ public class ExcludeCommand extends Command {
         }
     }
 
+    /**
+     * Executes the "exclude" command.
+     * @param ui ui which the command uses to print messages
+     * @param access access which the command uses to get the modules, chapters or cards
+     * @param storage storage which the command uses to load or write data to storage files
+     * @throws InvalidInputException if the user specifies a command argument other than chapter and module, or if an
+     *     non-existent target Module or ChapterName is given.
+     * @throws ExclusionFileException if there are errors with the Exclusion File
+     */
+    @Override
+    public void execute(Ui ui, Access access, Storage storage) throws InvalidInputException, ExclusionFileException {
+        String result = attemptToExclude(ui, storage);
+        ui.showToUser(result);
+    }
+
+    /**
+     * Used to determine if this Command is the "exit" command.
+     * @return false as this is not the "exit" command
+     */
     @Override
     public boolean isExit() {
         return false;
