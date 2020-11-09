@@ -35,10 +35,6 @@ public class EstimateParserTest {
         });
 
         assertDoesNotThrow(() -> {
-            estimateParser.parse("script a b c d.txt");
-        });
-
-        assertDoesNotThrow(() -> {
             estimateParser.parse("script a b c d .txt");
         });
     }
@@ -58,23 +54,31 @@ public class EstimateParserTest {
         });
 
         assertDoesNotThrow(() -> {
-            estimateParser.parse("script a b c d.txt -wph 777");
-        });
-
-        assertDoesNotThrow(() -> {
             estimateParser.parse("script a b c d .txt -wph 777");
         });
     }
 
     @Test
-    void parse_invalidScriptFile_throwsAniException() {
+    void parse_noScriptFile_throwsAniException() {
         assertThrows(AniException.class, () -> estimateParser.parse(""));
+    }
+
+    @Test
+    void parse_notSupportedFileExtension_throwsAniException() {
         assertThrows(AniException.class, () -> estimateParser.parse("script"));
         assertThrows(AniException.class, () -> estimateParser.parse("script."));
         assertThrows(AniException.class, () -> estimateParser.parse("script.tx"));
         assertThrows(AniException.class, () -> estimateParser.parse("script.txt-wph 777"));
+    }
+
+    @Test
+    void parse_pathToScriptFile_throwsAniException() {
         assertThrows(AniException.class, () -> estimateParser.parse("/path/to/script.txt"));
-        assertThrows(AniException.class, () -> estimateParser.parse("script.txt helloworld"));
+    }
+
+    @Test
+    void parse_tooManyScriptFile_throwsAniException() {
+        assertThrows(AniException.class, () -> estimateParser.parse("script.txt helloworld.txt"));
     }
 
     @Test
@@ -92,13 +96,21 @@ public class EstimateParserTest {
     }
 
     @Test
-    void parse_invalidWordsPerHour_throwsAniException() {
+    void parse_emptyWordsPerHour_throwsAniException() {
         assertThrows(AniException.class, () -> estimateParser.parse("script.txt -wph"));
+    }
+
+    @Test
+    void parse_tooManyWordsPerHour_throwsAniException() {
         assertThrows(AniException.class, () -> estimateParser.parse("script.txt -wph one"));
-        assertThrows(AniException.class, () -> estimateParser.parse("script.txt -wph 0"));
-        assertThrows(AniException.class, () -> estimateParser.parse("script.txt -wph -8"));
         assertThrows(AniException.class, () -> estimateParser.parse("script.txt -wph 777 0"));
         assertThrows(AniException.class, () -> estimateParser.parse("script.txt -wph 123 -two"));
+    }
+
+    @Test
+    void parse_invalidWordsPerHour_throwsAniException() {
+        assertThrows(AniException.class, () -> estimateParser.parse("script.txt -wph -8"));
+        assertThrows(AniException.class, () -> estimateParser.parse("script.txt -wph 0"));
         assertThrows(AniException.class, () -> estimateParser.parse("script.txt -wph 999999999999"));
     }
 }

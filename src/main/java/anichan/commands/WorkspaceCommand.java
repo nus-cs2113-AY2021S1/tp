@@ -21,10 +21,11 @@ public class WorkspaceCommand extends Command {
     private static final String SWITCH_OPTION = "s";
     private static final String LIST_OPTION = "l";
     private static final String DELETE_OPTION = "d";
-    private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistCommand.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(WorkspaceCommand.class.getName());
     private static final String EXPECTED_PARAMETERS_MESSAGE = "Workspace command only accepts the "
             + "options: -n, -s, -l, and -d.";
     private static final String EXCEPTION_WORKSPACE_IN_USE = "Please switch workspace before trying to delete it.";
+    private static final String ASSERTION_INVALID_MESSAGE = "Option should not be null.";
 
     private final String commandOption;
     private final String workspaceName;
@@ -57,16 +58,20 @@ public class WorkspaceCommand extends Command {
      */
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
-        assert commandOption != null : "Option should not be null.";
+        assert commandOption != null : ASSERTION_INVALID_MESSAGE;
 
         switch (commandOption) {
         case CREATE_OPTION:
+            LOGGER.log(Level.INFO, "Attempting to create workspace.");
             return createWorkspace(storageManager, user);
         case SWITCH_OPTION:
+            LOGGER.log(Level.INFO, "Attempting to switch workspace.");
             return switchWorkspace(user);
         case LIST_OPTION:
+            LOGGER.log(Level.INFO, "Attempting to list workspaces.");
             return listWorkspace(user);
         case DELETE_OPTION:
+            LOGGER.log(Level.INFO, "Attempting to delete workspace.");
             return deleteWorkspace(storageManager, user);
         default:
             LOGGER.log(Level.WARNING, "Invalid workspace command provided.");
@@ -85,6 +90,7 @@ public class WorkspaceCommand extends Command {
     private String createWorkspace(StorageManager storageManager, User user) throws AniException {
         Workspace newWorkspace = user.addWorkspace(workspaceName);
 
+        // Adds Watchlist ArrayList to Workspace
         Watchlist newWatchlist = new Watchlist("Default");
         ArrayList<Watchlist> watchlistList = new ArrayList<>();
         watchlistList.add(newWatchlist);
@@ -138,6 +144,7 @@ public class WorkspaceCommand extends Command {
      * @return result after executing the command
      */
     private String listWorkspace(User user) {
+        // Builds string containing list of Workspaces for Ui print
         StringBuilder workspacesString = new StringBuilder();
         ArrayList<Workspace> userWorkspaces = user.getWorkspaceList();
 

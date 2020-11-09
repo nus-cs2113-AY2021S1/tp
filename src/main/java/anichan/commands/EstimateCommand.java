@@ -18,6 +18,7 @@ public class EstimateCommand extends Command {
     private static final int DEFAULT_WORDS_PER_HOUR = -1;
     private static final int MINUTES_PER_HOUR = 60;
     private static final String SPLIT_WHITESPACE = " ";
+    private static final String INVALID_WORDS_PER_HOUR = "Words per hour value cannot be zero!";
 
     // The values 400, 500, and 600 refers to the amount of words an average translator
     // can translates in an hour.
@@ -59,7 +60,8 @@ public class EstimateCommand extends Command {
         int wordCount = fileContent.split(SPLIT_WHITESPACE).length;
         LOGGER.log(Level.INFO, wordCount + " words in the script (" + scriptFileName + ").");
 
-        assert (wordsPerHour > 0 || wordsPerHour == DEFAULT_WORDS_PER_HOUR) : "Words per hour value cannot be zero!";
+        assert (wordsPerHour > 0 || wordsPerHour == DEFAULT_WORDS_PER_HOUR) : INVALID_WORDS_PER_HOUR;
+
         StringBuilder commandResult = new StringBuilder();
         if (wordsPerHour != DEFAULT_WORDS_PER_HOUR) {
             double timeNeeded = wordCount / (double) wordsPerHour;
