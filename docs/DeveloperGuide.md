@@ -60,6 +60,8 @@ It is only within `FoodListManager` that forced type conversions from `FoodEntry
 
 </details>
 
+Overall, `FoodList` fulfils the role of being the app's Model component by holding consumption data in the app's memory. It is currently used as a singleton, but is not necessarily limited to such: e.g. a seperate `FoodList` for favorites/recurrent entries or entries that are flagged as unhealthy/healthy can be made and maintained by `Logic`.
+
 #### FoodManager
 
 <details>
@@ -72,6 +74,23 @@ It uses an obscured `NutrientCalculator` to handle the missing values from the u
 The use of this fascade pattern, however, comes with downsides that will be further discussed in the implementation section.
 
 </details>
+
+### Common classes
+
+There are a few common classes/packages that can be used multiple components. These are `Food`, `StringFormatter`, and `MainLogger`, located in the `seedu.dietbook.food`, `seedu.dietbook.utils`, and `seedu.dietbook.logger` packages respectively.
+
+#### Food
+
+`Food` is a data class containing all the relevant nutritional information on a food: calories, carbohydrates, proteins, fats. Being common to multiple components/classes, it is a means of data transfer between classes while reducing direct coupling.
+
+#### StringFormatter
+
+`StringFormatter` allows the formatting of strings in a manner similar to Python's fstrings:
+Strings can be formatted using the pattern `${map_key}` and a corresponding key to value map.
+
+#### Logger
+
+`MainLogger` provides logging support to all classes.
 
 ## Implementation
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
@@ -149,10 +168,46 @@ Aspect: Changing attribute values in `Person` object or creating new `Person` ob
 
 ### [Proposed] Supporting missing fields in a user entry
 
+This feature gives the user some flexibility, allowing them to make an entry without full knowledge of the nutritional information of the food that they are eating.
+Due to limitations in what can be estimated, there are only two main scenarios for missing fields: a missing total calorie count or some combination of missing nutritional values (carbohydrates, proteins, fat).
 
+#### Implementation details
 
+**Main components involved**: 
+`Manager`: Parses the user input and creates an `AddCommand` based on the details provided in the user input. It recognises that some combination of the optional inputs are missing and flags them to `FoodList` when calling the `FoodList#addFood(...)` method by using `OptionalFood.EMPTY_VALUE = -1` as the input value.
 
+`FoodList`: A food entry is created via the `FoodList#addFood(...)` method, which has some arguments set to `OptionalFood.EMPTY_VALUE = -1`. Hence, when a `FoodEntry` is instantiated, the `FoodManager#createFood(String name, int calorie, int carbohydrate, int protein, int fat)` recognises the flags in the arguments and creates an `OptionalFood` instead of `Food`, for which a reference is kept in `FoodEntry`. When a method requiring `FoodEntry#getFood()` is called, `FoodManager` is called via `FoodManager#retrieveFood(Food food)` to return a `Food` object with guesstimated nutritional values. This guesstimation process is done by the `NutritionCalculator` class.
 
+#### Usuage Example
+
+There are essentially two phases to the usuage of `FoodManager` and its associated dependencies: the creation of a `OptionalFood` that has missing values and the retrieval of a guesstimated `Food` object when `FoodEntry#getFood()` needs to be called.
+For brevity, the focus will be on the processes within `FoodList`.
+
+**Creation**:
+1. `FoodList#addFood(int portionSize,String name, int calorie, int carbohydrate, int protein, int fat)` (or its variant for backlogs: `FoodList#addFoodAtDateTime(...)`) is called by the Logic component to add a new entry with missing nutritional inputs. The missing inputs are encapsulated by `OptionalFood.EMPTY_VALUE = -1` flags.
+1. `FoodList#addFood(...)` instantiates a new instance of `DatedFoodEntry`, passing on the arguments and flags to it instead. `DatedFoodEntry` uses `FoodManager#createFood(String name, int calorie, int carbohydrate, int protein, int fat)` to instantiate a `Food` object. Because there are missing values, `FoodManager` actually instantiates `OptionalFood`, a child class of `Food` instead. A reference to this `OptionalFood` object is stored in the `DatedFoodEntry`. The newly instantiated `DatedFoodEntry` is also stored in the list of `FoodEntry` objects in `FoodList`.
+
+**Retrieval**:
+1. The method `FoodEntry#getFood()` is only called within functions of `FoodListManager`. When a method such as `FoodList#getPortionedFoods()` is called, `FoodListManager#convertListToPortionedFoods(List list)` is subsequently called.
+1. `FoodListManager#convertListToPortionedFoods(List list)` calls `ListFunctions#applyFunctionToList(List list, Function function)`, and passes `FoodEntry#getFood()` within the function argument.
+1. `ListFunctions#applyFunctionToList(List list, Function function)` executes the function containing `FoodEntry#getFood()` in its `forEach` stream.
+1. `FoodEntry#getFood()` calls the method `FoodManager#retrieveFood(Food food)`, passing its `Food` object as an argument.
+1. `FoodManager#retrieveFood(Food food)` checks whether the `Food` object is an instance of `OptionalFood`. If it is an `OptionalFood`, then it is handled differently based on the missing information. Otherwise, the `Food` object is simply returned.
+1. The missing information in `OptionalFood` is calculated using `NutritionCalculator` based on what is missing: if calorie is missing, then `NutritionCalcular.calculateCalorieFromNutrients(int carbohydrate, int protein, int fat)`is called, otherwise `NutritionCalculator.calculateNutrientsFromCalorie(int calorie, int carbohydrate, int protein, int fat)` is called instead to calculate the missing nutrient masses.
+1. With the calculated information, a new `Food` object containing the estimates is created and returned by `FoodManager#retrieveFood(Food food)`, leaving the original reference to the `Food` object in `FoodEntry` unmodified in any case.
+
+#### Future work
+Only simple methods of estimating the missing information is used by `NutritionCalculator`. We can allow the user the weight the split of missing nutritional values differently (it is currently all weighed equally and split by calorie contribution). This ought to be performed by the `Calculator` component since that is its main role. However, due to the fascade pattern being used in this implementation, the difficulty to add this feature is increased: in order to maintain the status of `FoodList` being non-dependent on the other components, it is recommended that functions to split the nutrients be passed to FoodManager instead (i.e. use a functional paradigm).
+
+#### Design Considerations
+
+* **Alternative 1** (Current choice): Fascade pattern using `FoodManager` to obscure the details and processes behind the handling of a `Food` object with missing values. It is noted that the `OptionalFood` class is obscured in this process, despite being a child class of the common class `Food`.
+    * Pros: All higher level components and dependencies do not need to deal with the existence of a new common class `OptionalFood` or check for the possibility of missing values within `Food`. This implementation limits the existence of instances of `OptionalFood` to within the `FoodEntry` class.
+    * Cons: New test suite for `FoodEntry` and `FoodManager` had to be created and maintained due to the use of this design pattern. It also makes future work with other components that want to interact with `FoodManager` more difficult (see Future Work section).
+
+* **Alternative 2**: An adapter pattern with a similar implementation could be used. In this case, `FoodManager` could be exposed as a seperate set of API that should be invoked whenever an `OptionalFood` needs to be handled. `FoodManager` becomes an adapter that components such as `FoodListManager` or other classes use when there is the possibility of an `OptionalFood` object.
+    * Pros: It becomes easier to extend the features of `FoodManager` since it is exposed and can vary independently. It is also easier to test.
+    * Cons: Other higher level classes need to be aware of `FoodManager` and potentially even `OptionalFood` if the latter is allowed to be passed around outside of `FoodList`.
 
 ## Save/Load Feature
 
