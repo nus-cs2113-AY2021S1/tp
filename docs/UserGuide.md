@@ -613,6 +613,9 @@ Store the commands inputted and results from calculations in FinanceTools.
     history
 
 ![Example](screenshots/financetools/History(1).PNG)
+
+<div style="page-break-after: always;"></div>
+
 ## Exit FinanceTools
 Exit FinanceTools to Main Menu.
 
@@ -792,6 +795,7 @@ As you can see, the 3 text files you want to delete are gone.
 <br />
 names.txt file is also updated.
 
+<div style="page-break-after: always;"></div>  
 
 ## Reset
 ![picture](uml_images/saveManager/Capture9.PNG)
