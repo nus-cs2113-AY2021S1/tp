@@ -32,7 +32,8 @@ public class SelfStudy extends PersonalEvent {
      * @return the string required in a certain format.
      */
     public String toString() {
-        return "[S]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH':'mm")) + ")"
+        return "[S]" + "[" + getStatus() + "]" + description + " (at: " + at.format(DateTimeFormatter.ofPattern(
+                "yyyy/MM/dd HH':'mm")) + ")"
                 + (end != null ? "\n(end at: " + end.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH':'mm")) + ")" :
                 "")
                 + "\n" + (location != null ? location : link);

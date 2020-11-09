@@ -33,6 +33,7 @@ This gives the application both simplicity and speed, setting it apart from othe
     * [Clear events](#clear-events)
     * [Mark event as done](#mark-event-as-done)
     * [Reminder of deadlines](#reminder-of-deadlines)
+    * [Repeat of events](#repeat-of-events)
 * [FAQs](#FAQ)
 * [Command Summary](#command-summary)
 
@@ -242,6 +243,15 @@ Format: `reminder`
 
 Example Output:  
 ![reminder](diagrams/reminder.png)
+
+### Repeat of events
+Repeat the selected event for several weeks, or repeat all classes this week for several weeks.
+
+Format: `repeat INDEX NUMBER_OF_WEEKS` OR `repeat all NUMBER_OF_WEEKS`
+
+Example Output:
+![Repeat1](diagrams/repeat1.png)  
+![Repeat2](diagrams/repeat2.png)
 
 
 ## FAQ
