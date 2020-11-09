@@ -239,6 +239,7 @@ Param Type| Param | Param Format
 `/cat`|Category of transaction. | Input string belonging in the set: {tpt, fd, tvl, shp, bll, slr, alw}
 `-i or -e`|Type of transaction. | No parameter required. 
 `/desc`|Information about the transaction | Description should not have ';' characters.<br/>Users can use the '>' character to indent their input texts. 
+
 > Example: 
 
 ![](developerGuide_images/screenshots_entrytracker/entry_create.png)
