@@ -86,6 +86,16 @@ public class BookmarkCommand extends Command {
 
     private static final Logger LOGGER = AniLogger.getAniLogger(BookmarkCommand.class.getName());
 
+    /**
+     * Create a new instance of BookmarkCommand using values extracted from BookmarkParser.
+     *
+     * @param bookmarkAction the bookmark action of the bookmark
+     * @param bookmarkIndex the bookmark id for bookmark
+     * @param animeIndex the anime id for bookmark
+     * @param bookmarkEpisode the current episode for bookmark
+     * @param noteIndex the note id for bookmark
+     * @param bookmarkNote the note for book
+     */
     public BookmarkCommand(String bookmarkAction, int bookmarkIndex, int animeIndex, int bookmarkEpisode,
                            int noteIndex, String bookmarkNote) {
         assert bookmarkAction != null : BOOKMARK_ACTION_NULL_ERROR;
@@ -432,6 +442,12 @@ public class BookmarkCommand extends Command {
     }
 
     //Getters and Setters
+
+    /**
+     * Gets the bookmark action of the bookmark command.
+     *
+     * @return bookmark action for the bookmark command
+     */
     public String getBookmarkAction() {
         return this.bookmarkAction;
     }

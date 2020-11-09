@@ -13,6 +13,11 @@ public class Note {
         this.notes = new ArrayList<>();
     }
 
+    /**
+     * Add a note into note list.
+     *
+     * @param note the note to be added
+     */
     public void addNote(String note) {
         this.notes.add(note);
     }
@@ -25,6 +30,12 @@ public class Note {
         return notes.size();
     }
 
+    /**
+     * Remove a note from notes(note list) using note id.
+     *
+     * @param noteIndex the note index to be remove
+     * @return String of the note removed
+     */
     public String removeNote(int noteIndex) {
         String note = notes.get(noteIndex);
         this.notes.remove(noteIndex);
