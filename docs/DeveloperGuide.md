@@ -108,7 +108,7 @@ as it is easier for users to directly refer to and edit their saved files.
 The following figure describes the overall architecture of Fluffle.
 
 ![UML Fluffle class diagram](graphics/diagrams/Architecture.PNG)
-<center><i><b>Figure 1: Overview of Fluffle Architecture</b></i></center>
+<p align = "center"><i><b>Figure 1: Overview of Fluffle Architecture</b></i></p>
 
 The design of Fluffle contains four main components:
 - Writing Manager component
@@ -243,10 +243,7 @@ generates an integer between 0 and the max number of `Bunny` idea in the `bunnie
 `bunniesList` and returns it to the user. This allows the user to easily choose an idea to start working on without struggling to decide which idea to use.
 
 ![UML BunnyList sequence diagram](graphics/diagrams/Sequence_diagram_bunny.png)
-<center><i>
-  
-  
-  8:  Bunny list UML Sequence Diagram</i></center>
+<p align = "center"><i><b>Figure 8: Bunny list UML Sequence Diagram</b></i></p>
 
 The user may call upon the `bunny` command to add bunnies to the list. The user input is first processed by the `extractCommandType` method from 
 the `CommandChecker` class, and the command type detected is sent to the `executeCommand` method from the `CommandExecutor` class. The `addBunny` function is called by this 
@@ -257,9 +254,9 @@ to print the message that the `Bunny` idea object has been sucessfully added to 
 ### Names class family
 
 ![Names UML Class Diagram](graphics/diagrams/classDiagram_Names.png)
-<center><i>Figure 8: Names UML Class Diagram</i></center>
+<center><i>Figure 9: Names UML Class Diagram</i></center>
 
-The above class diagram (Figure 8) describes the overall architecture of the name list functionalities. The Names class 
+The above class diagram (Figure 9) describes the overall architecture of the name list functionalities. The Names class 
 has the protected ArrayList of names, nameList, that is accessed by the Names class method getName which randomly gets 
 a selected name from the nameList ArrayList. Similarly, nameList is also accessed by the Names class which contains the 
 filterNames function which can filter through the list and obtain names with specified keywords using the command filter 
@@ -277,7 +274,7 @@ String objects in nameList into the file using the updateDB method. String objec
 by the NamesDB class and saved into the nameList ArrayList using the loadDB method. In the event of the database 
 Names.txt not existing, the NamesDB class will create the Names.txt database and populate the database with 500 names using the loadDB method.
 
-As shown in Figure 8, both the NamesDB class and the Names class will create the NameException class. This is a subclass 
+As shown in Figure 9, both the NamesDB class and the Names class will create the NameException class. This is a subclass 
 that inherits from the Exception superclass and passes the exception message to the superclass. In the event of an 
 exception, it is thrown from the methods in NamesDB class and Names class and handled by the NameException class.
 
