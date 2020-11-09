@@ -34,7 +34,6 @@ public class StorageManager {
     private final ScriptStorage scriptStorage;
 
     //@@author OngDeZhi
-
     /**
      * Creates a new instance of StorageManager with the specified storage directory.
      *
@@ -88,7 +87,6 @@ public class StorageManager {
     // ========================== Workspace Deletion ==========================
 
     //@@author
-
     /**
      * Deletes directory containing specified workspace.
      *
@@ -105,15 +103,18 @@ public class StorageManager {
 
             LOGGER.log(Level.INFO, "Deleting workspace " + name);
 
-            if (!deleteFolder.isDirectory()) {
+            if (deleteFolder.isDirectory()) {
+                Files.walk(deletePath)
+                        .sorted(Comparator.reverseOrder())
+                        .map(Path::toFile)
+                        .forEach(File::delete);
+            }
+
+            // Verifies that Workspace is deleted
+            if (deleteFolder.isDirectory()) {
                 LOGGER.log(Level.WARNING, "Exception: " + EXCEPTION_DELETE_FAILED);
                 throw new AniException(EXCEPTION_DELETE_FAILED);
             }
-
-            Files.walk(deletePath)
-                    .sorted(Comparator.reverseOrder())
-                    .map(Path::toFile)
-                    .forEach(File::delete);
         } catch (IOException exception) {
             LOGGER.log(Level.WARNING, "Exception: " + EXCEPTION_DELETE_FAILED);
             throw new AniException(EXCEPTION_DELETE_FAILED);
@@ -123,7 +124,6 @@ public class StorageManager {
     // ========================== User Saving and Loading ==========================
 
     //@@author OngDeZhi
-
     /**
      * Invokes the save method in UserStorage to save the user data.
      *
@@ -172,7 +172,6 @@ public class StorageManager {
     // ========================== Bookmark Saving and Loading ==========================
 
     //@@author OngXinBin
-
     /**
      * Invokes the save method in bookmarkStorage to save the bookmark data.
      *
