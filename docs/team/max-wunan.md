@@ -26,12 +26,12 @@ Given below are my contributions to this project:
     have a more clean and straight-forward view of all ongoing events.
     * Highlights: This function allows 3 different commands, and the status of `autoClear` function can be kept after
     the application stops running.
-<br>
+    <br>
 * __Code Contributed:__ [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=max-wunan&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
-<br>
+    <br>
 * __Project Management:__
     * Managed releases `v1.0` - `v2.1` (3 releases) on GitHub
-<br>
+    <br>
 * __Documentation:__
     * User Guide:
         * Added the project logo picture [#79](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/79), [#179](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/179)
@@ -40,7 +40,7 @@ Given below are my contributions to this project:
     * Developer Guide:
         * Added the project logo picture [#79](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/79), [#179](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/179)
         * Added implementation details and sequence diagrams for help and clear function [#83](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/83)
-<br>
+    <br>
 * __Community:__
     * Reviewed Developer Guide of the team and fixed format error [#86](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/86/files)
     * PRs reviewed (with non-trivial review comments): [#174](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/174#pullrequestreview-526179937)
