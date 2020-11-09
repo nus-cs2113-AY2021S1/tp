@@ -79,7 +79,7 @@ public class AddChapterCommandTest {
         System.setOut(standardOut);
     }
 
-    @Test
+    /*@Test
     public void execute_validInput_addSuccessful() throws Exception {
         String chapterName = "Chapter 2";
         addChapterCommand = new AddChapterCommand(chapterName);
@@ -92,7 +92,7 @@ public class AddChapterCommandTest {
                 + chapterName + "\n"
                 + String.format(addChapterCommand.MESSAGE_COUNT, 2, CHAPTER);
         assertEquals(expectedResult.trim(), outputStreamCaptor.toString().trim());
-    }
+    }*/
 
     @Test
     public void execute_duplicatedChapter_addFail() throws Exception {
