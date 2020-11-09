@@ -4,6 +4,7 @@ import fitr.common.RemoveLeadingZeros;
 import fitr.exception.FitrException;
 import fitr.exception.UpperBoundLessThanException;
 import fitr.exception.UpperBoundMoreThanException;
+import fitr.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -26,17 +27,17 @@ public class FormatGoal {
         Goal newGoal = new Goal(createdDate, goalType, goalDescription);
         String descriptionPart = (goalType.equals(SYMBOL_EXERCISE)) ? KEYWORD_BURN : KEYWORD_EAT;
         String[] arguments = goalDescription.substring(1).trim().split(SPLIT_SPACE);
-        boolean isPositiveNumber = arguments[0].matches("^(|-?\\d+)$");
+        boolean isNumber = arguments[0].matches("^(|-?\\d+)$");
 
         if (Objects.equals(goalDescription.split(SPLIT_SPACE, 2)[0].trim().charAt(0), SYMBOL_MORE_THAN)) {
-            if (isPositiveNumber) {
+            if (isNumber) {
                 if (arguments.length != 1) {
                     throw new FitrException();
                 }
                 String targetCalories = RemoveLeadingZeros.removeLeadingZeros(goalDescription.substring(1).trim());
                 try {
                     if (Integer.parseInt(targetCalories) >= 100000 || Integer.parseInt(targetCalories) < 0
-                            || Integer.parseInt(targetCalories) == -0) {
+                            || targetCalories.equals("-0")) {
                         throw new UpperBoundMoreThanException();
                     }
                 } catch (NumberFormatException e) {
@@ -50,7 +51,7 @@ public class FormatGoal {
                 throw new ArrayIndexOutOfBoundsException();
             }
         } else if (Objects.equals(goalDescription.split(SPLIT_SPACE, 2)[0].trim().charAt(0), SYMBOL_LESS_THAN)) {
-            if (isPositiveNumber) {
+            if (isNumber) {
                 if (arguments.length != 1) {
                     throw new FitrException();
                 }
