@@ -244,8 +244,8 @@ Param Type| Param | Param Format
 > Note that ';' is an illegal input character! Also, you can force indent to your text using '>' key. 
 
 ## Edit entry
-Add an entry to the ledger record.
-Users only need specify the param to edit, there is no need to fill out all params.
+Edit an existing entry in the ledger record.
+Users only need specify the param-type to edit; there is no need to fill out all param-types as per the create entry command.
 
 __Note__
 * While the index is compulsory to be provided, the rest of the params are not compulsory.

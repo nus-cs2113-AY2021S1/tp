@@ -911,18 +911,18 @@ terminated.
 
 ## Value proposition
  
-**Expenditure Tracker**
-* Input itemised spending on a daily basis
-* Sum the monthly/weekly expenditure, as well as average weekly/daily expenditure
-* Categorise expenditures (e.g. food, transport etc) and sort by category
+**ManualTracker and EntryTracker**
+* Input itemised spending on a daily basis.
+* Summarise the daily expenditure.
+* Categorise expenditures (e.g. food, transport etc) 
 
-**Budget Management**
+**GoalTracker**
 * Set a budget (monthly)
 * Remind users of how much budget they have left for that month
 * Edit the budget (monthly)
 * Display the budget for that month
 
-**Recurring Expenditure/Income**
+**RecurringTracker**
 * Keep track of expenditure/income that occur on a monthly basis e.g. bills and income
 * Remind users of upcoming entries, e.g. a bill payment which is due tomorrow
 
@@ -983,6 +983,15 @@ terminated.
     * _IntelliJ_ - An Integrated Development Environment (IDE) used to develop FinanceIt
     * _CLI_ - Command Line Interface
     * _UML_ - Unified Modeling Language
+* __Technical__
+    * _Param types_ - A keyword to a parameter that serves as input to a particular command. eg. `/date`
+    * _Param_ - The parameter to the command. Is associated with a param type. eg. `200404`
+    * _Param Map_ - A HashMap that maps Param types to their respective Params.
+    * _CommandPacket_ - Class that represents the user input in distinct attributes that are easier to be accessed by the program.
+    * _Command Handlers_ - Component of classes that implements a command.
+    * _Logic Managers_ - Component of classes that implements the high-level logical sequence of events and operations within a certain feature.
+    * _Logic_ - Component of classes that interprets CommandPacket attributes to control the low-level operation flow of a command.
+    * _Input Manager_ - Component of classes that handles input by user and output to user. 
 * __Manual Tracker and Entry Tracker__
     * _Entries_ - The class designed to represent a unit of transaction of the user. 
     * _Ledger_ - A collection of entries which are incurred on the same day.
