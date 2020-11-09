@@ -94,6 +94,16 @@ Each of the modules listed above are a collection of constituent classes, with e
 
 ### 3.2. UI Component
 ![Figure X: Simplified class diagram for UI Component](./image/developerguide/UI.png "User Interface")  
+The `UI` component contains the `Ui` and a few subclasses to print different types of messages.
+The `Ui` consist of:  
+&nbsp; &nbsp; &nbsp; &nbsp; 1. `printWelcomeScreen()`<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 2. `getUserCommand()`<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 3. `showToUser()`<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 4. `showToUserLn()`<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 5. `showError()`<br>
+
+The subclasses are called directly by other functions. For example, if `TaskCommand` wants to show an
+error message, it will call `Ui.showError(<error message>)` directly.
 
 ### 3.3. Logic Component
 The `Logic` component contains the `ParserManager` and its subclasses, and the `Command` class and its subclasses, which mainly handles the commands input by the user. 
