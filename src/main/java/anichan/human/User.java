@@ -110,7 +110,7 @@ public class User extends Human {
     }
 
     /**
-     * Get Workspace ArrayList which the User manages.
+     * Gets Workspace ArrayList which the User manages.
      *
      * @return Workspace ArrayList
      */
@@ -140,7 +140,7 @@ public class User extends Human {
     }
 
     /**
-     * Get the current Workspace User is working on.
+     * Gets the current Workspace User is working on.
      *
      * @return active Workspace which the User is using
      */
