@@ -527,6 +527,8 @@ These are the steps to follow:
 ### 3.4. Common Features
 This section provides the instruction for all the common features.
 
+<div style="page-break-after: always;"></div>
+
 <!-- @@author wamikamalik -->
 #### 3.4.1. Checking for similar locations - Wamika
 When you enter a location and make a spelling error or a typo in the name, the app performs a similarity check with 
@@ -629,6 +631,8 @@ Command | Format | Example
 /exit | `/exit` | `/exit`
 /help | `/help` | `/help`
 /reset | `/reset` | `/reset`
+
+<div style="page-break-after: always;"></div>
 
 <!-- @@author wamikamalik -->
 ## 6. Glossary - Wamika
