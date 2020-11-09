@@ -44,15 +44,15 @@
 1. [Command Summary](#command-summary)
 
 
-## 1. Introduction
+## 1. <a id="introduction">Introduction</a>
 
-### 1.1. Purpose
+### 1.1. <a id="purpose">Purpose</a>
 This document is the User Manual of the SCRUMptious. It is intended to provide all the necessary information to use this software.  
 
-### 1.2. Overview
+### 1.2. <a id="overview">Overview</a>
 SCRUMptious is a command-line project management software, designed for project managers who adopt the [SCRUM](https://www.scrumguides.org/scrum-guide.html) methodology.  
 
-### 1.3. Features   
+### 1.3. <a id="features">Features</a>
 * Manage multiple projects
 * Breakdown projects into smaller iterations known as **sprints**
 * Manage tasks in the form of **backlog** items
@@ -60,7 +60,7 @@ SCRUMptious is a command-line project management software, designed for project 
 * Assign tasks to team members
 
 
-## 2. Quick Start
+## 2. <a id="quick-start">Quick Start</a>
 
 1. Ensure that you have Java 11 or above installed.
 1. Download the latest version of `Scrumptious.jar` from [here](https://github.com/AY2021S1-CS2113T-F11-4/tp/releases/download/v2.0/SCRUMptious.jar).
@@ -101,10 +101,10 @@ into the command line and press `Enter` to execute it.
    =====================================================
    ```
 
-## 3. Commands   
+## 3. <a id="commands">Commands</a>
 
-### 3.1. Project `project`
-#### 3.1.1. Create Project
+### 3.1. <a id="project-codeprojectcode">Project `project`</a>
+#### 3.1.1. <a id="create-project">Create Project</a>
 Create a new project.  
 ##### Format: `project /create -title <title> -desc <description> -dur <duration> -sd <sprint interval>`
 ##### Constraints: 
@@ -123,7 +123,7 @@ Project successfully created.
     Title: MeTube
 ```
 
-#### 3.1.2. View Project Information
+#### 3.1.2. <a id="view-project-information">View Project Information</a>
 View project information which includes title, description, time-period and team members of the project. It displays the project backlog, and the details of the ongoing sprint.
 ##### Format: `project /view`
 ##### Example: `project /view`
@@ -140,7 +140,7 @@ View project information which includes title, description, time-period and team
 =====================================================
 ```
   
-#### 3.1.3. List All Projects
+#### 3.1.3. <a id="list-all-projects">List All Projects</a>
 Outputs a list of all projects added by the user. A summary page which shows the project `id`, project `description` and project `title`.
 ##### Format: `project /list`
 ##### Example: `project /list`
@@ -152,7 +152,7 @@ Following are the added projects:
   	1) MeTube 	video streaming software
 ```
 
-#### 3.1.4. Select Project 
+#### 3.1.4. <a id="select-project">Select Project</a>
 Select the project that will be referenced to for any other commands. To get the `id` of all the projects added by
  the user, you can execute `project /list`.
 ##### Format: `project /select <id>`
@@ -164,9 +164,9 @@ Select the project that will be referenced to for any other commands. To get the
 Project 2 has been selected.
 ```
 
-### 3.2. Project Member `member`
-#### 3.2.1. Add Team Members
-Add team member(s) into the project.  
+### 3.2. <a id="project-member-codemembercode">Project Member `member`</a>
+#### 3.2.1. <a id="add-team-members">Add Team Members</a>
+Add team members into the project.  
 ##### Format: `member /add <username> [<username> ...]`
 ##### Constraints:
 * At least one username must be specified
@@ -179,8 +179,8 @@ mary has been added to the project.
 ```
 
 
-#### 3.2.2. Remove Team Members
-Remove team member(s) from the project
+#### 3.2.2. <a id="remove-team-members">Remove Team Members</a>
+Remove team members from the project
 ##### Format: `member /del <username> [<username> ...]`
 ##### Constraints:
 * At least one username must be specified
@@ -192,8 +192,8 @@ john has been removed from the project.
 mary has been removed from the project.
 ```
 
-### 3.3. Project Backlog `task`
-#### 3.3.1. Add Task
+### 3.3. <a id="project-backlog-codetaskcode">Project Backlog `task`</a>
+#### 3.3.1. <a id="add-tasks">Add Tasks</a>
 Add a task to the project backlog.
 ##### Format: `task /add -title <title> -desc <description> -priority <category>`
 ##### Constraints:
@@ -216,7 +216,7 @@ Task successfully created.
         Task have yet to be assigned to anyone
 ```
 
-#### 3.3.2. View Task(s)
+#### 3.3.2. <a id="view-task">View Tasks</a>
 Display the information of the specified task.
 ##### Format: `task /view <taskid> [<taskid>...]`
 ##### Constraints:
@@ -248,7 +248,7 @@ The details of the tasks are as follows:
     Completion: Completed
  ```
 
-#### 3.3.3. Delete Task(s)
+#### 3.3.3. <a id="delete-tasks">Delete Tasks</a>
 Delete the specified task from the project backlog.
 ##### Format: `task /del <taskid> [<taskid>...]`
 ##### Constraints:
@@ -264,7 +264,7 @@ The corresponding task Del UI has been removed from project.
 The corresponding task UI has been removed from project.
 ```
 
-#### 3.3.4. Change the Priority of a Task
+#### 3.3.4. <a id="change-the-priority-of-a-tasks">Change the Priority of a Task</a>
 Change the priority of the specified task.
 ##### Format: `task /priority -priority <category> -id <taskid>`
 ##### Constraints:
@@ -279,7 +279,7 @@ The task Add parser has its priority changed to:
         High priority
 ```
 
-#### 3.3.5. Mark Task(s) as Complete
+#### 3.3.5. <a id="mark-task-as-complete">Mark Tasks as Complete</a>
 Mark specified task as complete.
 ##### Format: `task /done <taskid> [<taskid>...]`
 ##### Example: `task /done 1 2 3`
@@ -294,7 +294,7 @@ Foo has been marked as done.
 Bar has been marked as done.
 ```
 
-#### 3.3.6. View Tasks in descending priority
+#### 3.3.6. <a id="view-tasks-in-descending-priority">View Tasks in descending priority</a>
 Views all tasks in current project, arranged by their priority. The higher priority tasks are shown first.
 ##### Format: `task /priorityview`
 ##### Constraints: 
@@ -325,12 +325,12 @@ The details of the tasks, in descending priority, are as follows:
 	Task have yet to be assigned to anyone
 ```
 
-### 3.4. Sprint `sprint`
+### 3.4. <a id="sprint-codesprintcode">Sprint `sprint`</a>
 In SCRUMptious, a project will be broken down into smaller iterations known as **sprints**. After planning and creating the sprints, you can allocate tasks to these iterations and assign them to members of the project later on.
 
 The following section will explain the commands to manage sprints.
 
-#### 3.4.1. Create a New Sprint
+#### 3.4.1. <a id="create-a-new-sprint">Create a New Sprint</a>
 Create a new sprint for the project.
 ##### Format: `sprint /create -goal <goal_input> [-start YYYYMMDD] [-project <id>]`
 ##### Constraints:   
@@ -362,7 +362,7 @@ Project period: 2020-10-10 to 2020-11-08
 =================================================================
 ```
   
-#### 3.4.2. View Sprint Information
+#### 3.4.2. <a id="view-sprint-information">View Sprint Information</a>
 Display the information of the current or specified sprint.
 ##### Format: `sprint /view [optional tags]`
 ##### Constraints:   
@@ -392,7 +392,7 @@ Note: Expected outcome will be affected by the date of command execution (2020-1
 [No allocated tasks]
 =================================================================
 ```
-#### 3.4.3. Edit Sprint Goal                                                                                                       
+#### 3.4.3. <a id="edit-sprint-goal">Edit Sprint Goal</a>                                                                                                       
 Edit the Sprint goal of the selected sprint.                                                                                                  
 ##### Format: `sprint /edit -goal <goal_input> [optional tags]`                                                                     
 ##### Constraints:                                                                                                                    
@@ -425,7 +425,7 @@ Note: Expected outcome will be affected by the date of command execution (2020-1
 
 
   
-#### 3.4.4. Add Tasks to the Sprint
+#### 3.4.4. <a id="add-tasks-to-the-sprint">Add Tasks to the Sprint</a>
 Add task(s) from the project backlog to the current sprint.
 ##### Format: `sprint /addtask <task_id> [<task_id> ...] [optional tags]`
 ##### Constraints:
@@ -460,7 +460,7 @@ Note: Expected outcome will be affected by the date of command execution (2020-1
     DummyTask4 added to sprint 1.
 ```
   
-#### 3.4.5. Delete Tasks from Sprint
+#### 3.4.5. <a id="delete-tasks-from-sprint">Delete Tasks from Sprint</a>
 Remove task(s) from the current sprint.
 ##### Format: `sprint /removetask <task_id> [<task_id> ...] [optional tags]`
 ##### Constraints:                              
@@ -495,7 +495,7 @@ Note: Expected outcome will be affected by the date of command execution (2020-1
     DummyTask4 removed from sprint 1.
 ```
   
-#### 3.4.6. Allocate Tasks to Team Members
+#### 3.4.6. <a id="allocate-tasks-to-team-members">Allocate Tasks to Team Members</a>
 Assign task(s) to team member(s).
 ##### Format: `sprint /allocate  -task <task_id> -user <user_id> [<user_id> ...] [optional tags]`
 ##### Constraints:                        
@@ -526,7 +526,7 @@ DummyTask1 is assigned to [johntan, mary, jane]
 DummyTask2 is assigned to [johntan, mary, jane]  
 ```       
 
-#### 3.4.7. Deallocate Tasks from Team Members                                                                                             
+#### 3.4.7. <a id="deallocate-tasks-from-team-members">Deallocate Tasks from Team Members</a>                                                                                           
 Deallocate a task from team member(s).                                                                                                     
 ##### Format: `sprint /deallocate -task <task_id> -user <user_id> [<user_id> ...] [optional tags]`                                      
 ##### Constraints:                                                                                                                     
@@ -558,9 +558,9 @@ DummyTask1 is removed to [johntan, mary, jane]
 DummyTask2 is removed to [johntan, mary, jane]                                                                                        
 ```  
   
-### 3.5. Storage `storage`
+### 3.5. <a id="storage-codestoragecode">Storage `storage`</a>
 
-#### 3.5.1. Clear Storage  
+#### 3.5.1. <a id="clear-storage">Clear Storage</a> 
 Clear all the data from the program and the persistent storage.  
 You will be prompted to confirm your decision by giving an input. Data will be cleared only when `y` (case-insensitive) is provided.  
 **[WARNING]** This action will delete **ALL** the data and is **irreversible**!  
@@ -582,9 +582,9 @@ command> storage /clear
 Data clear aborted.
 ```    
 
-### 3.6. Help `help`
+### 3.6. <a id="help-codehelpcode">Help `help`</a>
 
-#### 3.6.1 Help Menu
+#### 3.6.1 <a id="help-menu">Help Menu</a>
 Shows a list of commands needed to use SCRUMptious. You can then type in the command number
 to receive more information about that specific command.
 
@@ -600,7 +600,7 @@ Here is the list of commands used in SCRUMptious. Type "help /*", where * is the
 5. Storage
 ```
 
-#### 3.6.2 Project Help
+#### 3.6.2 <a id="project-help">Project Help</a>
 Shows a list of project commands and examples of how to use them.
 
 ##### Format: `help /1`
@@ -617,7 +617,7 @@ Shows a list of project commands and examples of how to use them.
    Example: project /select 1
 ```
 
-#### 3.6.3 Member Help
+#### 3.6.3 <a id="member-help">Member Help</a>
 Shows a list of member commands and examples of how to use them.
 
 ##### Format: `help /2`
@@ -632,7 +632,7 @@ Shows a list of member commands and examples of how to use them.
    Example: member /del john mary
 ```
 
-#### 3.6.4 Task Help
+#### 3.6.4 <a id="task-help">Task Help</a>
 Shows a list of task commands and examples of how to use them.
 
 ##### Format: `help /3`
@@ -656,7 +656,7 @@ Shows a list of task commands and examples of how to use them.
    Example: task /done 1
 ```
 
-#### 3.6.5 Sprint Help
+#### 3.6.5 <a id="sprint-help">Sprint Help</a>
 Shows a list of sprint commands and examples of how to use them.
 
 ##### Format: `help /4`
@@ -702,7 +702,7 @@ Shows a list of sprint commands and examples of how to use them.
    Example 3: sprint /deallocate -project 2 -sprint 3 -task 1 -user mary
 ```
 
-#### 3.6.6 Storage Help
+#### 3.6.6 <a id="storage-help">Storage Help</a>
 Shows the storage command, and an example of how to use it.
 
 ##### Format: `help /5`
@@ -715,14 +715,14 @@ Shows the storage command, and an example of how to use it.
    Example: storage /clear
 ```
 
-### 3.7. Exit application `bye`
+### 3.7. <a id="exit-application-codebyecode">Exit application `bye`</a>
 Exits the application. Rest assured that your data have been saved by the application.
 
 ##### Format: `bye`
 ##### Expected Outcome:
 `bye` and program terminates.
 
-## 4. Command Summary
+## 4. <a id="command-summary">Command Summary</a>
 
 | **Action** | **Format** | **Examples** |
 | --- | --- | --- |
@@ -746,5 +746,6 @@ Exits the application. Rest assured that your data have been saved by the applic
 | Deallocate Tasks from Team Members | `sprint /deallocate -task <task_id> -user <user_id> [<user_id> ...] [optional tags]` | `sprint /deallocate -project 2 -sprint 3 -task 1 -user mary` |
 | Clear Storage | `storage /clear` | `storage /clear` |
 | Exit program | `bye` | `bye` |
-| Help Menu | `help` | `help /1` |
+| Help Menu | `help` | `help` |
+| Help Commands | `help` | `help /1` |
 
