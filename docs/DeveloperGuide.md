@@ -254,9 +254,9 @@ AccessSubjectCommand and AccessTopicCommand both have an extra method goToSubjec
 allows the program to enter Subject level from the Main level, and to the Topic level from the Subject level respectively.
 
 
-#### subjectcommand package
+#### 3.2.1 subjectcommand package <a name="subjectcommand"></a>
 The `subjectcommand` package holds all the necessary classes for executing methods at the main level. The Class that will be created and executed depends 
-on user input. A Class diagram of how the classes interact with each other in the classcommand package is shown below.
+on user input. A Class diagram of how the classes interact with each other in the subjectcommand package is shown below.
 ![SubjectCommandClassDiagram](https://user-images.githubusercontent.com/47527482/98230549-3fbf7700-1f96-11eb-9b03-12ed2ed16ffb.png)
 
 The `subjectcommand` package holds the following classes.
@@ -362,9 +362,6 @@ The isExit() method determines whether the program exits. The `ResultSubjectComm
 The execute() method of the `SorrySubjectCommand` throws a `FailedParseException`, meaning the parser has failed to decode the user input. Then, the exception will result in the Ui printing the error back 
 to the user.
 
-A sequence diagram of the SorrySubjectCommand can be seen below.
-![SorrySubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/98226752-6a5b0100-1f91-11eb-8c11-7963c63dc69c.png)
-
 The isExit() method determines whether the program exits. The `SorrySubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
 
 ##### SubjectCommand
@@ -372,9 +369,9 @@ The `SubjectCommand` class is an abstract class that contains a abstract execute
 package. This is to ensure that all other commands in the subjectcommand package can have the same method calls, and that execute() can be called on a SubjectCommand class, 
 even if they are a subclass of the SubjectCommand class.
 
-#### topiccommand package
+#### 3.2.2 topiccommand package
 The `topiccommand` package holds all the necessary classes for executing methods at the subject level. The Class that will be created and executed depends 
-on user input. A Class diagram of how the classes interact with each other in the classcommand package is shown below.
+on user input. A Class diagram of how the classes interact with each other in the topiccommand package is shown below.
 ![TopicCommandClassDiagram](https://user-images.githubusercontent.com/47527482/98230523-39c99600-1f96-11eb-9eb2-693f4ab039a1.png)
 
 The `topiccommand` package holds the following classes.
@@ -382,7 +379,6 @@ The `topiccommand` package holds the following classes.
 - AddTopicCommand
 - DeleteTopicCommand
 - ExitTopicCommand
-- ExportTopicCommand
 - FindTopicCommand
 - HelpTopicCommand
 - ListAllTopicCommand
@@ -392,99 +388,50 @@ The `topiccommand` package holds the following classes.
 - SorryTopicCommand
 - TopicCommand
 
-##### AccessTopicCommand
-The `AccessTopicCommand` class has 3 methods:
-- execute()
-- goToTopic()
-- isExit()
+All classes in the `topiccommand` package works the same way as the ones found in the `subjectcommand` package, but it deals with the `Topic` class instead of the `Subject` class. Notably, 
+there is a change in parameters, as the `TopicCommand` classes is missing the Storage parameter. This is due to the absence of `ExportCommand` in the TopicCommands, since we did not implement 
+the export command for the subject level. The rest of the TopicCommands do not need the Storage parameter since none of the execute() methods of the Commands require it.
 
-and is mainly used for entering the Topic level from the Subject Level. This occurs when 
-the execute() method of the `AccessTopicCommand` is first run. It first decodes the full command of the user input, then 
-accesses the topic level of the program. Different Topic class instances have different information contained in them, thus 
-there exists multiple topic levels of the program, each topic class having their own topic level in the program. 
-For example, if there are 2 topics, like Speed and Time, then accessing the Topic level of the Speed instance is different from 
-accessing the Topic level of the Time Topic, since both topics contain different information. Accessing the different topics depend on user input, which 
-will be decoded in the execute() method in `AccessTopicCommand`. The execute() method will then run the goToSubject() command, that will access the information 
-available in the subject that is selected via user input.
+#### 3.2.3 taskcommand package
+The `taskcommand` package holds all the necessary classes for executing methods at the subject level. The Class that will be created and executed depends 
+on user input. A Class diagram of how the classes interact with each other in the taskcommand package is shown below.
+ 
+The `taskcommand` package holds the following classes.
+- AddDeadlineCommand
+- AddEventCommand
+- AddTodoCommand
+- DeleteTaskCommand
+- DoneTaskCommand
+- FindTaskCommand
+- TaskCommand
 
-The isExit() method determines whether the program exits. The `AccessTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
+The Classes in the `taskcommand` package is different from the ones found in the other command packages. This is because all the `taskcommand` Classes are parsed by the `TopicParser`, since they work at the 
+Subject level, similar to the Topic Commands. Thus, they do not have their own Exit Commands, List Commands and Help Commands, since all those are handled by the Topic Commands.
 
-A sequence diagram of accessing a Topic is shown below.
-TODO: Add sequence diagram
+There are 3 different Add Task Commands, due to the 3 different formats of the Tasks that the user can save, namely `Event`, `Deadline` and `Todo`. The rest of the Task Commands have similar functionality to 
+the ones found in the `subjectcommand` package. For more information of the `subjectcommand` package, please refer to <a href="#subjectcommand">3.2.1 SubjectCommand</a> 
 
-##### AddTopicCommand
-The execute() method of the `AddTopicCommand` decodes the user input, then adds a Topic into the TopicList, which title depends on the user input. For example, if the 
-user input is `add Geometry`, then the title of the Topic created in the TopicList will be Geometry. It also prints the title of the Topic that 
-is added to the TopicList.
+#### 3.2.4 flashcardcommand package
 
-A sequence diagram of adding a Geometry Topic is shown below.
-TODO: Add sequence diagram
+The `flashcardcommand` package holds all the necessary classes for executing methods at the topic level. The Class that will be created and executed depends 
+on user input. A Class diagram of how the classes interact with each other in the flashcardcommand package is shown below.
+![TopicCommandClassDiagram](https://user-images.githubusercontent.com/47527482/98230523-39c99600-1f96-11eb-9eb2-693f4ab039a1.png)
 
-The isExit() method determines whether the program exits. The `AddTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
+The `flashcardcommand` package holds the following classes.
+- AddFlashcardCommand
+- DeleteFlashcardCommand
+- ExitFlashcardCommand
+- HelpFlashcardCommand
+- ListAllFlashcardCommand
+- ListFlashcardCommand
+- SorryFlashcardCommand
+- FlashcardCommand
 
-##### DeleteTopicCommand
-The execute() method of the `DeleteTopicCommand` decodes the user input, then deletes a Topic based on the index the Topic currently in the TopicList. 
-For example, when the user input is `delete 1`, the program decodes the input, and deletes the first Topic in the TopicList, which is at index 0 of the TopicList.
-
-The isExit() method determines whether the program exits. The `DeleteTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
-
-##### ExitTopicCommand
-The execute() method of the `ExitTopicCommand` does nothing, but needed since this method was implemented from an abstract class.
-
-The isExit() method determines whether the program exits the subject. The `ExitTopicCommand` isExit() method is hard coded to return true, so that when the isExit() command is run, the program 
-will exit the subject.
-
-##### FindTopicCommand
-The execute() method of the `FindTopicCommand` decodes the user input, then find Topics whose title contains the keywords the user input into the program. 
-It then prints the title of the Topics in the TopicList whose title contains the keyword.
-
-The isExit() method determines whether the program exits. The `FindTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
-
-##### HelpTopicCommand
-The execute() method of the `HelpTopicCommand` prints a list of available commands at the subject level of the program, 
-for the user to understand the format of inputs, as well as types of input needed for execution.
-
-The isExit() method determines whether the program exits. The `HelpTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
-
-##### ListAllTopicCommand
-The execute() method of the `ListAllTopicCommand` groups different tasks and flashcards under each topic, and different topics under each subject, then prints an organized list 
-of all the subjects, topics, tasks and flashcards.
-
-The isExit() method determines whether the program exits. The `ListAllTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
-
-##### ListTopicCommand
-The execute() method of the `ListAllTopicCommand` prints a list of all Topics in the TopicList instance.
-
-The isExit() method determines whether the program exits. The `ListTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
-
-##### QuizTopicCommand
-The execute() method of the `QuizTopicCommand`
-TODO: Add execute method documentation
-
-The isExit() method determines whether the program exits. The `QuizTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
-
-##### ResultTopicCommand
-TODO: Add execute method documentation
-
-The isExit() method determines whether the program exits. The `ResultTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
-
-##### SorryTopicCommand
-The execute() method of the `SorryTopicCommand` throws a `FailedParseException`, meaning the parser has failed to decode the user input. Then, the exception will result in the Ui printing the error back 
-to the user.
-
-A sequence diagram of the SorryTopicCommand can be seen below.
-![SorryTopicSequenceDiagram](https://user-images.githubusercontent.com/47527482/98228071-105b3b00-1f93-11eb-827f-80723a24bfe9.png)
-
-The isExit() method determines whether the program exits. The `SorryTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
-
-##### TopicCommand
-The `TopicCommand` class is an abstract class that contains an abstract execute() method as well as an abstract isExit() method, and is a super class for all the commands in the topiccommand 
-package. This is to ensure that all other commands in the topiccommand package can have the same method calls, and that execute() can be called on a TopicCommand class, 
-even if they are a subclass of the TopicCommand class.
-
-#### taskcommand package
-
-#### flashcardcommand package
+All classes in the `Flashcardcommand` package works the same way as the ones found in the `subjectcommand` package, but it deals with the `Flashcard` class instead of the `Subject` class. Notably, 
+there is a change in parameters, as the `FlashcardCommand` classes is missing the Storage parameter. This is due to the absence of `ExportCommand` in the FlashcardCommands, since we did not implement 
+the export command for the subject level. The rest of the FlashcardCommands do not need the Storage parameter since none of the execute() methods of the Commands require it. Additionally, the flashcardcommand 
+package is also missing a few classes such as the `QuizCommand`, `ResultCommand` and `FindCommand` classes. This is due to the fact that at the topic level, there are only flashcards in each topic, and it would not 
+make sense to quiz one flashcard at a time, thus the absence of the implementation.
 
 ### 3.3 List Package <a name="list"></a>
 
@@ -801,17 +748,17 @@ You can access a subject by entering `subject [SUBJECT_NAME]`. The subject needs
 add the `Subject` into the `SubjectList` by using the `add [SUBJECT_NAME]` feature, elaborated further in <a href="#adding-imp">4.7 Adding objects implementation</a>.
 For example, after adding a `Subject` CS2101, the CS2101 `Subject` can be accessed by entering `access CS2101`. The application first reads the command using 
 the Ui class, then parses the user input using the `SubjectParser` class, similar to adding a subject. The program will register the user input as a command to 
-access a subject. The SubjectParser will create a new AccessSubjectCommand class, and this class will be returned to the main function. 
-The main program will run the execute() method of AccessSubjectCommand. The execute() method checks for subjects in the `SubjectList` whose title 
+access a subject. The SubjectParser will create a new `AccessSubjectCommand` class, and this class will be returned to the main function. 
+The main program will run the execute() method of `AccessSubjectCommand`. The execute() method checks for subjects in the `SubjectList` whose title 
 matches the `[SUBJECT_NAME]`, and if a subject matches, the subject will be passed as a parameter to the goToSubject() method. The goToSubject() method will then 
-have a loop that reads user inputs and parse these inputs to create new TopicCommand or TaskCommand classes to execute.
+have a loop that reads user inputs and parse these inputs to create new `TopicCommand` or `TaskCommand` classes to execute.
 
 The sequence diagram of accessing a `Subject` Maths is shown below.
 ![AccessSubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/98199431-171f8900-1f66-11eb-9dfe-fc263ccfe15f.png)
 
 #### 4.8.2 Accessing a Topic
 You can access a topic by entering `topic [TOPIC_NAME]`. The topic needs to be a topic that already exists in the list, and you can 
-add the `Topic` into the `TopicList` of a `Subject` by using the `add [TOPIC_NAME]` feature, elaborated further in <a href="#adding-imp">4.7 Adding objects implementation</a>.
+add the `Topic` into the `TopicList` of a `Subject` by using the adding a topic feature, elaborated further in <a href="#adding-imp">4.7 Adding objects implementation</a>.
 
 ## 5. Logging <a name = "logging"> </a>
 We use [java.util.logging](https://docs.oracle.com/en/java/javase/11/docs/api/java.logging/java/util/logging/package-summary.html) 
