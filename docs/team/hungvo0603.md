@@ -16,7 +16,6 @@ The latest release of Fluffle can be accessed from **[here](https://github.com/A
 ### 2.1 Code contributed
 
 - The functional and test code contributed can be accessed via **[here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=hungvo0603&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)**.
-
 - Implemented `WordsLoader` and `WordsSaver` classes in `storage.word` package. 
 - Implemented the `filter words` and `list filter words` commands, which depends on the Words List. All lines of code about `filter words` and `list filer words` commands are stored in `wordlist.wordfilter` package.
 - Implemented the `remind` commands in `writing` package. The code can be accessed in `WritingReminder` class. 
@@ -58,15 +57,12 @@ Java-doc comments are provided for most of the public classes and methods that I
 #### 2.3.3 Contributions to the Developer Guide
 
 - Provided the skeleton for the whole document (headings, subheadings, etc...) [#309](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/309)
-- Added Table of Contents.
-- Added "Introduction/Background" section
-- Modified "Setting up the project in your computer"
+- Added "Introduction/Background" section and modified "Setting up the project in your computer" section.
 - Added "Design/Architecture" section together with "Figure 1: Overview of Fluffle Architecture".
-- Added `Implementation/Writing Features/Getting reminder for writings scheduled on a specific date` section.
+- Added "Implementation/Writing Features/Getting reminder for writings scheduled on a specific date" section.
 - Added "Implementation/Word Features/Filtering words" section together with Figure 6 and Figure 7.
 - Added v2.0 entries in "Appendix C: User Stories" table.
-- Added "Appendix D: Non-Functional Requirements" section.
-- Added "Appendix E: Instruction fors manual testing".
+- Added Appendix D and Appendix E.
 
 ### 2.5 Contributions to team-based tasks
 
