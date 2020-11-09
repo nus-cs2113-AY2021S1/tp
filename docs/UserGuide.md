@@ -264,6 +264,11 @@ Exits the application and switch off all appliances within SmartHomeBot. The mon
 
 Format: `exit`
    
+Output: 
+   
+   ![](images/user_guide/exitCommand.png) 
+
+   
 <br/><br/>
 
 ### Saving the data
