@@ -4,8 +4,6 @@
 Our product, **_25HoursADay_** is a scheduling application catered for NUS students. 
 It is optimised for use via the Command Line Interface (CLI) and it serves as an efficient one stop application for our users to manage their time. 
 
-Given below are my contributions to the project.
-
 ### Summary of Contributions
 #### Code contributed:
 [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=imhm)
@@ -18,8 +16,7 @@ Created the `CalendarList`, `CalendarItem`, `SchoolEvent`, `Exam`, `Lab`, `Tutor
 * Highlights: It requires heavy change to the existing features to fit the new design. (Changing from the task list
  in Duke to a new Calendar list. Changing existing features to fit a specific class ie. mark as done only works for
   tasks.[#47](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/47))
-* Credits: The team came up with the class diagram for the CalendarList together. Used my iP's code as the base code and
- implemented the above mentioned. The overall design of the code is reused from my iP's code.
+* Credits: The team came up with the class diagram for the CalendarList together. The overall design of the code is reused from my iP's code.
 
 ##### Additional information for event class 
 * What it does: Users are able to add/view/delete a list of information pertaining to the event
@@ -28,18 +25,18 @@ Created the `CalendarList`, `CalendarItem`, `SchoolEvent`, `Exam`, `Lab`, `Tutor
 
 #### Enhancements to existing features implemented:
 
-##### Find Feature [#74](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/74)
-
-* What it does: Users can use a keyword to search for an item from their list of tasks, or their list of events or the
+* Find Feature [#74](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/74)
+    * What it does: Users can use a keyword to search for an item from their list of tasks, or their list of events or the
  entire calendar list.
-* Justification: Users can narrow their search. This particularly useful if they have a long calendar list.
+    * Justification: Users can narrow their search based on the item.
 
-##### Delete Feature [#47](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/47)
-* What it does: Users can delete an event or a task.
-* Justification: As the users can view their events list and task lists, they can remove unwanted tasks or events
+* Delete Feature [#47](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/47)
+    * What it does: Users can delete an event or a task.
+    * Justification: As the users can view their events list and task lists, they can remove unwanted tasks or events
  based on the indexing of the task/event in the task/event list.
 
-Wrote additional tests for existing features to increase coverage. [#81](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/81)
+* Wrote additional tests for existing features to increase coverage. [#81](https://github.com/AY2021S1-CS2113T-T12-2
+/tp/pull/81)
 
 #### Contributions to documentation:
 * User Guide
