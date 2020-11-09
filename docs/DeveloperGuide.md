@@ -1309,7 +1309,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
     Expected: Workspace will be successfully deleted.
     
     3.  Test case: `workspace -d default` <br/>
-    Expected: Workspace deletion will fail given default does not exists.
+    Expected: Workspace deletion will fail given default does not exist.
     
         1.  Other incorrect commands to try: 
             1.  `workspace`
