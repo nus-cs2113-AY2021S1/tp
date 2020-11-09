@@ -512,6 +512,9 @@ A all-in-one solution for note-taking and managing your schedule. NotUS solves t
 |v1.0|SOC/FOE student|Be able to edit my notes|Update missing information|
 |v1.0|SOC/FOE student|Be able to read my notes|To revise before exams|
 |v1.0|SOC/FOE student|Be able to delete my notes|To clear up space and keep it more organized|
+
+| Version | Target User | Function/Feature | User's Benefit |
+|--------|----------|---------------|------------------|
 |v2.0|Outgoing student|Able to add my social events to the timetable|View all my upcoming events and classes|
 |v2.0|Busy student|Be alerted if there are clashes in between my events and classes|Reschedule my plan|
 |v2.0|Student leader|Be able to share certain events with others|Can get people to join events more conveniently|
