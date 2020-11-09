@@ -96,6 +96,9 @@ public class Power {
      */
     public double getPower() {
         computeTotalPower();
+        if (totalPowerConsumption < 0) {
+            return 0;
+        }
         return totalPowerConsumption;
     }
 
