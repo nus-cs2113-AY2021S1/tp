@@ -24,7 +24,8 @@ public class StorageManager {
     private static final String REGEX_ALPHANUMERIC_WITH_SPACE = "^[a-zA-Z0-9\\s]*$";
     private static final int MAXIMUM_WORKSPACE_NAME_LENGTH = 30;
     private static final Logger LOGGER = AniLogger.getAniLogger(StorageManager.class.getName());
-    public static final String EXCEPTION_DELETE_FAILED = "Failed to delete workspace folder, try deleting manually.";
+    public static final String EXCEPTION_DELETE_FAILED = "Failed to delete workspace folder on file system,"
+            + " if it is still in the data folder, you may try to manually delete it.";
 
     private final String storageDirectory;
     private final UserStorage userStorage;
@@ -33,6 +34,7 @@ public class StorageManager {
     private final ScriptStorage scriptStorage;
 
     //@@author OngDeZhi
+
     /**
      * Creates a new instance of StorageManager with the specified storage directory.
      *
@@ -86,19 +88,27 @@ public class StorageManager {
     // ========================== Workspace Deletion ==========================
 
     //@@author
+
     /**
      * Deletes directory containing specified workspace.
      *
      * @param name name of workspace
-     * @throws AniException when an error occurred while trying to delete directory
+     * @throws AniException when an error occurred while trying to delete directory or if folder does not exist
      */
     public void deleteWorkspace(String name) throws AniException {
         assert (name != null) : "Workspace name is null.";
         String deletePathString = storageDirectory + name;
 
         try {
+            File deleteFolder = new File(name);
             Path deletePath = Paths.get(deletePathString);
+
             LOGGER.log(Level.INFO, "Deleting workspace " + name);
+
+            if (!deleteFolder.isDirectory()) {
+                LOGGER.log(Level.WARNING, "Exception: " + EXCEPTION_DELETE_FAILED);
+                throw new AniException(EXCEPTION_DELETE_FAILED);
+            }
 
             Files.walk(deletePath)
                     .sorted(Comparator.reverseOrder())
@@ -113,6 +123,7 @@ public class StorageManager {
     // ========================== User Saving and Loading ==========================
 
     //@@author OngDeZhi
+
     /**
      * Invokes the save method in UserStorage to save the user data.
      *
@@ -161,6 +172,7 @@ public class StorageManager {
     // ========================== Bookmark Saving and Loading ==========================
 
     //@@author OngXinBin
+
     /**
      * Invokes the save method in bookmarkStorage to save the bookmark data.
      *
@@ -187,6 +199,7 @@ public class StorageManager {
     // ========================== Script Loading ==========================
 
     //@@author OngDeZhi
+
     /**
      * Loads the script file.
      *
