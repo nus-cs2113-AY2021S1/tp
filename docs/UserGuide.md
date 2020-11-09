@@ -901,6 +901,8 @@ Expected output:
 
 ![Flashcard_4_3](Images/FlashcardUG/Flashcard_4_3_resized.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 4.4 Deleting flashcards: `delete`
 
 When you have a flashcard that is no longer relevant to you or contains wrong information, you can delete the flashcard
