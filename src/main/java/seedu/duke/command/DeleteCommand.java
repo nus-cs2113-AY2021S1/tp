@@ -85,17 +85,17 @@ public class DeleteCommand extends Command {
         logger.info("Start executing delete command.");
         logger.info("listType: \"" + listType + "\", command: \"" + command + "\"");
         EventList eventList = data.getEventList(listType);
-        String[] eventIdentifierArray = command.split(";",2);
+        String[] eventIdentifierArray = command.split(";");
 
         int eventIndex = Integer.parseInt(eventIdentifierArray[0]) - 1;
         Event deleteEvent = eventList.getEventByIndex(eventIndex);
 
-        if (eventIdentifierArray.length == 1 || deleteEvent.getRepeatType() == null) {
+        if (deleteEvent.getRepeatType() == null) {
             eventList.getEvents().remove(deleteEvent);
             ui.printEventDeletedMessage(deleteEvent);
             storage.saveFile(storage.getFileLocation(listType), data, listType);
             logger.fine("Event deleted: \"" + deleteEvent + "\"");
-        } else if (eventIdentifierArray.length == 2 && deleteEvent.getRepeatType() != null) { // event is a repeat task
+        } else { // event is a repeat task
             LocalDate deleteEventDate = dateParser(eventIdentifierArray[1].trim());
             boolean isDateFound;
 

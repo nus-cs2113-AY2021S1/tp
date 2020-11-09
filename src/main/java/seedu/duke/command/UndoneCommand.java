@@ -90,17 +90,17 @@ public class UndoneCommand extends Command {
         logger.fine("Start executing undone command.");
         logger.info("listType: \"" + listType + "\", command: " + command + "\"");
         EventList eventList = data.getEventList(listType);
-        String[] eventIdentifierArray = command.split(";",2);
+        String[] eventIdentifierArray = command.split(";");
         
         int eventIndex = Integer.parseInt(eventIdentifierArray[0]) - 1;
         Event undoneEvent = eventList.getEventByIndex(eventIndex);
 
-        if (eventIdentifierArray.length == 1 || undoneEvent.getRepeatType() == null) {
+        if (undoneEvent.getRepeatType() == null) {
             undoneEvent.markAsUndone();
             ui.printEventMarkedUndoneMessage(undoneEvent);
             storage.saveFile(storage.getFileLocation(listType), data, listType);
             logger.fine("Event marked as undone: \"" + undoneEvent + "\"");
-        } else if (eventIdentifierArray.length == 2 && undoneEvent.getRepeatType() != null) { // event is a repeat task
+        } else { // event is a repeat task
             LocalDate undoneEventDate = dateParser(eventIdentifierArray[1].trim());
             boolean isDateFound;
 

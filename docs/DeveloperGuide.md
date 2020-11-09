@@ -393,6 +393,15 @@ Given below is how the deadline command behave: <br>
 
 #### Check feature
 
+The check feature allows the user to check for events happening during a defined time period. The format for the check command is `check [START_DATE]; [START_TIME]; [END_DATE]; [END_TIME]`.
+
+|Argument| Description |
+|--------|----------|
+|START_DATE|The start date of the defined time period. Accepted formats are: d/M/yyyy, M/yyyy, yyyy, d/M/yy, M/yy, yy. Slashes may also be replaced with dashes. If left blank, the current date is taken by default. Missing fields (e.g. 2020 missing d/M) will be filled in using the current date (i.e if today's date is 15/10/2021, input 2020 will be read as 15/10/2020). |
+|START_TIME|The start time of the defined time period. Accepted formats are: hh:mm a, hhmm a, hh a, HH:mm, HHmm, HH. If left blank, current time is taken by default. If only hour is given, the time at the start of the hour is taken. |
+|END_DATE|The end date of the defined time period. Accepted formats are: d/M/yyyy, M/yyyy, yyyy, d/M/yy, M/yy, yy. Slashes may also be replaced with dashes. If left blank, the current date is taken by default. Missing fields (e.g. 2020 missing d/M) will be filled in using the current date (i.e if today's date is 15/10/2021, input 2020 will be read as 15/10/2020). |
+|END_TIME|The start time of the defined time period. Accepted formats are: hh:mm a, hhmm a, hh a, HH:mm, HHmm, HH. If left blank, current time is taken by default. If only hour is given, the time at the start of the hour is taken. |
+
 The check feature is implemented using the `CheckCommand` class. `CheckCommand` accesses the `Event` stored within `EventList` in order to determine if events are occurring within a given time period. It implements the following operations:
 
 - `CheckCommand#getDate(stringDate)` -- Parses a given string to get a LocalDate variable (either the start or end date for the time period).
@@ -456,6 +465,14 @@ The following sequence diagram shows how `GoalCommand#execute()` works:
 
 #### Done feature
 (WIP)
+The done feature allows users to mark events in Scheduler as done. The format for the done command is `done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
+
+|Argument| Description |
+|--------|----------|
+|EVENT_TYPE|The type of event to be marked done. Accepted arguments are `personal`, `timetable` or `zoom`.|
+|EVENT_INDEX|Index number of the event to be marked done that is stored on the Event List.|
+|EVENT_DATE|The date on which the repeated event to be marked done should occur. Accepted formats are: d/M/yyyy, d/M/yy, yyyy/M/d, yy/M/d. Slashes may also be replaced by dashes.|
+
 The done feature is implemented using the `DoneCommand` class. `DoneCommand` accesses the `Event` stored within `EventList` and marks it as done. It implements the following operations:
 
 - `DoneCommand#parse(input)` -- Parses the processed input from `Parser` to create a `DoneCommand` with the parsed event list type and event identifier.
@@ -478,6 +495,14 @@ Step 5. `Storage#saveFile()` is called to save the updated event list to the ext
 
 #### Undone feature
 (WIP)
+The undone feature allows users to mark events in Scheduler as undone. The format for the undone command is `undone EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
+
+|Argument| Description |
+|--------|----------|
+|EVENT_TYPE|The type of event to be marked undone. Accepted arguments are `personal`, `timetable` or `zoom`.|
+|EVENT_INDEX|Index number of the event to be marked undone that is stored on the Event List.|
+|EVENT_DATE|The date on which the repeated event to be marked undone should occur. Accepted formats are: d/M/yyyy, d/M/yy, yyyy/M/d, yy/M/d. Slashes may also be replaced by dashes.|
+
 The undone feature is implemented using the `UndoneCommand` class. `UndoneCommand` accesses the `Event` stored within `EventList` and marks it as undone. It implements the following operations:
 
 - `UndoneCommand#parse(input)` -- Parses the processed input from `Parser` to create an `UndoneCommand` with the parsed event list type and event identifier.
@@ -500,6 +525,14 @@ Step 5. `Storage#saveFile()` is called to save the updated event list to the ext
 
 #### Delete feature
 (WIP)
+The delete feature allows users to delete events from Scheduler. The format for the delete command is `delete EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
+
+|Argument| Description |
+|--------|----------|
+|EVENT_TYPE|The type of event to be deleted. Accepted arguments are `personal`, `timetable` or `zoom`.|
+|EVENT_INDEX|Index number of the event to be deleted that is stored on the Event List.|
+|EVENT_DATE|The date on which the repeated event to deleted should occur. Accepted formats are: d/M/yyyy, d/M/yy, yyyy/M/d, yy/M/d. Slashes may also be replaced by dashes.|
+
 The delete feature is implemented using the `DeleteCommand` class. `DeleteCommand` accesses the `Event` stored within `EventList` and removes it from the `EventList` to delete it from Scheduler--;. It implements the following operations:
 
 - `DeleteCommand#parse(input)` -- Parses the processed input from `Parser` to create an `DeleteCommand` with the parsed event list type and event identifier.

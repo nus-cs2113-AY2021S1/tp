@@ -144,12 +144,12 @@ public class CheckCommand extends Command {
             default:
                 logger.warning("DateErrorException: More fields than d/m/yyyy were given.");
                 throw new DateErrorException("Too many fields given for the date!" + System.lineSeparator()
-                        + "D/M/YYYY is the longest date format accepted.");
+                        + "d/M/yyyy is the longest date format accepted.");
             }
         } catch (DateTimeParseException e) {
             logger.warning("DateErrorException: Invalid date was given.");
             throw new DateErrorException("Something is wrong with the date!" + System.lineSeparator()
-                    + "The accepted formats are: d/m/yyyy, m/yyyy or yyyy. yyyy can be shortened to yy."
+                    + "The accepted formats are: d/M/yyyy, M/yyyy or yyyy. yyyy can be shortened to yy."
                     + System.lineSeparator() + "Dashes may be used in place of slashes.");
         }
     }
@@ -171,6 +171,8 @@ public class CheckCommand extends Command {
             logger.fine("Time field left blank, current time returned.");
             return time;
         }
+
+        stringTime = stringTime.toUpperCase();
 
         String[] stringTimeArray = stringTime.split(" ");
 

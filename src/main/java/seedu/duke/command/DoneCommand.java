@@ -90,17 +90,17 @@ public class DoneCommand extends Command {
         logger.fine("Start executing done command.");
         logger.info("listType: \"" + listType + "\", command: \"" + command + "\"");
         EventList eventList = data.getEventList(listType);
-        String[] eventIdentifierArray = command.split(";",2);
+        String[] eventIdentifierArray = command.split(";");
 
         int eventIndex = Integer.parseInt(eventIdentifierArray[0]) - 1;
         Event doneEvent = eventList.getEventByIndex(eventIndex);
 
-        if (eventIdentifierArray.length == 1 || doneEvent.getRepeatType() == null) {
+        if (doneEvent.getRepeatType() == null) {
             doneEvent.markAsDone();
             ui.printEventMarkedDoneMessage(doneEvent);
             storage.saveFile(storage.getFileLocation(listType), data, listType);
             logger.fine("Event marked as done: \"" + doneEvent + "\"");
-        } else if (eventIdentifierArray.length == 2 && doneEvent.getRepeatType() != null) { // event is a repeat task
+        } else { // event is a repeat task
             LocalDate doneEventDate = dateParser(eventIdentifierArray[1].trim());
             boolean isDateFound;
 

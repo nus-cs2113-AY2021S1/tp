@@ -155,7 +155,7 @@ class CheckCommandTest {
         });
 
         String expectedMessage = "Something is wrong with the date!" + System.lineSeparator()
-                + "The accepted formats are: d/m/yyyy, m/yyyy or yyyy. yyyy can be shortened to yy."
+                + "The accepted formats are: d/M/yyyy, M/yyyy or yyyy. yyyy can be shortened to yy."
                 + System.lineSeparator() + "Dashes may be used in place of slashes.";
         String actualMessage = firstE.getMessage();
         assertEquals(expectedMessage, actualMessage);
@@ -180,7 +180,7 @@ class CheckCommandTest {
         });
 
         expectedMessage = "Too many fields given for the date!" + System.lineSeparator()
-                + "D/M/YYYY is the longest date format accepted.";
+                + "d/M/yyyy is the longest date format accepted.";
         actualMessage = thirdE.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }

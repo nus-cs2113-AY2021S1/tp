@@ -33,7 +33,7 @@ public class DateTimeParser {
             }
         }
         throw new DateErrorException("Something is wrong with the date!" + System.lineSeparator()
-                + "The accepted formats are: dd/mm/yy or yyyy/mm/dd. yy is also accepted." + System.lineSeparator()
+                + "The accepted formats are: d/M/yyyy or yyyy/M/d. yy is also accepted." + System.lineSeparator()
                 + "Slashes can be replace with dashes.");
     }
 
