@@ -135,7 +135,7 @@ Output:
      Now you have 5 tasks in the list.
     ____________________________________________________________
 ```
-### Adding a module: `add module`
+### Adding a module: `add`
 Add modules to the module list.
 
 Format: `add module <module code> <optional/compulsory arguments>`
@@ -151,18 +151,16 @@ List of `<optional arguments>`:
 
 🚩: Modules will be **set to complete by default** if `d/<1 or 0>` is not provided. This feature lets users add incomplete modules and compute a projected CAP when `list modules` is entered.
 
-🚩: Optional and compulsory arguments can be typed in **any** order
-
 List of `<compulsory arguments>`:
 - `g/<grade>` grade of the module in **caps** (`A+`, `A`, `A-`, etc).
 - `ay/<XXXXSY>` academic year of the module where `X` is an integer and `Y` is `1` or `2` (`2021S1`, `2021S2`, etc...).
-- `mc/<MCs>` modular credits of the module. Valid for a range of 0 to 40 MCs.
+- `mc/<MCs>` modular credits of the module. Valid for a range of **0 to 40 MCs, inclusive**.
 
 🚩: All characters in academic year must be in **caps**. 
 
 🚩: Grades must be in **caps**.
 
-🚩: Modular credits must be **non-negative** and up to 40 is **allowed**.
+🚩: Optional and compulsory arguments can be typed in **any** order
 
 Example of usage:
 
@@ -184,7 +182,7 @@ Output:
 
 🚩: `[CM]` indicates a completed module, and `[IC]` indicates an incomplete module.
 
-### Adding a weblink: `add link`
+### Adding a weblink: `add`
 Add a link for lecture/tutorial sessions through zoom 
 
 Format: `add link m/<module code> <compulsory arguments>`
@@ -1008,13 +1006,32 @@ Output:
 
 ```
     ____________________________________________________________
-     add: Adds a task to the task list.
+     add:
+     1. add task: Adds a task to the task list.
      Parameters: TASK_NAME <optional arguments>
      List of <optional arguments>
        - p/<number> sets the priority of the task.
        - c/<category> sets the category of the task.
        - date/<dd-MM-yyyy> sets the date of the task.
      Example: add task example_task <optional arguments>
+
+     2. add module: Adds a module to the module list.
+     Parameters: MODULE_CODE <optional/compulsory arguments>
+     List of <optional arguments>:
+       - d/<1 or 0> sets whether a module is completed or not (1 for completed, 0 for incomplete).
+     List of <compulsory arguments>:
+       - g/<grade> grade of the module in caps (A+, A, A-, etc).
+       - ay/<XXXXSY> academic year of the module where X is an integer and Y is 1 or 2 (2021S1, 2021S2, etc...).
+       - mc/<MCs> modular credits of the module. Valid for a range of 0 to 40 MCs.
+     Example: add module example_module <optional/compulsory arguments>
+
+     3. add link: Adds a weblink to the link list.
+     Parameters: m/MODULE CODE <compulsory arguments>
+     List of <compulsory arguments>:
+       - t/<TYPE> type of use (lecture, tutorial, lab, project).
+       - u/<URL> the link.
+     Example: add link m/example_module <compulsory arguments>
+    
 
      addr: Adds multiple tasks to the list of tasks that occur weekly on a given day.
      Parameters: TASK_NAME <optional/compulsory arguments>
@@ -1037,7 +1054,7 @@ Output:
      calendar: Sets the date of a given task in the list.
      Example: calendar d/<daysToPrint>
 
-     category: Sets the category of a task identified by the task index number in the task list
+     category: Sets the category of a task identified by the task index number in the task list.
      Parameters: INDEX c/CATEGORY
      Example: category 1 c/Academics
 
@@ -1056,10 +1073,12 @@ Output:
              Example: delete tasks p/1
           Optional parameter 2: c/CATEGORY
              Deletes all the tasks with CATEGORY.
-             Example: delete tasks c/cs2113.
+             Example: delete tasks c/cs2113
+
      2. Deletes the link identified by the index number used in the link listing.
      Parameters: INDEX
      Example: delete link 1
+
      3. Deletes the expense items identified by the index number used in the expense list.
           Optional parameter 1: currency/CURRENCY
              Deletes all the expense items with CURRENCY.
@@ -1073,9 +1092,9 @@ Output:
      Accepted <type>: task, module
      Example: done task 1
 
-     find: Finds all items whose descriptions containthe specified keywords (case-insensitive) and displays them as a list with index numbers.
+     find: Finds all items whose descriptions contain the specified keywords (case-insensitive) and displays them in a list with index numbers.
      Parameters: {tasks, links, books, expenses, modules} k/KEYWORDS
-     Example: find expenses k/buy
+     Example: find expenses k/buy food
 
      help: Shows program usage instructions.
      Example: help
@@ -1092,11 +1111,14 @@ Output:
           Optional parameter 3: tasks sorted
              Displays all the tasks sorted by priority     2. Displays all the books in the book list.
              Example: list books
-     3. Displays all the links in the link list.
+
+     2. Displays all the links in the link list.
              Example: list links
-     4. Displays all the modules in the module list.
+
+     3. Displays all the modules in the module list.
              Example: list modules
-     5. Displays all the expense items in the expense list.
+
+     4. Displays all the expense items in the expense list.
           Optional parameter 1: currency/CURRENCY
              Displays all the expense items with currency CURRENCY as a list.
              Example: list expenses currency/SGD
@@ -1108,10 +1130,6 @@ Output:
              Example: list expenses for/YEAR
 
      makefolders: Make folders for your modules in the modulelist
-
-     return: Marks the book identified by the index number used in the book list as returned.
-     Parameters: INDEX
-     Example: return 2
 
      spend: Adds an expense item to the expense list.
      Parameters: DESCRIPTION <compulsory/optional argument>
@@ -1125,6 +1143,10 @@ Output:
      set: Sets the task identified by the index number used in the task listing to the new priority.
      Parameters: INDEX p/PRIORITY
      Example: set 1 p/2
+
+     return: Marks the book identified by the index number used in the book list as returned.
+     Parameters: INDEX
+     Example: return 2
     ____________________________________________________________
   
 ```
@@ -1150,7 +1172,7 @@ Output:
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: `./tasks.txt`, `./books.txt`, `./links.txt` stores the user data, which can be transferred to another computer or instance of the program by
+**A**: `./tasks.txt`, `./books.txt`, `./links.txt`, `./expenses.txt` stores the user data, which can be transferred to another computer or instance of the program by
 putting it in the same folder as `termiNus.jar`.
 
 **Q**: Are all commands case-sensitive?
