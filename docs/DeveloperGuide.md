@@ -174,22 +174,39 @@ When the user keys in the command `remind DATE`, where `DATE` is the date the us
 1. Private `WritingReminder.printWritingsOnADate()` will be called to print out the result.
 
 ### Word Features
+Fluffle contains a word bank that stores words which are keyed in by the user, together with its meaning. The diagram
+below shows the implementation of the words, as well as the word list classes in the program.
+![UML Words class diagram](graphics/diagrams/Words_UML Diagram.png)
+<p align = "center"><i><b>Figure 5: Words UML Class Diagram</b></i></p>
+
+WordsList is an ArrayList which stores the objects of Words class. Each object has the following attributes:
+- Description: the word itself
+- Definition: the definition of the word  
+- Getters of the description and definition of the object.
+
+Each Words object is further classified into Noun, Verb, or Adjective class, which have a getter for its type that 
+identifies whether it is a noun, verb, or adjective.
 
 #### Adding a noun
+This feature allows users to add a Noun into the word bank of Fluffle.
 
 #### Adding a verb 
+This feature allows users to add a Verb into the word bank of Fluffle.
 
 #### Adding an adjective
+This feature allows users to add an Adjective into the word bank of Fluffle.
 
 #### Listing words
+This feature allows users to list all the words that are currently stored in Fluffle.
 
 #### Generating three random words
+This feature generates three random words for the user.
 
 #### Filtering words
 This feature allows users to getting words as they wish. The diagram below shows the overall architecture of filter words functionality.
 
 ![UML Filter word class diagram](graphics/diagrams/classDiagram_FilterWords.png)
-<p align = "center"><i><b>Figure 5: Filter word UML Class Diagram</b></i></p>
+<p align = "center"><i><b>Figure 6: Filter word UML Class Diagram</b></i></p>
 
 **Implementation**
 
@@ -208,9 +225,9 @@ The following sequence diagram shows how the components interact with each other
 
 ![UML Filter word sequence diagram](graphics/diagrams/Sequence_FilterWords.png)
 
-<p align = "center"><i><b>Figure 6: Interactions between components for the command filter -continue by\start limit\10 -cs -cg</b></i></p>
+<p align = "center"><i><b>Figure 7: Interactions between components for the command filter -continue by\start limit\10 -cs -cg</b></i></p>
 
-In **Figure 6** above, the flow of the program after it enters the filter process is as follows:
+In **Figure 7** above, the flow of the program after it enters the filter process is as follows:
 1. The `CommandExecutor` calls `FilterExecutor.executeFilterCommand()`.
 1. In the method `executeFilterCommand`, `FilterType.getTypeOfFilter()` is called to get the filter mode, which is `START`.
 1. Then, `FilterCommandSlicer.isNewFilter()`, `FilterCommandSlicer.getWordPrintLimitFromFilterCommand()`, `FilterCommandSlicer.getTargetedStringTags()` is called to check whether the program should continue on the last filter list and to get print limit as well as the strings used for filtering.
@@ -223,7 +240,7 @@ In **Figure 6** above, the flow of the program after it enters the filter proces
    
 ### Bunny class family
 ![UML Bunny class diagram](graphics/diagrams/Class_diagram_bunny.png)
-<center><i>Figure 7:  Bunny ideas UML Class Diagram</i></center>
+<center><i>Figure 8:  Bunny ideas UML Class Diagram</i></center>
 The above class diagram describes the overall architecture of the bunny list functionalities. Recall that the term bunny refers to  plot ideas that have yet to be devloped. 
 The above classes provide the functionality of storing such ideas in an organised manner that can easily be searched, saved and loaded.
 
@@ -246,7 +263,7 @@ generates an integer between 0 and the max number of `Bunny` idea in the `bunnie
 <center><i>
   
   
-  8:  Bunny list UML Sequence Diagram</i></center>
+  9:  Bunny list UML Sequence Diagram</i></center>
 
 The user may call upon the `bunny` command to add bunnies to the list. The user input is first processed by the `extractCommandType` method from 
 the `CommandChecker` class, and the command type detected is sent to the `executeCommand` method from the `CommandExecutor` class. The `addBunny` function is called by this 
@@ -257,9 +274,9 @@ to print the message that the `Bunny` idea object has been sucessfully added to 
 ### Names class family
 
 ![Names UML Class Diagram](graphics/diagrams/classDiagram_Names.png)
-<center><i>Figure 8: Names UML Class Diagram</i></center>
+<center><i>Figure 10: Names UML Class Diagram</i></center>
 
-The above class diagram (Figure 8) describes the overall architecture of the name list functionalities. The Names class 
+The above class diagram (Figure 10) describes the overall architecture of the name list functionalities. The Names class 
 has the protected ArrayList of names, nameList, that is accessed by the Names class method getName which randomly gets 
 a selected name from the nameList ArrayList. Similarly, nameList is also accessed by the Names class which contains the 
 filterNames function which can filter through the list and obtain names with specified keywords using the command filter 
@@ -277,7 +294,7 @@ String objects in nameList into the file using the updateDB method. String objec
 by the NamesDB class and saved into the nameList ArrayList using the loadDB method. In the event of the database 
 Names.txt not existing, the NamesDB class will create the Names.txt database and populate the database with 500 names using the loadDB method.
 
-As shown in Figure 8, both the NamesDB class and the Names class will create the NameException class. This is a subclass 
+As shown in Figure 10, both the NamesDB class and the Names class will create the NameException class. This is a subclass 
 that inherits from the Exception superclass and passes the exception message to the superclass. In the event of an 
 exception, it is thrown from the methods in NamesDB class and Names class and handled by the NameException class.
 
