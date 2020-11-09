@@ -34,6 +34,13 @@ This gives the application both simplicity and speed, setting it apart from othe
     * [Mark event as done](#mark-event-as-done)
     * [Reminder of deadlines](#reminder-of-deadlines)
     * [Repeat of events](#repeat-of-events)
+    * [Delete an event](#delete-an-event)
+    * [Find a keyword](#find-a-keyword)
+    * [Find a date](#find-a-date)
+    * [Find locations exist in a certain group](#find-locations-exist-in-a-certain-group)
+    * [Keep track on the study time](#keep-track-on-the-study-time)
+    * [Make the app know you](#make-the-app-know-you)
+    * [Exit the app](#exit-the-app)
 * [FAQs](#FAQ)
 * [Command Summary](#command-summary)
 
@@ -67,11 +74,9 @@ Format: `help`
 
 ### Add an event
 
-Adds events/tasks to the schedule. Can support various types of tasks: 
+Adds events/tasks to the schedule. Can support various types of tasks:  
 
-
-
-* Personal events  
+* PersonalEvent  
   Format:  
   `personalEvent EVENTNAME /t DATE TIME /e DATE TIME /l LOCATION` for offline events.  
   OR  
@@ -82,13 +87,13 @@ Adds events/tasks to the schedule. Can support various types of tasks:
   as the date that the event starts.  
   For online events, `/p MEETING_PASSWORD` is optional, since not all online events require a password.
 
-* Assignments  
+* Assignment  
   Format:  
   `assignment EVENTNAME /t DATE TIME /l LOCATION`  
   OR  
   `assignment EVENTNAME /t DATE TIME /o SUBMISSION_LINK`  
 
-* Classes  
+* Class  
   Format:  
   `class CLASSNAME /t DATE TIME /e DATE TIME /l LOCATION`  
   OR  
@@ -97,21 +102,35 @@ Adds events/tasks to the schedule. Can support various types of tasks:
   Similar to personal events, in `/e DATE TIME`, `DATE` is optional. For online events,`/p MEETING_PASSWORD` is optional.  
   However, `/e DATE TIME` or `/e TIME` is required, since all classes should have an ending time. 
 
-
+* SelfStudy
+  Format:
+   `selfStudy EVENTNAME /t DATE TIME /e DATE TIME /l LOCATION` for offline events.  
+    OR  
+    `selfStudy EVENTNAME /t DATE TIME /e DATE TIME /o MEETING_LINK /p MEETING_PASSWORD` for online events.  
+      
+    Note that `/e DATE TIME` is optional. You may input a personal event without an ending time.  
+    In `/e DATE TIME`, `DATE` is optional. If you enter `/e TIME`, the default date will be the same 
+    as the date that the event starts.  
+    For online events, `/p MEETING_PASSWORD` is optional, since not all online events require a password.  
+    
 Examples of usage: 
   
 `class CS2113 Lecture /t 2020-09-23 10:00 /e 12:00 /l LT27`
 `personalEvent Mom’s Birthday /t 2020-10-26 19:00 /l home`
 `assignment CS1010 Assignment /t 2020-01-04 23:59 /o Luminus`
+`selfStudy Prepare for exam /t 2020-11-26 15:00 /l home`  
 
 Adding a class:  
-![add1](diagrams/add1.png)
+![add1](diagrams/add1.png)  
 
 Adding a personal event:  
-![add2](diagrams/add2.png)
+![add2](diagrams/add2.png)  
 
 Adding an assignment:  
-![add3](diagrams/add3.png)
+![add3](diagrams/add3.png)  
+
+Adding a self study event:<br>
+![add5](diagrams/add5.png)  
 
 Adding an event with a timing clash:  
 ![add4](diagrams/add4.png)
@@ -214,10 +233,13 @@ Delete events existing in the list, you can choose to delete all, auto delete or
 * Clear all events
   Format: `clear`
   
-* Switch the autoClear function on so that events happened one month ago will be automatically cleared
-  Format: `autoClear on` OR `autoClear off`
-  Note that this function will clear all events which happened one month ago no matter they are done or not.
-  
+* Switch the autoClear function on so that events happened one month ago will be automatically cleared.
+  Format: `autoClear on`
+  Note that this function will clear all events which happened one month ago no matter they are done or not.  
+
+* Switch the autoClear function off  
+  Format: `autoClear off`
+
 * Clear events happened before a certain date
   Format: `clearBefore CLEAR_DATE`
   
@@ -228,6 +250,7 @@ Example Output:
 
 ### Mark event as done
 Mark an event that has been completed with `DONE`.  
+Note that the events which are not assignments, cannot be done before its ending time.
 
 Format: `done INDEX`  
 
@@ -247,12 +270,77 @@ Example Output:
 ### Repeat of events
 Repeat the selected event for several weeks, or repeat all classes this week for several weeks.
 
-Format: `repeat INDEX NUMBER_OF_WEEKS` OR `repeat all NUMBER_OF_WEEKS`
+Format: `repeat INDEX NUMBER_OF_WEEKS` OR `repeat all NUMBER_OF_WEEKS`  
+
+Example: `repeat 3 1`, `repeat all 2`  
 
 Example Output:<br>
 ![Repeat1](diagrams/repeat1.png)  
 ![Repeat2](diagrams/repeat2.png)
 
+### Delete an event
+Delete the selected event from the list.
+
+Format: `delete INDEX`
+
+Example: `delete 1`  
+
+Example Output:<br>
+![Delete](diagrams/delete.png)
+
+### Find a keyword
+Find the events with given keyword. Note that it's case-sensitive.
+
+Format: `find KEYWORD`  
+
+Example: `find CS`
+
+Example Output:<br>
+![Find](diagrams/find.png)  
+
+### Find a date
+Find the events happen on the given date.  
+
+Format: `date yyyy-MM-dd`  
+
+Example `date 2020-11-10`  
+
+Example Output:<br>
+![findDate](diagrams/findDate.png)
+
+### Find locations exist in a certain group
+Find the locations in NUS that belongs to certain faculty or the hostels.
+
+Format: `FOS` OR `FOE` OR `SOC` OR `BIZ` OR `HOSTEL` OR `SDE` OR `FASS`  
+
+Example Output:<br>
+![locationsInNUS](diagrams/locationsInNUS.png)  
+
+### Keep track on the study time
+Find the amount of time you spent on study on a certain date.
+
+Format: `studyTime DATE`  
+
+Example Output:<br>
+![studyTime](diagrams/studyTime.png)
+
+### Make the app know you
+Tell the app your name, and whether you are a professor or a student. Whether you indicate yourself as a professor,
+ or a student, will make a difference in another function, which will come in a later version.
+
+Format: `student NAME` OR `professor NAME`
+
+Example Output:<br>
+![userInfo1](diagrams/userInfo1.png)<br>
+![userInfo2](diagrams/userInfo2.png)
+
+### Exit the app
+Exit.
+
+Format: `bye`
+
+Example Output:<br>
+![Exit](diagrams/exit.png)
 
 ## FAQ
 
@@ -278,13 +366,22 @@ accuracy. If you really cannot find what is wrong, please report it as an issue 
 
 |Action|Command|Example|
 |------|-------|-------|
-|add|`EVENTTYPE EVENTNAME /t DATE TIME` `/e DATE TIME`(optional personal event, compulsory for class, must not have for assignment) `/l LOCATION` OR `/o LINK` `/p PASSWORD`(optional)|`personalEvent Mom’s Birthday /t 2020-10-26 19:00 /l home`|
+|add|`EVENTTYPE EVENTNAME /t DATE TIME` `/e DATE TIME`(optional personal event and self study, compulsory for class, must not have for assignment) `/l LOCATION` OR `/o LINK` `/p PASSWORD`(optional)|`personalEvent Mom’s Birthday /t 2020-10-26 19:00 /l home`|
 |clear|`clear` OR `autoClear STATUS` OR `clearBefore CLEAR_DATE` |`clearBefore 2020-10-22`|
 |delete|`delete INDEX`|`delete 1`|
 |done|`done INDEX` |`done 1` |
 |edit|`edit`, then fill in each fields when prompted and press `ENTER` to move on to the next field|`edit 1` `ENTER` `class` `ENTER` `cs2113t` `ENTER` `\l school` `ENTER` `2020-10-26 19:00` `ENTER` `2020-10-26 20:00`|
-|help|`help`||
-|list|`list`||
+|help|`help`|
+|list|`list`|
 |locate|`locate LOCATION_NAME` OR `locate EVENT_INDEX`|`locate LT1`|
 |sort|`sort SORT_CRITERIA` |`sort description`|
-|repeat|`repeat INDEX NUMBER_OF_WEEKS` OR `repeat all NUMBER_OF_WEEKS`|`repeat 1 3`|
+|reminder|`reminder`|`reminder`|
+|repeat|`repeat INDEX NUMBER_OF_WEEKS` OR `repeat all NUMBER_OF_WEEKS`|`repeat all 1`|   
+|find (keyword)|`find KEYWORD`|`find book`|
+|find (date)|`date`|`date 2020-11-08`|
+|calculate study time|`studyTime DATE`|`studyTime 2020-11-08`|
+|find locations belongs to a certain group|`FACULTY` or `HOSTEL`|`FOE`,`FOS`|
+|UserInfo|`student NAME` OR `professor NAME`|`student LeeJuntong`|
+|exit|`bye`|`bye`|
+
+

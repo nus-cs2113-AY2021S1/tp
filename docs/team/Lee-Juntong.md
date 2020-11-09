@@ -52,8 +52,8 @@ Given below are my contributions to the project.
   
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Add documentation for the features delete, find, studyTime, add events, exit, repeat, find base on date, make the app know you, and find locations exist in a certain group  [\#199](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/199)
+    * Did cosmetic tweaks to existing documentation of features `done`, `autoClear` : [\#199](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/199)
   * Developer Guide:
     * Make the hyperlinks work properly [\#92](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/92)
 
