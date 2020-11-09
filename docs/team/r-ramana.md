@@ -9,20 +9,22 @@ title : R Ramana - Project Portfolio Page
 NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking application for keyboard-inclined users. NotUS allows for users to categorize notes by tagging as well as pinning the more important notes. NotUS is also designed to assist in planning timetables to highlight possible clashes.
 
 - Co-team lead: Responsible for overall project coordination alongside Jun Xiang.
-- Documentation and Code Quality: Responsible for the quality of various project documents. Looks after code quality, ensures adherence to coding standards, etc.
-- Integration, Scheduling and Tracking: In charge of defining, assigning, and tracking project tasks. Worked with Jun Xiang for the versioning of the code, maintaining the code repository, integrating various parts of the software to create a whole.
-- In charge of `list-n`,`archive-n`, `unarchive-n`, `find-n`, of the code: In charge of the code that deals with listing, archiving/unarchiving, and finding notes.
+- Documentation and Code Quality: Responsible for the quality of various project documents and ensures adherence to coding standards.
+- Integration, Scheduling and Tracking: In charge of assigning, and tracking project tasks. Worked with Jun Xiang for the versioning of the code, maintaining the code repository, integrating various parts of the software.
+- In charge of `list-n`,`archive-n`, `unarchive-n`, `find-n`, of the code.
 
 **Summary of Contributions**
 
 *Features implemented*
 
 1\. Completed the following features and test code for them:
-- `archive-n`: Allows the user to archive a note so their notebook is more organized and less cluttered. Users now have a more organized and neater list and can access pertinent notes quicker.
+- `archive-n`: Allows the user to archive a note so their notebook is more organized and less cluttered. Users can access pertinent notes quicker.
 - `find-n`: Allows the user to filter and find a note by the note title, and retrieve them as opposed to scanning for them in the list. It makes the process more efficient.
-- `help`: Allows the user a quick access on the list of commands available and how to use them. The user might not recall all of the commands and this is to assist them.      
-- `list-n`: Allows the user to see all available notes, regardless of if it is pinned or not. User can also sort the notes in ascending or descending order for convenience. User can view all archived notes, or list out notes by tags. Ensures an all round convenient design and product for the user.
-- `unarchive-n`: Allows the user to unarchive a note in an event the user wants to view/make changes to such a note.
+- `help`: Allows the user a quick access on the list of commands available and how to use them as the user might not recall all of the commands.      
+- `list-n`: Allows the user to see all available notes. User can also sort the notes in ascending or descending order for convenience, or list by tags. User can view all archived notes.
+- `unarchive-n`: Allows the user to unarchive a note if the user wants to make changes to the note.
+
+<div style="page-break-after: always;">
 
 2\. In the `Notebook` class, created: `archivedNotes`, `unarchivedNotes`, `getArchivedNotes`, `getNote`, `checkPinned`, `getSortedList`, `getPinnedNotes`, `getUnpinnedNotes`, `findNotes`. In the `Note` class, created: `toggleArchived`, `getIsArchived`, `getPinned`. Added a couple of `formatNotes` methods into the `Formatter` class.
 
