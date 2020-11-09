@@ -18,39 +18,39 @@ Wan Shi Jie Brendan<br>
 
 ## Table of Contents
 
-* [1. Introduction](#intro)
-* [2. Getting Started](#getting_started)<br>
-    * [2.1. Prerequisites](#prerequisites)<br>
-    * [2.2. Setting Up](#setting_up)<br>
-* [3. Design](#design) <br>
-    * [3.1 Architecture](#architecture) <br>
-    * [3.2 UI](#ui) <br>
-    * [3.3 Storage](#storage) <br>
-    * [3.4 Logic](#logic) <br>
-    * [3.5 Model](#model) <br>
-        * [3.5.1. Event](#event) <br>
-        * [3.5.2. Location](#location) <br>
-* [4. Implementation](#implementation) <br>
-    * [4.1. Add events](#add_events) <br>
-    * [4.2. Clear events](#clear) <br>
-    * [4.3. Edit events](#edit) <br>
-    * [4.4. Locate](#locate) <br> 
-    * [4.5. Reminders](#reminder) <br>
-    * [4.6. Sort events](#sort) <br>
-    * [4.7. View events](#view) <br>
-    * [4.8. Help](#help) <br>
-    * [4.9 Repeat](#repeat) <br>
-    * [4.10 Delete](#delte) <br>
-    * [4.11 Find](#find) <br>
-    * [4.12 Find based on date](#date) <br>
-    * [4.13 Print locations of a certain group](#location_group) <br>
-    * [4.14 Study time](#study_time) <br>
-    * [4.15 Done](#done) <br>
-    * [4.16 User Info](#user_info) <br>
-* [5. Documentation](#documentation) <br>
+* [1. Introduction](#1-introduction)
+* [2. Getting Started](#2-getting-started)<br>
+    * [2.1. Prerequisites](#21-prerequisites)<br>
+    * [2.2. Setting Up](#22-setting-up)<br>
+* [3. Design](#3-design) <br>
+    * [3.1 Architecture](#31-architecture) <br>
+    * [3.2 UI](#32-ui) <br>
+    * [3.3 Storage](#33-storage) <br>
+    * [3.4 Logic](#34-logic) <br>
+    * [3.5 Model](#35-model) <br>
+        * [3.5.1. Event](#351-event) <br>
+        * [3.5.2. Location](#352-location) <br>
+* [4. Implementation](#4-implementation) <br>
+    * [4.1. Add events](#41-add-events) <br>
+    * [4.2. Clear events](#42-clear-events) <br>
+    * [4.3. Edit events](#43-edit-events) <br>
+    * [4.4. Locate](#44-locate) <br> 
+    * [4.5. Reminders](#45-reminder) <br>
+    * [4.6. Sort events](#46-sort-events) <br>
+    * [4.7. View events](#47-view-events) <br>
+    * [4.8. Help](#48-help) <br>
+    * [4.9 Repeat](#49-repeat) <br>
+    * [4.10 Delete](#410-delete) <br>
+    * [4.11 Find](#411-find) <br>
+    * [4.12 Find based on date](#412-find-based-on-date) <br>
+    * [4.13 Print locations of a certain group](#413-print-locations-of-a-certain-group) <br>
+    * [4.14 Study time](#414-study-time) <br>
+    * [4.15 Done](#415-done) <br>
+    * [4.16 User Info](#416-user-info) <br>
+* [5. Documentation](#5-documentation) <br>
 * [6. Testing](#6-testing)<br>
-* [Appendix A. Product scope](#appendix-a-product-scopea-idproduct_scopea)<br>
-* [Appendix B.User stories](#appendix-b-user-storiesa-idstoriesa)<br>
+* [Appendix A. Product scope](#appendix-a-product-scope)<br>
+* [Appendix B.User stories](#appendix-b-user-stories)<br>
 * [Appendix C. Non-functional requirements](#appendix-c-non-functional-requirements)<br>
 * [Appendix D. Instructions for manual testing](#appendix-d-instructions-for-manual-testing)
 
@@ -319,7 +319,7 @@ The sequence diagram below shows what happens when user enters `help`:
 ### 4.9 Repeat
 This feature allows users to repeat all classes in the current week or a selected event for several weeks.
 
-### 4.10 Delete<a id="delete"></a>
+### 4.10 Delete
 This feature allows the user to delete unwanted events. `DeleteCommand#Execute` deletes the specified event in the 
 following steps:  
 
@@ -327,7 +327,7 @@ Step 1. The user enters `delete NUMBER` where `NUMBER` refers to the index of th
 
 Step 2. `Eventlist#remove()` is called which will delete the event with the specified index.
 
-### 4.11 Find<a id="find"></a>
+### 4.11 Find
 This feature allows the user to filter his/her events by a particular keyword. This command will search through all the events and find events that have descriptions
 containing the search criteria. The process takes place in the following steps:
 
@@ -338,7 +338,7 @@ Step 2. `EventList#filterWith()` will be called which will create a ArrayList co
 
 Step 3. `UI#printFilteredEventList` is called to print out the events.
 
-### 4.12 Find based on date<a id="date"></a>
+### 4.12 Find based on date
 
 This feature allows users to find events on the date inputted by the user.
 
@@ -350,14 +350,34 @@ Step 2. This executes FindDateCommand, which calls `filterDateWith(2020-10-10)` 
 
 Step 3. This filtered list is then printed by calling `printFilteredDateEventList` from UI.
 
-### 4.13 Print locations of a certain group<a id="location_group"></a>
+### 4.13 Print locations of a certain group
 
-### 4.14 Study time<a id="study_time"></a>
+This feature allows users to know locations in a certain faculty, including blocks and lecture theatres when users input
+abbreviations of various faculties (e.g. FOS).
+
+The sequence diagram belows shows what happens when user input any faculty abbreviation: <br>
+![PrintAreaLocationsCommand Sequence Diagram](diagrams/printAreaLocationsCommand.png)<br>
+*Figure 4.13 Sequence Diagram for print area locations function*
+
+### 4.14 Study time
 This feature allows the user to know the amount of time spent on study for certain date. The command is `studyTime DATE`.  
 
-### 4.15 Done<a id="done"></a>
+### 4.15 Done
 
-### 4.16 User Info<a id="user_info"></a>
+This feature allows users to mark an event as done, provided the event's time has passed. With the exception of event 
+type `Assignment`, all the other event types cannot be marked as done before event occurs. 
+
+`DoneCommand` marks an event as done with the following steps: 
+
+Step 1. The user will input `done` followed by an integer that represents the index of the event they want to mark as 
+done. 
+
+Step 2. The program will first check if the index is valid. If invalid, application will print an error message. 
+
+Step 3. Then it will check for the type and time of event. If the time of event is later, and the event is not an 
+`Assignment`, then it will print a warning message. Else, it will mark the event as done.
+
+### 4.16 User Info
 
 This feature allows users to input information about themselves into the app, specifically their name, and
 whether they are a student or a professor.
@@ -371,33 +391,6 @@ Step 2: This calls the UserInfoCommand, which stores his name, Harry, and type, 
 1. The user enters `delete NUMBER` where `NUMBER` refers to the index of the command to be deleted. The user input is parsed by the Parser class which creates a new `DeleteCommand` object.
 
 2. `Eventlist#remove()` is called which will delete the event with the specified index.
-### 4.11 Find 
-
-### 4.12 Print locations
-This feature allows users to know locations in a certain faculty, including blocks and lecture theatres when users input
-abbreviations of various faculties (e.g. FOS).
-
-The sequence diagram belows shows what happens when user input any faculty abbreviation: <br>
-![PrintAreaLocationsCommand Sequence Diagram](diagrams/printAreaLocationsCommand.png)<br>
-*Figure 4.12 Sequence Diagram for print area locations function*
-
-### 4.13 Study Time
-
-### 4.14 User Info
-
-### 4.15 Done 
-This feature allows users to mark an event as done, provided the event's time has passed. With the exception of event 
-type `Assignment`, all the other event types cannot be marked as done before event occurs. 
-
-`DoneCommand` marks an event as done with the following steps: 
-
-Step 1. The user will input `done` followed by an integer that represents the index of the event they want to mark as 
-done. 
-
-Step 2. The program will first check if the index is valid. If invalid, application will print an error message. 
-
-Step 3. Then it will check for the type and time of event. If the time of event is later, and the event is not an 
-`Assignment`, then it will print a warning message. Else, it will mark the event as done.
 
 ## 5. Documentation
   
@@ -413,7 +406,7 @@ JUnit is used to write tests for the project. Learn more about JUnit [here](http
 If you are using IntelliJ, you can run all test by right-clicking on the `test/java` folder and selecting `Run 'Tests'` or press `CRTL` + `SHIFT` + `F10`
 on your keyboard. Alternatively, you can open a console and run the command `gradelw clean test` (Mac/linus: `.gradlew clean test`).  
 
-## Appendix A: Product scope<a id="product_scope"></a>
+## Appendix A: Product scope
   
 ### User profile
   
@@ -425,13 +418,13 @@ __Target user profile:__
 * prefers using Command Line Interface (CLI) apps
 * prefers typing instead of mouse interactions
 
-### Value proposition<a id="value_proposition"></a>
+### Value proposition
   
 NUSchedule aims to assist the target audience with:  
 * managing all their events in one application (personal or work)
 * easily finding out about the location of their events 
 
-## Appendix B: User stories<a id="stories"></a>
+## Appendix B: User stories
   
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -444,6 +437,7 @@ NUSchedule aims to assist the target audience with:
 |2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
 |2.0|professor|Know whether my students have another lesson after mine and the expected time of travelling|Pace my lesson appropriately
 |2.0|student using zoom for lessons|record the virtual locations|store the links and passwords of the meetings
+|2.1|student having periodic lessons|repeat the classes on a weekly basis|spend less time in adding same classes but just different weeks  
 
 ## Appendix C: Non-Functional Requirements
   
