@@ -18,6 +18,13 @@ public class Module extends Item {
     public static final String MODULE_INCOMPLETE_STRING = "[IC]";
     public static final String MODULE_PRINT_FORMAT = "%s[%s] %s (%d MC) (AY%s)";
     public static final String LAST_VALID_AY = "9900";
+    public static final int AY_STRING_LENGTH = 6;
+    public static final int YEAR_ONE_START_INDEX = 0;
+    public static final int YEAR_ONE_END_INDEX = 2;
+    public static final int YEAR_TWO_END_INDEX = 4;
+    public static final int ALLOWED_YEAR_DIFFERENCE = 1;
+    public static final int MIN_ALLOWED_MCS = 0;
+    public static final int MAX_ALLOWED_MCS = 40;
 
     private final String grade;
     private final double gradePoint;
@@ -63,7 +70,7 @@ public class Module extends Item {
      * @return Boolean corresponding to the conditions.
      */
     public static boolean checkValidMcs(int mc) {
-        return mc >= 0 && mc <= 40;
+        return mc >= MIN_ALLOWED_MCS && mc <= MAX_ALLOWED_MCS;
     }
 
     /**
@@ -81,10 +88,10 @@ public class Module extends Item {
             return true;
         }
 
-        assert ay.length() == 6;
-        int start = Integer.parseInt(ay.substring(0, 2));
-        int end = Integer.parseInt(ay.substring(2, 4));
-        return end - start == 1;
+        assert ay.length() == AY_STRING_LENGTH;
+        int start = Integer.parseInt(ay.substring(YEAR_ONE_START_INDEX, YEAR_ONE_END_INDEX));
+        int end = Integer.parseInt(ay.substring(YEAR_ONE_END_INDEX, YEAR_TWO_END_INDEX));
+        return end - start == ALLOWED_YEAR_DIFFERENCE;
     }
 
     /**
@@ -118,6 +125,13 @@ public class Module extends Item {
         return (isDone) ? MODULE_COMPLETED_STRING : MODULE_INCOMPLETE_STRING;
     }
 
+    /**
+     * Gets the grade points from a grade.
+     *
+     * @param grade Grade to get the grade points from.
+     * @return Grade points corresponding to given grade.
+     * @throws DukeException If grade is invalid.
+     */
     private double getCapFromGrade(String grade) throws DukeException {
         switch (grade) {
         case "A+":
