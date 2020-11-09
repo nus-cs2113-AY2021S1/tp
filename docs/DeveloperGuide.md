@@ -269,7 +269,7 @@ It implements the following operations:
 The following sequence diagram demonstrates an example of how the Su Grade function works:
 
 <p align="center">
-    <img width="50%" height="50%" src="Images/Academic_Sequence_Diagram.png">
+    <img width="75%" height="75%" src="Images/Academic_Sequence_Diagram.png">
 </p>
 
 With reference to above, it can be observed that whenever a command modifies the array lists, 
