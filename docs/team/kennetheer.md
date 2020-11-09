@@ -51,6 +51,6 @@ This app uses a Command Line Interface (CLI).
   - I enabled java assertions, set up the milestones and labels in the issue tracker.
 
 - **Contributions Beyond the Project Team:**
-  - I provided feedback to the other teams' code and developer's guide. 
+  - I provided feedback to the other teams' code and developer's guide: [#7](https://github.com/nus-cs2113-AY2021S1/tp/pull/7) 
   - I also tested and reported major bugs for other teams: [#6](https://github.com/KennethEer/ped/issues/6), [#8](https://github.com/KennethEer/ped/issues/8)
     
