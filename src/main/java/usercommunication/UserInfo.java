@@ -32,6 +32,9 @@ public class UserInfo {
         return name;
     }
 
+    public UserInfo() {
+    }
+
     public UserInfo(String name, String type, boolean isAutoClear) {
         this.name = name;
         if (type.equalsIgnoreCase("PROFESSOR")) {

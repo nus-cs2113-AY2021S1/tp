@@ -395,21 +395,21 @@ public class UI {
     }
 
     public void printFassLocations() {
-        System.out.println("Locations available at FASS are: \n"
+        System.out.println("Locations exist at FASS are: \n"
                 + "BLK/AS1~8 \n"
                 + "L/LT8~15"
         );
     }
 
     public void printSdeLocations() {
-        System.out.println("Locations available at SDE are: \n"
+        System.out.println("Locations exist at SDE are: \n"
                 + "BLK/SDE1~4 \n"
                 + "BLK/CELC"
         );
     }
 
     public void printFosLocations() {
-        System.out.println("Locations available at FOS are: \n"
+        System.out.println("Locations exist at FOS are: \n"
                 + "BLK/S1~17 \n"
                 + "BLK/MD1~11 \n"
                 + "L/LT20~34"
@@ -417,7 +417,7 @@ public class UI {
     }
 
     public void printFoeLocations() {
-        System.out.println("Locations available at FOE are: \n"
+        System.out.println("Locations exist at FOE are: \n"
                 + "BLK/E1~E6 \n"
                 + "BLK/EA \n"
                 + "BLK/E1A \n"
@@ -452,7 +452,7 @@ public class UI {
     }
 
     public void printSocAndBizLocations() {
-        System.out.println("Locations available at SOC or BIZ are: \n"
+        System.out.println("Locations exist at SOC or BIZ are: \n"
                 + "L/LT16~LT19 \n"
                 + "BLK/COM1 \n"
                 + "BLK/COM2 \n"
