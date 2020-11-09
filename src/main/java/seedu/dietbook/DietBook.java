@@ -117,7 +117,7 @@ public class DietBook {
                 dietBook.ui.printErrorMessage(e.getMessage());
             }
             //} catch (Exception e) {
-                //dietBook.ui.printErrorMessage("Oops something went wrong!");
+            //    dietBook.ui.printErrorMessage("Oops something went wrong!");
             //}
         }
     }
