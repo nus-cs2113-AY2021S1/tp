@@ -244,6 +244,8 @@ This section contains 8 commands:
 * 1.7 : [Deleting a link](#17-deleting-a-link-rm-link_number-)
 * 1.8 : [Starring / Unstarring a link](#18-marking-unmarking-a-link-as-a-starred-link-star-link_number)
 
+<div style="page-break-after: always;"></div>
+
 ### 1.1 Viewing all the bookmarks links: `list`,`list -s`, `list -c`, `list -a`
 
 Are you trying to find your links by entering into each category to view your links?
@@ -275,6 +277,8 @@ Expected output:
 >**Warning**
 >* Follow the format `list`, `list -s`, `list -c`, `list -a` without adding additional inputs. If additional input is detected, the program will prompt you to input the correct format. 
 
+<div style="page-break-after: always;"></div>
+
 ### 1.2 Going into each category: `bm NUMBER`   
 
 Managing so many links can be a hassle! However, categorising the links into different 
@@ -302,6 +306,8 @@ If you encounter any errors, take note of the following warnings.
 
 >**Warning:**
 >* Ensure that the category NUMBER that you have chosen is valid. Error will be shown if the category NUMBER does not exist, or the NUMBER you have entered is not a number. To find out the valid category NUMBER, view the list of categories (Refer to [1.1](#11-viewing-all-the-bookmarks-links-listlist--s-list--c-list--a))
+
+<div style="page-break-after: always;"></div>
 
 ### 1.3 Adding category:  `cat CATEGORY_NAME `
 
@@ -333,6 +339,8 @@ If you encounter any errors, take note of the following warnings.
 >* Ensure that the category name is not empty. Error will be shown if the category name is empty. 
 >* You can only add unique category name.
 
+<div style="page-break-after: always;"></div>
+
 ### 1.4 Deleting a category:  `delete CATEGORY_NUMBER`  
 
 When you have a category, but you have no important links related to the category, take it out of your bookmark list! Organise and design your bookmark categories to your own personal needs by adding your own category (refer to [1.3](#13-adding-category--cat-category_name-)) and deleting unnecessary categories using these following commands.
@@ -356,6 +364,8 @@ Before deleting a category, take note of the following warnings.
 * Ensure that the category NUMBER that you have chosen is valid. Error will be shown if the category NUMBER does not exist, or the NUMBER you have entered is not a number. To find out the valid category NUMBER, view the list of category available. (Refer to [1.1](#11-viewing-all-the-bookmarks-links-listlist--s-list--c-list--a))
 * CAUTION: Make sure to check all your links before deleting. Deleting a category will delete all the bookmarks in the category! 
 
+<div style="page-break-after: always;"></div>
+
 ### 1.5 Going back to bookmark main: `back` 
 
 There are two modes in bookmark feature: the main bookmark mode (refer to [General Command 2](#2-changes-the-current-mode-cd-mode_name-or-mode_index)), 
@@ -377,6 +387,8 @@ Expected output:
 >**Warning:**
 >* Follow the format `back` without adding additional inputs. 
 >If additional input is detected, the program will prompt you to input the correct format. 
+
+<div style="page-break-after: always;"></div>
 
 ### 1.6 Adding a link to your chosen category: `add LINK` / `add LINK t->TITLE`
 
@@ -407,6 +419,8 @@ If you encounter any errors, take note of the following warnings.
 >* Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to add your links. (Refer to [1.2](#12-going-into-each-category-bm-number)) 
 >* Ensure that the link added is valid. Error will be shown if the link you have given is empty or is not valid (contains " ", "|" or does not contain “.”). 
 
+<div style="page-break-after: always;"></div>
+
 ### 1.7 Deleting a link: `rm LINK_NUMBER `
 
 If you have a link that you no longer want to bookmark, or if you have a link that you accidentally bookmarked it, you can remove the bookmark easily just by following these few commands. Make sure that you have chosen your category (Refer to [1.2](#12-going-into-each-category-bm-number))  and ensure that you do not remove an empty, or an invalid link number.
@@ -428,6 +442,8 @@ If you encounter any errors, take note of the following warnings.
 >**Warning:**
 >* Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to remove your links. (Refer to [1.2](#12-going-into-each-category-bm-number)) 
 >* Ensure that the link number that you want to remove is valid. Error will be shown if the link number you have given is empty or is not valid. Refer to [1.1](#11-viewing-all-the-bookmarks-links-listlist--s-list--c-list--a) to find out the correct link number. 
+
+<div style="page-break-after: always;"></div>
 
 ### 1.8 Marking/ Unmarking a link as a starred link: `star LINK_NUMBER`
 
