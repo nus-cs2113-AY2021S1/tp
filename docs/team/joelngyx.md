@@ -23,7 +23,7 @@ E-Duke-8 (pronounced "Educate") helps CS2113/T students learn and understand sof
   - What it does: The NoteList components store Note objects, and contains methods that can modify the NoteList object.
   - Justification: Necessary to process and carry out the NoteCommand. 
   
-  Code contributed: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=joelngyx&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=false)
+- Code contributed: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=joelngyx&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=false)
 
 - **Enhancements to existing features:**
   - Removed redundant code in the DisplayableList interface which allowed for the better implementation of features.

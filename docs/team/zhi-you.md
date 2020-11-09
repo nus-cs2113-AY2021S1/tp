@@ -11,12 +11,15 @@ E-Duke-8 (pronounced "Educate") helps CS2113/T students learn and understand sof
   - What it does: Calculates user's aggregated quiz statistics using `UserStatsCalculator` and calculates their topic-level quiz statistics using `TopicalStatsCalculator`. Relevant statistics include how accurate they are and the points they have earned from answering questions in quizzes. When the user gives the command to show his or her statistics, the relevant data will be calculated and displayed clearly to him or her. 
   - Justification: This feature improves the product significantly because it allows users to understand how well they did for the quizzes on a topical level and hence allows them to keep track of their learning progress across CS2113/T topics. By having a point system for the quiz and recording their stats, users will feel rewarded as they get the right answers and become motivated to attempt more quizzes to improve their current stats. Therefore, the addition of this feature enables E-Duke-8 to better achieve its objectives of gamifying the learning process for CS2113/T students.
   - Highlights: Due to its complete implementation, the calculation of the statistics is not limited to the current number of questions and topics in E-Duke-8, hence allowing the project to grow smoothly in terms of adding more topics and questions. While alternative designs were discussed, the current one was chosen as it provides users with a clear summary page of their statistics. Since the feature is one of the last few features to implement and there had to be a wait for the others to be finalized, the implementation was challenging due to the short timeframe to complete it before v2.0. In-depth planning had to be done in order to get it completed in time. 
+
+<div style="page-break-after: always;"></div>
+
 - **New Feature:** Implemented the logic to start a quiz with randomly selected questions and facilitate the process of the quiz.
   - What it does: Based on the user's specified number of questions and topic, `QuizQuestionsManager` randomly selects the indicated number of questions from the list of questions of the indicated topic at the start of the quiz. It also ensures that a quiz will not have duplicated questions. Furthermore, It provides the ability to navigate to the next question, and the ability to determine the end of the quiz. 
   - Justification: The random selection of questions will ensure that users get a variety of questions from the topic. 
 
 
-Code contributed: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=zhi-you&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+- Code contributed: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=zhi-you&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 - **Enhancements to existing features:**
   - Personalized the project by changing packages' names and settings. (Pull request [#33](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/33))

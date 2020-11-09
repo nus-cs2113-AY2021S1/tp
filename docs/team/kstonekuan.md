@@ -13,10 +13,12 @@ E-Duke-8 (pronounced "Educate") helps CS2113/T students learn and understand sof
   - Credits: This feature relies heavily on the use of the `JSON.simple` library as data is stored in JSON format.
 - **New Feature:** Implemented the initial quiz logic to be a seperate interface from the main menu.
 
-Code contributed: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=kstonekuan&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+- Code contributed: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=kstonekuan&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 - **Project management:**
   - Managed releases `v1.0` - `v2.0` (2 releases) on GitHub
+
+<div style="page-break-after: always;"></div>
 
 - **Enhancements to existing features:**
   - Implemented a fix for problems with the timer feature on Windows for command prompt/powershell. The user input was no showing up due to the use of the `BufferedReader` instead of the usual `Scanner`. The workaround used `Future` and `ExecutorService` to get the user input asynchronously in a separate thread while allowing for a `TimeoutException` to be used for the timer. However, this required the use of a `Robot` to complete the `Future` which did not work in headless environments like WSL. I recommened for this to be fixed in a separate issue by doing an OS-dependent timer. (Pull requests [#158](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/158))
