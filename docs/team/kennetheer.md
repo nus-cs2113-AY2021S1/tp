@@ -12,12 +12,13 @@ This app uses a Command Line Interface (CLI).
 - **Code contributed:** [link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=KennethEer&tabRepo=AY2021S1-CS2113T-F12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 - **Enhancements implemented:**
+  <br/>
   <br/>&nbsp;Summary of my implemented app functionalities:
   <br/>&nbsp;1. Addition of module and its expected workload
-  <br/>&nbsp;2. Deletion of module, its expected workload and actual time.
+  <br/>&nbsp;2. Deletion of module, its expected workload and actual time
   <br/>&nbsp;3. Notification feature to notify users of their progress
-
-- **Details:** 
+  <br/>
+  <br/>&nbsp;Details: 
   - Addition and Deletion of modules and its contents: 
     - Highlights: To support these core features, I created `ModuleList` and `Module` classes, 
     which manages the list of modules and each module details respectively. 
@@ -35,22 +36,22 @@ This app uses a Command Line Interface (CLI).
 
 - **Documentation:**
   - User Guide:
-    - I added documentations for the features `addmod`, `deletemod`, `addexp`, `deleteexp`, `open`, `deletetime`
+    - Added documentations for the features `addmod`, `deletemod`, `addexp`, `deleteexp`, `open`, `deletetime`
   - Developer Guide:
     - Under the Design section, I did the following components
         - Architecture component (including architecture diagram and high level sequence diagram exemplifying the interaction between different components)
         - UI component  
         - Model Component (including class diagram)
-    - I wrote implementation details of the `addMod` feature and drew activity and sequence diagrams to illustrate.
-    - I contributed to the target user profile, value proposition and user stories.
-    - I added in the labelling of the diagrams: [#190](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/190)
+    - Wrote implementation details of the `addMod` feature and drew activity and sequence diagrams to illustrate.
+    - Contributed to the target user profile, value proposition and user stories.
+    - Added in the labelling of the diagrams: [#190](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/190)
 
 - **Contributions to Team-based Tasks:**
-  - I conducted manual testing, reported bugs, helped to fix bugs in my team's code and refactor the code: [#42](https://github.com/AY2021S1-CS2113T-F12-4/tp/issues/42) (reported bugs), [#43](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/43) (fixed mismatch in object equality and optimised code), [#123](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/123) (used regex to implement module validity)
-  - In the User Guide, I fixed the links in the Table of Contents and formatted the tables: [#110](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/110/), [#109](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/109) 
-  - I enabled java assertions, set up the milestones and labels in the issue tracker.
+  - Conducted manual testing, reported bugs, helped to fix bugs in my team's code and refactor the code: [#42](https://github.com/AY2021S1-CS2113T-F12-4/tp/issues/42) (reported bugs), [#43](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/43) (fixed mismatch in object equality and optimised code), [#123](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/123) (used regex to implement module validity)
+  - Fixed the links in the Table of Contents and formatted the tables in the User Guide: [#110](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/110/), [#109](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/109) 
+  - Enabled java assertions, set up the milestones and labels in the issue tracker.
 
 - **Contributions Beyond the Project Team:**
-  - I provided feedback to the other teams' code and developer's guide: [#7](https://github.com/nus-cs2113-AY2021S1/tp/pull/7) 
-  - I also tested and reported major bugs for other teams: [#6](https://github.com/KennethEer/ped/issues/6), [#8](https://github.com/KennethEer/ped/issues/8)
+  - Provided feedback to the other teams' code and developer's guide: [#7](https://github.com/nus-cs2113-AY2021S1/tp/pull/7) 
+  - Tested and reported major bugs for other teams: [#6](https://github.com/KennethEer/ped/issues/6), [#8](https://github.com/KennethEer/ped/issues/8)
     
