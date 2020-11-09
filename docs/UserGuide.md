@@ -448,7 +448,8 @@ For instance, you are currently in Module level `CS2113T` and want to head to Ch
   <img src="UG_Images/moduleGo.png" width="700" alt="Go Command"/>
 </p>
 
-* Step 2: You should return to the Admin level as shown below: <br>
+* ***Upon completion***: This is what you will see:
+    * You should return to the Admin level as shown below: <br>
 
 <p align="center">
   <img src="UG_Images/moduleGoResult.png" width="700" alt="Go Result"/>
@@ -472,7 +473,8 @@ For instance, you are currently in Module level `CS2113T` and want to return to 
   <img src="UG_Images/back.png" width="700" alt="Back Command"/>
 </p>
 
-* Step 2: You should return to the Admin level as shown below: <br>
+* ***Upon completion***: This is what you will see:
+    * You should return to the Admin level as shown below: <br>
 
 <p align="center">
   <img src="UG_Images/backComplete.png" width="700" alt="Back Result"/>
