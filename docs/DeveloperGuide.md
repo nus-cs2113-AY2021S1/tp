@@ -40,6 +40,8 @@ Our goal is to create an app which improves users’ ability of writing and crea
 ### Maintainability
 With the aim of increasing maintainability of Fluffle, separated packages and classes were implemented in strict compliance with Object-oriented Programming. Since it is important to be able to easily change functionality of one class without disturbing other dependent classes, each class only serves one purpose to reduce dependency on other classes. With low coupling and high cohesion, subsequent developers can make minimal effort in maintaining Fluffle.
 
+[Jump to top](#developer-guide)
+
 ## Definitions
 
 |Terminology|Explanation|
