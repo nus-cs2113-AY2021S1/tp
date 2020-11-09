@@ -749,7 +749,7 @@ and save the txt file. You can now add the module in Zoomaster.
 ------------ | -------------
 ***Global***|
 **help**|`help {COMMAND(optional)}`<br>example: `help`, `help add`
-**mode**|`mode {bookmark/timetable}`<br>example: `mode bookmark`
+**mode**|`mode {bookmark/timetable/planner}`<br>example: `mode bookmark`
 **clear**|`launch now`
 **launch now**|`clear`
 **show settings**|`showsettings`
