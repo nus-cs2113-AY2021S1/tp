@@ -3,7 +3,6 @@ layout: page
 title: User Guide
 ---
 
-# User Guide
 ![Logo](UG_Figures/Nav@NUSLogo.jpg)
 ## Opening words
 Welcome to Nav@NUS application's user guide! <br><br>
