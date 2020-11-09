@@ -44,7 +44,7 @@ Feature|Command|Description|
 -------|-------|-----------|
 Manual Tracker|```manual```| Manual entry of transactions. In Manual Tracker, the user manages daily lists of entries called Ledgers. 
 Entry Tracker|```entry```| Subsidiary subroutine of Manual Tracker. In Entry Tracker, the user manages ledger entries, which represents a unit of transaction for a particular day.
-Recurring Tracker|```recur```| In recurring Tracker, the user manages special recurring entries that are deducted on a regular basis, which are too cumbersome to record regularly with Entry Tracker.
+Recurring Tracker|```recur```| In recurring Tracker, the user manages special recurring entries that reoccur on a monthly basis, for instance monthly bills and salary.
 Goal Tracker|```goal```| Sets income or expense goals, whereby the tracker will report to user his progress towards them whenever an entry is added.
 Save Manager|```saver```| Allows save of multiple program running states and load them anytime you want. May also delete and reset running state.
 Finance Tools|```finance```| FinanceTools contains tools related to financial calculations.
@@ -347,7 +347,7 @@ of reward points on a monthly basis.
 Vice versa for expense entries.
 
 **Parameters** <br />
-* `-e` OR `-i` - Indicates whether entry is income or expense (Mandatory to have 1 out of 2)
+* `-e` OR `-i` - Indicates whether entry is income or expense (Mandatory to have 1 of 2, but not both)
 * `-auto` - Indicates that entry is an automatically deducted/credited expense/income. Only serves as a reminder, 
 is not linked to any functionality. (Optional)
 * `/desc` - Description of entry (Mandatory)
@@ -425,7 +425,7 @@ Exits to main menu.
 The program will check the list of recurring entries, and automatically print reminders for
 entries which are within 5 days from current system date.
 
-For instance, if the above two examples are entered and current system date is the 9th,
+For instance, if the two examples in [New Entry](#new-entry) are entered and current system date is the 9th,
 the following reminders will be shown upon launching the program or returning to main menu.
 
 ![](screenshots/recurringtracker/reminders.png)
@@ -819,6 +819,17 @@ No. | Feature | Syntax |
 3.|list Entries|_list_|
 4.|Delete Entry|_delete /id {INDEX}_|
 5.|List Transaction Categories|_cat_|
+6.|Exit to Manual Tracker|_exit_|
+
+
+## Recurring Tracker
+
+No. | Feature | Syntax |
+----|---------|---------|
+1.|New Entry|_new [-e OR -i] [-auto] /desc {DESCRIPTION} /amt {AMOUNT} /day {DAY_OF_MONTH} [/notes {NOTES}]_|
+2.|Edit Entry|_edit /id {INDEX} {PARAM_TYPE} {PARAM} ..._|
+3.|list Entries|_list_|
+4.|Delete Entry|_delete /id {INDEX}_|
 6.|Exit to Manual Tracker|_exit_|
 
 <!-- @@author bqxy -->

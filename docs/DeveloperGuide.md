@@ -168,16 +168,16 @@ __Input Conventions__
 ```
     <command> <param type> <parameter> <param type> <parameter> ...
 ```
-* The ```command``` string determines the current state of the Finite State Machine, and
-hence the function executed. 
-* The remainder of the string includes a series of  ```param type``` - ```param``` combinations, whereby
-```param type``` indicates the type of the parameter which is to be identified by the user class,
-and ```param``` indicates the parameter that is associated with the ```param type```. 
+* The ```command``` string determines the function to be executed e.g. `new` or `edit`.
+* The remainder of the string includes a series of  param type` - `param` combinations, whereby
+```param type``` indicates the type of the parameter and ```param``` indicates the parameter 
+that is associated with the ```param type```. 
 
 * Param types are restricted to two types: 
-    * ```/<string>```, requires a corresponding parameter.
-        * Eg. ```param type```: ```/date```
-              <br>  ```param``` : ```2020-04-04```
+    * ```/<string>```, requires a corresponding parameter. 
+        * Eg. `/date 200814` 
+        * ```param type```: ```/date```
+        * ```param``` : ```200814```
     * ```-<string>```, does not require a corresponding parameter. 
         * Reserved for param types which are used to specify a property to be true/false
         * Eg. ```-auto```, to specify if an entry has automatic deduction. 
@@ -204,16 +204,14 @@ __ParamsParser class__
     * Parsing of input for params via ```parseParams()```:
         * __Step 1__: Use a regex helper class ```RegexMatcher``` to identify and extract ```param type``` that matches the 
         pattern specified in "Input conventions":
-        
-            * Param types are restricted to two types: 
-                * `/abcd`, requires a corresponding parameter.
-                    * Example: <br>param type: `/date`, param: `2020-04-04`
-                * `-abcd`, does not require a corresponding parameter. 
-                    * Reserved for param types which are used to specify a property to be true/false
-                    * Example: <br>`-auto`, to specify if an entry has automatic deduction. 
-        
-        * __Step 2__: Identify the substring of the rest of the input string before the next ```param type``` or end-of-line, 
-        as the ```param``` to the previously identified ```param type```. Extract it from the input string.
+            * `/<string>` or `-<string>`
+        * __Step 2__: Identify the substring of the rest of the input string before the next ```param type``` or end-of-line. 
+        This is the `param` to the previously identified `param type`. Extract it from the input string.
+            * Eg. input is `new /desc NNN /amt 35`. `ParamsParser` will receive `/desc NNN /amt 35` as a string.
+            * It will look for a param type -  in this case the first param type is `/desc`.
+            * It then removes the param type from the string and checks for the next param or end of string.
+            * The next param identified is `/amt`
+            * `param` associated with `/desc` is hence everything after `/desc` until `/amt`, which is `"NNN"` 
         * __Step 3__: Put the ```param type``` - ```param``` pair into a ```HashMap```.
         * __Step 4__: Repeat steps 1 to 4 until there is the input string is fully extracted.
         * __Step 5__: Return a ```HashMap``` populated with the aforementioned pairs.
@@ -300,7 +298,7 @@ depending on what kind of command it is. E.g. CreateEntryHandler handles creatin
     constitute a valid input.
         * E.g. to create a new `RecurringEntry`, `/desc` and `/day` are two of the required params,
         whereas editing has no required params (provided that at least one param is present).
-    * Pass `CommandPacket` to `ParamChecker` by calling `ParamChecker.setPacket(packet)`.
+    * Pass `CommandPacket` to `ParamChecker` by calling `ParamChecker#setPacket(packet)`.
 1. Call `ParamHandler#handleParams()`
     * For every`paramType` in the `CommandPacket` instance, execute `XYZCommandHandler#handleSingleParam(packet)`
     * If the `param` parses successfully, it will be added to `paramsSuccessfullyParsed`, else an Exception will be thrown
@@ -954,7 +952,7 @@ terminated.
 |v1.0|user|set expense goal for 1 year|manage my expenditure according to the budget I set aside|
 |v1.0|user|set income goal for 1 year|know how much I have saved and did I reach my saving target|
 |v1.0|user|know my goal status everytime I made an entry|saved the hassle to go to goal tracker just to check the progress|
-|v1.0|user|add a recurring entry||
+|v1.0|user|add a recurring entry|Keep track of monthly transactions like income or bills|
 |v1.0|user|edit a recurring entry|update details of existing entries without having to re-enter everything|
 |v1.0|user|delete a recurring entry|remove recurring entries that are no longer valid e.g. cancelled subscription|
 |v2.0|user|calculate interest over a principal amount with yearly or monthly deposit|know how much interest I can earn with regular deposits|
@@ -964,7 +962,7 @@ terminated.
 |v2.0|user|set income goal for specific month|know exactly which month I manage to saved up to my target goal|
 |v2.0|user|edit expense/income goal for specific month|adjust my expenditure/saving target according to the situation|
 |v2.0|user|display expense/income goal for specific month|keep track of my progress|
-|v2.0|user|view upcoming recurring entries|keep track of bill payment dates and prevent late payments|
+|v2.0|busy user with many bills to pay|see all my upcoming recurring entries|keep track of bill payment dates and prevent overdue fees|
 
 <div style="page-break-after: always;"></div>
 
@@ -994,7 +992,9 @@ terminated.
         * _Income Entry_ - Allowance, Salary, Others
     * _Entry Amount_ - Amount of money associated with the transaction.
     * _Entry Description_ - Text for users to identify the transaction. Can include general transaction details.
-
+* __Recurring Tracker__
+    * _Entries_ - Transactions which occur on a monthly basis
+    * _Day_ - Day of month on which the entry occurs. Can also be deadline, for instance bill due date. 
 <div style="page-break-after: always;"></div>
 
 &nbsp;  
