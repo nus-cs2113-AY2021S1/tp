@@ -17,8 +17,8 @@ import java.time.LocalDate;
 public abstract class SprintCommandTest {
 
     public SprintCommandTest() {
-
     }
+
     protected final PrintStream systemOut = System.out;
     protected ByteArrayOutputStream testOut;
 
