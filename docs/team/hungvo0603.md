@@ -19,7 +19,7 @@ The latest release of Fluffle can be accessed from **[here](https://github.com/A
 
 #### 2.2.2 Miscellaneous enhancements
 - Fixed print format for `noun`, `verb` and `adjective` commands. [#293](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/293)
-- Enhanced print format for some word-related `help` commands and make them in sync with the User Guide. [#306](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/306)
+- Enhanced print format for some word-related `help` commands and made them in sync with the User Guide. [#306](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/306)
 - Added JUnit test methods for filter-words-related classes. [#150](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/150)
 
 ### 2.3 Contributions to documentation
@@ -45,7 +45,7 @@ Java-doc comments are provided for most of the public classes and methods that I
 
 ### 2.4 Contributions to team-based tasks
 - Setup the team repo as instructed by the details on the module website.
-- Kept an eye on the module's requirements and remind team members to finish their tasks and credit on the tP progress dashboard.
+- Kept an eye on the module's requirements and reminded team members to finish their tasks and got credit on the tP progress dashboard.
 - Assigned team members to their issues.
 - Released v1.0 and v2.0. [v1.0](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases/tag/v1.0) [v2.0](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases/tag/v2.0)
 - Reported issues and evaluated team members' code, sometimes helped them fix the issues, too. [#187](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/187) [#223](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/223/files) [#274](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/274)
