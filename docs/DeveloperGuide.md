@@ -123,11 +123,12 @@ The `Timetable` class shows the timetable for all the module slots and tasks. It
 - clear past `deadline`
 - delete `done task`
 <!-- @@author -->
+<!-- @@author ZhongNingmou -->
 #### 3.2.7 ProjectManager class
 - print the `project tasklist`
 - add `project task` into `project tasklist`
 - print `project progress`
-
+<!-- @@author -->
 ## 4. Implementation
 This section provides details on the implementations of certain features.
     
@@ -137,7 +138,7 @@ The user type in command in `module mod/<MODULE_CODE> lec/<LECTURE_DAY> <LECTURE
 
 The ***sequence diagram*** below shows the interaction between these classes when the user adds a module.
 [![F2bWSp.md.png](https://iili.io/F2bWSp.md.png)](https://freeimage.host/i/F2bWSp)
-
+<!-- @@author ZhongNingmou -->
 ### Feature: Delete a module
 The user enters the command: `delete mod/<MODULE_CODE>` to delete a module in the timetable. The `Parser` class will take this user command and pass it to `Command` class to enable the `deleteModule()` method in the `TimeTable` class.
 
@@ -160,7 +161,7 @@ The user enters the command: `task list` to view the task list. The `Parser` cla
 
 ### Feature: View time table
 The user enters the command: `today timetable` or `this week timetable` to view the the `timetable`. The `Parser` class will take the user command and pass it to the `Command` class to enable the `printTodayTimetable` or `printWeeklyTimetable` method, and then call `printTodayTimetable` or `printWeeklyTimetable` method in `TimeTable` class.
-
+<!-- @@author -->
 ## 5. Documentation and Dev-ops
 
 ### Documentation
@@ -258,7 +259,7 @@ The following statements describe the non-functional requirements for the applic
 This portion contains instructions on how to perform manual testing.
 *  [Running tests](#Running-tests)
 *  [Types of tests](#Types-of-tests)
-
+<!-- @@author ZhongNingmou -->
 ## Running tests
 There are two ways to run tests.
 
@@ -267,7 +268,7 @@ There are two ways to run tests.
     - To run a subset of tests, you can click `src` -> `test` -> `java` and right-click on a test package, test class, or a test and choose `Run 'ABC'`
 - **Method 2: Using Gradle**
     - Click `Terminal` to open a new console and type in the command `gradlew clean test` to run a test (Mac/Linux: ./gradlew clean test)
-
+<!-- @@author -->
 Types of tests
 -
 This project has 1 type of tests: 
