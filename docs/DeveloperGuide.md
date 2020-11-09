@@ -917,13 +917,16 @@ Prerequisite: list the complete task list using `list` command. Multiple tasks i
 - Test case: `calendar d/3` <br>
   Expected: the tasks for the current day and for the next `3` days are output separately as a calendar.
 
-### Searching for tasks with keywords
-- Test case: `find tP` <br>
+### Searching for items with keywords
+- Test case: `find tasks k/tP` <br>
   Expected: the tasks containting the keyword `tP` are displayed.
   
-- Test case: `find t` <br>
+- Test case: `find tasks k/t` <br>
   Expected: an information is printed out to informing there is no matching tasks, since there is no keyword `t` in 
   any task in the list and incomplete keywords are not allowed.
+  
+- Test case: `find books k/harry` <br>
+  Expected: the books containing the keyword `harry` are displayed.
 
 ### Clearing all items
 - Test case: `clear all` <br>
