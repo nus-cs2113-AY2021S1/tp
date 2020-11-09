@@ -5,14 +5,13 @@ import seedu.zoomaster.Ui;
 import seedu.zoomaster.bookmark.Bookmark;
 import seedu.zoomaster.bookmark.BookmarkList;
 import seedu.zoomaster.exception.ZoomasterException;
-import seedu.zoomaster.exception.ZoomasterExceptionType;
 import seedu.zoomaster.slot.Timetable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
-//@@author
+//@@author fchensan
 class EditBookmarkCommandTest {
     Timetable timetable = new Timetable();
     BookmarkList bookmarks;
