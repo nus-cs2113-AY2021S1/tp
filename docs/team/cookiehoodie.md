@@ -40,7 +40,8 @@ and keep track of their deadlines, tasks and any other important dates. It is wr
     * [Storing, loading, and exporting data](https://ay2021s1-cs2113t-w13-1.github.io/tp/DeveloperGuide.html#storage) sections
     under implementation (along with all the sequence diagrams contained in them).
     * [List](https://ay2021s1-cs2113t-w13-1.github.io/tp/DeveloperGuide.html#list) section and its class diagram.
-    * Restructuring of whole DG; improvement on setting up the project section, logging, testing, user stories,
+    * [Logging](https://ay2021s1-cs2113t-w13-1.github.io/tp/DeveloperGuide.html#logging) section.
+    * Restructuring of whole DG; improvement on setting up the project section, testing, user stories,
     non-functional requirements, manual testing. (Pull requests: 
     [#142](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/142)
     [#129](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/129))
