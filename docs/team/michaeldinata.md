@@ -2,19 +2,20 @@
 
 ## Overview
 
-**AniChan** is an all-rounded desktop application meant to improve the workflow efficiency and time management of anime translators. It has also been optimized for fast typists, as such the user will interact with it through a command-line interface.
+**AniChan** is a desktop application created for anime translators to help efficiently manage their workload and time. It has a wide variety of tools that can help improve their workflow efficiency and translation accuracy. **AniChan** is built for fast typists, as such the user will interact with it through a CLI. It is written in Java with almost 14K LOC. 
 
 ### Summary of Contributions
 
 *   **New Feature**: Added the ability to add and remove an anime to and from his active watchlist.
     *   What it does: Allows the user to add a specific anime into his active watchlist, and he can also remove an anime from his active watchlist.
     *   Justification: The user may want to keep track of the anime he wants to watch or translate next. After watching a certain anime in his watchlist, he is then able to remove the anime from the watchlist to keep it clean of anime that he has watched.
-    *   Highlights: The `add` feature needs to ensure that the anime the user wants to add is not something that is out of the range of anime that the program currently has. On the other hand, the `remove` feature first ensures that there is an anime in the watchlist, before ensuring that the anime the user wants to delete is within the watchlist.
+    *   Highlights: The `add` feature needs to ensure that the anime the user wants to add is not something that is out of the range of anime that the program currently has. It also ensures that the user does not add duplicate anime into the watchlist.
+     On the other hand, the `remove` feature first ensures that there is an anime in the watchlist, before ensuring that the anime the user wants to delete is within the watchlist.
 
 *   **New Feature:** Added the ability to view all the anime in active watchlist, or a specific watchlist.
     *   What it does: Allows the user to view all the anime in his active watchlist, or in a specific watchlist that he specifies in the command.
     *   Justification: In the event that the user forgot what anime he wanted to watch or translate, and has added it into his watchlist before, he is able to check all the anime.
-    *   Highlights: This enhancement allows users to quickly view the anime in his current watchlist, but he is able to view all the anime in other watchlists by specifying an optional command.
+    *   Highlights: This enhancement allows users to quickly view the anime in his current watchlist, but he is able to view all the anime in other watchlist by specifying an optional command.
 
 *   **New Feature:** Added the ability to view the information of a specific anime.
     *   What it does: Allows the user to find out more about a specific anime.
@@ -29,11 +30,14 @@
     *   Developer Guide:
         *   Added implementation details of `info`, `add`, `remove` and `view` features: [#202](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/202)
         *   Added sequence diagrams and user stories: [#209](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/209)
+        *   Contributed to manual testing of `info`, `add`, `remove` and `view` features: [#269](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/269)
 
 *   **Team-based Tasks:**
-    *   Fixed bugs: [#223](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/223)
+    *   Contributed to the fixing of bugs in the program: [#223](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/223)
     *   Implemented Help feature: [#110](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/110)
+    *   Reviewed team members PR with non-trivial comments: [#285](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/285)
     *   Wrote additional tests for existing features to improve coverage: [#265](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/265)
+    *   Contributed to fixing consistency and grammatical errors in the Developer Guide: [#280](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/280)
 
 *   **Beyond Project Team Tasks**
     *   Review the User Guide and Developer Guide of other teams and gave feedbacks on them.
