@@ -1,4 +1,3 @@
-# Nav@NUS
 
 ![logo](DG_Diagrams/Nav@NUSLogo.jpg)
 

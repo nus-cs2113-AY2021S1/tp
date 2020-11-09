@@ -61,10 +61,10 @@ public class Ui {
     public static void printHelp() {
         printLine();
         System.out.println("Here are the range of commands:\n"
-                + "1.  /route : Display possible direct bus from point to point\n"
+                + "1.  /route : Display possible direct buses with routes from one bus stop to another\n"
                 + "2.  /routemap: Display the route map with its intermediate bus stops\n"
-                + "3.  /bus: Display buses available at each bus stop\n"
-                + "4.  /allbus: List all buses available in NUS Zone A\n"
+                + "3.  /bus: Display buses available at the given bus stop\n"
+                + "4.  /allbus: List all buses available in NUS\n"
                 + "5.  /liststops: List all bus stops in NUS\n"
                 + "6.  /faculty: List all faculties in NUS\n"
                 + "7.  /dine: Search for dining options within a faculty\n"
