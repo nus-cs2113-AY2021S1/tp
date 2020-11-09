@@ -300,6 +300,13 @@ For instance, the user wants to list all modules available in `admin`, a detaile
 
 * Step 2: The user enters `list` command to list all modules in `admin` level. 
 
+The following diagram shows the class diagram of the list modules feature:
+
+<p align="center">
+  <img src="DG_Images/listmod_class_diagram.png" width="800" alt="List Modules Class Diagram"/>
+  <br/>Figure <>. Class diagram of list modules feature  
+</p>
+
 The following sequence diagram shows how the list modules feature works:
 
 <p align="center">
@@ -495,6 +502,13 @@ For instance, the user wants to list all chapters available in `CS2113T` (module
 
 * Step 2: The user enters `list` command to list all chapters in `CS2113T` level. 
 
+The following diagram shows the class diagram of the list chapters feature:
+
+<p align="center">
+  <img src="DG_Images/listchap_class_diagram.png" width="800" alt="List Chapters Class Diagram"/>
+  <br/>Figure <>. Class diagram of list chapters feature  
+</p>
+
 The following sequence diagram shows how the list chapters feature works:
 
 <p align="center">
@@ -682,6 +696,13 @@ For instance, the user wants to list all flashcards available in `Chapter 1` (ch
 * Step 1: The user is currently in `Chapter 1` level. 
 
 * Step 2: The user enters `list` command to list all flashcards in `Chapter 1` level. 
+
+The following diagram shows the class diagram of the list flashcards feature:
+
+<p align="center">
+  <img src="DG_Images/listcard_class_diagram.png" width="800" alt="List Flashcards Class Diagram"/>
+  <br/>Figure <>. Class diagram of list flashcards feature  
+</p>
 
 The following sequence diagram shows how the list flashcards feature works:
 
@@ -1161,7 +1182,14 @@ Step 1: The user launches the application and is currently in the admin level.
 
 Step 2: The user executes `history` command to load and list the revision completed in the session/in a day.
 
-The following sequence diagram shows how the list chapters feature works:
+The following diagram shows the class diagram of the list revision history feature:
+
+<p align="center">
+  <img src="DG_Images/listhistory_class_diagram.png" width="800" alt="List Revision History Class Diagram"/>
+  <br/>Figure <>. Class diagram of list revision history feature  
+</p>
+
+The following sequence diagram shows how the list revision history feature works:
 
 <p align="center">
   <img src="UML/listhistory_seq_diagram.png" width="800" alt="Sequence Diagram of List Revision History"/>
