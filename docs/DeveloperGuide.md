@@ -21,6 +21,7 @@
 * [Appendix D: Glossary](#appendix-d-glossary)
 * [Appendix E: Instructions for manual testing](#appendix-e-instructions-for-manual-testing)
 
+<div style="page-break-after: always;"></div>
 ## **Introduction**
 
 SmartHomeBot is a desktop application tailored for users who are comfortable using a Command Line Interface (CLI), it 
@@ -477,6 +478,7 @@ The sequence diagram for `ReadStorageFile` is shown below:
 
 ![StorageFile Model Component](images/diagrams/Sequence_ReadStorageFile.png)
 
+<div style="page-break-after: always;"></div>
 
 ## Appendix A: Product scope
 
@@ -532,7 +534,6 @@ Given below are instructions to test the application manually.
     i. Download the jar file from the latest release and copy into an empty folder
     ii. Run the jar file with java -jar SmartHomeBot.jar
         Expected: Shows the GUI with some welcome messages.
-
 
 
 ### Creating new location:

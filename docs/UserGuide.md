@@ -268,10 +268,11 @@ Output:
    
 <br/><br/>
 
-### Saving the data
+## Saving the data
 SmartHomeBot will auto-save the task list data in the hard disk after 
 any command that changes the data. There is no need to save manually.
 
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
