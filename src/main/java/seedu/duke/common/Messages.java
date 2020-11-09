@@ -125,6 +125,8 @@ public class Messages {
     public static final String EXCEPTION_INVALID_INDEX = "~Error~ Please input a valid index.";
     public static final String EXCEPTION_INVALID_LINK_INDEX = "~Error~ Please input a valid link index.";
     public static final String EXCEPTION_INVALID_PRIORITY = "~Error~ Invalid priority number.";
+    public static final String EXCEPTION_INVALID_FORMAT = "~Error~ Format is incorrect. "
+            + "Please refer to the User Guide.";
 
     public static final String EXCEPTION_INVALID_VALUE = "~Error~ Please input a valid value. It must be a non-negative"
             + " floating point number/integer less than 10^14.";
@@ -143,6 +145,8 @@ public class Messages {
     public static final String EXCEPTION_INVALID_BORROW = "~Error~ The format is: borrow <description> "
             + "<date/DD-MM-YYYY>";
     public static final String EXCEPTION_INVALID_DATE_RANGE = "~Error~ Your ending date is before your starting date!";
+    public static final String EXCEPTION_INVALID_MCS = "~Error~ Please enter a value between 0 and 40, inclusive";
+    public static final String EXCEPTION_INVALID_GRADE = "~Error~ Invalid grade!";
 
     public static final String MESSAGE_NEW_TASK_FILE = "I have created a new tasks.txt file for you. :) "
             + "Type some commands and see it.";

@@ -1,20 +1,23 @@
 package seedu.duke.model.item;
 
 import seedu.duke.DukeException;
+import seedu.duke.common.Messages;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// @@author iamchenjiajun
+
 /**
  * Represents a module.
  */
-// @@author iamchenjiajun
-
 public class Module extends Item {
     public static final Pattern MODULE_CODE_PATTERN = Pattern.compile("(^[A-Z]{2,3}[\\d]{4}[A-Z]?$)");
     public static final Pattern MODULE_SEM_PATTERN = Pattern.compile("(^[\\d]{4}S[12]$)");
     public static final String MODULE_COMPLETED_STRING = "[CM]";
     public static final String MODULE_INCOMPLETE_STRING = "[IC]";
+    public static final String MODULE_PRINT_FORMAT = "%s[%s] %s (%d MC) (AY%s)";
+    public static final String LAST_VALID_AY = "9900";
 
     private final String grade;
     private final double gradePoint;
@@ -39,17 +42,17 @@ public class Module extends Item {
         Matcher matcher = MODULE_CODE_PATTERN.matcher(moduleCode);
 
         if (!matcher.find() || !checkValidAy(semester)) {
-            throw new DukeException("~Error~ Format is incorrect. Please refer to the User Guide.");
+            throw new DukeException(Messages.EXCEPTION_INVALID_FORMAT);
         }
 
         if (!checkValidMcs(mc)) {
-            throw new DukeException("~Error~ Please enter a value between 0 and 40, inclusive");
+            throw new DukeException(Messages.EXCEPTION_INVALID_MCS);
         }
     }
 
     @Override
     public String toString() {
-        return String.format("%s[%s] %s (%d MC) (AY%s)", getCompletionString(), getGrade(), getDescription(), getMc(),
+        return String.format(MODULE_PRINT_FORMAT, getCompletionString(), getGrade(), getDescription(), getMc(),
                 getSemester());
     }
 
@@ -74,7 +77,7 @@ public class Module extends Item {
         if (!matcher.find()) {
             return false;
         }
-        if (ay.startsWith("9900")) {
+        if (ay.startsWith(LAST_VALID_AY)) {
             return true;
         }
 
@@ -144,7 +147,7 @@ public class Module extends Item {
         case "F":
             return 0.0;
         default:
-            throw new DukeException("~Error~ Invalid grade!");
+            throw new DukeException(Messages.EXCEPTION_INVALID_GRADE);
         }
     }
 }
