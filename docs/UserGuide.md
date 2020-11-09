@@ -355,14 +355,14 @@ Expected output:
 
 ![Bookmark_1.4](Images/BookmarkUG/Figure6.png)
 
-**Useful Information:**
-* You can only use this command in bookmark main.  (Refer to [1.5](#15-going-back-to-bookmark-main-back) to go back to the bookmark main)
+>**Useful Information:**
+>* You can only use this command in bookmark main.  (Refer to [1.5](#15-going-back-to-bookmark-main-back) to go back to the bookmark main)
 
 Before deleting a category, take note of the following warnings. 
 
-**Warning:**
-* Ensure that the category NUMBER that you have chosen is valid. Error will be shown if the category NUMBER does not exist, or the NUMBER you have entered is not a number. To find out the valid category NUMBER, view the list of category available. (Refer to [1.1](#11-viewing-all-the-bookmarks-links-listlist--s-list--c-list--a))
-* CAUTION: Make sure to check all your links before deleting. Deleting a category will delete all the bookmarks in the category! 
+>**Warning:**
+>* Ensure that the category NUMBER that you have chosen is valid. Error will be shown if the category NUMBER does not exist, or the NUMBER you have entered is not a number. To find out the valid category NUMBER, view the list of category available. (Refer to [1.1](#11-viewing-all-the-bookmarks-links-listlist--s-list--c-list--a))
+>* CAUTION: Make sure to check all your links before deleting. Deleting a category will delete all the bookmarks in the category! 
 
 <div style="page-break-after: always;"></div>
 
@@ -408,7 +408,7 @@ Expected output:
 
 ![Bookmark_add link](Images/BookmarkUG/Figure8.png)
 
-**Useful Information:**
+>**Useful Information:**
 >* You can only use this command after choosing your category. (Refer to [1.2](#12-going-into-each-category-bm-number))
 >* You can only bookmark unique links within your category. Refer to the following figure.  
 >![Bookmark_not unique link](Images/BookmarkUG/Figure9.png)
@@ -417,7 +417,7 @@ If you encounter any errors, take note of the following warnings.
 
 >**Warning:** 
 >* Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to add your links. (Refer to [1.2](#12-going-into-each-category-bm-number)) 
->* Ensure that the link added is valid. Error will be shown if the link you have given is empty or is not valid (contains " ", "|" or does not contain “.”). 
+>* Ensure that the link added is valid. Error will be shown if the link you have given is empty or is not valid (contains " ", "\|" or does not contain “.”). 
 
 <div style="page-break-after: always;"></div>
 
@@ -453,13 +453,10 @@ Instruction:
 1. `star LINK_NUMBER`  
 
 e.g. `star 1`
+
 Expected output:   
 
-<p align="center">
-    <img width="40%" height="40%" src="Images/GeneralUG/welcomemessage.png">
-</p>
-
-![Bookmark_star](Images/BookmarkUG/Figure11.png)
+![Bookmark_star](Images/BookmarkUG/Figure11.png){:width="30%" height="30%"}
 
 >**Useful Information:** 
 >* It is the same command for marking and unmarking any links. For example, if link 1 is not starred, star 1  will mark the link as starred. And if link 1 is starred, star 1 will unmark link 1. 
