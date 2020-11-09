@@ -71,7 +71,7 @@ The rest of the App consists of:
 * `User`: Contains and handles all information related to user data.
 * `StorageManager`: Reads data from and writes data back into a text file for future use.
 * `ListManager`: Handles all the list operations in Fitr.
-* `Recommend`: Handles the recommendation of the exercises.
+* `Recommender`: Handles the recommendation of the exercises.
 
 Figure 2 below shows how the components work with one another, when a user enters the following command `food chicken rice /600 1`:
 
