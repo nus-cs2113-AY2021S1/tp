@@ -47,11 +47,16 @@ enhancements.
   * [E.5 Search for dining options within a faculty - Shuyi](#e5-search-for-dining-options-within-a-faculty---shuyi)
   * [E.6 Search for specific dining outlet - Shuyi](#e6-search-for-specific-dining-outlet---shuyi)
   * [E.7 Add a favourite command - Yuxin](#e7-add-a-favourite-command---yuxin)
+  
+  <div style="page-break-after: always;"></div>
+
   * [E.8 Delete favourite command from favourite list - Johnson](#e8-delete-favourite-command-from-favourite-list---johnson)
   * [E.9 Execute a favourite command from favourite list - Wong Heng Chin](#e9-execute-a-favourite-command-from-favourite-list---wong-heng-chin)
   * [E.10 Change description of favourite command in favourite list - Wamika](#e10-change-description-of-favourite-command-in-favourite-list---wamika)
   * [E.11 Saving of favourite list - Wong Heng Chin](#e11-saving-of-favourite-list---wong-heng-chin)
   * [E.12 Saving of search frequncies of each bus stop - Johnson](#e12-saving-of-search-frequncies-of-each-bus-stop---johnson)
+  
+  <div style="page-break-after: always;"></div>
 
 ## 1. Setting up, getting started
 
