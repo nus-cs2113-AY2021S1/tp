@@ -22,11 +22,11 @@ Prerequisites: JDK 11 (use the exact version), update Intellij to the most recen
 1. **Verify the set up**: After the importing is complete, locate `src/java/athena/Athena.java`, right-click it, and choose `Run Athena.main()`. If the setup is correct, you should see something like the one below:
 
 ```
-   > Task :compileJava
-   > Task :processResources NO-SOURCE
-   > Task :classes
-   
-   > Task :Athena.main()
+> Task :compileJava
+> Task :processResources NO-SOURCE
+> Task :classes
+
+> Task :Athena.main()
         ___   .__________.  __    __   _______  .__   __.      ___
     /   \  |          | |  |  |  | |   ____| |  \ |  |     /   \
    /  ^  \ `---|  |---` |  |__|  | |  |__    |   \|  |    /  ^  \
