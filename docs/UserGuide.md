@@ -1022,6 +1022,8 @@ Example of ***`include chapter`***
   <img src="UG_Images/includeChapterResult.png" width="900" alt="Include Command Chapter mode: Result"/>
 </p>
 
+<div style="page-break-after: always;"></div>
+
 ### 3.5. General
 This section introduces the syntax and usages of the commands for the features that are available at **All Levels**.<br>
 You can use the commands in the next few sections at **Admin, Module and Chapter Level.**
