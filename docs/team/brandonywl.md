@@ -35,12 +35,12 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
         
 <div style="page-break-after: always;"></div>        
         
-    - [`list-e`](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#list-e)
-        - Provided an "overloaded" command where a user can see only all stored timetable or timetable for a specific year/month.
-    - [`delete-e`](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#delete-e)
-        - Provided a functionality to delete events stored. Removes all recurring one if used on a recurring event.
-    - [`remind-e`](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#remind-e)
-        - Gets all reminders for today and displays it to the user.
+   - [`list-e`](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#list-e)
+       - Provided an "overloaded" command where a user can see only all stored timetable or timetable for a specific year/month.
+   - [`delete-e`](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#delete-e)
+       - Provided a functionality to delete events stored. Removes all recurring one if used on a recurring event.
+   - [`remind-e`](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#remind-e)
+       - Gets all reminders for today and displays it to the user.
 
 *Contributions to Developer Guide*
 
