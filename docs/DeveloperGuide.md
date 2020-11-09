@@ -32,7 +32,7 @@ enhancements.
   * [3.10. Modifying the description of a favourite command (`/descfav` Feature) - Wamika](#310-modifying-the-description-of-a-favourite-command-descfav-feature---wamika)
   * [3.11. Performing similarity checks - Wamika](#311-performing-similarity-checks---wamika)
   * [3.12 Displaying most searched bus stop on start-up - Johnson](#312-displaying-most-searched-bus-stop-on-start-up---johnson)
-  * [3.13 Resetting search frequencies of bus stops (`/reset` Feature)](#313-resetting-search-frequencies-of-bus-stops-reset-feature---johnson)
+  * [3.13 Resetting search frequencies of bus stops (`/reset` Feature) - Johnson](#313-resetting-search-frequencies-of-bus-stops-reset-feature---johnson)
 - [4. Appendix A: Product Scope](#4-appendix-a-product-scope)
   * [4.1. Target user profile - Johnson](#41-target-user-profile---johnson)
   * [4.2. Value Proposition - Johnson](#42-value-proposition---johnson)
