@@ -20,6 +20,10 @@ public class SearchCommand extends Command {
         }
     }
 
+    /**
+     * Searches for show in ShowList.
+     * @return true when found
+     */
     public boolean processCommand() {
         String showName = inputs.get(1);
         String showsWithKeyword = "";

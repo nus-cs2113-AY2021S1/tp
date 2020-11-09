@@ -1,5 +1,8 @@
 package seedu.duke.utility;
 
+
+//@@author shikai-zhou
+
 /**
  * TimeParser converts user's time input into int.
  */

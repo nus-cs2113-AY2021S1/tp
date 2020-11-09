@@ -7,6 +7,8 @@ import seedu.duke.utility.Ui;
 
 import java.util.Scanner;
 
+//@@author shikai-zhou
+
 public class EditCommand {
     private static Show show;
     private static String showName;

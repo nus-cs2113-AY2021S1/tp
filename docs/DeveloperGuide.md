@@ -122,6 +122,7 @@ episodes for each season respectively,Duration of an episode)
 **Step 4**
 
 * A new `Show` instance is created with the 4 parameters created in step 3 using the default constructor for show.
+* The duration of the show is parsed by the utility class `InputParser`.
 
 **Step 5**
 
@@ -591,6 +592,25 @@ The `processCommand` method will attempt to parse `hello` to an integer.
 
 * The `printInvalidFormatException` method in `Ui` class will call the `ErrorHandling` class and get the `EXCEPTION_INVALID_FORMAT` enumeration, along with its `exceptionMessage`.
 The `Ui` class prints the `exceptionMessage` into the terminal.
+
+### InputParser
+
+* The InputParser reads in the user input, matches the user input with any possible command and invokes the command on the user's behalf.
+
+* It detects any illegal inputs and throws the relevant exceptions.
+
+### TimeParser
+
+* The TimeParser class handles all functionality related to reading in the users' time input.
+
+* It takes input in two different formats
+
+1. `<A>h<B>m`
+2. `<C>`
+
+* Format 1 is in hours and minutes, while format 2 is in minutes only. The <> represent user input.
+
+* The TimeParser will return -1 if the time input has any negative numbers, or if the number of hours exceed 24 or minutes exceed 59.
 
 ## 5. Documentation
 

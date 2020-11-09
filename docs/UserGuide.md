@@ -21,10 +21,10 @@
 but also foster a community where everyone will be able to share their watchlist with like-minded individuals and friends. <br>
 
 ### 1.b. Why use **WatchNext**?
-It is difficult and can be taxing to track your favourite shows through browser bookmarks.
+It can be difficult and taxing to track your favourite shows through browser bookmarks.
 This is especially pertinent for younger teenagers and adults who make up a large part of video entertainment media consumers.
 
-For students, there is also a need to manually track lecture videos and webcast progress as lecturers may use different learning management systems.
+For students like ourselves, there is also a need to manually track lecture videos and webcast progress as lecturers may use different learning management systems.
 
 **WatchNext** is optimized for users who prefer to work with the Command Line Interface (CLI).<br> 
 
@@ -128,6 +128,7 @@ Expected outcome:
    Examples of usage: 
      `add RunningMan 2 10,12 90` <br>
      `add Friends 3 10,20,30 25` <br><br>
+     
   Explanation of input: <br>
   For the example input, `add Friends 3 10,20,30 25`, a show named `Friends` is being added.<br> The show has `3` seasons, where season 1 has `10` episodes, season 2 has `20` and season 3 has `30` episodes.
 >**[NOTE]**
@@ -138,7 +139,7 @@ Expected outcome:
  <img src = "images/addCommandUG/addInput.PNG" width = "600">
   &nbsp;<br>
   
- After keying in the input as shown in the image above, the next image shows the expected output.<br>
+ After keying in the input as shown in the image above, you should see th eexpected output shown in the next image.<br>
  
  <img src = "images/addCommandUG/addResponse.PNG" width = "600">
   &nbsp;<br>
@@ -214,12 +215,12 @@ Example of usage:
 Example of usage:
      `season 2`
      
-* Suppose the first season has 10 episodes, and the new season of F.r.i.e.n.d.s has 11 episodes.
+* Let's say that the first season has 10 episodes, and the new season of F.r.i.e.n.d.s has 11 episodes.
 
 Example of usage:
      `episode 10,11`
      
-* The duration of each episode of F.r.i.e.n.d.s is extended to 30 minutes
+* If the duration of each episode of F.r.i.e.n.d.s is extended to 30 minutes, use the following command:
 
 Example of usage:
      `duration 30`
@@ -237,6 +238,8 @@ Expected outcome:
    
   &nbsp;
   
+* If there is an error in the process, an error message would be printed and you will return to the main landing page.
+The changes that you made before the error occured will still be kept. 
   
 > **[NOTE]**
 >  * If you use edit to add new season(s) but did not edit the episodes numbers to reflect the change, 

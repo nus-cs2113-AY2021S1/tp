@@ -7,6 +7,8 @@ import seedu.duke.utility.Ui;
 
 import java.util.Scanner;
 
+//@@author shikai-zhou
+
 public class AddCommand extends Command {
     static String[] input;
 
