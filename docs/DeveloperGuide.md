@@ -143,9 +143,9 @@ The following class diagram briefly explains how different classes in the Storag
 This section provides details of how the main features of Nav@NUS have been implemented.
 
 ### 3.1. Finding a direct route (`/route` Feature) - Wamika
-`/route <location1> /to <location2>` is the command that has to entered by the user to see all direct bus routes 
+`/route <location1> /to <location2>` is the command that has to entered by the user to 
 <div style="page-break-after: always;"></div>
-available from **location1** to **location2**.
+see all direct bus routes available from **location1** to **location2**.
 
 The class diagram in the figure below shows how different classes used for implementation of the `/route` command 
 are linked to each other. <br>
@@ -165,6 +165,9 @@ are similar.
     else it calls the static method, `Ui#printPossibleLocsMessage()`, to print the list of similar locations. 
 4. Calls static `BusData#possibleBuses()` to get a list of buses with their routes from the starting location to 
 the destination.
+
+<div style="page-break-after: always;"></div>
+
    - `BusData#possibleBuses()` calls `Bus#getPossibleRoute()` to check for a possible route for the given bus number.
    - `BusData#possibleBuses()` repeats this call for all bus numbers.
 
