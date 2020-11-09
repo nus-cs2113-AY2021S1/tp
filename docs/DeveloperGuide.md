@@ -201,10 +201,6 @@ The sequence diagram below shows the process of clearing events before a certain
 The sequence diagram below shows the process of clearing all events.
 ![ClearCommand Sequence Diagram](diagrams/ClearCommand.png)<br>
 *Figure 4.2.2 Sequence Diagram for clear function*
- 
-The sequence diagram below shows the process of switching on autoClear function.
-![AutoClearCommand Sequence Diagram](diagrams/AutoClearCommand.png)<br>
-*Figure 4.2.3 Sequence Diagram for autoClear function*
 
 ### 4.3 Edit events<a id="edit"></a>
   
