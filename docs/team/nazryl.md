@@ -15,31 +15,31 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 
 ### Features implemented
 1\. Set up the skeleton code used in the project, including the following [classes](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/6):
-    * `Notebook`
-    * `Note`
-    * `InterfaceManager`
-    * `SystemException`
-    * `PrefixSyntax`
+* `Notebook`
+* `Note`
+* `InterfaceManager`
+* `SystemException`
+* `PrefixSyntax`
 
 2\. Completed the following features and test code for
-    * [`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/31) Added functionality to add note into the notebook with option to add tags, pinned note and archived note.
-    * [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/32) Functionality applies to delete note from the notebook by an index and title of the note.
-    * [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/121) Functionality applies to edit any note content, title and tags stored in the notebook.
+* [`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/31) Added functionality to add note into the notebook with option to add tags, pinned note and archived note.
+* [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/32) Functionality applies to delete note from the notebook by an index and title of the note.
+* [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/121) Functionality applies to edit any note content, title and tags stored in the notebook.
 
 <div style="page-break-after: always;"></div>
 
 3\. Implemented the following classes
-    * `ParserAddNoteCommand`
-    * `AddNoteCommand`
-    * `ParserDeleteNoteCommand`
-    * `DeleteNoteCommand`
-    * `ParserEditNoteCommand`
-    * `EditNoteCommand`
+* `ParserAddNoteCommand`
+* `AddNoteCommand`
+* `ParserDeleteNoteCommand`
+* `DeleteNoteCommand`
+* `ParserEditNoteCommand`
+* `EditNoteCommand`
 
 4\. Implemented test code for the following classes
-    * [`AddNoteCommandTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61)
-    * [`DeleteNoteCommandTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61)
-    * [`ParserManagerTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61)
+* [`AddNoteCommandTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61)
+* [`DeleteNoteCommandTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61)
+* [`ParserManagerTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61)
 
 5\. Maintained Notebook and Note classes.
 
@@ -61,15 +61,15 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 
 ### Contributions to User Guide
 1\. Maintain portions on commands related to Note
-    * [`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/182)
-    * [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/32)
-    * [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/141)
+* [`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/182)
+* [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/32)
+* [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/141)
 
 <div style="page-break-after: always;"></div>
 
 ### Contributions to Developer Guide
 1\. Maintain Commands section on:
-    * [AddNoteCommand](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/109)
+* [AddNoteCommand](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/109)
 
 2\. [Notebook](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/128)
 
