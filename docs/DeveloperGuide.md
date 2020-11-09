@@ -273,7 +273,7 @@ The `Page` object,
 - contains a title, and the content of the page as a String object.
 - has a `tag` field that user can be set and get.
 
-<!-- @@author yAOwzers-->
+<!-- @@author yAOwzers -->
 ### 3.6. Storage Component
 
 ![UML diagram for Storage](diagrams/class/jpeg/Storage_UML_Class.jpg)
@@ -281,7 +281,7 @@ Figure [6]. Class diagram for the Storage component
 
 The `Storage` component,
 
-- Stores user's inputs into .txt files, which are all found under the same `data` directory.  
+- Stores user's inputs into .txt files, which are all found under the same directory as the JAR file.  
 
 - Contains the method `saveToFile` to save the current AppState of the application in the `notebooks.txt` and `tasks.txt` files.  
 
@@ -420,7 +420,7 @@ The following is an example of the processes that occur when the user uses the m
 <!-- @@author Lusi711 -->
 #### 4.2.3. Tag Feature
 The user can tag `Task`s in the `TaskList`. This section describes the implementation and design considerations for this
-feature.
+feature.  
 
 **Implementation**
 
@@ -854,7 +854,7 @@ Assuming the user has input the username of 'Tom' into Zer0Note.
 
 ### 4.7. (Proposed) Save feature for the tagging function
 
-The proposed save feature for the tagging function will be to save the user's respective tags under both tasks and notebooks into the `data` folder. 
+The proposed save feature for the tagging function will be to save the user's respective tags under both tasks and notebooks into the `tasks.txt` and `notebooks.txt` files in the same directory as the JAR file.   
 The save feature will be included in the Storage class as a `saveTags()` method, similar to the other save features (eg. `saveTask()` method). 
 This `saveTags()` method will be included under the `saveToFile()` method.
 
@@ -1186,9 +1186,9 @@ Expected: An error message along with a formatting guideline message (missing fo
 
 2.7.1. Finding all tasks that contains a specified keyword.  
 i. Prerequisites: User must be in the Timetable mode. Enter `mode /t` command to enter Timetable mode. List all tasks in the tasklist using the `list` command. There must be existing tasks in the list.  
-ii. Test case: `Find Project`  
+ii. Test case: `find Project`  
 Expected: All tasks with tags that contains the word 'Project' will be printed. If the tasks do not have tags, it will list the tasks with titles that contain the keyword 'Project'.  
-iii. Test case: `Find`  
+iii. Test case: `find`  
 Expected: An error message along with a formatting guideline message will be printed in the command line interface.  
 
 #### 2.8. Adding a Notebook/Section/Page
@@ -1276,29 +1276,32 @@ Expected: An error message along with a formatting guideline message will be pri
 
 2.13.1. Finding all notebooks/sections/pages that contains a specified keyword.  
 i. Prerequisites: User must be in the Notebook mode. Enter `mode /n` command to enter Notebook mode. List all notebooks/sections/pages in the notebookShelf using the `list /a` command. There must be existing notebooks/sections/pages in the list.  
-ii. Test case: `Find Project`  
+ii. Test case: `find Project`  
 Expected: All notebooks/sections/pages with tags that contains the word 'Project' will be printed. If the notebooks/sections/pages do not have tags, it will list the notebooks/sections/pages with titles that contain the keyword 'Project'.  
-iii. Test case: `Find`   
+iii. Test case: `find`   
 Expected: An error message along with a formatting guideline message will be printed in the command line interface.  
 
 ### 3. Saving Data
 
 3.1. Dealing with corrupted data files  
 i. Click on the folder that the jar file had been saved in.  
-ii. Select both the 'tasks.txt' and 'notebooks.txt'.<br>
-iii. Delete both files.  
+ii. Select all the 'tasks.txt', 'notebooks.txt' and 'nameOfUser.txt' files.  
+iii. Delete all the files.  
 iv. Restart the application by double-clicking the jar file and running Zer0Note.  
-Expected: The Command Line Interface should launch with a welcome note from Zer0Note as shown in Appendix F, 1.1.
+Expected: The Command Line Interface should launch with a welcome note from Zer0Note as shown in Appendix F, 1.1.  
 
 3.2. Dealing with corrupted name file  
 i. Click on the folder that the jar file had been saved in.  
-ii. Enter the 'src', then 'main', 'resources' and then 'txt' folder.  
+ii. Select the 'nameOfUser.txt' file.   
 iii. Delete the file named 'nameOfUser.txt'  
 iv. Restart the application by double-clicking the jar file. Re-enter the name of user.  
+Expected: The Command Line Interface should launch with a welcome note from Zer0Note as shown in Appendix F, 1.1.  
 
 3.3. Changing of saved name  
 i. Click on the folder that the jar file had been saved in.  
-ii. Enter the 'src', then 'main', 'resources' and then 'txt' folder.  
-iii. Double-click the 'nameOfUser.txt' file to edit it.  
-iv. Change the name in the txt file with the desired name and save the file.  
-v. Re-run Zer0Note with the desired name.  
+ii. Double-click the 'nameOfUser.txt' file to edit it.  
+iii. Change the name in the txt file with the desired name and save the file.  
+iv. Re-run Zer0Note with the desired name.  
+Expected: The Command Line Interface should launch with a welcome note from Zer0Note with the desired name that was entered
+in the nameOfUser.txt file.
+ 

@@ -12,8 +12,8 @@
 ## Table of Contents
 [**1. Introduction**](#1-introduction) <br>
 &nbsp;&nbsp;[1.1. How to use this guide](#11-how-to-use-this-guide) <br>
-&nbsp;&nbsp;[1.1.1. Icons and their meanings](#111-icons-and-their-meanings) <br>
-&nbsp;&nbsp;[1.1.2. Notes about the format](#112-notes-about-the-format) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[1.1.1. Icons and their meanings](#111-icons-and-their-meanings) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[1.1.2. Notes about the format](#112-notes-about-the-format) <br>
 [**2. Quick Start**](#2-quick-start) <br>
 [**3. Features**](#3-features) <br>
 &nbsp;&nbsp;[3.1. Viewing the user guide: `help`](#31-viewing-the-user-guide-help) <br>
@@ -135,7 +135,7 @@ N/noteboo...:$
 <!-- @@author chuckiex3-->
 ## 2. Quick Start
 
-Here is a list of instructions on how you can download Zer0Note!
+Here is a list of instructions on how you can run Zer0Note!
 
 1. Ensure that you have Java 11 or above installed. You may use the
 [Oracle Java SE runtime](https://www.oracle.com/java/technologies/javase-downloads.html)
@@ -321,7 +321,8 @@ This command lets you add a single `tag` to an existing `task` to remind you of 
 learn how to search for all tasks with the same `tag` in [Finding tasks by tag](#3452-finding-by-tag).
 
 >:bulb: Each task can only have one tag. The previous tag will be automatically overwritten by the new tag and no
->reminder will be given.
+>reminder will be given.  
+>:exclamation: Tags will not be saved upon exit of the application.  
 
 Format: `tag [INDEX] /t[TAG]`
 
@@ -665,7 +666,7 @@ belongs to. You can learn how to search for all notebooks, sections and pages in
 > belonging to the selected notebook or section.
 >
 >:exclamation: Each notebook, section and page can only have one tag. The previous tag will be automatically overwritten
->by the new tag and no reminder will be given.
+>by the new tag and no reminder will be given. Tags will not be saved upon exit of the application.
 
 Format: `tag /t[TAG]`
 
@@ -938,10 +939,10 @@ This section answers some frequently asked questions.
 
 ### How do I transfer my data to another computer?
 
-The save files for Zer0Note are stored in a directory named `data`, in the same directory as the Zer0Note JAR file. 
+The save files for Zer0Note are stored in the same directory as the Zer0Note JAR file. 
 You may move the entire directory to another computer and Zer0Note will continue to work with your saved data. 
-Alternatively, you may move just the `data` directory to another computer, into the directory
-containing the Zer0Note JAR file on that computer.
+Alternatively, you may just move the 'tasks.txt', 'notebooks.txt' and 'nameOfUser.txt' files in the Zer0Note JAR file 
+directory to another computer, into the directory containing the Zer0Note JAR file on that computer.
 
 ### Where do I find the release?
 
@@ -1030,13 +1031,11 @@ you so desire. We realise that power users may wish to use a different text edit
 to edit their notes, while also taking advantage of the organisation features of Zer0Note. If you wish to edit the
 save file by yourself, here's a detailed guide on the contents of the save file and how to edit it.
 
-The save files are stored in a directory `data` in the same directory as the Zer0Note JAR file. 
+The save files are stored in the same directory as the Zer0Note JAR file. 
 
 > :exclamation: **Zer0Note** is very sensitive to the format of the saved file! If there are any errors in the save
 > file, **Zer0Note** will not load it at all, since it cannot be sure if any of the file is uncorrupted. Proceed with
 > caution!
-
-
 
 ### 6.1. The tasks save file
 
