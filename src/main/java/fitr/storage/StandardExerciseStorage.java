@@ -7,6 +7,7 @@ import fitr.list.StandardExerciseList;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class StandardExerciseStorage {
     private static final String DEFAULT_UPPER_BODY_FILEPATH = "upperBodyList.txt";
@@ -14,6 +15,7 @@ public class StandardExerciseStorage {
     private static final String DEFAULT_AEROBIC_FILEPATH = "aerobicList.txt";
     private static final String DEFAULT_STRETCH_FILEPATH = "stretchList.txt";
     private static final String COMMA_SEPARATOR = ", ";
+    private static final Logger LOGGER = Logger.getLogger("StandardExerciseStorage");
 
     public StandardExerciseStorage() {
     }
@@ -21,24 +23,28 @@ public class StandardExerciseStorage {
     public StandardExerciseList loadUpperBodyList() throws IOException {
         StandardExerciseList upperBodyList = new StandardExerciseList();
         upperBodyList = readToList(DEFAULT_UPPER_BODY_FILEPATH, upperBodyList);
+        LOGGER.fine("UpperBodyList loaded.");
         return upperBodyList;
     }
 
     public StandardExerciseList loadLowerBodyList() throws IOException {
         StandardExerciseList lowerBodyList = new StandardExerciseList();
         lowerBodyList = readToList(DEFAULT_LOWER_BODY_FILEPATH, lowerBodyList);
+        LOGGER.fine("LowerBodyList loaded.");
         return lowerBodyList;
     }
 
     public StandardExerciseList loadAerobicList() throws IOException {
         StandardExerciseList aerobicList = new StandardExerciseList();
         aerobicList = readToList(DEFAULT_AEROBIC_FILEPATH, aerobicList);
+        LOGGER.fine("AerobicList loaded.");
         return aerobicList;
     }
 
     public StandardExerciseList loadStretchList() throws IOException {
         StandardExerciseList stretchList = new StandardExerciseList();
         stretchList = readToList(DEFAULT_STRETCH_FILEPATH, stretchList);
+        LOGGER.fine("StretchList loaded.");
         return stretchList;
     }
 

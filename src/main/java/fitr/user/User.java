@@ -5,7 +5,10 @@ import fitr.common.Messages;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.calorie.Calorie;
+import fitr.storage.UserStorage;
 import fitr.ui.Ui;
+
+import java.util.logging.Logger;
 
 import static fitr.common.Messages.USER_SETUP_GREET;
 import static fitr.common.Messages.INPUT_NAME;
@@ -57,6 +60,8 @@ public class User {
     private String gender;
     private int userFitnessLevel; // 0 for unfit; 1 for normal; 2 for Fit
 
+    private static final Logger LOGGER = Logger.getLogger("User");
+
     public User() {
         setup();
     }
@@ -76,18 +81,25 @@ public class User {
     public void setup() {
         Ui.printCustomMessage(USER_SETUP_GREET);
         Ui.printCustomMessage(INPUT_NAME);
+        LOGGER.fine("Setting up profile name.");
         setName(Ui.read(), false);
         Ui.printCustomMessage(INPUT_AGE);
+        LOGGER.fine("Setting up profile age.");
         setupAge(null, false);
         Ui.printCustomMessage(INPUT_HEIGHT);
+        LOGGER.fine("Setting up profile height.");
         setupHeight(null, false);
         Ui.printCustomMessage(INPUT_WEIGHT);
+        LOGGER.fine("Setting up profile weight.");
         setupWeight(null, false);
         Ui.printCustomMessage(INPUT_GENDER);
+        LOGGER.fine("Setting up profile gender.");
         setupGender(null, false);
         Ui.printCustomMessage(INPUT_FITNESS_LEVEL);
+        LOGGER.fine("Setting up profile fitness level.");
         setupFitnessLevel(null, false);
         Ui.printCustomMessage(SETUP_COMPLETE);
+        LOGGER.fine("User setup completed.");
     }
 
     public String getName() {
