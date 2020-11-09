@@ -37,7 +37,7 @@
     + [Listing all quotes](#listing-all-quotes)
     + [Listing quotes by a specific author](#listing-quotes-by-a-specific-author)
     + [Listing quotes from a specific reference](#listing-quotes-from-a-specific-reference)
-    + [Listing quotes from a specific reference and by a specific author](#listing-quotes-from-a-specific-reference-and-by-a-specific-author)
+    + [Listing quotes from a specific author and reference](#listing-quotes-from-a-specific-author-and-reference)
     + [Editing a quote](#editing-a-quote)
     + [Deleting a quote](#deleting-a-quote)
     + [Finding a quote](#finding-a-quote)
@@ -301,9 +301,15 @@ Given below is the class diagram for classes related to the Quote Management Sys
 
 ![Class Diagram for Quote Management System](images/ClassDiagram_Quote.png)
 
-* The `XQuoteCommand` class represents `AddQuoteCommand`, `ListQuoteCommand`, `EditQuoteCommand`, `DeleteQuoteCommand`,
-`FindQuoteCommand`, `AddQuoteReflectionCommand`, `ListQuoteReflectionCommand`, `EditQuoteReflectionCommand`,
-`DeleteQuoteReflectionCommand`.
+A `Quote` object holds the following attributes:
+* A `String` that holds the quote given by the user.
+* An `Author` object that contains the author name of the quote.
+* A `String` that holds the reference title from where the quote was from.
+* A `String` that holds the user given reflection of the quote.
+
+* The Quote management system containsthe following commands: `AddQuoteCommand`, `ListQuoteCommand`, `EditQuoteCommand`, 
+`DeleteQuoteCommand`, `FindQuoteCommand`, `AddQuoteReflectionCommand`, `ListQuoteReflectionCommand`, 
+`EditQuoteReflectionCommand`, `DeleteQuoteReflectionCommand`.
 
 #### 4.2.1 Add quote
 
@@ -321,25 +327,28 @@ The sequence diagram below reflects the command execution when a user adds a quo
 * Not shown in the sequence diagram is the parsing of user input by Quotesify's main parser class that creates an
 `AddCommand` object which subsequently creates the `AddQuoteCommand` as seen in the diagram, and then calling it's 
 `execute()` method.
-* The `parseAddParameters()` method from `QuoteParser` will be called to identify the format desired by the user and 
-creates the appropriate `Quote` object to be added into the `QuoteList`. 
+* The `parseParametersIntoQuote()` method from `QuoteParser` will be called to identify the format desired by the user 
+and returns the appropriate `Quote` object to be added into the `QuoteList` with the user specified information. 
 * Appropriate validation checks will be conducted to identify if the quote field is empty. Similarly, if author and
-reference tags are used, their respective fields will also be checked. If any missing field is found, the quote will
-not be added and an error message will be displayed.
+reference flags are used, their respective fields will also be checked. If any missing field is found, the quote will
+not be added, and an error message will be displayed.
+* Additional checks for duplicate flags and other invalid input parameters will also result in an exception being 
+thrown and respective error messages displayed to the user when detected.
 * Upon successful addition of a quote, the user will now be able to list, edit, delete, find and add a reflection to it.
 
 #### Design Considerations
 
-* Ability to add author name and reference title to quotes
-    * Pros: Provides categorization and allows for the implementation of other useful features such as search and list
-    * Cons: Increased memory overhead for each quote and implementation complexity
-* Allowing users to add quotes of different formats with single command
-    * Pros: Users will not be restricted to a single format or be required to use different commands for each format.
-    * Cons: Increased implementation complexity due to parsing different formats.
+* Aspect: Allowing users to add quotes of different formats, or only accepting one format for quotes.
+    * Alternative 1 (current choice): Allowing users to add quotes of different formats with a single command.
+        * Pros: Users will not be restricted to one format or be required to use additional commands to add author and reference.
+        * Cons: Increased implementation complexity due to parsing different formats and additional error handling.
+    * Alternative 2: Users can only add quotes of one format.
+        * Pros: Easier implementation and less steep of a learning curve for new users.
+        * Cons: Reduced efficiency and usability as not all quotes have author and/or reference flags.
     
 #### 4.2.2 Edit Quote Reflection
 
-The edit quote reflection feature updates current reflection of a quote into a new one, keeping the remaining 
+The edit quote reflection feature updates current reflection of a quote into a new reflection, keeping the remaining 
 information such as quote, author name and reference the same.
 
 The sequence diagram below reflects the command execution when a user edits the reflection of a quote.
@@ -349,18 +358,29 @@ The sequence diagram below reflects the command execution when a user edits the 
 * Not shown in the sequence diagram is the parsing of user input by Quotesify's main parser class, which creates an
 `EditCommand` object which subsequently creates the `EditQuoteReflectionCommand` as seen in the diagram, and then 
 calling it's `execute()` method.
-* Appropriate validation checks will be conducted to determine if the edit tag `/to` is present, and the updated 
-reflection is not empty. If the following conditions are not met, the reflection will not be updated, and an error 
-message will be displayed.
+* Appropriate validation checks will be conducted to determine that the edit tag `/to` is present, and that the quote
+contains a reflection prior. If the following conditions are not met, the reflection will not be updated, and the 
+respective error messages will be displayed.
+* Upon successful update of a reflection, the user will now be able to list the updated reflection for viewing.
 
 #### Design Considerations
 
-* Use of `/to` flag
-    * Pros: Clear demarcation between quote number and start of updated reflection.
-    * Cons: Additional parsing required and users are required to type more.
-* Include a `updateReflection` method in `QuoteList` instead of editing quote object directly
-    * Pros: Better encapsulation and data hiding as attributes can be set to private
-    * Cons: Additional methods and passing of data required
+* Aspect: Users have to use a `/to` flag before specifying updated reflection, or allowing users to specify the updated 
+reflection without any flags.
+    * Alternative 1 (current choice): Use of `/to` flag
+        * Pros: Clear demarcation before start of the updated reflection.
+        * Cons: Users are required to type more.
+    * Alternative 2: No flags required before specifying updated reflection. 
+        * Pros: Increased efficiency and users do not need to remember the different flags.
+        * Cons: Increased difficulty in parsing and more prone to unhandled exceptions and errors.
+        
+* Aspect: Include a `updateReflection` method in `QuoteList` or edit the quote object directly from the `EditReflectionCommand`.
+    * Alternative 1 (current choice): Use of a `updateReflection` method in the `QuoteList` to update the reflection.
+        * Pros: Better encapsulation and data hiding as attributes can be set to private
+        * Cons: Additional methods and passing of data required
+    * Alternative 2: Edit the quote object from the `EditReflectionCommand`.
+        * Pros: Reduced number of methods and implementation complexity.
+        * Cons: Increased coupling and difficulty in tracking down potential bugs if attributes are set to public.
 <!-- @@author -->
 
 ---
@@ -742,29 +762,29 @@ Alright, have a nice day!
    
 #### Adding a quote
 
-1. Add a quote without author and reference to Quotesify
+1. Add a quote without author and reference title to Quotesify
 
-    Test case: `add -q Life's short, smile while you still have teeth`
+    * Test case: `add -q Life is short, smile while you still have teeth`
     
-    Expected: Quote is added to Quotesify. message will be prompted to indicate that the quote has been successfully edited.
+    * Expected: Quote is added to Quotesify. A message will be prompted to indicate that the quote has been successfully added.
 
-2. Add a quote with an author name to Quotesify
+2. Add a quote with an author to Quotesify
 
-    Test case: `add -q Luke, I am your father /by Darth Vader`
+    * Test case: `add -q Luke, I am your father /by Darth Vader`
     
-    Expected: Quote is added to Quotesify. message will be prompted to indicate that the quote has been successfully edited.
+    * Expected: Quote is added to Quotesify. A message will be prompted to indicate that the quote has been successfully added.
 
-3. Add a quote with reference to Quotesify
+3. Add a quote with a reference title to Quotesify
 
-    Test case:`add -q Get schwifty /from Rick and Morty`
+    * Test case:`add -q Get schwifty! /from Rick and Morty`
     
-    Expected: Quote is added to Quotesify. message will be prompted to indicate that the quote has been successfully edited.
+    * Expected: Quote is added to Quotesify. A message will be prompted to indicate that the quote has been successfully added.
     
-4. Add a quote with an author and reference to 
+4. Add a quote with an author and reference title to Quotesify 
 
-    Test case: `add -q So everyone’s supposed to sleep every single night now? /by Rick /from Rick and Morty`
+    * Test case: `add -q So everyone’s supposed to sleep every single night now? /by Rick /from Rick and Morty`
     
-    Expected: Quote is added to Quotesify. message will be prompted to indicate that the quote has been successfully edited. 
+    * Expected: Quote is added to Quotesify. A message will be prompted to indicate that the quote has been successfully added. 
    
 5. Other incorrect commands to try:
    * `add -q` : quote field left empty
@@ -781,17 +801,6 @@ Alright, have a nice day!
 
    Expected: The entire list of quotes with reference and author name (if present) in Quotesify will be displayed.
    
-#### Listing quotes by a specific author
-
-1. Test case: `list -q /by rick`
-
-   Expected: The list of quotes with the specified author name will be displayed.
-   
-2. Other incorrect commands to try:
-   * `list -q /by` : author tag with missing author name
-   
-   Expected: No quotes are listed. A message with error details will be shown.
-   
 #### Listing quotes from a specific reference
 
 1. Test case: `list -q /from rick and morty`
@@ -801,26 +810,37 @@ Alright, have a nice day!
 2. Other incorrect commands to try:
    * `list -q /from` : reference tag with missing reference title
    
-   Expected: Quotes will not be listed. A message with error details will be shown.
+   Expected: No quotes will be listed. A message with error details will be shown.
    
-#### Listing quotes from a specific reference and by a specific author
+#### Listing quotes by a specific author
 
-1. Test case: `list -q /from rick and morty /by rick`
+1. Test case: `list -q /by darth vader`
 
-   Expected: The list of quotes with the specified reference title and author name will be displayed.
+   Expected: The list of quotes with the specified author name will be displayed.
    
 2. Other incorrect commands to try:
-   * `list -q /from rick and morty /by` : reference and author tag with missing author name
-   * `list -q /from /by rick` : reference and author tag with missing reference title
-   * `list -q /from /by` : missing reference title and author name
+   * `list -q /by` : author tag with missing author name
    
-   Expected: Quotes will not be listed. A message with error details will be shown.
+   Expected: No quotes will be listed. A message with error details will be shown.
+   
+#### Listing quotes from a specific author and reference
+
+1. Test case: `list -q /by rick /from rick and morty`
+
+   Expected: The list of quotes with the specified author name and reference title will be displayed.
+   
+2. Other incorrect commands to try:
+   * `list -q /by /from rick and morty` : author and reference tag with missing author name
+   * `list -q /by rick /from` : author and reference tag with missing reference title
+   * `list -q /by /from` : missing author name and reference title
+   
+   Expected: No quotes will be listed. A message with error details will be shown.
    
 #### Editing a quote
 
 1. Test case: `edit -q 2 /to No, I am your mummy /by Darth Vader`
    
-   Expected: Quote will be updated, a prompt displaying old and updated quote will be shown.
+   Expected: Quote will be updated, a prompt displaying old and updated quote will be displayed.
    
 2. Other incorrect commands to try:
    * `edit -q` : missing quote number and updated quote
@@ -861,7 +881,7 @@ Alright, have a nice day!
 1. Test case: `add -qr 1 /reflect No, that's not true. It's impossible!`
     
    Expected: Reflection is added to quote. A message will be prompted to indicate that the reflection has been successfully added.
-   * Quotes with reflection will have a "[R]" tag attached to differentiate.
+   * Quotes with reflection will have a "[R]" tag attached to differentiate between those that do not.
    
 5. Incorrect commands to try:
    * `add -qr` : missing quote number, reflection tag and reflection
@@ -889,7 +909,6 @@ Alright, have a nice day!
    Expected: Reflection will be updated, a prompt displaying updated reflection will be shown.
    
 2. Other incorrect commands to try:
-   * `edit -qr` : missing quote number, `/to` tag and updated reflection
    * `edit -qr 1 /to`: missing updated reflection
    * `edit -qr 1 nothing to reflect` : missing `/to` flag
    * `edit -qr 9999999 /to updated reflection here!` : non-existent quote number
