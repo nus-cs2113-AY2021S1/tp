@@ -222,8 +222,8 @@ as a string variable in the command)
 2. Calls `RouteMapCommand#checkBusCode()` to make sure bus code entered by the user is not empty or a white-space.
 <div style="page-break-after: always;"></div>
 3. Calls static `BusData#selectBus()` to find the user-specified bus in the bus data list. If found, the Bus object will be 
-returned. Else, null is returned.
-4. Calls `Ui#printFullRoute()` to display full route of the specified bus.
+returned. Else, null is returned.<br>
+4. Calls `Ui#printFullRoute()` to display full route of the specified bus.<br>
 
 The following sequence diagram explains the above steps when the user enters `/routemap busCode`.<br>
 ![Overview](DG_Diagrams/RouteMapCommand/RouteMapCommandOverallSeq.png)<br>
