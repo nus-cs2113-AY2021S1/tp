@@ -376,7 +376,7 @@ Shorthand Format: <br/>
 `event` -> `e` <br/>
 `listEvent` -> `l` <br/>
 
-Example of usage:    
+Example of usage: <br/>
 `event listEvent` <br/>
 `event l` <br/>
 `e l` <br/>
