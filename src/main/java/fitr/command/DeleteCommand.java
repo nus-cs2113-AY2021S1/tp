@@ -31,8 +31,7 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
         try {
-
-            String type = command.split(SPLIT_SPACE)[0];
+            String type = command.split(SPLIT_SPACE)[0].toLowerCase();
             if (command.split(SPLIT_SPACE).length != 3 && !type.equals(COMMAND_GOAL)) {
                 throw new FitrException();
             }
