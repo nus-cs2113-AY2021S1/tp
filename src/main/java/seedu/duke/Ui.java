@@ -270,8 +270,8 @@ public class Ui {
             calendarItem = "task";
             if (calendarList.getCalendarList().get(lastCalendarItemIndex) instanceof Deadline
                     && calendarList.getCalendarList().get(lastCalendarItemIndex).getDate().isBefore(LocalDate.now())) {
-                System.out.println("WARNING! The deadline has already passed!"
-                        + "May be you want to double confirm? Good Luck!\n");
+                System.out.println("WARNING! The deadline has already passed! "
+                        + "Maybe you want to double confirm? Good Luck!\n");
             }
         } else {
             calendarItem = "event";
@@ -515,7 +515,10 @@ public class Ui {
                     + "Type \"help\" to learn the different commands.");
             break;
         case "invalid countdown":
-            System.out.println("Error: invalid countdown. Countdown is only for exams and deadlines.");
+            System.out.println("Error: invalid input of countdown, please key in the command in this format:\n"
+                    + "1. countdown\n"
+                    + "2. countdown exams\n"
+                    + "3. countdown deadlines");
             break;
         case "invalid task action":
             System.out.println(
