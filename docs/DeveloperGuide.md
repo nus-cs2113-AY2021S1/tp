@@ -4,11 +4,17 @@
 ![](diagrams/Logo.png)<br>
 
 Yang Jiaqi<br>
+
 Zhuang Mengjin<br>
+
 Xu Che<br>
+
 Wu Nan<br>
+
 Wan Shi Jie Brendan<br>
-<br><br>
+
+
+<div style="page-break-after: always;"></div>
 
 ## Table of Contents
 * [1. Introduction](#intro)
