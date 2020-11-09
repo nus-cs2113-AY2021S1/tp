@@ -29,13 +29,13 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 4\. Implemented test code for the following classes
 [`AddNoteCommandTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61), [`DeleteNoteCommandTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61), [`ParserManagerTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61)
 
-<div style="page-break-after: always;"></div>
-
 5\. Maintained Notebook and Note classes.
 
 6\. Created inputContent() function for `add-n` and `edit-n` in `Parser`.
 
 7\. Added formatNote method into the Formatter class.
+
+<div style="page-break-after: always;"></div>
 
 8\. Implemented prefix handling method used in all Parser classes with Jun Xiang. Prefix are able to be called in any order.
 
