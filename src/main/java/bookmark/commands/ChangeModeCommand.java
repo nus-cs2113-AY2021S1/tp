@@ -22,9 +22,9 @@ public class ChangeModeCommand extends BookmarkCommand {
     }
 
     /**
-     * Change mode from bookmark main to each bookmark category
+     * Change mode from bookmark main to each bookmark category.
      *
-     * @param ui prints output message
+     * @param ui prints output message.
      * @param categories prints list of links in category chosen.
      */
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories, BookmarkStorage bookmarkStorage) {
