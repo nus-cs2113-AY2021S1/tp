@@ -666,9 +666,8 @@ You want to continue on this writing on 01/12/2020
 --------------------------------------------------------------
 ```
 
-#### Getting reminders for your writings scheduled for a specific day: `remind`
-Let’s say you are a forgetful person, and you would like the program to remind you which writings you are about to 
-continue on a specific day. In this scenario, you can use the `remind` command.
+#### Getting reminders for your writings scheduled for a specific date: `remind`
+Let’s say you are an absent-minded person, and you would like the program to remind you which writings you are about to continue on a specific day. In this scenario, you can use the `remind` command.
 
 **Format**: `remind DATE`
 * `DATE` is the date that you want to continue on some of your writings. `DATE` should be in the form of 
