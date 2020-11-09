@@ -67,10 +67,8 @@ Once you are done installing Java 11.0.8 onto your PC, you may follow these proc
 1. Type `java -jar tp.jar` into the command prompt and press Enter to execute it
 1. If the application runs successfully, you’ll be greeted by the following welcome message:
 
-![WelcomeMessage](Images/GeneralUG/welcomemessage.png){:height="40%" width="40%" align="center"}
-
 <p align="center">
-    <img width="40%" height="40%" src="Images/GeneralUG/welcomemessage.png">
+    <img width="80%" height="80%" src="Images/GeneralUG/welcomemessage.png">
 </p>
 
 Congratulations! You are now able to run Study It. To access its various functionalities,
