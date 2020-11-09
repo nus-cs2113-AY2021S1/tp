@@ -325,7 +325,6 @@ Expected Outcome:
 > :information_source: The EVENT_INDEX refers to the index number shown in the list of events.<br/>
 > :information_source: The EVENT_INDEX must be an integer greater than 0. <br/>
 
-
 Shorthand Format: <br/>
 `event` -> `e` <br/>
 `addEvent` -> `del`/`d` <br/>
@@ -352,12 +351,12 @@ Shorthand Format: <br/>
 `event` -> `e` <br/>
 `delEvent` -> `del`/`d` <br/>
 
-Example of usage:
+Example of usage:   
 `event delEvent all` <br/>
 
 > :information_source: A confirmation message will be prompted. To clear, type `Y` in terminal.
 
-Expected Outcome:
+Expected Outcome:  
 
 ![EventDeleteAll](userGuidePic/eventDeleteAll.PNG)
 
@@ -373,7 +372,7 @@ Shorthand Format: <br/>
 `event` -> `e` <br/>
 `listEvent` -> `l` <br/>
 
-Example of usage: 
+Example of usage: <br/>
 `event listEvent` <br/>
 `event l` <br/>
 `e l` <br/>
@@ -441,7 +440,7 @@ Shorthand Format: <br/>
 `event` -> `e` <br/>
 `search` -> `s` <br/>
 
-Example of usage:
+Example of usage: <br/>
 `event search /s arduino course` <br/>
 `event search /s 2000-12-16` <br/>
 `e search /s 2000-12-16` <br/>
