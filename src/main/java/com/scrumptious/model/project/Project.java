@@ -3,7 +3,7 @@ package com.scrumptious.model.project;
 import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.scrumptious.storage.JsonableObject;
-import com.scrumptious.Duke;
+import com.scrumptious.Scrumptious;
 import com.scrumptious.model.member.ProjectMembers;
 import com.scrumptious.model.sprint.SprintManager;
 import com.scrumptious.model.task.TaskManager;
@@ -130,7 +130,7 @@ public class Project implements JsonableObject {
     
     //Setters
     public void setStartDate() {
-        setStartDate(LocalDate.now(Duke.getClock()));
+        setStartDate(LocalDate.now(Scrumptious.getClock()));
     }
 
     public void setStartDate(LocalDate startDate) {

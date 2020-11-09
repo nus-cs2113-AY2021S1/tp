@@ -3,7 +3,7 @@ package com.scrumptious.model.sprint;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.scrumptious.model.project.Project;
 import com.scrumptious.storage.JsonableObject;
-import com.scrumptious.Duke;
+import com.scrumptious.Scrumptious;
 import com.scrumptious.model.task.Task;
 
 import java.io.IOException;
@@ -132,7 +132,7 @@ public class Sprint implements JsonableObject {
         sprintInString.append(String.format("[Goal: %s]%n", this.goal));
         sprintInString.append(String.format("[Period: %s - %s]%n", this.startDate, this.endDate));
         if (isCurrentSprint) {
-            switch (this.endDate.compareTo(LocalDate.now(Duke.getClock()))) {
+            switch (this.endDate.compareTo(LocalDate.now(Scrumptious.getClock()))) {
             case 0:
                 sprintInString.append(String.format("[Remaining: Last day]%n"));
                 break;
@@ -141,7 +141,7 @@ public class Sprint implements JsonableObject {
                 break;
             default:
                 sprintInString.append(String.format("[Remaining: %s days]%n", 
-                        this.endDate.compareTo(LocalDate.now(Duke.getClock()))));
+                        this.endDate.compareTo(LocalDate.now(Scrumptious.getClock()))));
             }
         }
         if (taskList.size() == 0) {

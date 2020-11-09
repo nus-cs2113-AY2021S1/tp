@@ -11,7 +11,7 @@ import com.scrumptious.ui.Ui;
 import java.io.IOException;
 import java.time.Clock;
 
-public class Duke {
+public class Scrumptious {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
@@ -25,7 +25,7 @@ public class Duke {
     private static ProjectManager projectManager = new ProjectManager();
 
     public static void main(String[] args) {
-        new Duke().run();
+        new Scrumptious().run();
     }
 
     /**
@@ -98,7 +98,7 @@ public class Duke {
     }
     
     public static void setClock(Clock clock) {
-        Duke.clock = clock;
+        Scrumptious.clock = clock;
     }
     
     public static Clock getClock() {

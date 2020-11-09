@@ -5,7 +5,7 @@ import com.github.cliftonlabs.json_simple.JsonObject;
 import com.scrumptious.model.project.Project;
 import com.scrumptious.parser.DateTimeParser;
 import com.scrumptious.storage.JsonableObject;
-import com.scrumptious.Duke;
+import com.scrumptious.Scrumptious;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -56,8 +56,8 @@ public class SprintManager implements JsonableObject {
     public boolean updateCurrentSprint() {
         for (int id = 1; id <= this.size(); id++) {
             Sprint current = this.getSprint(id);
-            if (DateTimeParser.diff(LocalDate.now(Duke.getClock()), current.getEndDate()) >= 0
-                    && DateTimeParser.diff(current.getStartDate(), LocalDate.now(Duke.getClock())) >= 0) {
+            if (DateTimeParser.diff(LocalDate.now(Scrumptious.getClock()), current.getEndDate()) >= 0
+                    && DateTimeParser.diff(current.getStartDate(), LocalDate.now(Scrumptious.getClock())) >= 0) {
                 this.setCurrentSprintIndex(id);
                 return true;
 

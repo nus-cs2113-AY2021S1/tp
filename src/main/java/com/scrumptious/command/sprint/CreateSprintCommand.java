@@ -1,7 +1,7 @@
 package com.scrumptious.command.sprint;
 
 import com.scrumptious.parser.DateTimeParser;
-import com.scrumptious.Duke;
+import com.scrumptious.Scrumptious;
 import com.scrumptious.exception.DukeException;
 import com.scrumptious.logger.ScrumLogger;
 import com.scrumptious.model.project.ProjectManager;
@@ -24,7 +24,7 @@ public class CreateSprintCommand extends SprintCommand {
      */
     public CreateSprintCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
         super(parameters, projectList, true);
-        this.sprintStart = LocalDate.now(Duke.getClock());
+        this.sprintStart = LocalDate.now(Scrumptious.getClock());
     }
 
     /**

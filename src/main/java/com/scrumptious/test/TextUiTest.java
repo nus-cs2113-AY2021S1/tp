@@ -1,6 +1,6 @@
 package com.scrumptious.test;
 
-import com.scrumptious.Duke;
+import com.scrumptious.Scrumptious;
 
 import java.time.Clock;
 import java.time.Instant;
@@ -12,7 +12,7 @@ import java.time.ZoneOffset;
 public class TextUiTest {
     public static void main(String[] args) {
         Instant fakeDateTime = Instant.parse("2020-10-10T00:00:00.000Z");
-        Duke.setClock(Clock.fixed(fakeDateTime, ZoneOffset.systemDefault()));
-        Duke.main(new String[0]);
+        Scrumptious.setClock(Clock.fixed(fakeDateTime, ZoneOffset.systemDefault()));
+        Scrumptious.main(new String[0]);
     }
 }

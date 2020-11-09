@@ -1,6 +1,6 @@
 package com.scrumptious.command.sprint;
 
-import com.scrumptious.Duke;
+import com.scrumptious.Scrumptious;
 import com.scrumptious.command.Command;
 import com.scrumptious.exception.DukeException;
 import com.scrumptious.model.member.Member;
@@ -70,7 +70,8 @@ public abstract class SprintCommand extends Command {
             if (this.projOwner.getSprintList().updateCurrentSprint()) {
                 selectedSprint = this.projOwner.getSprintList().getCurrentSprintIndex();
             } else {
-                throw new DukeException("No ongoing sprint today (" + LocalDateTime.now(Duke.getClock()).toLocalDate()
+                throw new DukeException("No ongoing sprint today ("  
+                        + LocalDateTime.now(Scrumptious.getClock()).toLocalDate()
                         + "). Maybe you can specify using -sprint tag");
             }
         }
