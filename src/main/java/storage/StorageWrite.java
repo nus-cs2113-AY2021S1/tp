@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import static storage.StorageLoad.checkExists;
+import static storage.StorageLoad.throwExceptionIfFileDoesNotExist;
 
 /**
  *  Manages writing of Kaji data to local storage.
@@ -64,6 +64,13 @@ public class StorageWrite {
         }
     }
 
+    /**
+     * Writes the contents of excludedChapters into the Exclusion File.
+     * @param excludedChapters ArrayList of String that comprises all the Chapters that are to be excluded from
+     *                         scheduling.
+     * @param filePath Filepath to the Admin level.
+     * @throws ExclusionFileException if there are errors encountered when writing into the Exclusion File.
+     */
     //@@author Darticune
     protected static void updateExclusionFile(ArrayList<String> excludedChapters, String filePath)
             throws ExclusionFileException {
@@ -78,6 +85,13 @@ public class StorageWrite {
         }
     }
 
+    /**
+     * Creates the dueFile that will contain the deadline for a Chapter.
+     * @param duePath path to the dueFile
+     * @param dirPath path to the dues folder in the folder of the Module that contains the target Chapter
+     * @return boolean on whether the creation of the dueFile was successful.
+     * @throws IOException if there are errors with regards to file creation or reading.
+     */
     //@@author Darticune
     protected static boolean createChapterDue(String duePath, String dirPath) throws IOException {
         File due = new File(duePath);
@@ -103,9 +117,15 @@ public class StorageWrite {
         createDir(f);
     }
 
+    /**
+     * Writes the Chapter Deadline into the Chapter's dueFile.
+     * @param dueBy New Deadline to be updated
+     * @param chapterDueFilePath path to the Chapter's dueFile
+     * @throws IOException if there are errors with writing into the Chapter's dueFile.
+     */
     //@@author Darticune
-    protected static void writeDeadlineToChapterDue(String dueBy, String chapterPath) throws IOException {
-        FileWriter fw = new FileWriter(chapterPath);
+    protected static void writeDeadlineToChapterDue(String dueBy, String chapterDueFilePath) throws IOException {
+        FileWriter fw = new FileWriter(chapterDueFilePath);
         fw.write(dueBy);
         fw.close();
     }
@@ -118,6 +138,13 @@ public class StorageWrite {
         }
     }
 
+    /**
+     * Adds the Chapters in a specified Module into the Exclusion File.
+     * @param moduleName name of target Module
+     * @param filePath Filepath to the Admin level.
+     * @throws FileNotFoundException  if the target Module cannot be found.
+     * @throws ExclusionFileException if unable to load or update the Exclusion File.
+     */
     //@@author Darticune
     protected static void appendModuleToExclusionFile(String moduleName, String filePath)
             throws FileNotFoundException, ExclusionFileException {
@@ -138,13 +165,21 @@ public class StorageWrite {
         }
     }
 
+    /**
+     * Adds a specified Chapter into the Exclusion File.
+     * @param moduleName name of Module that the target Chapter belongs to
+     * @param chapterName name of the target Chapter
+     * @param filePath Filepath to the Admin level.
+     * @throws FileNotFoundException  if the target Module cannot be found.
+     * @throws ExclusionFileException if unable to load or update the Exclusion File.
+     */
     //@@author Darticune
     protected static void appendChapterToExclusionFile(String moduleName, String chapterName, String filePath)
             throws FileNotFoundException,
             ExclusionFileException {
         ArrayList<String> excludedChapters = Storage.loadExclusionFile(filePath);
         File file = new File(filePath + "/" + moduleName + "/" + chapterName + ".txt");
-        checkExists(file);
+        throwExceptionIfFileDoesNotExist(file);
         addEntryToExclusionFile(moduleName, chapterName, excludedChapters);
         updateExclusionFile(excludedChapters, filePath);
     }
@@ -159,6 +194,13 @@ public class StorageWrite {
         return true;
     }
 
+    /**
+     * Removes the Chapters in a specified Module from the Exclusion File.
+     * @param moduleName name of target Module
+     * @param filePath Filepath to the Admin level.
+     * @throws FileNotFoundException  if the target Module cannot be found.
+     * @throws ExclusionFileException if unable to load or update the Exclusion File.
+     */
     //@@author Darticune
     protected static void removeModuleFromExclusionFile(String moduleName, String filePath)
             throws FileNotFoundException, ExclusionFileException {
@@ -176,6 +218,14 @@ public class StorageWrite {
         }
     }
 
+    /**
+     * Removes a specified Chapter from the Exclusion File.
+     * @param moduleName name of Module that the target Chapter belongs to
+     * @param chapterName name of the target Chapter
+     * @param filePath Filepath to the Admin level.
+     * @throws FileNotFoundException  if the target Module or Chapter cannot be found.
+     * @throws ExclusionFileException if unable to load or update the Exclusion File.
+     */
     //@@author Darticune
     protected static boolean removeChapterFromExclusionFile(String moduleName, String chapterName, String filePath)
             throws FileNotFoundException, ExclusionFileException {
@@ -208,6 +258,13 @@ public class StorageWrite {
         fw.close();
     }
 
+    /**
+     * Updates the deadline for a Chapter from the name of the Module it belongs to and the name of the target Chapter.
+     * @param dueBy new Deadline to be updated with
+     * @param moduleName name of Module that the target Chapter belongs to
+     * @param chapterName name of the target Chapter
+     * @param filePath Filepath to the Admin level.
+     */
     //@@author Darticune
     protected static void saveChapterDeadline(String dueBy, String moduleName, String chapterName, String filePath) {
         try {

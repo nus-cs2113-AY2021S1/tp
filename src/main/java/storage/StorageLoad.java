@@ -27,22 +27,31 @@ public class StorageLoad {
     public static final String DELIMITER = " \\| ";
     public static final String MESSAGE_MODULE_CHAPTER = "Module: %1$s ; Chapter: %2$s";
 
+    /**
+     * Throws a FileNotFoundException if the specified File does not exist.
+     * @param f File to check for.
+     * @throws FileNotFoundException if specified File does not exist.
+     */
     //@@author Darticune
-    protected static void checkExists(File f) throws FileNotFoundException {
-        boolean dirExists = f.exists();
-        if (!dirExists) {
+    protected static void throwExceptionIfFileDoesNotExist(File f) throws FileNotFoundException {
+        boolean fileExists = f.exists();
+        if (!fileExists) {
             throw new FileNotFoundException();
         }
     }
 
+    /**
+     * Lists the Chapters found in the module as an array of Strings.
+     * @param moduleName Name of module whose content is to be extracted.
+     * @param filePath Filepath to the Admin level.
+     * @return List of names of Chapters found in the specified module.
+     * @throws FileNotFoundException if specified Module does not exist.
+     */
     //@@author Darticune
     protected static String[] loadChaptersFromSpecifiedModule(String moduleName, String filePath)
             throws FileNotFoundException {
         File file = new File(filePath + "/" + moduleName);
-        boolean moduleExists = file.exists();
-        if (!moduleExists) {
-            throw new FileNotFoundException();
-        }
+        throwExceptionIfFileDoesNotExist(file);
         return file.list();
     }
 
@@ -68,6 +77,12 @@ public class StorageLoad {
         }
     }
 
+    /**
+     * Loads the entries in the Exclusion File as an ArrayList of Strings.
+     * @param filePath Filepath to the Admin level.
+     * @return ArrayList of Strings containing the entries in Exclusion File
+     * @throws ExclusionFileException if unable to load the Exclusion File
+     */
     //@@author Darticune
     protected static ArrayList<String> loadExclusionFile(String filePath) throws ExclusionFileException {
         File exclusionFile = new File(filePath + "/exclusions.txt");
@@ -107,29 +122,39 @@ public class StorageLoad {
         }
     }
 
+    /**
+     * For each module in modules, collate the chapters within as DueChapters in print form.
+     * @param ui ui which the command uses to print messages
+     * @param excludedChapters Chapters that are in the Exclusion List and should not be added into the output
+     *                         ArrayList of DueChapters
+     * @param modules List of Modules in the database at time of execution
+     * @param filePath Filepath to the Admin level.
+     * @return ArrayList of DueChapters, formed from all Chapters in the user's database that are not excluded
+     */
     //@@author Darticune
     protected static ArrayList<DueChapter> loadAllChaptersAsDueChapters(Ui ui, ArrayList<String> excludedChapters,
-                                                                        ArrayList<DueChapter> dueChapters,
-                                                                        String[] modules, String filePath)
-                                                                  throws FileNotFoundException {
+                                                                        String[] modules, String filePath) {
+        ArrayList<DueChapter> dueChapters = new ArrayList<>();
         for (String module : modules) {
             if (module.equals("exclusions.txt")) {
                 continue;
             }
-            File f2 = new File(filePath + "/" + module);
-            boolean chapterExists = f2.exists();
-            if (!chapterExists) {
-                throw new FileNotFoundException();
-            }
-            String[] chapters = f2.list();
-            if (chapters.length == 0) {
-                return dueChapters;
-            }
-            for (String chapter : chapters) {
-                convertChapterInToDueChapter(ui, excludedChapters, dueChapters, module, chapter, filePath);
-            }
+            extractModuleContentsAsDueChapters(ui, excludedChapters, dueChapters, filePath, module);
         }
         return dueChapters;
+    }
+
+    private static void extractModuleContentsAsDueChapters(Ui ui, ArrayList<String> excludedChapters,
+                                                           ArrayList<DueChapter> dueChapters, String filePath,
+                                                           String module) {
+        File moduleFolder = new File(filePath + "/" + module);
+        String[] chapters = moduleFolder.list();
+        if (chapters.length == 0) {
+            return;
+        }
+        for (String chapter : chapters) {
+            convertChapterInToDueChapter(ui, excludedChapters, dueChapters, module, chapter, filePath);
+        }
     }
 
     //@@author Darticune
@@ -173,7 +198,7 @@ public class StorageLoad {
     //@@author gua-guargia
     protected static ArrayList<Module> loadModule(String filePath) throws FileNotFoundException {
         File f = new File(filePath);
-        checkExists(f);
+        throwExceptionIfFileDoesNotExist(f);
 
         ArrayList<Module> modules = new ArrayList<>();
         String[] contents = f.list();
@@ -200,7 +225,7 @@ public class StorageLoad {
      */
     protected static ArrayList<Chapter> loadChapter(String module, String filePath) throws IOException {
         File f = new File(filePath + "/" + module);
-        checkExists(f);
+        throwExceptionIfFileDoesNotExist(f);
 
         ArrayList<Chapter> chapters = new ArrayList<>();
         String[] contents = f.list();
@@ -238,15 +263,23 @@ public class StorageLoad {
         return chapters;
     }
 
+    /**
+     * Checks if the admin folder exists, loads all the entries in the Exclusion File, and loads all the Chapters
+     * that are not excluded into an ArrayList of DueChapters.
+     * @param ui ui which the command uses to print messages
+     * @param filePath Filepath to the Admin level.
+     * @return ArrayList of DueChapters, formed from all Chapters in the user's database that are not excluded
+     * @throws FileNotFoundException if Admin folder is missing
+     * @throws ExclusionFileException if there are issues with loading the Exclusion FIle
+     */
     //@@author Darticune
     protected static ArrayList<DueChapter> loadAllDueChapters(Ui ui, String filePath)
             throws FileNotFoundException, ExclusionFileException {
         ArrayList<String> excludedChapters = loadExclusionFile(filePath);
         File admin = new File(filePath);
-        checkExists(admin);
+        throwExceptionIfFileDoesNotExist(admin);
         String[] modules = admin.list();
-        ArrayList<DueChapter> dueChapters = new ArrayList<>();
-        return loadAllChaptersAsDueChapters(ui, excludedChapters, dueChapters, modules, filePath);
+        return loadAllChaptersAsDueChapters(ui, excludedChapters, modules, filePath);
     }
 
     //@@author Zhu-Ze-Yu
@@ -262,7 +295,7 @@ public class StorageLoad {
     protected static ArrayList<Card> loadCard(String module, String chapter, String filePath)
             throws FileNotFoundException {
         File f = new File(filePath + "/" + module + "/" + chapter + ".txt");
-        checkExists(f);
+        throwExceptionIfFileDoesNotExist(f);
 
         ArrayList<Card> cards = new ArrayList<>();
         Scanner s = new Scanner(f);
@@ -298,7 +331,7 @@ public class StorageLoad {
      */
     protected static ArrayList<History> loadHistory(String date) throws FileNotFoundException {
         File f = new File("data/history/" + date + ".txt");
-        checkExists(f);
+        throwExceptionIfFileDoesNotExist(f);
 
         ArrayList<History> histories = new ArrayList<>();
         Scanner s = new Scanner(f);

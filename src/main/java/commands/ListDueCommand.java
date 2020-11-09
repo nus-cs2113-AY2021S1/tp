@@ -15,6 +15,9 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Parses through the User's existing Chapters and prints out which of them are due at the current moment.
+ */
 public class ListDueCommand extends Command {
     public static final String COMMAND_WORD = "due";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all Chapters that are due by the execution "
@@ -46,6 +49,14 @@ public class ListDueCommand extends Command {
         }
     }
 
+    /**
+     * Executes the "due" command.
+     * @param ui ui which the command uses to print messages
+     * @param access access which the command uses to get the modules, chapters or cards
+     * @param storage storage which the command uses to load or write data to storage files
+     * @throws InvalidFileFormatException if the database is currently empty and there are no Chapters to parse
+     * @throws ExclusionFileException if there are errors with the Exclusion File
+     */
     @Override
     public void execute(Ui ui, Access access, Storage storage) throws InvalidFileFormatException,
             ExclusionFileException {
@@ -56,6 +67,10 @@ public class ListDueCommand extends Command {
         ui.printDueChapters(dueDueChapters);
     }
 
+    /**
+     * Used to determine if this Command is the "exit" command.
+     * @return false as this is not the "exit" command
+     */
     @Override
     public boolean isExit() {
         return false;
