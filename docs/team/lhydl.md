@@ -28,7 +28,7 @@ ModuleList class. All these implementations are handled in the Task and TaskList
 
 #### Contributions to User Guide
 I created the general structure and format of the user guide. As for the program features, I added the details
-of the _help, addtask, listtask, done, deletetask_ and _exit_ features (Section 2.1, 2.12-1.15, and 2.10) in the user guide.
+of the _help, addtask, listtask, done, deletetask_ and _exit_ features (Section 2.1, 2.12-2.15, and 2.20) in the user guide.
 
 #### Contributions to the Developer Guide
 I contributed to the _setting up and getting started_ (Section 2) part of the developer guide. As for personal implementations, I 
