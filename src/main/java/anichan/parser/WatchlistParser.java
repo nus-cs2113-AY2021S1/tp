@@ -27,9 +27,9 @@ public class WatchlistParser extends CommandParser {
                                                                   + "30 alphanumeric characters and/or spaces!";
     private static final String WATCHLIST_INDEX_IS_EMPTY_ERROR = "Watchlist index cannot be empty!";
     private static final String WATCHLIST_INDEX_IS_ZERO_ERROR = "Watchlist index cannot be zero!";
-    private static final String NO_PARAMETER_TO_CHECK_ERROR = "There should be a one parameter to check!";
     private static final String INVALID_PARAMETER_ERROR = "Watchlist command only accepts the parameters: "
                                                     + "-n, -l, -s, and -d.";
+    private static final String NO_PARAMETER_TO_CHECK = "There should be a one parameter to check!";
 
     private static final int MAX_WATCHLIST_NAME_LENGTH = 30;
     private static final int DEFAULT_WATCHLIST_INDEX = -1;
@@ -122,7 +122,7 @@ public class WatchlistParser extends CommandParser {
      * @throws AniException when the watchlist creation parameters are invalid
      */
     private void checkCreationParameters(String[] parsedParts) throws AniException {
-        assert parsedParts.length != 0 : NO_PARAMETER_TO_CHECK_ERROR;
+        assert parsedParts.length != 0 : NO_PARAMETER_TO_CHECK;
         if (parsedParts.length != CREATION_REQUIRED_PARAMETER_COUNT) {
             throw new AniException(WATCHLIST_NAME_IS_EMPTY_ERROR);
         }
@@ -147,7 +147,7 @@ public class WatchlistParser extends CommandParser {
      * @throws AniException when the watchlist list parameters are invalid
      */
     private void checkListParameters(String[] parsedParts) throws AniException {
-        assert parsedParts.length != 0 : NO_PARAMETER_TO_CHECK_ERROR;
+        assert parsedParts.length != 0 : NO_PARAMETER_TO_CHECK;
         if (parsedParts.length > LIST_REQUIRED_PARAMETER_COUNT) {
             throw new AniException(WATCHLIST_COMMAND_TOO_MUCH_FIELDS_ERROR);
         }
@@ -165,7 +165,7 @@ public class WatchlistParser extends CommandParser {
      * @throws AniException when the watchlist modification parameters are invalid
      */
     private void checkModificationParameters(String[] parsedParts) throws AniException {
-        assert parsedParts.length != 0 : NO_PARAMETER_TO_CHECK_ERROR;
+        assert parsedParts.length != 0 : NO_PARAMETER_TO_CHECK;
         if (parsedParts.length != MODIFICATION_REQUIRED_PARAMETER_COUNT) {
             throw new AniException(WATCHLIST_INDEX_IS_EMPTY_ERROR);
         }
