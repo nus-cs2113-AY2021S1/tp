@@ -453,6 +453,7 @@ Instruction:
 1. `star LINK_NUMBER`  
 
 e.g. `star 1`
+
 Expected output:   
 
 ![Bookmark_star](Images/BookmarkUG/Figure11.png){:width="35%" height="35%"}
