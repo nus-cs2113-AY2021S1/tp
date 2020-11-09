@@ -320,6 +320,7 @@ Format: `calculate NUTRITION_NAME [START_TIME] [END_TIME]`
     * `calculate NUTRITION_NAME [START_TIME]`: calculate the amount of nutrition from the foods after a time in the intake list.
     * `calculate NUTRITION_NAME [START_TIME] [END_TIME]`: calculate the amount of nutrition from the foods within a time period in the intake list.
 * Two time time inputs should be in the format `yyyy-mm-ddTHH:mm`. For example: `2020-10-29T08:00`.
+* The recalculated foods feature are supported. When user adds foods without carbohydrate, protein, and fat, the amount of these three nutrition elements would be recalculated assuming that they contribute to the amount of calories equally.
 
 example usage:
 * `calculate carbohydrate 2020-10-29T08:00 2020-10-29T17:00`
