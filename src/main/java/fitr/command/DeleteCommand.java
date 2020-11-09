@@ -100,8 +100,12 @@ public class DeleteCommand extends Command {
                 break;
             }
             case COMMAND_GOAL: {
+                if (command.split(SPLIT_SPACE).length < 2) {
+                    Ui.printCustomError("Sorry, deletion index cannot be empty!");
+                    return;
+                }
                 if (!command.split(SPLIT_SPACE, 2)[1].matches("\\d+")) {
-                    Ui.printCustomError("Sorry, index deletion must be a positive number");
+                    Ui.printCustomError("Sorry, deletion index must be a positive number");
                     return;
                 }
                 int deletionIndex = Integer.parseInt(command.split(SPLIT_SPACE, 2)[1]);
@@ -116,9 +120,9 @@ public class DeleteCommand extends Command {
                 throw new FitrException();
             }
         } catch (IndexOutOfBoundsException e) {
-            Ui.printCustomError("Sorry, deletion index cannot be empty!");
-        } catch (NumberFormatException e) {
             Ui.printCustomError(ERROR_INDEX_DOES_NOT_EXIST);
+        } catch (NumberFormatException e) {
+            Ui.printCustomError("Sorry, index deletion must be a positive number");
         } catch (IOException e) {
             Ui.printCustomError(ERROR_IN_FILE);
         } catch (FitrException e) {
