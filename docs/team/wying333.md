@@ -20,5 +20,5 @@ Managed releases v2.1 on GitHub. (1 release)
 ### Enhancements to existing features:
 Wrote tests for existing features to increase test coverage.
 
-### Contributions to team-based tasks (main features of our project): 
+### Contributions to team-based tasks: 
 We work as a team, we always meet and work together. Everyone tried to contribute to every part. Thank you!
