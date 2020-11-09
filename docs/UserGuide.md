@@ -283,6 +283,8 @@ Output:
 ### Creating module folders: `makefolders`
 Make folders for all modules in the module list according to academic year.
 
+🚩: Folders will be created in the same location as where you ran termiNus from.
+
 Format: `makefolders`
 
 Example of usage:
@@ -294,10 +296,9 @@ Output:
 ```
     ____________________________________________________________
      Creating module folders...
-     Created folder/sub-folders for CS1010 at ./modules/AY2021S1/CS1010/
-     Created folder/sub-folders for CS1231 at ./modules/AY1920S1/CS1231/
-     Created folder/sub-folders for CS2113 at ./modules/AY2021S1/CS2113/
-     Created folder(s) for 3 module(s).
+     Created folder/sub-folders for GER1000 at C:\termiNus\modules\AY2021S1\GER1000
+     Created folder/sub-folders for CS2113 at C:\termiNus\modules\AY2021S1\CS2113
+     Created folder(s) for 2 module(s).
     ____________________________________________________________
 ```
 
