@@ -436,6 +436,9 @@ This displays a list of items (both tasks and events) containing the keyword “
 
 Note: The above figure is for illustration purpose only. The desired output depends on the items stored in the application.
 
+Note: The items printed by the find functions are in the order of how the user added them, this is to facilitate other commands 
+such as deleting the item.
+
 ![tip_find](images/tip_find.PNG)
 
 #### Finding an item from the task list: 
@@ -517,6 +520,9 @@ This prints all tasks stored in the application.
 Note: The above figure is for illustration purpose only. The desired output will
 differ if you have different tasks stored in the calendar list.
 
+Note: The events are printed in the order of how the user added them, this is to facilitate other commands such as marking a
+task as done or deleting a task.
+
 ![tips_printtask](images/tip_printTasks.PNG)
 
 ### Printing events:
@@ -536,6 +542,9 @@ This prints all events stored in the application.
 
 Note: The above figure is for illustration purpose only. The desired output will
 differ if you have different events stored in the calendar list.
+
+Note: The events are printed in the order of how the user added them, this is to facilitate other commands such as adding 
+additional information for an event or deleting an event.
 
 ![tips_printevents](images/tip_printEvents.PNG)
 
