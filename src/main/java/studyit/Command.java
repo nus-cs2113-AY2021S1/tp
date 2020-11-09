@@ -11,6 +11,18 @@ import academic.AcademicRun;
 
 public class Command {
 
+    /**
+     * Handles the user input command.
+     * It executes the command if it is a general command. Otherwise, it will
+     * pass the command to each respective mode to handle under handleNonGeneralCommand()
+     *
+     * @param command Raw string input of the user command
+     * @param commandType Identifies which command type it is (passed in by command parser)
+     * @param bookmarkRun Main component for bookmark mode
+     * @param flashcardRun Main component for flashcard mode
+     * @param timeTableRun Main component for timetable mode
+     * @param academicRun Main component for academic mode
+     */
     public static void executeCommand(String command, CommandType commandType,
                                       BookmarkRun bookmarkRun, FlashcardRun flashcardRun,
                                       TimeTableRun timeTableRun, AcademicRun academicRun) {
@@ -36,6 +48,16 @@ public class Command {
         }
     }
 
+    /**
+     * Handles the non-general command such as commands under different modes.
+     *
+     * @param command raw string of the user input
+     * @param commandType identifies the command type
+     * @param bookmarkRun Main component for bookmark mode
+     * @param flashcardRun Main component for flashcard mode
+     * @param timeTableRun Main component for timetable mode
+     * @param academicRun Main component for academic mode
+     */
     public static void handleNonGeneralCommand(String command, CommandType commandType,
                                                BookmarkRun bookmarkRun,
                                                FlashcardRun flashcardRun, TimeTableRun timeTableRun,

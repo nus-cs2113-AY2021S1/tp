@@ -4,10 +4,21 @@ import exceptions.InvalidModeException;
 
 public class CommandParser {
 
+    /**
+     * Standardize the command to lowercase and trimmed.
+     *
+     * @param text String text
+     * @return the standardized command
+     */
     public static String standardizeCommand(String text) {
         return text.trim().toLowerCase();
     }
 
+    /**
+     * Identifies the general commands.
+     * @param command raw string of the user input
+     * @return the command type of the command
+     */
     public static CommandType getCommandType(String command) {
         String commandModified = standardizeCommand(command);
 
@@ -28,6 +39,13 @@ public class CommandParser {
         }
     }
 
+    /**
+     * Parses which mode to switch to for "cd" command.
+     *
+     * @param command raw string of user input
+     * @return the destination mode
+     * @throws InvalidModeException The mode index inserted is not available
+     */
     public static Mode getDestinationMode(String command) throws InvalidModeException {
         String commandModified = standardizeCommand(command);
         int initialLength = "cd".length();

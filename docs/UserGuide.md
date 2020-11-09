@@ -20,6 +20,8 @@ This application currently has the following modes that you can access and use:
 1. Academic	    - 	Track your academic performance and store useful contact information
 1. Flashcard	- 	Memorize your study content better with our built-in flashcard
 
+<div style="page-break-after: always;"></div>
+
 ## About
 This app is targeted towards National University of Singapore (NUS) students studying in this current online 
 environment. This user guide will be providing information about how to use the Study It app by 
