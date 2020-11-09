@@ -178,9 +178,9 @@ Here's a list of all items:
 ├─ 2. CS2101
 │  │  Topics
 │  ├─ 1. Oral Presentation
-│  ├─ 2. Project Demo
+│  ├─ 2. Product Demo
 │  │  Tasks
-│  └─ 1. [E][✓] Project Demo (at: 2:00 PM 5 Nov 2020)
+│  └─ 1. [E][✓] Product Demo (at: 2:00 PM 5 Nov 2020)
 └─ 3. CS2113T
    │  Topics
    ├─ 1. Class Diagram
@@ -324,8 +324,11 @@ quiz CS2113T
 ```
 
 Sample output: 
+
 ```
-You are about to begin the quiz for CS2113T.You have 2 minutes.
+____________________________________________________________
+You are about to begin the quiz for CS2113T.
+____________________________________________________________
 ```
 
 #### 3.1.9 Viewing results for quizzes on a subject: `results` (Muthu)
@@ -346,8 +349,10 @@ results CS2113T
 
 Sample output: 
 ```
+____________________________________________________________
 Quiz 1: 1.0/2.0 -- Pass
 Quiz 2: 2.0/2.0 -- Excellent
+____________________________________________________________
 ```
 
 #### 3.1.10 Exporting data: `export` (Chin Hang) <a name="export-command"></a>
@@ -461,10 +466,10 @@ Sample output:
 ____________________________________________________________
 Here are the topic(s) under CS2101: 
 1. Oral Presentation
-2. Project Demo
+2. Product Demo
 ____________________________________________________________
 Here are the tasks(s) under CS2101: 
-1. [E][✘] Project Demo (at: 2:00 PM 5 Nov 2020)
+1. [E][✘] Product Demo (at: 2:00 PM 5 Nov 2020)
 ____________________________________________________________
 ```
 #### 3.2.3 Listing all items: `list all`
@@ -495,9 +500,9 @@ Here's a list of all items:
 ├─ 2. CS2101 (You are currently here)
 │  │  Topics
 │  ├─ 1. Oral Presentation
-│  ├─ 2. Project Demo
+│  ├─ 2. Product Demo
 │  │  Tasks
-│  └─ 1. [E][✓] Project Demo (at: 2:00 PM 5 Nov 2020)
+│  └─ 1. [E][✓] Product Demo (at: 2:00 PM 5 Nov 2020)
 └─ 3. CS2113T
    │  Topics
    ├─ 1. Class Diagram
@@ -515,19 +520,19 @@ Format: `add [TOPIC_NAME]`
 - The application will print the title of the topic you have added into the topic list, as well as the amount of topics you 
   have in the topic list on the command line.
 
-> ⚠️ **_WARNING:_** `[TOPIC_NAME]` is case-sensitive. `project pitch` and `PROJECT PITCH` will be registered as 2 different topics. 
->Adding flashcards in `project pitch` will not add the same flashcards in `PROJECT PITCH`.
+> ⚠️ **_WARNING:_** `[TOPIC_NAME]` is case-sensitive. `Product pitch` and `PRODUCT PITCH` will be registered as 2 different topics. 
+>Adding flashcards in `product pitch` will not add the same flashcards in `PRODUCT PITCH`.
 
 Example of usage: 
 ```
-add Project Pitch
+add Product Pitch
 ```
 
 Sample output:
 ```
 ____________________________________________________________
 Got it. I've added this topic:
-  Project Pitch
+  Product Pitch
 Now you have 3 topics in the list.
 ____________________________________________________________
 ```
@@ -543,13 +548,13 @@ Format: `delete topic [TOPIC_NUMBER]`
 have in the topic list on the command line.
 - `[TOPIC_NUMBER]` must be a **positive integer**.
 
-> 📝️️ **_NOTE:_** The TOPIC_NUMBER` of a topic is the number assigned to each topic when the user uses the 
+> 📝️️ **_NOTE:_** The `[TOPIC_NUMBER]` of a topic is the number assigned to each topic when the user uses the 
 >list command to print out the topics.
 
-> 📝️️ **_NOTE:_** After deletion of a topic, the `TOPIC_NUMBER` of topics in the list may change.
+> 📝️️ **_NOTE:_** After deletion of a topic, the `[TOPIC_NUMBER]` of topics in the list may change.
 
 > ⚠️ **_WARNING:_** It is impossible to retrieve data deleted by this command. Make sure you do not need the data
-> in this subject before you delete it!
+> in this topic before you delete it!
 
 Example of usage: 
 ```
@@ -560,7 +565,7 @@ Sample output:
 ```
 ____________________________________________________________
  Noted. I've removed this topic:
-   Project Pitch
+   Product Pitch
  Now you have 2 topics in the list.
 ____________________________________________________________
 ```
@@ -574,9 +579,9 @@ Format: `find [QUERY]`
 - searches all topics and tasks in the current subject with `[QUERY]` in its name and prints a list of them.
 - The application will print a list of topics and tasks with titles that contain the query.
 - The `find` command will only search the name of topics and tasks on this level.
-- Partial words will be matched. e.g. `Pro` will find `Project`.
+- Partial words will be matched. e.g. `Pro` will find `Product`.
 
-> ⚠️ **_WARNING:_** `[QUERY]` is case-sensitive. e.g. `project` will not find a topic or task with the name `PROJECT`.
+> ⚠️ **_WARNING:_** `[QUERY]` is case-sensitive. e.g. `product` will not find a topic or task with the name `PRODUCT`.
 
 Example of usage: 
 ```
@@ -587,11 +592,11 @@ Sample output:
 ```
 ____________________________________________________________
  Here are the matching topic(s) in your list:
-Project Demo
+Product Demo
 
 ____________________________________________________________
  Here are the matching task(s) in your list:
-[E][✓] Project Demo (at: 2:00 PM 5 Nov 2020)
+[E][✓] Product Demo (at: 2:00 PM 5 Nov 2020)
 ____________________________________________________________
 ```
 
@@ -603,10 +608,9 @@ Format: `topic [TOPIC_NAME]`
 - Access a pre-existing topic with a name of `[TOPIC_NAME]`.
 - Use this command if you want to access the topic level of a topic in the topic list.
 - The application will print the topic level of the subject specified in `[TOPIC_NAME]` on the command line.
-- This command is case-sensitive. e.g. `topic project` will not allow you to access a topic with the name `PROJECT`.
 - For more information on topic level commands, refer to <a href="#topic-level">3.3 Topic Level Features</a>
 
-> ⚠️ **_WARNING:_** `[TOPIC_NAME]` is case-sensitive. e.g. `topic project` will not access a topic with the name `PROJECT`.
+> ⚠️ **_WARNING:_** `[TOPIC_NAME]` is case-sensitive. e.g. `topic product` will not access a topic with the name `PRODUCT`.
 
 Example of usage:
 ```
@@ -629,6 +633,10 @@ Adds a todo task.
 
 Format: `todo [DESCRIPTION]`
 
+- Adds a todo task with a description of `[DESCRIPTION]`.
+- The application will print the description of the todo task you have added into the task list, 
+as well as the amount of tasks in the task list on the command line.
+
 Example of usage: 
 ```
 todo look up on what is active listening
@@ -647,10 +655,12 @@ ____________________________________________________________
 
 Adds a deadline task.
 
-Format:
+Format: `deadline [DESCRIPTION] /by [TIME]`
 
-`deadline [DESCRIPTION] /by [TIME]`
+- Adds a deadline task with a description of `[DESCRIPTION]` and a deadline of `[TIME]`.
 - A deadline must have a `[TIME]`. If you do not wish to set a time, add a <a href="#todo">todo</a> instead.
+- The application will print the description of the deadline task you have added into the task list, 
+as well as the amount of tasks in the task list on the command line.
 
 > 📝️️ **_NOTE:_** Add the time using the HH:MM DD-MM-YYYY format. 
 
@@ -673,7 +683,11 @@ ____________________________________________________________
 Add an event task.
 
 Format: `event [DESCRIPTION] /at [TIME]`
-- A deadline must have a `[TIME]`. If you do not wish to set a time, add a <a href="#todo">todo</a> instead.
+
+- Adds a deadline task with a description of `[DESCRIPTION]` and a timing of `[TIME]`.
+- An event must have a `[TIME]`. If you do not wish to set a time, add a <a href="#todo">todo</a> instead.
+- The application will print the description of the event task you have added into the task list, 
+as well as the amount of tasks in the task list on the command line.
 
 > 📝️️ **_NOTE:_** Add the time using the HH:MM DD-MM-YYYY format. 
 
@@ -697,11 +711,18 @@ Deletes a task from the current subject, given the task number.
 
 Format: `delete task [TASK_INDEX]`
 
+- Deletes the task with the index number of `[TASK_INDEX]`.
+- The application will print the description of the task you have deleted from the task list, as well as the amount of tasks you 
+have in the topic list on the command line.
 - `[TASK_INDEX]` must be a **positive integer**.
-- Task `[TASK_INDEX]` must **already exist in the task list**.
+
+> 📝️️ **_NOTE:_** The `TASK_INDEX` of a topic is the number assigned to each task when the user uses the 
+>list command to print out the tasks.
+
+> 📝️️ **_NOTE:_** After deletion of a task, the `TASK_INDEX` of tasks in the list may change.
 
 > ⚠️ **_WARNING:_** It is impossible to retrieve data deleted by this command. Make sure you do not need the data
-> in this subject before you delete it!
+> in this task before you delete it!
 
 Example of usage: 
 ```
@@ -760,7 +781,9 @@ quiz Java
 
 Sample output: 
 ```
-You are about to begin the quiz for Java. You have 1 minute.
+____________________________________________________________
+You are about to begin the quiz for Java.
+____________________________________________________________
 ```
 
 #### 3.2.14 Viewing results for quizzes on a topic: `results` (Muthu)
@@ -893,9 +916,9 @@ Here's a list of all items:
 ├─ 2. CS2101
 │  │  Topics
 │  ├─ 1. Oral Presentation
-│  ├─ 2. Project Demo
+│  ├─ 2. Product Demo
 │  │  Tasks
-│  ├─ 1. [E][✓] Project Demo (at: 2:00 PM 5 Nov 2020)
+│  ├─ 1. [E][✓] Product Demo (at: 2:00 PM 5 Nov 2020)
 │  └─ 2. [T][✘] look up on what is active listening
 └─ 3. CS2113T
    │  Topics
@@ -1014,11 +1037,11 @@ certain time limit. There are two types of quizzes :
 
 ##### Subject quiz
 This type of quiz helps you prepare for a particular subject.The application prints out the questions from the topics present in a subject.
-You have 2 minutes to complete the quiz.
+
 
 ##### Topic quiz
 This type of quiz helps you to prepare for a particular topic. The application prints out all the questions that have been saved in the specific topic .
-You have 1 minute to complete the quiz.
+
 
 > 📝️ ️  **_NOTE:_** Ensure that you start a quiz for a subject/topic that has been added to the application 
 > and has a flashcard. Else, the application will not start the quiz.
@@ -1067,7 +1090,7 @@ ____________________________________________________________
 > 📝️ ️  **_NOTE:_** If you stop the quiz, the application will only print the score for the particular quiz. It does not
 >print the list of incorrect answers.
 
-> ⚠️ **_WARNING:_** If you stop the quiz or if the timer ends for the quiz,you cannot go back to the same quiz to continue it. You will
+> ⚠️ **_WARNING:_** If you stop the quiz ,you cannot go back to the same quiz to continue it. You will
 > have to restart another quiz.
 
 #### 3.4.2 Viewing quiz results <a name ="result"> </a> (Muthu)
@@ -1321,9 +1344,6 @@ This section answers some common questions that you may have about **revisED**.
 **_Q:_ I accidentally saved a task as an event, when it is a deadline. Is there any method to change the type of the task?**<br>
 **_A:_** Unfortunately, no. You will have to delete the event using the `delete task [TASK_INDEX]`to delete the task, and then 
 add the task back using the `deadline [DESCRIPTION] /by [TIME]` command.
-
-**_Q:_ Isit possible to change the timing of the quizzes?**<br>
-**_A:_** No. This feature is not available in the current implementation.
 
 **_Q:_ Is there any limit to the number of topics/subjects that I can store in my application?**<br>
 **_A:_** No. You can store unlimited number of topics/subjects.   

@@ -30,7 +30,6 @@ public class SubjectCommandTest {
     private DeleteSubjectCommand deleteCommand;
     private FindSubjectCommand findCommand;
     private AccessSubjectCommand accessCommand;
-    private ListSubjectCommand listCommand;
     private Storage storage;
     @TempDir
     Path tempDir;
@@ -126,12 +125,6 @@ public class SubjectCommandTest {
     public void findSubjectCommand_NoSubjectInputWithoutSpace_throwsException() {
         findCommand = new FindSubjectCommand("find");
         assertThrows(InvalidSubjectException.class, () -> findCommand.execute(subjects, storage));
-    }
-
-    @Test
-    public void listSubjectCommand_validCommand_executesMethod() {
-        listCommand = new ListSubjectCommand();
-        listCommand.execute(subjects, storage);
     }
 
     @Test
