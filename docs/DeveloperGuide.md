@@ -678,10 +678,24 @@ while tasks which are due later are placed at the end of the task list. `Todo` t
 Their `LocalDateTime` variables are assigned the  `LocalDateTimeMax` value. This is to ensure that the sorting can be done
 for all tasks. 
 
-### 4.6 Results <a name="results-imp"></a>
+### 4.6 Implementation of Results feature <a name="results-imp"></a>
+### Updating results
 The `updateResult` method in the `Result`class updates the result for a given quiz by setting the score and the description.
 There are three categories of descriptions: `Fail` for getting a score which is lesser than half of the maximum score, `Pass`
 for obtaining a score above half of the maximum score and `Excellent` for getting the maximum score in a quiz.
+
+### 4.6.1 Printing out the results for a subject
+ For the results of a subject , the `printSubjectResults` method in the Ui class checks if there are any results of previous subject quizzes for that particular subject. 
+ 
+ ![sr](https://user-images.githubusercontent.com/46095141/98535180-a3141680-22c0-11eb-9e75-519ea76684bd.png)
+<sub>***Figure 4.6.1** UML sequence diagram for requesting results of the Maths subject</sub>
+
+### 4.6.2 Printing out the results for a topic
+For the results of a topic, the `printTopicResults` method checks if the topic has any any results from previous topic quizzes.
+The user has to access the particular subject level to use this command.
+
+![tr](https://user-images.githubusercontent.com/46095141/98535184-a3acad00-22c0-11eb-94fd-d911a346af11.png)
+<sub>***Figure 4.6.2** UML sequence diagram for requesting results of the Speed topic of the Maths subject*</sub>
 
 ### 4.7 Adding objects <a name="adding-imp"></a>
 Each of the add commands have an execute() method. The execute() method for AddSubjectCommand add subjects into the subject list, the execute() method for AddTopicCommand 
