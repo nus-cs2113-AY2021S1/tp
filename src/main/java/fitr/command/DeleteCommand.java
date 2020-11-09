@@ -41,6 +41,10 @@ public class DeleteCommand extends Command {
                 deletionDate = LocalDate.parse(deletionDate, DateManager.formatter).format(DateManager.formatter);
                 ExerciseList exerciseList = listManager.getExerciseList();
                 boolean isValidDate = false;
+                if (!command.split(SPLIT_SPACE)[2].matches("\\d+")) {
+                    Ui.printCustomError("Sorry, index deletion must be a positive number");
+                    return;
+                }
                 int deletionIndex = Integer.parseInt(command.split(SPLIT_SPACE)[2]);
                 for (int i = 0; i < exerciseList.getSize(); i++) {
                     if (exerciseList.getExercise(i).getDate().equals(deletionDate)) {
@@ -68,6 +72,10 @@ public class DeleteCommand extends Command {
                 deletionDate = LocalDate.parse(deletionDate, DateManager.formatter).format(DateManager.formatter);
                 FoodList foodList = listManager.getFoodList();
                 boolean isValidDate = false;
+                if (!command.split(SPLIT_SPACE)[2].matches("\\d+")) {
+                    Ui.printCustomError("Sorry, index deletion must be a positive number");
+                    return;
+                }
                 int deletionIndex = Integer.parseInt(command.split(SPLIT_SPACE)[2]);
                 for (int i = 0; i < foodList.getSize(); i++) {
                     if (foodList.getFood(i).getDate().equals(deletionDate)) {
@@ -91,6 +99,10 @@ public class DeleteCommand extends Command {
                 break;
             }
             case COMMAND_GOAL: {
+                if (!command.split(SPLIT_SPACE, 2)[1].matches("\\d+")) {
+                    Ui.printCustomError("Sorry, index deletion must be a positive number");
+                    return;
+                }
                 int deletionIndex = Integer.parseInt(command.split(SPLIT_SPACE, 2)[1]);
                 Ui.printCustomMessage("The following has been deleted from the list of goals: "
                         + listManager.getGoal(deletionIndex - 1).getDescription());
@@ -103,9 +115,9 @@ public class DeleteCommand extends Command {
                 throw new FitrException();
             }
         } catch (IndexOutOfBoundsException e) {
-            Ui.printCustomError(ERROR_INDEX_DOES_NOT_EXIST);
+            Ui.printCustomError("Sorry, deletion index cannot be empty!");
         } catch (NumberFormatException e) {
-            Ui.printCustomError("Sorry, index deletion must be a positive number");
+            Ui.printCustomError(ERROR_INDEX_DOES_NOT_EXIST);
         } catch (IOException e) {
             Ui.printCustomError(ERROR_IN_FILE);
         } catch (FitrException e) {
