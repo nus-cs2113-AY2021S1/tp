@@ -557,7 +557,7 @@ We can simulate this by changing the encoded text in the file. For example, a Cl
 * Start: 2020-09-21 1500
 * End: 2020-09-21 1600
 
-should be encoded as “[CLASS]|false|Math tutorial|2020-09-21 1500|2020-09-21 1600” in the events.txt file. 
+should be encoded as “[CLASS]\|false\|Math tutorial\|2020-09-21 1500\|2020-09-21 1600” in the events.txt file. 
 
 Corrupted forms can be in the following forms, but not limited to:
 * “[CLASS]\|Math tutorial\|2020-09-21 1500\|2020-09-21 1600”: the isDone parameter is missing from the encoded string.
