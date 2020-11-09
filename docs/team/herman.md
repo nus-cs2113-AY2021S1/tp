@@ -29,6 +29,8 @@ and keep track of their deadlines, tasks and any other important dates. It is wr
     * Improve handling of command in the case of mistyped inputs (extra spaces, capital letters, etc.)
     (Pull requests: [#124](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/124))
     * Improve format of printing flashcards under list command
+    * Added tests for subject-level commands
+    * Fix bugs discovered in PE dry run regarding input and output
 * **Contributions to the UG:**  TODO:
     * All [Subject level features](https://ay2021s1-cs2113t-w13-1.github.io/tp/UserGuide.html#subject-level) features.
     * Restructuring of explanation of all the commands to be consistent.
