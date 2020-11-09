@@ -92,3 +92,6 @@ Added implementation details for the following:
 1\. Integrated a third party library [(JColor)](https://github.com/dialex/JColor) to the project. [(#37)](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/37)
 
 2\. Integrated a third party libaray [(jansi)](https://fusesource.github.io/jansi) to the project. [(#87)](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/87)
+
+
+<div style="page-break-after: always;"></div>
