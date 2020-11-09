@@ -234,12 +234,18 @@ Delete events existing in the list, you can choose to delete all, auto delete or
   Format: `clear`
   
 * Switch the autoClear function on so that events happened one month ago will be automatically cleared
+<<<<<<< HEAD
   Format: `autoClear on`
   Note that this function will clear all events which happened one month ago no matter they are done or not.  
 
 * Switch the autoClear function off  
   Format: `autoClear off`
 
+=======
+  Format: `autoClear on` OR `autoClear off`
+  Note that this function will clear all events which happened one month ago no matter they are done or not.
+  
+>>>>>>> master
 * Clear events happened before a certain date
   Format: `clearBefore CLEAR_DATE`
   
@@ -274,7 +280,7 @@ Format: `repeat INDEX NUMBER_OF_WEEKS` OR `repeat all NUMBER_OF_WEEKS`
 
 Example: `repeat 3 1`, `repeat all 2`  
 
-Example Output:
+Example Output:<br>
 ![Repeat1](diagrams/repeat1.png)  
 ![Repeat2](diagrams/repeat2.png)
 
@@ -367,7 +373,7 @@ accuracy. If you really cannot find what is wrong, please report it as an issue 
 |Action|Command|Example|
 |------|-------|-------|
 |add|`EVENTTYPE EVENTNAME /t DATE TIME` `/e DATE TIME`(optional personal event and self study, compulsory for class, must not have for assignment) `/l LOCATION` OR `/o LINK` `/p PASSWORD`(optional)|`personalEvent Mom’s Birthday /t 2020-10-26 19:00 /l home`|
-|clear|`clear` OR `autoClear on` OR `autoClear off` OR `clearBefore CLEAR_DATE` |`clearBefore 2020-10-22`|
+|clear|`clear` OR `autoClear STATUS` OR `clearBefore CLEAR_DATE` |`clearBefore 2020-10-22`|
 |delete|`delete INDEX`|`delete 1`|
 |done|`done INDEX` |`done 1` |
 |edit|`edit`, then fill in each fields when prompted and press `ENTER` to move on to the next field|`edit 1` `ENTER` `class` `ENTER` `cs2113t` `ENTER` `\l school` `ENTER` `2020-10-26 19:00` `ENTER` `2020-10-26 20:00`|
@@ -383,4 +389,5 @@ accuracy. If you really cannot find what is wrong, please report it as an issue 
 |find locations belongs to a certain group|`FACULTY` or `HOSTEL`|`FOE`,`FOS`|
 |UserInfo|`student NAME` OR `professor NAME`|`student LeeJuntong`|
 |exit|`bye`|`bye`|
+
 
