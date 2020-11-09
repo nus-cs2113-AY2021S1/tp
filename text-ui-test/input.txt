@@ -359,4 +359,93 @@ estimate -wph 1 -hello
 estimate -wph -hello
   estimate  do-not-exist-file.txt
   estimate  do-not-exist-file.txt  -wph    123
+  estimate /.txt
+  estimate \.txt
+  estimate ?.txt
+  estimate :.txt
+  estimate *.txt
+  estimate <.txt
+  estimate >.txt
+  estimate |.txt
+workspace -wph 800
+workspace -hello
+workspace -----
+workspace script
+workspace script.
+workspace script.t
+workspace script.tx
+workspace script-wph.txt.txt-wph 700
+workspace script-wph.txt.txt .txt
+workspace script.txt hello
+workspace script.txt -hello
+workspace script.txt -----
+workspace script.txt -   wph 700
+workspace script.txt -wph 0
+workspace script.txt -wph -1
+workspace script.txt -wph 1 2
+workspace script.txt -wph one
+workspace script.txt -wph -hello
+workspace script.txt -wph 1 -wph 2
+workspace script.txt -wph 1 -hello
+workspace -wph -1
+workspace -wph one
+workspace -wph 1 -wph 2
+workspace -wph 1 -hello
+workspace -wph -hello
+  workspace  do-not-exist-file.txt
+  workspace  do-not-exist-file.txt  -wph    123
+  workspace /.txt
+  workspace \.txt
+  workspace ?.txt
+  workspace :.txt
+  workspace *.txt
+  workspace <.txt
+  workspace >.txt
+  workspace |.txt
+user
+user -n abc
+user -h
+user -d abc
+user ??
+workspace -l
+workspace -n abc
+workspace -n abc2
+workspace -n abc3
+workspace -n abc4
+workspace -n abc5
+workspace -n abc6
+workspace -n abc7
+workspace -n abc8
+workspace -l
+workspace -d abc
+workspace -l
+workspace -d abc 
+workspace -d abc 2
+workspace -l
+workspace -d abc2 
+workspace -d abc2  
+workspace -d abc2
+workspace -l
+workspace -s abc3
+workspace -d abc3
+workspace -d abc3 
+workspace -d abc3  
+workspace -d  abc3
+workspace -d  abc3 
+workspace -d abc3
+workspace -s abc3
+workspace -d abc3
+workspace -n abc3
+workspace -d abc3
+workspace -s abc3
+workspace -d abc3
+workspace -d abc4
+workspace -d abc5
+workspace -d abc6
+workspace -l
+workspace -s abc4
+workspace -l
+workspace -n hello dave
+workspace -n hello DAVE
+workspace -l
 exit

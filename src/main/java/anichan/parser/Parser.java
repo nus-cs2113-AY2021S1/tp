@@ -27,8 +27,11 @@ public class Parser {
     private static final String INIT_STRING = "";
 
     /**
-     * Prints the main menu of the application
-     * and requests for command.
+     * Parses the full command that the user provides.
+     * 
+     * @param fullCommand the user input to parse
+     * @return initialise {@Code Command} object
+     * @throws AniException when an error occurred while parsing the command
      */
     public Command getCommand(String fullCommand) throws AniException {
         LOGGER.log(Level.INFO, "Parse: " + fullCommand);
@@ -72,6 +75,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Performs input validation on the input before splitting it.
+     *
+     * @param input the input to parse
+     * @return the split input.
+     * @throws AniException if the input is empty
+     */
     public static String[] parseUserInput(String input) throws AniException {
         if (input == null || input.isEmpty()) {
             LOGGER.log(Level.WARNING, "Exception occurred");

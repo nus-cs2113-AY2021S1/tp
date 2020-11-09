@@ -25,16 +25,16 @@ class StorageManagerTest {
     private static final String SCRIPT_FILE_NAME = "script.txt";
     private static final String INVALID_TEST_DIRECTORY = "a" + File.separator + "b" + File.separator;
     private static final String VALID_TEST_DIRECTORY = "src" + File.separator + "test" + File.separator
-                                                       + "data" + File.separator + "StorageManagerTest"
-                                                       + File.separator;
+            + "data" + File.separator + "StorageManagerTest"
+            + File.separator;
     private static final String VALID_FILE_DIRECTORY = VALID_TEST_DIRECTORY + "DirectoryWithValidFile"
-                                                       + File.separator;
+            + File.separator;
     private static final String EMPTY_FILE_DIRECTORY = VALID_TEST_DIRECTORY + "DirectoryWithEmptyFileAndDirectory"
-                                                       + File.separator;
+            + File.separator;
     private static final String INVALID_FILE_DIRECTORY = VALID_TEST_DIRECTORY + "DirectoryWithInvalidFile"
-                                                       + File.separator;
+            + File.separator;
     private static final String INVALID_USER_DATA_DIRECTORY = VALID_TEST_DIRECTORY + "InvalidUserDataDirectory"
-                                                       + File.separator;
+            + File.separator;
 
     private static final String BOOKMARK_LOAD_TEST = "Loaded successfully.";
     private static final String BOOKMARK_LOAD_FAIL_TEST = "Not loaded successfully.";
@@ -178,7 +178,7 @@ class StorageManagerTest {
     }
 
     @Test
-    void loadBookmark_invalidBookmarkFormat_outputUnsuccessful() throws AniException {
+    void loadBookmark_invalidBookmarkFormat_unsuccessfulOutput() throws AniException {
         Bookmark bookmark = new Bookmark();
         String loadBookmarkResult = invalidFileSM.loadBookmark(ALL_INVALID_WORKSPACE, bookmark);
         assertEquals(BOOKMARK_LOAD_FAIL_TEST, loadBookmarkResult);

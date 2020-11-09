@@ -76,6 +76,7 @@ class WatchlistParserTest {
     @Test
     void parse_invalidWatchlistName_throwsAniException() {
         assertThrows(AniException.class, () -> watchlistParser.parse("-n                 "));
+        assertThrows(AniException.class, () -> watchlistParser.parse("-n alongwatchlistnamethatwouldfail"));
         assertThrows(AniException.class, () -> watchlistParser.parse("-n *-*"));
     }
 

@@ -28,6 +28,7 @@ public class BrowseParser extends CommandParser {
     private static final String MULTIPLE_PAGE_PARAM_ERROR = "Please specify only one -p parameter!";
     private static final String MULTIPLE_ORDER_PARAM_ERROR = "Please specify only one -o parameter!";
     private static final String MULTIPLE_SORT_PARAM_ERROR = "Please specify only one -s parameter!";
+    private static final String NON_POSITIVE_PAGE_NUMBER_ERROR = "Please enter a positive integer for the page!";
 
     private static final char CHAR_DASH = '-';
     private static final char CHAR_WHITESPACE = ' ';
@@ -41,6 +42,7 @@ public class BrowseParser extends CommandParser {
 
     private static final Logger LOGGER = AniLogger.getAniLogger(BrowseParser.class.getName());
     private static final int FIRST_PAGE = 1;
+
 
     private boolean sortFlag = false;
     private boolean orderFlag = false;
@@ -64,8 +66,22 @@ public class BrowseParser extends CommandParser {
         if (paramGiven.length > 1) {
             parameterParser(paramGiven);
             LOGGER.log(Level.INFO, BROWSE_SETTINGS_CHANGED_INFO);
+        } else {
+            checkForExtraParam(paramGiven[0]);
         }
         return new BrowseCommand(sortType, order, page);
+    }
+
+    /**
+     * Checks for any additional extra input which are invalid.
+     *
+     * @param extraParamCheck the parameter to check
+     * @throws AniException if additional input was found
+     */
+    private void checkForExtraParam(String extraParamCheck) throws AniException {
+        if (!extraParamCheck.isBlank()) {
+            throw new AniException(extraParamCheck.trim() + INVALID_OPTION);
+        }
     }
 
     /**
@@ -123,18 +139,16 @@ public class BrowseParser extends CommandParser {
 
     /**
      * Checks if it is the first string after split which should be blank.
-     * Possible vector of entering invalid input, example "browse invalidInput -s rating"
+     * Possible vector of entering invalid input, example "browse invalidInput -s rating".
      *
      * @param paramLoops is the current loop.
      * @param param the param string to check.
      * @return true if first loop, false if not first loop.
      * @throws AniException if not blank to prevent input injection.
      */
-    protected boolean firstSplitHandler(int paramLoops, String param) throws AniException {
+    private boolean firstSplitHandler(int paramLoops, String param) throws AniException {
         if (paramLoops == FIRST_LOOP) {
-            if (!param.isBlank()) {
-                throw new AniException(param + INVALID_OPTION);
-            }
+            checkForExtraParam(param);
             return true;
         }
         return false;
@@ -159,12 +173,15 @@ public class BrowseParser extends CommandParser {
      * Performs input validation of the page parameter and its field before setting it.
      *
      * @param paramParts the parameter and field String array
-     * @throws AniException if previously page was set already.
+     * @throws AniException if previously page was set already or the page is a negative number.
      */
     private void parsePageParam(String[] paramParts) throws AniException {
         paramFieldCheck(paramParts);
         paramExtraFieldCheck(paramParts);
         page = parseStringToInteger(paramParts[1].trim());
+        if (page <= 0) {
+            throw new AniException(NON_POSITIVE_PAGE_NUMBER_ERROR);
+        }
         if (pageFlag) {
             throw new AniException(MULTIPLE_PAGE_PARAM_ERROR);
         } else {
