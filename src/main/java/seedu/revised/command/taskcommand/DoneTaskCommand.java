@@ -7,7 +7,7 @@ import seedu.revised.ui.Ui;
  * Allows marking a <code>Task</code> in a <code>TaskList</code> as done.
  */
 public class DoneTaskCommand extends TaskCommand {
-    private String fullCommand;
+    private final String fullCommand;
 
     public DoneTaskCommand(String fullCommand) {
         this.fullCommand = fullCommand;
@@ -21,7 +21,7 @@ public class DoneTaskCommand extends TaskCommand {
      */
     public void execute(TaskList taskList) throws NumberFormatException {
         String[] message = this.fullCommand.split(" ");
-        int number = Integer.valueOf(message[1]);
+        int number = Integer.parseInt(message[1]);
         taskList.getList().get(number - 1).markAsDone();
         Ui.printDone(taskList.getList().get(number - 1));
     }

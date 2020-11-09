@@ -11,9 +11,9 @@ public class SorryTopicCommand extends TopicCommand {
     }
 
     /**
-     * Checks whether the the user exits the program.
+     * Checks whether the the user exits the subject.
      *
-     * @return <code>true</code> if user exits the program
+     * @return <code>true</code> If user exits the subject
      */
     public boolean isExit() {
         return false;

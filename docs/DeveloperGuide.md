@@ -74,7 +74,11 @@ Hello from
 ____________________________________________________________
 Hello! I'm revisED
 ____________________________________________________________
+____________________________________________________________
 Alright, What can I do for you?
+____________________________________________________________
+____________________________________________________________
+Type help for all available commands
 ____________________________________________________________
 ```
 
@@ -114,14 +118,19 @@ functionality. Here are the list of the main packages:
 * <a href="#storage">storage</a>
 
 ### 3.1 Card Package <a name="card"></a>
+
+![cardUML](https://user-images.githubusercontent.com/50734854/98472577-f2aa0200-222e-11eb-9b00-c23280986366.png)
+
+<sub>***Figure 3.1** UML class diagram for card package. quizcard package is omitted.*</sub>
+
 The Card package consists of different classes that holds information on the main functionalities of the application,
 and is split into 2 packages, quiz and task, as well as Subject, Topic and Flashcard classes.
-- Quiz Package
+- quizcard package
     * Quiz class
     * Result class
     * TopicQuiz class
     * SubjectQuiz class
-- Task Package
+- taskcard package
     * Deadline class
     * Event class
     * Task class
@@ -134,39 +143,49 @@ Each of the classes in the card package contains:
 * Getters and Setters of its own attributes
 * Methods that alter an instance of its own class
 
-#### quizcard Package <a name="quiz"></a>
+#### 3.1.1 quizcard Package <a name="quiz"></a>
+
+![QuizUML](https://user-images.githubusercontent.com/50734854/98472580-f76eb600-222e-11eb-92c4-d721895cfd41.png)
+
+<sub>***Figure 3.1.1** UML class diagram for list package*</sub>
+
 The `quizcard` package holds the necessary classes for the quiz functionality of this application. The following are
 the classes in the package. An abstract`Quiz` class, a `Result` class, a `SubjectQuiz` class and a `TopicQuiz` class.
 
-#### Quiz <a name="Qclass"></a>
-`Quiz` class is an abstract class in the `quizcard` package. It holds the `result ` variable to track the result of the quiz,
-the  `flashcards ` list to store the flashcards for which the quiz is initiated for and the`incorrectAnswers ` list. 
+#### 3.1.1.1 Quiz <a name="Qclass"></a>
+`Quiz` class is an abstract class in the `quizcard` package. It holds the `result` variable to track the result of the quiz,
+the  `flashcards` list to store the flashcards for which the quiz is initiated for and the`incorrectAnswers ` list. 
 The list stores the questions which the user did not answer correctly, along with the correct answer for the question and the answer
 provided by the user. The Quiz class also contains a `startQuiz` method and a `checkAnswer` method.
 
-#### SubjectQuiz <a name="Qsubject"></a>
+#### 3.1.1.2 SubjectQuiz <a name="Qsubject"></a>
 `SubjectQuiz` class inherits from the `Quiz` class and initiates the quiz for a subject.It also contains a `setupQuiz`method.
 
-#### TopicQuiz <a name="Qtopic"></a>
+#### 3.1.1.3 TopicQuiz <a name="Qtopic"></a>
 `TopicQuiz` class inherits from the `Quiz` class and initiates the quiz for a topic.It also contains a `setupQuiz`method.
 
-##### Result <a name="Qresult"></a>
+##### 3.1.1.4 Result <a name="Qresult"></a>
 `Result` class  stores the result of a quiz . It has three instance variables, namely the `score` variable
 which tracks the score during the quiz, the  `maxScore` variable which is the maximum score that you can get from doing the 
 quiz, while the  `description` variable will be a grade given to you depending on your performance.
 The  `UpdateResult` method  updates the score of the quiz during the quiz and changes the grade of the quiz. 
 
-#### taskcard Package <a name="task"></a>
+#### 3.1.2 taskcard Package <a name="task"></a>
+
+![TaskUML](https://user-images.githubusercontent.com/50734854/98472584-fb023d00-222e-11eb-8513-eb9493cae215.png)
+
+<sub>***Figure 3.1.2** UML class diagram for taskcard package*</sub>
+
 The `taskcard` package holds the necessary classes for the Task functionality of this application. The following are
 the classes in the package. A `Task` class, a `Todo` class, a `Deadline` class and an `Event` class.
 
-##### Task <a name="Ttask"></a>
+##### 3.1.2.1 Task <a name="Ttask"></a>
 The `Task` class is the superclass of `Todo`, `Deadline` and `Event`. It has attributes such as the description of the task-`String`
 and an attribute to check if the task is completed-`Boolean`. It holds basic getters for its attributes, getters such as getting the 
 status icon to check if a Task is done-`String`, and getters for the DateTime features of the Deadline and Event classes. It also has
  a toString methods to print the Task.
  
-###### Todo <a name="Ttodo"></a>
+##### 3.1.2.2 Todo <a name="Ttodo"></a>
 The `Todo` class is the class to store information on basic tasks of the user. It contains methods and attributes similar to the
 ones found in its superclass `Task`. It has an additional Override toString method, to differentiate between itself and other
 tasks, such as Deadline and Event.
@@ -180,7 +199,7 @@ Now you have 1 task in the list.
 ____________________________________________________________
 ```
 
-###### Deadline <a name="Tdeadline"></a>
+##### 3.1.2.3 Deadline <a name="Tdeadline"></a>
 The `Deadline` class is the class to store information on tasks of the user that has a deadline. It contains methods and attributes similar to the
 ones found in its superclass `Task`, and additional attributes to make it a `Deadline` Task, such as an additional dateTime attribute 
 to keep track of the deadline of the task-`LocalDateTime`, an Override toString method, to differentiate between itself and other tasks, such as Deadline 
@@ -196,7 +215,7 @@ Now you have 2 tasks in the list.
 ____________________________________________________________
 ```
 
-###### Event <a name="Tevent"></a>
+##### 3.1.2.4 Event <a name="Tevent"></a>
 The `Event` class is the class to store information of tasks of the user that is an event with a specific date and time occurrence. 
 It contains methods and attributes similar to the ones found in its superclass `Task`, and additional attributes to make it a `Deadline`
 Task, such as an additional dateTime attribute to keep track of the date and time of the event-`LocalDateTime`, an Override toString method,
@@ -212,18 +231,18 @@ Now you have 3 tasks in the list.
 ____________________________________________________________
 ```
 
-#### Flashcard  <a name="flashcard"></a>
+#### 3.1.3 Flashcard  <a name="flashcard"></a>
 The `Flashcard` class is a class to store information of flashcards. It has attributes such as the question
 and answer of each flashcard, a constructor, as well as getters for both question and answer of the flashcards.
 
 
-#### Subject <a name="subject"></a>
+#### 3.1.4 Subject <a name="subject"></a>
 The `Subject` class is a class to store information of subjects. It has various attributes such as the title of the 
 subject-`String`, a list of various topics in a subject-`TopicList`, a list of various tasks present in a subject-`TaskList`
 and a list of various results of the quiz of a subject-`ResultList`. It also consists of a constructor, getters to all of the
 attributes in the `Subject` class and a toString method to return the title of the subject.
 
-#### Topic <a name="topic"></a>
+#### 3.1.5 Topic <a name="topic"></a>
 The `Topic` class is a class to store information of topics. It has various attributes such as the title of the subject-`String`,
 a list of various flashcards in a topic-`List<Flashcard>`, and a list of the results for all topic quizzes-`ResultList`. It also 
 contains various constructors, getters for all its attributes, and a toString method that returns the title of the topic.
@@ -699,8 +718,10 @@ then the application not only prints the score, but it also prints the incorrect
 
 
 The following diagram shows how you can initiate the quiz for a subject.
+
 ![first](https://user-images.githubusercontent.com/46095141/98369799-7ec3fa00-2074-11eb-9f01-e656fcebc227.png)
 
+ <sub>***Figure 4.4.1** UML sequence diagram for subject quiz*</sub>
 
 #### Initiating a topic quiz
 Provided that you have used the `subject NAMEOFSUBJECT` command to access a subject,you can start a subject quiz by entering `quiz NAMEOFTOPIC`. Subsequently, the application retrieves the QuizTopicCommand
@@ -709,7 +730,10 @@ have any flashcards. The application then returns back to the `startQuiz` method
 to that of the SubjectQuiz class.
 
 The following diagram shows how you can initiate the quiz for a topic.
+
 ![topic](https://user-images.githubusercontent.com/46095141/98371459-2b06e000-2077-11eb-85dd-4850dbe7bba8.png)
+
+ <sub>***Figure 4.4.2** UML sequence diagram for topic quiz*</sub>
 
 > 📝️ **_NOTE:_** For both the subject quiz and the topic quiz, the application only prints out the incorrectAnswer
 >if the user has completed the quiz. If the user stops the quiz without completing it, then the application will only
@@ -775,6 +799,22 @@ The sequence diagram of accessing a `Subject` Maths is shown below.
 #### Accessing a Topic
 You can access a topic by entering `topic [TOPIC_NAME]`. The topic needs to be a topic that already exists in the list, and you can 
 add the `Topic` into the `TopicList` of a `Subject` by using the adding a topic feature, elaborated further in <a href="#adding-imp">4.7 Adding objects implementation</a>.
+
+### 4.9 Implementation of `list all` command
+While the syntax of the `list all` command is the same on the main, subject and topic levels,
+there are 3 separate ListAll___Commands for each level. Although all 3 commands classes call `Ui.printAll(subjects,activeSubject,activeTopic)`,
+the 3 classes are kept separate so that `printAll()` can recognise what object the user is accessing.
+
+The following sequence diagram shows how you can proccess the `list all` command from the subject level.
+
+![ListAllTopicSequenceDiagram](https://user-images.githubusercontent.com/50734854/98481821-11f95d00-2238-11eb-90c6-9bb081956da5.png)
+<sub>***Figure 4.9.1** UML sequence diagram for list all at topic level*</sub>
+
+If the `list all` command is given at the topic level, `printTreeTopic()` will check if each topic is the active topic each loop,
+instead of `Ui.printAll` checking each subject.
+
+> 📝️ **_NOTE:_** This command uses unicode characters such as "├" and "└". You may consider changing the characters to ASCII
+> characters only for the sake of compatibility.
 
 ## 5. Logging <a name = "logging"> </a>
 We use [java.util.logging](https://docs.oracle.com/en/java/javase/11/docs/api/java.logging/java/util/logging/package-summary.html) 
@@ -914,37 +954,187 @@ The following are the requirements that the application should satisfy:
 1. Users should be allowed to modify the saved data manually without causing disruption to the application operations.
 
 ## Appendix D: Glossary <a name="glossary"></a>
+### A
+1. Application - Refers to the revisED application which the user is using.
+1. `AccessSubjectCommand` - A command in the subjectcommand packagewhich returns the subject that the user wants to access.
+1. `AddSubjectCommand` - A command which adds a subject to the application.
+1. `AddTodoCommand` - A command which adds a todo task in the application.
+1. `AddDeadlineCommand` - A command which adds a deadline task in the application.
+1. `AddEventCommand` - A command which adds an event task to the application.
+1. `AccessTopicCommand` - A command which returns the topic that the user wants to access.
+1. `AddTopicCommand` - A command which adds a topic to the application.
+1. `AddFlashcardCommand` - A command which adds a flashcard in the application.
+1. attributes - variables in a class
+### B
+1. `BaseList` - An abstract class which all others lists inherit from.
+1. Builder Pattern - A methodology to ensure that the clarity does not decrease even if the
+number of parameters increase.
 
-* `Revised` - The main class which initiates the whole application.
-* `ui` - Package which contains the Ui class, in charge of user interactions.
-* `task` - Package which contains the task classes.
-* `Task` - An abstract class which Todo, Deadline and Event classes inherit from.
-* `Deadline` - A class which refers to a task with a deadline. Inherits from the Task class.
-* `Event` - A class which refers to an event. Inherits from the Task class.
-* `TaskList` - A class which initialises an ArrayList of tasks.
-* `Storage` - A package which holds the Storage class, which is in charge of storing and loading data
-into the application.
-* `parser` - A package which parses the user commands and initialises the necessary topics,subjects or tasks.
-* `FlashcardParser` - A class which reads the user commands to call the relevant Flashcard command.
-* `SubjectParser` - A class which reads the user commands to call the relevant Subject command.
-* `TaskParser` - A class which reads the user commands to call the relevant task command.
-* `TopicParser` - A class which reads the user commands to call the relevant topic command.
-* `card` - Package holds the necessary classes for the quiz, subject,topic and flashcard functionality.
-* `quiz` - Package holds the classes for the quiz functionality.
-* `Quiz` - An Abstract class that holds the result, list of flashcards and a list of incorrectAnswers for the 
+### C
+1. `card` - Package which contains the quizcard package, task package and the Flashcard,Topic and Subject classes.
+1. `command` - A package which holds the 4 command packages: subjectcommand,topiccommand,taskcommand,flashcardcommand. This package 
+is in charge of returning the relevant subject,task,topic or flashcard .
+1. `Command` - An abstract class which is inherited by all the command classes.
+1. CLI - Command Line Interface
+1. Checkstyle - Tool that checks the coding standards in the application.
+### D
+1. `DataLoadingException` - An exception thrown if the application is not able to load data.
+1. `Deadline` - A class which refers to a task with a deadline. Inherits from the Task class.
+1. `DeleteTaskCommand` - A command which deletes a task from the application.
+1. `DeleteSubjectCommand` - A command which deletes a subject from the application.
+1. `DeleteTopicCommand` - A command which deletes a topic from the application.
+1. `DeleteFlashcardCommand` - A command which deletes a flashcard from the application.
+1. `description` - A variable in the Result class which describes the grade obtained during a quiz.
+1. `description` - A variable in the Task class which describes the task to be completed.
+1.  `DateTime` - A variable in Event and Deadline classes which tracks the time and date at which the
+task has to be completed.
+1.  
+### E
+1. `Event` - A class which refers to an event. Inherits from the Task class.
+1. `ExitSubjectCommand` - A command which allows the user to exit the application.
+1. `ExitTopicCommand` - A command which allows the user to exit the subject menu to return to the main menu.
+1. `ExitTaskCommand` - A command which allows the user to exit the subject menu to return to the main menu.
+1. `ExitFlashcardCommand` - A command which allows the user to exit the topic menu to return to the subject menu.
+1. `exception` - A package which holds all the exceptions used in the application. These exceptions are delcared as individual
+classes, all extending the Exception class.
+1. `Exception ` - A class which holds conditions that the application would throw in the event that the input entered
+is incorrect.
+1. `execute` - A command in Command classes which executes the required action by the command.
+1. `export` - Command to export the data to external file.
+1. `Excellent` - A description for a quiz which states that the user obtained full marks for the quiz.
+### F
+1. `Flashcard` - A class which instantiates the flashcard object.Contains the question and answer feature of the flashcard.
+1. `FindSubjectCommand` - A command which finds the subject which the user requested for.
+1. `FindTaskCommand` - A command which finds the task which the user requested for.
+1. `FindTopicCommand` - A command which finds the topic which the user requested for.
+1. `FailedParseException` - An exception thrown in the SorrySubjectCommand if the application is not able to read the commands.
+1. `FlashcardParser` - A class which reads the user commands to call the relevant Flashcard command.
+1. `flashcardcommand` - A package which holds the different FlashcardCommand classes.
+1. `FlashcardCommand` - An abstract class that is inherited by all the other FlashcardCommand classes in the FlashCardCommand package.
+1. `flashcardexception` - A package which holds all the exceptions for methods related to flashcard operations.
+1. `Fail` - A description for a quiz which states that the user failed the quiz.
+1. `FINE` - A log level, which indicates the severity of the message.
+### G
+1. `goToSubject`- A method in the AccessSubjectCommand class which allows the application to transition to the
+Subject Level from the main level.
+1. `goToTopic` - A method in the AccessTopicCommand class which allows the application to transfer from 
+the Subject Level to the Topic Level.
+1.  GSON - Used to create the Json files in the external data file.
+1.  GRADLE -  An automated tool to build and compile the application.
+### H
+1. `HelpSubjectCommand` - A command which lists all the commands in the Main level.
+1. `HelpTopicCommand` - A command which lists all the commands in the Subject level.
+1. `Revised` - The main class which initiates the whole application.It is the name of the application as well.
+1. `ui` - Package which contains the Ui class, in charge of user interactions.
+1. `Ui` - A class which takes care of interaction with the users. Prints the correct output to the console.
+
+### I
+1. `InvalidFlashcardException` - An exception thrown if a flashcard is not created using the question ; answer format.
+1. `InvalidSubjectException` - An exception that is thrown if the user does not add a title of a subject for
+the commands in the main menu.
+1. `InvalidTopicException` - An exception thrown if the TopicCommands are used solely without a topic.
+1. `incorrectAnswers` - List which stores the questions that the user answered incorrectly, along with the answer provided
+by the user and the correct answer.
+1. `isExit` - A method which checks if the user wants to change levels/exit application. This
+method is implemented in all the command classes.
+1. I/O - Input/Output
+### J
+1. JSON - Javascript Object Notation. A form of data representation used in the external data files.
+1. Jekyll - A software used by Github to create websites.
+1. JUnit - A testing framework in Java that runs automated tests.
+### L
+1. `ListAllSubjectCommand` - A command which all the items in the application.
+1. `ListSubjectCommand` - A command which lists all the subjects in the application.
+1. `ListAllTopicCommand` - A command which prints all the topics in the Subject level.
+1. `ListTopicCommand` - A command which lists all the topics and tasks in the application.
+1. `ListTaskCommand` - A command which lists all the  tasks in the application.
+1. `ListFlashcardCommand` - A command which lists all the  flashcards in the application.
+1. `ListAllFlashcardCommand` - A command which lists all the items in the application in the topic menu.
+1. `list` - A package which holds all the lists used in the application.
+1.  `LocalDateTime` - A class in Java which contains both the time and date of a given task.
+1. `LocalDateTimeMax`- Maximum time available in the LocalDateTime library.
+1. `Logging` - Procedure of writing information to an external file, to track the flow of the program.
+### M
+1. `maxScore` - Maximum score obtainable from a quiz.
+1. Markdown - Syntax used in Github.
+### N
+1. `NoFlashcardException` - An exception thrown if a quiz is initiated for a subject or topic without flashcards.
+1. `NoSubjectException` - An exception thrown if the user requests for a subject that is not present in the application.
+1. `NoTopicException` - An exception thrown if the user requests for a topic that has not been added to the application.
+
+### P
+1. `parser` - A package which parses the user commands and initialises the necessary topics,subjects or tasks.
+1. `Pass` - A description for a quiz which states that the user passed the quiz.
+1.  PlantUML - Software used to create UML diagrams.
+
+### Q
+1. `quizcard` - Package which contains the Quiz,Result,SubjectQuiz,TopicQuiz classes.
+1. `Quiz` - An Abstract class that holds the result, list of flashcards and a list of incorrectAnswers for the 
 SubjectQuiz class and the TopicQuiz class to inherit from.
-* `SubjectQuiz` - Instantiated when the user calls for a quiz on a subject. 
-* `TopicQuiz` - Instantiated when the user calls for a quiz on a topic. 
-* `Result` - A class which stores the marks from a quiz and a description which indicates the performance of the user 
+1. `QuizSubjectCommand` - A command which initiates a quiz for a subject.
+1. `QuizTopicCommand` - A command which initiates a quiz for a topic.
+
+### R
+1. `Result` - A class which stores the marks from a quiz and a description which indicates the performance of the user 
 for that quiz.
-* `ResultList` - A class which holds an ArrayList of results.
-* `Flashcard` - A class which instantiates the flashcard object.Contains the question and answer feature of the flashcard.
-* `Subject` - A class which instantiates the subject object. Holds the title of the subject and lists of flashcards, 
+1. `result` - An object of the Result class.
+1. `ResultSubjectCommand` - A command which shows all the results of subjectQuizzes obtained for the subject.
+1. `ResultTopicCommand` - A command which shows all the results of topicQuizzes obtained for the topic.
+1. `RepeatedFlashcardException` - An exception thrown if the user tries to add a flashcard which already exists.
+1. `RepeatedSubjectException` - An exception thrown if the user adds a subect which is already present in the application.
+1. `ResultList` - A class which holds an ArrayList of Results.
+1. `RepeatedTopicException` - An exception thrown if the users adds a topic that is already present in the application.
+1. repo - The repository in Github which holds the revisED project.
+
+### S
+1. `SubjectQuiz` - Instantiated when the user calls for a quiz on a subject. 
+1. `Subject` - A class which instantiates the subject object. Holds the title of the subject and lists of flashcards, 
 results and topics.
-* `SubjectList` - A class which holds an ArrayList of Subjects.
-* `Topic` - A class which is instantiated when the user creates the topic. Holds the title of the topic, an arraylist of
+1. `subjectcommand` - A package which holds the different subjectcommand classes.
+1. `SubjectCommand` - An abstract class that is inherited by all the other SubjectCommand classes in the subjectcommand package.
+1. `SorrySubjectCommand` - A command which highlights invalid commands in the main menu.
+1. `SorryTopicCommand` - A command which highlights invalid commands in the subject menu.
+1. `SorryTaskCommand` - A command which highlights invalid commands in the subject menu.
+1. `SorryFlashcardCommand` - A command which highlights invalid commands in the topic menu.
+1. `storage` - A package which holds the Storage class, which is in charge of storing and loading data
+into the application.
+1. `Storage` - A class which is saves the data when the user exits the application and loads the data once the
+user starts the application.
+1. `storageexception` - A package which holds the DataLoadingException.
+1. `subjectexception` - A package which holds the exceptions thrown in the main menu.
+1. `SubjectParser` - A class which reads the user commands to call the relevant Subject command.
+1. `SubjectList` - A class which holds an ArrayList of Subjects.
+1. `score` - A variable in the Result class which tracks the score during the quiz.
+1. `setupQuiz` - Method in SubjectQuiz and TopicQuiz class which sets up the quiz by transfering the flashcards.
+1. `StorageBuilder` - Inner class of storage class and creates storage instances.
+
+### T
+1. `TopicQuiz` - Instantiated when the user calls for a quiz on a topic. 
+1.  `task` - A package which contains the TaskList class.
+1. `TaskList ` - A class which holds the list of classes.
+1. `taskcard` - Package which contains the task classes.
+1. `Task` - An abstract class which Todo, Deadline and Event classes inherit from.
+1. `Todo` - A class which refers to a task without deadline.Inherits from the Task class.
+1. `Topic` - A class which is instantiated when the user creates the topic. Holds the title of the topic, an arraylist of
 flashcards and an arraylist of results.
-* `TopicList` - A class which holds an ArrayList of Topics.
+1. `topiccommand` - A package which holds the different topiccommand classes.
+1. `TopicCommand` - An abstract class that is inherited by all the other TopicCommand classes in the topiccommand package.
+1. `taskcommand` - A package which holds the different taskcommand classes.
+1. `TaskCommand` - A  class that is inherited by all the other TaskCommand classes in the taskCommand package.
+1. `taskexception` - A package which holds the exceptions related to task operations.
+1. `TaskParser` - A class which reads the user commands to call the relevant task command.
+1. `TopicParser` - A class which reads the user commands to call the relevant topic command.
+1. `TopicList` - A class which holds an ArrayList of Topics.
+1. `TaskList` - A class which holds an ArrayList of Tasks.
+1. `TaskDeadlineException` - An exception thrown if an invalid deadline task is added to the applcation.
+1. `TaskEventException` - An exception thrown if an invalid event task is added to the application.
+1. `TaskTodoException` - An exception thrown if an invalid todo task is added to the application.
+1. `topicexception` - A package which holds the exceptions that are related to topic operations.
+1. `toString` - A method provided by Java to convert the current object into a String. This method has been overriden 
+in classes such as Event,Deadline to provide the accurate output .
+
+### U
+1.  `updateResult` - Method in Result class which updates the score of a quiz.
 
 ## Appendix E: Instructions for Manual Testing
 
