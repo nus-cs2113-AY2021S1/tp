@@ -1,6 +1,7 @@
 package fitr.user;
 
 import fitr.command.ViewCommand;
+import fitr.common.Messages;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.calorie.Calorie;
@@ -39,6 +40,7 @@ import static fitr.common.Messages.FORMAT_EDIT_HEIGHT;
 import static fitr.common.Messages.FORMAT_EDIT_WEIGHT;
 import static fitr.common.Messages.FORMAT_EDIT_GENDER;
 import static fitr.common.Messages.FORMAT_EDIT_FITNESS;
+import static fitr.common.Messages.NAME_FORMAT;
 import static fitr.common.Messages.FORMAT_EDIT_NAME;
 import static fitr.common.Messages.RANGE_EDIT_HEIGHT;
 import static fitr.common.Messages.RANGE_EDIT_WEIGHT;
@@ -110,9 +112,9 @@ public class User {
 
     public void setName(String name, Boolean isEdit) {
         while (!name.matches("^[a-zA-z ]+$") || name.trim().length() == 0) {
-            Ui.printCustomError("Only alphabetical and space inputs allowed for name! Please try again.");
-            Ui.printCustomError("FORMAT: " + FORMAT_EDIT_NAME);
+            Ui.printCustomError(NAME_FORMAT);
             if (isEdit) {
+                Ui.printCustomError("FORMAT: " + FORMAT_EDIT_NAME);
                 return;
             }
             Ui.printCustomMessage(INPUT_NAME);
@@ -267,12 +269,20 @@ public class User {
 
     public void setupFitnessLevel(String argument, Boolean isEdit) {
         int fitnessLevelInput = -1;
+        String input = null;
         while (fitnessLevelInput != 0 && fitnessLevelInput != 1 && fitnessLevelInput != 2) {
             try {
                 if (isEdit) {
-                    fitnessLevelInput = Integer.parseInt(argument.trim());
+                    // Only single digit input allowed
+                    if (argument.trim().length() == 1) {
+                        fitnessLevelInput = Integer.parseInt(argument.trim());
+                    }
                 } else {
-                    fitnessLevelInput = Integer.parseInt(Ui.read().trim());
+                    input = Ui.read().trim();
+                    // Only single digit input allowed
+                    if (input.length() == 1) {
+                        fitnessLevelInput = Integer.parseInt(input);
+                    }
                 }
                 if (fitnessLevelInput != 0 && fitnessLevelInput != 1 && fitnessLevelInput != 2) {
                     Ui.printCustomError(ERROR_INVALID_FITNESS_INPUT);
@@ -295,7 +305,7 @@ public class User {
         setFitnessLevel(fitnessLevelInput);
     }
 
-
+    // Returns user profile
     @Override
     public String toString() {
         return NAME_OUTPUT_HEADER + getName() + LINE_BREAK + AGE_OUTPUT_HEADER + getAge() + LINE_BREAK
