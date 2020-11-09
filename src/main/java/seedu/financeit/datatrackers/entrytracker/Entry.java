@@ -21,6 +21,16 @@ public class Entry extends DateTimeItem {
         super.setDefaultDateTimeFormat("");
     }
 
+    public Entry(Entry entry) {
+        this();
+        this.category = entry.category;
+        this.description = entry.description;
+        this.amount = entry.amount;
+        this.entryType = entry.entryType;
+        this.ledger = entry.ledger;
+        this.setTime(entry.time);
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -50,6 +60,7 @@ public class Entry extends DateTimeItem {
     }
 
     public void setEntryType(Common.EntryType entryType) {
+
         this.entryType = entryType;
     }
 

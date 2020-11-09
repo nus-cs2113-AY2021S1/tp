@@ -21,6 +21,7 @@ import static seedu.financeit.utils.ParamChecker.PARAM_INDEX;
 
 public class EditEntryHandler extends ParamHandler {
     RecurringEntry recurringEntry;
+    String prevEntry;
     private static EditEntryHandler handler = null;
 
     // Function of constructor is to set required params
@@ -41,15 +42,27 @@ public class EditEntryHandler extends ParamHandler {
         return recurringEntry;
     }
 
-    public void handlePacket(CommandPacket packet)
-            throws InsufficientParamsException, ItemNotFoundException {
-        handleParams(packet);
-
-        //If only param provided is /id or no params provided
+    public void checkIfParamToEditExists(CommandPacket packet) throws InsufficientParamsException {
         if (packet.getParamTypes().size() <= 1) {
             assert packet.getParam("/id") != null;
             throw new InsufficientParamsException("At least 1 param required for edit!");
         }
+    }
+
+    public void checkIfParamToEditEffective() throws InsufficientParamsException {
+        if (prevEntry.equals(recurringEntry.toString())) {
+            throw new InsufficientParamsException("Specified params do not differ from original information. "
+                + "Entry did not change.");
+        }
+    }
+
+    public void handlePacket(CommandPacket packet)
+            throws InsufficientParamsException, ItemNotFoundException {
+        prevEntry = recurringEntry.toString();
+        handleParams(packet);
+        //If only param provided is /id or no params provided
+        checkIfParamToEditExists(packet);
+        checkIfParamToEditEffective();
     }
 
     @Override
