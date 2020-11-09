@@ -10,6 +10,9 @@ import seedu.duke.exceptions.wordexceptions.FilterWordsInvalidWordType;
 
 import java.util.ArrayList;
 
+/**
+ * This class is used to split the commands into different partitions that can be processed individually.
+ */
 public class FilterCommandSlicer {
 
     /**
