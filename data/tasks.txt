@@ -3,3 +3,4 @@ ACT|false|meeting with CCA heads|2020-11-20|14:00|zoom|0
 EXAM|false|cs1010|2020-12-12|12:00|nus|1|this is online lesson
 LEC|true|cs1010|2020-11-09|15:00|nus|0
 LEC|false|cs1010|2020-11-16|15:00|nus|0
+
