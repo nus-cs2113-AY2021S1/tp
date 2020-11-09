@@ -32,6 +32,6 @@ public class CommandViewMember extends Command {
     @Override
     public String help() {
 
-        return "You can use 'hr list' command this way:\n" + "hr list\n";
+        return "Syntax: hr list\n";
     }
 }

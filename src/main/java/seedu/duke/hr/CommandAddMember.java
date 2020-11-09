@@ -43,7 +43,7 @@ public class CommandAddMember extends Command {
         String output;
         if (!isNumber(savedInput.getArg("p"))) {
             output = "OOPS!!! The format of the phone number given is incorrect.\n";
-            output = output.concat("The phone number should be a whole number less than 19 digits.");
+            output = output.concat("The phone number should be a whole number not more than 18 digits.");
             return output;
         }
         long phone = Long.parseLong(savedInput.getArg("p"));
@@ -69,7 +69,6 @@ public class CommandAddMember extends Command {
     @Override
     public String help() {
 
-        return "You can use 'hr add' command this way:\n"
-                + "hr add /n NAME /p PHONE_NUMBER (INTEGER) /e EMAIL /r ROLE\n";
+        return "Syntax: hr add /n NAME /p PHONE_NUMBER (INTEGER) /e EMAIL /r ROLE\n";
     }
 }

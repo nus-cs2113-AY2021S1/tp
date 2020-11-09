@@ -14,7 +14,7 @@ public class CommandListConnection extends Command {
 
     @Override
     public String help() {
-        return "hr list connections\n";
+        return "Syntax: hr list connections\n";
     }
 
     public int validate(UserInput input) {
