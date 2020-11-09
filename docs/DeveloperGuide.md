@@ -17,6 +17,7 @@ Wan Shi Jie Brendan<br>
 <div style="page-break-after: always;"></div>
 
 ## Table of Contents
+
 * [1. Introduction](#intro)
 * [2. Getting Started](#getting_started)<br>
     * [2.1. Prerequisites](#prerequisites)<br>
@@ -339,6 +340,12 @@ This feature allows the user to delete unwanted events. `DeleteCommand#Execute` 
 ### 4.11 Find 
 
 ### 4.12 Print locations
+This feature allows users to know locations in a certain faculty, including blocks and lecture theatres when users input
+abbreviations of various faculties (e.g. FOS).
+
+The sequence diagram belows shows what happens when user input any faculty abbreviation: <br>
+![PrintAreaLocationsCommand Sequence Diagram](diagrams/printAreaLocationsCommand.png)<br>
+*Figure 4.12 Sequence Diagram for print area locations function*
 
 ### 4.13 Study Time
 
