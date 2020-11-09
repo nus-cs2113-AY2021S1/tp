@@ -23,7 +23,6 @@ public class BrowseCommand extends Command {
     private int animePerPage;
 
     //Constant values used by Browse
-    private static final int MIN_PAGE_NUM = 1;
     private static final int ZERO_BASE_OFFSET = 1;
     private static final int ZERO_INDEX = 0;
 
@@ -61,12 +60,16 @@ public class BrowseCommand extends Command {
     private static final String OUT_OF_BOUND_PAGE_ERROR = "Invalid Page size!";
     private static final String ASSERT_SORT_TYPE = "sortType should be < 3";
     private static final String ASSERT_ORDER_TYPE = "order should be < 2";
+    private static final String ASSERT_POSITIVE_PAGE_NUM = "Trying to set non-positive page value!";
+    private static final String ASSERT_NON_NEGATIVE_INDEX_TO_PRINT = "indexToPrint should not be negative";
     private static final String SORT_ID_DESCENDING = "Sorting by ID descending";
     private static final String SORT_ID_ASCENDING = "Sorting by ID ascending";
     private static final String SORT_NAME_ASCENDING = "Sorting by Name Ascending (A to Z)";
     private static final String SORT_NAME_DESCENDING = "Sorting by Name Descending (Z to A)";
     private static final String SORT_RATING_ASCENDING = "Sorting by Rating Ascending (low to high)";
     private static final String SORT_RATING_DESCENDING = "Sorting by Rating Descending (high to low)";
+    private static final String INDEX_TO_PRINT_SET = "indexToPrint set to: ";
+    private static final String PAGE_SET = "page set to: ";
 
     private static final Logger LOGGER = AniLogger.getAniLogger(BrowseCommand.class.getName());
 
@@ -97,9 +100,10 @@ public class BrowseCommand extends Command {
      */
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
-        ArrayList<Anime> usableList = animeData.getAnimeDataList();
         assert (sortType < 4) : ASSERT_SORT_TYPE;
         assert (order < 3) : ASSERT_ORDER_TYPE;
+        assert (page > 0) : ASSERT_POSITIVE_PAGE_NUM;
+        ArrayList<Anime> usableList = animeData.getAnimeDataList();
         sortBrowseList(usableList);
         String result = buildBrowseOutput(usableList);
         setSortType(RESET_SORT);
@@ -156,6 +160,7 @@ public class BrowseCommand extends Command {
      * @throws AniException if the page supplied too big to be used.
      */
     private void checkForPageBound(ArrayList<Anime> usableList) throws AniException {
+        assert indexToPrint >= 0 : ASSERT_NON_NEGATIVE_INDEX_TO_PRINT;
         if (indexToPrint >= usableList.size()) {
             LOGGER.log(Level.WARNING, OUT_OF_BOUND_PAGE_WARNING + indexToPrint);
             throw new AniException(OUT_OF_BOUND_PAGE_ERROR);
@@ -192,13 +197,17 @@ public class BrowseCommand extends Command {
     }
 
     /**
-     * Sets the page to the supplied parameter unless it is a negative value.
+     * Sets the page to the supplied parameter and calculate the indexToPrint.
      *
      * @param page the page that was requested
      */
     public void setPage(int page) {
-        this.page = Math.max(page, MIN_PAGE_NUM);
-        indexToPrint = (page - ZERO_BASE_OFFSET) * getAnimePerPage();
+        assert page > 0 : ASSERT_POSITIVE_PAGE_NUM;
+        this.page = page;
+        page = page - ZERO_BASE_OFFSET;
+        indexToPrint = page * getAnimePerPage();
+        LOGGER.log(Level.INFO, INDEX_TO_PRINT_SET + indexToPrint);
+        LOGGER.log(Level.INFO, PAGE_SET + page);
     }
 
     /**
