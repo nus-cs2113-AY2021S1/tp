@@ -83,27 +83,27 @@ public class Task {
             reminderString = "off";
         }
         switch (reminderString) {
-            case "on":
-                reminder.setIsOn(true);
-                if (time != null) {
-                    reminder.setTime(time);
-                } else if (startTime != null) {
-                    reminder.setTime(LocalTime.of(getStartTime().getHour() - 1,
-                            getStartTime().getMinute()));
-                } else {
-                    throw new InvalidReminderException();
-                }
-                break;
-            case "off":
-                reminder.offReminder();
-                break;
-            default:
+        case "on":
+            reminder.setIsOn(true);
+            if (time != null) {
+                reminder.setTime(time);
+            } else if (startTime != null) {
+                reminder.setTime(LocalTime.of(getStartTime().getHour() - 1,
+                        getStartTime().getMinute()));
+            } else {
                 throw new InvalidReminderException();
+            }
+            break;
+        case "off":
+            reminder.offReminder();
+            break;
+        default:
+            throw new InvalidReminderException();
         }
     }
 
     /**
-     * Returns the reminder string
+     * Returns the reminder string.
      *
      * @return Yes/No string depending on whether task has a reminder
      */
@@ -116,7 +116,7 @@ public class Task {
     }
 
     /**
-     * creates a new reminder for the task
+     * creates a new reminder for the task.
      *
      * @return the new reminder created
      */
@@ -125,7 +125,7 @@ public class Task {
     }
 
     /**
-     * gets the already existing reminder for the task
+     * gets the already existing reminder for the task.
      *
      * @return the reminder object for the task
      */
@@ -134,7 +134,7 @@ public class Task {
     }
 
     /**
-     * sets reminder for the task
+     * sets reminder for the task.
      *
      * @param reminderString the user input, which is either on or off
      * @param reminderTime   the time the reminder is set to

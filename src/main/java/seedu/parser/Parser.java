@@ -26,7 +26,7 @@ public class Parser {
      *
      * @param rawInput the raw user input
      * @return the command to be executed
-     * @throws UnknownCommandException     the the method can't make sense of the input, default case
+     * @throws UnknownCommandException    the the method can't make sense of the input, default case
      * @throws InvalidCommandException    if input format is wrong
      * @throws InvalidTaskNumberException for edit/delete, if task index is wrong
      */
