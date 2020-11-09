@@ -1,9 +1,12 @@
 package seedu.duke.commands;
 
 import seedu.duke.DukeException;
-import seedu.duke.model.Model;
 import seedu.duke.model.ListType;
+import seedu.duke.model.Model;
 import seedu.duke.model.itemlist.TaskList;
+
+import java.util.Arrays;
+import java.util.HashSet;
 
 // @@author GuoAi
 
@@ -16,6 +19,7 @@ public class CategoryCommand extends Command {
             + ": Sets the category of a task identified by the task index number in the task list\n"
             + "     Parameters: INDEX c/CATEGORY\n"
             + "     Example: " + COMMAND_WORD + " 1 c/Academics";
+    public static final HashSet<String> ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("c"));
 
     private int index;
     private String category;

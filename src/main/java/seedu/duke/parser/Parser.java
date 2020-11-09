@@ -75,6 +75,11 @@ public class Parser {
             checkAllowedArguments(argumentsMap, CalendarCommand.ALLOWED_ARGUMENTS);
             return new CalendarCommand(argumentsMap);
         case CategoryCommand.COMMAND_WORD:
+            try {
+                Integer.parseInt(description);
+            } catch (NumberFormatException e) {
+                throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
+            }
             return CommandCreator.createCategoryCommand(commandString, argumentsMap);
         case ListCommand.COMMAND_WORD:
             HashSet<String> allowedDescrptions = new HashSet<>(Arrays.asList("tasks", "expenses", "modules", "links",
