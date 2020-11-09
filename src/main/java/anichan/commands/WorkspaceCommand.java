@@ -44,10 +44,10 @@ public class WorkspaceCommand extends Command {
     /**
      * Depending on the option supplied, it can perform one of the following operations.
      * <ul>
-     *     <li>Creates a new workspace</li>
-     *     <li>Switches to workspace</li>
-     *     <li>Lists all workspace</li>
-     *     <li>Delete a workspace</li>
+     *     <li>Creates a new workspace.</li>
+     *     <li>Switches to workspace.</li>
+     *     <li>Lists all workspace.</li>
+     *     <li>Delete a workspace.</li>
      * </ul>
      *
      * @param animeData      used to retrieve anime information
