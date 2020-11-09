@@ -92,8 +92,8 @@ public class EditEntryHandler extends ParamHandler {
         prevEntry = entry.toString();
         this.handleParams(packet);
         checkCatAndEntryType();
-        checkIfParamToEditEffective();
         checkIfParamToEditExists(packet);
+        checkIfParamToEditEffective();
     }
 
     @Override

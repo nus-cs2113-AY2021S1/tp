@@ -201,8 +201,10 @@ public class EntryTracker {
                     String.format("%s edited!", entry.getName()));
             ManualTrackerSaver.getInstance().save();
         } catch (InsufficientParamsException | IncompatibleParamsException | ItemNotFoundException exception) {
-            // If the edited entry is not valid, add back in the previous entry.
-            entryList.addItem(prevEntry);
+            // If the edited entry is not valid, and if an entry is retrieved, add back in the previous entry.
+            if (prevEntry != null) {
+                entryList.addItem(prevEntry);
+            }
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         } finally {
