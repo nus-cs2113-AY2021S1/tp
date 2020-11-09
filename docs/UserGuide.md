@@ -829,7 +829,7 @@ _Table 1: Commands supported in Fitr_
 
 Action | Format | Examples
 ------ | ------ | --------
-Add food entry | `food NAME_OF_FOOD /NUMBER_OF_CALORIES` or `food NAME_OF_FOOD /CALORIES_OF_FOOD AMOUNT_OF_FOOD` | `food pear /57` or `food apple /50 1`
+Add food entry | `food NAME_OF_FOOD /CALORIES_OF_FOOD` or `food NAME_OF_FOOD /CALORIES_OF_FOOD AMOUNT_OF_FOOD` | `food pear /57` or `food apple /50 1`
 Add exercise entry | `exercise NAME_OF_EXERCISE /CALORIES_BURNT` | `exercise run /360`
 Add food goal | `goal food GOAL_DESCRIPTION` | `goal food eat more`
 Add smart food goal | `goal food < NUMBER_OF_CALORIES` or `goal food > NUMBER_OF_CALORIES` | `goal food < 2000` or `goal food > 3800`
