@@ -36,6 +36,7 @@ public class Model {
     }
 
     // @@author MuhammadHoze
+
     /**
      * Clears all lists in the model.
      *
@@ -48,7 +49,8 @@ public class Model {
         ModuleList modules = (ModuleList) getList(ListType.MODULE_LIST);
         ExpenseList expenses = (ExpenseList) getList(ListType.EXPENSE_LIST);
 
-        if (links.size() != 0 || books.size() != 0 || modules.size() != 0 || tasks.size() != 0 || expenses.size() != 0) {
+        if (links.size() != 0 || books.size() != 0 || modules.size() != 0 || tasks.size() != 0
+                || expenses.size() != 0) {
             getList(ListType.TASK_LIST).clearItems();
             getList(ListType.BOOK_LIST).clearItems();
             getList(ListType.LINK_LIST).clearItems();
@@ -108,6 +110,7 @@ public class Model {
     }
 
     // @@author iamchenjiajun
+
     /**
      * Saves the list from file.
      *
