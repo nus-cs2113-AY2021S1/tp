@@ -28,10 +28,12 @@ three items in the shuffled WordList. It enables the user to get three random wo
 ### 2.3. Contributions to Documentation
 * Added the Words List Commands section in the User Guide, which comprises of: Noun, Verb, Adjective, List Words, 
 and Three Words.
+* Added and formatted the table of Command Summary in the User Guide.
+* Proofread and fix grammar and formatting issues in the User Guide.
 
 ### 2.4 Contributions to DG
 * Added the UML class diagram for the WordList class to show how Words objects are stored in the WordList, and how they 
 are implemented.
 
 ### 2.5 Contributions to Team-Based Tasks
-* Edited the help function for Fluffle
+* Edited the help function for Fluffle.
