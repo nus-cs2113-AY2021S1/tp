@@ -75,7 +75,7 @@ public class ReviseCommand extends Command {
      * @param storage to get the cards from storage file
      * @param toRevise chapter object to revise
      * @return list of card objects in the chapter to be revised
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException if the is not found
      */
     private ArrayList<Card> getCards(Access access, Storage storage, Chapter toRevise)
             throws FileNotFoundException {

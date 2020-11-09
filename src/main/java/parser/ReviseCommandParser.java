@@ -20,8 +20,8 @@ public class ReviseCommandParser {
     /**
      * Parses the given arguments in the context of the ReviseCommand.
      *
-     * @param commandArgs
-     * @param accessLevel
+     * @param commandArgs input arguments of the command
+     * @param accessLevel access level of the user
      * @return a ReviseCommand
      * @throws IncorrectAccessLevelException if the user input is not of the expected format
      * @throws InvalidInputException if the command cannot be executed at the access levels
