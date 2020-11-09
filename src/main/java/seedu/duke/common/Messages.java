@@ -18,14 +18,12 @@ public class Messages {
 
     public static final String MESSAGE_GOODBYE = "Farewell student. Hope to see you again soon!";
     public static final String MESSAGE_ADD_TASK = "Got it. I've added this task:\n       ";
-    public static final String MESSAGE_ADD_BOOK = "Got it. I've added this book: \n";
+    public static final String MESSAGE_ADD_BOOK = "Got it. I've added this book: ";
     public static final String MESSAGE_ADD_LINK = "Got it. I've added this link:\n       ";
-    public static final String MESSAGE_ADD_NO_TASK = "There are no tasks to add.";
     public static final String MESSAGE_ADD_EXPENSE = "Got it. I've added this expense item:\n       ";
     public static final String MESSAGE_ADD_MULTIPLE_TASK = "Got it. I've added these tasks:\n       ";
     public static final String MESSAGE_STATUS_FIRST = "\n     Now you have ";
     public static final String MESSAGE_STATUS_LAST = " task(s) in the list.";
-    public static final String MESSAGE_LINK_STATUS_FIRST = "\n     Now you have ";
     public static final String MESSAGE_LINK_STATUS_LAST = " link(s) in the list.";
     public static final String MESSAGE_EXPENSE_STATUS_LAST = " expense items in the list.";
 
@@ -164,8 +162,6 @@ public class Messages {
     public static final String MESSAGE_NEW_EXPENSE_FILE = "I have created a new expenses.txt file for you :) "
             + "Type some commands and see it.";
 
-    public static final String EXCEPTION_FIND = "~Error~ The keyword of a find command cannot be empty.\n "
-            + "\t The format is: find <keyword>";
     public static final String EXCEPTION_LINK_TYPE = "~Error~ Please input a correct link type:\n "
             + "\t t/lecture\n"
             + "\t t/tutorial\n"
@@ -180,8 +176,7 @@ public class Messages {
             + "     \"delete module <index number>\"\n"
             + "     \"delete expense <index number>\"\n"
             + "     \"delete expenses currency/CURRENCY\"\n"
-            + "     \"delete expenses date/yyyy-MM-dd\"\n"
-            + "     \"delete expenses currency/CURRENCY date/yyy-MM-dd\"";
+            + "     \"delete expenses date/yyyy-MM-dd\"";
     public static final String EXCEPTION_INVALID_DONE_COMMAND = "~Error~ Please input a valid done command "
             + "using the format: \n\n"
             + "     \"done task <index number>\"\n"
@@ -194,13 +189,16 @@ public class Messages {
             + "     \"list links\"\n"
             + "     \"list modules\"\n"
             + "     \"list books\"\n"
-            + "     \"list expenses\"";
+            + "     \"list expenses\"\n"
+            + "     \"list expenses currency/CURRENCY\"\n"
+            + "     \"list expenses date/yyyy-MM-dd\"\n"
+            + "     \"list expenses for/{DAY,WEEK,MONTH,YEAR}\"";
     public static final String EXCEPTION_INVALID_FIND_COMMAND = "~Error~ Please input a valid find command "
             + "using the format: \n\n"
-            + "     \"list tasks k/KEYWORD\"\n"
-            + "     \"list expenses k/KEYWORD\"\n"
-            + "     \"list modules k/KEYWORD\"\n"
-            + "     \"list links k/KEYWORD\"\n"
-            + "     \"list books k/KEYWORD\"\n";
+            + "     \"find tasks k/KEYWORD\"\n"
+            + "     \"find expenses k/KEYWORD\"\n"
+            + "     \"find modules k/KEYWORD\"\n"
+            + "     \"find links k/KEYWORD\"\n"
+            + "     \"find books k/KEYWORD\"\n";
     public static final String EXCEPTION_INVALID_URL = "~Error~ Invalid url entered. Please refer to the User Guide.";
 }
