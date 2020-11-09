@@ -82,15 +82,17 @@ There are 18 features available in Nav@NUS. The following are instructions for u
 ### 3.1. Bus Features
 This section provides the instruction for all features categorised under the main feature of navigation by bus.
 
-<!-- @@author wamikamalik -->
-### 3.1.1. List available help: ```/help```
+<!-- @@author Lezn0-->
+### 3.1.1. List available help: ```/help``` -Yuxin
 This command lists a set of features along with their respective commands available to users.
 
 Format: <code>/help</code>
 
 The expected outcome is as follows:<br><br>
 <img src="UG_Figures/help1.png" alt="inputCommand" width=600><br>
+<!-- @@author -->
 
+<!-- @@author wamikamalik -->
 ### 3.1.2. Check for direct bus: ```/route``` - Wamika
 This command displays all bus routes from one location to another that do not require changing buses.
 
@@ -214,8 +216,8 @@ To see the complete list of buses:
 1. Type <code>/allbus</code> into the CLI and press <kbd>Enter</kbd>.<br><br>
 <img src="UG_Figures/allbus1.png" alt="inputCommand" width=700><br>
 <!-- @@author -->
-
-### 3.1.6. List all bus stops in NUS: ```/liststops```
+<!-- @@author Lezn0 -->
+### 3.1.6. List all bus stops in NUS: ```/liststops``` - Yuxin
 This command lists all bus stops in NUS.
 
 The format for this command is as follows:<br> 
@@ -228,7 +230,7 @@ To see the description of each location:
 
 1. Type <code>/liststops</code> into the CLI and press <kbd>Enter</kbd>.<br><br>
 <img src="UG_Figures/listOutput.png" alt="inputCommand" width=800><br>
-
+<!-- @@author -->
 <!-- @@author mrwsy1 -->
 ### 3.1.7. List all faculties in NUS: ```/faculty``` - Shuyi
 This command lists out all faculties in NUS.
@@ -305,7 +307,8 @@ To find the information of a dining outlet with the name containing <strong>Jewe
 This section provides the instruction for all features categorised under the main feature of personalisation of application
 to your needs.
 
-### 3.3.1. Add a favourite command: `/addfav`
+<!-- @@author Lezn0 -->
+### 3.3.1. Add a favourite command: `/addfav` -Yuxin
 This command adds a valid command with an optional description to your list of favourites
 
 The format of this command is as follows:<br>
@@ -340,7 +343,7 @@ These are the steps to follow:
 to store the command in to your list of favourites with no description  as shown in the figure below .
 
 <img src="UG_Figures/addfav2.png" alt="output" width=600><br>
-
+<!-- @@author -->
 <!-- @@author mrwsy1 -->
 ### 3.3.2. List all favourite commands: `/listfav` - Shuyi
 This command displays all the commands in your list of favourite commands, along with their index and description.
@@ -358,7 +361,7 @@ These are the steps to follow:
 <img src="UG_Figures/listfav1.png" alt="output" width=600><br>
 <!-- @@author -->
 
-### 3.3.3. Delete a favourite command: `/deletefav`
+### 3.3.3. Delete a favourite command: `/deletefav` 
 This command deletes the command that you have specified from the list of favourite commands.
 
 Format: <br>

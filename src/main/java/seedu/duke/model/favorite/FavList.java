@@ -90,7 +90,7 @@ public class FavList {
      * Returns a boolean that represents whether a similar Fav object is found in the FavList.
      *
      * @param item Fav object to be checked
-     * @return true if a similar Fav object is found in the FavList, or false if it is not found in the FavList
+     * @return true if a similar Fav object is found in the FavList, else returns false.
      */
     public static boolean contains(Fav item) {
         int count = 0;
