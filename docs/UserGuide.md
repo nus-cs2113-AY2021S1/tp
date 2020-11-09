@@ -868,6 +868,8 @@ Here are some key pointers:
 
 At any point, if you **want to see a preview of which Chapters are going to be due within the upcoming week**, all you have to do is enter the `preview` command. Below is an example of an execution of the `preview` command.
 
+<div style="page-break-after: always;"></div>
+
 * ***Step 1***: Key the **`preview`** command **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
@@ -879,8 +881,6 @@ At any point, if you **want to see a preview of which Chapters are going to be d
 <p align="center">
   <img src="UG_Images/previewComplete.png" width="700" alt="Preview Command Result"/>
 </p>
-
-<br><br>
 
 ### 3.4.3. Adding chapters to your list of excluded modules: `exclude`
 (by Yan An)
@@ -900,6 +900,8 @@ Here are some key pointers:
 * This command can be **called from any Level**
 * This command **checks if the Chapter/Module** you are adding into the Exclusion List **exists**, so the List will not be filled with non-existing exclusions.
 * Do note that the name of the Chapter/Module you provide has to be in the correct case as our check is **case-sensitive**.
+
+<div style="page-break-after: always;"></div>
 
 **Example:**
 
@@ -931,6 +933,8 @@ Example of ***`exclude chapter`***
   <img src="UG_Images/excludeChapter.png" width="700" alt="Exclude Command Chapter mode: ChapterName Command"/>
 </p>
 
+<div style="page-break-after: always;"></div>
+
 * ***Step 2***: Key the **Module name** of the Module that contains Chapter that you wish to exclude from your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
@@ -949,8 +953,6 @@ Example of ***`exclude chapter`***
   <img src="UG_Images/excludeChapterResult.png" width="900" alt="Exclude Command Chapter mode: Result"/>
 </p>
 
-
-
 ### 3.4.4. Removing chapters from the list of excluded modules: `include`
 (by Yan An)
 
@@ -963,6 +965,8 @@ The `include` command allows you to **remove** a single Chapter or every Chapter
 The `include` command has two options for MODULE_OR_CHAPTER:
 * ***module***: This option allows you to use `include` to remove all the Chapters from a Module from the Exclusion List.
 * ***chapter***: This option allows you to use `include` to remove a Chpater from the Exclusion List.
+
+<div style="page-break-after: always;"></div>
 
 Here are some key pointers:
 * This command can be **called from any Level**
@@ -991,6 +995,7 @@ Example of ***`include module`***
   <img src="UG_Images/includeModuleResult.png" width="900" alt="Include Command Module mode: Result"/>
 </p>
 
+<div style="page-break-after: always;"></div>
 
 Example of ***`include chapter`***
 * ***Step 1***: Key the **`include chapter`** command **into the prompt** as shown below and **press *[Enter]***
