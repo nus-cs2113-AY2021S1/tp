@@ -1,5 +1,8 @@
 package seedu.duke.common;
 
+//@@author GuoAi-reused
+//Reused from https://github.com/GuoAi/ip with minor modifications
+
 /**
  * Container for user visible messages.
  */

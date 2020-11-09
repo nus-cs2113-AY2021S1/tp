@@ -219,7 +219,7 @@ public class Storage {
         return newTask;
     }
 
-    // @@author
+    // @@author MuhammadHoze
     /**
      * Returns a book corresponding to arguments from a line loaded from file.
      *
@@ -255,6 +255,7 @@ public class Storage {
         return newBook;
     }
 
+    // @@author Cao-Zeyu
 
     /**
      * Returns a link corresponding to arguments from a line loaded from file.
@@ -342,6 +343,4 @@ public class Storage {
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
         }
     }
-
-    //@@author
 }

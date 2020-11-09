@@ -52,9 +52,8 @@ Hello from...
 
 **Take note:**
 
-    1. Priority 0: Default , Priority 1: Highest (As number increases, priority decreases) 
-    2. 
-    3.
+    1. Priority 0: Default , Priority 1: Highest (As number increases, priority decreases). 
+    2. Detailed descriptions are given for each command. Please follow exactly.
 
 ### Adding a task: `add`
 Adds a new item to the list of todo tasks.
@@ -1218,3 +1217,6 @@ Find an item with matching keyword | `find {tasks,links,books,expenses,modules} 
 Clear everything | `clear all` | `clear all`
 Getting help | `help` | `help`
 Exiting the program | `bye` | `bye`
+
+
+<h1 align="center">End of termiNus User Guide</h1>
