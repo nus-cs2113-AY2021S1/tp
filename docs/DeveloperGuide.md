@@ -323,8 +323,10 @@ will again be in the `_*food*_` state. To go back up to the canteen state write 
 |&%STOP | stops the reading | canteen | not reading |
 
 ### UML diagram 
-
-
+##### `DataBase#init()`
+![Alt text](UML_diaghrams/database_feature/DataBase_init.png)
+##### `DataBase#search()`
+![Alt_text](UML_diaghrams/database_feature/DataBase_search.png)
 
 
 ## Product scope
