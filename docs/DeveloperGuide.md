@@ -131,7 +131,7 @@ This section describes the design overview of the *25HoursADay* application.
 
 ### Architecture
 
-The figure below shows the overall design of the application. 
+The figure below shows the overall design of the application. <br/>
 ![overall_architecture](images/Overall_Architecture.JPG)
 
 The sequence diagram below shows how the components interact with each other for the scenario where the user issues the command `todo`.
@@ -202,15 +202,25 @@ The following sequence diagram shows how the `execute()` operation works to add 
  
  ![add_command_module_sd](images/add_command_module_SD.JPG)
 
-Note: A self-call to a specific method to add the new `CalendarItem` to the `CalendarList` is done based on the type of
+* Note: A self-call to a specific method to add the new `CalendarItem` to the `CalendarList` is done based on the type of
  `CalendarItem` being added. The `CalendarItem` object created is also based on the type of `CalendarItem` being added. 
+ 
+#### Check the validity of a module code
+This feature is facilitated by `ModuleChecker` class and `NusModule` class.
+
+The `NusModule` class consists of an empty constructor, a getter and setter to retrieve and set the module code of a `NusModule` object.
+The `ModuleChecker` class has a `generateNusModsMap()` which generates a `HashMap<String, NusModule>`. This is achieved by reading
+the JSON file from the NUS Mod website and parser it into a list of Module objects.
+
+After which, the isModuleValid function will analyse the module code entered by the user, and returns TRUE if the code is 
+valid, FALSE otherwise.
 
 ### Mark a task as done feature
 This feature is facilitated by `DoneCommand`.
 The following sequence diagram show how the `execute()` operation works:<br/>
 ![done_command_sd](images/done_command_SD.JPG)
 
-Note: The command first extracts the task number from the user input prior to `convertTaskNumberToCalendarNumber`. 
+* Note: The command first extracts the task number from the user input prior to `convertTaskNumberToCalendarNumber`. 
 There will be a check in the function `markTaskAsDone(calendarNumber)` to ensure that the calendar item being marked as done is a task. 
 
 
@@ -232,14 +242,14 @@ This feature is facilitated by `DeleteInfoCommand`.
 The following sequence diagram show how the `execute()` operation of `DeleteInfoCommand` works:<br/>
 ![deleteInfoCommand_SD](images/deleteInfoCommand_SD.JPG)
 
-Note: The commands first extracts the event number from the user input prior to `convertEventNumberToCalendarNumber`. 
+* Note: The commands first extracts the event number from the user input prior to `convertEventNumberToCalendarNumber`. 
 
 ### Delete a calendar item feature
 This feature is facilitated by `DeleteCommand`.
 The following sequence diagram show how the `execute()` operation works:<br/>
 ![deleteCommand_sd](images/deleteCommand_SD.JPG)
 
-Note: The command first extracts the task/event number from the user input prior to `convertTaskNumberToCalendarNumber` and `convertEventNumberToCalendarNumber` respectively. 
+* Note: The command first extracts the task/event number from the user input prior to `convertTaskNumberToCalendarNumber` and `convertEventNumberToCalendarNumber` respectively. 
 
 
 ### Find a calendar item feature
@@ -249,6 +259,21 @@ The following sequence diagram shows how the `execute()` operation works when th
 
 The search for tasks or events feature has a similar sequence diagram with a slight difference to the varying condition. Depending
 on whether the user searches for tasks or events, the condition will check for the instance of either the task or event respectively.
+
+### Prioritize a task feature 
+This feature is facilitated by `PrioritizeCommand`. 
+The following sequence diagram shows how the `execute()` operation works when the user wants to prioritize a task:<br/>
+![PrioritizeCommand](images/PrioritizeCommand_SD.png)
+
+* Note: It first extracts the task number from the user input prior to convertTaskNumberToCalendarNumber. 
+There will be a check in the function `markTaskAsImportant(calendarNumber)` to ensure that the calendar item being marked as important is a task.
+
+### Print prioritized tasks feature
+This feature is facilitated by `PrintPriorityCommand`.
+The following sequence diagram shows how the `execute()` operation works when the user wants to print all the prioritized tasks:<br/>
+![PrintPriorityCommand_SD](images/PrintPriorityCommand_SD.png)
+
+* Note: It uses the `getIsImportant()` function of task items to identify whether it is a prioritized task.
 
 ### Print tasks feature
 This feature is facilitated by `PrintTasksCommand`.
@@ -265,21 +290,6 @@ This feature is facilitated by `PrintTimelineCommand`.
 The following sequence diagram show how the `execute()` operation works when the user wants to print the personalised calendar:<br/>
 ![PrintTimelineCommand_SD](images/PrintTimelineCommand_SD.png)
 
-### Prioritize a task feature 
-This feature is facilitated by `PrioritizeCommand`. 
-The following sequence diagram shows how the `execute()` operation works when the user wants to prioritize a task:<br/>
-![PrioritizeCommand](images/PrioritizeCommand_SD.png)
-
-Note: It first extracts the task number from the user input prior to convertTaskNumberToCalendarNumber. 
-There will be a check in the function `markTaskAsImportant(calendarNumber)` to ensure that the calendar item being marked as important is a task.
-
-### Print prioritized tasks feature
-This feature is facilitated by `PrintPriorityCommand`.
-The following sequence diagram shows how the `execute()` operation works when the user wants to print all the prioritized tasks:<br/>
-![PrintPriorityCommand_SD](images/PrintPriorityCommand_SD.png)
-
-Note: It uses the `getIsImportant()` function of task items to identify whether it is a prioritized task.
-
 ### Print progress feature
 This feature is facilitated by `PrintProgressCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to see the progress of all tasks:<br/>
@@ -290,7 +300,7 @@ This feature is facilitated by `PrintSuggestionCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to see suggestions about preparing which tasks:<br/>
 ![PrintSuggestionCommand_SD](images/PrintSuggestionCommand_SD.png)
 
-Note: It uses `getEarliestDeadline()` function to get the earliest ordinary deadline in the list, and `getEarImportantDeadline()` function to get the earliest important deadline in the list.
+* Note: It uses `getEarliestDeadline()` function to get the earliest ordinary deadline in the list, and `getEarImportantDeadline()` function to get the earliest important deadline in the list.
 Similarly, it uses`getFirstTodo()` function to get the first added todo task in the list, and `getFirImportantTodo()` function to get the first added important todo task in the list.
 If no corresponding items, the functions will return null. Then it passes the return results to Ui, and Ui prints suggestions with respect to the importance and urgency of them.
 
@@ -303,7 +313,7 @@ The following sequence diagram shows how the `execute()` operation works when th
 The following sequence diagram shows how the `execute()` operation works when the user decide to see the countdown of exams or deadlines:<br/>
 ![countdown_deadlines_exams_SD](images/countdown_deadlines_exams_SD.jpg)
 
-Note: Before printing the countdown, `countdown()` function will calculate the countdown of exams or deadlines, and the countdowns for
+* Note: Before printing the countdown, `countdown()` function will calculate the countdown of exams or deadlines, and the countdowns for
 exams or deadlines will be sorted in ascending sequence by function `sortDeadlinesAndPrintCountdown()` or `sortExamsAndPrintCountdown()`
 
 
@@ -318,22 +328,9 @@ The local file is updated every time when the user adds or deletes an item,
 or changes the attributes of the item by calling the function `writeToFile()`.
 ![storage_store_data_SD](images/storage_store_data_SD.jpg)
 
-Note: if the local file and directory does not exist at the beginning, `createFile()` will be called to create a new 
+* Note: if the local file and directory does not exist at the beginning, `createFile()` will be called to create a new 
 directory, and a new text file.
 
-
-### Check the validity of a module code
-This feature is facilitated by `ModuleChecker` class and `NusModule` class.
-
-The `NusModule` class consists of an empty constructor, a getter and setter to retrieve and set the module code of a `NusModule` object.
-The `ModuleChecker` class has a `generateNusModsMap()` which generates a `HashMap<String, NusModule>`. This is achieved by reading
-the JSON file from the NUS Mod website and parser it into a list of Module objects.
-
-After which, the isModuleValid function will analyse the module code entered by the user, and returns TRUE if the code is 
-valid, FALSE otherwise.
-
-The following sequence diagram further illustrates the above process. 
-![ModuleChecker_SD](images/UML%20for%20DG-ModuleChecker.png)
 
 <!-- @@author Jingming517 -->
 ## Documentation

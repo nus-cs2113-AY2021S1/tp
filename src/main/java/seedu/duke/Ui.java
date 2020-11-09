@@ -350,7 +350,7 @@ public class Ui {
      * @param itemIndex      item index in the calendar list.
      * @param printNumbering item index printed to the user.
      */
-    public static void printFindTaskMessage(String command, CalendarList calendarList, boolean isFound,
+    public static void printFindItemMessage(String command, CalendarList calendarList, boolean isFound,
                                             int itemIndex, int printNumbering) {
 
         if (!isFound) { // first instance when keyword is found

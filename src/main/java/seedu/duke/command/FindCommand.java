@@ -78,7 +78,7 @@ public class FindCommand extends Command {
                 if (item instanceof Event) {
                     if (item.toString().toLowerCase().contains(keyword.toLowerCase())) {
                         itemCount++;
-                        Ui.printFindTaskMessage(command, calendarList, isFound, i, itemCount);
+                        Ui.printFindItemMessage(command, calendarList, isFound, i, itemCount);
                         isFound = true;
                     }
                 }
@@ -91,7 +91,7 @@ public class FindCommand extends Command {
                 if (item instanceof Task) {
                     if (item.toString().toLowerCase().contains(keyword.toLowerCase())) {
                         itemCount++;
-                        Ui.printFindTaskMessage(command, calendarList, isFound, i, itemCount);
+                        Ui.printFindItemMessage(command, calendarList, isFound, i, itemCount);
                         isFound = true;
                     }
                 }
@@ -102,7 +102,7 @@ public class FindCommand extends Command {
                 CalendarItem item = calendarList.getCalendarList().get(i);
                 if (item.toString().toLowerCase().contains(keyword.toLowerCase())) {
                     itemCount++;
-                    Ui.printFindTaskMessage(command, calendarList, isFound, i, itemCount);
+                    Ui.printFindItemMessage(command, calendarList, isFound, i, itemCount);
                     isFound = true;
                 }
 
