@@ -895,6 +895,7 @@ If you encounter any errors, take note of the following warning.
 >This is because “back” and "show answer" are used as commands to exit and reveal the answer in the test mode
 >respectively.
 >If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
+>
 >![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png){:height="80%" width="80%"}
 
 ### 4.3 Listing flashcards: `list`
