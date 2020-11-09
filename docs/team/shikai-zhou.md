@@ -22,7 +22,7 @@ This is a summary of the enhancements I implemented:
     - Description: This is a core functionality that allows users to add shows into the showlist.
 - Wrote EditCommand [#32](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/32), [#41](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/41)
     - Description: Another key feature that allows users to change information about the shows they are watching. 
-- Wrote UpdateTimeLimitCommand [#54](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/54)
+- Co-wrote UpdateTimeLimitCommand [#54](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/54)
     - Description: Allows user to set or change their watchtime limit.
 - Wrote the TimeParser Utility [#121](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/121)
     - Description: A utility function that handles making sense of the user's time input.
