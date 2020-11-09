@@ -12,8 +12,46 @@ enhancements.
 
 ## Table of Contents
 
-* Table of Contents
-{:toc}
+- [1. Setting up, getting started](#1-setting-up-getting-started)
+- [2. Design - Wamika](#2-design---wamika)
+  * [2.1. Architecture](#21-architecture)
+    + [2.1.1 Ui Component](#211-ui-component)
+    + [2.1.2. Logic Component](#212-logic-component)
+    + [2.1.3. Model Component](#213-model-component)
+    + [2.1.4. Storage Component](#214-storage-component)
+- [3. Implementation](#3-implementation)
+  * [3.1. Finding a direct route (`/route` Feature) - Wamika](#31-finding-a-direct-route-route-feature---wamika)
+  * [3.2. Full Route Display (`/routemap` Feature) - Johnson](#32-full-route-display-routemap-feature---johnson)
+  * [3.3. Bus at bus stop finder (`/bus` Feature) - Wong Heng Chin](#33-bus-at-bus-stop-finder-bus-feature---wong-heng-chin)
+  * [3.4. List All stops (`/liststops` Feature) - Yuxin](#34-list-all-stops-liststops-feature---yuxin)
+  * [3.5. Dining options finder (`/dine` Feature) - Shuyi](#35-dining-options-finder-dine-feature---shuyi)
+  * [3.6. Find specific dining outlets (`/dineinfo` Feature) - Shuyi](#36-find-specific-dining-outlets-dineinfo-feature---shuyi)
+  * [3.7. Favourite command adder (`/addfav` Feature) - Yuxin](#37-favourite-command-adder-addfav-feature---yuxin)
+  * [3.8. Removing specific delete command (`/deletefav` Feature)](#38-removing-specific-delete-command-deletefav-feature---johnson)
+  * [3.9. Favourite command executor (`/execfav` Feature) - Wong Heng Chin](#39-favourite-command-executor-execfav-feature---wong-heng-chin)
+  * [3.10. Modifying the description of a favourite command (`/descfav` Feature) - Wamika](#310-modifying-the-description-of-a-favourite-command-descfav-feature---wamika)
+  * [3.11. Performing similarity checks - Wamika](#311-performing-similarity-checks---wamika)
+  * [3.12 Displaying most searched bus stop on start-up - Johnson](#312-displaying-most-searched-bus-stop-on-start-up---johnson)
+  * [3.13 Resetting search frequencies of bus stops (`/reset` Feature)](#313-resetting-search-frequencies-of-bus-stops-reset-feature---johnson)
+- [4. Appendix A: Product Scope](#4-appendix-a-product-scope)
+  * [4.1. Target user profile - Johnson](#41-target-user-profile---johnson)
+  * [4.2. Value Proposition - Johnson](#42-value-proposition---johnson)
+- [5. Appendix B: User Stories - Wamika](#5-appendix-b-user-stories---wamika)
+- [6. Appendix C: Non-Functional Requirements - Wamika](#6-appendix-c-non-functional-requirements---wamika)
+- [7. Appendix D: Glossary](#7-appendix-d-glossary)
+- [8. Appendix E: Instructions for manual testing](#8-appendix-e-instructions-for-manual-testing)
+  * [E.1 Launch and Shutdown](#e1-launch-and-shutdown)
+  * [E.2 Check for direct bus - Wamika](#e2-check-for-direct-bus---wamika)
+  * [E.3 Check for full bus route - Johnson](#e3-check-for-full-bus-route---johnson)
+  * [E.4 Check for buses at a bus stop - Wong Heng Chin](#e4-check-for-buses-at-a-bus-stop---wong-heng-chin)
+  * [E.5 Search for dining options within a faculty - Shuyi](#e5-search-for-dining-options-within-a-faculty---shuyi)
+  * [E.6 Search for specific dining outlet - Shuyi](#e6-search-for-specific-dining-outlet---shuyi)
+  * [E.7 Add a favourite command - Yuxin](#e7-add-a-favourite-command---yuxin)
+  * [E.8 Delete favourite command from favourite list - Johnson](#e8-delete-favourite-command-from-favourite-list---johnson)
+  * [E.9 Execute a favourite command from favourite list - Wong Heng Chin](#e9-execute-a-favourite-command-from-favourite-list---wong-heng-chin)
+  * [E.10 Change description of favourite command in favourite list - Wamika](#e10-change-description-of-favourite-command-in-favourite-list---wamika)
+  * [E.11 Saving of favourite list - Wong Heng Chin](#e11-saving-of-favourite-list---wong-heng-chin)
+  * [E.12 Saving of search frequncies of each bus stop - Johnson](#e12-saving-of-search-frequncies-of-each-bus-stop---johnson)
 
 ## 1. Setting up, getting started
 
@@ -295,7 +333,7 @@ The following sequence diagram illustrates the steps taken by the program when t
 <!-- @@author -->
 
 <!-- @@author Johnson-Yee -->
-### 3.8. Removing specific delete command (`/deletefav` Feature)
+### 3.8. Removing specific delete command (`/deletefav` Feature) - Johnson
 `/deletefav <index>` is the command to remove a favourite command in the user's list of favourite commands. It allows the
 user to customise the list of favourite commands to the user's liking.
 
@@ -458,7 +496,7 @@ variable called searchCount.
     
 Given the above alternatives, alternative 1 was used considering the integration of other commands.
 
-### 3.13 Resetting search frequencies of bus stops (`/reset` Feature)
+### 3.13 Resetting search frequencies of bus stops (`/reset` Feature) - Johnson
 This feature allows the user to reset the search frequencies of all bus stops.
 
 The `ResetSearchFreqCommand#executeCommand()` method of ResetSearchFreqCommand Class executes the command in the following steps:
@@ -656,12 +694,12 @@ Expected: Similar to previous.
 the favourite list.
 
 - Test case 1: `/deletefav 1`<br>
-    - The range of values accepted is the number of favourite commands there are in the list.<br>
+    - The range of values accepted is the number of favourite commands there are in the list.
 Expected: The favourite command at index 1 will be deleted.<br>
 
 - Test case 2: `/deletefav 0`<br>
-    - Other incorrect test cases includes all numbers out of range (0 or more than size of favourite list),
-     any string or empty input. <br>
+    -Other incorrect test cases includes all numbers out of range (0 or more than size of favourite list),
+     any string or empty input. 
 Expected: No command executed.Error details will be shown to remind users to type in the needed parameter.<br>
 
 - Test case 3: `/deletefav`<br>
@@ -728,14 +766,12 @@ Expected: No command executed.Error details will be shown to remind users to typ
 3. Dealing with corrupted data
     - Prerequisite: `FreqList.txt` exists
     - Test case 1: Missing entries in FreqList.txt"<br>
-    
         Step 1. Remove a few entries off the `FreqList.txt` file.<br>
         Step 2. Run the jar file<br>
         Expected output: Error details will be shown to inform users that corrupted data has been detected
         and that all search frequencies will be initialised to zero.<br>
         
     - Test case 3: Senseless data in FreqList.txt <br>
-    
         Step 1. Add random letters into `FreqList.txt` file. <br>
         Step 2. Run the jar file <br>
         Expected output: Error details will be shown to inform users that corrupted data has been detected 
