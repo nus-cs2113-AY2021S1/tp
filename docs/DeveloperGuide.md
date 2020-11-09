@@ -483,8 +483,8 @@ than a certain threshold (taken as 0.60).
 
 <div style="page-break-after: always;"></div>
 
-Refer to [`/route` feature implementation](#31-finding-a-direct-route-route-feature) and 
-[`/bus` feature implementation](#39-bus-at-bus-stop-finder-bus-feature) for examples of where this feature is used.
+Refer to [`/route` feature implementation](#31-finding-a-direct-route-route-feature---wamika) and 
+[`/bus` feature implementation](#33-bus-at-bus-stop-finder-bus-feature---wong-heng-chin) for examples of where this feature is used.
 
 _Credits: The Levenshtein distance algorithm was adapted from 
 [this site.](http://rosettacode.org/wiki/Levenshtein_distance#Java)_
@@ -731,7 +731,7 @@ Expected: Message of the command `/liststops` already exists in your favourites 
     Step 1.`/listfav`<br>
     Step 2.`/addfav`<br>
     Expected: Message of command not being detected will be shown as `listfav` is not a valid command.
-- Other incorrect data to test: `/execfav 1`, `/help 3`, `/bus musseeuum`.
+- Other incorrect data to test: `/execfav 1`, `/help 3`, `/bus musseeuum`.<br>
 Expected: Similar to previous.
 <!-- @@author -->
 
