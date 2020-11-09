@@ -1076,8 +1076,8 @@ you can do one of the following steps:
 * delete the bookmark data file.
 * ensure the bookmark data file are stored in the correct format. This is the following format: 
     * CategoryName = links \| links \| \|STAR\|links \| links t->title 
-    * Each link is separated with a " \| ".
-    * A starred link has \|STAR\| in front of the link. A link with a title has " t->" infront of the title. (Take note of the space in front of -)
+    * Category name and the links are separated with a " = " and each link is separated with a " \| ". (Take note of the space before and after the symbols)
+    * A starred link has \|STAR\| in front of the link. A link with a title has " t->" infront of the title. (Take note of the space in front of t->)
 
 <div style="page-break-after: always;"></div>
 
