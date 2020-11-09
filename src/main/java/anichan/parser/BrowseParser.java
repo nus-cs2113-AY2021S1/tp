@@ -73,7 +73,7 @@ public class BrowseParser extends CommandParser {
     }
 
     /**
-     * Checks the default browse for any additional input which are invalid.
+     * Checks for any additional extra input which are invalid.
      *
      * @param extraParamCheck the parameter to check
      * @throws AniException if additional input was found
