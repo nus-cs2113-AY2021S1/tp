@@ -1,8 +1,10 @@
-# NUSchedule
+# NuSchedule
 
-A scheduler help you, who live in NUS, to manage your classes, assignments, personal events easily.
+A scheduler help you, who live in NUS, to manage your classes, assignments, personal events easily and efficiently.
 
 Useful links:
 * [User Guide](UserGuide.md)
 * [Developer Guide](DeveloperGuide.md)
 * [About Us](AboutUs.md)
+
+
