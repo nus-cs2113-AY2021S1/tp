@@ -55,6 +55,7 @@ import static fitr.common.Messages.FORMAT_VIEW_FOOD_ON_SPECIFIED_DATE;
 import static fitr.common.Messages.FORMAT_VIEW_GOAL;
 import static fitr.common.Messages.FORMAT_VIEW_PROFILE;
 import static fitr.common.Messages.FORMAT_VIEW_SUMMARY;
+import static fitr.common.Messages.FORMAT_DATE;
 import static fitr.common.Messages.FORMAT_VIEW_SUMMARY_ON_SPECIFIED_DATE;
 import static fitr.common.Messages.MESSAGE_BYE;
 import static fitr.common.Messages.MESSAGE_GREET;
@@ -199,7 +200,10 @@ public class Ui {
             System.out.printf(VIEW_SPACER, COMMAND_VIEW_PROFILE, "View your profile");
             System.out.printf(VIEW_SPACER, COMMAND_VIEW_BMI, "View your BMI");
             System.out.printf(VIEW_SPACER, COMMAND_FOOD, "View food entries");
+            System.out.printf(VIEW_SPACER, COMMAND_FOOD + " " + FORMAT_DATE, "View food entries on specific date");
             System.out.printf(VIEW_SPACER, COMMAND_EXERCISE, "View exercise entries");
+            System.out.printf(VIEW_SPACER, COMMAND_EXERCISE + " " + FORMAT_DATE, "View exercise entries on specific " +
+                    "date");
             System.out.printf(VIEW_SPACER, COMMAND_VIEW_SUMMARY, "View calorie summary");
             System.out.printf(VIEW_SPACER, COMMAND_GOAL, "View your food and exercise goals");
             break;

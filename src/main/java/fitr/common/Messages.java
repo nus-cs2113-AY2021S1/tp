@@ -49,9 +49,9 @@ public class Messages {
     public static final String RANGE_EDIT_AGE = "Valid range for age: 1 to 130";
     public static final String FORMAT_EDIT_GENDER = "edit gender NEW_GENDER ('M' for Male or 'F' for Female)";
     public static final String FORMAT_EDIT_HEIGHT = "edit height NEW_HEIGHT (in m)";
-    public static final String RANGE_EDIT_HEIGHT = "Valid range for height (in m): 0.50 to 4.00";
+    public static final String RANGE_EDIT_HEIGHT = "Valid range for height (in m) after round off: 0.50 to 4.00";
     public static final String FORMAT_EDIT_WEIGHT = "edit weight NEW_WEIGHT (in kg)";
-    public static final String RANGE_EDIT_WEIGHT = "Valid range for weight (in kg): 2.00 to 1000.00";
+    public static final String RANGE_EDIT_WEIGHT = "Valid range for weight (in kg) after round off: 2.00 to 1000.00";
     public static final String FORMAT_EDIT_FITNESS = "edit fitness NEW_FITNESS_LEVEL (0 for Unfit; 1 for Normal; 2 for"
             + " Fit)";
     public static final String FORMAT_EDIT_FOOD =
@@ -66,6 +66,7 @@ public class Messages {
     public static final String FORMAT_CLEAR_EXERCISE = "clear exercise";
     public static final String FORMAT_CLEAR_GOAL = "clear goal";
     public static final String FORMAT_MARK_GOAL_AS_COMPLETE = "complete goal INDEX";
+    public static final String FORMAT_DATE = "dd/MM/yyyy";
 
     //User class messages
     public static final String USER_SETUP_GREET = "Before we begin, let me get to know you :)";
@@ -94,6 +95,7 @@ public class Messages {
     public static final String UNFIT_STRING = "Unfit";
     public static final String NORMAL_STRING = "Normal";
     public static final String NULL_STRING = "NULL";
+    public static final String NAME_FORMAT = "Only alphabetical and space inputs allowed for name! Please try again.";
 
     //Error messages
     public static final String ERROR_INVALID_COMMAND = "Sorry, this is an invalid command!";
