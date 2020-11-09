@@ -814,7 +814,6 @@ Now that you know how to make KAJI manage your Database of revision content for 
 **You don't have to do a thing** to enjoy the benefits of Spaced Repetition. Everything is scheduled for you, so all you have to do is to use the commands `due` and `preview` to view what chapters are due and complete the revision  for them accordingly. 
 
 Despite that, this **does not mean that you cannot customise** the scheduling process. KAJI allows you to `reschedule`, `include` and `exclude` Chapters manually if you wish to do so, but more on that later. First, let us get into the specific introduction of each command.
-<br><br>
 
 ### 3.4.1. Listing the chapters due for today: `due`
 (by Yan An)
@@ -832,6 +831,8 @@ Here are some key pointers:
 * There are **no parameters** for this command.
 * This command can be **called from any Level**
 
+<div style="page-break-after: always;"></div>
+
 **Example:**
  
 At any point, if you want to **see what Chapters are due**, all you have to do is enter the `due` command. Below is an example of an execution of the `due` command.
@@ -847,8 +848,6 @@ At any point, if you want to **see what Chapters are due**, all you have to do i
 <p align="center">
   <img src="UG_Images/dueComplete.png" width="700" alt="Due Command Result"/>
 </p>
-
-<br><br>
 
 ### 3.4.2. Listing the chapters that are due in the upcoming week: `preview`
 (by Yan An)
