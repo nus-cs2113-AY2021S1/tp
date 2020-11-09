@@ -24,6 +24,9 @@ public class StudyIt {
         return currentMode;
     }
 
+    /**
+     * Sets up each mode (bookmark,timetable,flashcard,academic).
+     */
     public StudyIt() {
         StudyItLog.setUpLogger();
         StudyItLog.logger.info("Initializing program");
@@ -34,12 +37,20 @@ public class StudyIt {
         StudyItLog.logger.info("Program initialized");
     }
 
+    /**
+     * Main method for Study It. Initializes Study It and enter the running process.
+     * @param args arguments
+     */
     public static void main(String[] args) {
         StudyIt studyIt = new StudyIt();
         MainMenu.printWelcome();
         studyIt.run();
     }
 
+    /**
+     * Main running program of Study it. Keeps the program in a constant loop
+     * until the exit command is called. It'll take in user input and process them.
+     */
     public void run() {
         CommandType commandType;
         StudyItLog.logger.info("Executing program");

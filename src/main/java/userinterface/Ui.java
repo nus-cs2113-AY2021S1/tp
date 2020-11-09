@@ -130,6 +130,5 @@ public class Ui {
         bookmarkRun.run("list -s");
         System.out.println();
         academicRun.run("list star");
-        printDivider();
     }
 }

@@ -37,7 +37,7 @@ public class AddLinkCommand extends BookmarkCommand {
                 storage.saveLinksToFile(categories);
             }
         } catch (EmptyBookmarkException e) {
-            ui.showEmptyError("Link");
+            ui.showEmptyError("Link / title");
         } catch (InvalidBookmarkException e) {
             ui.showInvalidError("Link");
         } catch (ExistingBookmarkException e) {
@@ -61,7 +61,7 @@ public class AddLinkCommand extends BookmarkCommand {
         } else {
             title = null;
         }
-        if (!link.contains(".") || link.contains(" ")) {
+        if (!link.contains(".") || link.contains(" ") || link.contains("|")) {
             throw new InvalidBookmarkException();
         }
         assert link.contains(".") && !link.contains(" ") : "Invalid link";

@@ -70,7 +70,7 @@ The **main component** of Study It helps user access each of these components.
 It processes the user input, provides general functionalities to traverse the software and other
 helpful functionalities. This will be further explained under Study It's design later.
 
-### **Architecture**
+### Architecture
 This section describes the overall architecture of Study It.
 
 ![Architecture Diagram](Images/ArchitectureDiagrams/architecture.png)
@@ -112,6 +112,8 @@ User can switch between these modes at any point when using the software.
 
 **How the architecture components interact with each other**
 
+The following sequence diagram shows the interactions within the software when command is received from the user
+
 ![Sequence Overview](Images/ArchitectureDiagrams/overviewsequence.png)
 
 As shown in the sequence diagram above, the user will interact with Study It via the User Interface (UI).
@@ -120,7 +122,11 @@ general commands, it'll be processed and provide output. Otherwise, the command 
 to different components to be processed based on the software's current mode. 
 
 ### **Main Component**
-This section will give an overview of the main component of Study It
+
+This section will give an overview of the main component of Study It.
+
+The following class diagram shows the components related to the main Study It component and their respective
+details.
 
 ![Main Component Diagram](Images/MainComponentDiagrams/maincomponent.png)
 
@@ -152,7 +158,7 @@ the associations and the multiplicity of the bookmark classes.
 
 ![Bookmark Class Diagram](Images/BookmarkDG/BookmarkRun_Class.png)
 
-API: java.bookmarkRun
+**API:** <span style="color:blue">`BookmarkRun`.
 
 The bookmark component consists of six major classes: `BookmarkRun`, `BookmarkStorage`, `BookmarkUi`, 
 `BookmarkCategory`, `BookmarkList` and `BookmarkParser`. 
@@ -163,14 +169,13 @@ As shown in figure 1, `BookmarkRun` is
 Given below, Figure 2, is the sequence diagram of how the classes interact with each 
 other when bookmark mode is accessed from the main function.
 
-![Bookmark Sequence Diagram](Images/BookmarkDG/sequence_bookmark.png)
+![Bookmark Sequence Diagram](Images/BookmarkDG/Sequence_Bookmark.png)
 
 The bookmark component has two modes: the main bookmark mode and the category mode. 
 As shown in Figure 2, when `BookmarkRun` is called, 
 `BookmarkParser` will be called and return a `BookmarkCommand`. 
 Afterwards, `BookmarkRun` will then call `executeCommand` in `BookmarkCommand` which executes 
-the intended actions 
-Then, it will call `getCategorymode` to get the current mode the user is in. 
+the intended actions. Then, it will call `getCategorymode` to get the current mode the user is in. 
 
 **Bookmark Implementation**
 
@@ -185,9 +190,9 @@ Figure 4 shows a more detailed sequence diagram of how the `BookmarkCategory`, `
 and `BookmarkList` interacts with each other for the scenario when the user input an `AddLinkCommand` 
 in Bookmark mode.
 
-![BookmarkCommand ClassDiagram](Images/BookmarkDG/AddCommand_Sequence.png)
+![BookmarkCommand ClassDiagram](Images/BookmarkDG/AddCommand.png)
 
-###Timetable Component
+### **Timetable Component**
 
 This section will describe in detail how some features inside the timetable section have been 
 implemented.
@@ -215,7 +220,7 @@ the main function make the run(command) API call.
 ### **Academic Component**
 
 This section will describe in detail how some features inside the academic tracker section have been implemented.
-Figure x illustrates the general overview, the associations and the multiplicity of the academic classes.
+The following figure illustrates the general overview, the associations and the multiplicity of the academic classes.
 
 ![Academic_Class_Diagram](Images/Academic_Class_Diagram.png)
 
@@ -223,7 +228,7 @@ API: `java.academic`
 
 The above diagram looks at the overall structure of how the academic tracker is being implemented. 
 This component is split into 7 different classes, 
-their associations and multiplicity as explained in the above diagram x. 
+their associations and multiplicity as explained in the above diagram. 
 The functions of the academic tracker will be called through the `AcademicRun` class 
 when the program is in academic mode, which will subsequently call 
 the functions in `PersonBook` or `GradeBook`. 
