@@ -338,10 +338,10 @@ The isExit() method determines whether the program exits. The `ExitSubjectComman
 will exit.
 
 ##### ExportSubjectCommand
-The execute() method of the `ExportSubjectCommand` 
-TODO: Add execute method documentation
+The execute() method of the `ExportSubjectCommand` calls the export() method of the storage instance to export all
+data to the disk storage. 
 
-The isExit() method determines whether the program exits. The `ExportSubjectCommand` isExit() method is hard coded to return true, so that when the isExit() command is run, the program 
+The isExit() method determines whether the program exits. The `ExportSubjectCommand` isExit() method is hard coded to return false, so that when the isExit() command is run, the program does not exit.
 
 
 ##### FindSubjectCommand
