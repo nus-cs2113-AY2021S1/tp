@@ -21,6 +21,8 @@ public class CreateSprintCommand extends SprintCommand {
 
     /**
      * Creates a new CreateSprint command with arguments.
+     * @param parameters - all parameters specified by user
+     * @param projectList - the entire project manager that the program is working on
      */
     public CreateSprintCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
         super(parameters, projectList, true);
@@ -28,7 +30,7 @@ public class CreateSprintCommand extends SprintCommand {
     }
 
     /**
-     * Validate the parameters and execute the command.
+     * Executes the command.
      */
     public void execute() {
         try {

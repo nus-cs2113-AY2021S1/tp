@@ -20,12 +20,20 @@ public class DeallocateSprintTaskCommand extends SprintCommand {
     private final ArrayList<Integer> taskIds;
     private String[] userIds;
 
+    /**
+     * Creates a new DeallocateSprintTask command with arguments.
+     * @param parameters - all parameters specified by user
+     * @param projectList - the entire project manager that the program is working on
+     */
     public DeallocateSprintTaskCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
         super(parameters, projectList, true);
         this.taskIds = new ArrayList<>();
         this.userIds = new String[0];
     }
 
+    /**
+     * Executes the command.
+     */
     public void execute() {
         try {
             checkProjectExist(-1);

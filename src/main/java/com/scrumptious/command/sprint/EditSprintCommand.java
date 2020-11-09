@@ -15,13 +15,15 @@ public class EditSprintCommand extends SprintCommand {
 
     /**
      * Creates a new EditSprint command with arguments.
+     * @param parameters - all parameters specified by user
+     * @param projectList - the entire project manager that the program is working on
      */
     public EditSprintCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
         super(parameters, projectList, true);
     }
 
     /**
-     * Abstract method that execute the command.
+     * Executes the command.
      */
     public void execute() {
         try {

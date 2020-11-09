@@ -18,12 +18,20 @@ public class AllocateSprintTaskCommand extends SprintCommand {
     private final ArrayList<Integer> taskIds;
     private String[] userIds;
 
+    /**
+     * Creates a new AllocateSprintTask command with arguments.
+     * @param parameters - all parameters specified by user
+     * @param projectList - the entire project manager that the program is working on
+     */
     public AllocateSprintTaskCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
         super(parameters, projectList, true);
         this.taskIds = new ArrayList<>();
         this.userIds = new String[0];
     }
 
+    /**
+     * Executes the command.
+     */
     public void execute() {
         try {
             checkProjectExist(-1);
@@ -72,6 +80,7 @@ public class AllocateSprintTaskCommand extends SprintCommand {
 
     /**
      * Parse parameters into Integers.
+     * @taskIds task Ids in String
      */
     private void parseParamsToInt(String[] taskIds) {
         for (String id : taskIds) {
@@ -81,6 +90,7 @@ public class AllocateSprintTaskCommand extends SprintCommand {
 
     /**
      * Check if all tasks are allocated to all users.
+     * @throws ScrumptiousException when task specified is already allocated to user.
      */
     private void checkAllocation() throws ScrumptiousException {
         for (int taskId : this.taskIds) {
