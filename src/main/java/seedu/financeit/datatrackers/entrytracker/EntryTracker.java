@@ -218,11 +218,11 @@ public class EntryTracker {
     private static void printCommandList() {
         TablePrinter.setTitle("List of Commands");
         TablePrinter.addRow("No.;Command                 ;Input Format                                               ");
-        TablePrinter.addRow("1.;New entry;new /time {HHMM} /desc {string} /cat {category} -[i/e] "
-            + "/amt {Double, 2 decimal places}");
-        TablePrinter.addRow("2.;Edit entry;edit /id {integer} {param-type/parameter to edit}");
+        TablePrinter.addRow("1.;New entry;new /time {HHMM} /desc {string} /cat {STRING_CATEGORY} -[i/e] "
+            + "/amt {DOUBLE (Positive, 2 decimal places) }");
+        TablePrinter.addRow("2.;Edit entry;edit /id {INTEGER} { {PARAM_TYPE} {PARAM} }...");
         TablePrinter.addRow("3.;list entries;list");
-        TablePrinter.addRow("4.;delete entry;delete /id {integer}");
+        TablePrinter.addRow("4.;delete entry;delete /id {INTEGER}");
         TablePrinter.addRow("5.;list transaction categories;cat");
         TablePrinter.addRow("6.;exit to manual tracker;exit");
         TablePrinter.printList();
@@ -230,7 +230,7 @@ public class EntryTracker {
 
     private static void printValidCategories() {
         TablePrinter.setTitle("List of Valid Categories");
-        TablePrinter.addRow("Category;Input");
+        TablePrinter.addRow("Input shortcut;Category");
         for (String i : CategoryMap.inputToCategoryMap.keySet()) {
             TablePrinter.addRow(String.format("%s;%s", i, CategoryMap.getCategoryFromInput(i)));
         }

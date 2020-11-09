@@ -1049,7 +1049,6 @@ would be helpful in assisting the users in meaningfully monitoring their spendin
         You should see the following: 
         
 ![](developerGuide_images/screenshots_mainmenu/main_menu_exit.png)
-
 ## ManualTracker
 **Show Command List** <br />
 1. Enter ```commands``` into the console.
