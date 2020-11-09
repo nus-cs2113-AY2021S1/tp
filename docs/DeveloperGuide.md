@@ -174,6 +174,39 @@ The `Timetable` component is used to generate an output for the *list* command, 
 
 This section describes some important details about how certain features are implemented.
 
+## **Implementation**
+
+This section describes some important details about how certain features are implemented.
+
+### Data storage
+When Athena is launched, it loads the tasks saved in *data.csv*, a comma-separated values (csv) file located in the same directory as the program JAR file. After processing a command issued by the user, Athena automatically saves the tasks into *data.csv*. 
+
+The storage mechanism is facilitated by `Storage`. It reads and writes the `Task` objects in `TaskList` to `data.csv`.
+It implements the following operations:
+
+* `Storage#saveTaskListData` - Writes the current tasks into the save file.
+* `Storage#loadTaskListData` - Loads the tasks from the save file into the application.
+
+These operations are called by `Athena`, when the program is launched, and after each user command.
+
+Given below is an example usage scenario and how the storage mechanism behaves at each step.
+
+**Step 1.** The user launches the application for the first time. The `TaskList` is initialized to be empty. At this time, there is no *data.csv* file present. So, when `Storage` calls `Storage#loadTaskListData`, this is detected and an empty *data.csv* file is created next to the jar file. Since there was no save file, the `TaskList` remains empty.
+
+**Step 2.** The user adds a task to the application, by executing `add n/Assignment1 t/1100 D/16-09-2020 d/2 r/Today i/high a/Refer to lecture notes`. The `TaskList` now contains 1 task (Assignment 1). After the command is executed, `Athena` calls `Storage#saveTaskListData` to automatically save the tasks in the `TaskList` into the save file.
+
+**Step 3.** The user closes the application. Nothing happens since the data in the `TaskList` is already saved.
+
+**Step 4.** The user launches the application again. The `TaskList` is initialized to be empty. `Storage#loadTaskListData` will read from `data.csv` and add the tasks inside the file into the empty `TaskList`. The `TaskList` now contains the task added earlier (Assignment 1) in **Step 3**.
+
+The following sequence diagram illustrates how the loading from storage operation works:
+
+![LoadStorageSequenceDiagram](sequenceDiagrams/loadStorage.png)
+
+The following sequence diagram illustrates how the saving to storage operation works:
+
+![SaveStorageSequenceDiagram](sequenceDiagrams/saveStorage.png)
+
 ### User command processing
 The processing of user commands is facilitated by `AthenaUi`, Parser` and the `Command` subclasses.
 

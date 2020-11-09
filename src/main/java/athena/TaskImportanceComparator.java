@@ -9,7 +9,6 @@ import java.util.Comparator;
  */
 public class TaskImportanceComparator implements Comparator<Task> {
 
-
     @Override
     public int compare(Task o1, Task o2) {
         Importance i1 = o1.getImportance();
@@ -26,7 +25,6 @@ public class TaskImportanceComparator implements Comparator<Task> {
             return 1;
         }
         return 0;
-
     }
 }
 

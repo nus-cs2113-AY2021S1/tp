@@ -29,7 +29,6 @@ public class Storage {
     private String filePath;
     private TaskList tasks;
 
-
     /**
      * Initialises Storage object.
      *
@@ -85,7 +84,6 @@ public class Storage {
      * @return TaskList object equivalent of save file
      */
 
-    //TODO: add compatibility for more task attributes
     public TaskList loadTaskListData() throws StorageException {
         File csvFile = new File(filePath);
         TaskList loadedTaskList = new TaskList();
