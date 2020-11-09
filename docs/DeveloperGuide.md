@@ -83,6 +83,9 @@ Given below is a quick overview of each component.
 The rest of the App consists of 4 main components:
 
 - `Ui` : The Ui component handles all interactions with the user.
+
+<div style="page-break-after: always;"></div>
+
 - `Logic` : The Logic component makes sense of the command and executes it.
 - `Model` : The Model component is responsible for all data held in the memory.
 - `Storage` : The Storage component handles data by reading from and writing to files in the hard disk. 
@@ -103,6 +106,8 @@ delimiters if any.
 - Executes a command based on its type and provides an appropriate result to the user via the Ui component.
 
 The following class diagram briefly explains how different classes in the Logic component interact with each other.
+
+<div style="page-break-after: always;"></div>
 
 > Note: ABCFavCommand represents the different fav command classes.
 > PQRCommand represents the different dine command classes.
