@@ -35,6 +35,7 @@ import static fitr.common.Messages.BMI_HEADER;
 import static fitr.common.Messages.PHRASE_EXTRA_PARAMETERS;
 import static fitr.common.Messages.SEPARATOR_LINE;
 import static fitr.common.Messages.SPACE_STRING;
+import static fitr.common.Messages.SPLIT_SPACE;
 import static fitr.common.Messages.USER_PROFILE_HEADER;
 import static fitr.common.Messages.OPEN_SQUARE_BRACKET;
 import static fitr.common.Messages.CLOSE_SQUARE_BRACKET;
@@ -68,30 +69,30 @@ public class ViewCommand extends Command {
             viewExercise(listManager.getExerciseList());
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_SUMMARY)) {
             viewSummary(listManager.getFoodList(), listManager.getExerciseList(), false);
-        } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_VIEW_SUMMARY)) {
-            if (command.split(" ").length > 2) {
+        } else if (command.split(SPLIT_SPACE)[0].equalsIgnoreCase(COMMAND_VIEW_SUMMARY)) {
+            if (command.split(SPLIT_SPACE).length > 2) {
                 Ui.printFormatError(PHRASE_EXTRA_PARAMETERS);
                 return;
             }
-            viewSummaryByDate(listManager.getFoodList(), listManager.getExerciseList(), command.split(" ")[1]);
+            viewSummaryByDate(listManager.getFoodList(), listManager.getExerciseList(), command.split(SPLIT_SPACE)[1]);
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_BMI)) {
             viewBmi(user);
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_PROFILE)) {
             viewProfile(user);
         } else if (command.equalsIgnoreCase(COMMAND_GOAL)) {
             viewGoal(listManager.getFoodList(), listManager.getExerciseList(), listManager.getGoalList(), user);
-        } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_EXERCISE)) {
-            if (command.split(" ").length > 2) {
+        } else if (command.split(SPLIT_SPACE)[0].equalsIgnoreCase(COMMAND_EXERCISE)) {
+            if (command.split(SPLIT_SPACE).length > 2) {
                 Ui.printFormatError(PHRASE_EXTRA_PARAMETERS);
                 return;
             }
-            viewExerciseByDate(listManager.getExerciseList(), command.split(" ")[1], true);
-        } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_FOOD)) {
-            if (command.split(" ").length > 2) {
+            viewExerciseByDate(listManager.getExerciseList(), command.split(SPLIT_SPACE)[1], true);
+        } else if (command.split(SPLIT_SPACE)[0].equalsIgnoreCase(COMMAND_FOOD)) {
+            if (command.split(SPLIT_SPACE).length > 2) {
                 Ui.printFormatError(PHRASE_EXTRA_PARAMETERS);
                 return;
             }
-            viewFoodByDate(listManager.getFoodList(), command.split(" ")[1], true);
+            viewFoodByDate(listManager.getFoodList(), command.split(SPLIT_SPACE)[1], true);
         } else {
             Ui.printFormatError(COMMAND_VIEW);
         }

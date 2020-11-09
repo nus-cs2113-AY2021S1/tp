@@ -31,17 +31,17 @@ public class DeleteCommand extends Command {
     public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
         try {
 
-            String type = command.split(" ")[0];
+            String type = command.split(SPLIT_SPACE)[0];
             if (command.split(SPLIT_SPACE).length != 3 && !type.equals(COMMAND_GOAL)) {
                 throw new FitrException();
             }
             switch (type) {
             case COMMAND_EXERCISE: {
-                String deletionDate = command.split(" ")[1];
+                String deletionDate = command.split(SPLIT_SPACE)[1];
                 deletionDate = LocalDate.parse(deletionDate, DateManager.formatter).format(DateManager.formatter);
                 ExerciseList exerciseList = listManager.getExerciseList();
                 boolean isValidDate = false;
-                int deletionIndex = Integer.parseInt(command.split(" ")[2]);
+                int deletionIndex = Integer.parseInt(command.split(SPLIT_SPACE)[2]);
                 for (int i = 0; i < exerciseList.getSize(); i++) {
                     if (exerciseList.getExercise(i).getDate().equals(deletionDate)) {
                         isValidDate = true;
@@ -64,11 +64,11 @@ public class DeleteCommand extends Command {
                 break;
             }
             case COMMAND_FOOD: {
-                String deletionDate = command.split(" ")[1];
+                String deletionDate = command.split(SPLIT_SPACE)[1];
                 deletionDate = LocalDate.parse(deletionDate, DateManager.formatter).format(DateManager.formatter);
                 FoodList foodList = listManager.getFoodList();
                 boolean isValidDate = false;
-                int deletionIndex = Integer.parseInt(command.split(" ")[2]);
+                int deletionIndex = Integer.parseInt(command.split(SPLIT_SPACE)[2]);
                 for (int i = 0; i < foodList.getSize(); i++) {
                     if (foodList.getFood(i).getDate().equals(deletionDate)) {
                         isValidDate = true;
