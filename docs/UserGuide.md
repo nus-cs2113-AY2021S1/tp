@@ -1142,7 +1142,7 @@ Output:
 
 ```
     ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Farewell student. Hope to see you again soon!
     ____________________________________________________________
 ```
 
@@ -1195,7 +1195,7 @@ Set priority of task | `set <taskIndexNumber> p/<priority>` | `set 1 p/2`
 Set category of task | `category <taskIndexNumber> c/<category>` | `category 1 c/CCA`
 Set date of task | `date <taskIndexNumber> date/<dd-MM-yyyy>` | `date 1 date/11-11-2020`
 Print calendar | `calendar d/<daysToPrint>` | `calendar d/7`
-Find tasks with matching keyword | `find {tasks,links,books,expenses,modules} k/<keyword>` | `find tasks k/tp meeting`
+Find an item with matching keyword | `find {tasks,links,books,expenses,modules} k/<keyword>` | `find tasks k/tp meeting`
 Clear everything | `clear all` | `clear all`
 Getting help | `help` | `help`
 Exiting the program | `bye` | `bye`

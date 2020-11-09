@@ -127,8 +127,8 @@ This command allow students to narrow down their search for a specific task. The
          **find meeting**
 
         Format: 
-            find <keyword>
-             <keyword> refers to the word to be matched with the tasks description.
+            find {tasks,links,books,expenses,modules} k/<keyword>
+             <keyword> refers to the word or phrase to be matched with the item description.
 8. Clearing all data from system: `clear` 
 This command allow students to wipe off all their data.
 
