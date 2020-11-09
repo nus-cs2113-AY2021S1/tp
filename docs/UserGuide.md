@@ -266,7 +266,7 @@ The changes that you made before the error occured will still be kept.
 The `list` command displays all existing shows in your watchlist in an easy-to-read format, including the episode and
 season that you are currently at.
 
-The rating of your show will also be shown if you have added it using the [addreview](#4d-addreview---adding-a-review) command.
+The rating of your show will also be shown if you have added it using the [addreview](#4e-addreview---adding-a-review) command.
 
    Format:
     `list`
