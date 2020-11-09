@@ -28,10 +28,9 @@ entering the details one line at a time, allowing fast typists to set up their t
     * Delete module, slot and bookmarks (timetable mode)
     * Launch bookmarks from modules and slots (timetable mode)
 
-
 #### Contributions to the DG:  
 * The descriptions of the implementation of addSlotCommand and deleteSlotCommand. 
-* Added sequence diagrams to explain the implementation of both commands.
+* Added class and sequence diagrams to explain the implementation of both commands.
 
 #### Other contributions:
 

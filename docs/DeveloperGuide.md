@@ -2,7 +2,7 @@
 
 
 ## **Introduction**
- ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/zoomwhitebg.png) <br/><br/>
+ ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/zoomasterwhitebg.png) <br/><br/>
 ### Introduction to Zoomaster
 Zoomaster is a Java application for the Command Line. It provides a simple and intuitive way to store Zoom links for 
 online classes and other useful links for the lesson at hand.<br/>
@@ -47,7 +47,13 @@ major sections but still larger than normal paragraphs to distinguish them.
 * [Implementation](#implementation)
   * [Bookmark and Timetable modes feature](#mode)
   * [Show timetable feature](#show-timetable)
-  * [Add Module and Slot featurea](#add-module-slot)
+  * [Add Module and Slot features](#add-module-slot)
+  * [Validate Modules feature](#nus-module-list)
+  * [Extended HelpCommand feature](#extended-help-command)
+  * [Edit Slot feature](#edit-slot)
+  * [Show Settings Feature](#showsettings)
+  * [Set Settings Feature](#setsettings)
+  * [Planner Feature](#module-list)
 * [Appendix A: Product Scope](#appendix-a)
 * [Appendix B: User Stories](#appendix-b)
 * [Appendix C: Non-Functional Requirements](#appendix-c)
@@ -76,7 +82,7 @@ then its various components.
 ### Architecture
 
 The figure below shows a high-level design for the architecture of Zoomaster. <br/></br>
-![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/archiveture2-01.png?raw=true) <br/></br>
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/architecture.png) <br/></br>
 *<center/> Figure 1.1 Architecture diagram of Zoomaster </center> <br/></br>*
 
 Our Program can be split up into 8 components
@@ -94,7 +100,7 @@ These components interact with each other as shown in Figure 1.1 to execute the 
 <a name="initialization"></a>
 ### Initialization
 The diagram below shows a class-level diagram for Zoomaster. <br/></br>
-![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/initial.png) <br/></br>
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/initial.png) <br/></br>
 *<center/> Figure 1.2 Class diagram of Initialization </center> <br/></br>*
 
 **API**:`Zoomaster.java`
@@ -233,6 +239,9 @@ The Local Files component is where Zoomaster's long term storage of data is kept
 Its main role is:
 
 * Store Zoomaster data
+
+In addition, the filepath to the directory containing the jar file is obtained by the getJarFilePath() method in `Zoomaster`.
+The files are saved using this filepath, allowing them to be saved in the same directory as the jar file. This allows for more convenient running of Zoomaster, as the user does not have to switch to the same directory of the jar file when running the application.
 
 <a name="exceptions"></a>
 ### Exceptions component
@@ -412,28 +421,33 @@ This feature allows the user to add modules and lesson slots into the timetable.
 Users can also add bookmarks to specific modules and slots.
 Users can enter one-shot-commands, adding multiple slots and bookmarks to a module.
 
+The class diagram below mainly shows the associations between the objects contained in the Timetable class. In the 
+following sequence diagrams, the BookmarkList class is omitted for simplicity.  
+![](diagrams/addSlotCommand/timetableClassDiagram.png)  
+*<center/> Figure 2.07 Class diagram for Timetable </center> <br/></br>*
+
 Given below is a sequence diagram of how the feature works.  
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram.png?raw=true)  
-*<center/> Figure 2.07 Sequence diagram for AddSlotCommand </center> <br/></br>*
+*<center/> Figure 2.08 Sequence diagram for AddSlotCommand </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram2.png?raw=true)  
-*<center/> Figure 2.08 Sequence diagram for 
+*<center/> Figure 2.09 Sequence diagram for 
 "Get module if it exist, else create a new module" Block </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram3.png?raw=true)  
-*<center/> Figure 2.09 Sequence diagram for 
+*<center/> Figure 2.10 Sequence diagram for 
 "Create bookmark for module" Block </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram4.png?raw=true)  
-*<center/> Figure 2.10 Sequence diagram for 
+*<center/> Figure 2.11 Sequence diagram for 
 "Create bookmark for existing slot base on its index" Block </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram5.png?raw=true)  
-*<center/> Figure 2.11 Sequence diagram for 
+*<center/> Figure 2.12 Sequence diagram for 
 "Get slot if it exist, else create a new slot" Block </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram6.png?raw=true)  
-*<center/> Figure 2.12 Sequence diagram for 
+*<center/> Figure 2.13 Sequence diagram for 
 "Create bookmark for slot" Block </center> <br/></br>*
 <br></br>
 
@@ -469,22 +483,22 @@ This feature allows the user to delete the modules, slots and their bookmarks fr
 
 Given below is a sequence diagram of how the feature works.  
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/deleteSlotSequenceDiagram.png?raw=true)  
-*<center/> Figure 2.13 Sequence diagram for DeleteSlotCommand </center> <br/></br>*
+*<center/> Figure 2.14 Sequence diagram for DeleteSlotCommand </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/deleteSlotSequenceDiagram2.png?raw=true)  
-*<center/> Figure 2.14 Sequence diagram for 
+*<center/> Figure 2.15 Sequence diagram for 
 "delete module" Block </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/deleteSlotSequenceDiagram3.png?raw=true)  
-*<center/> Figure 2.15 Sequence diagram for 
+*<center/> Figure 2.16 Sequence diagram for 
 "delete slot" Block </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/deleteSlotSequenceDiagram4.png?raw=true)  
-*<center/> Figure 2.16 Sequence diagram for 
+*<center/> Figure 2.17 Sequence diagram for 
 "delete module bookmarks" Block </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/deleteSlotSequenceDiagram5.png?raw=true)  
-*<center/> Figure 2.17 Sequence diagram for 
+*<center/> Figure 2.18 Sequence diagram for 
 "delete slot bookmarks" Block </center> <br/></br>*
 <br></br>
 
@@ -497,8 +511,96 @@ There are four options:
     2. Delete a slot contained in the module.
     3. Delete all bookmarks associated with the module.
     4. Delete all bookmarks contained in a slot from the module.  
-    
 
+The whole-relationship between the objects, which can be seen from the class diagram Figure 2.07, would mean that 
+deleting an object would also delete all objects contained in it.  
+<br></br>
+<!-- @@author -->
+<!-- @@author Speedweener -->   
+<a name="nusmodulelist"></a>
+### Validate Modules feature (Zhan Hao)
+This feature allows the application to validate if the modules entered by the user 
+are existing NUS modules. This helps the user avoid erroneously adding modules from typos, 
+as the application might otherwise consider the input to be a new module (eg. When adding slots to 
+existing module CS2113T, a typo such as CS2113R would cause the application to add a new module 
+instead).
+
+This is done by retrieving a JSON file of existing NUS modules from NUSMods API. 
+The application will then convert the JSON file to an ArrayList of modules, which will be used to validate 
+modules entered by the user. The ArrayList is then stored locally so that subsequent runs of the application
+will be able to read from the local file instead, which allows the application to be loaded faster. 
+Below is a sequence diagram of the process of retrieving the module list. Note that the alt block is informally used 
+to illustrate the try-catch block. 
+
+
+
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/loadModuleList/getModuleList.png)  
+*<center/> Figure 2.19 Sequence diagram for retrieving module list </center> <br/></br>*
+
+<br></br>
+
+1. When the application is launched, the application will try to read the module list from a modulelist.txt file in the same directory. It will read each line as a separate module and add them to an ArrayList.
+
+2. If it cannot find the local file, or the file is empty, **FileNotFoundException** will be thrown.
+
+3. When the **FileNotFoundException** is thrown, the nusModuleListFromNusMods() method will be called. It will first obtain the URL to be accessed using getNusModsUrl(), which creates the URL based on the current year. It will then attempt to connect to the URL. 
+
+4. If unable to connect, the method will return null. The importance of this null value will be explained further down.
+
+5. Else if it is able to connect, the application retrieves the JSON file as a string. The jsonToArrayList method is then called to parse the string to a JSONArray, then store the "modulecode" attribute of each JSONArray entry into an ArrayList. This ArrayList is returned to the loadModuleList() method.
+
+6. If the ArrayList value is not null (Connection was successful), it is saved locally using the saveModuleList() method.
+7. The ArrayList value is then returned to `Zoomaster`, which stores it as a static ArrayList in `Module`. This ArrayList is then used to validate modules.
+8. To be validated, the module to be added must exists in the ArrayList. However, if the ArrayList is null (Failed to Connect), the validation will always return true. This is to allow the application to still be useable, although without the module validation feature
+
+#### Design consideration:
+
+##### Aspect: How to allow the validation to be useful in most scenarios
+* **Alternative 1 (Current choice):** Connection is needed once, to retrieve module list for the current year.
+    * Pros: Allows for updated list of modules based on current year
+    * Cons: Module validation will not work without initial internet connection
+* **Alternative 2:** Save the module list along with the jar file.
+    * Pros: Does not require internet connection
+    * Cons: Module list might not be updated as per the year which the application is being run, prevent newer modules from being added
+
+Since the application is primarily based on launching URLs, having an internet connection is a general requirement for the rest of the application to function. Hence, the cons of the first alternative is not significant.
+
+##### Aspect: How to increase usability among different users
+* **Alternative 1 (Current choice):** Module list is a saved as a editable txt file
+    * Pros: Allows for editing of module list to include non-NUS modules
+    * Cons: App start up takes a longer time as module list has to be loaded .
+* **Alternative 2:** Store the module list within the jar file file itself.
+    * Pros: Faster start up of app
+    * Cons: Module list cannot be edited, preventing users from other universities taking other modules from adding their modules.
+
+Since the start up time for the app after loading the module list from online is still very fast, it should not affect most users.
+<br></br>
+
+<a name="extendedhelpcommand"></a>
+### Extended HelpCommand feature (Zhan Hao)
+This feature allows user to query more about the different commands available in the different modes. This is to allow quick typist to have a fast way to reference the purpose and format of the commands without having to consult the User Guide.
+
+This command will be sensitive to the current mode of the application. For example, the command `help add` would print different text in Bookmark, Timetable, or Planner Mode. The command `help edit` would be valid in Timetable mode, but not valid in Bookmark mode as such a command does not exist in that mode.
+
+Below is a sequence diagram of the extended HelpCommand.   
+
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/loadModuleList/helpCommandOverallDiagram.png)  
+*<center/> Figure 2.20 Sequence diagram for extended "HelpCommand" </center> <br/></br>*
+
+<br></br>
+
+
+1. When Zoomaster calls parse on user input and Parser parses it as a HelpCommand, HelpCommand will check if the details are not empty, then validate if the details match a valid command based on the current mode (not shown in diagram). If the details are not valid, an exception is thrown. Zoomaster will then call the execute() method on HelpCommand
+
+2. If the details are empty, the HelpCommand will call the printHelpMessage() in Ui command without the details. Ui will retrieve the current mode through a call to static variable programMode in Parser. The mode is then used to determine which list of available command is to be printed.  
+
+3. Else if the details are not empty, the command HelpCommand will call the printHelpMessage(details) in Ui. Similarly, Ui will retrieve the current mode through a call to static variable programMode in Parser. Ui will check if the details correspond to any of the global command keywords, such as CLEAR_KW or EXIT_KW and print accordingly. If the details do not match any, the mode will be used to determine which print extended help method is to be called. 
+
+4. The HelpCommand then becomes an unused object to be deleted to free up memory.
+
+5. The different print with colour methods utilise the JAnsi library to print to the Command Prompt in colour.
+
+<br></br>
 <!-- @@author -->
 
 <!-- @@author fchensan -->
@@ -521,7 +623,7 @@ Given below is an example usage scenario and how the edit mechanism works.
 The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslotsequence.png)
-*<center/> Figure 2.18 Sequence diagram for EditSlotCommand </center> <br/></br>*
+*<center/> Figure 2.21 Sequence diagram for EditSlotCommand </center> <br/></br>*
 
 <a name="showsettings"></a>
 ### Show settings feature (Francisco)
@@ -541,7 +643,7 @@ the UserSettings object in the main Zoomaster class. It will then convert them i
 The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/showsettingssequence.png)
-*<center/> Figure 2.19 Sequence diagram for ShowSettingsCommand </center> <br/></br>*
+*<center/> Figure 2.22 Sequence diagram for ShowSettingsCommand </center> <br/></br>*
 
 <a name="setsettings"></a>
 ### Set settings feature (Francisco)
@@ -559,7 +661,7 @@ Given below is an example usage scenario and how the `set` command works.
 The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/setsettingssequence.png)
-*<center/> Figure 2.20 Sequence diagram for SetSettingsCommand </center> <br/></br>*
+*<center/> Figure 2.23 Sequence diagram for SetSettingsCommand </center> <br/></br>*
 
 <!-- @@author -->
 

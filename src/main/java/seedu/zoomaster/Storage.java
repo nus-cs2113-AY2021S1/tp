@@ -36,7 +36,7 @@ import java.util.Scanner;
 /**
  * Deals with loading tasks from the file and saving tasks in the file.
  */
-//@@author
+//@@author fchensan
 public class Storage<T> {
 
     private final String filePath;
@@ -48,7 +48,6 @@ public class Storage<T> {
      * @param path The pathname of the file.
      */
     public Storage(String path, Class<T> storageClass) {
-        Runtime rt = Runtime.getRuntime();
         String os = System.getProperty("os.name").toLowerCase();
         if (os.contains("mac")) {
             this.filePath = path.replace("./", File.separator);
@@ -59,7 +58,6 @@ public class Storage<T> {
         this.storageClass = storageClass;
     }
 
-    //@@author fchensan
     /**
      * Returns the tasks found within the file.
      *
@@ -219,13 +217,13 @@ public class Storage<T> {
             if (responseCode != 200) { //Unable to connect
                 return null;
             }
-            String jsonAsString = "";
+            StringBuilder jsonAsString = new StringBuilder();
             Scanner sc = new Scanner(url.openStream());
             while (sc.hasNext()) { // if line is empty, means finish reading
-                jsonAsString += sc.nextLine();
+                jsonAsString.append(sc.nextLine());
             }
 
-            return jsonToArrayList(jsonAsString);
+            return jsonToArrayList(jsonAsString.toString());
 
         } catch (IOException e) {
             throw new ZoomasterException(ZoomasterExceptionType.CONNECTION_ERROR, weblink);
@@ -285,7 +283,7 @@ public class Storage<T> {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(f));
 
-            while ((s = bufferedReader.readLine()) != null) {
+            while ((s = bufferedReader.readLine()) != null && !s.isBlank()) {
                 moduleList.add(s);
             }
             if (moduleList.isEmpty()) {
@@ -293,12 +291,11 @@ public class Storage<T> {
             }
             return moduleList;
 
-
         } catch (FileNotFoundException e) {
 
             moduleList = nusModuleListFromNusMods();
 
-            if (moduleList != null) { // If moduleList is successfully filled, store the list locally
+            if (moduleList != null) { // If modul  eList is successfully filled, store the list locally
                 saveModuleList(moduleListPath, moduleList);
             }
             return moduleList;

@@ -2,99 +2,85 @@ package seedu.zoomaster.slot;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.zoomaster.bookmark.Bookmark;
+
+import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalTime;
-import java.util.ArrayList;
-
-//@@author
+//@@author xingrong123
 class SlotTest {
     Slot slotTest;
+    Slot slotTest2;
 
     @BeforeEach
     public void initEachSlotTest() {
         slotTest = new Slot(LocalTime.parse("10:00"), LocalTime.parse("11:00"), "mon", "tutorial");
-    }
-
-
-    @Test
-    void getDay_oneTimeSlot_returnsDay() {
-        assertEquals("mon", slotTest.getDay());
+        slotTest2 = new Slot(LocalTime.parse("10:30"), LocalTime.parse("11:30"), "tue", "lecture");
     }
 
     @Test
     void match_validDetails_returnsTrue() {
-        assertTrue(slotTest.match("tutorial", "mon",
-                LocalTime.parse("10:00"), LocalTime.parse("11:00")));
+        assertTrue(slotTest.match("tutorial", "mon", LocalTime.parse("10:00"), LocalTime.parse("11:00")));
+
+        // different case for lesson
+        assertTrue(slotTest.match("TUTORIAL", "mon", LocalTime.parse("10:00"), LocalTime.parse("11:00")));
+
+        // different case for day
+        assertTrue(slotTest.match("tutorial", "MON", LocalTime.parse("10:00"), LocalTime.parse("11:00")));
     }
 
     @Test
     void match_invalidDetails_returnsFalse() {
-        assertFalse(slotTest.match("lecture", "mon",
-                LocalTime.parse("10:00"), LocalTime.parse("11:00")));
+        // different lesson
+        assertFalse(slotTest.match("lecture", "mon", LocalTime.parse("10:00"), LocalTime.parse("11:00")));
+
+        // different day
+        assertFalse(slotTest.match("tutorial", "tue", LocalTime.parse("10:00"), LocalTime.parse("11:00")));
+
+        // different start time
+        assertFalse(slotTest.match("tutorial", "mon", LocalTime.parse("09:00"), LocalTime.parse("11:00")));
+
+        // different end time
+        assertFalse(slotTest.match("tutorial", "mon", LocalTime.parse("10:00"), LocalTime.parse("11:11")));
     }
 
     @Test
-    void getBookmark() {
+    void getStartMinutes_returnCorrectValue() {
+        // only hours
+        assertEquals(600, slotTest.getStartMinutes());
+
+        // hours and minutes
+        assertEquals(630, slotTest2.getStartMinutes());
     }
 
     @Test
-    void getBookmarkList() {
-        assertEquals(new ArrayList<Bookmark>(), slotTest.getBookmarkList().getBookmarks());
+    void getEndMinutes_returnCorrectValue() {
+        // only hours
+        assertEquals(660, slotTest.getEndMinutes());
+
+        // hours and minutes
+        assertEquals(690, slotTest2.getEndMinutes());
     }
 
     @Test
-    void removeBookmark() {
+    void convertIntToLocalTime() {
+        // hours < 10, minutes < 10
+        assertEquals(LocalTime.parse("09:09"), Slot.convertIntToLocalTime(9, 9));
+
+        // hours < 10, minutes >= 10
+        assertEquals(LocalTime.parse("09:10"), Slot.convertIntToLocalTime(9, 10));
+
+        // hours >= 10, minutes < 10
+        assertEquals(LocalTime.parse("10:09"), Slot.convertIntToLocalTime(10, 9));
+
+        // hours >= 10, minutes >= 10
+        assertEquals(LocalTime.parse("10:10"), Slot.convertIntToLocalTime(10, 10));
     }
 
     @Test
-    void removeAllBookmarks() {
-    }
-
-    @Test
-    void addBookmark() {
-    }
-
-    @Test
-    void setStartTime() {
-    }
-
-    @Test
-    void getStartTime() {
-    }
-
-    @Test
-    void setEndTime() {
-    }
-
-    @Test
-    void getEndTime() {
-    }
-
-    @Test
-    void setDay() {
-    }
-
-    @Test
-    void getDay() {
-    }
-
-    @Test
-    void setTitle() {
-
-    }
-
-    @Test
-    void getTitle() {
-        assertEquals("tutorial", slotTest.getTitle());
-    }
-
-    @Test
-    void testToString() {
+    void toString_returnsCorrectFormat() {
         assertEquals("10:00-11:00 tutorial", slotTest.toString());
     }
 }
