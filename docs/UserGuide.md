@@ -428,7 +428,8 @@ Opens the notification which contains a randomised encouraging message.
 The notification will give the user an update 
 on the progress of the current week.
 The program determines the current week based on
-the latest week that has at least one actual time input.
+the latest week that has at least one actual time input. 
+If there is no actual time input in any weeks, it will be considered as week 1.
 
 Format: `open`
 
