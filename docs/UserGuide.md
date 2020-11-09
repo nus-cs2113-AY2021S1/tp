@@ -282,10 +282,11 @@ Here are the food items in DietBook:
     ```
     DietBook is currently empty.
     ```
-### Features related to nutritional intake and recommendation
+
+### Features related to nutritional intake calculation and recommendation
 
 To get recommended calorie intake: recommend
-* Example of usage :
+* Example of usage : recommend
 * Output : 
     ```
     Hi Jack!
@@ -325,7 +326,6 @@ Here are the food items in DietBook:
 
  Total carbohydrate intake: 80g
  ```
-
 * To calculate carbohydrate intake from a certain date until now: calculate carbohydrate yyy-mm-ddTHH:mm
    * Input : calculate carbohydrate 2020-10-29T08:00
    * Output : 
@@ -334,7 +334,6 @@ Here are the food items in DietBook:
  
  Total carbohydrate intake: 80g
  ```
-
 Similar Inputs and outputs for the following 
  * To calculate calorie intake: calculate calorie
  * To calculate calorie intake within a time period: calculate calorie yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
@@ -350,7 +349,7 @@ Similar Inputs and outputs for the following
 
  * To calculate all nutritional intake: calculate all
     * Input : calculate all
-    * OutPut : 
+    * Output : 
     ```
     Total calorie intake: 1900kcal
     Total carbohydrate intake: 80g
@@ -359,26 +358,26 @@ Similar Inputs and outputs for the following
     ```
  * To calculate all nutritional intake within a time period: calculate all yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
      * Input : calculate all 2020-10-29T08:00 2020-10-29T17:00
-     * OutPut : 
-     ```
+     * Output : 
+     ````
      Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1700
      
      Total calorie intake: 1900kcal
      Total carbohydrate intake: 80g
      Total protein intake: 110g
      Total fat intake: 90g
-     ```
+     ````
  * To calculate all nutritional intake from a certain date until now: calculate all yyyy-mm-ddTHH:mm
      * Input : calculate all 2020-10-29T08:00
-     * OutPut : 
-     ```
+     * Output : 
+     ````
      Time period: between 29 Oct 2020 0800 and 29 Oct 2020 1345
      
      Total calorie intake: 1900kcal
      Total carbohydrate intake: 80g
      Total protein intake: 110g
      Total fat intake: 90g
-     ```
+     ````
  
 ### Other features
 
@@ -389,7 +388,7 @@ Displays the helping guide for commands.
 Format: `help`
 
 Output example: 
-```
+````
 Listed below are the valid commands for DietBook:
 __________________________________________________________________________________________________________________________________________
 __________________________________________________________________________________________________________________________________________
@@ -430,7 +429,7 @@ ________________________________________________________________________________
   exit        | To exit DietBook:
               | exit
 __________________________________________________________________________________________________________________________________________
-```
+````
  #### To exit DietBook: `exit`
  
  Exits the DietBook.
@@ -466,3 +465,5 @@ Enter name | **Note**: Used only when setting up DietBook for the first time.<br
 Enter info | **Note**: Used only when setting up DietBook for the first time.<br/>`info g/GENDER a/AGE h/HEIGHT o/ORIGINAL_WEIGHT c/CURRENT_WEIGHT t/TARGET_WEIGHT f/FITNESS_LEVEL` <br/> e.g.,`info g/M a/21 h/175 o/85 c/85 t/75 f/2`
 View user info | `userinfo`
 Edit user info | `editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [f/FITNESS_LEVEL]` <br/> e.g.,`editinfo c/75 f/4`
+Calculate recommended calorie intake | `recommend`
+Calculate nutrition intake | `calculate [NUTRITION_NAME] [START_TIME] [END_TIME]` <br/> e.g.,`calculate fat`
