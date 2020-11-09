@@ -40,7 +40,7 @@ public class Storage {
 
     //@@author gua-guargia
     /**
-     * create the initial folder 'data/admin'.
+     * Creates the initial folder 'data/admin'.
      *
      * @throws IOException if there is an error when loading from storage file
      */
@@ -56,7 +56,7 @@ public class Storage {
 
     //@@author gua-guargia
     /**
-     * Create a new module folder of the specified {@code moduleName}.
+     * Creates a new module folder of the specified {@code moduleName}.
      *
      * @param moduleName module name of the module to be created
      * @throws IOException if there is an error when loading from storage file
@@ -68,7 +68,7 @@ public class Storage {
 
     //@@author gua-guargia
     /**
-     * Create a new chapter file of the specified {@code chapterName} under the specified {@code moduleName} folder.
+     * Creates a new chapter file of the specified {@code chapterName} under the specified {@code moduleName} folder.
      *
      * @param moduleName module name of the chapters
      * @param chapterName chapter name of the chapter to be created
@@ -139,7 +139,7 @@ public class Storage {
     }
 
     /**
-     * Rename the filename of a chapter.
+     * Renames the filename of a chapter.
      *
      * @param newChapterName new chapter name to rename to
      * @param module module of the chapter to be renamed
@@ -151,7 +151,7 @@ public class Storage {
     }
 
     /**
-     * Rename the folder of a module.
+     * Renames the folder of a module.
      *
      * @param newModuleName new module name to rename to
      * @param module existing module to be renamed
@@ -161,14 +161,33 @@ public class Storage {
         StorageWrite.renameModule(newModuleName, module, filePath);
     }
 
+    /**
+     * Creates a revision history.
+     *
+     * @param date the date of the revision session
+     * @throws IOException if there is an error renaming the storage file
+     */
     public void createHistory(String date) throws IOException {
         StorageWrite.createHistory(date);
     }
 
+    /**
+     * Saves the revision history.
+     *
+     * @param histories a list of history
+     * @param date the date of the revision session
+     * @throws IOException if there is an error renaming the storage file
+     */
     public void saveHistory(ArrayList<History> histories, String date) throws IOException {
         StorageWrite.saveHistory(histories, date);
     }
 
+    /**
+     * loads all revision history in the {@code date}.
+     *
+     * @param date the date of the revision session
+     * @throws FileNotFoundException if the file is not found
+     */
     public ArrayList<History> loadHistory(String date) throws FileNotFoundException {
         return StorageLoad.loadHistory(date);
     }

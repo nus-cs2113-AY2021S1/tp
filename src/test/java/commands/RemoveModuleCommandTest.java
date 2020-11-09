@@ -22,6 +22,7 @@ import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 import static common.Messages.MODULE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author neojiaern
 public class RemoveModuleCommandTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();

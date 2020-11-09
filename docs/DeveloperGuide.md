@@ -44,8 +44,9 @@ By: `Team CS2113T-F11-3` Since: `August 2020`
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.6. [Check Overall Performance for a Chapter Feature](#436-check-overall-performance-for-a-chapter-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.7. [Example of the Chapter Feature](#437-example-of-the-chapter-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.8. [Conclusion](#438-conclusion)<br>
-4.4. [Revise Feature](#44-revise-feature)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.1. [Implementation](#441-implementation)<br>
+4.4. [Revise with Scheduling Feature](#44-revise-with-scheduling-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.1. [Revise Feature](#441-revise-feature)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.2. [Scheduling The Chapters Feature](#442-scheduling-the-chapters-feature)<br>
 4.5. [Viewing and Customising the Schedule Feature](#45-viewing-and-customising-the-schedule-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.1. [View Due Chapters Feature](#451-view-due-chapters-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.2. [Preview Upcoming Dues Feature](#452-preview-upcoming-dues-feature)<br>
@@ -942,12 +943,12 @@ The following diagram shows how the show overall performance feature works:
 
 ##### <a href="#top">Back to Top ^</a>
 
-### 4.4. Revise Feature
+### 4.4. Revise with Scheduling Feature
 (Jia Ern)
 
 The revise feature allows the user to start a revision on a chapter and can only be done when the user is in the module level. 
 
-#### 4.4.1. Implementation
+#### 4.4.1. Revise Feature
 The revise mechanism is facilitated by `ReviseCommand`. It extends from the abstract class `Command`. 
 
 In addition, it implements the following operations:
