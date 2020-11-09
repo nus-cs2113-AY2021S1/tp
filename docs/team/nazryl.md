@@ -4,43 +4,30 @@ title : Nazryl Bin Khairil Idham Lim - Project Portfolio Page
 ---
 
 <!-- @@author nazryl -->
-## Overview
-NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking application for keyboard-inclined users. NotUS allows for users to categorize notes by tagging as well as pinning the more important notes. NotUS is also designed to assist in planning timetables to highlight possible clashes.
+**Overview**
 
-*Roles (short for ‘in charge of role’): Description*
+NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking application for keyboard-inclined users. NotUS allows for users to categorize notes by tagging as well as pinning the more important notes. NotUS is also designed to assist in planning timetables to highlight possible clashes.
 
 - Architecture: Worked with Jun Xiang on setting up the project, planned on logic of the project structure. Provides coding standards for engineers to follow.
 - In-charge of `add-n`,`delete-n`, `edit-n` of the code:  Handle area of notes and notebook.
 
-## Summary of Contributions
+**Summary of Contributions**
 
-### Features implemented
+*Features implemented*
+
 1\. Set up the skeleton code used in the project, including the following [classes](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/6):
-* `Notebook`
-* `Note`
-* `InterfaceManager`
-* `SystemException`
-* `PrefixSyntax`
+`Notebook`, `Note`, `InterfaceManager`, `SystemException`, `PrefixSyntax`
 
 2\. Completed the following features and test code for
-* [`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/31) Added functionality to add note into the notebook with option to add tags, pinned note and archived note.
-* [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/32) Functionality applies to delete note from the notebook by an index and title of the note.
-* [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/121) Functionality applies to edit any note content, title and tags stored in the notebook.
-
-<div style="page-break-after: always;"></div>
+* [`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/31): Allows user to add note with options to add tags, pinned note and archived note.
+* [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/32): Allows user to delete note by index or title of the note.
+* [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/121): Allows user to edit any note content, title and tags.
 
 3\. Implemented the following classes
-* `ParserAddNoteCommand`
-* `AddNoteCommand`
-* `ParserDeleteNoteCommand`
-* `DeleteNoteCommand`
-* `ParserEditNoteCommand`
-* `EditNoteCommand`
+`ParserAddNoteCommand`, `AddNoteCommand`, `ParserDeleteNoteCommand`, `DeleteNoteCommand`, `ParserEditNoteCommand`, `EditNoteCommand`
 
 4\. Implemented test code for the following classes
-* [`AddNoteCommandTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61)
-* [`DeleteNoteCommandTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61)
-* [`ParserManagerTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61)
+[`AddNoteCommandTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61), [`DeleteNoteCommandTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61), [`ParserManagerTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61)
 
 5\. Maintained Notebook and Note classes.
 
@@ -48,33 +35,34 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 
 7\. Added formatNote method into the Formatter class.
 
+<div style="page-break-after: always;"></div>
+
 8\. Implemented prefix handling method used in all Parser classes with Jun Xiang. Prefix are able to be called in any order.
 
 9\. Set up demo commands and bug testing for v1.0 and v2.1.
 
 10\. Edited v1.0 and v2.1 demo videos.
 
-### Enhancements to existing features
-1\. Multiple improvements/bug-fixes made for [`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/111), [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/88) and [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/180) after each milestone.
+*Enhancements to existing features*
 
-### Code contributed
+1\. Multiple improvements/bug-fixes made for [`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/111), [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/88) and [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/180).
+
+*Code contributed*
+
 [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=nazryl&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other) to view a report of the code contribution.
 
-<div style="page-break-after: always;"></div>
+*Contributions to User Guide*
 
-### Contributions to User Guide
 1\. Maintain portions on commands related to Note
-* [`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/182)
-* [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/32)
-* [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/141)
+[`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/182), [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/32), [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/141)
 
-### Contributions to Developer Guide
+*Contributions to Developer Guide*
+
 1\. Maintain Commands section on:
-* [AddNoteCommand](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/109)
+[AddNoteCommand](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/109), [Notebook](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/128)
 
-2\. [Notebook](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/128)
+*Community*
 
-### Community
 - Reviewed some of the PRs to ensure the Classes and functions follow the project architecture as well code logic of the program.
 [#29](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/29)
 [#47](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/47)
