@@ -2,10 +2,10 @@
 
 ## Overview
 SmartHomeBot is a **desktop application that consolidates all home appliance’s control into a 
-centralized system via a Command Line Interface (CLI)**. Users can switch on or off appliances using this application
+centralized system via a Command Line Interface (CLI)**. Users can switch on or off appliances by using this application
 and review and monitor electricity usage; having a clearer picture of their electrical usage patterns. They will need to 
-create a location and add appliances into the particular feature to enable the on/off feature. There is 
-a AutoSave feature which will save all your location and appliances and appliances' electrical usage. All the 
+create a location and add appliances into the particular location to enable the on/off feature. There is 
+a AutoSave feature which will save all your location, appliances and appliances' electrical usage into a txt file. All the 
 appliances will be switch off when the user exit the application. 
 
 ### Summary of Contributions
@@ -42,20 +42,20 @@ Refer to the link below to view the UserGuide.
 * [UserGuide](https://ay2021s1-cs2113-t14-1.github.io/tp/UserGuide.html)
 
 #### Contributions to the DeveloperGuide
-Initially, the whole group including me brainstormed to decide on the user stories which is used in the DeveloperGuide. You can refer to the link below on Trello to see the contribution
+Initially, the whole group including me brainstormed to decide on the user stories which is used in the DeveloperGuide. You can refer to the link below on Trello to see the contribution,
 in the user stories.
 
 * [Trello](https://trello.com/b/s32JQHmK/cs2113-storyboard)
 
  
 I also write and design the Sequence Diagram for ListCommand, HelpCommand, InvalidCommand and ExitCommand. All the information and design 
-follow the textbook standard provided to us. And also, I did the Test Cases for list command which is in the Appendix E. You can refer to the Appendix 1 to see my contributions to DeveloperGuide 
-or the link below to view the DeveloperGuide.
+follow the textbook standard provided to us. And also, I did the Test Cases for list command which is in the Appendix E. You can refer
+the link below on DeveloperGuide to view the contribution.
 
 * [DeveloperGuide](https://ay2021s1-cs2113-t14-1.github.io/tp/DeveloperGuide.html)
 
 #### Review/mentoring contributions:
-Provided feedback to team members on their code through pull request and also private messaging. Refer the link below on some of my feedback 
+Provided feedbacks to team members on their code through pull request and also private messaging. Refer the links below on some of my feedback 
 to the team members through pull request.
 
 * [Pull Request 1](https://github.com/AY2021S1-CS2113-T14-1/tp/pull/201)
@@ -64,8 +64,8 @@ to the team members through pull request.
 In addition, I always get involved in discussion on a better implementation of method in the function. Most of our discussion is on Zoom. 
 
 #### Contributions beyond the project team:
-Provided post feedback to other project teams on the bug i encountered during the PE Dry Run.Refer the link below on some of my post feedback 
-to other project through the issue tracker.
+Provided post feedbacks to other project teams on the bug i encountered during the PE Dry Run. Refer the links below on some of my post feedback 
+to other project team through the issue tracker.
 
 * [Bug Issue 1](https://github.com/Ang-Cheng-Jun/ped/issues/9)
 * [Bug Issue 2](https://github.com/AY2021S1-CS2113-T13-2/tp/issues/220)
