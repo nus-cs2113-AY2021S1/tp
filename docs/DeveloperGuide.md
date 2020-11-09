@@ -868,7 +868,7 @@ The `Bookmark` class uses three ArrayList to store bookmark entries of the user,
 
 Given below is the example usage scenario and how the `Bookmark` command behaves at each step.
 
-> :bulb: The command is using one-based indexing while the program stores and recognises the zero-based indexing. The following example will use one-based to be consistent with the command. 
+> :bulb: The command is using one-based indexing while the program stores and recognises the zero-based indexing. The following example will use one-based to be consistent with the commands. 
 
 **Step 1:** User inputs command `bookmark`,  the application then calls `Parser#getCommand()` and passes the command to it.
 
@@ -903,7 +903,7 @@ Below is a list of bookmark operations:
 
 The sequence diagram presented below depicts the interaction between the components for running the command, bookmark -a 430.
 
-> :memo: The other options follow a similar process, only the list and info bookmark commands does not interact with StorageManager.
+> :memo: The other options follow a similar process, only the list and info bookmark commands does not interact with StorageManager. For example the delete bookmark command calls `deleteBookmarkEntry()` method and modify the bookmark entry using `Bookmark#deleteAnimeBookmark()`.
 
 ![Bookmark Add Command Sequence Diagram](images/Bookmark-Add-Sequence-Diagram.png) <br/>
 *Figure 31: Bookmark Add Command Sequence Diagram*
@@ -917,7 +917,7 @@ Listing all anime in bookmark:
 	3. InuYasha the Movie 2: The Castle Beyond the Looking Glass
 ```
 
-**Step 6:** The user executes `bookmark -d 1` command to delete the bookmark entry at bookmark ID: 1. `Bookmark#deleteAnimeBookmark()` will then remove the Bookmark index from the `Bookmark`.
+**Step 6:** The user executes `bookmark -d 1` command to delete the bookmark entry at bookmark ID 1. `Bookmark#deleteAnimeBookmark()` will then remove the Bookmark index from the `Bookmark`.
 
 ![Bookmark State After Delete Diagram](images/Bookmark-After-Step6.png) <br/>
 *Figure 32: Bookmark Entries After Delete*
@@ -929,7 +929,7 @@ Listing all anime in bookmark:
 ![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
 *Figure 33: Bookmark Entries After Edit Episode*
 
-**Step 8:** The user executes `bookmark 1 -n Schedule push back` command to add a note for a bookmark entry. `Bookmark#addNote()` will then add a note to the bookmark entry at bookmark ID: 1.
+**Step 8:** The user executes `bookmark 1 -n Schedule push back` command to add a note for a bookmark entry. `Bookmark#addNote()` will then add a note to the bookmark entry at bookmark ID 1.
 
 ![Bookmark State After Add Note Diagram](images/Bookmark-After-Step8.png) <br/>
 *Figure 34: Bookmark Entries After Add Note*
@@ -951,7 +951,7 @@ Notes for anime:
 1. Schedule push back
 ```
 
-**Step 10:** The user executes `bookmark 1 -r 1` command to remove a note from a bookmark entry. `Bookmark#removeNote()` will remove the note ID: 1 from the first bookmark entry. The resulting state of the remove note command will look exactly the same to the state before the note was added.
+**Step 10:** The user executes `bookmark 1 -r 1` command to remove a note from the bookmark entry. `Bookmark#removeNote()` will remove the note ID 1 from the first bookmark entry. The resulting state of the remove note command will look exactly the same to the state before the note was added.
 
 ![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
 *Figure 35: Bookmark Entries After Edit Episode*
@@ -1183,7 +1183,143 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.3: Creating watchlist
+### D.3: Browse 
+1.  Utilising the `browse` feature.
+    1.  Prerequisite:  None.
+
+    2.  Test case: `browse` <br/>
+    Expected: Will list 20 anime series according to the anime ID.
+    
+    3.  Test case: `browse -s rating` <br/>
+    Expected: Will list 20 anime series according to the most popular anime ratings.
+    
+    4.  Test case: `browse -s rating -o asc` <br/>
+    Expected: Will list 20 anime series from the lowest rated anime series (Ascending order).
+    
+    5.  Other incorrect commands to try: 
+        1.  `browse -s alpha`
+        2.  `browse -p x` (where x is a negative number, a word, or an additional parameter.)
+        3.  `browse -s name -s rating`
+        4.  `browse ---`
+        5.  `browse -s rating-o asc`
+
+<br/>
+
+### D.4: Search by name
+1.  Finding an anime series with `search` feature.
+    1.  Prerequisite:  None.
+
+    2.  Test case: `search -n Mushi` <br/>
+    Expected: Will return anime with the keyword 'Mushi'. In this case it would return 'MUSHI-SHI'.
+    
+    3.  Test case: `search -n MUSHI-` <br/>
+    Expected: Will return anime with the keyword 'MUSHI-'. In this case it would return 'MUSHI-SHI'.
+    
+    4.  Other incorrect commands to try: 
+        1.  `search`
+        2.  `search -n mush -n shi` In this case it would attempt to search for `mush -n shi`, and return no results.
+        3.  `search -n`
+
+<br/>
+
+### D.5: Search by genre
+1.  Finding all anime series that has a specific genre with `search` feature.
+    1.  Prerequisite:  None.
+
+    2.  Test case: `search -g Music` <br/>
+    Expected: Will return all anime that has 'Music' as its genre.
+    
+    3.  Test case: `search -n slice of life` <br/>
+    Expected: Will return anime that has 'Slice of Life' as its genre.
+    
+    4.  Other incorrect commands to try: 
+        1.  `search`
+        2.  `search -g musik` In this case it would attempt to search for `musik`, and return no results.
+        3.  `search -g`
+
+<br/>
+
+### D.6: Viewing the information of a specific anime
+1.  Viewing the information of a specific anime.
+    1.  Prerequisite: None.
+    
+    2.  Test case: `info 1` <br/>
+    Expected: Lists out the information of the anime with index 1.
+    
+    3.  Test case: `info 3` <br/>
+    Expected: Lists out the information of the anime with index 3.
+    
+    4.  Other incorrect commands to try:
+        1.  `info`
+        2.  `info x` (where x is a negative number, zero, a word, or a number exceeding the number of anime in the database)
+
+<br/>
+
+### D.7: Create a new Workspace
+1.  Create a new Workspace with `workspace` feature
+    1.  Prerequisite:  None.
+    
+    2.  Test case: `workspace -n Crunchyroll` <br/>
+    Expected: Workspace will be successfully created with success message.
+    
+    3.  Test case: `workspace -n Crunchyroll__` <br/>
+    Expected: Workspace creation will fail with error message stating names must be alphanumeric and spaces only.
+    
+        1.  Other incorrect commands to try: 
+            1.  `workspace`
+            2.  `workspace -n `
+            3.  `workspace -N`
+
+<br/>
+            
+### D.8: Switch to a different Workspace
+1.  Switch to a different Workspace with `workspace` feature
+    1.  Prerequisite:  Workspace must first exist before switching to them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the former.
+    
+    2.  Test case: `workspace -s CrunchyOreo` <br/>
+    Expected: Workspace will be successfully switched from `Default` to `CrunchyOreo`.
+    
+    3.  Test case: `workspace -s CrunchyOreo__` <br/>
+    Expected: Workspace switch will fail given how the name request does not meet requirement of being alphanumeric and spaces only.
+    
+        1.  Other incorrect commands to try: 
+            1.  `workspace`
+            2.  `workspace -s `
+            3.  `workspace -S`
+
+<br/>
+
+### D.9: List all Workspace
+1.  List all Workspace with `workspace` feature
+    1.  Prerequisite:  Workspace must first exist to be able to list them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the former.
+    
+    2.  Test case: `workspace -l` <br/>
+    Expected: Workspace `Default` and `CrunchyOreo` will be listed.
+    
+        1.  Other incorrect commands to try: 
+            1.  `workspace`
+
+<br/>
+            
+### D.10: Delete a Workspace
+1.  Delete a Workspace with `workspace` feature
+    1.  Prerequisite:  Workspace must first exist before deleting them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the latter.
+    
+    2.  Test case: `workspace -d Default` <br/>
+    Expected: Workspace will be successfully deleted.
+    
+    3.  Test case: `workspace -d default` <br/>
+    Expected: Workspace deletion will fail given default does not exists.
+    
+        1.  Other incorrect commands to try: 
+            1.  `workspace`
+            2.  `workspace -D`
+            3.  `workspace -d`
+            4.  `workspace -d ..`
+            
+<br/>
+
+### D.11: Creating watchlist
 1.  Creating a watchlist with a unique name.
     1.  Prerequisite: None.
     
@@ -1197,7 +1333,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.4: Listing all watchlist(s)
+### D.12: Listing all watchlist(s)
 1.  Listing all created watchlist(s).
     1.  Prerequisite: None.
     
@@ -1209,7 +1345,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.5: Selecting a watchlist to be the new active watchlist
+### D.13: Selecting a watchlist to be the new active watchlist
 1.  Selecting a watchlist to be the new active watchlist.
     1.  Prerequisite: The current workspace has at least 2 watchlist, and **the first watchlist in the list is the active watchlist**.
     
@@ -1225,7 +1361,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.6: Deleting a watchlist
+### D.14: Deleting a watchlist
 1.  Deleting a watchlist.
     1.  Prerequisite: The current workspace has at least 2 watchlist, and **the first watchlist is the active watchlist**.
 
@@ -1242,7 +1378,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.7: Adding an anime to active watchlist
+### D.15: Adding an anime to active watchlist
 1.  Adding an anime to active watchlist.
     1.  Prerequisite: The active watchlist does not contain the anime to be added.
     
@@ -1258,7 +1394,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.8: Removing an anime from active watchlist
+### D.16: Removing an anime from active watchlist
 1.  Removing an anime from active watchlist.
     1.  Prerequisite: The active watchlist must contain at least one anime.
     
@@ -1274,7 +1410,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.9: Viewing all anime in a specific or active watchlist
+### D.17: Viewing all anime in a specific or active watchlist
 1.  Viewing all anime in a specific or active watchlist.
     1.  Prerequisite: The watchlist must contain at least one anime.
     
@@ -1289,23 +1425,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.10: Viewing the information of a specific anime
-1.  Viewing the information of a specific anime.
-    1.  Prerequisite: None.
-    
-    2.  Test case: `info 1` <br/>
-    Expected: Lists out the information of the anime with index 1.
-    
-    3.  Test case: `info 3` <br/>
-    Expected: Lists out the information of the anime with index 3.
-    
-    4.  Other incorrect commands to try:
-        1.  `info`
-        2.  `info x` (where x is a negative number, zero, a word, or a number exceeding the number of anime in the database)
-
-<br/>
-
-### D.11: Listing bookmark entries
+### D.18: Listing bookmark entries
 1.  Listing bookmark entries.
     1.  Prerequisite: None.
 
@@ -1314,7 +1434,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.12: Adding a bookmark entry
+### D.19: Adding a bookmark entry
 1.  Adding a bookmark entry.
     1.  Prerequisite: Look up the anime ID using the `info` command. The anime ID is in `AnimeData` source.
 
@@ -1330,7 +1450,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.13: Deleting a bookmark entry
+### D.20: Deleting a bookmark entry
 1.  Deleting a bookmark entry.
     1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
 
@@ -1346,22 +1466,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.14: View information of a bookmark entry
-1.  View information of a bookmark entry.
-    1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
-
-    2.  Test case: `bookmark 1` <br/>
-    Expected: All information on a bookmark entry will be printed.
-    
-    3.  Test case: `bookmark 0` <br/>
-    Expected: No bookmark entry information is displayed. Error details show that bookmark ID cannot be 0.
-    
-    4.  Other incorrect commands to try: 
-        1.  `bookmark -d x` (where x is a negative number, a word, or an additional parameter)
-
-<br/>
-
-### D.15: Editing a bookmark entry episode
+### D.21: Editing a bookmark entry episode
 1.  Editing a bookmark entry episode.
     1.  Prerequisite: 
         1.  List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
@@ -1381,7 +1486,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.16: Adding a note to a bookmark entry
+### D.22: Adding a note to a bookmark entry
 1.  Adding a note to a bookmark entry.
     1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
          
@@ -1399,7 +1504,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.17: Removing a note from a bookmark entry
+### D.23: Removing a note from a bookmark entry
 1.  Removing a note from a bookmark entry.
     1.  Prerequisite:  View the information on bookmark entry using 'bookmark <BOOKMARK_ID>'. Multiple notes for that bookmarked anime.
 
@@ -1417,115 +1522,15 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.18: Browse 
-1.  Utilising the `browse` feature.
-    1.  Prerequisite:  None.
+### D.24: View information of a bookmark entry
+1.  View information of a bookmark entry.
+    1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
 
-    2.  Test case: `browse` <br/>
-    Expected: Will list 20 anime series according to the anime ID.
+    2.  Test case: `bookmark 1` <br/>
+    Expected: All information on a bookmark entry will be printed.
     
-    3.  Test case: `browse -s rating` <br/>
-    Expected: Will list 20 anime series according to the most popular anime ratings.
-    
-    4.  Test case: `browse -s rating -o asc` <br/>
-    Expected: Will list 20 anime series from the lowest rated anime series (Ascending order).
-    
-    5.  Other incorrect commands to try: 
-        1.  `browse -s alpha`
-        2.  `browse -p x` (where x is a negative number, a word, or an additional parameter.)
-        3.  `browse -s name -s rating`
-        4.  `browse ---`
-        5.  `browse -s rating-o asc`
-<br/>
-
-### D.19: Search by name
-1.  Finding an anime series with `search` feature.
-    1.  Prerequisite:  None.
-
-    2.  Test case: `search -n Mushi` <br/>
-    Expected: Will return anime with the keyword 'Mushi'. In this case it would return 'MUSHI-SHI'.
-    
-    3.  Test case: `search -n MUSHI-` <br/>
-    Expected: Will return anime with the keyword 'MUSHI-'. In this case it would return 'MUSHI-SHI'.
+    3.  Test case: `bookmark 0` <br/>
+    Expected: No bookmark entry information is displayed. Error details show that bookmark ID cannot be 0.
     
     4.  Other incorrect commands to try: 
-        1.  `search`
-        2.  `search -n mush -n shi` In this case it would attempt to search for `mush -n shi`, and return no results.
-        3.  `search -n`
-<br/>
-
-### D.20: Search by genre
-1.  Finding all anime series that has a specific genre with `search` feature.
-    1.  Prerequisite:  None.
-
-    2.  Test case: `search -g Music` <br/>
-    Expected: Will return all anime that has 'Music' as its genre.
-    
-    3.  Test case: `search -n slice of life` <br/>
-    Expected: Will return anime that has 'Slice of Life' as its genre.
-    
-    4.  Other incorrect commands to try: 
-        1.  `search`
-        2.  `search -g musik` In this case it would attempt to search for `musik`, and return no results.
-        3.  `search -g`
-<br/>
-  
-### D.21: Create a new Workspace
-1.  Create a new Workspace with `workspace` feature
-    1.  Prerequisite:  None.
-    
-    2.  Test case: `workspace -n Crunchyroll` <br/>
-    Expected: Workspace will be successfully created with success message.
-    
-    3.  Test case: `workspace -n Crunchyroll__` <br/>
-    Expected: Workspace creation will fail with error message stating names must be alphanumeric and spaces only.
-    
-        1.  Other incorrect commands to try: 
-            1.  `workspace`
-            2.  `workspace -n `
-            3.  `workspace -N`
-<br/>
-            
-### D.22: Switch to a different Workspace
-1.  Switch to a different Workspace with `workspace` feature
-    1.  Prerequisite:  Workspace must first exist before switching to them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the former.
-    
-    2.  Test case: `workspace -s CrunchyOreo` <br/>
-    Expected: Workspace will be successfully switched from `Default` to `CrunchyOreo`.
-    
-    3.  Test case: `workspace -s CrunchyOreo__` <br/>
-    Expected: Workspace switch will fail given how the name request does not meet requirement of being alphanumeric and spaces only.
-    
-        1.  Other incorrect commands to try: 
-            1.  `workspace`
-            2.  `workspace -s `
-            3.  `workspace -S`
-<br/>
-
-### D.23: List all Workspace
-1.  List all Workspace with `workspace` feature
-    1.  Prerequisite:  Workspace must first exist to be able to list them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the former.
-    
-    2.  Test case: `workspace -l` <br/>
-    Expected: Workspace `Default` and `CrunchyOreo` will be listed.
-    
-        1.  Other incorrect commands to try: 
-            1.  `workspace`
-<br/>
-            
-### D.24: Delete a Workspace
-1.  Delete a Workspace with `workspace` feature
-    1.  Prerequisite:  Workspace must first exist before deleting them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the latter.
-    
-    2.  Test case: `workspace -d Default` <br/>
-    Expected: Workspace will be successfully deleted.
-    
-    3.  Test case: `workspace -d default` <br/>
-    Expected: Workspace deletion will fail given default does not exists.
-    
-        1.  Other incorrect commands to try: 
-            1.  `workspace`
-            2.  `workspace -D`
-            3.  `workspace -d`
-            4.  `workspace -d ..`
-<br/>
+        1.  `bookmark -d x` (where x is a negative number, a word, or an additional parameter)
