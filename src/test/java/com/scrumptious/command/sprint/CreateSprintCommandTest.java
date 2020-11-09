@@ -16,67 +16,7 @@ import java.util.Hashtable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CreateSprintCommandTest {
-    private final PrintStream systemOut = System.out;
-    private ByteArrayOutputStream testOut;
-
-    @BeforeEach
-    public void setUpOutput() {
-        testOut = new ByteArrayOutputStream();
-        Ui.setOutStream(new PrintStream(testOut));
-    }
-
-    @AfterEach
-    public void restoreSystemOutput() throws IOException {
-        testOut.close();
-        Ui.setOutStream(systemOut);
-    }
-
-    private String getOutput() {
-        return testOut.toString();
-    }
-
-    private ProjectManager generateProject() {
-        ProjectManager projectManager = new ProjectManager();
-        projectManager.addProject("project1", "project1", 50, 10);
-        projectManager.addProject("project2", "project2", 50, 10);
-        assert projectManager.getProjectList().size() == 2 : "Dummy projects not added!";
-        return projectManager;
-    }
-
-    private void generateDummyTask(ProjectManager projectManager) {
-        for (Project project : projectManager.getProjectList().values()) {
-            project.getBacklog().addTask(project.getTitle() + "task1", "task1", "HIGH");
-            project.getBacklog().addTask(project.getTitle() + "task2", "task2", "MEDIUM");
-            project.getBacklog().addTask(project.getTitle() + "task3", "task3", "LOW");
-            assert project.getBacklog().size() == 3 : "Dummy tasks for " + project.getTitle() + " not added!";
-        }
-    }
-
-    private void generateDummyMember(ProjectManager projectManager) {
-        for (Project project : projectManager.getProjectList().values()) {
-            project.getMemberList().addMember(new Member(project.getTitle() + "member1"));
-            project.getMemberList().addMember(new Member(project.getTitle() + "member2"));
-            project.getMemberList().addMember(new Member(project.getTitle() + "member3"));
-            assert project.getMemberList().size() == 3 : "Dummy members for " + project.getTitle() + " not added!";
-        }
-    }
-
-    private void generateDummySprint(ProjectManager projectManager) {
-        for (Project project : projectManager.getProjectList().values()) {
-            project.getSprintList().addSprint(project, project.getTitle() + "Sprint1",
-                    LocalDate.now(), LocalDate.now().plusDays(9));
-            project.getSprintList().addSprint(project, project.getTitle() + "Sprint2",
-                    LocalDate.now().plusDays(10), LocalDate.now().plusDays(19));
-            project.getSprintList().addSprint(project, project.getTitle() + "Sprint3",
-                    LocalDate.now().plusDays(20), LocalDate.now().plusDays(49));
-            project.getSprintList().addSprint(project, project.getTitle() + "Sprint4",
-                    LocalDate.now().plusDays(30), LocalDate.now().plusDays(49));
-            project.getSprintList().addSprint(project, project.getTitle() + "Sprint5",
-                    LocalDate.now().plusDays(40), LocalDate.now().plusDays(49));
-            assert project.getSprintList().size() == 5 : "Dummy sprints for " + project.getTitle() + " not added!";
-        }
-    }
+public class CreateSprintCommandTest extends SprintCommandTest {
 
     @Test
     void createSprintCommand_validCommand_firstSprint() {

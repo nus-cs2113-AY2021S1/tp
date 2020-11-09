@@ -16,11 +16,19 @@ public class RemoveSprintTaskCommand extends SprintCommand {
      */
     private final ArrayList<Integer> taskIds;
 
+    /**
+     * Creates a new RemoveSprintTask command with arguments.
+     * @param parameters - all parameters specified by user
+     * @param projectList - the entire project manager that the program is working on
+     */
     public RemoveSprintTaskCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
         super(parameters, projectList, true);
         this.taskIds = new ArrayList<>();
     }
 
+    /**
+     * Executes the command.
+     */
     public void execute() {
         try {
             checkProjectExist(-1);

@@ -20,14 +20,22 @@ public abstract class SprintCommand extends Command {
 
     /**
      * Creates a new Sprint command with arguments.
+     * @param parameters - all parameters specified by user
+     * @param projectList - the entire project manager that the program is working on
      */
     public SprintCommand(Hashtable<String, String> parameters, ProjectManager projectList, boolean shouldSave) {
         super(parameters, shouldSave);
         this.projectList = projectList;
     }
 
+    /**
+     * Executes the command.
+     */
     public abstract void execute();
 
+    /**
+     * Log the status of execution.
+     */
     public abstract void logExecution();
 
     /**
