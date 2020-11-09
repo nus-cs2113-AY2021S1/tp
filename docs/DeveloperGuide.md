@@ -138,7 +138,7 @@ number of plot bunnies: 2
 --------------------------------------------------------------
 ```
 
-Since the program only searches for the idea and genre tag, it is lenient when reading in the bunny such that if the user keys in the wrong line divider or index it can still read it in. It can excuse spacing and typo as long as each Bunny is listed with an idea tag followed by its corresponding genre tag. This makes it easy for the user to directly edit the `bunny.txt` file if they wish.
+Since the program only searches for the idea and genre tag, it is lenient when reading in the bunny such that if the user keys in the wrong line divider or index it can still read it in. It can excuse spacing and typo as long as each Bunny is listed with an idea tag followed by its corresponding genre tag. This makes it easy for the user to directly edit the `bunny.txt` file if they wish. It will read the file until it can no longer has a next line in `bunny.txt` to read from.
 
 #### Usage and storage
 The diagram above is describes the storage of the Bunny ideas in Fluffle. 
@@ -146,14 +146,33 @@ The diagram above is describes the storage of the Bunny ideas in Fluffle.
 ![Bunny Manager Component](graphics/diagrams/Bunny_manager_component.png)
 <p align = "center"><i><b>Figure 3: Bunny manager architecture</b></i></p>
 
-The BunnySaver class handles the loading of saved `Bunny` objects from the `bunny.txt` file into the `bunniesList`. The 
+Transferring `Bunny` ideas from the `bunniesList` to the `bunny.txt` file via the BunnySaver:
+* When the user calls the `save bunny` command from the CLI, the Bunny from bunnies list are read by `saveAllBunny` command.
+* The `bunniesList` ArrayList is passed by the `commandExecutor` function in the `CommandExecutor` class.
+* The `saveAllBunny` command first prints the number of `Bunny` objects found in the `bunnyList` as follows:
+```
+number of plot bunnies: 10
+--------------------------------------------------------------
+```
 
-When the user calls the `save bunny` command from the CLI, the 
+* The `BunnySaver` class formats the idea and genre into neatly tagged strings, numbered following their index in the ArrayList and seperated by plain line dividers as follows:
+```
+1.
+  idea: bunny idea 1
+  genre: none
+--------------------------------------------------------------
+2.
+  idea: test idea 2
+  genre: none
+--------------------------------------------------------------
+```
 
-Bunny read from storage and added to the new bunniesList ArrayList
+Transferring `Bunny` ideas from the `bunny.txt` to the `bunniesList` file via the BunnyLoader:
+* The `BunnyLoader` class handles the loading of saved `Bunny` objects from the `bunny.txt` file into the `bunniesList`. 
+* The format of each `Bunny` object should consist of an idea and genre component, even if the genre component is "none". 
+* For each of the `Bunny` objects in the printed list in `bunny.txt`, the parsed idea and genre are combined to create a `Bunny` object that is then added to the `bunniesList` ArrayList and can be managed by the user using the bunny related commands.
 
 Note that all the other functions in the bunny related classes such as `BunnyList`, `DeleteBunny`, `BunnyFilter` and `GenBunny` can also access this `bunniesList` ArrayList to perform their various functions as it is passed by reference from the `commandExecutor` function, which imports the `bunniesList` from the `BunnyList` class. Find out more [here](#bunny-class-family).
-
 
 ### Word Manager Component
 Given below is the general architecture of our Word Manager Component.
@@ -171,6 +190,13 @@ The operations that can be done on the words list are:
 ### Name Manager Component
 
 ## Implementation
+
+### User interaction overview
+![UML sequence diagram for user interaction](graphics/diagrams/Sequence_diagram_general_command.png)
+
+After the initial logo printing and registration step, the `main` in the `Duke` class enters a while loop, which will only exit when the `exit` command is detected. This component handles the processing of various commands in Fluffle and makes it easier for developers to add new commands without interfering with implementation of other commands.
+
+For simplicity when the `CommandExecutor` class is referenced in later UML diagrams in this document, you may assume that it is a continuation of this diagram.
 
 ### Writing Features
 #### Constitution (member classes)
@@ -285,9 +311,7 @@ In **Figure 7** above, the flow of the program after it enters the filter proces
 1. Filter list is printed by calling `FilterList.printFilterList()`.
 1. The filter process terminates.
    
-### Bunny class family
-
-#### overivew
+### Bunny class family overivew
 ![UML Bunny class diagram](graphics/diagrams/Class_diagram_bunny.png)
 <p= "center"><i><b>Figure 8:  Bunny ideas UML Class Diagram</b></i></p>
 
@@ -300,12 +324,27 @@ The `BunnySaver` class accesses the `bunniesList` and overwrites the current `bu
 
 The `GenBunny` class can access the `bunniesList` as well. The function `pickRandomBunny` from the `GenBunny` class first randomly generates an integer between 0 and the max number of `Bunny` idea in the `bunniesList` ArrayList. It then selects that indexed `Bunny` from the `bunniesList` and returns it to the user. This allows the user to easily choose an idea to start working on without struggling to decide which idea to use.
 
+### Bunny command implementations
+
+#### Adding bunny idea `bunny`
 ![UML BunnyList sequence diagram](graphics/diagrams/Sequence_diagram_bunny.png)
 <p align = "center"><b><i>Figure 9:  Bunny list UML Sequence Diagram</i></b></p>
 
 The user may call upon the `bunny` command to add bunnies to the list. The user input is first processed by the `extractCommandType` method from the `CommandChecker` class, and the command type detected is sent to the `executeCommand` method from the `CommandExecutor` class. The `addBunny` function is called by this method accordingly. The `addBunny` command calls the `parseSingleCharacterTaggedParamsFromUserInput` method from the `Parsers` class to extract the `idea` and `genre` arguments from the command. These are then used to create a new `Bunny` object that is then added to the `bunniesList` ArrayList. The `addBunnyMessage` method from `UI` is then called to print the message that the `Bunny` idea object has been sucessfully added to the ArrayList.
 
-#### Bunny List
+#### Listing bunny ideas `list bunny` 
+This feature allows users to add a Verb into the word bank of Fluffle. When the user adds a verb using the `verb` command,
+an object of the `Verb` class is created and added into the ArrayList `WordList`.
+
+#### Filtering bunny ideas: `filter bunny`
+
+#### Saving bunny ideas: `save bunny`
+
+#### Deleting a bunny idea: `delete bunny`
+
+#### Generating a random bunny idea: `random bunny`
+
+#### Resetting the entire list of Bunny ideas: `reset bunny`
 
 ### Names class family
 
@@ -339,6 +378,8 @@ As shown in Figure 10, both the NamesDB class and the Names class will create th
         1. Otherwise, it is considered as invalid command if the `word` with respective `type` does not exist in the database.
 
 ## Aesthetic components
+
+### Changing line divider in Fluffle: `divider`
 
 ## Testing
 
