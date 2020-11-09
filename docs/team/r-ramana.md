@@ -18,15 +18,11 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 *Features implemented*
 
 1\. Completed the following features and test code for them:
-- `archive-n`: Allows the user to archive a note so their notebook is more organized and less cluttered. Users can access pertinent notes quicker.
-- `find-n`: Allows the user to filter and find a note by the note title, and retrieve them as opposed to scanning for them in the list. It makes the process more efficient.
-- `help`: Allows the user a quick access on the list of commands available and how to use them as the user might not recall all of the commands.      
-- `list-n`: Allows the user to see all available notes. User can also sort the notes in ascending or descending order for convenience, or list by tags. User can view all archived notes.
-- `unarchive-n`: Allows the user to unarchive a note if the user wants to make changes to the note.
-
-<div style="page-break-after: always;"></div>
+`archive-n`: Allows the user to archive a note so their notebook is more organized and less cluttered. Users can access pertinent notes quicker. `find-n`: Allows the user to filter and find a note by the note title, and retrieve them as opposed to scanning for them in the list. It makes the process more efficient. `help`: Allows the user a quick access on the list of commands available and how to use them as the user might not recall all of the commands. `list-n`: Allows the user to see all available notes. User can also sort the notes in ascending or descending order for convenience, or list by tags. User can view all archived notes. `unarchive-n`: Allows the user to unarchive a note if the user wants to make changes to the note.
 
 2\. In the `Notebook` class, created: `archivedNotes`, `unarchivedNotes`, `getArchivedNotes`, `getNote`, `checkPinned`, `getSortedList`, `getPinnedNotes`, `getUnpinnedNotes`, `findNotes`. In the `Note` class, created: `toggleArchived`, `getIsArchived`, `getPinned`. Added a couple of `formatNotes` methods into the `Formatter` class.
+
+<div style="page-break-after: always;"></div>
 
 *Enhancements to existing features*
 
