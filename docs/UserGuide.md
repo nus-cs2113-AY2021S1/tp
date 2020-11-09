@@ -909,7 +909,7 @@ If you encounter any errors, take note of the following warning.
 >* “back” and "show answer" cannot be added as an answer for the flashcard.
 >This is because “back” and "show answer" are used as commands to exit and reveal the answer in the test mode
 >respectively.
->If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
+>If the flashcard answer you wish to use is similar to “back” or "show answer", rephrase and use another term.
 >
 >![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png){:height="60%" width="60%"}
 
