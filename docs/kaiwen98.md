@@ -24,11 +24,8 @@ their finance. <br/>
             1. Contributions to ManualTracker and EntryTracker feature: [#28](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/28), [#1](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/1)
             1. Contributions to code quality and organisation: [#99](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/99), [#105](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/105), [#70](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/70), [#50](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/50)   
         1. Error Handling contributions: [#14](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/14)
-        1. Logging contributions: [#241](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/241)
+        1. Logging contributions: [#241](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/241), [#273](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/273)
         1. Code testing contributions: [#240](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/240), [#57](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/57), [#45](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/45)
-
-
-<div style="page-break-after: always;"></div> 
 
 # Summary of Contributions: Documentation
 # Contributions to UG
@@ -158,52 +155,6 @@ The Manual Tracker is capable of executing the following states of operation:
 |```InputParser```| Breaks input string by user into ```commandString``` and a sequence of ```paramTypes```-```param``` pairs. <br><br> The latter subsequence of the string is passed into ParamParser for further processing. <br><br> Information obtained from input parsing will be used to populate an instantiated ```CommandPacket``` instance, which will then be passed to the entity that called the parsing function.	
 |```ParamParser```| Process the sequence of ```paramTypes```-```param``` pairs and populate the ```paramMap``` in the instantiated ```CommandPacket``` instance.	
 |```ManualTracker```| [Refer to section](#logicManager_handler).
-|```EntryTracker```| Omitted for brevity.
-
-
-**<a name = logic_data></a>Logic Manager and Data** <br />
-
-![](uml_images/images_updated/Handler_Data.png)
-
-|Class| Function |
-|--------|--------|
-|```ManualTracker```| [Refer to section](#logicManager_handler).
-|```EntryTracker```| Omitted for brevity.
-|```EntryList```| Omitted for brevity.
-|```Entry```| Omitted for brevity.
-|```LedgerList```| Extends ItemList. Refer to Ledgers and Entries section for class behavior.
-|```Ledger```| Extends DateTimeItem. Refer to Ledgers and Entries section for class behavior.
-|```ItemList```| Class with defined list behavior specified with helper methods such as retrieval, checking of Duplicates and deletion.
-|```DateTimeItem```| Abstract class that extends ```Item``` class; instances will have ```LocalDate``` or ```LocalTime``` attributes and corresponding helper methods.
-|```Item```| Abstract class to define behavior of entities that need are stored in ```ItemList``` instances.
-
-**<a name = handler_logic></a>Handler and Logic** <br />
-
-![](uml_images/images_updated/Commands_Logic.png)
-
-|Class| Function |
-|--------|----------|
-|```RetrieveLedgerHandler```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance, then retrieves the instance from the existing ```LedgerList```.
-|```CreateLedgerHandler```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance to be created, then creates the instance and append to existing ```LedgerList```.
-|```retrieveEntryHandler```| Omitted for brevity.
-|```CreateEntryHandler```| Omitted for brevity.
-|```EditEntryHandler```| Omitted for brevity.
-|```ParamChecker```| Class contains a collection of methods that verify the correctness of the ```param``` supplied. <br><br> For instance, ```ParamChecker.checkAndReturnIndex``` checks if the index provided is out of bounds relative to the specified list, and throws the relevant exception if the input index is invalid. 
-|```ParamHandler```| Abstract class that outlines the general param handling behavior of ```commands``` instances and other classes that need to handle ```params``` in its operation.  
-
-
-**<a name = logicManager_handler> </a>Logic Manager and Handler** <br />
-
-![](uml_images/images_updated/Handler_Commands.png)
-
-|Class| Function |
-|--------|----------|
-|```RetrieveLedgerHandler```| [Refer to section](#handler_logic).
-|```CreateLedgerHandler```| [Refer to section](#handler_logic).
-|```retrieveEntryHandler```| Omitted for brevity.
-|```CreateEntryHandler```| Omitted for brevity.
-|```EditEntryHandler```| Omitted for brevity.
-|```ManualTracker```| Implements Manual Tracker. Contains handler methods that implements a particular operation capable by the Manual Tracker. <br><br> These methods use the above ```command``` instances for param handling operations from user input.
 |```EntryTracker```| Omitted for brevity.
 
 
