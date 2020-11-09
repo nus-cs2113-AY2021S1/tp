@@ -25,8 +25,7 @@ Here are my contributions to the project.
   - Print a list of modules with current CAP and projected CAP.
   - Add functionality to automatically create folders for all the user's modules in the module list.
 
-- Code contributed: ~2.9k SLOC
-  - [RepoSense Report](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=iamchenjiajun&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=iamchenjiajun&tabRepo=AY2021S1-CS2113-T14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
+- Code contributed: ~2.9k SLOC, [RepoSense Report](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=iamchenjiajun&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=iamchenjiajun&tabRepo=AY2021S1-CS2113-T14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other).
 
 - Code enhancements:
   - Apply SLAP and DRY principles to refactor duplicated code in the code base, moving code to new functions where necessary, thus reducing SLOC.
