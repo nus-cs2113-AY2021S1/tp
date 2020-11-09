@@ -26,7 +26,7 @@
     *   Justification: This allows the application to greet the user so they can feel welcomed.
     *   Highlights: During the loading of user data, the data would be validated to ensure it is not corrupted (e.g. invalid name or gender), and it not loaded if it is corrupted. In addition, the failure to load the user data does not prevent existing watchlist and bookmark data from being loaded.
 
-*   **Code Contributed:** [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=ongdezhi&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=OngDeZhi&tabRepo=AY2021S1-CS2113T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
+*   **Code Contributed:** [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=ongdezhi&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=OngDeZhi&tabRepo=AY2021S1-CS2113T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other).
 
 *   **Documentation:**
     *   User Guide: 
@@ -39,9 +39,9 @@
 
 *   **Team-based Tasks**
     *   Helped to organize the classes into packages: [#63](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/63).
-    *   Increased code coverage: [#98](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/98), [#139](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/139), [#146](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/146).
+    *   Increased code coverage: [#98](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/98), [#139](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/139), [#140](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/140).
     *   Fixed bugs: [#158](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/158).
-    *   Helped to fix formatting issues with the User Guide: [#199](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/199), [#226](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/226).
+    *   Fix formatting issues with the User Guide: [#199](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/199), [#226](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/226). 
 
 *   **Beyond Project Team Tasks**
     *   Reported bugs and offered suggestions for other team in PE-D.
