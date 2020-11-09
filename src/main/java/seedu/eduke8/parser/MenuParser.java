@@ -27,6 +27,7 @@ import static seedu.eduke8.exception.ExceptionMessages.ERROR_BOOKMARK_DELETE_NFE
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_BOOKMARK_DELETE_IOB_ERROR;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_NOTE_WRONG_FORMAT;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_UNRECOGNIZED_COMMAND;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_TIMER_TOO_LONG;
 
 /**
  * Parses user input from the main menu, in order to execute the correct option.
@@ -56,6 +57,8 @@ public class MenuParser implements Parser {
     private static final String COMMAND_NOTE_ADD = "add";
     private static final String COMMAND_NOTE_DELETE = "delete";
     private static final String COMMAND_NOTE_LIST = "list";
+    private static final String SLASH = "/";
+    private static final String SPACE = " ";
 
 
     private BookmarkList bookmarkList;
@@ -78,7 +81,7 @@ public class MenuParser implements Parser {
     public Command parseCommand(DisplayableList topicList, String userInput) {
         assert topicList != null;
         LOGGER.log(Level.INFO, "Begin parsing command.");
-        String[] commandArr = userInput.trim().split(" ", 0);
+        String[] commandArr = userInput.trim().split(SPACE, 0);
 
         for (int i = 0; i < commandArr.length - 1; i++) {
             if (commandArr[i].equals("") || (i > 0 && (commandArr[i].equals(commandArr[i - 1])))) {
@@ -109,7 +112,7 @@ public class MenuParser implements Parser {
             int numOfQuestions = 0;
             String topicName = "";
             int userTimer = 0;
-            if ((commandArr.length > 4 && (!commandArr[3].contains("/") || !commandArr[4].equals("")))
+            if ((commandArr.length > 4 && (!commandArr[3].contains(SLASH) || !commandArr[4].equals("")))
                     || commandArr.length < 4) {
                 return new IncorrectCommand(ERROR_QUIZ_WRONG_FORMAT);
             }
@@ -140,6 +143,8 @@ public class MenuParser implements Parser {
 
                 if (userTimer < 1) {
                     return new IncorrectCommand(ERROR_QUIZ_TIMER_NEGATIVE);
+                } else if (userTimer > 1000) {
+                    return new IncorrectCommand(ERROR_QUIZ_TIMER_TOO_LONG);
                 }
                 LOGGER.log(Level.INFO, "Parsing complete: quiz command chosen.");
                 return new QuizCommand((TopicList) topicList, numOfQuestions, topicName, ui, bookmarkList, userTimer);

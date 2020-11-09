@@ -40,6 +40,7 @@ public class QuestionList implements DisplayableList {
      * Finds the question with the specified description in the QuestionList object.
      *
      * @param description Description of the question to be found.
+     * @return Displayable Question
      */
     @Override
     public Displayable find(String description) {

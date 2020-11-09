@@ -108,7 +108,7 @@ public class UserStorage extends LocalStorage {
         JSONArray notes;
 
         try {
-            String topicDescription = ((String) topic.get(KEY_TOPIC)).replaceAll(" ", "_");
+            String topicDescription = ((String) topic.get(KEY_TOPIC)).trim().replaceAll(" ", "_");
             topicObject = (Topic) topicList.find(topicDescription);
             questions = (JSONArray) topic.get(KEY_QUESTIONS);
         } catch (Eduke8Exception | NullPointerException | ClassCastException e) {
@@ -155,8 +155,8 @@ public class UserStorage extends LocalStorage {
         String noteDescription;
         String text;
         try {
-            noteDescription = (String) note.get(KEY_DESCRIPTION);
-            text = (String) note.get(KEY_TEXT);
+            noteDescription = ((String) note.get(KEY_DESCRIPTION)).trim();
+            text = ((String) note.get(KEY_TEXT)).trim();
         } catch (NullPointerException | ClassCastException e) {
             return null;
         }
@@ -177,14 +177,16 @@ public class UserStorage extends LocalStorage {
     private Question parseFromQuestionJson(QuestionList questionList, JSONObject question) {
         Question questionObject;
         try {
-            String questionDescription = (String) question.get(KEY_DESCRIPTION);
+            String questionDescription = ((String) question.get(KEY_DESCRIPTION)).trim();
             questionObject = (Question) questionList.find(questionDescription);
             questionObject.markAsShown();
             if ((boolean) question.get(KEY_CORRECT)) {
                 questionObject.markAsAnsweredCorrectly();
             }
             if ((boolean) question.get(KEY_BOOKMARKED)) {
-                bookmarkList.add(questionObject);
+                if (!questionObject.isBookmarked()) {
+                    bookmarkList.add(questionObject);
+                }
             }
             if ((boolean) question.get(KEY_HINT)) {
                 questionObject.getHint().markAsShown();
@@ -247,7 +249,7 @@ public class UserStorage extends LocalStorage {
 
         question.put(KEY_DESCRIPTION, questionObject.getDescription());
         question.put(KEY_CORRECT, questionObject.wasAnsweredCorrectly());
-        question.put(KEY_BOOKMARKED, bookmarkList.find(questionObject.getDescription()) != null);
+        question.put(KEY_BOOKMARKED, questionObject.isBookmarked());
         question.put(KEY_HINT, questionObject.wasHintShown());
 
         return question;
