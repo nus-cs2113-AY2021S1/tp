@@ -83,6 +83,8 @@ public class EditEntryCommand extends Command {
             Ui.printCustomError(ERROR_GOAL_LESS_THAN_UPPERBOUND);
         } catch (UpperBoundMoreThanException e) {
             Ui.printCustomError(ERROR_GOAL_MORE_THAN_UPPERBOUND);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Ui.printCustomError("Invalid input!");
         }
 
         try {

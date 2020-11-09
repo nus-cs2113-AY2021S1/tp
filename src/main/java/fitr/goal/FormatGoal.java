@@ -4,7 +4,6 @@ import fitr.common.RemoveLeadingZeros;
 import fitr.exception.FitrException;
 import fitr.exception.UpperBoundLessThanException;
 import fitr.exception.UpperBoundMoreThanException;
-import fitr.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.Objects;
