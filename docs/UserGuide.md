@@ -315,7 +315,7 @@ Expected Outcome:
  event --> e <br/>
  addEvent --> del/d <br/>
  
- Example of usage: 
+ Example of usage: <br/>
  `event delEvent 1` <br/>
  `event del 1` <br/>
  `event d 19` <br/>
@@ -333,7 +333,7 @@ Expected Outcome:
 Allows you to clear all events from the list of events <br/>
 Format: `event delEvent all`
 
-Example of usage:
+Example of usage: <br/>
 `event delEvent all` <br/>
 
 Shorthand Format : <br/>
@@ -358,7 +358,7 @@ Shorthand Format : <br/>
 event --> e <br/>
 listEvent --> l <br/>
 
-Example of usage: 
+Example of usage: <br/>
 `event listEvent` <br/>
 `event l` <br/>
 `e l` <br/>
@@ -426,7 +426,7 @@ Shorthand Format : <br/>
 event --> e <br/>
 search --> s <br/>
 
-Example of usage:
+Example of usage: <br/>
 `event search /s arduino course` <br/>
 `event search /s 2000-12-16` <br/>
 `e search /s 2000-12-16` <br/>
