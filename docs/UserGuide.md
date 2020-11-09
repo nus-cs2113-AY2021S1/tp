@@ -968,7 +968,7 @@ Instruction:
 
 Expected output:
 
-![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png){:height="80%" width="80%"}
+![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png){:height="50%" width="50%"}
 
 >**Useful information:**
 >* User input in the test mode is not case sensitive. If the answer is correct but the case is different from
