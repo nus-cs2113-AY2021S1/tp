@@ -122,6 +122,15 @@ The `Command` object:
 - Is executed by the `Duke` object.
 - Prints the output to the user through the `Ui` component.
 
+### CommandCreator component
+
+The `CommandCreator` represents a class with methods that generate `Commands` from parsed arguments from `Parser` class.
+
+The `CommandCreator` class:
+- Takes in arguments as needed by `Parser` class.
+- Splits the arguments further into more parts if the `Command` has more arguments in the description.
+- Returns a `Command` subclass object depending on the method that was called.
+
 <!-- @@author GuoAi -->
 ### Storage component  
 
