@@ -387,7 +387,7 @@ Output:
      Here are the links in your list:
 
      1.CS2113 lecture
-       https://cs2113Lecture.zoom.com
+       https://CS2113Lecture.zoom.com
      2.CS2028 lecture
        https://zoom.com.sg
     ____________________________________________________________
