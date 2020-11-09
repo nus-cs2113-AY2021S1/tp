@@ -33,7 +33,7 @@ public class CommandEventDel extends Command {
 
     @Override
     public String help() {
-        return "Syntax: event delEvent <Index>";
+        return "Syntax: event delEvent EVENT_INDEX";
     }
 
     @Override

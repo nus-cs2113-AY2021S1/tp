@@ -67,6 +67,6 @@ public class CommandEventAdd extends Command {
 
     @Override
     public String help() {
-        return "Syntax: event addEvent /n <Name> /d <Date YYYY-MM-DD> /t <HH-mm>";
+        return "Syntax: event addEvent /n EVENT_NAME /d EVENT_DATE <YYYY-MM-dd> /t EVENT_TIME <HH-mm>";
     }
 }
