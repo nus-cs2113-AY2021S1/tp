@@ -500,7 +500,7 @@ These are the steps to follow:
 <!-- @@author -->
 
 ### 3.4. Common Features
-This section provides the instruction for all features categorised under the common features.
+This section provides the instruction for all the common features.
 
 <!-- @@author wamikamalik -->
 #### 3.4.1. Checking for similar locations - Wamika
