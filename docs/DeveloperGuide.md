@@ -199,7 +199,7 @@ If the argument is not rejected, it will return a new RemoveCommand object with 
 When the user enters the `add` command, the `prepareAddCommand(argument)` is called. 
 It will reject the input provided by the user if the l/[LOCATION_NAME] w/[WATTAGE] t/[APPLIANCE_TYPE] is not in this particular order. 
 If the `argument` entered are in the right order, it will split and reject if any of the parameters entered by the user is empty. 
-Next, it will check to ensure that the [APPLIANCE_NAME] parameter does not contain characters such as `/` or ` \| ` or spaces in between and [WATTAGE] is a valid int number from 1-9999. 
+Next, it will check to ensure that the [APPLIANCE_NAME] parameter does not contain characters such as `/` or `|` or 'spaces' in between and [WATTAGE] is a valid int number from 1-9999. 
 If all these conditions are fulfilled, it will return and construct a new AddCommand object with name, location, wattage and type as the parameters to be used to add an appliance to the ApplianceList. 
 
 #### Sequence Diagram for `delete`
@@ -603,7 +603,7 @@ Ensure that BedRoom1 is created: `create Bedroom1` and ac Appliance is added: `a
     Expected-printout: Empty Parameter detected! Please follow format and enter required parameters.
 4. Test case: `on ac p/21` , assume `ac` was not on.<br>
    Expected-printout: Switching ac(5000W), located at BedRoom1 @ 21 Degrees.....ON
-5. Test case: `on BedRoom1` , assume `ac` was on.<br>
+5. Test case: `on Bedroom1` , assume `ac` was on.<br>
    Expected-printout: All Appliances in "BedRoom1" are turned on 
 6. Test case: `on ac p/hundred`<br>
    Expected-printout: Please enter a valid numerical value.
@@ -619,10 +619,8 @@ Ensure that BedRoom1 is created: `create Bedroom1` and ac Appliance is added: `a
     Expected-printout: Appliance or Location does not exist in the list.
 3. Test case: `off ac p/21` <br> 
     Expected-printout: There should be no parameter for this command, please refer to 'help' command.
-4. Test case: `off BedRoom1` <br>
-    Expected-printout: All Appliances in "BedRoom1" are turned off 
-
-
+4. Test case: `off Bedroom1` <br>
+    Expected-printout: All Appliances in "Bedroom1" are turned off 
 
 ### Listing Appliances or Locations
 
@@ -630,14 +628,12 @@ Ensure that BedRoom1 is created: `create Bedroom1` and ac Appliance is added: `a
     Expected-printout: There is currently no Location in the list.
 2. Test case: `list appliance`, assume no appliance is added <br>
     Expected-printout: There is currently no Appliance in the list.
-3. Test case: `list BR_1`, only `list appliance` or `list location` or `list appliance l/[LOCATION_NAME]` is valid for command<br>
+3. Test case: `list Bedroom1`, only `list appliance` or `list location` or `list appliance l/[LOCATION_NAME]` is valid for command<br>
     Expected-printout: Please enter either 'list appliance' or 'list location' or 'list appliance l/[LOCATION_NAME]'
-4. Test case: `list appliance l/BR_1`, assume that `BR_1` is not created<br>
-    Expected-printout: Location: "BR_1" does not exist.   
-5. Test case: `list appliance l/BR_1`, assume that `BR_1` is created but no Appliance is added to `BR_1`<br>   
-    Expected-printout: There is no Appliance in "BR_1". 
-
-### Listing 
+4. Test case: `list appliance l/Bedroom1`, assume that `Bedroom1` is not created<br>
+    Expected-printout: Location: "Bedroom1" does not exist.   
+5. Test case: `list appliance l/Bedroom1`, assume that `Bedroom1` is created but no Appliance is added to `Bedroom1`<br>   
+    Expected-printout: There is no Appliance in "Bedroom1". 
 
 ### Saving data to disk: 
 

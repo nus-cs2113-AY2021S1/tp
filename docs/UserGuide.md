@@ -22,7 +22,7 @@ from the text file and loads the appliances' data back.
   * [Switching on an appliance: `on`](#switching-on-an-appliance-on)
   * [Switching off an appliance: `off`](#switching-off-an-appliance-off)
   * [Listing all the locations/appliances: `list`](#listing-all-the-locations-or-appliances-list)
-  * [Displaying the usage of appliance: `usage`](#displaying-the-usage-of-appliance-usage)
+  * [Displaying the recorded usage of appliance: `usage`](#displaying-the-recorded-usage-of-appliance-usage)
   * [Resetting all power usage in application: `p_reset`](#resetting-all-power-usage-in-application-p_reset)
   * [Exiting the application: `exit`](#exiting-the-application-exit)
   * [Saving the data](#saving-the-data)
