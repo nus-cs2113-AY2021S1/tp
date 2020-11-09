@@ -26,7 +26,7 @@ reflects my code contribution.
 * Wrote tests for FavStorage, BusCommand and ExecFavCommand (Pull request [\#212](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/212))
 
 #### Contributions to User Guide
-* Added documentation for features `/route`and `/descfav`. 
+* Added documentation for features `/route`and `/descfav`. (Pull request [\#84](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/84), [\#143](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/143))
 
 #### Contributions to Developer Guide
 * Added implementation details and sequence diagram for `/bus` and `/execfav` feature. (Pull request [\#115](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/115), [\#193](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/193))
@@ -38,6 +38,13 @@ reflects my code contribution.
 * Maintained the issue tracker for tasks and documentation.
 
 #### Review/mentoring contributions
+* Non-trivial PR reviews and comments (Pull request [\#23](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/23), 
+[\#43](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/43), 
+[\#57](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/57), 
+[\#82](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/82), 
+[\#185](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/185), 
+[\#208](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/208), 
+[\#218](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/218))
 
 #### Contributions beyond the project team
 Reported bugs and suggested improvements to product and user guide for other teams [here](https://github.com/EthanWong2212/ped/issues)
