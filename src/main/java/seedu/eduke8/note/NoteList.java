@@ -31,6 +31,7 @@ public class NoteList implements DisplayableList, EditableList {
      * Deletes a Displayable object (specified with the provided int index) from the NoteList.
      *
      * @param index An index, which indicates which note in the NoteList to is to be deleted.
+     * @return Displayable notes.remove(index).
      */
     @Override
     public Displayable delete(int index) {
