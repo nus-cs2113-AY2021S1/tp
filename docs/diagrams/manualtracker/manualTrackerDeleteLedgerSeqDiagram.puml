@@ -2,62 +2,24 @@
 autoactivate on
 
 actor User
+
+scale 1094 width
 skinparam shadowing false
 skinparam sequence {
-ActorBorderColor white
-
-ActorBackgroundColor white
-ActorFontColor white
-ActorFontSize 17
-ActorFontName ""
+    ActorBorderColor white
+    
+    ActorBackgroundColor white
+    ActorFontColor white
+    ActorFontSize 17
+    ActorFontName ""
 }
-User-> ":ManualTracker": Delete Ledger
-
-":ManualTracker" ->":ManualTracker": handleDeleteLedger()
-   note left "ledger:Ledger" : "Note: Suppose this ledger instance\n will be referenced then removed."
-   ":ManualTracker"-> "retrieveLedgerHandler:retrieveLedgerHandler" : retrieveLedgerHandler.getInstance()
-   return retrieveLedgerHandler.handler
-
-   ":ManualTracker"-> "retrieveLedgerHandler:retrieveLedgerHandler" : handlePacket(packet)
-        == Handling of Params in packet for retrieval ==
-        "retrieveLedgerHandler:retrieveLedgerHandler" -> "retrieveLedgerHandler:retrieveLedgerHandler" : handleParams(packet)
-            "retrieveLedgerHandler:retrieveLedgerHandler" -> ":ParamChecker" : setPacket(packet)
-            return
-            loop For all paramType in the command packet
-                note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the ledger instance."
-                "retrieveLedgerHandler:retrieveLedgerHandler" -> "retrieveLedgerHandler:retrieveLedgerHandler" : handleSingleParam
-                    alt "paramType = PARAM_DATE"
-                        "retrieveLedgerHandler:retrieveLedgerHandler" ->":ParamChecker": checkAndReturnDate(paramType)
-                        return date
-                        "retrieveLedgerHandler:retrieveLedgerHandler" -> "ledgerList:LedgerList" : getIndexFromDate(date)
-                        return index
-                        note left: "Note: Set index to modify at entry list\nso that the entry of interest can be retrieved via regular\ngetter methods from entrylist"
-                        "retrieveLedgerHandler:retrieveLedgerHandler" -> "ledgerList:LedgerList" : setIndexToModify(index)
-                        return
-                    else "paramType = PARAM_INDEX"
-                        "retrieveLedgerHandler:retrieveLedgerHandler" ->":ParamChecker": checkAndReturnIndex(paramType, entryList)
-                        return index
-                        "retrieveLedgerHandler:retrieveLedgerHandler" -> "ledgerList:LedgerList" : setIndexToModify(index)
-                        return
-                    end
-                return
-            end
-        return
-   return
-   == Removal of retrieved ledger from ledgerList ==
-   ":ManualTracker"-> "ledgerList:LedgerList" : removeItemAtCurrIndex()
-   note left "ledger:Ledger": "Note: The retrieved ledger will be deleted here."
-   destroy "ledger:Ledger"
-   return
-return state
-return
 
 box "Data Tracker" #LightYellow
-participant ":ManualTracker"
+participant ":ManualTracker" as manualTracker <<class>>
 endBox
 
 box "Logic" #LightBlue
-participant "retrieveLedgerHandler:retrieveLedgerHandler"
+participant "handler:RetrieveLedgerHandler"
 participant ":ParamChecker"
 endBox
 
@@ -65,4 +27,47 @@ box "Data" #LightGreen
 participant "ledger:Ledger"
 participant "ledgerList:LedgerList"
 endBox
+
+User-> manualTracker: Delete Ledger
+
+manualTracker ->manualTracker: handleDeleteLedger()
+   note left "ledger:Ledger" : "Note: Suppose this ledger instance\n will be referenced then removed."
+   manualTracker-> "handler:RetrieveLedgerHandler" : getInstance()
+   return handler
+
+   manualTracker-> "handler:RetrieveLedgerHandler" : handlePacket(packet)
+        == Handling of Params in packet for retrieval ==
+        "handler:RetrieveLedgerHandler" -> "handler:RetrieveLedgerHandler" : handleParams(packet)
+            "handler:RetrieveLedgerHandler" -> ":ParamChecker" : setPacket(packet)
+            return
+            loop For all paramType in the command packet
+                note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the ledger instance."
+                "handler:RetrieveLedgerHandler" -> "handler:RetrieveLedgerHandler" : handleSingleParam(packet, paramType)
+                    alt "paramType = PARAM_DATE"
+                        "handler:RetrieveLedgerHandler" ->":ParamChecker": checkAndReturnDate(paramType)
+                        return date
+                        "handler:RetrieveLedgerHandler" -> "ledgerList:LedgerList" : getIndexFromDate(date)
+                        return index
+                        note left: "Note: Set index to modify at entry list\nso that the entry of interest can be retrieved via regular\ngetter methods from entrylist"
+                        "handler:RetrieveLedgerHandler" -> "ledgerList:LedgerList" : setIndexToModify(index)
+                        return
+                    else "paramType = PARAM_INDEX"
+                        "handler:RetrieveLedgerHandler" ->":ParamChecker": checkAndReturnIndex(paramType, entryList)
+                        return index
+                        "handler:RetrieveLedgerHandler" -> "ledgerList:LedgerList" : setIndexToModify(index)
+                        return
+                    end
+                return
+            end
+        return
+   return
+   == Removal of retrieved ledger from ledgerList ==
+   manualTracker-> "ledgerList:LedgerList" : removeItemAtCurrIndex()
+   note left "ledger:Ledger": "Note: The retrieved ledger will be deleted here."
+   destroy "ledger:Ledger"
+   return
+return 
+return
+
+
 @enduml

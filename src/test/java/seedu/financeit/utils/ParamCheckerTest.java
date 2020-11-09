@@ -5,8 +5,10 @@ import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.testutil.TestUtil;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -127,6 +129,55 @@ public class ParamCheckerTest {
     }
 
     @Test
+    public void testInvalidDayOfMonth() {
+        String testParam = "/day";
+        ArrayList<String> invalidIntegersAsStrings = new ArrayList<>(
+                List.of("-1", "0", "32", String.valueOf(Integer.MAX_VALUE))
+        );
+        for (String invalidIntegerAsString: invalidIntegersAsStrings) {
+            testPacket = TestUtil.createCommandPacket(
+                    "",
+                    new String[][]{{testParam, invalidIntegerAsString}}
+            );
+            ParamChecker.getInstance().setPacket(testPacket);
+            try {
+                ParamChecker.getInstance().checkAndReturnDayOfMonth(testParam);
+                fail("Input that did not throw error when it was supposed to: " + invalidIntegerAsString);
+            } catch (ParseFailParamException exception) {
+                //Error message generated inside ParamChecker
+                assertCorrectErrorMessage(ParamChecker.getInstance(),
+                        ParamChecker.getErrorMessageDayOfMonthOutOfBounds());
+                //Error thrown by ParamChecker, printed outside of ParamChecker
+                assertEquals("Failed to parse the following param: " + testParam,
+                        exception.getMessage());
+            }
+        }
+    }
+
+    @Test
+    public void testValidDayOfMonth() {
+        String testParam = "/day";
+        ArrayList<String> validDayOfMonthAsStrings = new ArrayList<>(
+                List.of("1", "29", "31")
+        );
+        for (String validDayOfMonthAsString: validDayOfMonthAsStrings) {
+            testPacket = TestUtil.createCommandPacket(
+                    "",
+                    new String[][]{
+                            {testParam, validDayOfMonthAsString}
+                    }
+            );
+            ParamChecker.getInstance().setPacket(testPacket);
+            try {
+                int dayOfMonth = ParamChecker.getInstance().checkAndReturnDayOfMonth(testParam);
+                assertEquals(validDayOfMonthAsString, String.valueOf(dayOfMonth));
+            } catch (Exception exception) {
+                fail("Exception occurred when there shouldn't be! " + exception.getMessage());
+            }
+        }
+    }
+
+    @Test
     public void testIndexOutOfBoundsList() {
         String testParam = "/id";
         String[] errorInput = {
@@ -179,7 +230,7 @@ public class ParamCheckerTest {
             );
             ParamChecker.getInstance().setPacket(testPacket);
             try {
-                ParamChecker.getInstance().checkAndReturnDuplicateParamTypes(testParam, testPacket.getParamMap());
+                ParamChecker.getInstance().checkForDuplicateParamTypes(testParam, testPacket.getParamMap());
                 fail();
             } catch (ParseFailParamException exception) {
                 assertEquals(
@@ -193,10 +244,70 @@ public class ParamCheckerTest {
         }
     }
 
+    @Test
+    public void testValidInteger() {
+        String testParam = "/test";
+        ArrayList<String> validIntegersAsStrings = new ArrayList<>(
+                List.of(String.valueOf(Integer.MIN_VALUE), "-1", "0", "1", String.valueOf(Integer.MAX_VALUE))
+        );
+
+        for (String validIntegerAsString: validIntegersAsStrings) {
+            testPacket = TestUtil.createCommandPacket(
+                    "",
+                    new String[][]{
+                            {testParam, validIntegerAsString},
+                    }
+            );
+            ParamChecker.getInstance().setPacket(testPacket);
+            try {
+                int intChecked = ParamChecker.getInstance().checkAndReturnInt(testParam);
+                assertEquals(validIntegerAsString, String.valueOf(intChecked));
+            } catch (Exception exception) {
+                fail("Exception occurred when there shouldn't be! " + exception.getMessage());
+            }
+        }
+    }
+
+    @Test
+    public void testInvalidInteger() {
+        String testParam = "/test";
+        ArrayList<String> invalidInputsAsStrings = new ArrayList<>(
+                List.of("435.23", "4e5", "(*^_)+_+()(", "", "  ",
+                        "456468456594876549867459", "-9823749238742983479842")
+        );
+
+
+        for (String invalidInput : invalidInputsAsStrings) {
+            testPacket = TestUtil.createCommandPacket(
+                    "",
+                    new String[][]{
+                            {testParam, invalidInput},
+                    }
+            );
+            ParamChecker.getInstance().setPacket(testPacket);
+            try {
+                int intChecked = ParamChecker.getInstance().checkAndReturnInt(testParam);
+                fail("Input that did not throw error when it was supposed to: " + invalidInput);
+            } catch (Exception exception) {
+                //Error message generated inside ParamChecker
+                assertCorrectErrorMessage(ParamChecker.getInstance(),
+                        ParamChecker.getErrorMessageNumberFormatException(invalidInput, ""));
+                //Error thrown by ParamChecker, printed outside of ParamChecker
+                assertEquals("Failed to parse the following param: " + testParam,
+                        exception.getMessage());
+            }
+        }
+    }
+
+    /**
+     * Asserts that the correct error message has been set.
+     * @param paramChecker Actual ParamChecker instance used for testing, after checking some value
+     * @param expectedErrorMessage Expected error message
+     */
     public void assertCorrectErrorMessage(ParamChecker paramChecker, String expectedErrorMessage) {
         assertEquals(
-            paramChecker.getErrorMessage(),
-            expectedErrorMessage
+            expectedErrorMessage,
+            paramChecker.getErrorMessage()
         );
     }
 }

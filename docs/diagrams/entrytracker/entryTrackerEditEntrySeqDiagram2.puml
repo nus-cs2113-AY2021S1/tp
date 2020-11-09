@@ -1,0 +1,51 @@
+@startuml
+autoactivate on
+scale 1094 width
+skinparam shadowing false
+skinparam sequence {
+ActorBorderColor white
+
+ActorBackgroundColor white
+ActorFontColor white
+ActorFontSize 17
+ActorFontName ""
+}
+
+
+
+box "Data Tracker" #LightYellow
+participant ":EntryTracker" as entryTracker <<class>>
+endBox
+
+box "Logic" #LightBlue
+participant "retrieveEntryHandler:RetrieveEntryHandler"
+participant ":ParamChecker"
+endBox
+
+box "Data" #LightGreen
+participant "entryList:EntryList"
+endBox
+group "sd [handlePacket (Phase 1)]"
+       entryTracker-> "retrieveEntryHandler:RetrieveEntryHandler" : handlePacket
+
+            == Handling of Params in packet \nfor retrieval ==
+            "retrieveEntryHandler:RetrieveEntryHandler" -> "retrieveEntryHandler:RetrieveEntryHandler" : handleParams
+                "retrieveEntryHandler:RetrieveEntryHandler" -> ":ParamChecker" : setPacket(packet)
+                return
+                loop For all paramType in the command packet
+                    note left: "Note: The entry to be edited is first retrieved \nusing the retrieve command."
+                    "retrieveEntryHandler:RetrieveEntryHandler" -> "retrieveEntryHandler:RetrieveEntryHandler" : handleSingleParam
+                        alt "paramType = PARAM_INDEX"
+                            "retrieveEntryHandler:RetrieveEntryHandler" ->":ParamChecker": checkAndReturnIndex(paramType, entryList.getItems())
+                            return index
+                            note left: "Note: Set index to modify at entry list\nso that the entry of interest can be retrieved \nvia regular getter methods from entrylist"
+                            "retrieveEntryHandler:RetrieveEntryHandler" -> "entryList:EntryList" : setIndexToModify(index)
+                            return
+                        end
+                    return
+                end
+            return
+       return
+end
+@enduml
+

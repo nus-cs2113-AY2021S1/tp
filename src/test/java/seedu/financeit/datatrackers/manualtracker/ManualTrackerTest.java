@@ -11,6 +11,7 @@ import static seedu.financeit.datatrackers.manualtracker.TestCommands.generateDe
 import static seedu.financeit.datatrackers.manualtracker.TestCommands.generateDeleteLedgerByIdCorrectCommand;
 import static seedu.financeit.datatrackers.manualtracker.TestCommands.generateDeleteLedgerByIdErrorCommand;
 
+
 public class ManualTrackerTest {
     private static final int FREQUENCY_ERROR_ENTRY = 3;
     private static final int NUM_ENTRIES = 20;
@@ -33,8 +34,8 @@ public class ManualTrackerTest {
             ManualTracker.setTestPacket(testPacket);
             ManualTracker.handleCreateLedger();
         }
-        System.out.println(ManualTracker.ledgerList.getItemsSize());
-        assertEquals(correctListNum, ManualTracker.ledgerList.getItemsSize());
+        System.out.println(ManualTracker.ledgerList.getListSize());
+        assertEquals(correctListNum, ManualTracker.ledgerList.getListSize());
         ManualTracker.ledgerList.removeAllItems();
     }
 
@@ -72,8 +73,8 @@ public class ManualTrackerTest {
             ManualTracker.setTestPacket(testPacket);
             ManualTracker.handleDeleteLedger();
         }
-        System.out.println(ManualTracker.ledgerList.getItemsSize());
-        assertEquals(correctListNum, ManualTracker.ledgerList.getItemsSize());
+        System.out.println(ManualTracker.ledgerList.getListSize());
+        assertEquals(correctListNum, ManualTracker.ledgerList.getListSize());
         ManualTracker.ledgerList.removeAllItems();
     }
 
@@ -92,7 +93,7 @@ public class ManualTrackerTest {
             System.out.println(testPacket);
         }
 
-        assertEquals(2, ManualTracker.ledgerList.getItemsSize());
+        assertEquals(2, ManualTracker.ledgerList.getListSize());
         ManualTracker.ledgerList.removeAllItems();
     }
 }

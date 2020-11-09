@@ -5,6 +5,8 @@ It includes 5 different finance tools, all of which take in typed commands from 
 * Table of Contents
 {:toc}
 
+<div style="page-break-after: always;"></div>
+
 # Set-up
 ## Setting up for Testers (IMPORTANT)
 
@@ -32,6 +34,9 @@ __Output:__
 
 ![](developerGuide_images/screenshots_mainmenu/main_menu.png)
 
+
+<div style="page-break-after: always;"></div>   
+
 # Overview
 ## Main Features
 
@@ -39,18 +44,13 @@ Feature|Command|Description|
 -------|-------|-----------|
 Manual Tracker|```manual```| Manual entry of transactions. In Manual Tracker, the user manages daily lists of entries called Ledgers. 
 Entry Tracker|```entry```| Subsidiary subroutine of Manual Tracker. In Entry Tracker, the user manages ledger entries, which represents a unit of transaction for a particular day.
-Recurring Tracker|```recur```| In recurring Tracker, the user manages special recurring entries that are deducted on a regular basis, which are too cumbersome to record regularly with Entry Tracker.
-Goal Tracker|```goal```| fillme
+Recurring Tracker|```recur```| In recurring Tracker, the user manages special recurring entries that reoccur on a monthly basis, for instance monthly bills and salary.
+Goal Tracker|```goal```| Sets income or expense goals, whereby the tracker will report to user his progress towards them whenever an entry is added.
 Save Manager|```saver```| Allows save of multiple program running states and load them anytime you want. May also delete and reset running state.
 Finance Tools|```finance```| FinanceTools contains tools related to financial calculations.
 
-## Auxillary Features
-These commands are not part of the main features, but are helpful for other functions of the program:
+<div style="page-break-after: always;"></div>  
 
-Feature|Command|Description|
--------|-------|-----------|
-Logger|```logger```| Toggles logger visibility. If toggled on, log information will be displayed on the console.
-  
 # Main Menu
 Gateway to the various other features of the application. 
 Upon running the application, you should be greeted by the main menu. Enter the corresponsing commands shown on the table to visit the desired feature!
@@ -63,11 +63,9 @@ Recurring Tracker|```recur```|
 Goal Tracker|```goal```| 
 Save Manager|```saver```| 
 Finance Tools|```financial```| 
-Logger|```logger```| 
 Quit|```quit```|
 
-
-**Main Menu: Exit** <br />
+## Exit from Main Menu
 Exits from the program. If you have an outstanding list, it will be saved automatically as lastSave.txt in
 the saveStates folder. This folder will be automatically created when you first run the program.
 
@@ -78,24 +76,17 @@ the saveStates folder. This folder will be automatically created when you first 
 > Example: 
 
 ![](developerGuide_images/screenshots_mainmenu/main_menu_exit.png)
-    
+
+<div style="page-break-after: always;"></div>  
+
 # Manual Tracker
 Users can manage lists of entries, which are known as ledgers. Each list represents a single date of record.
+
 > Example
     If I wish to record my income and expenditures on 30 October 2020, I will use the program as follows:
     1. Use Manual Tracker to create a ledger of date 20-10-03
     2. Open the ledger of date 20-10-03 
-    3. Use Entry Tracker to create entries to record the transactions for that particular date.
-    
-    
-No. |Content|
-----|------|
-3.2.1|[Add Ledger](#manualTracker1)
-3.2.2|[Remove Ledger](#manualTracker2)
-3.2.3|[Open Ledger](#manualTracker3)
-3.2.4|[Show Ledger List](#manualTracker4)
-3.2.5|[Show commands](#manualTracker5)
-3.2.6|[Exit](#manualTracker6)
+    3. Use Entry Tracker to create entries to record the transactions for that particular date
 
 ## Add ledger
 Add a ledger to the record, representing a date.
@@ -189,7 +180,8 @@ Exit to main menu where users can choose another feature to use.
 ![](developerGuide_images/screenshots_manualtracker/manual_exit.png)
 
 
-    
+<div style="page-break-after: always;"></div>   
+
 # Entry Tracker
 Subroutine that is subsidiary off the ManualTracker. 
 Users can manage entries associated with the ledger they have opened.
@@ -217,16 +209,6 @@ Entries are specified by the following parameters:
     
     From the above, we can infer that on the date 20-10-03, the user has one expense entry and one income entry.
     
-No. |Content|
-----|------|
-3.3.1|[Add Entry](#entryTracker1)
-3.3.2|[Edit Entry](#entryTracker2)
-3.3.3|[Remove Ledger](#entryTracker3)
-3.3.4|[Show Entry List](#entryTracker4)
-3.3.5|[Show commands](#entryTracker5)
-3.3.6|[Show Categories](#entryTracker6)
-3.3.7|[Exit](#entryTracker7)
-
 ## Add entry
 Add an entry to the ledger record.
 
@@ -245,13 +227,13 @@ OTHERS|oth|Income
 
 >Syntax
 
-    add {PARAM_TYPE} {PARAM}
+    new {PARAM_TYPE} {PARAM}
 
         
 Param Type| Param | Param Format
 ----------|-------|------------|
 `/time`|Time of the entry.| Input string of the date in HHMM, HHMMSS or H.
-`/amt`|Amount involved in the transaction.| Input floating point number in 2 d.p
+`/amt`|Amount involved in the transaction.| Input positive floating point number in 2 d.p. <br/> Can be $XX.XX, XX, etc.
 `/cat`|Category of transaction. | Input string belonging in the set: {tpt, fd, tvl, shp, bll, slr, alw}
 `-i or -e`|Type of transaction. | No parameter required. 
 
@@ -271,13 +253,13 @@ The users will include the params that they wish to modify.
 
 >Syntax
 
-    edit /id {PARAM_INDEX} {PARAM_TYPE} {PARAM} ... 
+    edit /id {INDEX} {PARAM_TYPE} {PARAM} ... 
         
 Param Type| Param | Param Format
 ----------|-------|------------|
 `/id`|Index of the entry in the list, where the first entry is of index 1. | Input positive integer
 `/time`|Time of the entry.| Input string of the date in HHMM, HHMMSS or H.
-`/amt`|Amount involved in the transaction.| Input floating point number in 2 d.p
+`/amt`|Amount involved in the transaction.| Input positive floating point number in 2 d.p. <br/> Can be $XX.XX, XX, etc.
 `/cat`|Category of transaction. | Input string belonging in the set: {tpt, fd, tvl, shp, bll, slr, alw}
 `-i or -e`|Type of transaction. | No parameter required. 
         
@@ -347,11 +329,14 @@ Exit to Manual tracker where users can choose another ledger.
 > Example: 
 
 ![](developerGuide_images/screenshot_entrytracker/entry_exit.png)
-    
+
+
+<!-- @@author Artemis-Hunt -->
+
 # Recurring Tracker
 Users can manage expenses/income that recurs on a monthly basis e.g. monthly bill or salary.
 
-## Add entry
+## New entry
 Creates a recurring entry. Entries can either be income or expense. If income, entries
 can be set to "auto" which indicates that the income is automatically credited to the user's
 bank account e.g. Salary which is transferred into bank account by company. 
@@ -361,28 +346,29 @@ of reward points on a monthly basis.
 
 Vice versa for expense entries.
 
->Syntax
-
-    add {-e OR -i} [-auto] /desc <DESCRIPTION> /amt <AMOUNT> /day <DAY_OF_MONTH> [/notes <NOTES>]
-    
 **Parameters** <br />
-* `-e` OR `-i` - Indicates whether entry is income or expense (Mandatory to have 1 of 2)
-* `-auto` - Whether entry is auto or manual (only serves as a reminder for user, 
-is not linked to any functionality)
+* `-e` OR `-i` - Indicates whether entry is income or expense (Mandatory to have 1 of 2, but not both)
+* `-auto` - Indicates that entry is an automatically deducted/credited expense/income. Only serves as a reminder, 
+is not linked to any functionality. (Optional)
 * `/desc` - Description of entry (Mandatory)
 * `/amt` - Amount (Mandatory)
 * `/day` - Day of month which entry occurs on (Mandatory)
-* `/notes` - Additional notes and remarks
+* `/notes` - Additional notes and remarks (Optional)
+
+>Syntax
+
+    new [-e OR -i] [-auto] /desc {DESCRIPTION} /amt {AMOUNT} /day {DAY_OF_MONTH} [/notes {NOTES}]
+   
 
 >Example
     
-    add -e -auto /desc Netflix /amt 40 /day 2 /notes Cancel if Homemade ends
+    new -e -auto /desc Netflix /amt 40 /day 10 /notes Cancel if Homemade ends
     //Netflix, $40 per month, auto-payment via credit card 
-    on the 2nd of every month. Saved with a note of “Cancel if Homemade ends"
+    on the 10th of every month. Saved with a note of “Cancel if Homemade ends"
     
-    add -i /desc Redeem air miles for vouchers /amt 50 /day 27
+    new -i /desc Redeem air miles for vouchers /amt 50 /day 12
     //Redeem air miles for vouchers, $50 per month, user has to take manual action 
-    on or by 27th of every month.
+    by 12th of every month.
     
 ## List all entries
 Displays a list of all recurring entries.
@@ -391,16 +377,16 @@ Displays a list of all recurring entries.
 
     list
     
-**Parameters** <br />
-None
- 3  
+
+![](screenshots/recurringtracker/list.png)
+
 ## Delete entry
 Deletes an entry at the given index. Index can be found via `list` and then checking the 
-associated index in the leftmost column
+associated index in the leftmost column.
 
 >Syntax
 
-    delete /id <INDEX>
+    delete /id {INDEX}
     
 **Parameters** <br />
 * `/id` - Index of item to be deleted. 1-based indexing (Mandatory)
@@ -415,16 +401,18 @@ field(s) being modified.
 
 >Syntax
 
-    edit /id <INDEX> [field(s) to edit]
+    edit /id {INDEX} [field(s) to edit]
     
 **Parameters** <br />
 * `/id` - Index of entry to edit. 1-based indexing (Mandatory)
-* `field(s) to edit` - Follows the same format as add entry E.g. to edit amount, use `/amt <NEW_AMT>`
+* `field(s) to edit` - Follows the same format as new entry 
+E.g. to edit amount, use `/amt {NEW_AMT}`.
+Overwrites previous value present.
 
 >Example
     
     edit /id 2 /desc Updated name!! /day 23
-    //Overwrites existing description and day. Other fields are untouched.
+    //Overwrites existing description and day for entry 2. Other fields are untouched.
     
 ## Exit tracker
 Exits to main menu.
@@ -432,8 +420,21 @@ Exits to main menu.
 >Syntax
 
     exit
+    
+## Reminders
+The program will check the list of recurring entries, and automatically print reminders for
+entries which are within 5 days from current system date.
+
+For instance, if the two examples in [New Entry](#new-entry) are entered and current system date is the 9th,
+the following reminders will be shown upon launching the program or returning to main menu.
+
+![](screenshots/recurringtracker/reminders.png)
+
 
 <!-- @@author bqxy -->
+
+<div style="page-break-after: always;"></div>  
+
 # FinanceTools
 FinanceTools contains tools related to financial calculations.
 
@@ -618,6 +619,8 @@ Exit FinanceTools to Main Menu.
 ![Example](screenshots/financetools/Exit(1).PNG)
 <!-- @@author -->
 
+<div style="page-break-after: always;"></div>  
+
 # Goal Tracker
 Goal Tracker that helps user to track their monthly incomes and expenses goal.
 
@@ -704,11 +707,9 @@ Exit Goal Tracker program and return to FinanceIt main UI.
 
     exit
 
-## Integrate Goal Tracker with Recurring Tracker [Coming in v3.0]
-In the next version, goal tracker will be used to keep track not only the manual tracker but also the recurring 
-tracker. With this feature being implemented, those fixed monthly income and expenditure will also be included into 
-the goal tracker progress to better aid the user in managing their finances.
- 
+
+<div style="page-break-after: always;"></div>  
+
 # Save Manager
 This utility feature helps to save multiple program states and load them at will.
 
@@ -795,30 +796,44 @@ To reset all data currently used by the program enter "reset"
     reset
 
 
+<div style="page-break-after: always;"></div>  
+
 # Summary of Features 
 
 ## Manual Tracker
 
 No. | Feature | Syntax |
 ----|---------|---------|
-1.|Open Ledger|_ledger open /date {YYMMDD}_|
-2.|New Ledger|_ledger new /date {YYMMDD}_|
-3.|List Ledgers|_ledger list_|
-4.|Delete Ledgers|_ledger delete /date {YYMMDD}_|;
+1.|Open Ledger|_open /date {YYMMDD} or delete /id {INDEX}_|
+2.|New Ledger|_new /date {YYMMDD}_|
+3.|List Ledgers|_list_|
+4.|Delete Ledgers|_delete /date {YYMMDD} or delete /id {INDEX}_ |
 5.|Exit to Main Menu|_exit_|
 
 ## Entry tracker
 
 No. | Feature | Syntax |
 ----|---------|---------|
-1.|New Entry|_entry new /time {HHMM} /desc {string} /cat {category} -[i/e]_|
-2.|Edit Entry|_entry edit /id {integer} {param-type/parameter to edit}_|
-3.|list Entries|_entry list_|
-4.|Delete Entry|_entry delete /id {integer}_|
+1.|New Entry|_new /time {HHMM} /desc {STRING} /cat {STRING_CATEGORY} /amt {AMOUNT} [-i or -e]_|
+2.|Edit Entry|_edit /id {INDEX} {PARAM_TYPE} {PARAM} ..._|
+3.|list Entries|_list_|
+4.|Delete Entry|_delete /id {INDEX}_|
 5.|List Transaction Categories|_cat_|
 6.|Exit to Manual Tracker|_exit_|
 
+
+## Recurring Tracker
+
+No. | Feature | Syntax |
+----|---------|---------|
+1.|New Entry|_new [-e OR -i] [-auto] /desc {DESCRIPTION} /amt {AMOUNT} /day {DAY_OF_MONTH} [/notes {NOTES}]_|
+2.|Edit Entry|_edit /id {INDEX} {PARAM_TYPE} {PARAM} ..._|
+3.|list Entries|_list_|
+4.|Delete Entry|_delete /id {INDEX}_|
+6.|Exit to Manual Tracker|_exit_|
+
 <!-- @@author bqxy -->
+
 ## FinanceTools
 
 No. | Feature | Syntax |
@@ -833,7 +848,8 @@ No. | Feature | Syntax |
 8.|Clear All Account Information|_clearinfo_|
 9.|Command and Calculation History|_history_|
 10.|Exit to Main Menu|_exit_|
- <!-- @@author -->
+
+<!-- @@author -->
 
 ## Goal Tracker
 

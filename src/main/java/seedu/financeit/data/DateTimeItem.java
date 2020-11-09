@@ -5,6 +5,12 @@ import seedu.financeit.parser.DateTimeOutputManager;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * A children class of abstract Item.
+ * DateTimeItem classes will have LocalDate and LocalTime attributes,
+ * as well as associated methods for setting or presenting the attributes,
+ * which can be used if it is characteristic of the item represented.
+ */
 public abstract class DateTimeItem extends Item {
     protected LocalDate date;
     protected LocalTime time;

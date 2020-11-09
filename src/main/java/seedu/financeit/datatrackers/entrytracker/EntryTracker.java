@@ -15,9 +15,11 @@ import seedu.financeit.datatrackers.manualtracker.Ledger;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
+import seedu.financeit.utils.storage.ManualTrackerSaver;
+
 
 /**
- * Class to handle routine for manual entry management.
+ * LogicManager Class to handle routine for manual entry management.
  */
 public class EntryTracker {
     private static Ledger currLedger;
@@ -40,7 +42,9 @@ public class EntryTracker {
         handleCreateEntry();
     }
 
-
+    public static EntryList getEntryList() {
+        return entryList;
+    }
 
     public static void setCurrLedger(Ledger ledger) {
         currLedger = ledger;
@@ -54,10 +58,6 @@ public class EntryTracker {
         }
     }
 
-    public static EntryList getEntryList() {
-        return entryList;
-    }
-
     private static void handleMainMenu() {
         String input;
 
@@ -69,11 +69,14 @@ public class EntryTracker {
                 "Input \"commands\" for list of commands."
         );
 
+        // If under test, the method should not expect any user input.
+        // Hence, skip this block of code.
         if (!isUnderTest) {
             input = UiManager.handleInput();
             UiManager.refreshPage();
             packet = InputParser.getInstance().parseInput(input);
         }
+
         switch (packet.getCommandString()) {
         case "edit":
             handleEditEntry();
@@ -116,6 +119,7 @@ public class EntryTracker {
 
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s deleted!", deletedEntry.getName()));
+            ManualTrackerSaver.getInstance().save();
         } catch (InsufficientParamsException | ItemNotFoundException exception) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
@@ -132,9 +136,8 @@ public class EntryTracker {
     }
 
     static void handleCreateEntry(Boolean... isPrintGoalInput) {
-        boolean isPrintGoal = (isPrintGoalInput.length > 0 && isPrintGoalInput[0] == false)
-            ? false
-            : true;
+        boolean isPrintGoal = !(isPrintGoalInput.length > 0 && isPrintGoalInput[0] == false);
+
         CreateEntryHandler createEntryHandler = CreateEntryHandler.getInstance();
 
         Entry entry;
@@ -159,6 +162,7 @@ public class EntryTracker {
 
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s created!", entry.getName()));
+            ManualTrackerSaver.getInstance().save();
         } catch (InsufficientParamsException | IncompatibleParamsException exception) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
@@ -190,6 +194,7 @@ public class EntryTracker {
             editEntryHandler.handlePacket(packet);
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s edited!", entry.getName()));
+            ManualTrackerSaver.getInstance().save();
         } catch (InsufficientParamsException | ItemNotFoundException exception) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());

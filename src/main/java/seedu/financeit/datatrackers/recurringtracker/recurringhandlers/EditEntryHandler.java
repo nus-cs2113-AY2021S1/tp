@@ -37,12 +37,16 @@ public class EditEntryHandler extends ParamHandler {
         this.recurringEntry = recurringEntry;
     }
 
+    public RecurringEntry getEntry() {
+        return recurringEntry;
+    }
+
     public void handlePacket(CommandPacket packet)
             throws InsufficientParamsException, ItemNotFoundException {
         handleParams(packet);
 
-        //If only param provided is /id
-        if (packet.getParamTypes().size() == 1) {
+        //If only param provided is /id or no params provided
+        if (packet.getParamTypes().size() <= 1) {
             assert packet.getParam("/id") != null;
             throw new InsufficientParamsException("At least 1 param required for edit!");
         }
@@ -56,7 +60,7 @@ public class EditEntryHandler extends ParamHandler {
             recurringEntry.setDay(day);
             break;
         case ParamChecker.PARAM_AMOUNT:
-            double amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);
+            double amount = ParamChecker.getInstance().checkAndReturnDoubleSigned(paramType);
             recurringEntry.setAmount(amount);
             break;
         case ParamChecker.PARAM_INC:

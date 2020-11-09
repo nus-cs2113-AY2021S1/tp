@@ -2,7 +2,6 @@ package seedu.financeit.datatrackers.recurringtracker;
 
 import seedu.financeit.common.Common;
 import seedu.financeit.data.Item;
-import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.DateTimeHelper;
 import seedu.financeit.utils.ParamChecker;
 
@@ -19,7 +18,7 @@ public class RecurringEntry extends Item {
     Month start = Month.of(1);
     Month end = Month.of(12);
     boolean isAuto = false;
-    String notes = " ";
+    String notes = "";
 
     //Attributes in String form, for table printing
     String expenditureAmount = null;
@@ -53,16 +52,6 @@ public class RecurringEntry extends Item {
         this.description = description;
     }
 
-    public void setStartMonth(int month) {
-        assert month <= 12 && month >= 1;
-        start = Month.of(month);
-    }
-
-    public void setEndMonth(int month) {
-        assert month <= 12 && month >= 1;
-        end = Month.of(month);
-    }
-
     @Override
     public String getName() {
         return String.format("Entry: [ %s ] on day [ %s ] ",
@@ -77,7 +66,8 @@ public class RecurringEntry extends Item {
         this.day = day;
     }
 
-    public boolean equals(RecurringEntry entry) {
+    public boolean equals(Object object) {
+        RecurringEntry entry = (RecurringEntry) object;
         if (entry == this) {
             return true;
         }
@@ -86,8 +76,7 @@ public class RecurringEntry extends Item {
                 && (this.description.equals(entry.description))
                 && (this.entryType.equals(entry.entryType))
                 && (this.amount == entry.amount)
-                && (this.isAuto == entry.isAuto)
-                && (this.notes.equals(entry.notes));
+                && (this.isAuto == entry.isAuto);
     }
 
     /**
@@ -107,40 +96,19 @@ public class RecurringEntry extends Item {
         return details;
     }
 
-    /**
-     * Gets all entry details as paramMap format.
-     * Used for JUnit testing
-     *
-     * @return HashMap of all attributes, with key being the paramType that
-     *         would have added that attribute and value being the attribute value in String form.
-     */
-    public HashMap<String, Object> getAllDetailsAsParamMap() {
-        HashMap<String, Object> details = getDetailsForReminder();
-        details.put(ParamChecker.PARAM_DAY, String.valueOf(day));
-        details.put(ParamChecker.PARAM_DESCRIPTION, description);
-        if (entryType == Common.EntryType.EXP) {
-            details.put(ParamChecker.PARAM_EXP, "");
-        } else {
-            details.put(ParamChecker.PARAM_INC, "");
-        }
-        details.put(ParamChecker.PARAM_AMOUNT, String.valueOf(amount));
-        if (isAuto) {
-            details.put(ParamChecker.PARAM_AUTO, "");
-        }
-        details.put(ParamChecker.PARAM_NOTES, notes);
-        return details;
-    }
 
     public void convertAttributesToString() {
         //One string is filled and the other is left blank, based on whether the entry is income or expenditure
-        expenditureAmount = this.entryType == Common.EntryType.EXP ? "-$" + this.amount : "";
-        incomeAmount = this.entryType == Common.EntryType.INC ? "+$" + this.amount : "";
+        expenditureAmount = entryType == Common.EntryType.EXP ? "-$"
+                + String.format("%.2f", amount) : "";
+        incomeAmount = entryType == Common.EntryType.INC ? "+$"
+                + String.format("%.2f", amount) : "";
         String[] monthsWithoutDay = DateTimeHelper.monthsWithoutDayOfMonth(day);
         duration = "Every month";
         if (monthsWithoutDay.length >= 1) {
             duration += " except " + String.join(",", monthsWithoutDay);
         }
-        payment = this.isAuto ? "Auto deduction" : "Manual payment";
+        payment = isAuto ? "Auto deduction" : "Manual payment";
     }
 
     @Override
@@ -149,8 +117,8 @@ public class RecurringEntry extends Item {
             convertAttributesToString();
         }
 
-        return String.format("%s;%s;%s;%s;%s;%s;%s", day, description, expenditureAmount, incomeAmount,
-                duration, payment, notes);
+        return String.format("%s;%s;%s;%s;%s;%s;%s", day, description, expenditureAmount,
+                incomeAmount, duration, payment, notes);
     }
 
     public String toSave() {

@@ -21,7 +21,7 @@ import static seedu.financeit.utils.ParamChecker.PARAM_TIME;
 import static seedu.financeit.utils.ParamChecker.PARAM_INDEX;
 
 /**
- * Command class to reference an existing entry instance with specified parameter values.
+ * CommandHandler class to reference an existing entry instance with specified parameter values.
  * Ledger will then be referenced for the ItemList instance as currItem.
  */
 public class RetrieveEntryHandler extends ParamHandler {

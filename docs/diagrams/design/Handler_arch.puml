@@ -4,7 +4,7 @@ skinparam classAttributeIconSize 0
 skinparam BoxPadding 100
 skinparam shadowing false
 left to right direction
-
+scale 1049 width
 
 skinparam package<<Layout>> {
   borderColor Transparent
@@ -41,16 +41,17 @@ rectangle LogicManagers {
     class FinanceTools{
     }
 
-    EntryTracker --> Model : stores entries with >
-    ManualTracker --> Model : stores ledgers with >
-    "       RecurringTracker         " ---> Model : stores RecurringEntries with >
+    EntryTracker --> Model : < stores entries of
+    ManualTracker --> Model : < stores ledgers of
+    "       RecurringTracker         " ---> Model : < stores RecurringEntries of
 }
 
-ManualTracker --> InputManager : > Handles input 
-EntryTracker --> InputManager : > Handles input 
-"       RecurringTracker         " --> InputManager : > Handles input 
+ManualTracker ..> InputManager : > Handles input with
+EntryTracker ..> InputManager : > Handles input with
+"       RecurringTracker         " ..> InputManager : > Handles input with
+FinanceTools ..> InputManager : > Handles input with
 
-GoalTracker --> Model : Tracks against input goal >
+GoalTracker --> Model : Tracks input goal with data from >
 GoalTracker <. EntryTracker :   \n         Provides\n      Entry \n             Information\n             to generate\n           Goal data >
 
 

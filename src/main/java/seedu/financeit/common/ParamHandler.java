@@ -6,13 +6,11 @@ import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
 /**
- * Defines a Logic class that handles user-inputted params.
+ * Defines a Logic abstract class that describes handling policies of user-inputted params.
  */
 public abstract class ParamHandler {
     // Compulsory params that has to be parsed - varies based on individual subclass

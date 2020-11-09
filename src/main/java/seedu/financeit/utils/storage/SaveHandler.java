@@ -31,6 +31,12 @@ public abstract class SaveHandler {
         }
     }
 
+    /**
+     * Checks if given directory or file exist. Create them if they do not exist.
+     * @param dirPath directory where the file to be created is located
+     * @param fullPath full path of the file to be created
+     * @throws IOException File creation may throw IO exception if given path is invalid
+     */
     public static void buildFile(String dirPath, String fullPath) throws IOException {
         if (!Files.exists(Paths.get(dirPath))) {
             Files.createDirectory(Paths.get(dirPath));
@@ -40,6 +46,12 @@ public abstract class SaveHandler {
         }
     }
 
+    /**
+     * General purpose function used to store some String to a text file in ./data directory.
+     * @param input The String to be stored
+     * @param fileName The name of the file to be stored to
+     * @throws IOException File creation may throw IO exception if given path is invalid
+     */
     public static void putString(String input, String fileName) throws IOException {
         buildFile("./data", "./data/" + fileName + ".txt");
         FileWriter fileWriter = new FileWriter("./data/" + fileName + ".txt");
@@ -47,6 +59,12 @@ public abstract class SaveHandler {
         fileWriter.close();
     }
 
+    /**
+     * General purpose function used to return some String from a text file in ./data directory.
+     * @param fileName The name of the file to be read from
+     * @return The output String from the specified text file.
+     * @throws IOException File creation may throw IO exception if given path is invalid
+     */
     public static String takeString(String fileName) throws IOException {
         buildFile("./data", "./data/" + fileName + ".txt");
         File file = new File("./data/" + fileName + ".txt");
@@ -54,6 +72,11 @@ public abstract class SaveHandler {
         return scanner.nextLine();
     }
 
+    /**
+     * Appends a simple header to the Save String to differentiate the type of save.
+     * @param object Ledger or entry to add a header to.
+     * @return Save string generated.
+     */
     public static String getSaveString(Object object) {
         return object.getClass().getSimpleName() + ";" + object + System.lineSeparator();
     }

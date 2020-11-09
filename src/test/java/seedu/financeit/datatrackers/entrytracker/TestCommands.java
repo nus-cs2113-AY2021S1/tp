@@ -12,6 +12,9 @@ import static seedu.financeit.utils.ParamChecker.PARAM_INC;
 import static seedu.financeit.utils.ParamChecker.PARAM_INDEX;
 import static seedu.financeit.utils.ParamChecker.PARAM_TIME;
 
+/**
+ * Generates command packets to simulate various circumstances to put the software under test.
+ */
 public class TestCommands {
     public static CommandPacket generateCreateEntryErrorCommand(String wrongParam) {
         int seed = RandomGenerator.generateRandomPositiveIntUntilLimit(3);

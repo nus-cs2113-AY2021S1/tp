@@ -3,7 +3,6 @@ package seedu.financeit.parser;
 import seedu.financeit.common.Common;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
@@ -16,11 +15,6 @@ public class DateTimeOutputManager {
 
     public DateTimeOutputManager(){
 
-    }
-
-    public DateTimeOutputManager(LocalDateTime dateTime) {
-        this.time = dateTime.toLocalTime();
-        this.date = dateTime.toLocalDate();
     }
 
     public void setDate(LocalDate date) {

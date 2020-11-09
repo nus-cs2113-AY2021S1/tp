@@ -12,7 +12,6 @@ import java.util.Comparator;
  * Extends ParamHandler so it is able to handle params from a CommandPacket.
  */
 public abstract class ItemList {
-    protected Item currItem;
     protected ArrayList<Item> items = new ArrayList<>();
     protected int indexToModify;
     protected boolean isIndexToModifySet;
@@ -22,7 +21,7 @@ public abstract class ItemList {
     }
 
     public void addItem(Item item) {
-        int index = this.getItemsSize();
+        int index = this.getListSize();
         item.setIndex(index);
         this.items.add(item);
     }
@@ -45,6 +44,7 @@ public abstract class ItemList {
         this.indexToModify = index;
     }
 
+    //@@author Artemis-Hunt
     /**
      * Add the given item and sort the list according to the given comparator.
      *
@@ -55,22 +55,9 @@ public abstract class ItemList {
         this.items.add(item);
         items.sort(comparator);
     }
+    //@@author
 
-    public Item getCurrItem() {
-        return this.currItem;
-    }
-
-    public void setCurrItem(Item item) {
-        this.currItem = item;
-    }
-
-    public Item popCurrItem() {
-        Item tempItem = this.currItem;
-        this.currItem = null;
-        return tempItem;
-    }
-
-    public int getItemsSize() {
+    public int getListSize() {
         return this.items.size();
     }
 
@@ -91,6 +78,7 @@ public abstract class ItemList {
         return false;
     }
 
+    //@@author Artemis-Hunt
     /**
      * Provides a reference to the specified item at the zero-based index.
      * Requires index to have been parsed from user-input, else it will
@@ -106,8 +94,7 @@ public abstract class ItemList {
         return this.items.get(index);
     }
 
-    //Manually specify index in the code, if necessary
-    public Item getItemAtCurrIndex(int index) throws IndexOutOfBoundsException {
+    public Item getItemAtIndex(int index) throws IndexOutOfBoundsException {
         assert index < items.size();
         Item item =  this.items.get(index);
         this.isIndexToModifySet = false;
@@ -128,12 +115,6 @@ public abstract class ItemList {
     public void removeItemAtCurrIndex() throws IndexOutOfBoundsException {
         assert this.indexToModify >= 0;
         this.items.remove(this.indexToModify);
-    }
-
-    //Manually specify index in the code, if necessary
-    public void removeItemAtCurrIndex(int index) throws IndexOutOfBoundsException {
-        assert index < this.items.size();
-        this.items.remove(index);
     }
 
     /**

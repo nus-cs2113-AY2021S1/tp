@@ -2,19 +2,18 @@ package seedu.financeit.datatrackers.goaltracker;
 
 import seedu.financeit.common.Common;
 import seedu.financeit.data.Goal;
+import seedu.financeit.datatrackers.entrytracker.Entry;
+import seedu.financeit.datatrackers.entrytracker.EntryList;
 import seedu.financeit.datatrackers.manualtracker.Ledger;
 import seedu.financeit.datatrackers.manualtracker.LedgerList;
 import seedu.financeit.datatrackers.manualtracker.ManualTracker;
-import seedu.financeit.datatrackers.entrytracker.Entry;
-import seedu.financeit.datatrackers.entrytracker.EntryList;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
+import seedu.financeit.utils.storage.GoalTrackerSaver;
 
-import java.text.ParseException;
 import java.time.DateTimeException;
 import java.time.Month;
-import java.util.Scanner;
 
 /**
  * This is the class that will handle the setting of goals
@@ -25,7 +24,6 @@ public class GoalTracker {
     private static String[] cmdPacket = null;
     private static String[] editPacket;
     private static Goal goalToSet;
-    private static Scanner scanner = new Scanner(System.in);
     private static int expenseGoal = 0;
     private static int incomeGoal = 0;
     private static String input;
@@ -107,6 +105,7 @@ public class GoalTracker {
             } else if (userInput[1].equals("income")) {
                 editIncomeGoal(userInput);
             }
+            GoalTrackerSaver.getInstance().save();
         } catch (IndexOutOfBoundsException e) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter either expense "
                     + "or income");
@@ -251,6 +250,7 @@ public class GoalTracker {
                     totalGoalList.addGoal(goalToSet);
                     UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "You have set $" + expenseGoal
                             + " as your Expense Goals for " + month);
+                    GoalTrackerSaver.getInstance().save();
                 }
             }
             month = null;
@@ -299,6 +299,7 @@ public class GoalTracker {
                     totalGoalList.addGoal(goalToSet);
                     UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "You have set $" + incomeGoal
                             + " as your Income Goals for " + month);
+                    GoalTrackerSaver.getInstance().save();
                 }
             }
             month = null;
@@ -353,15 +354,15 @@ public class GoalTracker {
     public static void handleCurrentExpenses() {
         LedgerList ledgerList = ManualTracker.getLedgerList();
         totalExpenses = 0;
-        int ledgerSize = ledgerList.getItemsSize();
+        int ledgerSize = ledgerList.getListSize();
         for (int i = 0; i < ledgerSize; i++) {
-            Ledger ledger = (Ledger) ledgerList.getItemAtCurrIndex(i);
+            Ledger ledger = (Ledger) ledgerList.getItemAtIndex(i);
             month = Month.of(Integer.parseInt(cmdPacket[3]));
             if (ledger.getDate().getMonth().equals(month)) {
                 EntryList entryList = ledger.entryList;
-                int entrySize = entryList.getItemsSize();
+                int entrySize = entryList.getListSize();
                 for (int x = 0; x < entrySize; x++) {
-                    Entry entry = (Entry) entryList.getItemAtCurrIndex(x);
+                    Entry entry = (Entry) entryList.getItemAtIndex(x);
                     if (entry.getEntryType().toString().equals("Expense")) {
                         expenses = entry.getAmount();
                         totalExpenses += expenses;
@@ -458,14 +459,14 @@ public class GoalTracker {
     public static void handleNewExpenses() {
         LedgerList ledgerList = ManualTracker.getLedgerList();
         totalExpenses = 0;
-        int ledgerSize = ledgerList.getItemsSize();
+        int ledgerSize = ledgerList.getListSize();
         for (int i = 0; i < ledgerSize; i++) {
-            Ledger ledger = (Ledger) ledgerList.getItemAtCurrIndex(i);
+            Ledger ledger = (Ledger) ledgerList.getItemAtIndex(i);
             if (ledger.getDate().getMonth().equals(ledgerMonth)) {
                 EntryList entryList = ledger.entryList; // Get all the entry from the respective month ledger
-                int entrySize = entryList.getItemsSize();
+                int entrySize = entryList.getListSize();
                 for (int x = 0; x < entrySize; x++) {
-                    Entry entry = (Entry) entryList.getItemAtCurrIndex(x);
+                    Entry entry = (Entry) entryList.getItemAtIndex(x);
                     if (entry.getEntryType().toString().equals("Expense")) {
                         expenses = entry.getAmount();
                         totalExpenses += expenses;  // For each expenses entry we sum up the total
@@ -537,15 +538,15 @@ public class GoalTracker {
     public static void handleCurrentIncomes() {
         LedgerList ledgerList = ManualTracker.getLedgerList();
         totalIncomes = 0;
-        int ledgerSize = ledgerList.getItemsSize();
+        int ledgerSize = ledgerList.getListSize();
         for (int i = 0; i < ledgerSize; i++) {
-            Ledger ledger = (Ledger) ledgerList.getItemAtCurrIndex(i);
+            Ledger ledger = (Ledger) ledgerList.getItemAtIndex(i);
             month = Month.of(Integer.parseInt(cmdPacket[3]));
             if (ledger.getDate().getMonth().equals(month)) {
                 EntryList entryList = ledger.entryList;
-                int entrySize = entryList.getItemsSize();
+                int entrySize = entryList.getListSize();
                 for (int x = 0; x < entrySize; x++) {
-                    Entry entry = (Entry) entryList.getItemAtCurrIndex(x);
+                    Entry entry = (Entry) entryList.getItemAtIndex(x);
                     if (entry.getEntryType().toString().equals("Income")) {
                         incomes = entry.getAmount();
                         totalIncomes += incomes;
@@ -643,14 +644,14 @@ public class GoalTracker {
     public static void handleNewIncomes() {
         LedgerList ledgerList = ManualTracker.getLedgerList();
         totalIncomes = 0;
-        int ledgerSize = ledgerList.getItemsSize();
+        int ledgerSize = ledgerList.getListSize();
         for (int i = 0; i < ledgerSize; i++) {
-            Ledger ledger = (Ledger) ledgerList.getItemAtCurrIndex(i);
+            Ledger ledger = (Ledger) ledgerList.getItemAtIndex(i);
             if (ledger.getDate().getMonth().equals(ledgerMonth)) {
                 EntryList entryList = ledger.entryList; // Get all entry for the respective month ledger
-                int entrySize = entryList.getItemsSize();
+                int entrySize = entryList.getListSize();
                 for (int x = 0; x < entrySize; x++) {
-                    Entry entry = (Entry) entryList.getItemAtCurrIndex(x);
+                    Entry entry = (Entry) entryList.getItemAtIndex(x);
                     if (entry.getEntryType().toString().equals("Income")) {
                         incomes = entry.getAmount();
                         totalIncomes += incomes;    // For each income entry we sum up the total

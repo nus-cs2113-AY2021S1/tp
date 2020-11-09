@@ -1,10 +1,10 @@
 @startuml
 left to right direction
 hide circle
+scale 1500 width
 skinparam classAttributeIconSize 0
 skinparam BoxPadding 20
 skinparam shadowing false
-skinparam linetype ortho
 skinparam package<<Layout>> {
   borderColor Transparent
   backgroundColor Transparent
@@ -37,31 +37,22 @@ rectangle Logic {
     p1 -[hidden] p2
     p2 -[hidden] p3
     p2 -[hidden] ParamChecker
-}
+
 
 rectangle "CommandHandlers"    {
     abstract class ParamHandler {
-        # requiredParams : HashSet<String>
-        # paramsSuccessfullyParsed : HashSet<String>
-        # missingRequiredParams : HashSet<String>
-        # paramChecker : ParamChecker
-        # hasParsedAllParams : boolean
+
         + handleParams(packet : CommandPacket) : void
-        + getHasParsedAllRequiredParams() : boolean
-        + setRequiredParams(paramTypes : String...) : void
-        + resetAllParamCollections() : void
-        # checkParseFailedParams() : boolean
-        # checkParamRequirementSatisfied(param : String) : boolean
         + {abstract} handleSingleParam(packet : CommandPacket, paramType : String)
     }
 
     rectangle "Ledger CommandHandlers"    {
-        class createLedgerCommand <<Singleton>>{
+        class createLedgerHandler <<Singleton>>{
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
         }
-        class retrieveLedgerCommand <<Singleton>>{
+        class retrieveLedgerHandler <<Singleton>>{
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
@@ -72,7 +63,7 @@ rectangle "CommandHandlers"    {
     }
 
     rectangle "Entry CommandHandlers"    {
-        class createEntryCommand <<Singleton>>{
+        class createEntryHandler <<Singleton>>{
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
@@ -93,19 +84,18 @@ rectangle "CommandHandlers"    {
     ParamChecker -[hidden]- ParamHandler
 }
 
-"CommandHandlers"    -[hidden]down- Logic
-
-ParamChecker "1" <.[norank]. createLedgerCommand #line:blue;text:black
-ParamChecker "1" <.[norank]. retrieveLedgerCommand #line:blue;text:black
-ParamChecker "1" <.[norank]. createEntryCommand #line:blue;text:black
-ParamChecker "1" <.[norank]. editEntryHandler #line:blue;text:black
-ParamChecker "1" <.[norank]. retrieveEntryHandler #line:blue;text:black
-ParamHandler <|-[norank]- createLedgerCommand #line:purple;line.bold;text:red
-ParamHandler <|-[norank]- retrieveLedgerCommand #line:purple;line.bold;text:red
-ParamHandler <|-[norank]- createEntryCommand #line:purple;line.bold;text:red
-ParamHandler <|-[norank]- retrieveEntryHandler #line:purple;line.bold;text:red
-ParamHandler <|-[norank]- editEntryHandler #line:purple;line.bold;text:red
 
 
+ParamChecker "1" <... createLedgerHandler #line:blue;text:black : < Verifies params using 
+ParamChecker "1" <... retrieveLedgerHandler #line:blue;text:black : < Verifies params using 
+ParamChecker "1" <... createEntryHandler #line:blue;text:black : < Verifies params using 
+ParamChecker "1" <... editEntryHandler #line:blue;text:black : < Verifies params using 
+ParamChecker "1" <... retrieveEntryHandler #line:blue;text:black : < Verifies params using 
+ParamHandler <|--- createLedgerHandler #line:purple;line.bold;text:red
+ParamHandler <|--- retrieveLedgerHandler #line:purple;line.bold;text:red
+ParamHandler <|--- createEntryHandler #line:purple;line.bold;text:red
+ParamHandler <|----- retrieveEntryHandler #line:purple;line.bold;text:red
+ParamHandler <|--- editEntryHandler #line:purple;line.bold;text:red
+}
 
 @enduml

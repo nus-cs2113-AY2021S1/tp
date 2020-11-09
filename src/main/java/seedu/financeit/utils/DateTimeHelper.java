@@ -2,8 +2,6 @@ package seedu.financeit.utils;
 
 import seedu.financeit.common.Common;
 
-import java.util.ArrayList;
-
 public class DateTimeHelper {
 
     /**

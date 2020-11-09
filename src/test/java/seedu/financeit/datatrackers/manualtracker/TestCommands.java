@@ -6,6 +6,9 @@ import seedu.financeit.testutil.TestUtil;
 import static seedu.financeit.utils.ParamChecker.PARAM_DATE;
 import static seedu.financeit.utils.ParamChecker.PARAM_INDEX;
 
+/**
+ * Generates command packets to simulate various circumstances to put the software under test.
+ */
 public class TestCommands {
     public static CommandPacket generateCreateLedgerErrorCommand() {
         CommandPacket testPacket = TestUtil.createCommandPacket(
