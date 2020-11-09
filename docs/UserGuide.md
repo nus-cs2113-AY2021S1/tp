@@ -792,7 +792,7 @@ _________________________________
 
 > **Note!**
 >
-> *	If you want to mark an original repeat event as done rather than one of the subsequent repeated events, you can omit the date in the command. 
+> *	If you want to mark an original repeat event as undone rather than one of the subsequent repeated events, you can omit the date in the command. 
 
 <div style="page-break-after: always;"></div>
 
