@@ -191,7 +191,7 @@ public class Storage {
         LocalDate date;
         if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")
                 || taskInFile[EVENT_MODULE_CODE].equals("") || taskInFile[EVENT_VENUE].equals("")) {
-            System.out.println("date or time in file is lost in exam: " + taskInFile[EVENT_MODULE_CODE]);
+            System.out.println("element in file is lost in exam: " + taskInFile[EVENT_MODULE_CODE]);
             return null;
         }
         if (!isValid(taskInFile)) {
@@ -221,7 +221,7 @@ public class Storage {
         LocalDate date;
         if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")
                 || taskInFile[EVENT_MODULE_CODE].equals("") || taskInFile[EVENT_VENUE].equals("")) {
-            System.out.println("date or time in file is lost in lab: " + taskInFile[EVENT_MODULE_CODE]);
+            System.out.println("element in file is lost in lab: " + taskInFile[EVENT_MODULE_CODE]);
             return null;
         }
         if (!isValid(taskInFile)) {
@@ -251,7 +251,7 @@ public class Storage {
         LocalDate date;
         if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")
                 || taskInFile[EVENT_MODULE_CODE].equals("") || taskInFile[EVENT_VENUE].equals("")) {
-            System.out.println("date or time in file is lost in tut: " + taskInFile[EVENT_MODULE_CODE]);
+            System.out.println("element in file is lost in tut: " + taskInFile[EVENT_MODULE_CODE]);
             return null;
         }
         if (!isValid(taskInFile)) {
@@ -281,7 +281,7 @@ public class Storage {
         LocalDate date;
         if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")
                 || taskInFile[EVENT_MODULE_CODE].equals("") || taskInFile[EVENT_VENUE].equals("")) {
-            System.out.println("date or time in file is lost in lec: " + taskInFile[EVENT_MODULE_CODE]);
+            System.out.println("element in file is lost in lec: " + taskInFile[EVENT_MODULE_CODE]);
             return null;
         }
         if (!isValid(taskInFile)) {
@@ -421,7 +421,7 @@ public class Storage {
     /**
      * Checks if the module code in the command is valid.
      *
-     * @param taskInFile   data in file.
+     * @param taskInFile data in file.
      * @return isValid  True if the module code is valid, FALSE otherwise.
      */
     private static boolean isValid(String[] taskInFile) {

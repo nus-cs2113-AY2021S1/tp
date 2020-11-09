@@ -48,8 +48,8 @@ public class AddCommand extends Command {
      * Creates a task in the task list after determining what type of task (event, deadline, todo).
      * Saves the updated calendar list in the storage after the new task is added.
      *
-     * @param calendarList      the calendar list to add the new task to.
-     * @param storage           the storage to be saved to.
+     * @param calendarList the calendar list to add the new task to.
+     * @param storage      the storage to be saved to.
      * @throws CommandException if the add command input is invalid.
      */
     @Override
@@ -154,7 +154,7 @@ public class AddCommand extends Command {
      *
      * @param calendarList the calendar list to add the lab event to.
      * @param command      the attributes of the lab event.
-     * @throws Exception   if the module code is empty.
+     * @throws Exception if the module code is empty.
      */
     private void addLabEvent(CalendarList calendarList, String[] command) throws Exception {
         command = command[1].trim().split(" ", 2);
@@ -174,6 +174,9 @@ public class AddCommand extends Command {
             System.out.println("Warning! The value for <number of lab session> can only be "
                     + "in the range of 1 to 13. \n");
             throw new CommandException("lab");
+        } else if (venue.isEmpty()) {
+            System.out.println("The <venue> cannot be empty!\n");
+            throw new CommandException("lab");
         } else {
             for (int i = 0; i < recurringCount; i++) {
                 calendarList.addEvent(new Lab(moduleCode, date, time, venue));
@@ -187,7 +190,7 @@ public class AddCommand extends Command {
      *
      * @param calendarList the calendar list to add the tutorial event to.
      * @param command      the attributes of the tutorial event.
-     * @throws Exception   if the module code is empty.
+     * @throws Exception if the module code is empty.
      */
     private void addTutorialEvent(CalendarList calendarList, String[] command) throws Exception {
         command = command[1].trim().split(" ", 2);
@@ -205,6 +208,9 @@ public class AddCommand extends Command {
         } else if (recurringCount < 1 || recurringCount > 13) {
             System.out.println("Warning! The value for <number of tutorial> can only be in the range of 1 to 13. \n");
             throw new CommandException("tutorial");
+        } else if (venue.isEmpty()) {
+            System.out.println("The <venue> cannot be empty!\n");
+            throw new CommandException("tutorial");
         } else {
             for (int i = 0; i < recurringCount; i++) {
                 calendarList.addEvent(new Tutorial(moduleCode, date, time, venue));
@@ -218,7 +224,7 @@ public class AddCommand extends Command {
      *
      * @param calendarList the calendar list to add the lecture event to.
      * @param command      the attributes of the lecture event.
-     * @throws Exception   if the module code is empty.
+     * @throws Exception if the module code is empty.
      */
     private void addLectureEvent(CalendarList calendarList, String[] command) throws Exception {
         command = command[1].trim().split(" ", 2);
@@ -237,6 +243,9 @@ public class AddCommand extends Command {
         } else if (recurringCount < 1 || recurringCount > 13) {
             System.out.println("Warning! The value for <number of lecture> can only be in the range of 1 to 13. \n");
             throw new CommandException("lecture");
+        } else if (venue.isEmpty()) {
+            System.out.println("The <venue> cannot be empty!\n");
+            throw new CommandException("lecture");
         } else {
             for (int i = 0; i < recurringCount; i++) {
                 calendarList.addEvent(new Lecture(moduleCode, date, time, venue));
@@ -250,7 +259,7 @@ public class AddCommand extends Command {
      *
      * @param calendarList the calendar list to add the exam to.
      * @param command      the attributes of the exam.
-     * @throws Exception   if the module code is empty.
+     * @throws Exception if the module code is empty.
      */
     private void addExamEvent(CalendarList calendarList, String[] command) throws Exception {
         command = command[1].trim().split(" ", 2);
@@ -263,6 +272,9 @@ public class AddCommand extends Command {
         time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
         if (moduleCode.isEmpty()) {
             throw new CommandException("exam");
+        } else if (venue.isEmpty()) {
+            System.out.println("The <venue> cannot be empty!\n");
+            throw new CommandException("exam");
         } else {
             calendarList.addEvent(new Exam(moduleCode, date, time, venue));
         }
@@ -273,7 +285,7 @@ public class AddCommand extends Command {
      *
      * @param calendarList the calendar list to add the activity to.
      * @param command      the attributes of the activity.
-     * @throws Exception   if the description is empty.
+     * @throws Exception if the description is empty.
      */
     private void addActivityEvent(CalendarList calendarList, String[] command) throws Exception {
         String eventDescription;
@@ -299,7 +311,7 @@ public class AddCommand extends Command {
      * @param calendarList the calendar list to add the deadline task to.
      * @param command      the attributes of deadline task.
      * @return isTask      true if it is a task.
-     * @throws Exception   if the description is empty.
+     * @throws Exception if the description is empty.
      */
     private boolean addDeadlineTask(CalendarList calendarList, String[] command) throws Exception {
         String taskDescription;
@@ -323,7 +335,7 @@ public class AddCommand extends Command {
      *
      * @param calendarList the calendar list to add the todo task to.
      * @return isTask      to show that is is a task.
-     * @throws Exception   if the description is empty.
+     * @throws Exception if the description is empty.
      */
     private boolean addTodoTask(CalendarList calendarList, String s) throws Exception {
         String taskDescription;
@@ -341,7 +353,7 @@ public class AddCommand extends Command {
     /**
      * Checks if the module code in the command is valid.
      *
-     * @param command   User input command.
+     * @param command User input command.
      * @return isValid  True if the module code is valid, FALSE otherwise.
      */
     private boolean isValid(String[] command) {

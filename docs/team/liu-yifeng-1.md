@@ -35,7 +35,7 @@ for more details.
  * Integrated a third party library (fastjson) to the project and added the ability to verify the module code entered by the user.
   ([\#126](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/126),
   [\#246](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/246),
-  [\#270](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/270),
+  [\#270](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/270)
   )
    * What it does: It checks the validity of the module code entered by the user against the NUSMod API.
    If valid, program will proceed as per normal. Else, it will prompt the user with an error message.
@@ -52,7 +52,7 @@ for more details.
   ([\#122](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/122))
 * Enabled warning message for over-due deadline items.
   ([\#240](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/240),
-  ([\#288](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/288)),
+  [\#288](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/288)
   )
 * Wrote Junit tests to increase coverage.
   ([\#124](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/124))
@@ -62,7 +62,7 @@ for more details.
 #### Contributions to the DG:
 * Added the Setting Up & Getting started section.
   ([\#148](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/148),
-  ([\#149](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/149)),
+  [\#149](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/149)
 )
 * Added the DevOps guide and non-functional requirements
 * Added the Product Scope section and updated User Stories
@@ -71,7 +71,7 @@ for more details.
   ([\#164](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/149))
 * Added implementation sequence diagram for ModuleChecker
   ([\#185](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/185),
-  ([\#284](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/284)),
+  [\#284](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/284)
   )
 
 #### Contributions to the UG:
@@ -79,11 +79,11 @@ for more details.
   ([\#107](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/107))
 * Updated the UG with expected output screenshots.
   ([\#172](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/172),
-  ([\#175](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/175)),
-  ([\#177](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/177)),
-  ([\#230](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/231)),
-  ([\#231](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/231)),
-  ([\#296](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/296)),
+  [\#175](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/175),
+  [\#177](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/177),
+  [\#230](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/231),
+  [\#231](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/231),
+  [\#296](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/296)
   )
 
 #### Contributions to team-based tasks:
