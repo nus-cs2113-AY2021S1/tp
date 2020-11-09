@@ -153,7 +153,7 @@ public class QuoteList extends QuotesifyList<Quote> {
                 listToReturn += (++matchCounter + ". " + quote.toString() + System.lineSeparator());
             }
         }
-        return listToReturn;
+        return listToReturn.trim();
     }
 
     /**

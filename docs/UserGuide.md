@@ -27,7 +27,7 @@
     * [List all quotes](#422-listing-all-quotes-list--q)
     * [List quotes from a specific reference](#423-listing-quotes-from-a-specific-reference-list--q)
     * [List quotes from a specific author](#424-listing-quotes-from-a-specific-author-list--q)
-    * [List quotes from a specific reference and author](#425-listing-quotes-from-a-specific-reference-and-author-list--q)
+    * [List quotes from a specific author and reference](#425-listing-quotes-from-a-specific-author-and-reference-list--q)
     * [Edit an existing quote](#426-editing-an-existing-quote-edit--q)
     * [Delete a quote](#427-deleting-a-quote-delete--q)
     * [Finding quotes](#428-finding-quotes-find--q)
@@ -418,7 +418,7 @@ The book has been edited from [Harry Potter] to [Harry Potter 2]!
 
 Came across an inspiring quote while reading, or a useful productivity tip from an article only to forget it after
 some time? Quotesify is here to help you store and track those all inspiring quotes while reminding you about them
-so you'll never forget them!  
+so you'll never forget!  
 
 #### 4.2.1 Adding a quote: `add -q`
 
@@ -453,9 +453,9 @@ The quote ["Luke, I am your father" - by Darth Vader] has been added!
 
 Expected outcome 3:
 ```
-----------------------------------------------------------------------
+-----------------------------------------------------------------
 The quote ["Get schwifty!" - from Rick and Morty] has been added!
-----------------------------------------------------------------------
+-----------------------------------------------------------------
 ```
 
 Expected outcome 4:
@@ -490,15 +490,17 @@ Lists all quotes tagged under the specified reference title.
 
 Format: `list -q /from REFERENCE`
 
+* Reference field should not be empty.
+
 Example of usage: `list -q /from rick and morty`
 
 Expected outcome:
 ```
-------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 Here is a list of quotes from rick and morty:
-"Get schwifty!" - from Rick and Morty
-"So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)
-------------------------------------------------------------------------------------------
+1. "Get schwifty!" - from Rick and Morty
+2. "So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)
+---------------------------------------------------------------------------------------------
 ```
 
 #### 4.2.4 Listing quotes from a specific author: `list -q`
@@ -507,41 +509,45 @@ Lists all quotes tagged under the specified author.
 
 Format: `list -q /by AUTHOR`
 
+* Author field should not be empty.
+
 Example of usage: `list -q /by darth vader`
 
 Expected outcome:
 ```
----------------------------------------------------
+--------------------------------------------
 Here is a list of quotes by darth vader:
-"Luke, I am your father" - by Darth Vader
----------------------------------------------------
+1. "Luke, I am your father" - by Darth Vader
+--------------------------------------------
 ```
 
-#### 4.2.5 Listing quotes from a specific reference and author: `list -q`
+#### 4.2.5 Listing quotes from a specific author and reference: `list -q`
 
-Lists all quotes tagged under the specified reference and author.
+Lists all quotes tagged under the specified author and reference.
 
 Format: `list -q /by AUTHOR /from REFERENCE`
+
+* Reference and Author fields should not be empty.
 
 Example of usage: `list -q /by rick /from rick and morty`
 
 Expected outcome:
 ```
-------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 Here is a list of quotes from rick and morty by rick:
-"So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)
-------------------------------------------------------------------------------------------
+1. "So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)
+---------------------------------------------------------------------------------------------
 ```
 
 #### 4.2.6 Editing an existing quote: `edit -q`
 
 Edits an existing quote from your list of quotes.
 
-Format: `edit -q QUOTE_NUMBER /to UPDATED_QUOTE`
+Format: `edit -q QUOTE_NUMBER /to QUOTE {[/by AUTHOR] | [/from REFERENCE]}`
 
 * Quote number field should not be empty.
 * The specified quote should exist in Quotesify.
-* Format of quote follows adding of quote above.
+* Format of quote follows adding of quotes above in 4.2.1.
 
 Example of usage: `edit -q 2 /to No, I am your mummy /by Darth Vader`
 
@@ -582,10 +588,10 @@ Example of usage: `find -q sleep`
 
 Expected outcome:
 ```
--------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 Here are the results of my search:
-"So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)
-------------------------------------------------------------------------------------------
+1. "So everyone’s supposed to sleep every single night now?" - by Rick, (from Rick and Morty)
+---------------------------------------------------------------------------------------------
 ```
 
 #### 4.2.9 Adding reflection to a quote: `add -qr`
@@ -602,10 +608,11 @@ Example of usage: `add -qr 1 /reflect No, That’s not true. It’s impossible!`
 
 Expected outcome:
 ```
-------------------------------------------------------------------------------
-Reflection has been added to quote: "No, I am your mummy" - by Darth Vader [R]
+--------------------------------------------------
+Reflection has been added to quote! 
+Quote: "No, I am your mummy" - by Darth Vader [R]
 Reflection: No, that’s not true. It’s impossible!
-------------------------------------------------------------------------------
+--------------------------------------------------
 ```
 
 #### 4.2.10 Listing reflection of a quote: `list -qr`
@@ -1174,11 +1181,11 @@ List books by completion:                           list -b done/undone
 ------------------------------------------------------------------------------------------------------------------------
                             2. Quote Management
 ------------------------------------------------------------------------------------------------------------------------
-Add quote:                                          add -q QUOTE [/from BOOK_TITLE] [/by AUTHOR]
+Add quote:                                          add -q QUOTE {[/by AUTHOR] [/from REFERENCE]}
 Delete quote:                                       delete -q QUOTE_NUMBER
-List quotes:                                        list -q [/by AUTHOR] [/from BOOK_TITLE]
-Edit quote:                                         edit -q QUOTE_NUMBER /to NEW_QUOTE [/by AUTHOR] [/from BOOK_TITLE]
-Find quote:                                         find -q QUOTE_NUMBER
+List quotes:                                        list -q {[/by AUTHOR] [/from REFERENCE]}
+Edit quote:                                         edit -q QUOTE_NUMBER /to NEW_QUOTE {[/by AUTHOR] [/from REFERENCE]}
+Find quote:                                         find -q KEYWORD
 Add quote reflection:                               add -qr QUOTE_NUMBER /reflect REFLECTION
 Delete quote reflection:                            delete -qr QUOTE_NUMBER
 Edit quote reflection:                              edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION
@@ -1284,7 +1291,7 @@ suggestion for Quotesify, please do not hesitate to reach us at *contact@quotesi
 Enter the following command | To do this
 --------------------------- | -----------
 `add -b BOOK_TITLE /by AUTHOR` | Add book
-`add -q QUOTE [/from BOOK_TITLE] [/by AUTHOR]` | Add quote
+`add -q QUOTE {[/by AUTHOR] [/from REFERENCE]}` | Add quote
 `add -qr QUOTE_NUMBER /reflect REFLECTION` | Add quote reflection
 `add -t TASK /by DEADLINE` | Add task
 `add -c CATEGORIES {[-b BOOK_TITLE] [-q QUOTE_NUMBER]}` | Add categories
@@ -1293,14 +1300,14 @@ Enter the following command | To do this
 `list -b [/by AUTHOR]` | List books
 `list -b BOOK_NUMBER` | List book details
 `list -b done/undone` | List books by completion
-`list -q [/by AUTHOR] [/from BOOK_TITLE]` | List quotes
+`list -q {[/by AUTHOR] [/from REFERENCE]}` | List quotes
 `list -qr QUOTE_NUMBER` | List quote reflection
 `list -bm` | List bookmarks
 `list -t` | List tasks
 `list -c [CATEGORY]` | List all categories / List items in a category
 `list -r [RATING_SCORE]` | List ratings
 `edit -b BOOK_NUMBER /to NEW_TITLE` | Edit book title
-`edit -q QUOTE_NUMBER /to NEW_QUOTE [/by AUTHOR] [/from BOOK_TITLE]` | Edit quote
+`edit -q QUOTE_NUMBER /to NEW_QUOTE {[/by AUTHOR] [/from REFERENCE]}` | Edit quote
 `edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION` | Edit quote reflection
 `edit -c OLD_CATEGORY /to NEW_CATEGORY` | Edit a category name
 `edit -r RATING_SCORE BOOK_NUMBER` | Edit rating
