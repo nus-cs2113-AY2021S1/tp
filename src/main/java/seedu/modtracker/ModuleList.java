@@ -1,6 +1,8 @@
 package seedu.modtracker;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.FileHandler;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.logging.Level;
@@ -241,7 +243,17 @@ public class ModuleList {
      */
     public void addExp(String input, boolean toPrint, Storage storage) {
         try {
+            FileHandler fh = new FileHandler("logger.log", true);
             logger.setLevel(Level.INFO);
+            logger.addHandler(fh);
+        } catch (IOException e) {
+            ui.printLoggerFileError();
+
+        }
+
+
+        try {
+
             String[] modInfo = input.trim().split(" ", 3);
             String modCode = modInfo[1];
             String expTime = modInfo[2];
@@ -564,8 +576,8 @@ public class ModuleList {
      *
      * @param toPrint whether the UI should print the output.
      * @param modCode module code input by user.
-     * @param week week number input by user.
-     * @param hours time spent input.
+     * @param week    week number input by user.
+     * @param hours   time spent input.
      */
     private boolean validateTimeAndWeekInput(boolean toPrint, String modCode, String week, double hours) {
 
