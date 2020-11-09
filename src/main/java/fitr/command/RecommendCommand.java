@@ -24,8 +24,10 @@ import static fitr.common.Messages.ERROR_IN_FILE;
 import static fitr.common.Messages.EXERCISE_HEADER;
 import static fitr.common.Messages.INTENSITY_CAL_HEADER;
 import static fitr.common.Messages.OPEN_SQUARE_BRACKET;
+import static fitr.common.Messages.SEPARATOR_LINE;
 import static fitr.common.Messages.SPACE_FORMATTING;
 import static fitr.common.Messages.SPACE_STRING;
+import static fitr.common.Messages.SPLIT_SPACE;
 
 public class RecommendCommand extends Command {
     public RecommendCommand(String command) {
@@ -62,7 +64,7 @@ public class RecommendCommand extends Command {
             String checker = Ui.read();
 
             if (checker.toLowerCase().equals("y")) {
-                Ui.printCustomMessage("-".repeat(136));
+                Ui.printCustomMessage(SEPARATOR_LINE);
                 Ui.printCustomMessage(ECHO_ADDED_EXERCISE);
                 for (int i = 0; i < 4; i++) {
                     StandardExercise standardExercise = recommendList.getExercise(i);
@@ -82,21 +84,21 @@ public class RecommendCommand extends Command {
                 Ui.printCustomMessage("Next time then!");
             } else {
                 try {
-                    if (checker.split(" ").length > 4) {
+                    if (checker.split(SPLIT_SPACE).length > 4) {
                         throw new FitrException();
                     }
                     ArrayList<Integer> indexArr = new ArrayList<>();
-                    for (int i = 0; i < checker.split(" ").length; i++) {
-                        if (Integer.parseInt(checker.split(" ")[i]) < 0
-                                || Integer.parseInt(checker.split(" ")[i]) > 4) {
+                    for (int i = 0; i < checker.split(SPLIT_SPACE).length; i++) {
+                        if (Integer.parseInt(checker.split(SPLIT_SPACE)[i]) < 0
+                                || Integer.parseInt(checker.split(SPLIT_SPACE)[i]) > 4) {
                             throw new IndexOutOfBoundsException();
                         }
-                        if (indexArr.contains(Integer.parseInt(checker.split(" ")[i]))) {
+                        if (indexArr.contains(Integer.parseInt(checker.split(SPLIT_SPACE)[i]))) {
                             throw new DuplicateIndexException();
                         }
-                        indexArr.add(Integer.parseInt(checker.split(" ")[i]));
+                        indexArr.add(Integer.parseInt(checker.split(SPLIT_SPACE)[i]));
                     }
-                    Ui.printCustomMessage("-".repeat(136));
+                    Ui.printCustomMessage(SEPARATOR_LINE);
                     Ui.printCustomMessage(ECHO_ADDED_EXERCISE);
                     for (int i = 0; i < indexArr.size(); i++) {
                         StandardExercise standardExercise = recommendList.getExercise(indexArr.get(i) - 1);

@@ -19,6 +19,7 @@ import static fitr.common.Messages.ERROR_IN_FILE;
 import static fitr.common.Messages.FOOD_NAME_HEADER;
 import static fitr.common.Messages.LINE_BREAK;
 import static fitr.common.Messages.PHRASE_EXTRA_PARAMETERS;
+import static fitr.common.Messages.SPLIT_SPACE;
 
 public class AddFoodCommand extends Command {
     public AddFoodCommand(String command) {
@@ -33,8 +34,8 @@ public class AddFoodCommand extends Command {
                 throw new ArrayIndexOutOfBoundsException();
             }
             command = command.split("/", 2)[1].trim();
-            if (command.split(" ").length == 1) {
-                Calorie amountOfCalories = new Calorie(Integer.parseInt(command.split(" ")[0]));
+            if (command.split(SPLIT_SPACE).length == 1) {
+                Calorie amountOfCalories = new Calorie(Integer.parseInt(command.split(SPLIT_SPACE)[0]));
                 if (amountOfCalories.get() < 0 || amountOfCalories.get() > 10000) {
                     throw new NumberFormatException();
                 }
@@ -44,15 +45,15 @@ public class AddFoodCommand extends Command {
                         + FOOD_NAME_HEADER + nameOfFood + LINE_BREAK
                         + "Calorie Consumed: " + amountOfCalories.get()
                 );
-            } else if (command.split(" ").length == 2) {
-                String individualCalorie = command.split(" ", 2)[0];
+            } else if (command.split(SPLIT_SPACE).length == 2) {
+                String individualCalorie = command.split(SPLIT_SPACE, 2)[0];
                 if (!individualCalorie.matches("\\d+")) {
                     throw new NumberFormatException();
                 }
                 if (!command.split(" ", 2)[1].matches("\\d+")) {
                     throw new FitrException();
                 }
-                int amountOfFood = Integer.parseInt(command.split(" ", 2)[1]);
+                int amountOfFood = Integer.parseInt(command.split(SPLIT_SPACE, 2)[1]);
                 if (amountOfFood < 1 || amountOfFood > 1000) {
                     throw new FitrException();
                 }

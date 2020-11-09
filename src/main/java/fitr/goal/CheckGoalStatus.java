@@ -12,14 +12,10 @@ import static fitr.common.Messages.KEYWORD_BURN;
 import static fitr.common.Messages.KEYWORD_CALORIE;
 import static fitr.common.Messages.KEYWORD_CALORIES;
 import static fitr.common.Messages.KEYWORD_EAT;
-import static fitr.common.Messages.KEYWORD_EXERCISE_LESS_THAN;
-import static fitr.common.Messages.KEYWORD_EXERCISE_MORE_THAN;
-import static fitr.common.Messages.KEYWORD_FOOD_LESS_THAN;
-import static fitr.common.Messages.KEYWORD_FOOD_MORE_THAN;
 import static fitr.common.Messages.KEYWORD_LESS;
 import static fitr.common.Messages.KEYWORD_MORE;
 import static fitr.common.Messages.KEYWORD_THAN;
-import static fitr.common.Messages.SPACE_STRING;
+import static fitr.common.Messages.SPLIT_SPACE;
 import static fitr.common.Messages.SYMBOL_NO;
 import static fitr.common.Messages.SYMBOL_YES;
 
@@ -37,7 +33,7 @@ public class CheckGoalStatus {
             if (status.equals(SYMBOL_YES)) {
                 return status;
             }
-            String[] goalWords = goal.getDescription().split(SPACE_STRING);
+            String[] goalWords = goal.getDescription().split(SPLIT_SPACE);
             if (goalWords.length != 5) {
                 return status;
             }

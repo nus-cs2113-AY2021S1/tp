@@ -17,6 +17,7 @@ import static fitr.common.Messages.ERROR_INVALID_CALORIE;
 import static fitr.common.Messages.ERROR_IN_FILE;
 import static fitr.common.Messages.EXERCISE_NAME_HEADER;
 import static fitr.common.Messages.LINE_BREAK;
+import static fitr.common.Messages.SPLIT_SPACE;
 
 public class AddExerciseCommand extends Command {
     public AddExerciseCommand(String command) {
@@ -31,8 +32,8 @@ public class AddExerciseCommand extends Command {
                 throw new ArrayIndexOutOfBoundsException();
             }
             command = command.split("/", 2)[1].trim();
-            if (command.split(" ").length == 1) {
-                Calorie amountOfCaloriesBurnt = new Calorie(Integer.parseInt(command.split(" ")[0]));
+            if (command.split(SPLIT_SPACE).length == 1) {
+                Calorie amountOfCaloriesBurnt = new Calorie(Integer.parseInt(command.split(SPLIT_SPACE)[0]));
                 if (amountOfCaloriesBurnt.get() < 1 || amountOfCaloriesBurnt.get() > 10000) {
                     throw new NumberFormatException();
                 }

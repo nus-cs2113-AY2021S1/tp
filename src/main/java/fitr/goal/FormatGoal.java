@@ -15,6 +15,7 @@ import static fitr.common.Messages.KEYWORD_EAT;
 import static fitr.common.Messages.PHRASE_LESS_THAN;
 import static fitr.common.Messages.PHRASE_MORE_THAN;
 import static fitr.common.Messages.SPACE_STRING;
+import static fitr.common.Messages.SPLIT_SPACE;
 import static fitr.common.Messages.SYMBOL_EXERCISE;
 import static fitr.common.Messages.SYMBOL_LESS_THAN;
 import static fitr.common.Messages.SYMBOL_MORE_THAN;
@@ -24,10 +25,10 @@ public class FormatGoal {
             throws FitrException, UpperBoundLessThanException, UpperBoundMoreThanException {
         Goal newGoal = new Goal(createdDate, goalType, goalDescription);
         String descriptionPart = (goalType.equals(SYMBOL_EXERCISE)) ? KEYWORD_BURN : KEYWORD_EAT;
-        String[] arguments = goalDescription.substring(1).trim().split(SPACE_STRING);
+        String[] arguments = goalDescription.substring(1).trim().split(SPLIT_SPACE);
         boolean isPositiveNumber = arguments[0].matches("^(|-?\\d+)$");
 
-        if (Objects.equals(goalDescription.split(SPACE_STRING, 2)[0].trim().charAt(0), SYMBOL_MORE_THAN)) {
+        if (Objects.equals(goalDescription.split(SPLIT_SPACE, 2)[0].trim().charAt(0), SYMBOL_MORE_THAN)) {
             if (isPositiveNumber) {
                 if (arguments.length != 1) {
                     throw new FitrException();
@@ -43,7 +44,7 @@ public class FormatGoal {
             } else {
                 throw new ArrayIndexOutOfBoundsException();
             }
-        } else if (Objects.equals(goalDescription.split(SPACE_STRING, 2)[0].trim().charAt(0), SYMBOL_LESS_THAN)) {
+        } else if (Objects.equals(goalDescription.split(SPLIT_SPACE, 2)[0].trim().charAt(0), SYMBOL_LESS_THAN)) {
             if (isPositiveNumber) {
                 if (arguments.length != 1) {
                     throw new FitrException();
