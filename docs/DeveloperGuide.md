@@ -141,8 +141,7 @@ This section will help provide insight to the general overview of **AniChan**’
 
 <br/>
 
-![Architecture Diagram](images/Architecture-Design.png)
-
+![Architecture Diagram](images/Architecture-Design.png) <br/>
 *Figure 1: Architecture Design Diagram*
 
 > :bulb: The images used are stored in the directory: `images/`. If you wish to update a diagram you may replace the images in this folder.
@@ -299,8 +298,7 @@ Given below is an example usage scenario showing how the `EstimateCommand` behav
 The sequence diagram presented below depicts the interaction between the components for running the command, `estimate script.txt -wph 300`.
 > :memo: The sequence diagram shows the interaction from step 2 onward.
 
-![EstimateCommand Sequence Diagram](images/EstimateCommand-Sequence-Diagram.png)
-
+![EstimateCommand Sequence Diagram](images/EstimateCommand-Sequence-Diagram.png) <br/>
 *Figure 10: Sequence Diagram for `estimate script.txt -wph 300`*
 
 <br/>
@@ -643,8 +641,7 @@ Below is a table describing the 4 parameters supported by the `watchlist` comman
 
 Given below is an example usage scenario showing how the `WatchlistCommand` behaves at each step. In this example, we will look at the **watchlist creation process**.
 
-![WatchlistCommand Initial State](images/WatchlistCommand-Initial-State.png)
-
+![WatchlistCommand Initial State](images/WatchlistCommand-Initial-State.png) <br/>
 *Figure 21: WatchlistCommand Initial State*
 
 **Step 1:** User executes the command `watchlist -n NewAnime`. The application invokes `Parser#getCommand()` and because the command type is "watchlist", `WatchlistParser#parse()` is invoked to parse, validate, and construct `WatchlistCommand` with "-n" and "NewAnime". The created object is then returned to `Main`.
@@ -663,8 +660,7 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 
 **Step 6:** `WatchlistCommand` is terminated.
 
-![WatchlistCommand After Create State](images/WatchlistCommand-After-Create-State.png)
-
+![WatchlistCommand After Create State](images/WatchlistCommand-After-Create-State.png) <br/>
 *Figure 22: WatchlistCommand After Create State*
 
 <br/>
@@ -675,16 +671,14 @@ The following diagrams will **continue from step 6**, and it will show how the `
 
 **Step 7:** The user executes `watchlist -s 2` to set the second watchlist ("New Anime") in the list as the new active watchlist.
 
-![WatchlistCommand After Select State](images/WatchlistCommand-After-Select-State.png)
-
+![WatchlistCommand After Select State](images/WatchlistCommand-After-Select-State.png) <br/>
 *Figure 23: WatchlistCommand After Select State*
 
 <br/>
 
 **Step 8:** The user now decides that the "NewAnime" watchlist is no longer needed and decides to execute `watchlist -d 2` to delete it.
 
-![WatchlistCommand After Delete State](images/WatchlistCommand-After-Delete-State.png)
-
+![WatchlistCommand After Delete State](images/WatchlistCommand-After-Delete-State.png) <br/>
 *Figure 24: WatchlistCommand After Delete State*
 
 <br/>
@@ -694,8 +688,7 @@ The sequence diagram presented below depicts the interaction between the compone
 
 > :memo: The other parameters (list, select, and delete) follows a similar process, only the list and the select parameter does not interact with the `StorageManager` since they do not modify the watchlist data.
 
-![WatchlistCommand Create Watchlist Sequence Diagram](images/WatchlistCommand-CreateWatchlist-Sequence-Diagram.png)
-
+![WatchlistCommand Create Watchlist Sequence Diagram](images/WatchlistCommand-CreateWatchlist-Sequence-Diagram.png) <br/>
 *Figure 25: Sequence Diagram for `watchlist -n NewAnime`*
 
 <br/>

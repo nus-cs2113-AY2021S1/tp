@@ -9,13 +9,13 @@
 *   **New Feature:** Added the ability to estimate the time needed to translate a script.
     *   What it does: Allows the user to figure out the time needed to translate a script based on the amount of words they can translate in an hour (defined as words per hour), or by using the average translator's speed (3 different words per hour values).
     *   Justification: Being able to estimate the time needed more accurately can help the user in better managing and planning their time.
-    *   Highlights: A file name could contain special characters, invalid file name characters, whitespaces, and even file extensions, and that makes the validation process highly complicated, hence, this feature would need to perform extensive checks to ensure a single valid file is provided. Moreover, there is an optional parameter that needs to be validated, and it should not be missed or be accidentally validated as part of the file name.
+    *   Highlights: A file name could contain special characters, whitespaces, and even file extensions, and that makes the validation process highly complicated, hence, this feature would need to perform extensive checks to ensure a single valid file is provided. Moreover, there is an optional parameter that needs to be validated, and it should not be missed or be accidentally validated as part of the file name.
     
 *   **New Feature:** Added the ability to create, list, select, and delete watchlist.
     *   What it does: Allows the user to create, list, select, and delete watchlist.
     *   Justification: This feature provides the user with a way to keep track of animes and group them based on their own criteria, and this helps them to be more organized.
-    *   Highlights: Besides the need to validate the inputs (e.g. not empty, is a positive integer, etc.), this feature also maintains the active watchlist pointer which is used by the input prompt. Therefore, it also needs to ensure the validity of the pointer at all times because the application could fail if it ever becomes invalid.
-            
+    *   Highlights: Besides the need to validate the inputs (e.g. not empty, is a positive integer, etc.), this feature also maintains the active watchlist which is used by the input prompt. Therefore, it also needs to ensure the active watchlist remains valid at all times because the application could fail if it ever becomes invalid.
+                
 *   **New Feature:** Added the ability to save and load watchlist data automatically.
     *   What it does: Helps the user to automatically save their watchlist data into the file `watchlist.txt`, and load these data automatically when the application is launched.
     *   Justification: Being an application to help users keep track of their animes and ensure they stay organized, persistent storage would be needed otherwise, users would have to re-enter their watchlist data every time they use the application.
