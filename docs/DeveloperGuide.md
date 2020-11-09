@@ -229,6 +229,7 @@ returned. Else, null is returned.
 
 The following sequence diagram explains the above steps when the user enters `/routemap busCode`.<br>
 ![Overview](DG_Diagrams/RouteMapCommand/RouteMapCommandOverallSeq.png)<br>
+<div style="page-break-after: always;"></div>
 The following sequence diagrams explain the interactions for bus route retrieval.<br>
 ![Internal](DG_Diagrams/RouteMapCommand/RouteMapCommandSeq.png)
 
