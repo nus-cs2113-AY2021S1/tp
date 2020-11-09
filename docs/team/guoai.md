@@ -1,16 +1,10 @@
 # Guo Ai - Project Portfolio 
-
 ## Overview
-
 termiNus is an interactive task manager for students in NUS.
-
 ## Summary of Contributions:
-
 ##### Code Contributed
 - [My RepoSense Report](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=guoai&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
-
 ##### Enhancement implemented:
-
 1. Features added to Task List
    - Implement the `category` command.
       - Allow users to set the category of a task.
@@ -61,25 +55,19 @@ commands, storage, UI, runner, and exception did not change.
 7. Follow software engineering principles
    - Apply SLAP principle, DRY principle, facade design pattern when implementing features.
    - Use functional programming and improve readability when writing code as much as possible.
-
 ##### Contributions to User Guide:
-
 1. Add user guide sections for all commands related to expenses
    - `spend` command
    - `list` command and subcommands
    - `delete` command and subcommands
 2. Add user guide sections for `find` command
-
 ##### Contributions to Developer Guide:
-
 1. Add a sequence diagram for `Stroage` generated with PlantUML.
 1. Add a class diagram for `Item` class and its subclasses.
 1. Explain usage for the `Storage` component.
 1. Explain the `Item` class and its subclasses.
 1. Describe implementation details of `list` command for expenses and `delete` command.
-
 ##### Contributions to Team-based tasks:
-
 1. Set up the GitHub team organization and invite teammates
 2. Set up the GitHub team repository
 3. Refactor code and build a structure for classes 
@@ -87,7 +75,6 @@ commands, storage, UI, runner, and exception did not change.
    - `ItemList` and its subclasses
 4. Add issues to issue tracker, assign teammates, and add labels
 5. Smoke test on some features.
-
 ##### Review/mentoring contributions: 
 1. Review, approve, and merge some of teammates' PRs.
    - Example:
@@ -97,10 +84,8 @@ so that more OOP can be applied.
 3. Provide details when creating PR to inform teammates of the updates.
    - Example:
    [#214](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/214)
-
 ##### Contributions beyond the project team:
 - Create and host weekly project meetings
-
 ### Contributions to the User Guide (Extracts)
 
 ### Adding an expense item: `spend`
