@@ -20,14 +20,13 @@ public class ModuleList extends ItemList<Module> {
     public static final String CURRENT_CAP_STRING = "Current CAP: %.2f";
     public static final String PROJECTED_CAP_STRING = "Projected CAP: %.2f";
     public static final String MCS_COMPLETED_STRING = "Total MCs completed: %d";
-    public static final String GRADE_S = "S";
-    public static final String GRADE_U = "U";
     public static final String FOLDER_CREATED_STRING = "Created folder(s) for %d module(s).";
-    public static final String CREATE_MODULE_FOLDERS_STRING = "Creating module folders...";
     public static final String FOLDER_PATH_STRING = "./modules/AY%s/%s/";
     public static final String LECTURE_PATH_STRING = "/Lecture Notes/";
     public static final String TUTORIAL_PATH_STRING = "/Tutorial/";
     public static final String FOLDER_CREATION_SUCCESS_STRING = "Created folder/sub-folders for %s at %s";
+    public static final String GRADE_S = "S";
+    public static final String GRADE_U = "U";
 
     public ModuleList() {
         items = new ArrayList<>();
@@ -140,7 +139,7 @@ public class ModuleList extends ItemList<Module> {
      */
     public void createModuleFolders() throws DukeException {
         Ui.showLine();
-        Ui.dukePrintMultiple(CREATE_MODULE_FOLDERS_STRING);
+        Ui.dukePrintMultiple(Messages.MESSAGE_CREATE_FOLDERS);
 
         int createdFolderCount = 0;
         for (Module module : items) {

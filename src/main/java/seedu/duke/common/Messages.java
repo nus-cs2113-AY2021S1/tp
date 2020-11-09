@@ -45,6 +45,7 @@ public class Messages {
             + "Your task list is empty.";
     public static final String MESSAGE_ADD_MODULE = "Got it. I've added this module:\n       ";
     public static final String MESSAGE_MODULE_STATUS_LAST = " module(s) in the list.";
+    public static final String MESSAGE_CREATE_FOLDERS = "Creating module folders...";
 
     public static final String MESSAGE_LINK_LIST = "Here are the links in your list:\n";
     public static final String MESSAGE_EMPTY_BOOK_LIST = "~Info~ There are no books in your list. "
