@@ -410,7 +410,7 @@ Given below are the Step by Step Guide to use Trippie.
 
 ```
 Enter your new trip's name:A trip of 01/01
-New trip should not contain invalid characters like <>:"/\|?*!
+New trip should not contain invalid characters like <>:"/\|?*
 Enter your new trip's name:
 ```
 
