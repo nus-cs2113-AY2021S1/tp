@@ -30,11 +30,11 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 1. Maintain portions on commands related to Events.
     - [`add-e`](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#add-e)
         - Added ability to add an event with custom end timings, multiple reminders and can be set to recurring.
-    - [`edit-e`](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#edit-e)
-        - Provide functionality to edit any Event that is stored in the Timetable without deleting and adding it back.
-        
-<div style="page-break-after: always;"></div>        
-        
+
+<div style="page-break-after: always;"></div>
+
+   - [`edit-e`](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#edit-e)
+       - Provide functionality to edit any Event that is stored in the Timetable without deleting and adding it back.    
    - [`list-e`](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#list-e)
        - Provided an "overloaded" command where a user can see only all stored timetable or timetable for a specific year/month.
    - [`delete-e`](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#delete-e)
