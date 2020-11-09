@@ -62,8 +62,11 @@ public class SpendCommand extends Command {
         }
         Double value = 0.0;
         try {
-            value = Double.valueOf(argumentsMap.get("v"));
+            value = Double.parseDouble(argumentsMap.get("v"));
         } catch (NumberFormatException e) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_VALUE);
+        }
+        if (value < 0) {
             throw new DukeException(Messages.EXCEPTION_INVALID_VALUE);
         }
         Expense newExpense = new Expense(description, value);
