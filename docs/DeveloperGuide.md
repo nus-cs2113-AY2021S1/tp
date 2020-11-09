@@ -162,7 +162,7 @@ When the `Recommend` class is instantiated, the constructor calls onto the `Stor
 
 The `recommend` method in the class then chooses and adds different permutations or combinations of `StandardExercise` instances from the multiple different `StandardExerciseList` instances to load into a new instance of `StandardExerciseList`.
 
-<p align="center"><img src="images/RecommendSequence.png"></p>
+<p align="center"><img src="images/RecommenderClassDiagram.png"></p>
 <p align="center">Figure 6: <code>Recommender</code> class diagram</p>
 
 <!-- @@author -->
@@ -254,7 +254,7 @@ The user's input is first parsed by the `Parser` class, which returns a `Recomme
 
 The `Recommender` class then returns a list of type `StandardExerciseList`. The user input is then read in by the `Ui` class to determine which `StandardExercise` objects in the `StandardExerciseList` should be converted to `Exercise` and added to the exerciseList of type `ExerciseList`
 
-<p align="center"><img src="images/RecommendCommandSequenceDiagram.png"></p>
+<p align="center"><img src="images/RecommendSequence.png"></p>
 <p align="center">Figure 15: Sequence diagram for <code>recommend</code> command</p>
 
 <!-- @@author dmbclub -->
