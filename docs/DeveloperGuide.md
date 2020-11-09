@@ -766,14 +766,14 @@ Expected: No command executed.Error details will be shown to remind users to typ
 3. Dealing with corrupted data
     - Prerequisite: `FreqList.txt` exists
     - Test case 1: Missing entries in FreqList.txt"<br>
-        Step 1. Remove a few entries off the `FreqList.txt` file.<br>
-        Step 2. Run the jar file<br>
+        - Step 1. Remove a few entries off the `FreqList.txt` file.<br>
+        - Step 2. Run the jar file<br>
         Expected output: Error details will be shown to inform users that corrupted data has been detected
         and that all search frequencies will be initialised to zero.<br>
         
     - Test case 3: Senseless data in FreqList.txt <br>
-        Step 1. Add random letters into `FreqList.txt` file. <br>
-        Step 2. Run the jar file <br>
+        - Step 1. Add random letters into `FreqList.txt` file. <br>
+        - Step 2. Run the jar file <br>
         Expected output: Error details will be shown to inform users that corrupted data has been detected 
         and that all search frequencies will be initialised to zero.<br>
         
