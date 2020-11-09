@@ -119,11 +119,15 @@ Expected Outcome:
 
 ![helpCommand](userGuidePic/helpCommand.PNG)
 
+[Return to the top](#user-guide)
+
 ### 4.2 Exit the program: `bye` 
 Exits the program.
 
 With this command you can exit the program directly from the terminal without closing it. <br/>
 Format: `bye`
+
+[Return to the top](#user-guide)
 
 ### 4.3 HR features `HR` 
 #### Add members: `addMember`
@@ -318,7 +322,7 @@ Expected Outcome:
 #### Delete an event: `delEvent`
 (By: Varsha)
 
- Allows you to delete an event from the list of events  <br/>
+ Allows you to delete an event from the list of events.  <br/>
  Format: `event delEvent EVENT_INDEX` <br/>
  It Deletes the event at the specified EVENT_INDEX.<br/>
  
@@ -330,7 +334,7 @@ Shorthand Format: <br/>
 `event` -> `e` <br/>
 `addEvent` -> `del`/`d` <br/>
 
-Example of usage: 
+Example of usage:     
 `event delEvent 1` <br/>
 `event del 1` <br/>
 `event d 19` <br/>
@@ -345,7 +349,7 @@ Example of usage:
 #### Clear all events: `delEvent all`
 (By: Varsha)
 
-Allows you to clear all events from the list of events <br/>
+Allows you to clear all events from the list of events. <br/>
 Format: `event delEvent all`
 
 Shorthand Format: <br/>
@@ -373,7 +377,7 @@ Shorthand Format: <br/>
 `event` -> `e` <br/>
 `listEvent` -> `l` <br/>
 
-Example of usage: 
+Example of usage:    
 `event listEvent` <br/>
 `event l` <br/>
 `e l` <br/>
@@ -421,7 +425,7 @@ Example of usage: <br/>
 `event done 1` <br/>
 `e done 1` <br/>
 
-Example scenario : <br/>
+Example scenario: <br/>
 Let's say you have added one event and the event is over. You can mark it as complete by entering `event done 1`. The status will change 
 from `Up-coming` to `Done` as shown below.
 
@@ -490,7 +494,7 @@ Shorthand Format: <br/>
 `event` -> `e` <br/>
 `delAttendance` -> `da`/`delAttend` <br/>
 
- Example of usage: 
+ Example of usage:    
  `event delAttendance /n arduino course /m peter`<br/>
  `event delAttend /n Autodesk course /m John`<br/>
  `event da /n Machine Learning course /m John`<br/>
@@ -511,7 +515,7 @@ Shorthand Format: <br/>
 `event` -> `e` <br/>
 `listAttendance` -> `la`/`listAttend` <br/>
 
-Example of usage: 
+Example of usage:   
 `event listAttendance /n arduino course`
 `event listAttend /n Autodesk course`
 `event la /n Machine Learning course`
