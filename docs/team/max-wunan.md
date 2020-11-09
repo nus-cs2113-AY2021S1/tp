@@ -34,15 +34,15 @@ Given below are my contributions to this project:
 
 * __Documentation:__
     * User Guide:
-        * Added the project logo picture [#79](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/79)
+        * Added the project logo picture [#79](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/79), [#179](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/179)
         * Added documentation for help and clear function [#169](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/169), [#175](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/175)
     * Developer Guide:
-        * Added the project logo picture [#79](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/79)
+        * Added the project logo picture [#79](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/79), [#179](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/179)
         * Added implementation details and sequence diagrams for help and clear function [#83](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/83)
 
 * __Community:__
     * Reviewed Developer Guide of the team and fixed format error [#86](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/86/files)
-    
+    * PRs reviewed (with non-trivial review comments): [#174](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/174#pullrequestreview-526179937)
 
 
     
