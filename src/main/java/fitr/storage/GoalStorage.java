@@ -19,6 +19,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import static fitr.common.Messages.KEYWORD_EXERCISE_LESS_THAN;
+import static fitr.common.Messages.KEYWORD_EXERCISE_MORE_THAN;
+import static fitr.common.Messages.KEYWORD_FOOD_LESS_THAN;
+import static fitr.common.Messages.KEYWORD_FOOD_MORE_THAN;
+import static fitr.common.Messages.SPLIT_SPACE;
 import static fitr.common.Messages.SYMBOL_EXERCISE;
 import static fitr.common.Messages.SYMBOL_FOOD;
 import static fitr.common.Messages.SYMBOL_NO;
@@ -64,14 +69,11 @@ public class GoalStorage {
             line = readFile.nextLine();
             arguments = line.split(COMMA_SEPARATOR);
 
-            if (arguments.length != 4) {
-                throw new InvalidFileFormatException();
-            }
-
             if (isValidGoalLine(arguments)) {
                 goalList.add(new Goal(LocalDate.parse(arguments[0], DateManager.formatter),
                         arguments[1], arguments[2], arguments[3]));
             } else {
+                LOGGER.fine("Invalid entry found in goal list file.");
                 hasUnrecognisedGoals = true;
             }
         }
@@ -117,24 +119,44 @@ public class GoalStorage {
         boolean isValidGoalType = false;
         boolean isValidStatus = false;
 
+        if (arguments.length != 4) {
+            return false;
+        }
         try {
+            String createdDate = arguments[0];
+            String goalType = arguments[1];
+            String goalStatus = arguments[2];
+            String goalDescription = arguments[3];
             //Check if goal type is valid (E or F)
-            if (arguments[1].equals(SYMBOL_EXERCISE) || arguments[1].equals(SYMBOL_FOOD)) {
+            if (goalType.equals(SYMBOL_EXERCISE) || goalType.equals(SYMBOL_FOOD)) {
                 isValidGoalType = true;
             }
             //Check if status is valid (Y or N or 0.0 < status < 100.0)
-            if (arguments[2].equals(SYMBOL_YES) || arguments[2].equals(SYMBOL_NO)) {
-                isValidStatus = true;
-            } else if (Double.parseDouble(arguments[2].substring(0, arguments[2].length() - 1)) >= 0.0
-                    && Double.parseDouble(arguments[2].substring(0, arguments[2].length() - 1)) <= 100) {
-                isValidStatus = true;
+            if (goalStatus.equals(SYMBOL_YES) || goalStatus.equals(SYMBOL_NO)) {
+                isValidStatus = isValidSmartGoalCalorie(goalDescription);
+            } else if (Double.parseDouble(goalStatus.substring(0, arguments[2].length() - 1)) >= 0.0
+                    && Double.parseDouble(goalStatus.substring(0, arguments[2].length() - 1)) <= 100) {
+                isValidStatus = isValidSmartGoalCalorie(goalDescription);
             }
 
-            LocalDate date = LocalDate.parse(arguments[0], DateManager.formatter);
+            LocalDate date = LocalDate.parse(createdDate, DateManager.formatter);
 
             return (isValidGoalType && isValidStatus);
         } catch (NumberFormatException | DateTimeException e) {
             return false;
         }
+    }
+
+    private static boolean isValidSmartGoalCalorie(String goalDescription) throws NumberFormatException{
+        if (goalDescription.contains(KEYWORD_FOOD_LESS_THAN)
+                || goalDescription.contains(KEYWORD_EXERCISE_LESS_THAN)) {
+            return !((Integer.parseInt(goalDescription.split(SPLIT_SPACE)[3]) >= 100000
+                    || Integer.parseInt(goalDescription.split(SPLIT_SPACE)[3]) <= 0));
+        } else if (goalDescription.contains(KEYWORD_FOOD_MORE_THAN)
+                || goalDescription.contains(KEYWORD_EXERCISE_MORE_THAN)) {
+            return !((Integer.parseInt(goalDescription.split(SPLIT_SPACE)[3]) >= 100000)
+                    || (Integer.parseInt(goalDescription.split(SPLIT_SPACE)[3]) < 0));
+        }
+        return true;
     }
 }
