@@ -929,7 +929,7 @@ Triple Fromage Cheesecake (Default) #> OOPS!!! Only ".txt" script files are acce
 
 Triple Fromage Cheesecake (Default) #> OOPS!!! Only ".txt" script files are accepted!
 
-Triple Fromage Cheesecake (Default) #> OOPS!!! Estimate command has too much fields.
+Triple Fromage Cheesecake (Default) #> OOPS!!! File does not exist.
 
 Triple Fromage Cheesecake (Default) #> OOPS!!! Estimate command has too much fields.
 
@@ -966,5 +966,21 @@ Triple Fromage Cheesecake (Default) #> OOPS!!! No script file specified!
 Triple Fromage Cheesecake (Default) #> OOPS!!! File does not exist.
 
 Triple Fromage Cheesecake (Default) #> OOPS!!! File does not exist.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! File name contains invalid characters!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! File name contains invalid characters!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! File name contains invalid characters!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! File name contains invalid characters!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! File name contains invalid characters!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! File name contains invalid characters!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! File name contains invalid characters!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! File name contains invalid characters!
 
 Triple Fromage Cheesecake (Default) #> Sayonara Abec Steiner 77th-chan!
