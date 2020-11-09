@@ -190,9 +190,10 @@ Step 3. After that, the `execute()` function of `clearBeforeCommand` will be cal
 also be called, where `2020-06-01` will be passed as the parameter `clearDate`.
 
 Step 4. The user wants to clear all the extra information of events but does not want to do it manually, hence the user 
-types in `autoClear` to turn on the autoClear function, which will clear all events happened one month ago automatically.
+types in `autoClear on` to turn on the autoClear function, which will clear all events happened one month ago automatically.
+This function can be switched off by typing `autoClear off`.
 
-Note that the other two clear commands `clear` and `autoClear` do not require any paramater input.
+Note that the command `clear` does not require any parameter input.
 
 The sequence diagram below shows the process of clearing events before a certain date.
 ![ClearBeforeCommand Sequence Diagram](diagrams/ClearBeforeCommand.png)<br>
