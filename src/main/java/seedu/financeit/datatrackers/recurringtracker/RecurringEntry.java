@@ -67,7 +67,7 @@ public class RecurringEntry extends Item {
     }
 
     public Object getParamFromParamType(String paramType) {
-        switch(paramType) {
+        switch (paramType) {
         case ParamChecker.PARAM_DAY:
             return day;
         case ParamChecker.PARAM_AMOUNT:

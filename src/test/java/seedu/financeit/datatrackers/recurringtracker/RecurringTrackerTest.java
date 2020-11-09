@@ -71,7 +71,7 @@ public class RecurringTrackerTest {
 
         } catch (Exception exception) {
             Object oldValue = entry.getParamFromParamType(validEditParamTypes[i]);
-            if(!oldValue.equals(validEditParamArguments[i])) {
+            if (!oldValue.equals(validEditParamArguments[i])) {
                 fail("Unexpected exception! " + exception.getMessage());
             }
         }
