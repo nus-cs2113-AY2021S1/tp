@@ -105,8 +105,9 @@ public class Ui {
                 + " #####  ######    ####### #     # #     # ######   #####    #     #   #     # #     #   #\n"
                 + "#             #   #     # #     # #     # #   #         #   #######   #     # #######   #\n"
                 + "#       #     #   #     # #     # #     # #    #  #     #   #     #   #     # #     #   #\n"
-                + "#######  #####    #     # #######  #####  #     #  #####    #     #   ######  #     #   #";
-
+                + "#######  #####    #     # #######  #####  #     #  #####    #     #   ######  #     #   #\n";
+        System.out.println("================================================================"
+                + "=========================\n");
         System.out.println(hi);
         System.out.println("=========================================================================================\n"
                 + "Welcome to 25 Hours A Day Task Manager!\n"
@@ -482,24 +483,32 @@ public class Ui {
             break;
         case "activity":
             System.out.println("Error: Please follow this format: act <activity description> @<venue> /ddMMyy HHmm\n"
-                    + "Command parameters such as `@`, `/` are not allowed in <activity description> and <venue>"
+                    + "Command parameters such as `@` and `/` are not allowed in <activity description> and <venue>"
             );
             break;
         case "lecture":
             System.out.println("Error: Please key in the lecture in this format: \n"
-                    + "lect <module code> @<venue> -r <number of lecture> /ddMMyy HHmm");
+                    + "lect <module code> @<venue> -r <number of lecture> /ddMMyy HHmm\n"
+                    + "Command parameters such as `@`, `-r` and `/` are not allowed in <venue>"
+            );
             break;
         case "tutorial":
             System.out.println("Error: Please key in the tutorial in this format: \n"
-                    + "tut <module code> @<venue> -r <number of tutorial> /ddMMyy HHmm");
+                    + "tut <module code> @<venue> -r <number of tutorial> /ddMMyy HHmm\n"
+                    + "Command parameters such as `@`, `-r` and `/` are not allowed in <venue>"
+            );
             break;
         case "lab":
             System.out.println("Error: Please key in the lab in this format: \n"
-                    + "lab <module code> @<venue> -r <number of lab session> /ddMMyy HHmm");
+                    + "lab <module code> @<venue> -r <number of lab session> /ddMMyy HHmm\n"
+                    + "Command parameters such as `@`, `-r` and `/` are not allowed in <venue>"
+            );
             break;
         case "exam":
             System.out.println("Error: Please key in the exam in this format: \n"
-                    + "exam <module code> @<exam venue> /ddMMyy HHmm");
+                    + "exam <module code> @<exam venue> /ddMMyy HHmm\n"
+                    + "Command parameters such as `@` and `/` are not allowed in <venue>"
+            );
             break;
         case "invalid command":
             System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n"
@@ -566,11 +575,29 @@ public class Ui {
         case "invalid info action":
             System.out.println("Please enter a valid additional information index number.");
             break;
-        case "invalid module code":
+        case "invalid module code exam":
             System.out.println(
                     "Error: invalid module code. The module code cannot be found in NUS module list.\n"
                             + "Please be reminded to key in the exam in this format: \n"
                             + "exam <module code> @<exam venue> /ddMMyy HHmm");
+            break;
+        case "invalid module code lab":
+            System.out.println(
+                    "Error: invalid module code. The module code cannot be found in NUS module list.\n"
+                            + "Please be reminded to key in the lab in this format: \n"
+                            + "lab <module code> @<venue> -r <number of lab session> /ddMMyy HHmm");
+            break;
+        case "invalid module code tut":
+            System.out.println(
+                    "Error: invalid module code. The module code cannot be found in NUS module list.\n"
+                            + "Please be reminded to key in the tut in this format: \n"
+                            + "tut <module code> @<venue> -r <number of tutorial> /ddMMyy HHmm");
+            break;
+        case "invalid module code lect":
+            System.out.println(
+                    "Error: invalid module code. The module code cannot be found in NUS module list.\n"
+                            + "Please be reminded to key in the lect in this format: \n"
+                            + "lect <module code> @<venue> -r <number of lecture> /ddMMyy HHmm");
             break;
         case "storage":
             System.out.println("Content in the file is altered, could not read in the file normally");

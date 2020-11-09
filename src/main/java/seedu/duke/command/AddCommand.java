@@ -93,7 +93,7 @@ public class AddCommand extends Command {
                     throw new CommandException("exam");
                 }
             } else {
-                throw new CommandException("invalid module code");
+                throw new CommandException("invalid module code exam");
             }
             break;
         case LECTURE:
@@ -107,7 +107,7 @@ public class AddCommand extends Command {
                     throw new CommandException("lecture");
                 }
             } else {
-                throw new CommandException("invalid module code");
+                throw new CommandException("invalid module code lect");
             }
             break;
         case TUTORIAL:
@@ -121,7 +121,7 @@ public class AddCommand extends Command {
                     throw new CommandException("tutorial");
                 }
             } else {
-                throw new CommandException("invalid module code");
+                throw new CommandException("invalid module code tut");
             }
             break;
         case LAB:
@@ -135,7 +135,7 @@ public class AddCommand extends Command {
                     throw new CommandException("lab");
                 }
             } else {
-                throw new CommandException("invalid module code");
+                throw new CommandException("invalid module code lab");
             }
             break;
         default:
