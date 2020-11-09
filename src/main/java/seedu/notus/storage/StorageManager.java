@@ -8,6 +8,7 @@ import seedu.notus.data.exception.SystemException;
 
 import seedu.notus.data.notebook.Note;
 import seedu.notus.data.notebook.Notebook;
+import seedu.notus.data.tag.Tag;
 import seedu.notus.data.tag.TagManager;
 
 import seedu.notus.data.timetable.Event;
@@ -32,9 +33,9 @@ import java.util.logging.SimpleFormatter;
 
 import static seedu.notus.ui.Formatter.LS;
 import static seedu.notus.util.PrefixSyntax.PREFIX_ARCHIVE;
-import static seedu.notus.util.PrefixSyntax.PREFIX_LOAD;
 import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
-
+import static seedu.notus.util.PrefixSyntax.PREFIX_LOAD;
+import static seedu.notus.util.PrefixSyntax.PREFIX_TAG;
 
 //@@author prachi2023
 
@@ -49,7 +50,7 @@ public class StorageManager {
     public static final String LOGS_DIR = "logs";
     public static final String FOLDER_DIR = "data";
     public static final String NOTES_DIR = "/notes";
-    private static final String ARCHIVED_NOTES_DIR = "/archived";
+    public static final String ARCHIVED_NOTES_DIR = "/archived";
 
     /** Default file path. */
     public static final String NOTEBOOK_FILE_PATH = "/notebook.txt";
@@ -117,7 +118,9 @@ public class StorageManager {
         File directory = new File(path);
         if (!directory.exists()) {
             directory.mkdir();
-            LOGGER.log(Level.INFO, "Created directory: " + directory);
+            if (!path.equals(LOGS_DIR)) {
+                LOGGER.log(Level.INFO, "Created directory: " + directory);
+            }
         }
     }
 
@@ -366,12 +369,19 @@ public class StorageManager {
 
     private static String getEventDetailsSaveFormat(Event event) {
         String eventDetails;
+        String tagDetails = null;
 
-        eventDetails = PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TITLE + " " + event.getTitle() + " "
-                + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TIMING + " "
+        for (Tag tag: event.getTags()) {
+            tagDetails += PREFIX_DELIMITER + PREFIX_TAG + " " + tag.toSaveString() + " ";
+        }
+
+        eventDetails = PREFIX_DELIMITER + PrefixSyntax.PREFIX_TITLE + " " + event.getTitle() + " "
+                + PREFIX_DELIMITER + PrefixSyntax.PREFIX_TIMING + " "
                 + event.getStartDateTimeString() + " "
-                + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_END_TIMING + " "
-                + event.getEndDateTimeString() + " ";
+                + PREFIX_DELIMITER + PrefixSyntax.PREFIX_END_TIMING + " "
+                + event.getEndDateTimeString() + " "
+                + PREFIX_DELIMITER + PREFIX_TAG + " "
+                + tagDetails + " ";
 
         ArrayList<String> reminderPeriods = event.getReminderPeriodsString();
 
@@ -384,9 +394,9 @@ public class StorageManager {
 
         if (event instanceof RecurringEvent) {
             RecurringEvent recEvent = (RecurringEvent) event;
-            eventDetails += PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_RECURRING
+            eventDetails += PREFIX_DELIMITER + PrefixSyntax.PREFIX_RECURRING
                     + " " + recEvent.getRecurrenceType() + " ";
-            eventDetails += PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_STOP_RECURRING
+            eventDetails += PREFIX_DELIMITER + PrefixSyntax.PREFIX_STOP_RECURRING
                     + " " + recEvent.getEndRecurrenceDateTime();
         }
         return eventDetails + LS;
@@ -409,7 +419,7 @@ public class StorageManager {
         LOGGER.setLevel(Level.INFO);
 
         try {
-            FileHandler fileHandler = new FileHandler(LOGS_DIR + "storage.log");
+            FileHandler fileHandler = new FileHandler(LOGS_DIR + "/storage.log");
             fileHandler.setFormatter(new SimpleFormatter());
             fileHandler.setLevel(Level.INFO);
             LOGGER.addHandler(fileHandler);

@@ -30,6 +30,9 @@ public class HelpCommand extends Command {
         return Formatter.formatString(HELP_COMMAND_USAGE, true, false);
     }
 
+    /**
+     * Sets up Logger files and gets ready to log messages to the file.
+     */
     public void setupLogger() {
         LogManager.getLogManager().reset();
         LOGGER.setLevel(Level.INFO);
@@ -39,7 +42,7 @@ public class HelpCommand extends Command {
         LOGGER.addHandler(consoleHandler);
 
         try {
-            FileHandler fileHandler = new FileHandler(LOGS_DIR + "HelpCommand.log");
+            FileHandler fileHandler = new FileHandler(LOGS_DIR + "/HelpCommand.log");
             fileHandler.setFormatter(new SimpleFormatter());
             fileHandler.setLevel(Level.INFO);
             LOGGER.addHandler(fileHandler);

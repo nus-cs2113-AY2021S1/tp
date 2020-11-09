@@ -4,8 +4,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.notus.data.notebook.Note;
+import seedu.notus.data.notebook.Notebook;
 import seedu.notus.data.tag.TagManager;
 import seedu.notus.data.tag.Tag;
+import seedu.notus.storage.StorageManager;
 import seedu.notus.ui.Formatter;
 
 import java.util.ArrayList;
@@ -29,6 +31,8 @@ class DeleteTagCommandTest {
     private ArrayList<String> content;
 
     private Note defaultNote;
+    private Notebook notebook;
+    private StorageManager storageManager;
 
     @BeforeEach
     void setUp() {
@@ -45,6 +49,9 @@ class DeleteTagCommandTest {
         content.add("Default");
 
         defaultNote = new Note("Default", content, false, false);
+
+        notebook = new Notebook();
+        storageManager = new StorageManager(null, null, notebook, tagManager);
     }
 
     @Test
@@ -59,9 +66,9 @@ class DeleteTagCommandTest {
         expectedResult.add(DELETE_TAG_UNSUCCESSFUL_MESSAGE + tagGreen);
         expectedResult.add(DELETE_TAG_UNSUCCESSFUL_MESSAGE + tagBlue);
 
-        /*String result = getCommandExecutionString(tagManager, tags);
+        String result = getCommandExecutionString(tagManager, tags);
 
-        assertEquals(Formatter.formatString(expectedResult, true), result);*/
+        assertEquals(Formatter.formatString(expectedResult, true), result);
     }
 
     @Test
@@ -87,10 +94,10 @@ class DeleteTagCommandTest {
         assertTrue(tagManager.getTagMap().get(tagRed).contains(defaultNote));
         assertTrue(tagManager.getTagMap().get(tagGreen).contains(defaultNote));
 
-        /*getCommandExecutionString(tagManager, tags);
+        getCommandExecutionString(tagManager, tags);
 
         assertEquals(defaultNote.getTags().size(), 0);
-        assertEquals(tagManager.getTagMap().size(), 0);*/
+        assertEquals(tagManager.getTagMap().size(), 0);
     }
 
     @Test
@@ -117,15 +124,15 @@ class DeleteTagCommandTest {
         assertTrue(tagManager.getTagMap().get(tagRed).contains(defaultNote));
         assertTrue(tagManager.getTagMap().get(tagGreen).contains(defaultNote));
 
-        /*getCommandExecutionString(tagManager, tags);
+        getCommandExecutionString(tagManager, tags);
 
         assertEquals(defaultNote.getTags().size(), 0);
-        assertEquals(tagManager.getTagMap().size(), 0);*/
+        assertEquals(tagManager.getTagMap().size(), 0);
     }
 
     private String getCommandExecutionString(TagManager tagManger, ArrayList<Tag> tags) {
         DeleteTagCommand deleteTagCommand = new DeleteTagCommand(tags);
-        deleteTagCommand.setData(null, null, tagManger, null);
+        deleteTagCommand.setData(notebook, null, tagManger, storageManager);
         return deleteTagCommand.execute();
     }
 }

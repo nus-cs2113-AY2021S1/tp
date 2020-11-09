@@ -132,7 +132,7 @@ class TagManagerTest {
         assertEquals(defaultTagManager.getTagMap().get(tagDefault).size(), 0);
 
         // Tags tagDefault to noteDefault
-        defaultTagManager.tagNote(noteDefault, tagDefault);
+        defaultTagManager.tagObject(noteDefault, tagDefault);
         assertEquals(noteDefault.getTags().size(), 1);
         assertEquals(defaultTagManager.getTagMap().get(tagDefault).size(), 1);
         assertTrue(noteDefault.getTags().contains(tagDefault));
@@ -140,7 +140,7 @@ class TagManagerTest {
         assertFalse(noteDefault.getTags().contains(tagImportant));
 
         // Tags tagCS2113 to noteDefault
-        defaultTagManager.tagNote(noteDefault, tagCS2113);
+        defaultTagManager.tagObject(noteDefault, tagCS2113);
         assertEquals(noteDefault.getTags().size(), 2);
         assertEquals(defaultTagManager.getTagMap().get(tagCS2113).size(), 3);
         assertTrue(noteDefault.getTags().contains(tagDefault));
@@ -148,7 +148,7 @@ class TagManagerTest {
         assertFalse(noteDefault.getTags().contains(tagImportant));
 
         // Tags tagImportant to noteDefault
-        defaultTagManager.tagNote(noteDefault, tagImportant);
+        defaultTagManager.tagObject(noteDefault, tagImportant);
         assertEquals(noteDefault.getTags().size(), 3);
         assertEquals(defaultTagManager.getTagMap().get(tagImportant).size(), 4);
         assertTrue(noteDefault.getTags().contains(tagDefault));
@@ -159,7 +159,7 @@ class TagManagerTest {
     @Test
     public void tagNote_tagDoesNotExist_createsTagAndTagNote() {
         emptyTagManager.createTag(tagDefault, true);
-        emptyTagManager.tagNote(noteDefault, tagDefault);
+        emptyTagManager.tagObject(noteDefault, tagDefault);
         assertTrue(emptyTagManager.getTagMap().containsKey(tagDefault));
         assertEquals(noteDefault.getTags().size(), 1);
         assertTrue(noteDefault.getTags().contains(tagDefault));

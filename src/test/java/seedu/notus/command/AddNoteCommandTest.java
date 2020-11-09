@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import static seedu.notus.util.CommandMessage.NOTE_EXIST_MESSAGE;
+import static seedu.notus.util.CommandMessage.ADD_NOTE_SUCCESSFUL_MESSAGE;
 
 //@@author Nazryl
 class AddNoteCommandTest {
@@ -29,16 +31,16 @@ class AddNoteCommandTest {
      */
     @Test
     public void addCommand_emptyNotebook_notebookContainsPerson() {
-        /*notebook = new Notebook();
+        notebook = new Notebook();
         timetable = new Timetable();
         tagManager = new TagManager();
-        storageManager = new StorageManager();
+        storageManager = new StorageManager(timetable, null, notebook, tagManager);
 
         ArrayList<String> content = new ArrayList<>();
         content.add("Encapsulation");
         content.add("Abstraction");
 
-        Note note = new Note("Java OOP", content, true, false);
+        Note note = new Note("Java C++", content, true, false);
         AddNoteCommand command = null;
         try {
             command = new AddNoteCommand(note);
@@ -51,8 +53,7 @@ class AddNoteCommandTest {
 
         assertTrue(checkBook.contains(note));
         assertEquals(1, checkBook.size());
-        assertFalse(result.equals(Formatter.formatString(AddNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE)));
-        assertEquals(Formatter.formatNote(AddNoteCommand.COMMAND_SUCCESSFUL_MESSAGE, note), result);*/
+        assertFalse(result.equals(Formatter.formatString(NOTE_EXIST_MESSAGE)));
     }
 
     /**

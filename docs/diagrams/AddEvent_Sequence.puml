@@ -2,15 +2,15 @@
 hide footbox
 
 participant ":NotUS" as NotUS
-participant ":AddEventCommand" as AddEventCommand
 participant ":ParseAddEventCommand" as ParseAddEventCommand
-participant ":Command" as Command
+participant ":AddEventCommand" as AddEventCommand
 participant ":Formatter" as Formatter
 participant ":Timetable" as Timetable
 
 activate NotUS
 
 create AddEventCommand
+activate ParseAddEventCommand
 
 ParseAddEventCommand -> AddEventCommand: <<create>>
 
@@ -20,15 +20,15 @@ deactivate AddEventCommand
 
 deactivate ParseAddEventCommand
 
-destroy ParseAddEventCommand
+NotUS -> AddEventCommand: setData()
 
-NotUS -> Command: setData()
-
-activate Command
-Command --> NotUS
-deactivate Command
+activate AddEventCommand
+AddEventCommand --> NotUS
+deactivate AddEventCommand
 
 NotUS -> NotUS: executeCommand()
+
+destroy ParseAddEventCommand
 activate NotUS
 NotUS -> AddEventCommand: execute()
 

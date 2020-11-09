@@ -10,7 +10,7 @@ title : Developer Guide
 #### [2. Design & Implementation](#design)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Architecture Overview](#overview)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2 NotUS](#notus)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Parser and ParserManager](#parserManager)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Parser & ParserManager](#parserManager)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commands](#commands)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Notebook](#note)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.6 Timetable](#event)
@@ -23,6 +23,9 @@ title : Developer Guide
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1 Target User Persona](#userpersona)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Target User Profile](#userprofile)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.3 Value Proposition](#value)
+
+<div style="page-break-after: always;"></div>
+
 #### [4. User Stories](#userstories)
 #### [5. Non-Functional Requirements](#nfr)
 #### [6. Glossary](#gloss)
@@ -30,8 +33,6 @@ title : Developer Guide
 #### [8. Appendix](#appendix)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.1 List of ParseCommand Classes](#parseXYZCommands)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.2 List of Command Classes](#XYZCommands)
-
-<br>
 
 ## <a id="intro">1. Introduction</a>
 
@@ -55,7 +56,7 @@ For a more detailed set of instructions, please refer to the [following guide](h
 
 Please refer to the [Development Practices Guide](DevelopmentPractices.md) for the Software Development practices used in the project. The document serves to inform on the Project Management frameworks used in the project.
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ## <a id="design">2. Design & Implementation</a>
 
@@ -65,7 +66,7 @@ Diagrams found in our documentation were generated using <a href="https://plantu
 #### <a id="overview"><ins>2.1 Architecture Overview</ins></a>
 
 <p align="center">
-  <img alt="NotUS Architecture Overview" src="diagrams/out/Architecture_OverviewV2.png" />
+  <img alt="NotUS Architecture Overview" src="diagrams/out/Architecture_OverviewV3.png" />
   <br><em>Figure 1</em>
 </p>
 
@@ -74,10 +75,13 @@ Figure 1 depicts the architecture design of NotUS. The main components of NotUS 
 1. `InterfaceManager`: Manages the user input as well as the message output from application.
 1. `ParserManager`: Creates a suitable parser, based on the command, to make sense of user message. The respective parsers then make sense of the information and calls the respective commands.
 1. `Command`: Executes the necessary tasks, depending on the respective command calls.
-1. `TagManager`: Stores and manages the creation and deletion of tags and other tag-related functionality.
-1. `Timetable`: Stores and manages the creation and deletion of events and other event-related functionality.
-1. `Notebook`: Stores and manages the creation and deletion of notes and other note-related functionality.
-1. `StorageManager`: Manages the loading of existing saved files and exporting of data to human-editable files.
+
+<div style="page-break-after: always;"></div>
+
+4\. `TagManager`: Stores and manages the creation and deletion of tags and other tag-related functionality.
+5\. `Timetable`: Stores and manages the creation and deletion of events and other event-related functionality.
+6\. `Notebook`: Stores and manages the creation and deletion of notes and other note-related functionality.
+7\. `StorageManager`: Manages the loading of existing saved files and exporting of data to human-editable files.
 
 #### <a id="notus"><ins>2.2 NotUS</ins></a>
 
@@ -88,10 +92,12 @@ NotUS manages the flow of the application. On launch, it will create the necessa
   <br><em>Figure 2</em>
 </p>
 
-💡 Due to the limitation of 
-💡 The lifeline for Parser and Command should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram. This applies to the rest of the sequence diagrams in the document.
+<div style="page-break-after: always;"></div>
 
-#### <a id="parserManager"><ins>2.3 Parser and ParserManager</ins></a>
+💡 The lifeline for Parser and Command should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram. This applies to the rest of the sequence diagrams in the document. <br>
+💡 Due to a limitation of PlantUML, some of the sequence diagrams may have the destroy marker (X) immediately at the end of the activation bar when there should be a gap before the object is deleted.
+
+#### <a id="parserManager"><ins>2.3 Parser & ParserManager</ins></a>
 
 The ParserManager manages the creation of specific parser objects based on the type of command. The parser then makes sense of the user input and calls the respective commands into action. The class diagram is as follows.
 
@@ -100,7 +106,7 @@ The ParserManager manages the creation of specific parser objects based on the t
   <br><em>Figure 3</em>
 </p>
 
-💡 Note that variables and methods in the Command class is empty as it will be covered under [Commands](#commands).
+💡 Note that variables and methods in the Command class is empty as it will be covered under [Commands](#commands). <br>
 💡 For a full list of ParseXYZCommand, see [Appendix 8.1 List of ParseCommand Classes](#parseXYZCommands)
 
 1. The ParserManager receives the user input message as a whole.
@@ -133,7 +139,7 @@ The Command classes update the Notebook and Timetable accordingly. The class dia
   <br><em>Figure 6</em>
 </p>
 
-💡 Different XYZCommand has different additional variables which are omitted in Figure 6.
+💡 Different XYZCommand has different additional variables which are omitted in Figure 6. <br>
 💡 For a full list of XYZCommand classes, see [Appendix 8.2 List of Command Classes](#XYZCommands)
 
 <!--
@@ -301,7 +307,7 @@ The rationale for overloading such methods are given below:<br>
 
 Timetable handles adding, deleting and getting all instances of stored events in a given time period. All scheduling, retrieving and processing of events are done here
 
-The timetable component stores an array of events. On launch, an empty timetable will be created. All stored events will be loaded via the StorageManger. 
+The timetable component stores an array of all events and 5 different arrays of recurring events split by frequency of re-occurrence. On launch, an empty timetable will be created. All stored events will be loaded via the StorageManger. 
 
  <p align="center">
    <img alt="TimetableClassDiagram" src="diagrams/out/TimetableClass.png" />
@@ -317,14 +323,34 @@ The timetable component stores an array of events. On launch, an empty timetable
  1. getMonthTimetable(): Wrapper around getTimetable for a specific month.
  1. getYearTimetable(): Wrapper around getMonthTimetable for a specific year.
  1. getClashingEvents(): Checks the input event to all other events in the timetable to check if the timing clashes. Uses getTimetable on that date of the input event.
-
+ 
+ An event holds information about all information about start date time, end date time, name, reminders set and how often to re-occur.
+ 
+ On re-occurrence, a new event will be instantiated for display on the timetable.
+ 
+  <p align="center">
+    <img alt="EventClassDiagram" src="diagrams/out/EventClass.png" />
+    <br><em>Figure 13</em>
+  </p>
+  
+  Event Class Key Methods Provided:
+  1. getReminderDates(): Get an ArrayList of all reminders that this Event will generate.
+  1. occursDuringEvent(): Returns true if another event is occurring during this event's time duration.
+  1. equals(): Checks if the title of another event is the same and has a clashing time period. If both conditions are satisfied, return true.
+  
+  RecurringEvent Class Key Methods Provided:
+  1. timeStep(): Returns a LocalDateTime with one time step depending on what the event is.
+  1. toReoccur(): Checks if this event is to reoccur on this date.
+  1. getRecurrences(): Get an ArrayList of Events of all instances this event will reoccur during the specified time period.
+  1. checkAfterEndRecurrences(): Checks if this Event should still reoccur as of this date.
+  
 #### <a id="tag"><ins>2.7 Tags</ins></a>
 
-Figure 13 below denotes the class diagram for the TagManager and the Taggable Objects (Notes and Events).
+Figure 14 below denotes the class diagram for the TagManager and the Taggable Objects (Notes and Events).
 
 <p align="center">
    <img alt="TaggableObject" src="diagrams/out/TaggableObject.png"/>
-   <br><em>Figure 13</em>
+   <br><em>Figure 14</em>
 </p>
  
 💡 As the focus of this diagram is on Tag, TaggableObject and TagManager, the variables and methods of Notes and Events are omitted.
@@ -337,14 +363,28 @@ The StorageManager saves and loads data to text files. On launch, the storage ma
 
 <p align="center">
    <img alt="StorageManagerClassDiagram" src="diagrams/out/StorageManager.png"/>
-   <br><em>Figure 14</em>
+   <br><em>Figure 15</em>
 </p>
 
 While loading information is passed to the parser manager to prepare the information to be added. Following that, the respective Add Command will be called to add the event/note to the program Below is the sequence for loading the notes and events when the program first starts up. 
 
 <p align="center">
    <img alt="StorageManagerObjectDiagram" src="diagrams/out/StorageManagerObject.png"/>
-   <br><em>Figure 15</em>
+   <br><em>Figure 16</em>
+</p>
+
+During the program, as changes are made to the data, the storageManager saves the data to the hard disk. In case the user force closes the program, the updated data is saved. The sequence diagram below is an example of a note being archived. 
+
+<p align="center">
+   <img alt="StorageManagerSaveDuringDiagram" src="diagrams/out/StorageManagerSaveDuring.png"/>
+   <br><em>Figure 17</em>
+</p>
+
+When exiting the program, the storageManager saves all the data to the hard disk, in case the user tampers with the txt files while the program is ongoing. Hence, saving the latest version of the data. Below is the sequence diagram of the final saving procedure.
+
+<p align="center">
+   <img alt="StorageManagerSaveEndDiagram" src="diagrams/out/StorageManagerSaveEnd.png"/>
+   <br><em>Figure 18</em>
 </p>
 
 #### <a id="ui"><ins>2.9 User Interface</ins></a>
@@ -353,19 +393,19 @@ The InterfaceManger receives the input from the user which is then processed by 
 
 <p align="center">
    <img alt="InterfaceManager" src="diagrams/out/InterfaceManagerClass.png"/>
-   <br><em>Figure 16</em>
+   <br><em>Figure 19</em>
 </p>
 
 The Formatter class handles the formatting of the Note(s), Event(s) and message(s) into a String which is then passed to InterfaceManager to be printed out through NotUS. Any changes to the layout or information to display will be done in this class. This class only contains static methods to eliminate the need of a Formatter object.
 
 <p align="center">
    <img alt="Formatter" src="diagrams/out/Formatter.png"/>
-   <br><em>Figure 17</em>
+   <br><em>Figure 20</em>
 </p>
 
 There are few overloaded functions such as formatNotes, formatTimetable and formatString. These functions are overloaded due to the different format that is to be printed for the different Commands.
 
-A notable function is the `encloseRow(String)` which is a recursive function. It takes in the string to be formatted and split the string if it exceeds the maximum character display length, which is then recursively formatted. One additional consideration to take note of is the ANSCI escape code for color as they have to be accounted when splitting the string as well as adding spaces to fill up the gap.
+A notable function is the `encloseRow(String)` which is a recursive function. It takes in the string to be formatted and split the string if it exceeds the maximum character display length, which is then recursively formatted. One additional consideration to take note of is the ANSI escape code for color as they have to be accounted when splitting the string as well as adding spaces to fill up the gap.
 
 #### <a id="exception"><ins>2.10 System Exception</ins></a>
 
@@ -374,7 +414,7 @@ The System Exception Enumeration contains all the possible types of exception wi
 <p align="center">
    <img alt="SystemExceptionEnum1" src="diagrams/out/SystemExceptionEnum1.png"/>
    <img alt="SystemExceptionEnum2" src="diagrams/out/SystemExceptionEnum2.png"/>
-   <br><em>Figure 18</em>
+   <br><em>Figure 21</em>
 </p>
 
 💡 As there are various types of exception, the diagram is split into two.
@@ -389,11 +429,11 @@ IntelliJ's *'Dracula'* and *'High Contrast'* themes print white fonts as black a
 
 - Go under Settings -> Editor -> Color Scheme -> Console Colors -> ANSI colors -> Change the Foreground color for Black and White to the correct RGB value.
 
-Figure 19 below illustrates what you should see on your screen.
+Figure 22 below illustrates what you should see on your screen.
 
 <p align="center">
   <img alt="Changing console color" src="diagrams/out/ConsoleColor.png" />
- <br><em>Figure 19</em>
+ <br><em>Figure 22</em>
 </p>
 
 <ins>Note on usage of Jansi library:</ins>

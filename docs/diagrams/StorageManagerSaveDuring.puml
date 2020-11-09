@@ -1,0 +1,51 @@
+@startuml
+hide footbox
+
+participant ":NotUS" as NotUS
+participant ":StorageManager" as StorageManager
+participant ":ArchiveNoteCommand" as ArchiveNoteCommand
+
+create NotUS
+activate NotUS
+
+
+create StorageManager
+activate StorageManager
+create Notebook
+activate Notebook
+create ArchiveNoteCommand
+
+NotUS -> ArchiveNoteCommand: execute()
+activate ArchiveNoteCommand
+
+ref over NotUS, ArchiveNoteCommand: ArchiveNote
+ArchiveNoteCommand -> StorageManager: saveAllNoteDetails(isArchive false)
+alt isArchive
+StorageManager -> Notebook: getArchivedNotes()
+Notebook --> StorageManager: Note notes
+
+else notIsArchive
+StorageManager -> Notebook: getNotes()
+Notebook --> StorageManager: Note notes
+end
+
+loop notes
+StorageManager -> StorageManager: saveNoteDetails()
+activate StorageManager
+StorageManager --> StorageManager
+deactivate StorageManager
+end
+
+StorageManager --> ArchiveNoteCommand
+ArchiveNoteCommand -> StorageManager: saveAllNoteDetails (isArchive true)
+ref over ArchiveNoteCommand, StorageManager: same as the above
+
+ArchiveNoteCommand -> StorageManager: deleteNoteContentFile (Note note, isArchive false)
+StorageManager--> ArchiveNoteCommand
+ArchiveNoteCommand -> StorageManager: saveNoteContent (Note note, isArchive false)
+StorageManager--> ArchiveNoteCommand
+
+ArchiveNoteCommand --> NotUS: String success message
+deactivate ArchiveNoteCommand
+destroy ArchiveNoteCommand
+@enduml

@@ -13,13 +13,16 @@ Package " "<<Rectangle>>{
     Class Command
     Class Notus
     Class Formatter
+    Class SystemException
+    Class Parser
 }
 
 Notus -left> InterfaceManager
 Notus -down-> ParserManager
 Notus -right> Command
 ParserManager -up-> Command
-
+ParserManager -right> Parser
+Parser -> Command
 
 Notus -up-> StorageManager
 Notus -up-> Notebook

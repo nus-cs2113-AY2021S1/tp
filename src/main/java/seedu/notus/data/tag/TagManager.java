@@ -15,7 +15,7 @@ import static seedu.notus.storage.StorageManager.LOGS_DIR;
 
 //@@author Chongjx
 /**
- * Represents a TagManager. Manages the tags for the notes.
+ * Represents a TagManager. Manages the tags for the notes and events.
  */
 public class TagManager {
     private static final Logger LOGGER = Logger.getLogger("TagManager");
@@ -98,8 +98,8 @@ public class TagManager {
      * @param taggableObject Object to be tagged.
      * @param tag Provided Tag.
      */
-    public void tagNote(TaggableObject taggableObject, Tag tag) {
-        LOGGER.log(Level.INFO, "Adding tag to note: " + tag.getTagName());
+    public void tagObject(TaggableObject taggableObject, Tag tag) {
+        LOGGER.log(Level.INFO, "Adding tag to object: " + tag.getTagName());
         tagMap.get(tag).add(taggableObject);
         taggableObject.getTags().add(tag);
     }
@@ -196,23 +196,23 @@ public class TagManager {
 
             if (existingTag == null) {
                 LOGGER.log(Level.INFO, "Tag does not exist");
-                // if the tag does not exist in the database, create the tag and tag to note
+                // if the tag does not exist in the database, create the tag and tag to object
                 createTag(tag, false);
-                tagNote(taggableObject, tag);
+                tagObject(taggableObject, tag);
             } else if (!taggableObject.getTags().contains(existingTag)) {
-                tagNote(taggableObject, existingTag);
+                tagObject(taggableObject, existingTag);
             }
         }
     }
 
     /**
-     * Handles tagging and untagging of note with the given list of tags. If the note already has the tag, untags it,
-     * else tags the note. Returns the result of each tagging and untagging operation.
+     * Handles tagging and untagging of taggableObject with the given list of tags. If the object already has the tag,
+     * untags it, else tags the object. Returns the result of each tagging and untagging operation.
      *
      * @param taggableObject Object to be tagged or untagged.
      * @param tags List of tags.
-     * @param tagString String for tagging of note.
-     * @param untagString String for untagging of note.
+     * @param tagString String for tagging of object.
+     * @param untagString String for untagging of object.
      * @return Result of all tagging and untagging operation.
      */
     public ArrayList<String> tagAndUntag(TaggableObject taggableObject, ArrayList<Tag> tags, String tagString,
@@ -223,7 +223,7 @@ public class TagManager {
             // Tries to get the tag from the map
             Tag existingTag = getTag(t.getTagName());
 
-            // check if the note contains such tag
+            // check if the object contains such tag
             if (taggableObject.getTags().contains(existingTag)) {
                 removeTag(taggableObject, existingTag);
                 result.add(untagString + existingTag);
@@ -231,7 +231,7 @@ public class TagManager {
                 // runs the create tag in case existing tag is null, if it is not null, updates the tag
                 createTag(t, false);
                 existingTag = getTag(t.getTagName());
-                tagNote(taggableObject, existingTag);
+                tagObject(taggableObject, existingTag);
                 result.add(tagString + existingTag);
             }
         }

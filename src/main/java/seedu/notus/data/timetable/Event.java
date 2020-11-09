@@ -24,7 +24,6 @@ public class Event extends TaggableObject implements Comparable<Event> {
     private Boolean isToRemind;
     private Boolean isRecurring;
     private HashMap<String, ArrayList<Integer>> reminderPeriods = new HashMap<>();
-    private ArrayList<Tag> tags = new ArrayList<>();
 
 
     /**
@@ -247,6 +246,10 @@ public class Event extends TaggableObject implements Comparable<Event> {
     }
 
     public boolean occursDuringEvent(Event event) {
+        if (startDateTime.equals(endDateTime)
+                && (startDateTime.equals(event.startDateTime) || startDateTime.equals(event.endDateTime))) {
+            return true;
+        }
         if (checkClash(event.startDateTime, event.endDateTime, startDateTime)) {
             return !startDateTime.equals(event.endDateTime);
         }
