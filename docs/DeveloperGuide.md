@@ -11,17 +11,53 @@
 [Design](#design) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Technological view](#technological-overview) <br>
 [Architecture](#architecture) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Project Overview](#project-overview) <br>
-[Writings class family](#writings-class-family) <br>
-[Filter words class family](#filter-words-class-family--word-family) <br>
-[Bunny class family](#bunny-class-family) <br>
+[Writing Manager Component](#writing-manager-component) <br>
+[Bunny Manager Component](#bunny-manager-component) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Saving bunnies via the program commands](#saving-bunnies-via-the-program-commands) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Loading bunnies directly into the bunny.txt file](#loading-bunnies-directly-into-the-bunnytxt-file) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Usage and storage](#usage-and-storage) <br>
+[Word Manager Component](#word-manager-component) <br>
+[Name Manager Component](#name-manager-component) <br>
+[Implementation](#implementation) <br>
+[User interaction overview](#user-interaction-overview) <br>
+[Writing Features](#writing-features) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; [Constitution (member classes)](#constitution-member-classes) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; [Getting reminder for writings scheduled on a specific date](#getting-reminder-for-writings-scheduled-on-a-specific-date) <br>
+[Word Features](#word-features) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; [Adding a `noun`](#adding-a-noun) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; [Adding a `verb`](#adding-a-verb) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; [Adding an `adjective`](#adding-an-adjective) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; [Listing words](#listing-words) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; [Generating three random words](#generating-three-random-words) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; [Filtering words](#filtering-words) <br>
+[Bunny class family overivew](#bunny-class-family-overivew) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; [`BunnyList`, `BunnyFilter`, and `DeleteBunny` class overview](#bunnylist-bunnyfilter-and-deletebunny-class-overview) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; [`BunnySaver` and `BunnyLoader` class overview](#bunnysaver-and-bunnyloader-class-overview) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; [`GenBunny` class overview](#genbunny-class-overview) <br>
+[Bunny command implementations](#bunny-command-implementations) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; [Adding bunny idea `bunny`](#adding-bunny-idea-bunny) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; [Listing bunny ideas `list bunny`](#listing-bunny-ideas-list-bunny) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; [Filtering bunny ideas: `filter bunny`](#filtering-bunny-ideas-filter-bunny) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; [Saving bunny ideas: `save bunny`](#saving-bunny-ideas-save-bunny) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; [Deleting a bunny idea: `delete bunny`](#deleting-a-bunny-idea-delete-bunny) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; [Generating a random bunny idea: `random bunny`](#generating-a-random-bunny-idea-random-bunny) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; [Resetting the entire list of Bunny ideas: `reset bunny`](#resetting-the-entire-list-of-bunny-ideas-reset-bunny) <br>
 [Names class family](#names-class-family) <br>
-[Product scope](#appendix-a-product-scope) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Target user profile](#target-user-profile) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Value proposition](#appendix-b-value-proposition) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[User Stories](#appendix-c-user-stories) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Non-Functional Requirements](#appendix-d-non-functional-requirements) <br>
-[Instruction for manual testing](#instructions-for-manual-testing) <br>
+[ClearLoader class](#clearloader-class) <br>
+[Aesthetic components](#aesthetic-components) <br>
+[Changing line divider in Fluffle: `divider`](#changing-line-divider-in-fluffle-divider) <br>
+[Testing](#testing) <br>
+[Using JUnit test](#using-junit-test) <br>
+[Using Gradle](#using-junit-test) <br>
+[Appendices](#appendices) <br>
+[Appendix A: Product scope](#appendix-a-product-scope) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; [Target user profile](#target-user-profile) <br>
+[Appendix B: Value proposition](#appendix-b-value-proposition) <br>
+[Appendix C: User Stories](#appendix-c-user-stories) <br>
+[Appendix D: Non-Functional Requirements](#appendix-d-non-functional-requirements) <br>
+[Appendix E: Instructions for manual testing](#appendix-e-instructions-for-manual-testing) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; [Launch and Shutdown](#launch-and-shutdown) <br>
+
 
 [Jump to top](#developer-guide)
 
@@ -176,7 +212,7 @@ number of plot bunnies: 2
 
 Since the program only searches for the idea and genre tag, it is lenient when reading in the bunny such that if the user keys in the wrong line divider or index it can still read it in. It can excuse spacing and typo as long as each Bunny is listed with an idea tag followed by its corresponding genre tag. This makes it easy for the user to directly edit the `bunny.txt` file if they wish. It will read the file until it can no longer has a next line in `bunny.txt` to read from.
 
-#### Usage and storage
+#### Usage and storage 
 The diagram above is describes the storage of the Bunny ideas in Fluffle. 
 
 ![Bunny Manager Component](graphics/diagrams/Bunny_manager_component.png)
@@ -186,22 +222,22 @@ Transferring `Bunny` ideas from the `bunniesList` to the `bunny.txt` file via th
 * When the user calls the `save bunny` command from the CLI, the Bunny from bunnies list are read by `saveAllBunny` command.
 * The `bunniesList` ArrayList is passed by the `commandExecutor` function in the `CommandExecutor` class.
 * The `saveAllBunny` command first prints the number of `Bunny` objects found in the `bunnyList` as follows:
-```
-number of plot bunnies: 10
---------------------------------------------------------------
-```
+    ```
+    number of plot bunnies: 10
+    --------------------------------------------------------------
+    ```
 
 * The `BunnySaver` class formats the idea and genre into neatly tagged strings, numbered following their index in the ArrayList and seperated by plain line dividers as follows:
-```
-1.
-  idea: bunny idea 1
-  genre: none
---------------------------------------------------------------
-2.
-  idea: test idea 2
-  genre: none
---------------------------------------------------------------
-```
+    ```
+    1.
+      idea: bunny idea 1
+      genre: none
+    --------------------------------------------------------------
+    2.
+      idea: test idea 2
+      genre: none
+    --------------------------------------------------------------
+    ```
 
 Transferring `Bunny` ideas from the `bunny.txt` to the `bunniesList` file via the BunnyLoader:
 * The `BunnyLoader` class handles the loading of saved `Bunny` objects from the `bunny.txt` file into the `bunniesList`. 
@@ -546,7 +582,7 @@ The application aims to provide the writer with the following services:
 
 - Should be a Command-line Interface application.
 - Should work on any common Operating System (Windows, Linux or OS-X platform) as long as Java 11 is installed in the system.
-- Should be user-friendly to new and expert creative writers with average typing speed.
+- Should be user-friendly to new and expert creative writers with average or fast typing speed.
 - Should help creative writers do their tasks faster by commands rather than any other programs that uses mouses and other pointing devices.
 - Should display characters in ISO basic Latin alphabet and basic numbers correctly.
 - Should have local storage of editable text files (.txt).
