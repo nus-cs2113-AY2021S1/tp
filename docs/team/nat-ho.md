@@ -36,7 +36,7 @@ of those quotes, enabling users to revisit and find them effectively.
 **Highlights:**
 To enable a wider range of use cases, Quotesify accepts multiple formats for quotes. Author and reference are optional 
 flags that can be added to provide more information which will enable users to find and list quotes more efficiently. 
-On launch and exit, users will also be reminded of saved quotes, resurfacing and reminding them so that they can better remember.
+On launch and exit, users will also be reminded of saved quotes, resurfacing and reminding them so as to better remember.
     
 #### 2. Quote Reflection feature in Quotesify.
     
