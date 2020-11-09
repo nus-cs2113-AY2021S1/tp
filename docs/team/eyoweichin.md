@@ -3,6 +3,7 @@
 ## Overview
 
 **AniChan** is an all-rounded desktop application meant to improve the workflow efficiency and time management of anime translators. It has also been optimized for fast typists, as such the user will interact with it through a command-line interface.
+
 ### Summary of Contributions
 
 *   **New Feature**: Added `Browse` which is the ability to access and view all anime with ease.

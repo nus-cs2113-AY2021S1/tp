@@ -57,7 +57,7 @@ public class BrowseCommand extends Command {
     private static final String LAST_ANIME_WARNING = "Printing Last Anime Series from source";
     private static final String BROWSE_PAGE_INDICATOR = "Browsing Page: ";
     private static final String OUT_OF_BOUND_PAGE_WARNING = "Getting page: Tried to start at index: ";
-    private static final String OUT_OF_BOUND_PAGE_ERROR = "Invalid Page size!";
+    private static final String OUT_OF_BOUND_PAGE_ERROR = "Page size too large!";
     private static final String ASSERT_SORT_TYPE = "sortType should be < 3";
     private static final String ASSERT_ORDER_TYPE = "order should be < 2";
     private static final String ASSERT_POSITIVE_PAGE_NUM = "Trying to set non-positive page value!";
@@ -120,6 +120,7 @@ public class BrowseCommand extends Command {
      */
     private String buildBrowseOutput(ArrayList<Anime> usableList) throws AniException {
         checkForPageBound(usableList);
+        assert indexToPrint >= 0 : ASSERT_NON_NEGATIVE_INDEX_TO_PRINT;
         StringBuilder result = new StringBuilder();
         for (int i = indexToPrint; i < indexToPrint + animePerPage; i++) {
             Anime browseAnime = usableList.get(i);
@@ -160,8 +161,7 @@ public class BrowseCommand extends Command {
      * @throws AniException if the page supplied too big to be used.
      */
     private void checkForPageBound(ArrayList<Anime> usableList) throws AniException {
-        assert indexToPrint >= 0 : ASSERT_NON_NEGATIVE_INDEX_TO_PRINT;
-        if (indexToPrint >= usableList.size()) {
+        if (indexToPrint < 0 || indexToPrint >= usableList.size()) {
             LOGGER.log(Level.WARNING, OUT_OF_BOUND_PAGE_WARNING + indexToPrint);
             throw new AniException(OUT_OF_BOUND_PAGE_ERROR);
         }
