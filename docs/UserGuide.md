@@ -3,16 +3,16 @@ layout: page
 title: User Guide
 ---
 
-# User Guide
 ![Logo](UG_Figures/Nav@NUSLogo.jpg)
 ## Opening words
 Welcome to Nav@NUS application's user guide! <br><br>
 The purpose of this user guide is to provide you with all the necessary information to use this application to navigate
 around NUS campus via the school's shuttle service.<br>
 
+## Table of Contents
+
 * Table of Contents
 {:toc}
-
 
 ## 1. Overview
 ### 1.1 What is Nav@NUS?
@@ -468,7 +468,7 @@ as shown in the figure below.<br><br>
 <!-- @@author -->
 
 ### 3.4.2. Reset frequent search data: ```/reset```
-This command resets the data set used to display most frequently search bus stop on application start-up.
+This command resets the data set used to display most frequently searched bus stop on application start-up.
 
 Format:<code>/reset</code>
 
@@ -496,6 +496,10 @@ This section addresses some common questions to aid in possible issues faced.
 **Q:** Where can I find the release? <br>
 It can be found at [here](https://github.com/AY2021S1-CS2113T-F14-3/tp/releases).
 
+**Q:** How do I transfer my data to another computer? <br>
+Simply copy your `data` folder from the current directory and paste it in the directory containing the `Nav@NUS.jar` 
+file in the other computer.
+
 ## 5. Command Summary
 The following table provides a summary of features and command formats.
 
@@ -520,9 +524,13 @@ Command | Format | Example
 /help | `/help` | `/help`
 /reset | `/reset` | `/reset`
 
-<!-- @@author wamikamalik -->
-## 6. Glossary - Wamika
+## 6. Glossary
 This section defines key technical terms we have used throughout the user guide.
 1. Case-sensitive: Capital and lower case letters are treated differently.
 2. Command Line Interface(CLI): Processes commands to a computer program in the form of lines of text.
-<!-- @@author -->
+3. Corrupted file: A file containing invalid data or data it should not have.
+4. Dining options/outlets: Places you can eat at.
+5. Direct bus: Commute between two locations does not require changing buses.
+6. Execute: Run the command to display the output.
+7. Similarity check: Check for possible spelling errors.
+
