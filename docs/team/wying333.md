@@ -10,9 +10,9 @@ During peak hours, people may not be able to know the dining situation and the d
 
 ### Contributions to documentation: 
 #### User Guide:
-Created the table of content of User Guide and wrote the detailed explanation after content 3.5. Added pictures and managed their links.
+Created the table of content of User Guide and wrote the detailed explanation after content 3.5. Added most pictures and managed their links.
 #### Developer Guide: 
-Created the table of content of Developer Guide and wrote the detailed explanation except content 4, which is implementation part. Added pictures including UML diagrams of find, delete, and print order and managed their links.
+Created the table of content of Developer Guide and wrote the detailed explanation except content 4, which is implementation part. Added most pictures including UML diagrams of find, delete, and print order and managed their links.
 
 ### Project management:
 Managed releases v2.1 on GitHub. (1 release)
