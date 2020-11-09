@@ -219,6 +219,8 @@ which is relatively more crowded than other bus stops.<br><br>
 3. With this information, you could explore other bus routes to your destination.
 <!-- @@author -->
 
+<div style="page-break-after: always;"></div>
+
 #### 3.1.3. Check for buses at a bus stop: ```/bus``` - Wong Heng Chin
 This command displays all buses available at a specific bus stop.
 
@@ -236,6 +238,8 @@ To search for available buses at **University Town**:
 
 2. The result will be a message displaying the buses available at University Town. <br><br>
 <img src="UG_Figures/bus3.png" width=650><br>
+
+<div style="page-break-after: always;"></div>
 
 **Common errors**
 
