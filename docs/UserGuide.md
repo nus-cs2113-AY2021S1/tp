@@ -614,6 +614,11 @@ Unarchive note | `unarchive-n /t JavaDocs`<br>`unarchive-n /i 1`
 List notes | `list-n`<br>`list-n /archive`<br>`list-n /tag CS2113`<br>`list-n /sort up`<br>Or any combination with `/tag` and `/sort`
 View note | `view-n /i 1`<br>`view-n /t JavaDocs`<br>`view-n /i 1 /t JavaDocs`
 Edit note | `edit-n /i 2 /t JavaDocs Notes`<br>`edit-n /i 2 /ln 1 /c @param refers to parameters`<br>`edit-n /i 2 /tag Notes`<br> Or any combination with `/t`, [`/ln` + `/c`] and `/tag` 
+
+<div style="page-break-after: always;"></div>
+
+Target Action | Example Code(s)
+------------  | -------------
 Find notes | `find-n Java`
 Pin note | `pin-n /t JavaDocs Notes`<br>`pin-n /i 1`
 Delete note | `delete-n /t JavaDocs Notes`<br>`delete-n /i 1`
@@ -624,6 +629,11 @@ Delete tag | `delete-t /tag Important`<br>`delete-t /tag Important red`<br>`dele
 Add event | `add-e /t CS2113 /timing 2020-10-16 16:00`<br>`add-e /t CS2113 Lecture /timing 2020-10-16 16:00 /repeat ...`<br>`add-e /t CS2113 Lecture /timing 2020-10-16 16:00 /end 2020-10-16 18:00 /remind ...`<br>Or any combination with `/end`, `/repeat`, `/stop` and `/remind`
 Edit event | `edit-e /i 1 /t CS2113 Lecture`<br>`edit-e /i 1 /timing 2020-10-16 15:55`<br>`edit-e /i 1 /repeat ...`<br>`edit-e /i 1 /remind ...`<br>Or any combination with `/t`, `/timing`, `/end`, `/repeat`, `/stop` and `/remind`
 Event Manager | `list-e`<br>`list-e /timing 2020-02`
+
+<div style="page-break-after: always;"></div>
+
+Target Action | Example Code(s)
+------------  | -------------
 Remind | `remind-e`
 Delete event | `delete-e 1`
 Exit | `exit`
