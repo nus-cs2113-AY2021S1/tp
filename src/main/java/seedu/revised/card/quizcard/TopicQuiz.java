@@ -54,14 +54,11 @@ public class TopicQuiz extends Quiz {
 
         Ui.printStartTopicQuiz(this.topic);
 
-        Instant end = Instant.now().plusSeconds(60);
+
         String answer = null;
         logger.info("Start printing the questions");
         for (Flashcard flashcard : this.flashcards) {
-            if (Instant.now().isAfter(end)) {
-                logger.info("If the timer ends before the user could finish the quiz.");
-                break;
-            }
+
             Ui.printQuestion(flashcard.getQuestion());
             answer = Ui.readCommand().strip();
             if (answer.equals("stop")) {

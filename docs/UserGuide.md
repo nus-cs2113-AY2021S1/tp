@@ -324,8 +324,11 @@ quiz CS2113T
 ```
 
 Sample output: 
+
 ```
-You are about to begin the quiz for CS2113T.You have 2 minutes.
+____________________________________________________________
+You are about to begin the quiz for CS2113T.
+____________________________________________________________
 ```
 
 #### 3.1.9 Viewing results for quizzes on a subject: `results` (Muthu)
@@ -346,8 +349,10 @@ results CS2113T
 
 Sample output: 
 ```
+____________________________________________________________
 Quiz 1: 1.0/2.0 -- Pass
 Quiz 2: 2.0/2.0 -- Excellent
+____________________________________________________________
 ```
 
 #### 3.1.10 Exporting data: `export` (Chin Hang) <a name="export-command"></a>
@@ -776,7 +781,9 @@ quiz Java
 
 Sample output: 
 ```
-You are about to begin the quiz for Java. You have 1 minute.
+____________________________________________________________
+You are about to begin the quiz for Java.
+____________________________________________________________
 ```
 
 #### 3.2.14 Viewing results for quizzes on a topic: `results` (Muthu)
@@ -1030,11 +1037,11 @@ certain time limit. There are two types of quizzes :
 
 ##### Subject quiz
 This type of quiz helps you prepare for a particular subject.The application prints out the questions from the topics present in a subject.
-You have 2 minutes to complete the quiz.
+
 
 ##### Topic quiz
 This type of quiz helps you to prepare for a particular topic. The application prints out all the questions that have been saved in the specific topic .
-You have 1 minute to complete the quiz.
+
 
 > 📝️ ️  **_NOTE:_** Ensure that you start a quiz for a subject/topic that has been added to the application 
 > and has a flashcard. Else, the application will not start the quiz.
@@ -1083,7 +1090,7 @@ ____________________________________________________________
 > 📝️ ️  **_NOTE:_** If you stop the quiz, the application will only print the score for the particular quiz. It does not
 >print the list of incorrect answers.
 
-> ⚠️ **_WARNING:_** If you stop the quiz or if the timer ends for the quiz,you cannot go back to the same quiz to continue it. You will
+> ⚠️ **_WARNING:_** If you stop the quiz ,you cannot go back to the same quiz to continue it. You will
 > have to restart another quiz.
 
 #### 3.4.2 Viewing quiz results <a name ="result"> </a> (Muthu)
@@ -1337,9 +1344,6 @@ This section answers some common questions that you may have about **revisED**.
 **_Q:_ I accidentally saved a task as an event, when it is a deadline. Is there any method to change the type of the task?**<br>
 **_A:_** Unfortunately, no. You will have to delete the event using the `delete task [TASK_INDEX]`to delete the task, and then 
 add the task back using the `deadline [DESCRIPTION] /by [TIME]` command.
-
-**_Q:_ Isit possible to change the timing of the quizzes?**<br>
-**_A:_** No. This feature is not available in the current implementation.
 
 **_Q:_ Is there any limit to the number of topics/subjects that I can store in my application?**<br>
 **_A:_** No. You can store unlimited number of topics/subjects.   
