@@ -136,6 +136,7 @@ amazing features!
 
   1. `contact`
   1. `quiz`
+
 * The category type often follows after the command word (E.g `class` follows after `add` to form `add class`).
 
 ### Viewing help: `help`
