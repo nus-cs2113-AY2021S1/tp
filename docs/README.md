@@ -1,4 +1,4 @@
-# Kaji
+# KAJI
 
 Have you ever spent hours and hours on end learning your Module content, only to forget it completely just a couple of months later when you are going to take your Finals? 
 Are you tired of having to re-learn the entire Module from scratch again?

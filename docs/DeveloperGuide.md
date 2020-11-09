@@ -1,7 +1,8 @@
-# Developer Guide
+# KAJI - Developer Guide
+By: `Team CS2113T-F11-3` Since: `August 2020`
 
 <a name="top"></a>
-## Table of content
+## Table of Contents
 1. [<b>Introduction</b>](#1-introduction)<br>
 1.1. [Overview](#11-overview)<br>
 1.2. [Purpose](#12-purpose)<br>
@@ -78,8 +79,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.15. [Excluding a module/chapter](#5615-excluding-a-modulechapter)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.16. [Including a module/chapter](#5616-including-a-modulechapter)<br>
 
-<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 1. Introduction
 
