@@ -478,7 +478,8 @@ For instance, you are currently in Module level `CS2113T` and want to head to Ch
   <img src="UG_Images/moduleGo.png" width="700" alt="Go Command"/>
 </p>
 
-* Step 2: You should return to the Admin level as shown below: <br>
+* ***Upon completion***: This is what you will see:
+    * You should return to the Admin level as shown below: <br>
 
 <p align="center">
   <img src="UG_Images/moduleGoResult.png" width="700" alt="Go Result"/>
@@ -502,7 +503,8 @@ For instance, you are currently in Module level `CS2113T` and want to return to 
   <img src="UG_Images/back.png" width="700" alt="Back Command"/>
 </p>
 
-* Step 2: You should return to the Admin level as shown below: <br>
+* ***Upon completion***: This is what you will see:
+    * You should return to the Admin level as shown below: <br>
 
 <p align="center">
   <img src="UG_Images/backComplete.png" width="700" alt="Back Result"/>
@@ -805,8 +807,6 @@ At any point, if you want to **see what Chapters are due**, all you have to do i
   <img src="UG_Images/dueComplete.png" width="700" alt="Due Command Result"/>
 </p>
 
-[Labeled expected output]
-
 <br><br>
 
 ### 3.4.2. Listing the chapters that are due in the upcoming week: `preview`
@@ -839,8 +839,6 @@ At any point, if you **want to see a preview of which Chapters are going to be d
 <p align="center">
   <img src="UG_Images/previewComplete.png" width="700" alt="Preview Command Result"/>
 </p>
-
-[Labeled expected output]
 
 <br><br>
 
@@ -883,7 +881,7 @@ Example of ***`exclude module`***
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
-  <img src="UG_Images/excludeModuleResult.png" width="700" alt="Exclude Command Module mode: Result"/>
+  <img src="UG_Images/excludeModuleResult.png" width="900" alt="Exclude Command Module mode: Result"/>
 </p>
 
 Example of ***`exclude chapter`***
@@ -908,7 +906,7 @@ Example of ***`exclude chapter`***
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
-  <img src="UG_Images/excludeChapterResult.png" width="700" alt="Exclude Command Chapter mode: Result"/>
+  <img src="UG_Images/excludeChapterResult.png" width="900" alt="Exclude Command Chapter mode: Result"/>
 </p>
 
 
@@ -950,7 +948,7 @@ Example of ***`include module`***
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
-  <img src="UG_Images/includeModuleResult.png" width="700" alt="Include Command Module mode: Result"/>
+  <img src="UG_Images/includeModuleResult.png" width="900" alt="Include Command Module mode: Result"/>
 </p>
 
 
@@ -976,7 +974,7 @@ Example of ***`include chapter`***
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
-  <img src="UG_Images/includeChapterResult.png" width="700" alt="Include Command Chapter mode: Result"/>
+  <img src="UG_Images/includeChapterResult.png" width="900" alt="Include Command Chapter mode: Result"/>
 </p>
 
 ### 3.5. General
