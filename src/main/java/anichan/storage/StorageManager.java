@@ -100,7 +100,7 @@ public class StorageManager {
         String deletePathString = storageDirectory + name;
 
         try {
-            File deleteFolder = new File(name);
+            File deleteFolder = new File(deletePathString);
             Path deletePath = Paths.get(deletePathString);
 
             LOGGER.log(Level.INFO, "Deleting workspace " + name);
