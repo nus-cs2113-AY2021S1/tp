@@ -1,10 +1,12 @@
 # Wang Zixin - Project Portfolio Page 
  
 ## Overview
+I am part of a team of 4 software engineering students who are designing and implementing a 
+Command Line Interface (CLI) program which is called CCA manager.  
+
 **Project: CCA Manager**  
 CCA Manager is a revolutionary tool that changes the way you can manage interest groups with unrivaled efficiency and simplicity. 
 Its lightweight Command Line Interface (CLI) allows administrators to breeze through tasks quickly and easily while offering powerful features to advanced users.
-
 
 
 ## Summary of Contributions
