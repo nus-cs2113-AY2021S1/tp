@@ -35,8 +35,7 @@ Created the `CalendarList`, `CalendarItem`, `SchoolEvent`, `Exam`, `Lab`, `Tutor
     * Justification: As the users can view their events list and task lists, they can remove unwanted tasks or events
  based on the indexing of the task/event in the task/event list.
 
-* Wrote additional tests for existing features to increase coverage. [#81](https://github.com/AY2021S1-CS2113T-T12-2
-/tp/pull/81)
+* Wrote additional tests for existing features to increase coverage. [#81](https://githubcomAY2021S1-CS2113T-T12-2/tp/pull/81)
 
 #### Contributions to documentation:
 * User Guide
