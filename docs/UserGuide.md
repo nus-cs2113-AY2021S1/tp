@@ -1061,7 +1061,7 @@ Expected output:
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: All of Study It's data are stored under the `ROOT_FOLDER/data` folder.
+**A**: All of Study It's data is stored under the `ROOT_FOLDER/data` folder.
 To transfer these data to another computer, please back up the `data` folder 
 and copy it over to the directory in the new computer accordingly after installing the app.
 
