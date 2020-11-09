@@ -458,7 +458,7 @@ variable called searchCount.
     
 Given the above alternatives, alternative 1 was used considering the integration of other commands.
 
-#### 3.13 Resetting search frequencies of bus stops (`/reset` Feature)
+### 3.13 Resetting search frequencies of bus stops (`/reset` Feature)
 This feature allows the user to reset the search frequencies of all bus stops.
 
 The `ResetSearchFreqCommand#executeCommand()` method of ResetSearchFreqCommand Class executes the command in the following steps:
