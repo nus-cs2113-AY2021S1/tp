@@ -58,8 +58,7 @@ Here are my contributions to the project.
   - Developer Guide:
     - Added an overall architecture diagram for the major components.
     - Explained usage for `Duke`, `Parser`, `Ui`, `Command` and `CommandCreator` components.
-    - Added sequence diagrams for `Duke` and `Parser` generated with PlantUML.
-    - Added UML diagrams for `Model` generated with PlantUML.
+    - Added sequence diagrams for `Duke` and `Parser`, and class diagrams for `Model` generated with PlantUML.
     - Added diagrams to describe how `Parser` parses user commands into different parts.
     - Described implementation details of regular expression parsing of arguments and the calendar command.
   - [Configured](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/173) project to use Kramdown so that we could have an automatically generated Table of Contents through [suggestions](https://github.com/nus-cs2113-AY2021S1/forum/issues/108#issuecomment-716930261) on module forum.
