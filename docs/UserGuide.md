@@ -166,11 +166,11 @@ Example of usage:
 
 💡 Use `/sort up` to display the list of notes in ascending order (A-Z).<br>
 💡 Use `/sort down` to display the list of notes in descending order (Z-A). <br>
-💡 The archived notes will **ONLY** be listed in chronological order. <br>
-💡 The content of the note is truncated, thus partial content may be displayed when listing the notes. To view the full content of a particular note, use the view note command.
+💡 The archived notes will **ONLY** be listed in chronological order.
 
 <div style="page-break-after: always;"></div>
 
+💡 The content of the note is truncated, thus partial content may be displayed when listing the notes. To view the full content of a particular note, use the view note command.<br>
 💡 Even if you input anything beyond `list-n` or `/archive` without the command delimiter (`/`), the program will execute the command. For example, `list-n the notes` or `list-n /archive test example` will still result in the program listing the notes/archived notes.
 
 Expected output:
@@ -231,6 +231,8 @@ Example of usage:
 
 `edit-n /i 2 /del 1 /del 2`
 
+<div style="page-break-after: always;"></div>
+
 Expected output:
 
 <p align="center">
@@ -253,6 +255,8 @@ Expected output:
 <p align="center">
    <img alt="findNote" src="screenshots/findNote.png"/>
 </p>
+
+<div style="page-break-after: always;"></div>
 
 #### <a id="pin-n"><ins>3.7 Pin Note:</ins> `pin-n`</a>
 Pins an unpinned note to the top of the note list or unpin a pinned note.
@@ -290,6 +294,8 @@ Example of usage:
 `archive-n /i 1`
 
 `archive-n /t JavaDoc`
+
+<div style="page-break-after: always;"></div>
 
 Expected output:
 
@@ -332,6 +338,8 @@ Example of usage:
 `delete-n /i 1`
 
 `delete-n /t JavaDocs`
+
+<div style="page-break-after: always;"></div>
 
 Expected output:
 
