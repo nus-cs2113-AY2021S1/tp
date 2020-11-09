@@ -42,13 +42,13 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.3.1. [When the Program Exits](#when-the-program-exits)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.3.2. [Changes Made to the Data](#changes-made-to-the-data)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.3.3. [Serialising Objects to JSON](#serialising-objects-to-json)<br>
-1. [Appendix: Requirements](#appendix:-requirements)<br>
+1. [Appendix: Requirements](#appendix-requirements)<br>
 &nbsp;&nbsp;5.1. [Target User Profile](#target-user-profile)<br>
 &nbsp;&nbsp;5.2. [Value Proposition](#value-proposition)<br>
 &nbsp;&nbsp;5.3. [User Stories](#user-stories)<br>
 &nbsp;&nbsp;5.4. [Non-Functional Requirements](#non-functional-requirements)<br>
 &nbsp;&nbsp;5.5. [Glossary](#glossary)<br>
-1. [Appendix: Instructions for manual testing](#appendix:-instructions-for-manual-testing)<br>
+1. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)<br>
 
 ## 1. <a id="introduction">Introduction</a>
 ### 1.1. <a id="background">Background</a>
@@ -711,7 +711,7 @@ When saving the data as JSON file, `StorageManager` will call `Jsoner.serialize(
 \*`Priority` is an exception, it is serialised by calling `name()` of the **enum** which will return its `String
 ` representation.
     
-## 5. <a id="appendix:-requirements">Appendix: Requirements</a>
+## 5. <a id="appendix-requirements">Appendix: Requirements</a>
 
 ### 5.1. <a id="target-user-profile">Target User Profile</a>
 
@@ -755,7 +755,7 @@ The terms listed in this glossary are in alphabetical order.
 * _GUI_ - Graphical User Interface
 * I/O - Input/Output is the communication between the computer and the user through GUI or terminal.
 
-## 6. <a id="appendix:-instructions-for-manual-testing">Appendix: Instructions for manual testing</a>
+## 6. <a id="appendix-instructions-for-manual-testing">Appendix: Instructions for manual testing</a>
 
 1. Download the jar file and copy it into an empty folder.
 1. Open a new terminal window and navigate to the same directory where the SCRUMptious.jar is located.
