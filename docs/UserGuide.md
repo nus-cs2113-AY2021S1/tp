@@ -300,7 +300,7 @@ Here are the food items in DietBook:
 
 After clearing : 
 ```
-    DietBook is currently empty.
+DietBook is currently empty.
 ```
 
 ### Features related to nutritional intake and recommendation
@@ -338,7 +338,7 @@ Here are the food items in DietBook:
 
 Input : calculate carbohydrate
 
- Output : 
+Output : 
 ```
 Total carbohydrate intake: 80g
 ```
@@ -469,14 +469,14 @@ ________________________________________________________________________________
 ```
 
 #### To exit DietBook: `exit`
- 
+
 Exits the DietBook.
  
 Format: `exit`
  
 Output example:
 ```
- Bye! Hope to see you again soon!
+Bye! Hope to see you again soon!
 ```
  
 #### Saving the DietBook: `Coming soon!`
@@ -503,3 +503,5 @@ Enter name | **Note**: Used only when setting up DietBook for the first time.<br
 Enter info | **Note**: Used only when setting up DietBook for the first time.<br/>`info g/GENDER a/AGE h/HEIGHT o/ORIGINAL_WEIGHT c/CURRENT_WEIGHT t/TARGET_WEIGHT f/FITNESS_LEVEL` <br/> e.g.,`info g/M a/21 h/175 o/85 c/85 t/75 f/2`
 View user info | `userinfo`
 Edit user info | `editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [f/FITNESS_LEVEL]` <br/> e.g.,`editinfo c/75 f/4`
+Calculate recommended calorie intake | `recommend`
+Calculate nutrition intake | `calculate [NUTRITION_NAME] [START_TIME] [END_TIME]` <br/> e.g.,`calculate fat`
