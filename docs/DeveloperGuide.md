@@ -651,7 +651,7 @@ Step 4: `Access#setModuleLevel()` verifies that the user is not on the Admin lev
 The following sequence Diagrams illustrates how the Return to Admin Level Feature is executed:
 
 <p align="center">
-  <img src="DG_Images/backAdmin.png" width="600" alt="Back Admin Sequence Diagram"/>
+  <img src="DG_Images/backAdmin.png" width="450" alt="Back Admin Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of Return to Admin Level Feature
 </p>
 
@@ -1147,7 +1147,7 @@ Items are added into the `ArrayList<String>` Exclusion List using two pairs of c
     * `Storage#appendModuleToExclusionFile()` - appends every `Chapter` of the target `Module` not already in the Exclusion File to it if the target `Module` exists
 
 <p align="center">
-  <img src="DG_Images/excludeClass.png" height="600" width="1023" alt="Class Diagram of Exclude"/>
+  <img src="DG_Images/excludeClass.png" width="1000" alt="Class Diagram of Exclude"/>
   <br/>Figure <>. Class diagram of Exclude
 </p>
 
@@ -1206,7 +1206,7 @@ Items are removed from the `ArrayList<String>` Exclusion List using two pairs of
     * `Storage#removeModuleFromExclusionFile()` - removes every `Chapter` of the target `Module` that is in the Exclusion File
 
 <p align="center">
-  <img src="DG_Images/includeClass.png" height="600" width="1023" alt="Class Diagram of Include"/>
+  <img src="DG_Images/includeClass.png" width="1000" alt="Class Diagram of Include"/>
   <br/>Figure <>. Class diagram of Include
 </p>
 
