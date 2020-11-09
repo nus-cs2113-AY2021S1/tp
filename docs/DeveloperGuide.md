@@ -191,9 +191,10 @@ Usually, a successful command will return a message to indicate a successful exe
 Otherwise, it will create error messages for the Ui to display to the users.
 
 It consists of `ChangeModeCommand`, `ClearCommand`,  `ExitCommand`,  `HelpCommand`,   `LaunchNowCommand`, 
-`AddBookmarkCommand`,   `DeleteBookmarkCommand`,  `FindBookmarkCommand`,  `LaunchBookmarkCommand`, 
-`ShowBookmarkCommand`, `AddTimetableCommand`, `DeleteTimetableCommand`, `ShowTimetableCommand`, `EditTimetableCommand`, 
-`LaunchTimetableCommand`, `AddMeetingCommand`, `LoadPlannerCommand` and `SavePlannerCommand` classes.
+`ShowSettingsCommand`, `SetSettingsCommand`, `AddBookmarkCommand`,   `DeleteBookmarkCommand`,  `FindBookmarkCommand`,  
+`LaunchBookmarkCommand`, `ShowBookmarkCommand`, `AddTimetableCommand`, `DeleteTimetableCommand`, `ShowTimetableCommand`, 
+`EditTimetableCommand`, `LaunchTimetableCommand`, `AddMeetingCommand`, `LoadPlannerCommand` and 
+`SavePlannerCommand` classes.
 
 Its main roles are:
 
