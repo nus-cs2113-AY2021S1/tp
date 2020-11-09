@@ -22,8 +22,8 @@
     - [Tuition Category](#category-tuition)
       - [Add a tuition:](#adding-a-tuition-add-tuition) `add tuition`
       - [Delete a tuition:](#deleting-a-tuition-delete-tuition) `delete tuition`
-    - [List schedule:](#listing-out-schedule-list-event-todaydateweeknextweek>) `list event <today/[date]/week/nextweek>`
-    - [Find event:](#finding-an-event-find-event) `find event`
+    - [List schedule:](#listing-out-schedule-list-event-todaydateweeknextweek) `list event <today/[date]/week/nextweek>`
+    - [Find event:](#finding-events-find-event) `find event`
   - [SCORE component of Plan&Score:](#score-component-of-planscore)
     - [Take a quiz:](#taking-a-quiz-quiz)`quiz`
     - [Add a quiz question:](#adding-a-quiz-question-add-quiz) `add quiz`
@@ -398,6 +398,7 @@ WARNING:
 
 <br />
 
+<!-- @@author AndreWongZH -->
 #### Listing out schedule: `list event <today/[date]/week/nextweek>`
 
 Allows you to list out the entire schedule for classes, ccas and tests.
@@ -412,6 +413,7 @@ Firstly, to list out all events, type ‘list event’ in the command line, as s
 The output is seen in the console. The list is arranged by their respective categories. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
 ![listevent2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_2.png)
+<!-- @@author -->
 
 <br />
 
@@ -467,6 +469,7 @@ The output is seen in the console. The list is arranged by their respective cate
 <br />
 <!-- @@author Aliciaho-->
 
+<!-- @@author AndreWongZH -->
 #### Finding events: `find event`
 Allows you to look for classes, ccas and tests and tuitions that match your given keyphrase.
 
@@ -486,6 +489,7 @@ And we can find the date we are looking for as pointed out by the yellow arrow b
 ![find3](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find3.JPG)
 
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find%20note.jpg" width="500"  alt="findnote"/>
+<!-- @@author -->
 
 <br/>
 
@@ -505,6 +509,7 @@ The following output would then be displayed.
 ![quiz1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/quiz1.png)
 <br>
 
+<!-- @@author AndreWongZH -->
 #### Adding a Quiz Question: `add quiz`
 Allows you to add a Mathematics multiple-choice quiz question to the quiz list.
 
@@ -526,7 +531,7 @@ The corresponding output would then be displayed as shown below.
 <br>
 ![quizadded](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/quizadded.png)
 <br />
-
+<!-- @@author -->
 
 #### Deleting a Quiz Question: `delete quiz`
 Allows you to delete a quiz question from the quiz list.
@@ -626,6 +631,7 @@ The output is seen in the console.
 
 ![list_contact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_contact.png)
 
+<!-- @@author AndreWongZH -->
 #### Finding a contact `find contact`
 Look for contacts that match the given keywords you want.
 
@@ -642,6 +648,7 @@ The output can then be seen in the console.
 ![find_contact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find_contact.png)
 
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find%20note.jpg" width="500"  alt="findnote"/>
+<!-- @@author -->
 
 <!-- @@author Aliciaho-->
 ### Exits Program: `bye`
