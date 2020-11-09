@@ -1,7 +1,4 @@
----
-layout: page
-title: Chen Qixing's Project Portfolio Page
----
+# Chen Qixing's Project Portfolio Page
 
 ## Project: PlaNUS
 
