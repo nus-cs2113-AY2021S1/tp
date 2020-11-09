@@ -819,7 +819,7 @@ Instruction:
 1. `cd 5` / `cd flashcard`
 
 Expected output:
-![Flashcard_4_1](Images/FlashcardUG/Flashcard_4_1.png)
+![Flashcard_4_1](Images/FlashcardUG/Flashcard_4_1_resized.png)
 
 >**Useful information:**
 >* You can use this command from any mode to access the flashcard mode easily and quickly!
