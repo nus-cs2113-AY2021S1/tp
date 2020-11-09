@@ -342,7 +342,7 @@ Use case ends.
     Expected: homework task should be added to the list with date set as 25-12-2020 
     and start time 19:00 and end time 20:00.
 
-    - Test case: add homework d/25-12-2020 st/1900 et/2500
+    - Test case: add homework d/25-12-2020 st/1900 et/2500  
     Expected: Since there is only 24 hours in a day, the task is not added to the list, 
     and an error message is shown.
 
