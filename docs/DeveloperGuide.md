@@ -189,12 +189,11 @@ This feature allows users to edit the information of events that was previously 
 
 Given below is an example usage scenario:
 
-Step 1. The user launches the application and inputs a command to add one event.  
-
+Step 1. The user launches the application and inputs `assignment homework \t 2020-02-02 20:00 \l home` command to add an event.  
 Step 2. The user realises that there was a mistake in the event added and decides to edit the task information by 
-entering `edit 1 class <new event description>` to edit the one existing event.
-
-Step 3. `editCommand()` function replaces the original event with the edited one. 
+entering `edit 1`, which will be parsed by `Parser` and calls an `EditCommand` object.  
+Step 3. The user follows the instructions on screen and enters the desired changes.  
+Step 4. `EditCommand#execute()` will call `EventList#editEvents` to edit the event.  
 ![EditCommand Sequence Diagram](diagrams/EditCommand.png)<br>
 *Figure 4.3 Sequence Diagram for EditCommand()*
 
