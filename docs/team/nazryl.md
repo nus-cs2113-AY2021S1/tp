@@ -25,13 +25,13 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 * [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/32) Functionality applies to delete note from the notebook by an index and title of the note.
 * [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/121) Functionality applies to edit any note content, title and tags stored in the notebook.
 
-<div style="page-break-after: always;"></div>
-
 3\. Implemented the following classes
 `ParserAddNoteCommand`, `AddNoteCommand`, `ParserDeleteNoteCommand`, `DeleteNoteCommand`, `ParserEditNoteCommand`, `EditNoteCommand`
 
 4\. Implemented test code for the following classes
 [`AddNoteCommandTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61), [`DeleteNoteCommandTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61), [`ParserManagerTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61)
+
+<div style="page-break-after: always;"></div>
 
 5\. Maintained Notebook and Note classes.
 
@@ -52,8 +52,6 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 *Code contributed*
 
 [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=nazryl&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other) to view a report of the code contribution.
-
-<div style="page-break-after: always;"></div>
 
 *Contributions to User Guide*
 
