@@ -679,7 +679,7 @@ Plan&Score saves all your data automatically after every command. There is no ne
 
 **Q**: How do I transfer my data to another computer?
 
-**A**: We recommend you to transfer the entire folder containing plan.jar and the `data` directory. Then, follow instructions given in our `Quick Start` section to set up Plan&Score.
+**A**: We recommend you to transfer the entire folder containing `CS2113T-W12-4 Plan&Score.jar` and the `data` directory. Then, follow instructions given in our `Quick Start` section to set up Plan&Score.
 
 ## Troubleshooting
 
