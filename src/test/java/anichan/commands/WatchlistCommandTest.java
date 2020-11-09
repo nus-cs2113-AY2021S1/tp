@@ -69,14 +69,6 @@ class WatchlistCommandTest {
         });
     }
 
-    @Test
-    void execute_watchlistNameMoreThan30CharactersForCreateWatchlist_throwsAniException() {
-        assertThrows(AniException.class, () -> {
-            WatchlistCommand createWatchlist = watchlistParser.parse("-n alongwatchlistnamethatwouldfail");
-            createWatchlist.execute(animeData, storageManager, user);
-        });
-    }
-
     // ========================== List ==========================
 
     @Test

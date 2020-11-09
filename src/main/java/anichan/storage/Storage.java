@@ -20,9 +20,9 @@ public abstract class Storage {
     private static final String REGEX_NEGATIVE_INTEGER = "^[-]\\d+$";
 
     private static final String EMPTY_STRING = "";
-    private static final String FILE_DOES_NOT_EXIST = "File does not exist.";
-    private static final String FILE_CONTAINS_INVALID_CHARACTER = "File name contains invalid characters!";
-    private static final String WRITE_TO_FILE_FAILED = "Failed to write to file.";
+    private static final String FILE_DOES_NOT_EXIST_ERROR = "File does not exist.";
+    private static final String FILE_CONTAINS_INVALID_CHARACTER_ERROR = "File name contains invalid characters!";
+    private static final String WRITE_TO_FILE_FAILED_ERROR = "Failed to write to file.";
 
     protected static final int MAX_ANIME_INDEX = 510;
     private static final Logger LOGGER = AniLogger.getAniLogger(Storage.class.getName());
@@ -32,7 +32,7 @@ public abstract class Storage {
      *
      * @param filePath the path of the file to read from
      * @return {@code String} containing the file content
-     * @throws AniException when unable to read from the file
+     * @throws AniException when unable to read from the file or the file name is invalid
      */
     public String readFile(String filePath) throws AniException {
         String fileContent = EMPTY_STRING;
@@ -41,11 +41,11 @@ public abstract class Storage {
             LOGGER.log(Level.INFO, "Read from file: " + filePath);
         } catch (IOException exception) {
             LOGGER.log(Level.INFO, "File does not exist at: " + filePath);
-            throw new AniException(FILE_DOES_NOT_EXIST);
+            throw new AniException(FILE_DOES_NOT_EXIST_ERROR);
         } catch (InvalidPathException exception) {
             // Invalid characters not caught in parser.
             LOGGER.log(Level.INFO, "File name contains invalid characters: " + filePath);
-            throw new AniException(FILE_CONTAINS_INVALID_CHARACTER);
+            throw new AniException(FILE_CONTAINS_INVALID_CHARACTER_ERROR);
         }
 
         return fileContent;
@@ -66,7 +66,7 @@ public abstract class Storage {
             LOGGER.log(Level.INFO, "Wrote to file: " + filePath);
         } catch (IOException exception) {
             LOGGER.log(Level.WARNING, "Failed to write to file at: " + filePath);
-            throw new AniException(WRITE_TO_FILE_FAILED);
+            throw new AniException(WRITE_TO_FILE_FAILED_ERROR);
         }
     }
 
