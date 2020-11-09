@@ -1,1 +1,23 @@
-James Gosling
+login /Alex /123123
+help
+add /CS2113 Lec /Mon /1200-1300 /LT21
+aDd /CS3243 Lec /moN /1400-1500 /LT22
+aDD /CS2040C Tut /MON /0800-1000 /COM1-2
+add /CG2028 Tut /Thu /0900-1100 /E4-4-1
+add /CG2023 Lec /Fri /1700-1800 /E7-3-10
+list /all
+list /mon
+list /all
+list /mon
+login /Tammy /321321
+add /CS2113 Lec /mon /1200-1300 /LT21
+add /CS2040C Tut /mon /0800-1000 /COM1-2
+add /CG2028 Tut /Thu /0900-1100 /E4-4-1
+list /mon
+login /Alex /123123
+delete /mon /2
+clear /fri
+add /CS3230 Lab /Wed /1100-1400 /COM1-2-21
+add /CS3230 Lec /Wed /1300-1500 /LT43
+list /all
+bye

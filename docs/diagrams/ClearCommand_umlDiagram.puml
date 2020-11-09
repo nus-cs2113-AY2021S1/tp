@@ -1,0 +1,16 @@
+@startuml
+!include style.puml
+show member
+
+class ClearCommand
+class UI
+class Timetable
+
+ClearCommand : + execute():void
+UI : + printClear(:ArrayList, :String):void
+Timetable : + getTimetable(:String):ArrayList
+ClearCommand -left->"1" Timetable :day
+ClearCommand -> "1" UI : removedClasses
+ClearCommand -> "1" UI : day
+
+@enduml

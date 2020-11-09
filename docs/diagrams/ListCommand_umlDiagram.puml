@@ -1,0 +1,17 @@
+@startuml
+!include style.puml
+show member
+
+class ListCommand
+class UI
+class Timetable
+
+ListCommand : + execute():void
+UI : + printList(:UserList, :int, :String):void
+Timetable : + getTimetable(:String):ArrayList
+ListCommand -left->"1" Timetable :day
+ListCommand -> "1" UI : users
+ListCommand -> "1..7" UI : day
+ListCommand -> "1" UI : userIndex
+
+@enduml

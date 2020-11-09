@@ -14,4 +14,17 @@ src/main/resources/docs/
 bin/
 
 /text-ui-test/ACTUAL.txt
-text-ui-test/EXPECTED-UNIX.TXT
+AddCommand.log
+AddCommand.log.1
+AddCommand.log.2
+LogInCommand.log.1
+LogInCommand.log
+LogInCommand.log.lck
+AddCommand.log.3
+data/duke.txt
+AddCommand.log.lck
+LogInCommand.log.2
+duke.txt
+EditCommand.log
+EditCommand.log.1
+EditCommand.log.lck

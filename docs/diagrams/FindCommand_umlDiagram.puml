@@ -1,0 +1,16 @@
+@startuml
+!include style.puml
+show member
+
+class FindCommand
+class UI
+class Timetable
+
+FindCommand : + execute():void
+UI : + printFind(:String, :String):void
+Timetable : + getTimetable(:String):ArrayList
+FindCommand -left->"1" Timetable :day
+FindCommand -> "1" UI : classesFound
+FindCommand -> "1" UI : keyword
+
+@enduml

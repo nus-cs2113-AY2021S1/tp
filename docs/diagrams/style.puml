@@ -1,0 +1,26 @@
+skinparam BackgroundColor #FFFFFF
+skinparam classAttributeIconSize 0
+skinparam SequenceBoxBackgroundColor #111111
+skinparam Shadowing false
+
+skinparam Actor {
+    BorderColor #000000
+}
+
+skinparam Participant {
+    BackgroundColor #FFFFFF
+    BorderColor #000000
+    FontColor #000000
+    Padding 20
+}
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+}
+
+hide circle
+hide footbox
+hide members

@@ -1,0 +1,25 @@
+@startuml
+!include style.puml
+
+Participant ":ListCommand" as ListCommand
+Participant ":Timetable" as Timetable
+Participant ":UI" as UI
+
+-> ListCommand: parsedInputs[]
+activate ListCommand
+
+ListCommand -> ListCommand: execute()
+activate ListCommand
+
+ListCommand -> Timetable: getTimetable(day)
+activate Timetable
+
+Timetable --> ListCommand
+deactivate Timetable
+
+ListCommand -> UI: printList()
+activate UI
+deactivate UI
+deactivate ListCommand
+
+@enduml

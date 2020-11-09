@@ -1,0 +1,25 @@
+@startuml
+!include style.puml
+
+Participant ":ClearCommand" as ClearCommand
+Participant ":Timetable" as Timetable
+Participant ":UI" as UI
+
+-> ClearCommand: parsedInputs[]
+activate ClearCommand
+
+ClearCommand -> ClearCommand: execute()
+activate ClearCommand
+
+ClearCommand -> Timetable: getTimetable(day)
+activate Timetable
+
+Timetable --> ClearCommand
+deactivate Timetable
+
+ClearCommand -> UI: printClear()
+activate UI
+deactivate UI
+deactivate ClearCommand
+
+@enduml

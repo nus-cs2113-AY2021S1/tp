@@ -1,0 +1,25 @@
+@startuml
+!include style.puml
+
+Participant ":DeleteCommand" as DeleteCommand
+Participant ":Timetable" as Timetable
+Participant ":UI" as UI
+
+-> DeleteCommand: parsedInputs[]
+activate DeleteCommand
+
+DeleteCommand -> DeleteCommand: execute()
+activate DeleteCommand
+
+DeleteCommand -> Timetable: getTimetable(day)
+activate Timetable
+
+Timetable --> DeleteCommand
+deactivate Timetable
+
+DeleteCommand -> UI: printDelete()
+activate UI
+deactivate UI
+deactivate DeleteCommand
+
+@enduml

@@ -1,0 +1,48 @@
+@startuml
+!include style.puml
+
+Actor User
+Participant ":UI" as UI
+Participant "WhereGotTime" as WGT
+Participant ":Parser" as Parser
+Participant ":Command" as Command
+Participant ":Storage" as Storage
+
+activate WGT
+
+User -> UI: "clear /fri"
+activate UI
+
+UI --> WGT
+
+WGT -> Parser: parse("clear /fri")
+activate Parser
+
+Parser --> WGT
+deactivate Parser
+
+WGT -> Command: ClearCommand("fri")
+activate Command
+
+Command --> UI
+Command --> WGT
+deactivate Command
+
+WGT -> Storage: write(users)
+activate Storage
+
+Storage -> Storage: save to file
+activate Storage
+
+Storage --> Storage
+deactivate Storage
+
+Storage --> WGT
+deactivate Storage
+
+WGT --> UI
+
+UI --> User
+deactivate UI
+
+@enduml

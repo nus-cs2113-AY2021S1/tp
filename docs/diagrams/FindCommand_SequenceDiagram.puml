@@ -1,0 +1,25 @@
+@startuml
+!include style.puml
+
+Participant ":FindCommand" as FindCommand
+Participant ":Timetable" as Timetable
+Participant ":UI" as UI
+
+-> FindCommand: parsedInputs[]
+activate FindCommand
+
+FindCommand -> FindCommand: execute()
+activate FindCommand
+
+FindCommand -> Timetable: getTimetable(day)
+activate Timetable
+
+Timetable --> FindCommand
+deactivate Timetable
+
+FindCommand -> UI: printFind()
+activate UI
+deactivate UI
+deactivate FindCommand
+
+@enduml

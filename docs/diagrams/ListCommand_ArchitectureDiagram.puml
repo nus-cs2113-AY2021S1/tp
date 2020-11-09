@@ -1,0 +1,21 @@
+@startuml
+!include <office/Users/user>
+!include style.puml
+
+Package " "<<Rectangle>>{
+    Class UI #FFFFFF
+    Class WhereGotTime #BBBBBB
+    Class ListCommand #FFFFFF
+    Class Timetable #FFFFFF
+}
+
+Class "<$user>" as User
+
+User <.down.> UI
+
+UI -right-> WhereGotTime
+WhereGotTime -down-> ListCommand
+Timetable -> ListCommand
+ListCommand -> UI
+
+@enduml

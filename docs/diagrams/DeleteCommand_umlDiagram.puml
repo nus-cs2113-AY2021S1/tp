@@ -1,0 +1,17 @@
+@startuml
+!include style.puml
+show member
+
+class DeleteCommand
+class UI
+class Timetable
+
+DeleteCommand : + execute():void
+UI : + printDelete(:String, :String, :int):void
+Timetable : + getTimetable(:String):ArrayList
+DeleteCommand -left->"1" Timetable :day
+DeleteCommand -> "1" UI : removedClass
+DeleteCommand -> "1..7" UI : day
+DeleteCommand -> "1" UI : timetable.size
+
+@enduml
