@@ -624,18 +624,28 @@ This feature allows users to edit a slot's title or time. Users can also move sl
 
 Given below is an example usage scenario and how the edit mechanism works.
 
-1. The user enters "edit title mon 2 new_title"
-2. A new EditSlotCommand instance is created and its execute() method is called.
-3. The slot corresponding to the day and index given in the user input is retrieved by calling the getSlotByIndexInDay method of the timetable. In this case, the 2nd slot on Monday will be returned.
-4. Based on the chosen field in the user input, different methods are called:
-    a. If the command is "edit module", the moveSlotToAnotherModule method in timetable is called to move the slot to a given module.
-    b. If the command is "edit title", the setTitle method of the retrieved slot is called.
-    c. If the command is "edit time", changeSlotTime is called. This method will call setDay(), setStartTime(), and setEndTime() of the retrieved slot.
+1. The user enters `edit title mon 2 new_title`.
+2. A new EditSlotCommand instance is created and its `execute` method is called.
+3. Based on the chosen field in the user input, different methods are called:
+    a. If the command is `edit module`, the moveSlotToAnotherModule method in timetable is called to move the slot to a given module.
+    b. If the command is `edit title`, like in the current example, the slot corresponding to the day and index given in the user input is retrieved by calling the getSlotByIndexInDay method of the timetable. 
+    In this case, the 2nd slot on Monday will be returned. The setTitle method of the retrieved slot is then called.
+    c. If the command is `edit time`, it works similar to `edit title`, but with changeSlotTime called instead. This method will call setDay(), setStartTime(), and setEndTime() of the retrieved slot.
 
 The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslotsequence.png)
 *<center/> Figure 2.23 Sequence diagram for EditSlotCommand </center> <br/></br>*
+
+#### Design consideration:
+
+##### Aspect: What part of a slot should the user be able to edit
+* **Alternative 1 (Current choice):** The user can choose to edit the slot's module, title, or time.
+    * Pros: Allows for quicker edits.
+    * Cons: Harder to implement.
+* **Alternative 2:** The user needs to type in the entire slot details (including module, title, and time).
+    * Pros: Easier to implement.
+    * Cons: The user needs to type the module, title, and time even when the user only wants to edit one of them.
 
 <a name="showsettings"></a>
 ### Show settings feature (Francisco)
@@ -674,6 +684,16 @@ The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/setsettingssequence.png)
 *<center/> Figure 2.25 Sequence diagram for SetSettingsCommand </center> <br/></br>*
+
+#### Design consideration:
+
+##### Aspect: How should the user specify which setting to change
+* **Alternative 1 (Current choice):** The settings all have a name associated with each of them.
+    * Pros: Allows for more expressive commands (e.g. `set autosave on` vs. `set 2 on`).
+    * Cons: Harder to implement.
+* **Alternative 2:** The user selects a setting to change by its index number.
+    * Pros: Easier to implement.
+    * Cons: The user needs to type in `show` to know the index number.
 
 <!-- @@author jusufnathanael-->
 <a name="planner"></a>
