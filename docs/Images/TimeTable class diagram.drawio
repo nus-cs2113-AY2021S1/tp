@@ -1,10 +1,10 @@
-<mxfile host="app.diagrams.net" modified="2020-10-21T13:13:11.381Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" etag="nLjvGOoHSYCI_GaBNTRV" version="13.8.1" type="github">
+<mxfile host="app.diagrams.net" modified="2020-11-09T06:27:26.658Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36" etag="myJgfeWFDvo0vtCVcWAE" version="13.9.2" type="github">
   <diagram id="9XVD74r8yh5lQiLcjH_A" name="Page-1">
-    <mxGraphModel dx="1574" dy="796" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1102" dy="557" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="D09W5iZ9T6riWIHngCiJ-5" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&lt;font color=&quot;#ff1100&quot;&gt;{abstract}&lt;/font&gt;&lt;/i&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;Event&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ name: String&lt;br&gt;+ isOnline: boolean&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ linOrVenue: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ Event(String, boolean, String, EventType)&lt;br&gt;+ addPeriod(Duration)&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ getStorageString(): String&amp;nbsp;&lt;font color=&quot;#ff0808&quot;&gt;{abstract}&lt;/font&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="1" vertex="1">
+        <mxCell id="D09W5iZ9T6riWIHngCiJ-5" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;{abstract}&lt;/i&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;Event&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ name: String&lt;br&gt;+ isOnline: boolean&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ linOrVenue: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ Event(String, boolean, String, EventType)&lt;br&gt;+ addPeriod(Duration)&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ getStorageString(): String&amp;nbsp;{abstract}&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="1" vertex="1">
           <mxGeometry x="267" y="525" width="241" height="150" as="geometry" />
         </mxCell>
         <mxCell id="D09W5iZ9T6riWIHngCiJ-6" value="Extends" style="endArrow=block;endSize=16;endFill=0;entryX=0.465;entryY=1.013;entryDx=0;entryDy=0;entryPerimeter=0;html=1;fontColor=#FFFFFF;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="D09W5iZ9T6riWIHngCiJ-22" target="D09W5iZ9T6riWIHngCiJ-5" edge="1">
@@ -38,8 +38,8 @@
         <mxCell id="D09W5iZ9T6riWIHngCiJ-39" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;enumeation&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;EventType&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;A&lt;br&gt;L&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;strokeColor=#000000;" parent="1" vertex="1">
           <mxGeometry x="617" y="535" width="190" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="D09W5iZ9T6riWIHngCiJ-40" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;fontColor=#050001;exitX=0.996;exitY=0.2;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="1" source="D09W5iZ9T6riWIHngCiJ-5" target="D09W5iZ9T6riWIHngCiJ-39" edge="1">
-          <mxGeometry x="-0.0913" y="10" width="160" relative="1" as="geometry">
+        <mxCell id="D09W5iZ9T6riWIHngCiJ-40" value="1" style="endArrow=open;endSize=12;html=1;fontColor=#050001;exitX=0.996;exitY=0.2;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="1" source="D09W5iZ9T6riWIHngCiJ-5" target="D09W5iZ9T6riWIHngCiJ-39" edge="1">
+          <mxGeometry x="-0.7824" y="15" width="160" relative="1" as="geometry">
             <mxPoint x="477" y="574.5" as="sourcePoint" />
             <mxPoint x="637" y="574.5" as="targetPoint" />
             <mxPoint as="offset" />
@@ -48,10 +48,10 @@
         <mxCell id="D09W5iZ9T6riWIHngCiJ-41" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;Duration&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ startDateTime: LocalDateTime&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ endDateTime: LocalDateTime&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ timeSlot: List&amp;lt;Integer&amp;gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ Duration(LocalDateTime, LocalDateTime)&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ Duration(LocalDateTime)&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ getTime(LocalDateTime): int&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ containTimeSlot(int): boolean&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;strokeColor=#000000;" parent="1" vertex="1">
           <mxGeometry x="40" y="260" width="240" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="D09W5iZ9T6riWIHngCiJ-45" value="" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;fontColor=#050001;entryX=-0.008;entryY=0.207;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.468;exitY=0.998;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="D09W5iZ9T6riWIHngCiJ-41" target="D09W5iZ9T6riWIHngCiJ-5" edge="1">
+        <mxCell id="D09W5iZ9T6riWIHngCiJ-45" value="" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;fontColor=#050001;entryX=0.468;entryY=0.998;entryDx=0;entryDy=0;entryPerimeter=0;exitX=-0.008;exitY=0.207;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="D09W5iZ9T6riWIHngCiJ-5" target="D09W5iZ9T6riWIHngCiJ-41" edge="1">
           <mxGeometry x="-1" relative="1" as="geometry">
-            <mxPoint x="37" y="465" as="sourcePoint" />
-            <mxPoint x="197" y="465" as="targetPoint" />
+            <mxPoint x="197" y="465" as="sourcePoint" />
+            <mxPoint x="37" y="465" as="targetPoint" />
             <Array as="points">
               <mxPoint x="152" y="556" />
             </Array>
@@ -59,7 +59,7 @@
         </mxCell>
         <mxCell id="D09W5iZ9T6riWIHngCiJ-46" value="1..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" parent="D09W5iZ9T6riWIHngCiJ-45" connectable="0" vertex="1">
           <mxGeometry x="-1" relative="1" as="geometry">
-            <mxPoint x="7.68" y="21.3" as="offset" />
+            <mxPoint x="-21.07" y="-4.050000000000001" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="D09W5iZ9T6riWIHngCiJ-51" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;EventList&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ dateTag: LocalDate&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ EventList(LocalDateTime)&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ addEvent(Event)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;strokeColor=#000000;" parent="1" vertex="1">
@@ -86,7 +86,7 @@
             <mxPoint x="702" y="190" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="D09W5iZ9T6riWIHngCiJ-60" value="1..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" parent="D09W5iZ9T6riWIHngCiJ-59" connectable="0" vertex="1">
+        <mxCell id="D09W5iZ9T6riWIHngCiJ-60" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" parent="D09W5iZ9T6riWIHngCiJ-59" connectable="0" vertex="1">
           <mxGeometry x="-1" relative="1" as="geometry" />
         </mxCell>
         <mxCell id="D09W5iZ9T6riWIHngCiJ-61" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;TimeTableRun&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px ; line-height: 0%&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ TimeTableRun()&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ run(String)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;strokeColor=#000000;" parent="1" vertex="1">
@@ -103,7 +103,7 @@
             <mxPoint x="-14" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="D09W5iZ9T6riWIHngCiJ-64" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;TimeTableStorage&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;u&gt;&lt;font color=&quot;#ff0d0d&quot;&gt;- taskFile: File&lt;/font&gt;&lt;/u&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- filePath: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ TimeTableStorage(String, DateList)&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ checkFile (DateList)&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ writeFile(Event)&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- loadFile(DateList)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;strokeColor=#000000;" parent="1" vertex="1">
+        <mxCell id="D09W5iZ9T6riWIHngCiJ-64" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;TimeTableStorage&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;u&gt;- taskFile: File&lt;/u&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- filePath: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ TimeTableStorage(String, DateList)&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ checkFile (DateList)&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ writeFile(Event)&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- loadFile(DateList)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;strokeColor=#000000;" parent="1" vertex="1">
           <mxGeometry x="318" y="295" width="220" height="140" as="geometry" />
         </mxCell>
         <mxCell id="D09W5iZ9T6riWIHngCiJ-65" value="" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;fontColor=#050001;entryX=0.446;entryY=0.996;entryDx=0;entryDy=0;exitX=0.572;exitY=-0.007;exitDx=0;exitDy=0;entryPerimeter=0;exitPerimeter=0;" parent="1" source="D09W5iZ9T6riWIHngCiJ-64" target="D09W5iZ9T6riWIHngCiJ-61" edge="1">
