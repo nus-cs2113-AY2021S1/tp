@@ -93,6 +93,9 @@ To add/modify/remove elements of a certain level, you have to be on the level ab
 Refer to [Features](#3-features) below for details of each command.
 
 #### 1.4.2. Schedule Management
+Your biggest reason to use KAJI lies in KAJI's ability to provide you with the full benefits of "Spaced Repetition" without you having to do the tedious manual work involved. To accomplish this, KAJI comes with an automated Schedule Management feature that will facilitate the "Spaced Repetition" scheduling process for you. 
+
+To find out more about how you can utilise the feature and even customise it to your liking, find out more [below](#45-viewing-and-customising-the-schedule-feature).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -356,14 +359,12 @@ For instance, you are currently in Module level `Module` and want to head to Cha
 
 <p align="center">
   <img src="UG_Images/moduleGo.png" alt="Go Command"/>
-  <br/>Figure <>. Example of the "go" command 
 </p>
 
 * Step 2: You should return to the Admin level as shown below: <br>
 
 <p align="center">
   <img src="UG_Images/moduleGoResult.png" alt="Go Result"/>
-  <br/>Figure <>. Example of the "go" command Result
 </p>
 
 
@@ -382,14 +383,12 @@ For instance, you are currently in Module level `Module` and want to return to t
 
 <p align="center">
   <img src="UG_Images/back.png" alt="Back Command"/>
-  <br/>Figure <>. Example of the "back" command 
 </p>
 
 * Step 2: You should return to the Admin level as shown below: <br>
 
 <p align="center">
   <img src="UG_Images/backComplete.png" alt="Back Result"/>
-  <br/>Figure <>. Example of the "back" command Result
 </p>
 
 #### 3.2.7. Starting a revision session: `revise`
@@ -681,14 +680,12 @@ At any point, if you want to **see what Chapters are due**, all you have to do i
 
 <p align="center">
   <img src="UG_Images/due.png" alt="Due Command"/>
-  <br/>Figure <>. Example of the "due" command 
 </p>
 
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
   <img src="UG_Images/dueComplete.png" alt="Due Command Result"/>
-  <br/>Figure <>. Example of the "due" result
 </p>
 
 [Labeled expected output]
@@ -717,14 +714,12 @@ At any point, if you **want to see a preview of which Chapters are going to be d
 
 <p align="center">
   <img src="UG_Images/preview.png" alt="Preview Command"/>
-  <br/>Figure <>. Example of the "preview" command  
 </p>
 
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
   <img src="UG_Images/previewComplete.png" alt="Preview Command Result"/>
-  <br/>Figure <>. Example of the "preview" result
 </p>
 
 [Labeled expected output]
@@ -758,26 +753,22 @@ Example of ***`exclude module`***
 
 <p align="center">
   <img src="UG_Images/excludeModule.png" alt="Exclude Command Module mode: Command"/>
-  <br/>Figure <>. Example of Exclude Command Module mode: Command
 </p>
 
 * ***Step 2***: Key the **Module name** that you wish to exclude from your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
   <img src="UG_Images/excludeModuleModulePrompt.png" alt="Exclude Command Module mode: ModuleName Prompt"/>
-  <br/>Figure <>. Example of Exclude Command Module mode: ModuleName Prompt
 </p>
 
 <p align="center">
   <img src="UG_Images/excludeModuleModuleFilled.png" alt="Exclude Command Module mode: ModuleName Filled"/>
-  <br/>Figure <>. Example of Exclude Command Module mode: ModuleName Filled
 </p>
 
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
   <img src="UG_Images/excludeModuleResult.png" alt="Exclude Command Module mode: Result"/>
-  <br/>Figure <>. Example of Exclude Command Module mode: Result
 </p>
 
 Example of ***`exclude chapter`***
@@ -785,38 +776,32 @@ Example of ***`exclude chapter`***
 
 <p align="center">
   <img src="UG_Images/excludeChapter.png" alt="Exclude Command Chapter mode: ChapterName Command"/>
-  <br/>Figure <>. Example of Exclude Command Chapter mode: ChapterName Command
 </p>
 
 * ***Step 2***: Key the **Module name** of the Module that contains Chapter that you wish to exclude from your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
   <img src="UG_Images/excludeChapterModulePrompt.png" alt="Exclude Command Module mode: ModuleName Prompt"/>
-  <br/>Figure <>. Example of Exclude Command Chapter mode: ModuleName Prompt
 </p>
 
 <p align="center">
   <img src="UG_Images/excludeChapterModuleFilled.png" alt="Exclude Command Module mode: ModuleName Filled"/>
-  <br/>Figure <>. Example of Exclude Command Chapter mode: ModuleName Filled
 </p>
 
 * ***Step 3***: Key the **Chapter name** that you wish to exclude from your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
   <img src="UG_Images/excludeChapterChapterPrompt.png" alt="Exclude Command Chapter mode: ChapterName Prompt"/>
-  <br/>Figure <>. Example of Exclude Command Chapter mode: ChapterName Prompt
 </p>
 
 <p align="center">
   <img src="UG_Images/excludeChapterChapterFilled.png" alt="Exclude Command Chapter mode: ChapterName Filled"/>
-  <br/>Figure <>. Example of Exclude Command Chapter mode: ChapterName Filled
 </p>
 
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
   <img src="UG_Images/excludeChapterResult.png" alt="Exclude Command Chapter mode: Result"/>
-  <br/>Figure <>. Example of Exclude Command Chapter mode: Result
 </p>
 
 
@@ -846,26 +831,22 @@ Example of ***`include module`***
 
 <p align="center">
   <img src="UG_Images/includeModule.png" alt="Include Command Module mode: ModuleName Command"/>
-  <br/>Figure <>. Example of Include Command Module mode: ModuleName Command
 </p>
 
 * ***Step 2***: Key the **Module name** that you wish to include back into your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
   <img src="UG_Images/includeModuleModulePrompt.png" alt="Include Command Module mode: ModuleName Prompt"/>
-  <br/>Figure <>. Example of Include Command Module mode: ModuleName Prompt
 </p>
 
 <p align="center">
   <img src="UG_Images/includeModuleModuleFilled.png" alt="Include Command Module mode: ModuleName Filled"/>
-  <br/>Figure <>. Example of Include Command Module mode: ModuleName Filled
 </p>
 
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
   <img src="UG_Images/includeModuleResult.png" alt="Include Command Module mode: Result"/>
-  <br/>Figure <>. Example of Include Command Module mode: Result
 </p>
 
 
@@ -874,38 +855,32 @@ Example of ***`exclude chapter`***
 
 <p align="center">
   <img src="UG_Images/includeChapter.png" alt="Include Command Chapter mode: ChapterName Command"/>
-  <br/>Figure <>. Example of Include Command Chapter mode: ChapterName Command
 </p>
 
 * ***Step 2***: Key the **Module name** of the Module that contains the Chapter that you wish to include back into your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
   <img src="UG_Images/includeChapterModulePrompt.png" alt="Include Command Chapter mode: ModuleName Prompt"/>
-  <br/>Figure <>. Example of Include Command Chapter mode: ModuleName Prompt
 </p>
 
 <p align="center">
   <img src="UG_Images/includeChapterModuleFilled.png" alt="Include Command Chapter mode: ModuleName Filled"/>
-  <br/>Figure <>. Example of Include Command Chapter mode: ModuleName Filled
 </p>
 
 * ***Step 3***: Key the **Chapter name** that you wish to include back into your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
   <img src="UG_Images/includeChapterChapterPrompt.png" alt="Include Command Chapter mode: ChapterName Prompt"/>
-  <br/>Figure <>. Example of Include Command Chapter mode: ChapterName Prompt
 </p>
 
 <p align="center">
   <img src="UG_Images/includeChapterChapterFilled.png" alt="Include Command Chapter mode: ChapterName Filled"/>
-  <br/>Figure <>. Example of Include Command Chapter mode: ChapterName Filled
 </p>
 
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
   <img src="UG_Images/includeChapterResult.png" alt="Include Command Chapter mode: Result"/>
-  <br/>Figure <>. Example of Include Command Chapter mode: Result
 </p>
 
 --------------------------------------------------------------------------------------------------------------------

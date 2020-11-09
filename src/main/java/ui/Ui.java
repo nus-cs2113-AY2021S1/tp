@@ -211,9 +211,10 @@ public class Ui {
 
     public void printDueByTodayMessage(int listSize, String commandType) {
         if (listSize == 0) {
-            showToUser("You have no tasks due today!");
+            showToUser("You have no chapters due today!");
             if (commandType.equals("due")) {
-                showToUser("Please use the \"preview\" command to view upcoming tasks or check back again tomorrow!");
+                showToUser("Please use the \"preview\" command to view the chapters that are due soon or check back "
+                        + "again tomorrow!");
             }
             return;
         }
@@ -231,7 +232,7 @@ public class Ui {
 
     public void printDueByIncrementMessage(int listSize, String incrementedDueBy) {
         if (listSize == 0) {
-            showToUser("You have no tasks due on " + incrementedDueBy + "!");
+            showToUser("You have no chapters due on " + incrementedDueBy + "!");
             return;
         }
         System.out.print("The chapter");
