@@ -15,6 +15,10 @@ import java.util.logging.Logger;
 import static common.Messages.CHAPTER;
 import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 
+//@@author neojiaern
+/**
+ * Removes a chapter from the module.
+ */
 public class RemoveChapterCommand extends RemoveCommand {
     private static Logger logger = KajiLog.getLogger(RemoveChapterCommand.class.getName());
 
@@ -28,12 +32,28 @@ public class RemoveChapterCommand extends RemoveCommand {
         this.removeIndex = removeIndex;
     }
 
+    /**
+     * Executes the RemoveChapterCommand by calling the relevant methods.
+     *
+     * @param ui ui which the command uses to print messages
+     * @param access access which the command uses to get the chapters
+     * @param storage storage which the command uses to load or write data to storage files
+     * @throws IOException if there is error in loading or writing data to storage files
+     */
     @Override
     public void execute(Ui ui, Access access, Storage storage) throws IOException {
         String result = removeChapter(access, storage);
         ui.showToUser(result);
     }
 
+    /**
+     * Removes a chapter from the module.
+     *
+     * @param access to get the list of chapter objects
+     * @param storage to remove chapter from storage
+     * @return result of removing the chapter
+     * @throws IOException if there is an error removing the chapter
+     */
     private String removeChapter(Access access, Storage storage) throws IOException {
         assert access.isModuleLevel() : "Not module level";
         try {

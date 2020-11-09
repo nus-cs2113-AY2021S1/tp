@@ -1,0 +1,31 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor COMMON_COLOR_T4
+skinparam classBackgroundColor COMMON_COLOR
+
+package common {
+    Class KajiLog
+    Class Message
+}
+
+package logic {
+    Class HiddenLogic #FFFFFF
+}
+
+package ui {
+    Class HiddenUi #FFFFFF
+}
+
+package model {
+    Class HiddenModel #FFFFFF
+}
+
+logic .left.> Message
+ui .up.> Message
+model .down.> Message
+logic .left.> KajiLog
+ui .up.> KajiLog
+model .down.> KajiLog
+
+@enduml

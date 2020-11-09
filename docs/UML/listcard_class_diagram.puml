@@ -1,0 +1,57 @@
+@startuml
+!include style.puml
+show member
+skinparam arrowThickness 1.1
+
+Class "{abstract}\nCommand" as Command LOGIC_COLOR {
+    + {abstract} execute(ui : Ui, access : Access, storage : Storage) : void
+}
+
+Class "{abstract}\nListCommand" as ListCommand LOGIC_COLOR {
+    + {abstract} execute(ui : Ui, access : Access, storage : Storage) : void
+}
+
+Class ListCardsCommand LOGIC_COLOR {
+    + execute(ui : Ui, access : Access, storage : Storage) : void
+    - ListCards(access : Access) : String
+}
+
+Class Access MODEL_COLOR {
+    + getChapter() : Chapter
+}
+
+Class Chapter MODEL_COLOR {
+    + getCards() : CardList
+
+}
+
+Class CardList MODEL_COLOR {
+    + getAllCards() : ArrayList<Card>
+    + getCardCount() : int
+}
+
+Class Card MODEL_COLOR {
+    - question : String
+    - answer : String
+}
+
+Class Ui UI_COLOR {
+    + showToUser(message : String) : void
+}
+
+ListCommand -up[LOGIC_COLOR_T4]-|> Command
+ListCardsCommand -up[LOGIC_COLOR_T4]-|> ListCommand
+
+ListCardsCommand .down[LOGIC_COLOR_T4].> Access
+ListCardsCommand .right[LOGIC_COLOR_T4].> Ui
+
+Access -left[MODEL_COLOR_T4]--> " 0..1 " Chapter
+
+Chapter *-left[MODEL_COLOR_T4]-> " 0..1 " CardList
+CardList *-up[MODEL_COLOR_T4]-> " * " Card
+
+ListCardsCommand .down[LOGIC_COLOR_T4].> Chapter
+ListCardsCommand .down[LOGIC_COLOR_T4].> CardList
+ListCardsCommand .left[LOGIC_COLOR_T4].> Card
+
+@enduml

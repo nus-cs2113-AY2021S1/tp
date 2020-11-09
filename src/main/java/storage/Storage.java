@@ -111,6 +111,12 @@ public class Storage {
         StorageWrite.saveChapterDeadline(dueBy, moduleName, chapterName, filePath);
     }
 
+    /**
+     * Deletes a directory recursively.
+     *
+     * @param directoryToBeDeleted file to be deleted
+     * @return boolean result of the deletion
+     */
     public boolean deleteDirectory(File directoryToBeDeleted) {
         return StorageWrite.deleteDirectory(directoryToBeDeleted);
     }
@@ -150,6 +156,13 @@ public class Storage {
         return StorageLoad.loadHistory(date);
     }
 
+    /**
+     * Removes the chapter due file from due folder after chapter is deleted.
+     *
+     * @param module name of module
+     * @param chapter name of chapter
+     * @return boolean result of deletion
+     */
     public boolean removeChapterFromDue(String module, String chapter) {
         return StorageWrite.removeChapterFromDue(module, chapter, filePath);
     }

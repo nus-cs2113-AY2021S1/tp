@@ -177,20 +177,22 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 ### 3.3. Model Component
 (Jiayi)
 
-The Model,
-
-* stores a Access object that holds temporary data for user's access level and contents of level being accessed.
-* stores a History object that saves revision history of current day.
-* stores a DueChapter object that manages due chapter data.
-* contains an Admin class that can be created and accessed by Access object. The Admin class contains a ModuleList object to manage data for modules.
-* contains a Module class that can be created and accessed by Access object. The Module class contains a ChapterList object to manage data for chapters.
-* contains a Chapter class that can be created and accessed by Access object. The Chapter class contains a CardList object to manage data for cards.
-* contains a Card object that can be created and accessed by CardList. A Card object represents a flashcard with question, answer and master level of revision.
+The Model component consists of the `Access`, `History`, `DueChapter`, `ModuleList`, `ChapterList` and `CardList` classes as shown in the class diagram below:
 
 <p align="center">
-  <img src="UML/model.png" width="800" alt="Architecture Diagram of Model"/>
+  <img src="UML/model.png" width="600" alt="Architecture Diagram of Model"/>
   <br/>Figure <>. Architecture Diagram of Model
 </p>
+
+The Model component
+* stores a `Access` object that holds temporary data for user's access level and contents of level being accessed.
+* stores a `History` object that saves revision history of current day.
+* stores a `DueChapter` object that manages due chapter data.
+* provides an `Admin` class that can be created and accessed by `Access` object. The `Admin` class contains a `ModuleList` object to manage data for modules.
+* provides a `Module` class that can be created and accessed by `Access` object. The `Module` class contains a `ChapterList` object to manage data for chapters.
+* provides a `Chapter` class that can be created and accessed by `Access` object. The `Chapter` class contains a `CardList` object to manage data for cards.
+* provides a `Card` object that can be created and accessed by `CardList`. A `Card` object represents a flashcard with question, answer and master level of revision.
+
 
 ### 3.4. Storage Component 
 (Lucas)
@@ -212,6 +214,18 @@ The Storage component
 
 
 ### 3.5. Common Classes
+(Jiayi)
+
+The Common component consists of `KajiLog` and `Messages` as shown in the class diagram below: 
+
+<p align="center">
+  <img src="UML/commonClass.png" width="600" alt="Common Class Diagram"/>
+  <br/>Figure <>. Class diagram of Common component  
+</p>
+
+The Common component
+* stores user visible messages.
+* generates a log for Kaji.
 
 ##### <a href="#top">Back to Top ^</a>
 
@@ -221,7 +235,13 @@ The Storage component
 This section will describe the significant details of how the features in **Kaji** are being implemented.
 
 ### 4.1. Admin Features
-[summary + scenario]
+This section will elaborate the available features to users at **Admin Level**. <br>
+At Admin Level, users are able to: <br>
+* Add module
+* List modules
+* Edit module name
+* Delete module
+* Access module
 
 #### 4.1.1. Add Module Feature
 (Jiayi)
@@ -279,6 +299,13 @@ For instance, the user wants to list all modules available in `admin`, a detaile
 * Step 1: The user is currently in `admin` level. 
 
 * Step 2: The user enters `list` command to list all modules in `admin` level. 
+
+The following diagram shows the class diagram of the list modules feature:
+
+<p align="center">
+  <img src="DG_Images/listmod_class_diagram.png" width="800" alt="List Modules Class Diagram"/>
+  <br/>Figure <>. Class diagram of list modules feature  
+</p>
 
 The following sequence diagram shows how the list modules feature works:
 
@@ -407,7 +434,15 @@ The following diagram shows how the add chapter command feature works:
 ##### <a href="#top">Back to Top ^</a>
 
 ### 4.2. Module Features
-[summary + scenario]
+This section will elaborate the available features to users at **Module Level**. <br>
+At Module Level, users are able to: <br>
+* Add chapter
+* List chapters
+* Edit chapter name
+* Delete chapter
+* Access chapter
+* Return to Admin Level
+
 
 #### 4.2.1. Add Chapter Feature
 (Jiayi)
@@ -466,6 +501,13 @@ For instance, the user wants to list all chapters available in `CS2113T` (module
 * Step 1: The user is currently in `CS2113T` level. 
 
 * Step 2: The user enters `list` command to list all chapters in `CS2113T` level. 
+
+The following diagram shows the class diagram of the list chapters feature:
+
+<p align="center">
+  <img src="DG_Images/listchap_class_diagram.png" width="800" alt="List Chapters Class Diagram"/>
+  <br/>Figure <>. Class diagram of list chapters feature  
+</p>
 
 The following sequence diagram shows how the list chapters feature works:
 
@@ -586,7 +628,14 @@ The following sequence Diagrams illustrates how the Return to Admin Level Featur
 ##### <a href="#top">Back to Top ^</a>
 
 ### 4.3. Chapter Features
-[summary + scenario]
+This section will elaborate the available features to users at **Chapter Level**. <br>
+At Chapter Level, users are able to: <br>
+* Add flashcard
+* List flashcards
+* Edit question and answer of a flashcard
+* Delete flashcard
+* Return to Module Level
+* Check overall revision performance
 
 #### 4.3.1. Add Flashcard Feature
 (Jane)
@@ -647,6 +696,13 @@ For instance, the user wants to list all flashcards available in `Chapter 1` (ch
 * Step 1: The user is currently in `Chapter 1` level. 
 
 * Step 2: The user enters `list` command to list all flashcards in `Chapter 1` level. 
+
+The following diagram shows the class diagram of the list flashcards feature:
+
+<p align="center">
+  <img src="DG_Images/listcard_class_diagram.png" width="800" alt="List Flashcards Class Diagram"/>
+  <br/>Figure <>. Class diagram of list flashcards feature  
+</p>
 
 The following sequence diagram shows how the list flashcards feature works:
 
@@ -1126,7 +1182,14 @@ Step 1: The user launches the application and is currently in the admin level.
 
 Step 2: The user executes `history` command to load and list the revision completed in the session/in a day.
 
-The following sequence diagram shows how the list chapters feature works:
+The following diagram shows the class diagram of the list revision history feature:
+
+<p align="center">
+  <img src="DG_Images/listhistory_class_diagram.png" width="800" alt="List Revision History Class Diagram"/>
+  <br/>Figure <>. Class diagram of list revision history feature  
+</p>
+
+The following sequence diagram shows how the list revision history feature works:
 
 <p align="center">
   <img src="UML/listhistory_seq_diagram.png" width="800" alt="Sequence Diagram of List Revision History"/>
@@ -1492,6 +1555,77 @@ There will only be changes to the rating after a revision session.
    Expected output: Similar to previous or a message stating how to use the command will be shown.
 
  (Jia Ern)
-    
+#### 5.6.10. Starting a revision session
+1. Starting a revision session
+    1. Prerequisites: At least one flashcard is in the chapter to be revised. Ensure that you are at the module level.
+    2. Test case: `revise 1` <br>
+       Expected output: A revision session will start on the first chapter in the module.
+    3. Other incorrect commands to try: `revise Chapter 1` (where chapter name instead of its index integer is provided)<br>
+       Expected output: An error message stating to specify chapter index in integer will be shown.
+       
+#### 5.6.11. Checking percentage of rating for the cards in a chapter
+1. Checking percentage of rating for the cards in a chapter
+    1. Prerequisites: At least one flashcard is in the chapter. Ensure that you are at the chapter level.
+    2. Test case: `showrate` <br>
+       Expected output: A list of the percentage for easy/medium/hard based on the number of cards will be shown.
+    3. Other incorrect commands to try: `showrate blah` (where extra arguments are added)<br>
+       Expected output: An error message stating that there should be no extra arguments will be shown.
+       
+#### 5.6.12. Listing all chapters that are due on current date
+1. Listing all chapters that are due on current date
+    1. Prerequisites: Launch Kaji successfully.
+    2. Test case: `due` <br>
+       Expected output: A list of chapters that are due on the current date will be shown. If no chapters are due, a message stating that no chapters are due for the day will be shown.
+    3. Other incorrect commands to try: `due blah` (where extra arguments are added)<br>
+       Expected output: An error message stating that there should be no extra arguments will be shown.
+       
+#### 5.6.13. Previewing list of chapters due in a week
+1. Previewing list of chapters due in a week
+    1. Prerequisites: Launch Kaji successfully.
+    2. Test case: `preview` <br>
+       Expected output: A list of chapters that are due in a week will be shown. If no chapters are due, every date will be accompanied by a message that no chapters are due.
+    3. Other incorrect commands to try: `preview blah` (where extra arguments are added) <br>
+       Expected output: An error message stating that there should be no extra arguments will be shown.
+
+#### 5.6.14. Viewing history of revision completed in a day
+1. Viewing history of revision completed in a day
+    1. Prerequisites: Launch Kaji successfully.
+    2. Test case: `history` <br>
+       Expected output: Lists the module and chapter which you have completed revision for. If no revision was done on the day, a message stating that no revision for that session will be shown.
+    3. Test case: `history 2020-11-09`
+       Expected output: List the module and chapter which you have completed revision for on 2020-11-09. If no revision was done on the day, a message stating that no revision for that session will be shown.
+    4. Other incorrect commands to try: `history blah` (where the argument is not in the correct date format) <br>
+       Expected output: An error message stating that the date should be in `yyyy-MM-dd` format will be shown.
+       
+#### 5.6.15. Excluding a module/chapter
+1. Excluding a module
+    1. Prerequisites: Launch Kaji successfully. The module you want to exclude should exist.
+    2. Test case: `exclude module` <br>
+       Expected output: A prompt for which module to be excluded will be shown and you can enter an existing module which you want to exclude.
+    3. Other incorrect commands to try: `exclude blah` (where the argument is not module/chapter)
+       Expected output: An error message stating that only module/chapter should be specified will be shown.
+
+2. Excluding a chapter
+    1. Prerequisites: Launch Kaji successfully. The chapter you want to exclude should exist.
+    2. Test case: `exclude chapter` <br>
+       Expected output: A prompt for which chapter to be excluded will be shown and you can enter an existing chapter which you want to exclude.
+    3. Other incorrect commands to try: `exclude blah` (where the argument is not module/chapter)
+       Expected output: An error message stating that only module/chapter should be specified will be shown.
+       
+#### 5.6.16. Including a module/chapter
+1. Including a module
+    1. Prerequisites: Launch Kaji successfully. The module you want to include should exist.
+    2. Test case: `include module` <br>
+       Expected output: A prompt for which module to be included will be shown and you can enter an existing module which you want to include.
+    3. Other incorrect commands to try: `include blah` (where the argument is not module/chapter)
+       Expected output: An error message stating that only module/chapter should be specified will be shown.
+       
+2. Including a chapter
+    1. Prerequisites: Launch Kaji successfully. The chapter you want to include should exist.
+    2. Test case: `include chapter` <br>
+       Expected output: A prompt for which chapter to be included will be shown and you can enter an existing chapter which you want to include.
+    3. Other incorrect commands to try: `include blah` (where the argument is not module/chapter)
+       Expected output: An error message stating that only module/chapter should be specified will be shown.
+           
 ##### <a href="#top">Back to Top ^</a>
 --------------------------------------------------------------------------------------------------------------------

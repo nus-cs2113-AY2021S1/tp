@@ -17,8 +17,20 @@ import static common.Messages.MESSAGE_NON_INTEGER;
 import static common.Messages.MODULE;
 
 //@@author neojiaern
+/**
+ * Parses input arguments and creates a new RemoveModuleCommand, RemoveChapterCommand or RemoveCardCommand object.
+ */
 public class RemoveCommandParser {
 
+    /**
+     * Parses the given arguments in the context of the RemoveCommand.
+     *
+     * @param commandArgs input arguments of the command
+     * @param accessLevel access level of the user
+     * @return a RemoveModuleCommand, RemoveChapterCommand or RemoveCardCommand object based on the access level
+     * @throws InvalidInputException if the user input is not of the expected format
+     * @throws IncorrectAccessLevelException if the command cannot be executed at the access level
+     */
     public Command parse(String commandArgs, String accessLevel)
             throws InvalidInputException, IncorrectAccessLevelException {
         int removeIndex;
