@@ -57,7 +57,7 @@
 
 **Welcome to AniChan!**
 
-**AniChan** is a free desktop command-line application aimed to improve the efficiency of anime translators. With AniChan, translators could manage and plan their time more effectively by identifying the time needed to translate a script. Moreover, **AniChan** comes with management features such as workspace, watchlist and bookmark that can help them stay organized and focused on their work.
+**AniChan** is a free desktop command-line application aimed to improve the efficiency of anime translators. With **AniChan**, translators could manage and plan their time more effectively by identifying the time needed to translate a script. Moreover, **AniChan** comes with management features such as workspace, watchlist and bookmark that can help them stay organized and focused on their work.
 
 **AniChan** is written in **Java 11** and uses the Object-Oriented Programming (OOP) paradigm which provides us with means to structure a software program into organized and reusable pieces of codes, making it more efficient for future improvements and revisions.
 
@@ -178,7 +178,7 @@ The rest of **AniChan** consists of 6 components:
 
 Below are some example sequence diagrams to help illustrate the general program flow and how the different objects interact with each other.
 
-The first sequence diagram below shows the program flow of starting AniChan as an existing user.
+The first sequence diagram below shows the program flow of starting **AniChan** as an existing user.
 ![Starting Sequence Diagram](images/Starting-Sequence-Diagram.png) <br/>
 *Figure 2: Starting Up Sequence Diagram*
 
@@ -1217,8 +1217,8 @@ If you wish to add new checks, simply add the check file with a filename `check-
 3.  Enter the command `java -jar AniChan.jar` to launch **AniChan**.
 4.  Program will prompt for `Name` and `Gender` of user, thereafter **AniChan** will be ready for use.
 
-> :bulb: AniChan's Input Prompt: 
-> <br/> <br/> ![AniChan's Input Prompt](images/AniChan-Input-Prompt.png) <br/> *Figure 36: AniChan's Input Prompt*
+> :bulb: **AniChan**'s Input Prompt: 
+> <br/> <br/> ![AniChan's Input Prompt](images/AniChan-Input-Prompt.png) <br/> *Figure 36: **AniChan**'s Input Prompt*
 
 #### Shutdown
 
