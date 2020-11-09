@@ -1,13 +1,14 @@
 package seedu.financeit.utils.storage;
 
+import seedu.financeit.common.Common;
 import seedu.financeit.datatrackers.recurringtracker.RecurringEntry;
 import seedu.financeit.datatrackers.recurringtracker.RecurringEntryList;
 import seedu.financeit.datatrackers.recurringtracker.RecurringTracker;
 import seedu.financeit.parser.InputParser;
+import seedu.financeit.ui.UiManager;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 //@@author Feudalord
@@ -62,7 +63,9 @@ public class RecurringTrackerSaver extends SaveHandler {
             fileWriter.write(String.valueOf(saveString));
             fileWriter.close();
         } catch (Exception e) {
-            System.out.println("Recurring Tracker dynamic save failed");
+
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
+                    "Recurring Tracker dynamic save failed: " + e);
             e.printStackTrace();
         }
     }
@@ -113,12 +116,14 @@ public class RecurringTrackerSaver extends SaveHandler {
                     }
                     RecurringTracker.loadEntry(InputParser.getInstance().parseInput(inputString));
                 } catch (Exception e) {
-                    System.out.println("saveAt.txt line " + line + " failed to load");
+                    UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
+                            "saveAt.txt line " + line + " failed to load: " + e);
                     e.printStackTrace();
                 }
             }
         } catch (Exception e) {
-            System.out.println("Recurring Tracker load failed");
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
+                    "Recurring Tracker load failed: " + e);
             e.printStackTrace();
         }
     }

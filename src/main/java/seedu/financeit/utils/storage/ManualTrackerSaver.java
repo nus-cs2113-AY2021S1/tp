@@ -13,7 +13,6 @@ import seedu.financeit.ui.UiManager;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 //@@author Feudalord
@@ -74,7 +73,8 @@ public class ManualTrackerSaver extends SaveHandler {
             fileWriter.write(String.valueOf(saveString));
             fileWriter.close();
         } catch (Exception e) {
-            System.out.println("Manual Tracker dynamic save failed");
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
+                    "Manual Tracker dynamic save failed: " + e);
             e.printStackTrace();
         }
     }
@@ -133,12 +133,14 @@ public class ManualTrackerSaver extends SaveHandler {
                         break;
                     }
                 } catch (Exception e) {
-                    System.out.println("saveMt.txt line " + line + " failed to load");
+                    UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
+                            "saveMt.txt line " + line + " failed to load: " + e);
                     e.printStackTrace();
                 }
             }
         } catch (Exception e) {
-            System.out.println("Manual Tracker load failed");
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
+                    "Manual Tracker load failed: " + e);
             e.printStackTrace();
         }
     }

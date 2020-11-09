@@ -1,12 +1,13 @@
 package seedu.financeit.utils.storage;
 
+import seedu.financeit.common.Common;
 import seedu.financeit.data.Goal;
 import seedu.financeit.datatrackers.goaltracker.GoalTracker;
 import seedu.financeit.datatrackers.goaltracker.TotalGoalList;
+import seedu.financeit.ui.UiManager;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 //@@author Feudalord
@@ -67,7 +68,8 @@ public class GoalTrackerSaver extends SaveHandler {
             fileWriter.write(String.valueOf(saveString));
             fileWriter.close();
         } catch (Exception e) {
-            System.out.println("Goal Tracker dynamic save failed");
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
+                    "Goal Tracker dynamic save failed: " + e);
             e.printStackTrace();
         }
     }
@@ -95,12 +97,14 @@ public class GoalTrackerSaver extends SaveHandler {
                     classContents = saveString.split(";");
                     GoalTracker.setGoals(classContents[1], classContents[0], classContents[2]);
                 } catch (Exception e) {
-                    System.out.println("saveGt.txt line " + line + " failed to load");
+                    UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
+                            "saveGt.txt line " + line + " failed to load: " + e);
                     e.printStackTrace();
                 }
             }
         } catch (Exception e) {
-            System.out.println("Goal Tracker load failed");
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
+                    "Goal Tracker load failed: " + e);
             e.printStackTrace();
         }
     }
