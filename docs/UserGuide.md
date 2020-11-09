@@ -49,7 +49,7 @@ This user guide covers the following:
 Nav@NUS sets up and runs on the CLI. As the CLI is not commonly used, it can seem daunting to users. 
 To give you a better experience, this section will introduce you to the CLI.
 
-Orientate yourself to the command line interface. As seen in the figure below, the red arrow points to
+Orientate yourself to the command line interface. As seen in each figure below, the red arrow points to
 where you have to type in commands.<br>
 
 For computers running the Windows OS, the red arrow points to where you have to type in commands. 
