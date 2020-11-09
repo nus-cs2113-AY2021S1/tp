@@ -1,6 +1,7 @@
 package command;
 
 import eventlist.EventList;
+import exception.DoneBeforeEndException;
 import exception.UndefinedEventException;
 import exception.WritingFileException;
 import locationlist.BusStopList;
@@ -35,7 +36,7 @@ public class DoneCommand extends Command {
     @Override
     public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage,
                         UserInfo userInfo)
-            throws UndefinedEventException, WritingFileException {
+            throws UndefinedEventException, WritingFileException, DoneBeforeEndException {
         if (eventIndex <= -1 || eventIndex >= events.getSize()) {
             throw new UndefinedEventException(eventIndex + 1);
         }
