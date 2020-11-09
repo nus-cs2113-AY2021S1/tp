@@ -9,6 +9,8 @@ Welcome to Nav@NUS application's user guide! <br><br>
 The purpose of this user guide is to provide you with all the necessary information to use this application to navigate
 around NUS campus via the school's shuttle service.<br>
 
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 
 - [1. Overview](#1-overview)
@@ -43,6 +45,8 @@ around NUS campus via the school's shuttle service.<br>
 - [4. FAQ](#4-faq)
 - [5. Command Summary](#5-command-summary)
 - [6. Glossary - Wamika](#6-glossary---wamika)
+
+<div style="page-break-after: always;"></div>
 
 ## 1. Overview
 ### 1.1 What is Nav@NUS?
