@@ -408,4 +408,41 @@ user -h
 user -d abc
 user ??
 workspace -l
+workspace -n abc
+workspace -n abc2
+workspace -n abc3
+workspace -n abc4
+workspace -n abc5
+workspace -n abc6
+workspace -n abc7
+workspace -n abc8
+workspace -l
+workspace -d abc
+workspace -l
+workspace -d abc 
+workspace -d abc 2
+workspace -l
+workspace -d abc2 
+workspace -d abc2  
+workspace -d abc2
+workspace -l
+workspace -s abc3
+workspace -d abc3
+workspace -d abc3 
+workspace -d abc3  
+workspace -d  abc3
+workspace -d  abc3 
+workspace -d abc3
+workspace -s abc3
+workspace -d abc3
+workspace -n abc3
+workspace -d abc3
+workspace -s abc3
+workspace -d abc3
+workspace -d abc4
+workspace -d abc5
+workspace -d abc6
+workspace -l
+workspace -s abc4
+workspace -l
 exit
