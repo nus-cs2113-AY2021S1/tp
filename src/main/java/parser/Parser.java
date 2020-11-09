@@ -96,9 +96,9 @@ public class Parser {
         case AddCommand.invoker:
             return new AddCommand(printer, cheatSheetList, editor);
         case ClearCommand.invoker:
-            return new ClearCommand(printer, cheatSheetList, fileDestroyer, fileReader);
+            return new ClearCommand(printer, cheatSheetList, fileDestroyer, fileReader, ui);
         case DeleteCommand.invoker:
-            return new DeleteCommand(printer, cheatSheetList, fileDestroyer);
+            return new DeleteCommand(printer, cheatSheetList, fileDestroyer, ui);
         case EditCommand.invoker:
             return new EditCommand(printer, cheatSheetList, editor);
         case ExitCommand.invoker:

@@ -1,7 +1,6 @@
 package command;
 
 import cheatsheet.CheatSheetList;
-import storage.DataFile;
 import storage.DataFileDestroyer;
 import storage.DataFileReader;
 import ui.Printer;
@@ -13,6 +12,7 @@ import ui.Ui;
 public class ClearCommand extends Command {
     protected DataFileDestroyer fileDestroyer;
     protected DataFileReader fileReader;
+    protected Ui ui;
 
     public static final String invoker = "/clear";
 
@@ -25,11 +25,12 @@ public class ClearCommand extends Command {
      * @param fileDestroyer  The fileDestroyer object removes cheat sheet file from the /data folder
      */
     public ClearCommand(Printer printer, CheatSheetList cheatSheetList, DataFileDestroyer fileDestroyer,
-                       DataFileReader fileReader) {
+                       DataFileReader fileReader, Ui ui) {
         super(printer);
         this.cheatSheetList = cheatSheetList;
         this.fileDestroyer = fileDestroyer;
         this.fileReader = fileReader;
+        this.ui = ui;
     }
 
     /**
@@ -60,7 +61,7 @@ public class ClearCommand extends Command {
      * @return      true if the user has confirmed correctly else false
      */
     private boolean isClearConfirmed() {
-        String userAnswer = new Ui().getUserInput();
+        String userAnswer = ui.getUserInput();
         userAnswer = userAnswer.toLowerCase();
         return userAnswer.equals("yes") || userAnswer.equals("y");
     }

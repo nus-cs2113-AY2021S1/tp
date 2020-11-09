@@ -13,6 +13,8 @@ import ui.Ui;
  */
 public class DeleteCommand extends FinderCommand {
     protected DataFileDestroyer fileDestroyer;
+    protected Ui ui;
+
     public static final String invoker = "/delete";
 
     /**
@@ -23,9 +25,10 @@ public class DeleteCommand extends FinderCommand {
      * @param cheatSheetList The current list of cheatsheets
      * @param fileDestroyer  The DataFileDestroyer object to remove the cheat sheet from the /data folder
      */
-    public DeleteCommand(Printer printer, CheatSheetList cheatSheetList, DataFileDestroyer fileDestroyer) {
+    public DeleteCommand(Printer printer, CheatSheetList cheatSheetList, DataFileDestroyer fileDestroyer, Ui ui) {
         super(printer, cheatSheetList);
         this.fileDestroyer = fileDestroyer;
+        this.ui = ui;
 
         flagsToDescriptions.put(CommandFlag.NAME, null);
         flagsToDescriptions.put(CommandFlag.INDEX, null);
@@ -60,7 +63,7 @@ public class DeleteCommand extends FinderCommand {
      * @return      true if the user has confirmed correctly else false
      */
     private boolean isDeleteConfirmed() {
-        String userAnswer = new Ui().getUserInput();
+        String userAnswer = ui.getUserInput();
         userAnswer = userAnswer.toLowerCase();
         return userAnswer.equals("yes") || userAnswer.equals("y");
     }
