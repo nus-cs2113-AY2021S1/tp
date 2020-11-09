@@ -786,20 +786,26 @@ Hence, Zoomaster helps to organise students’ Zoom links for easy access to the
 
 <a name="appendix-e-advanced"></a>
 **Advanced**
-1. Testing global commands (`mode`, `help`, `clear`, `exit`)
+1. Testing global commands (`mode`, `help`, `clear`, `showsettings`, `set`, `exit`)
     1. Test `mode` command. Enter `mode bookmark` to enter bookmark mode, you should see the message "Changing to bookmark mode". <br>
     Enter `mode timetable` to enter bookmark mode, you should see the message "Changing to timetable mode". <br>
     Enter `mode planner` to enter bookmark mode, you should see the message "Changing to planner mode". <br>
     2. Test `help` command. In bookmark mode, enter `help`, you should see message "Available inputs in Bookmark mode are" and the list available commands.
     Then, enter `help add`, you should see message "Adds a bookmark to the bookmark list URL must start with www or https:// or http:// Format: add {description} {URL}".
     3. Test `clear`. Enter `clear`, you should see your screen is cleared.
-    4. Test `exit`. Enter `Exit`, you should see message "Bye. Hope to see you again soon!" and the program is terminated.
+    4. Test `showsetings`. Enter `showsettings`, you should see two settings in a list.
+    5. Test `set`. Enter `set def_mode timetable`, you should see that the default mode is now `timetable`.
+    6. Test `exit`. Enter `Exit`, you should see message "Bye. Hope to see you again soon!" and the program is terminated.
+    7. Run the jar file again, the program should be in `timetable`.
     
-2. Testing bookmark commands (`add`, `show`, `delete`, `find`, `launch`)
+2. Testing bookmark commands (`add`, `show`, `delete`, `find`, `edit`, `launch`)
     1. Test `add`. Enter `add google www.google.com`, you should see message "Added bookmark: [google] www.google.com".
     2. Test `show`. Enter `show`, if you did not add any other bookmark except that of step 1, you should see message
     "Here are the bookmarks in your list: 1.[google] www.google.com".
     3. Test `find`. Enter `find google`, you should see message "Here are your matching bookmarks 1.[google] www.google.com". 
+    4. Test `edit`. 
+    Enter `edit desc 1 search`, and then type `show` and you should see that the description is now `[search]`.
+    Enter `edit url 1 www.bing.com`, and then type `show` and you should see that the URL is now `www.bing.com`.
     4. Test `delete`. Enter `delete 1`, you should see message "I've deleted this bookmark!: [google] www.google.com".
     5. Test `launch`. Re-add bookmark from step 1 and enter `launch 1`, you should see www.google.com launched in your browser.
     
