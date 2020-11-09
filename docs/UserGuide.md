@@ -775,7 +775,7 @@ In the folder where **AniChan** is launched, there will be a `data` folder which
 
 | Feature                                      | Command                                                 |
 | -------------------------------------------- | ------------------------------------------------------- |
-| Help                                         | `help`                                                  |
+| Help                                         | `help [COMMAND_TYPE]`                                                  |
 | Estimate time needed to translate the script | `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`     |
 | Browse                                       | `browse [-s SORT_OPTION] [-p PAGE_NO.] [-o SORT_ORDER]` |
 | Search by title                              | `search -n <SEARCH_TERM>`                               |
