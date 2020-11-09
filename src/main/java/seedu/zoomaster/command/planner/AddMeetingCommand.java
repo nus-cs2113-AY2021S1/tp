@@ -78,7 +78,7 @@ public class AddMeetingCommand extends AddSlotCommand {
                 message +=  "  " + lesson + " slot added\n";
                 message += checkForAndAddBookmarkToSlot(slotAndBookmark, lesson, newSlot);
             } else {
-                message +=  "  " + "This slot is already filled." + System.lineSeparator();
+                message +=  "  " + "This slot is already filled." + Ui.NEW_LINE;
             }
         }
         return message;

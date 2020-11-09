@@ -9,6 +9,9 @@ import seedu.zoomaster.exception.ZoomasterExceptionType;
 import seedu.zoomaster.slot.Timetable;
 
 //@@author Speedweener
+/**
+ * Represents the command to delete a bookmark from the bookmark list.
+ */
 public class DeleteBookmarkCommand extends Command {
     public static final String DEL_KW = "delete";
     private final int index;
@@ -20,7 +23,7 @@ public class DeleteBookmarkCommand extends Command {
      * @throws ZoomasterException thrown if input command is invalid or if the bookmark number is invalid.
      */
     public DeleteBookmarkCommand(String command) throws ZoomasterException {
-        assert command.startsWith(DEL_KW) : "input should always start with \"del\"";
+        assert command.startsWith(DEL_KW) : "input should always start with \"delete\"";
         String details = command.substring(DEL_KW.length());
         if (details.isBlank()) {
             throw new ZoomasterException(ZoomasterExceptionType.EMPTY_COMMAND, DEL_KW);

@@ -42,7 +42,7 @@ public class LaunchModuleAndSlotBookmark extends Command {
         Module module;
         String message;
         if (!timetable.moduleExists(moduleCode)) {
-            message = "module does not exist" + System.lineSeparator();
+            message = "module does not exist" + Ui.NEW_LINE;
         } else {
             module = timetable.getModule(moduleCode);
             if (slotIndex == null) {

@@ -109,7 +109,7 @@ public class Storage<T> {
         try {
             ArrayList<File> listOfFiles = getFiles();
             StringBuilder fileAsString = new StringBuilder();
-            String opening = "{" + System.lineSeparator() + "  \"modules\": [";
+            String opening = "{" + Ui.NEW_LINE + "  \"modules\": [";
             fileAsString.append(opening);
             for (File f : listOfFiles) {
                 try {
@@ -126,8 +126,8 @@ public class Storage<T> {
                 }
             }
             fileAsString.delete(fileAsString.length() - 1, fileAsString.length());
-            String closing = System.lineSeparator() + "  ]" + System.lineSeparator() + "}";
-            fileAsString.append(closing).append(System.lineSeparator());
+            String closing = Ui.NEW_LINE + "  ]" + Ui.NEW_LINE + "}";
+            fileAsString.append(closing).append(Ui.NEW_LINE);
 
             if (!fileAsString.toString().equals("null")) {
                 Gson gson = new Gson();
@@ -315,7 +315,7 @@ public class Storage<T> {
 
         FileWriter fw = new FileWriter(moduleListPath, false);
         for (String str: moduleList) {
-            fw.write(str + System.lineSeparator());
+            fw.write(str + Ui.NEW_LINE);
         }
         fw.close();
     }
