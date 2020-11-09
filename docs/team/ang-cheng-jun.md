@@ -49,7 +49,8 @@ in the user stories.
 
  
 I also write and design the Sequence Diagram for ListCommand, HelpCommand, InvalidCommand and ExitCommand. All the information and design 
-follow the textbook standard provided to us. You can refer to the Appendix 1 to see my contributions to DeveloperGuide or the link below to view the DeveloperGuide.
+follow the textbook standard provided to us. And also, I did the Test Cases for list command which is in the Appendix E. You can refer to the Appendix 1 to see my contributions to DeveloperGuide 
+or the link below to view the DeveloperGuide.
 
 * [DeveloperGuide](https://ay2021s1-cs2113-t14-1.github.io/tp/DeveloperGuide.html)
 
