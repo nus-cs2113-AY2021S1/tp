@@ -298,6 +298,7 @@ Use case ends.
 ## Glossary
 
 
+<!--@@author mhchan163 -->
 ## Instructions for manual testing
 
 ### Launch and Shutdown
@@ -417,3 +418,5 @@ After adding some tasks to the list, exit the program using the “bye” comman
 Reopen the program using the jar file and list all tasks using the list command.
 Expected: All pre-existing tasks before the most recent program exit 
 should be displayed in the list.
+
+<!--@@author-->
