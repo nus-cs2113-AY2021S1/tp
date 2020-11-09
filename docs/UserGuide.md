@@ -461,7 +461,7 @@ The timetable mode intends to address these issues, helping you keep track of yo
 purposeful productivity.
 
 >**Warning:**
->* Do not try to edit the data file for the timetable if you are unsure. Doing so may result in the application not able to
+>* Do not try to edit the data file for the timetable if you are unsure. Doing so may result in the application not being able to
 >retrieved the saved data, hence deem the data file corrupted and request to format the data file before you can use the timetable 
 >feature again.
 
@@ -477,6 +477,8 @@ This section contains 10 commands to navigate the Timetable mode:
 * [2.9. Deleting a class](#29-deleting-a-class-delete-class-index)
 * [2.10 Removing all past events](#210-removing-all-past-event-clean-up)
 
+<div style="page-break-after: always;"></div>
+
 ### 2.1 Entering timetable mode: `cd 3` / `cd timetable`
 
 If you find it difficult to make plans due to uncertainties in your schedule, this timetable mode presents your upcoming
@@ -488,16 +490,18 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_1](Images/TimetableUG/Timetable_2_1.png)
+![Timetable_2_1](Images/TimetableUG/Timetable_2_1.png){:height="80%" width="80%"}
 
 >**Useful information:**
 >* You can use this command from any mode to access the timetable mode easily and quickly!
+
+<div style="page-break-after: always;"></div>
 
 ### 2.2 Adding classes: `add class`
 
 If you find it hard to keep track of all your Zoom links with an increasing number of online classes, you can now
 arrange your classes in a systematic manner with this feature. Make sure you are currently in the timetable mode
-(refer to 2.1).
+([refer to 2.1](#21-entering-timetable-mode-cd-3--cd-timetable)).
 
 Instruction:
 
@@ -506,21 +510,26 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_2](Images/TimetableUG/Timetable_2_2.png)
+![Timetable_2_2](Images/TimetableUG/Timetable_2_2.png){:height="80%" width="80%"}
 
 >**Useful Information:**
+>* The module code will accept any input between 1-7 characters.
 >* You can enter the time in both 12hr and 24hr format. Only entering am/pm at the back of the duration will be assumed 
 >as both starting and ending time are in the same period.
+
+<div style="page-break-after: always;"></div>
 
 If you encounter any errors, take note of the following warning.
 
 >**Warning:**
 >* Ensure that you follow the format for answering the questions.
 >Error will be shown if the questions are not answered in a suitable format.
->* Adding event that clash with the existing schedule will result in error message. You will need to check through 
+>* Adding events that clash with the existing schedule will result in error message. You will need to check through 
 >the schedule and events list and delete the unwanted event accordingly before you can add the new event.
->* Number of recurring classes are capped at 52 weeks (1year) to ensure effective processing time. Add your class again one year
->later if your class recur for more than a year.
+>* Number of recurring classes are capped at 52 weeks (1 year) to ensure effective processing time. Add your class again one year
+>later if your class recurs for more than a year.
+
+<div style="page-break-after: always;"></div>
 
 ### 2.3 Adding activities: `add activity`
 
@@ -534,11 +543,13 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_3](Images/TimetableUG/Timetable_2_3.png)
+![Timetable_2_3](Images/TimetableUG/Timetable_2_3.png){:height="80%" width="80%"}
 
 >**Useful Information:** 
->* Currently this feature does not support adding activity past 12am if you wish to schedule an activity overnight, 
+>* Currently this feature does not support adding activity past 12am. If you wish to schedule an activity overnight, 
 >add the activity in 2 separate sessions.
+>
+<div style="page-break-after: always;"></div>
 
 ### 2.4 Showing links: `show link`
 
@@ -550,7 +561,9 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_4](Images/TimetableUG/Timetable_2_4.png)
+![Timetable_2_4](Images/TimetableUG/Timetable_2_4.png){:height="80%" width="80%"}
+
+<div style="page-break-after: always;"></div>
 
 ### 2.5 Showing schedule: `show schedule`
 
@@ -561,7 +574,9 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_5](Images/TimetableUG/Timetable_2_5.png)
+![Timetable_2_5](Images/TimetableUG/Timetable_2_5.png){:height="80%" width="80%"}
+
+<div style="page-break-after: always;"></div>
 
 ### 2.6 Showing Activities list: `list activity`
 
@@ -574,23 +589,25 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_6](Images/TimetableUG/Timetable_2_6.png)
+![Timetable_2_6](Images/TimetableUG/Timetable_2_6.png){:height="80%" width="80%"}
 
 ### 2.7 Showing Class list: `list class`
 
-If you think searching through the time table is too troublesome,
-use this command to see all the classes you have added and other detail of the classes similar to the previous feature.
+If you think searching through the timetable is too troublesome,
+use this command to see all the classes you have added and other details of the classes, similar to the previous feature.
 
 Instruction:
 1. `list class`
 
 Expected output:
 
-![Timetable_2_7](Images/TimetableUG/Timetable_2_7.png)
+![Timetable_2_7](Images/TimetableUG/Timetable_2_7.png){:height="80%" width="80%"}
+
+<div style="page-break-after: always;"></div>
 
 ### 2.8 Deleting an activity: `delete activity INDEX`
 
-If you have accidentally added a wrong activity, or an activity you have added got canceled,
+If you have accidentally added a wrong activity, or an activity you have added has been cancelled,
 use this command to delete an activity with corresponding index according to the activities list ([refer to 2.6](#26-showing-activities-list-list-activity)).
 
 Instruction:
@@ -602,7 +619,7 @@ Example of usage:
 
 Expected output:
 
-![Timetable_2_8](Images/TimetableUG/Timetable_2_8.png)
+![Timetable_2_8](Images/TimetableUG/Timetable_2_8.png){:height="80%" width="80%"}
 
 ### 2.9 Deleting a class: `delete class INDEX`
 
@@ -618,10 +635,12 @@ Example of usage:
 
 Expected output:
 
-![Timetable_2_9](Images/TimetableUG/Timetable_2_9.png)
+![Timetable_2_9](Images/TimetableUG/Timetable_2_9.png){:height="80%" width="80%"}
 
 >**Warning:**
 >* Deleting a class will delete all the lessons of that module on schedule. Use this command with caution. 
+
+<div style="page-break-after: always;"></div>
 
 ### 2.10 Removing all past events: `clean up`
 
@@ -634,7 +653,7 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_10](Images/TimetableUG/Timetable_2_10.png)
+![Timetable_2_10](Images/TimetableUG/Timetable_2_10.png){:height="80%" width="80%"}
 
 >**Warning:**
 >* Deletion will be done automatically. All the events that are deleted will not be able to be retrieved. 
@@ -900,16 +919,18 @@ Instruction:
 
 Expected output:
 
-![Flashcard_4_1](Images/FlashcardUG/Flashcard_4_1.png)
+![Flashcard_4_1](Images/FlashcardUG/Flashcard_4_1.png){:height="80%" width="80%"}
 
 >**Useful information:**
 >* You can use this command from any mode to access the flashcard mode easily and quickly!
+
+<div style="page-break-after: always;"></div>
 
 ### 4.2 Adding flashcards: `add`
 
 To assist you in your studies, there needs to be a knowledge base of content to be revised.
 You can do this by adding new flashcards to the flashcard deck with this command, after entering flashcard mode
-(refer to 4.1).
+([refer to 4.1](#41-entering-flashcard-mode-cd-5--cd-flashcard)).
 
 Instruction:
 1. `add`
@@ -921,7 +942,7 @@ Example of usage:
 
 Expected output:
 
-![Flashcard_4_2](Images/FlashcardUG/Flashcard_4_2.png)
+![Flashcard_4_2](Images/FlashcardUG/Flashcard_4_2.png){:height="65%" width="65%"}
 
 If you encounter any errors, take note of the following warning.
 
@@ -929,8 +950,9 @@ If you encounter any errors, take note of the following warning.
 >* “back” and "show answer" cannot be added as an answer for the flashcard.
 >This is because “back” and "show answer" are used as commands to exit and reveal the answer in the test mode
 >respectively.
->If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
->![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png)
+>If the flashcard answer you wish to use is similar to “back” or "show answer", rephrase and use another term.
+>
+>![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png){:height="60%" width="60%"}
 
 ### 4.3 Listing flashcards: `list`
 
@@ -942,7 +964,9 @@ Instruction:
 
 Expected output:
 
-![Flashcard_4_3](Images/FlashcardUG/Flashcard_4_3.png)
+![Flashcard_4_3](Images/FlashcardUG/Flashcard_4_3.png){:height="80%" width="80%"}
+
+<div style="page-break-after: always;"></div>
 
 ### 4.4 Deleting flashcards: `delete`
 
@@ -959,10 +983,12 @@ Example of usage:
 
 Expected output:
 
-![Flashcard_4_4](Images/FlashcardUG/Flashcard_4_4.png)
+![Flashcard_4_4](Images/FlashcardUG/Flashcard_4_4.png){:height="80%" width="80%"}
 
 >**Useful information:**
 >* You can use the `list` command to check the card index.
+
+<div style="page-break-after: always;"></div>
 
 ### 4.5 Testing content:`test`
 
@@ -979,11 +1005,13 @@ Instruction:
 
 Expected output:
 
-![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png)
+![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png){:height="60%" width="60%"}
 
 >**Useful information:**
 >* User input in the test mode is not case sensitive. If the answer is correct but the case is different from
 >the stored answer, the answer will be accepted as the right answer.
+
+<div style="page-break-after: always;"></div>
 
 ### 4.6 Finding relevant flashcards: `find`
 
@@ -995,7 +1023,7 @@ Instruction:
 
 Expected output:
 
-![Flashcard_4_6](Images/FlashcardUG/Flashcard_4_6.png)
+![Flashcard_4_6](Images/FlashcardUG/Flashcard_4_6.png){:height="80%" width="80%"}
 
 <div style="page-break-after: always;"></div>
 
@@ -1009,7 +1037,7 @@ and copy it over to the directory in the new computer accordingly after installi
 
 **Q**: Why is my application not starting up properly?
 
-**A**: Please refer to the "Getting Started" section and ensure that 
+**A**: Please refer to the ["Getting Started"](#getting-started) section and ensure that 
 the correct version of java is installed on your computer. If you face any further difficulties, 
 feel free to refer to the About Us page and contact any of the developers.
 
