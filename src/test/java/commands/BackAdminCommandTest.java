@@ -2,8 +2,7 @@ package commands;
 
 import access.Access;
 import manager.admin.Admin;
-import manager.chapter.Chapter;
-import manager.module.ChapterList;
+import manager.admin.ModuleList;
 import manager.module.Module;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,20 +16,16 @@ import java.io.IOException;
 import java.io.PrintStream;
 
 import static common.Messages.MESSAGE_ITEM_EXISTED;
+import static common.Messages.MODULE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class GoChapterCommandTest {
-    public static final String MESSAGE_SUCCESS_EMPTY_CHAPTER = "This is a new chapter, "
-            + "you can try to add flashcards inside!";
-    public static final String MESSAGE_INVALID_INDEX = "The chapter index needs to be "
-            + "within the range of the total number of chapters.";
-
+public class BackAdminCommandTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
-    private GoChapterCommand goChapterCommand;
-    private GoChapterCommandTest.StorageStub storageStub;
-    private GoChapterCommandTest.AccessStub accessStub;
+    private BackAdminCommand backAdminCommand;
+    private BackAdminCommandTest.StorageStub storageStub;
+    private BackAdminCommandTest.AccessStub accessStub;
     private Ui ui;
 
     @BeforeEach
@@ -39,38 +34,23 @@ public class GoChapterCommandTest {
 
         ui = new Ui();
 
-        storageStub = new GoChapterCommandTest.StorageStub("src/test/data/admin");
+        storageStub = new BackAdminCommandTest.StorageStub("src/test/data/admin");
         storageStub.createDirectory("/CS2113T");
-        storageStub.createFile("/CS2113T/Chapter 1.txt");
 
-        accessStub = new GoChapterCommandTest.AccessStub();
-
-        ChapterList chapters = accessStub.getModule().getChapters();
-        chapters.addChapter(new Chapter("Chapter 1"));
+        accessStub = new BackAdminCommandTest.AccessStub();
     }
 
     @AfterEach
     public void cleanUp() {
-        storageStub.deleteDirectory("/CS2113T/Chapter 1.txt");
         storageStub.deleteDirectory("/CS2113T");
         System.setOut(standardOut);
     }
 
     @Test
-    public void execute_validInput_goSuccessful() throws Exception {
-        int chapterIndex = 0;
-        goChapterCommand = new GoChapterCommand(chapterIndex);
-        goChapterCommand.execute(ui, accessStub, storageStub);
-        String expectedResult = MESSAGE_SUCCESS_EMPTY_CHAPTER;
-        assertEquals(expectedResult.trim(), outputStreamCaptor.toString().trim());
-    }
-
-    @Test
-    public void execute_outOfBoundIndex_goFail() throws Exception {
-        int chapterIndex = 5;
-        goChapterCommand = new GoChapterCommand(chapterIndex);
-        goChapterCommand.execute(ui, accessStub, storageStub);
-        String expectedResult = MESSAGE_INVALID_INDEX;
+    public void execute_validInput_backSuccessful() throws Exception {
+        backAdminCommand = new BackAdminCommand();
+        backAdminCommand.execute(ui, accessStub, storageStub);
+        String expectedResult = "";
         assertEquals(expectedResult.trim(), outputStreamCaptor.toString().trim());
     }
 
@@ -102,11 +82,6 @@ public class GoChapterCommandTest {
         public void deleteDirectory(String path) {
             File directory = new File(filePath + path);
             directory.delete();
-        }
-
-        public void createFile(String path) throws IOException {
-            File f = new File(filePath + path);
-            f.createNewFile();
         }
     }
 }

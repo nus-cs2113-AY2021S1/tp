@@ -79,19 +79,6 @@ public class AddChapterCommandTest {
         System.setOut(standardOut);
     }
 
-    private String getExpected(String expectedResult) {
-        String os = System.getProperty("os.name").toLowerCase();
-        StringWriter expectedStringWriter = new StringWriter();
-        PrintWriter printWriter = new PrintWriter(expectedStringWriter);
-        printWriter.print(expectedResult);
-        printWriter.close();
-        String expected = expectedStringWriter.toString();
-        if (!(os.contains("win"))) {
-            expected = expected.replaceAll("\\r\\n", "\n");
-        }
-        return expected;
-    }
-
     @Test
     public void execute_validInput_addSuccessful() throws Exception {
         String chapterName = "Chapter 2";

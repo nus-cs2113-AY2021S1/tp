@@ -2,6 +2,8 @@ package commands;
 
 import access.Access;
 import manager.admin.Admin;
+import manager.card.Card;
+import manager.chapter.CardList;
 import manager.chapter.Chapter;
 import manager.module.ChapterList;
 import manager.module.Module;
@@ -16,21 +18,15 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 
-import static common.Messages.MESSAGE_ITEM_EXISTED;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class GoChapterCommandTest {
-    public static final String MESSAGE_SUCCESS_EMPTY_CHAPTER = "This is a new chapter, "
-            + "you can try to add flashcards inside!";
-    public static final String MESSAGE_INVALID_INDEX = "The chapter index needs to be "
-            + "within the range of the total number of chapters.";
-
+public class ShowRateCommandTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
-    private GoChapterCommand goChapterCommand;
-    private GoChapterCommandTest.StorageStub storageStub;
-    private GoChapterCommandTest.AccessStub accessStub;
+    private ShowRateCommand showRateCommand;
+    private ShowRateCommandTest.StorageStub storageStub;
+    private ShowRateCommandTest.AccessStub accessStub;
     private Ui ui;
 
     @BeforeEach
@@ -39,14 +35,18 @@ public class GoChapterCommandTest {
 
         ui = new Ui();
 
-        storageStub = new GoChapterCommandTest.StorageStub("src/test/data/admin");
+        storageStub = new ShowRateCommandTest.StorageStub("src/test/data/admin");
         storageStub.createDirectory("/CS2113T");
         storageStub.createFile("/CS2113T/Chapter 1.txt");
 
-        accessStub = new GoChapterCommandTest.AccessStub();
+        accessStub = new ShowRateCommandTest.AccessStub();
 
-        ChapterList chapters = accessStub.getModule().getChapters();
-        chapters.addChapter(new Chapter("Chapter 1"));
+        CardList cards = accessStub.getChapter().getCards();
+        cards.addCard(new Card("1 + 1", "2", 2, 2));
+        cards.addCard(new Card("2 * 2", "4", 1, 3));
+        cards.addCard(new Card("2 * 1.5", "5", 5, 1));
+        cards.addCard(new Card("2 * 3", "6", 2, 0));
+        cards.addCard(new Card("2 * 4", "8", 5, 1));
     }
 
     @AfterEach
@@ -57,31 +57,37 @@ public class GoChapterCommandTest {
     }
 
     @Test
-    public void execute_validInput_goSuccessful() throws Exception {
-        int chapterIndex = 0;
-        goChapterCommand = new GoChapterCommand(chapterIndex);
-        goChapterCommand.execute(ui, accessStub, storageStub);
-        String expectedResult = MESSAGE_SUCCESS_EMPTY_CHAPTER;
+    public void execute_validInput_showSuccessful() throws Exception {
+        showRateCommand = new ShowRateCommand();
+        showRateCommand.execute(ui, accessStub, storageStub);
+
+        String expectedResult = "\nCard count: " + "5" + "\r\n"
+                + String.format(ShowRateCommand.MESSAGE_SHOW_PERCENTAGE_PROMPT, ShowRateCommand.EASY, 0.40) + "\r\n"
+                + String.format(ShowRateCommand.MESSAGE_SHOW_PERCENTAGE_PROMPT, ShowRateCommand.MEDIUM, 0.20) + "\r\n"
+                + String.format(ShowRateCommand.MESSAGE_SHOW_PERCENTAGE_PROMPT, ShowRateCommand.HARD, 0.20) + "\r\n"
+                + String.format(ShowRateCommand.MESSAGE_SHOW_PERCENTAGE_PROMPT, ShowRateCommand.CANNOT_ANSWER, 0.20);
+
         assertEquals(expectedResult.trim(), outputStreamCaptor.toString().trim());
     }
 
     @Test
-    public void execute_outOfBoundIndex_goFail() throws Exception {
-        int chapterIndex = 5;
-        goChapterCommand = new GoChapterCommand(chapterIndex);
-        goChapterCommand.execute(ui, accessStub, storageStub);
-        String expectedResult = MESSAGE_INVALID_INDEX;
+    public void execute_noCardInChapter_goFail() throws Exception {
+        Chapter chapter = new Chapter("Chapter 1");
+        showRateCommand = new ShowRateCommand();
+        accessStub.setChapter(chapter);
+        showRateCommand.execute(ui, accessStub, storageStub);
+        String expectedResult = String.format(ShowRateCommand.MESSAGE_NO_CARDS_IN_CHAPTER, chapter);
         assertEquals(expectedResult.trim(), outputStreamCaptor.toString().trim());
     }
 
     public class AccessStub extends Access {
         public AccessStub() {
-            this.level = "admin/CS2113T";
+            this.level = "admin/CS2113T/Chapter 1";
             this.adminLevel = "admin";
             this.moduleLevel = "CS2113T";
-            this.chapterLevel = "";
+            this.chapterLevel = "Chapter 1";
             this.module = new Module("CS2113T");
-            this.chapter = null;
+            this.chapter = new Chapter("Chapter 1");
             this.admin = new Admin();
             this.isAdminLevel = false;
             this.isModuleLevel = true;

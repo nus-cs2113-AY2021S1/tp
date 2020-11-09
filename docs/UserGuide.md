@@ -78,15 +78,18 @@ A <b>command line interface (CLI)</b> is a text-based user interface (UI) used t
 Kaji's content management system is similar to a physical folder which you may use to organize your lecture handouts. <br>
 Kaji manages content in four different levels, they are the Admin Level, the Module Level, the Chapter Level and the Flash Card Level: <br>
 
-![Content Management](UG_Images/contentManagement.png)
+<p align="center">
+  <img src="UG_Images/contentManagement.png" alt="Content Management"/>
+  <br/>Figure <2>. Content management diagram
+</p>
 
 * **Admin Level** is like your **bookshelf** to keep all the separated module folder in place.
 * **Module Level** is like a **folder** to keep all your lecture notes and materials by different module codes.
 * **Chapter level** is like an **index sticker** which organizes different pieces of information into its relevant chapters.
 * **Flashcard level** is all the **primary notes and material** which you have collected for your modules. With Kaji's assistant, you can easily categorise your messy notes into organized structure.
 
-When you start our program, you begin on the **Admin Level**, indicated by the prompt "admin" as shown here.
-To add/modify/remove elements of a certain level, you have to be on the level above it.
+When you start our program, you begin on the **Admin Level**, indicated by the prompt "admin" as shown here. <br>
+To add/modify/remove elements of a certain level, you have to be on the level above it. <br>
 * E.g. to create a new Module in the **Module Level**, you have to be on the **Admin Level**
 * E.g. to create a new Flashcard in the **Flashcards Level**, you have to be on the **Chapter Level**
 
@@ -148,26 +151,38 @@ MODULE_CODE is the name of the new module that you would like to create, such as
 ##### Example: 
 In this example, you are going to add a new module called `CS2113T`. <br>
 Below are steps of using this `add` command: <br>
-* Step 1: Enters the command `add CS2113T` into the command prompt. Your new module name comes after the key word `add`.
-![Add Module 1](UG_Images/addModule1.png)
-* Step 2: As shown below, a new module named `CS2113T` has just been created! You are free to edit, delete and access this module!
-![Add Module 2](UG_Images/addModule2.png)
+* Step 1: Enters the command `add CS2113T` into the command prompt. Your new module name comes after the key word `add`. <br>
+<p align="center">
+  <img src="UG_Images/addModule1.png" alt="Add Module 1"/>
+</p>
+* Step 2: As shown below, a new module named `CS2113T` has just been created! You are free to edit, delete and access this module! <br>
+<p align="center">
+  <img src="UG_Images/addModule2.png" alt="Add Module 2"/>
+</p>
 
 This is an additional example to show you the unique property of Kaji's add feature. <br>
 As you may aware from `Key Pointers` section above, Kaji is case-insensetive. This example belows shows you what will happen if you try to add a new module called `cs2113t` after completing the previous example. <br>
 Below are the breakdown of this example: <br>
-* Step 1: Types `add cs2113t` to add a new module named `cs2113t` after adding a module named `CS2113T` which essentially have a same name as our new module but in capital letters.
-![Add Module 3](UG_Images/addModule3.png)
-* Step 2: Opps, Kaji refuses to add the module `cs2113t` because a module with the same name is already existed!
-![Add Module 4](UG_Images/addModule4.png)
+* Step 1: Types `add cs2113t` to add a new module named `cs2113t` after adding a module named `CS2113T` which essentially have a same name as our new module but in capital letters. <br>
+<p align="center">
+  <img src="UG_Images/addModule3.png" alt="Add Module 3"/>
+</p>
+* Step 2: Opps, Kaji refuses to add the module `cs2113t` because a module with the same name is already existed! <br>
+<p align="center">
+  <img src="UG_Images/addModule4.png" alt="Add Module 4"/>
+</p>
 
-This is an additional example to show you the unique property of Kaji's add feature. <br>
+This is another additional example to show you the unique property of Kaji's add feature. <br>
 As you may aware from `Key Pointers` section above, Kaji only allows addition of one new module each time. Let's see what will happen if you try to add two modules `cs2113 cs2101` at same time. <br>
 Below are the breakdown of this example: <br>
-* Step 1: Types `add cs2113t cs2101` and attempts to add a new module named `cs2113t` and another new module `cs2101`.
-![Add Module 5](UG_Images/addModule5.png)
-* Step 2: Opps, Kaji has interpreted it as one single module with the name of `cs2113t cs2101`, instead of two seperate modules. 
-![Add Module 6](UG_Images/addModule6.png)
+* Step 1: Types `add cs2113t cs2101` and attempts to add a new module named `cs2113t` and another new module `cs2101`. <br>
+<p align="center">
+  <img src="UG_Images/addModule5.png" alt="Add Module 5"/>
+</p>
+* Step 2: Opps, Kaji has interpreted it as one single module with the name of `cs2113t cs2101`, instead of two seperate modules. <br> 
+<p align="center">
+  <img src="UG_Images/addModule6.png" alt="Add Module 6"/>
+</p>
 
 #### 3.1.2. Listing modules available: `list` 
 (by Zeyu)
@@ -235,19 +250,30 @@ MODULE_INDEX is the index of the module that you can find in the list command, s
 ##### Key Pointers:
 * Kaji only allow access to the existing modules that are shown in the list, therefore, module that is deleted or has never been created will result in an error message.
 * `MODULE_INDEX` **must be a positive integer** 1, 2, 3, ..., and must be a valid index number for a module as displayed from the list of module.
+
 ##### Example: 
 In this example, you are going to access the module `CS2113T` that you have created in the previous sections.
 Below are steps of using this `go` command:
-* Step 1: Uses `list` command to check the index of the module that you would like to access.
-![Go Module 1](UG_Images/goModule1.png)
-* Step 2: In this example, the module you would like to access is `CS2113T` and its index is `2` as shown as the diagram below.
-![Go Module 2](UG_Images/goModule2.png)
-* Step 3: You can type `go 2` to access this module.
-![Go Module 3](UG_Images/goModule3.png)
-* Step 4: As shown below, you are now 
-![Go Module 4](UG_Images/goModule4.png)
-* Step 5: You may double check your access using the command prompt directory displayed on top of `Enter command here:`. As shown as the diagram, your current access directory is under `Admin/CS2113T`.
-![Go Module 5](UG_Images/goModule5.png)
+* Step 1: Uses `list` command to check the index of the module that you would like to access. <br>
+<p align="center">
+  <img src="UG_Images/goModule1.png" alt="Go Module 1"/>
+</p>
+* Step 2: In this example, the module you would like to access is `CS2113T` and its index is `2` as shown as the diagram below. <br>
+<p align="center">
+  <img src="UG_Images/goModule2.png" alt="Go Module 2"/>
+</p>
+* Step 3: You can type `go 2` to access this module. <br>
+<p align="center">
+  <img src="UG_Images/goModule3.png" alt="Go Module 3"/>
+</p>
+* Step 4: As shown below, you are now at a module level named **CS2113T** <br>
+<p align="center">
+  <img src="UG_Images/goModule4.png" alt="Go Module 4"/>
+</p>
+* Step 5: You may double check your access using the command prompt directory displayed on top of `Enter command here:`. As shown as the diagram, your current access directory is under `Admin/CS2113T`. <br>
+<p align="center">
+  <img src="UG_Images/goModule5.png" alt="Go Module 5"/>
+</p>
 
 ### 3.2. Module level
 This section introduces the syntax and usages of the commands for the features that are available at the **Module Level**.<br>
@@ -269,14 +295,22 @@ CHAPTER_NAME is the name of the new chapter that you would like to create, such 
 ##### Example 1: 
 In this example, you are going to add a new chapter called `Chapter 1`. <br>
 Below are steps of using this `add` command: <br>
-* Step 1: Enters the command `add Chapter 1` into the command prompt which your new chapter name comes after the key word `add`.
-![Add Chapter 1](UG_Images/addChapter1.png)
-* Step 2: In Kaji, you can give new chapters a rate to pre-set its revision schedules. If you would like to keep it as fault state, you can simply enter `N`. To demonstrate this feature fully, you may enter `Y` to rate the new chapter and check out how will Kaji responses!
-![Add Chapter 2](UG_Images/addChapter2.png)
-* Step 3: You choose to rate the new chapter from the previous step, therefore, you can rate your chapter as `Easy`, `Medium` or `Hard` by entering `E`, `M` and `H` as shown as the instruction given by Kaji.
-![Add Chapter 3](UG_Images/addChapter3.png)
-* Step 4: You have just created a new chapter! Good Job!
-![Add Chapter 4](UG_Images/addChapter4.png)
+* Step 1: Enters the command `add Chapter 1` into the command prompt which your new chapter name comes after the key word `add`. <br>
+<p align="center">
+  <img src="UG_Images/addChapter1.png" alt="Add Chapter 1"/>
+</p>
+* Step 2: In Kaji, you can give new chapters a rate to pre-set its revision schedules. If you would like to keep it as fault state, you can simply enter `N`. To demonstrate this feature fully, you may enter `Y` to rate the new chapter and check out how will Kaji responses! <br>
+<p align="center">
+  <img src="UG_Images/addChapter2.png" alt="Add Chapter 2"/>
+</p>
+* Step 3: You choose to rate the new chapter from the previous step, therefore, you can rate your chapter as `Easy`, `Medium` or `Hard` by entering `E`, `M` and `H` as shown as the instruction given by Kaji. <br>
+<p align="center">
+  <img src="UG_Images/addChapter3.png" alt="Add Chapter 3"/>
+</p>
+* Step 4: You have just created a new chapter! Good Job! <br>
+<p align="center">
+  <img src="UG_Images/addChapter4.png" alt="Add Chapter 4"/>
+</p>
 
 #### 3.2.2. Listing chapters available: `list`
 (by Zeyu)
@@ -583,10 +617,14 @@ It is very simple, all you have to do is to enter the command [`showrate`](#) in
 ##### Example: 
 For instance, you would like to check your overall performance after completing several rounds of revision. <br>
 Below are steps of using this `showrate` command: <br>
-* Step 1: Type "showrate" into the command prompt while you are in a chapter level.
-![showrate 1](UG_Images/showrate1.png)
-* Step 2: Kaji calculates the percentage of card in different master level (i.e. `easy`, `medium`, `hard` and `cannot answer`).
-![showrate 2](UG_Images/showrate2.png)
+* Step 1: Type "showrate" into the command prompt while you are in a chapter level. <br>
+<p align="center">
+  <img src="UG_Images/showrate1.png" alt="Show rate 1"/>
+</p>
+* Step 2: Kaji calculates the percentage of card in different master level (i.e. `easy`, `medium`, `hard` and `cannot answer`). <br>
+<p align="center">
+  <img src="UG_Images/showrate2.png" alt="Show rate 2"/>
+</p>
 
 ### 3.4. General
 This section introduces the syntax and usages of the commands for the features that are available at **All Levels**.<br>
