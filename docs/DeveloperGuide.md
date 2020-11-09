@@ -45,7 +45,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.8. [Conclusion](#438-conclusion)<br>
 4.4. [Revise Feature](#44-revise-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.1. [Implementation](#441-implementation)<br>
-4.5. [Scheduler feature](#45-scheduler-feature)<br>
+4.5. [Viewing and Customising the Schedule Feature](#45-viewing-and-customising-the-schedule-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.1. [View Due Chapters Feature](#451-view-due-chapters-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.2. [Preview Upcoming Dues Feature](#452-preview-upcoming-dues-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.3. [Exclusion Feature](#453-exclusion-feature)<br>
@@ -370,6 +370,13 @@ In addition, it implements the following operations:
 * `RemoveModuleCommand#removeModule()` — removes module from list of modules including the chapters and flashcards under it.
 * `RemoveCommand#prepareResult()` — prepares the resulting message of the execution.
 
+The following diagram shows the class diagram of the remove module feature:
+
+<p align="center">
+  <img src="DG_Images/RemoveModuleCommandClassDiagram.png" width="800" alt="Class Diagram of Remove Module"/>
+  <br/>Figure <>. Class diagram of remove module
+</p>
+
 For instance, the user wants to start a remove the module `CS2113T`, a detailed description of what happens is shown below:
 
 * Step 1: The user is currently in `admin` level. 
@@ -377,13 +384,6 @@ For instance, the user wants to start a remove the module `CS2113T`, a detailed 
 * Step 2: The user enters `remove 1` command to delete the first module in the list of modules — which in this case is `CS2113T`. The `remove` command creates `RemoveModuleCommand` which will then be executed. 
 
 * Step 3: `RemoveModuleCommand#execute` gets the `module` based on the index provided and passes it to `Storage#deleteDirectory` to delete the module folder as well as the chapters and flashcards under it. 
-
-The following diagram shows the class diagram of the remove module feature:
-
-<p align="center">
-  <img src="DG_Images/RemoveModuleCommandClassDiagram.png" width="800" alt="Class Diagram of Remove Module"/>
-  <br/>Figure <>. Class diagram of remove module
-</p>
 
 The following sequence diagram shows how the remove module feature works:
 
@@ -571,6 +571,13 @@ In addition, it implements the following operations:
 * `RemoveChapterCommand#removeModule()` — removes chapter from list of chapters in a module including the flashcards under it.
 * `RemoveCommand#prepareResult()` — prepares the resulting message of the execution.
 
+The following diagram shows the class diagram of the remove chapter feature:
+
+<p align="center">
+  <img src="DG_Images/RemoveChapterCommandClassDiagram.png" width="800" alt="Class Diagram of Remove Chapter"/>
+  <br/>Figure <>. Class diagram of remove chapter
+</p>
+
 For instance, the user wants to start a remove the chapter `Chapter 1` from the module `CS2113T`, a detailed description of what happens is shown below:
 
 * Step 1: The user is currently in `CS2113T` at the module level. 
@@ -578,13 +585,6 @@ For instance, the user wants to start a remove the chapter `Chapter 1` from the 
 * Step 2: The user enters `remove 1` command to delete the first chapter in the list of chapters — which in this case is `Chapter 1`. The `remove` command creates `RemoveChapterCommand` which will then be executed. 
 
 * Step 3: `RemoveChapterCommand#execute` gets the `chapter` based on the index provided and passes it to `Storage#deleteDirectory` to delete the chapter file as well as the flashcards under it. 
-
-The following diagram shows the class diagram of the remove chapter feature:
-
-<p align="center">
-  <img src="DG_Images/RemoveChapterCommandClassDiagram.png" width="800" alt="Class Diagram of Remove Chapter"/>
-  <br/>Figure <>. Class diagram of remove chapter
-</p>
 
 The following sequence diagram shows how the remove chapter feature works:
 
@@ -771,6 +771,13 @@ In addition, it implements the following operations:
 * `RemoveFLashcardCommand#removeModule()` — removes flashcard from list of flashcards in a chapter.
 * `RemoveCommand#prepareResult()` — prepares the resulting message of the execution.
 
+The following diagram shows the class diagram of the remove flashcard feature:
+
+<p align="center">
+  <img src="DG_Images/RemoveCardCommandClassDiagram.png" width="800" alt="Class Diagram of Remove  Flashcard"/>
+  <br/>Figure <>. Class diagram of remove flashcard
+</p>
+
 For instance, the user wants to start a remove the flashcard `[Q] 1+1 | [A] 2` from the chapter `Chapter 1`, a detailed description of what happens is shown below:
 
 * Step 1: The user is currently in `Chapter 1` at the chapter level of the module `CS2113T`. 
@@ -780,13 +787,6 @@ For instance, the user wants to start a remove the flashcard `[Q] 1+1 | [A] 2` f
 * Step 3: `RemoveCardCommand#execute` gets the `flashcard` based on the index provided and removes it from the `CardList` 
 
 * Step 4: The updated `CardList` is passed to `Storage#saveCards()` to update the contents of the chapter with the removed card. 
-
-The following diagram shows the class diagram of the remove flashcard feature:
-
-<p align="center">
-  <img src="DG_Images/RemoveCardCommandClassDiagram.png" width="800" alt="Class Diagram of Remove  Flashcard"/>
-  <br/>Figure <>. Class diagram of remove flashcard
-</p>
 
 The following sequence diagram shows how the remove flashcard feature works:
 
@@ -804,6 +804,13 @@ The return to module level mechanism is facilitated by `BackModuleCommand`. It e
 In addition, it implements the following operation:
 * `BackModuleCommand#execute` — lowers access level of the user.
 
+The following diagram shows the class diagram of the return to module feature:
+
+<p align="center">
+  <img src="DG_Images/BackModuleCommandClassDiagram.png" width="600" alt="Class Diagram of Return to Module"/>
+  <br/>Figure <>. Class diagram of return to module
+</p>
+
 For instance, the user wants to return to the module level from the chapter he is currently at in the module `CS2113T`, a detailed description of what happens is shown below:
 
 * Step 1: The user is currently in `Chapter 1` at the chapter level in the module `CS2113T`. 
@@ -812,17 +819,10 @@ For instance, the user wants to return to the module level from the chapter he i
 
 * Step 3: `BackModuleCommand#execute` passes an empty string to `Access#setChapterLevel()` to check the chapter level and calls `Access#setIsModuleLevel` to set the user back to module level.
 
-The following diagram shows the class diagram of the return to module feature:
-
-<p align="center">
-  <img src="DG_Images/BackModuleCommandClassDiagram.png" width="600" alt="Class Diagram of Return to Module"/>
-  <br/>Figure <>. Class diagram of return to module
-</p>
-
 The following sequence diagram shows how the return to module feature works:
 
 <p align="center">
-  <img src="DG_Images/BackModuleCommandSeqDiagram.png" width="800" alt="Sequence Diagram of Return to Module"/>
+  <img src="DG_Images/BackModuleCommandSeqDiagram.png" width="600" alt="Sequence Diagram of Return to Module"/>
   <br/>Figure <>. Sequence diagram of return to module
 </p>
 
