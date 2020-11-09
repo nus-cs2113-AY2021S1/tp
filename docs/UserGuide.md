@@ -178,7 +178,7 @@ Example of usage:
 >For the other modes, you should see a similar message like "changing to timetable/planner mode".
 
 
-<!-- @@author -->
+<!-- @@author Speedweener -->
 
 <br/><br/> 
 <a name="clear"></a>  
@@ -264,8 +264,9 @@ Format: exit
 <a name="bookmarkmode"></a>  
 ### 5.2 Bookmark Mode  
 
-<a name="showbookmark"></a>  
-#### 5.2.1 Show bookmarks: `show`  
+<!-- @@author Speedweener -->
+<a name="showbookmark"></a>   
+#### 5.2.1 Show bookmarks: `show` (Zhan Hao)
 This feature helps you print out all bookmark in your bookmark list.
 ```
 Format: show
@@ -280,7 +281,7 @@ If your bookmark list is empty you will get the message show in the screenshot b
 
 <br/><br/> 
 <a name="addbookmark"></a>  
-#### 5.2.2 Add bookmark: `add`  
+#### 5.2.2 Add bookmark: `add` (Zhan Hao)
 You can add bookmarks to your bookmark list. A bookmark contains its description and URL.
 
 > ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/bangbang.png)
@@ -300,7 +301,7 @@ Example of usage:
 
 <br/><br/> 
 <a name="deletebookmark"></a>  
-#### 5.2.3 Delete bookmarks: `delete`  
+#### 5.2.3 Delete bookmarks: `delete` (Zhan Hao)
 Deletes a bookmark with the specified index.  
 The index will correspond to the index of that bookmark in the list. 
 You can do a `show` command to check the bookmark indexes.  
@@ -319,7 +320,7 @@ You should see a message similar to the screenshot below.
 <!-- @@author fchensan -->
 <br/><br/> 
 <a name="editbookmark"></a>  
-#### 5.2.3 Edit bookmarks: `edit`  
+#### 5.2.3 Edit bookmarks: `edit` (Francisco) 
 This command edits a bookmark's description or URL with the specified index.  
 Just like `delete`, the index will correspond to the index of that bookmark in the list. 
 You can do a `show` command to check the bookmark indexes.  
@@ -334,11 +335,12 @@ You should enter a `desc` or `url` depending on which one you want to edit.
 > You can type in `edit desc 3 straitstimes` to change the description to "straitstimes". The following message will 
 > appear:  
 > ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editbookmark.png)
-<!-- @@author -->
+
 
 <br/><br/> 
+<!-- @@author Speedweener -->
 <a name="findbookmark"></a>  
-#### 5.2.4 Find bookmarks: `find`  
+#### 5.2.4 Find bookmarks: `find` (Zhan Hao) 
 You can use this command to find bookmarks with matching description.
 
 > ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/bangbang.png)
@@ -360,7 +362,7 @@ Else you should see "No bookmarks contain the specified keyword!".
 
 <br/><br/> 
 <a name="launchbookmark"></a>  
-#### 5.2.5 Launch bookmarks: `launch`  
+#### 5.2.5 Launch bookmarks: `launch` (Zhan Hao)  
 You can use this feature to launch bookmarks in your native browser. <br></br>
 Your selection of bookmark(s) can be via:
 * Index
@@ -710,7 +712,7 @@ Saves the newly added slot(s) to each individual timetables.
 ```
 Format: save
 ```
-<!-- @@author -->
+<!-- @@author Speedweener -->
 
 <br/><br/> 
 ## 6.0 FAQ  
@@ -719,7 +721,7 @@ Format: save
 
   
 **A**: Some users might encounter a start-up screen that looks like this. <br></br>
-![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/buglogo.png)
+![](https://raw.githubusercontent.com/AY2021S1-CS2113T-W11-1/tp/master/docs/images/buglogo.png)
 
 This is only a visual bug. Other than the weird looking logo, Zoomaster will work as per normal. No
 need to worry!
