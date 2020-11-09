@@ -3,35 +3,35 @@ layout : page
 title : Developer Guide
 ---
 
-## Table of Contents
-#### [1. Introduction](#intro)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.1 Setting Up](#setup)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.2 Project Management & Development Practices](#management)
-#### [2. Design & Implementation](#design)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Architecture Overview](#overview)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2 NotUS](#notus)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Parser & ParserManager](#parserManager)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commands](#commands)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Notebook](#note)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.6 Timetable](#event)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7 Tags](#tag)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8 Storage](#storage)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.9 User Interface](#ui)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.10 System Exception](#exception)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.11 Usage of External Libraries](#color)
-#### [3. Product Scope](#scope)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1 Target User Persona](#userpersona)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Target User Profile](#userprofile)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.3 Value Proposition](#value)
-#### [4. User Stories](#userstories)
-#### [5. Non-Functional Requirements](#nfr)
-#### [6. Glossary](#gloss)
-#### [7. Instructions for Manual Testing](#testinstr)
-#### [8. Appendix](#appendix)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.1 List of ParseCommand Classes](#parseXYZCommands)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.2 List of Command Classes](#XYZCommands)
+### Table of Contents
+##### [1. Introduction](#intro)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.1 Setting Up](#setup)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.2 Project Management & Development Practices](#management)
+##### [2. Design & Implementation](#design)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Architecture Overview](#overview)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2 NotUS](#notus)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Parser & ParserManager](#parserManager)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commands](#commands)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Notebook](#note)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.6 Timetable](#event)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7 Tags](#tag)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8 Storage](#storage)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.9 User Interface](#ui)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.10 System Exception](#exception)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.11 Usage of External Libraries](#color)
+##### [3. Product Scope](#scope)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1 Target User Persona](#userpersona)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Target User Profile](#userprofile)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.3 Value Proposition](#value)
+##### [4. User Stories](#userstories)
+##### [5. Non-Functional Requirements](#nfr)
+##### [6. Glossary](#gloss)
+##### [7. Instructions for Manual Testing](#testinstr)
+##### [8. Appendix](#appendix)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.1 List of ParseCommand Classes](#parseXYZCommands)
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.2 List of Command Classes](#XYZCommands)
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ## <a id="intro">1. Introduction</a>
 
@@ -55,7 +55,7 @@ For a more detailed set of instructions, please refer to the [following guide](h
 
 Please refer to the [Development Practices Guide](DevelopmentPractices.md) for the Software Development practices used in the project. The document serves to inform on the Project Management frameworks used in the project.
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ## <a id="design">2. Design & Implementation</a>
 
