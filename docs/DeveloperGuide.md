@@ -691,14 +691,26 @@ Below is the general flow on how the mechanism works:
 The sequence diagram below explains how the load planner command is executed:
 
 ![](diagrams/load_planner.png) <br/>
-*<center/>Figure 2.26 Sequence diagram for LoadPlannerCommand</center> <br/></br>*
+*<center/>Figure 2.26 Sequence diagram for LoadPlannerCommand</center> <br/>*
+
+1. First, the command clear all the modules in the planner timetable.
+2. Next, the files inside the `planner` folder will be loaded and converted to a single timetable.
+3. The empty slots will be initialised based on the previous timetable and it will return an `EMPTY` module 
+along with all the empty slots.
+4. Finally, a confirmation message will be printed if the loading process is successful.
+
+<br>
 
 The sequence diagram below explains how the load planner command is executed:
 
 ![](diagrams/save_planner.png) <br/>
-*<center/>Figure 2.27 Sequence diagram for SavePlannerCommand</center> <br/></br>*
+*<center/>Figure 2.27 Sequence diagram for SavePlannerCommand</center> <br/>*
 
+1. First, we store the file paths of the individual timetables to an array of files. 
+2. For each file, the command will load the timetable and add the newly added meeting to the timetable.
+3. Finally, a confirmation message will be printed  if the saving process is successful.
 
+<br>
 
 <!-- @@author -->
 <a name="appendix-a"></a>
