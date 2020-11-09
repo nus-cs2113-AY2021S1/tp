@@ -52,7 +52,7 @@ Param Type| Param | Param Format
 
 > Example: 
 
-![](developerGuide_images/screenshots_manualtracker/manual_new.png)
+![](../developerGuide_images/screenshots_manualtracker/manual_new.png)
     
 ## Remove ledger
 Remove a specified ledger from the record, referenced by date or id on the list.
@@ -69,7 +69,7 @@ Param Type| Param | Param Format
 
 > Example: 
 
-![](developerGuide_images/screenshots_manualtracker/manual_delete1.png)
+![](../developerGuide_images/screenshots_manualtracker/manual_delete1.png)
     
 ## Open ledger
 Users will gain access into the entries associated with the specified ledger, referenced by date or id on the list.
@@ -95,7 +95,7 @@ Param Type| Param | Param Format
 
 > Example: 
 
-![](developerGuide_images/screenshots_manualtracker/manual_open.png)
+![](../developerGuide_images/screenshots_manualtracker/manual_open.png)
 
 <div style="page-break-after: always;"></div> 
 
@@ -148,7 +148,7 @@ The Manual Tracker is capable of executing the following states of operation:
 
 **Logic Manager and Parser** 
 
-![](uml_images/images_updated/Handler.png)
+![](../uml_images/images_updated/Handler.png)
 
 |Class| Function |	
 |--------|----------|	
@@ -163,7 +163,7 @@ The Manual Tracker is capable of executing the following states of operation:
 **<a name = entryseq></a>Entry Tracker: Edit of entries** <br />
 The editing of details within the entry is performed in two phases: Entry Retrieval and Entry Edit.
 
-![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram0.png)
+![](../uml_images/images_updated/entryTrackerEditEntrySeqDiagram0.png)
 
 1. __Phase 0: Instruction retrieval__ 
     1. At ```EntryTracker.handleMainMenu()```, the user's input is registered via ```java.util.Scanner``` instance.
@@ -187,7 +187,7 @@ The editing of details within the entry is performed in two phases: Entry Retrie
 
 #### <a name = diag3></a> Sequence Diagram 
 
-![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram2.png)
+![](../uml_images/images_updated/entryTrackerEditEntrySeqDiagram2.png)
 
 1. __Phase 2: Entry edit ([Sequence Diagram](#diag4))__ 
     1. Following Phase 1, the following processes will be executed:
@@ -211,7 +211,7 @@ The editing of details within the entry is performed in two phases: Entry Retrie
 
 #### <a name = diag4></a> Sequence Diagram 
 
-![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram3.png)
+![](../uml_images/images_updated/entryTrackerEditEntrySeqDiagram3.png)
 
 <div style="page-break-after: always;"></div>
 
