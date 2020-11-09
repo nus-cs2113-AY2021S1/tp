@@ -28,6 +28,8 @@ for more details.
    user entered the correct information.
    * Highlights: This feature is functional with or without the Internet.
   
+<br/>
+
 ### Enhancement to existing features:
 * Shorten and Standardised the user command input format to make the code more readable.
   ([\#56](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/56))
