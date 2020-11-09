@@ -15,8 +15,8 @@ import seedu.financeit.utils.RunHistory;
 import seedu.financeit.utils.storage.GoalTrackerSaver;
 import seedu.financeit.utils.storage.ManualTrackerSaver;
 import seedu.financeit.utils.storage.RecurringTrackerSaver;
-import seedu.financeit.utils.storage.SaveManager;
 import seedu.financeit.utils.storage.SaveHandler;
+import seedu.financeit.utils.storage.SaveManager;
 
 import java.util.logging.Level;
 
@@ -83,9 +83,12 @@ public class Financeit {
             }
         } catch (Exception e) {
             LoggerCentre.loggerSystemMessages.info("\n\n\nUnknown error......\n\n\n");
-            System.out.println("An unknown error has occured.");
+            System.out.println("An unknown error has occurred. Refer to the latest log messages.");
+            LoggerCentre.writeStackTraceToLog(e);
         }
     }
+
+
 
     public static void status() {
         System.out.println("Status: " + prompt);
