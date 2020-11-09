@@ -11,19 +11,18 @@ This app uses a Command Line Interface (CLI).
 
 - **Code contributed:** [link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=KennethEer&tabRepo=AY2021S1-CS2113T-F12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
-- **Enhancements implemented**
-  - Summary of my implemented app functionalities:
-  1. Addition of module and its expected workload
-  1. Deletion of module, its expected workload and actual time.
-  1. Notification feature to notify users of their progress
+- **Enhancements implemented:**
+  <br/>&nbsp;Summary of my implemented app functionalities:
+  <br/>&nbsp;1. Addition of module and its expected workload
+  <br/>&nbsp;1. Deletion of module, its expected workload and actual time.
+  <br/>&nbsp;1. Notification feature to notify users of their progress
 
-- **Details**: 
+- **Details:** 
   - Addition and Deletion of modules and its contents: 
     - Highlights: To support these core features, I created `ModuleList` and `Module` classes, 
     which manages the list of modules and each module details respectively. 
     These laid the foundation so all functionalities in the app are implemented by building upon these basic classes.
-
-  - Notification feature <br/>
+  - Notification feature:
     - What it does: When the user starts the app, it notifies him if he is spending too little/just right/too much amount of time on the module 
     and displays a randomised encouraging message.
     - Justification: This is a notable enhancement that helps ModTracker achieve its objectives by immediately highlighting to the user the modules that require more attention upon the start of the app. 
@@ -34,10 +33,9 @@ This app uses a Command Line Interface (CLI).
     The app lacks an explicit indication of the user's current week number, 
     which is needed for a comparison to determine the user's progress. Hence, I implemented the logic to derive this value based on the latest week with at least one actual time input.
 
-- **Documentation**
+- **Documentation:**
   - User Guide:
     - I added documentations for the features `addmod`, `deletemod`, `addexp`, `deleteexp`, `open`, `deletetime`
-    
   - Developer Guide:
     - Under the Design section, I did the following components
         - Architecture component (including architecture diagram and high level sequence diagram exemplifying the interaction between different components)
@@ -47,12 +45,12 @@ This app uses a Command Line Interface (CLI).
     - I contributed to the target user profile, value proposition and user stories.
     - I added in the labelling of the diagrams: [#190](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/190)
 
-- **Contributions to Team-based Tasks**
+- **Contributions to Team-based Tasks:**
   - I conducted manual testing, reported bugs, helped to fix bugs in my team's code and refactor the code: [#42](https://github.com/AY2021S1-CS2113T-F12-4/tp/issues/42) (reported bugs), [#43](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/43) (fixed mismatch in object equality and optimised code), [#123](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/123) (used regex to implement module validity)
   - In the User Guide, I fixed the links in the Table of Contents and formatted the tables: [#110](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/110/), [#109](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/109) 
   - I enabled java assertions, set up the milestones and labels in the issue tracker.
 
-- **Contributions Beyond the Project Team**
+- **Contributions Beyond the Project Team:**
   - I provided feedback to the other teams' code and developer's guide. 
   - I also tested and reported major bugs for other teams: [#6](https://github.com/KennethEer/ped/issues/6), [#8](https://github.com/KennethEer/ped/issues/8)
     
