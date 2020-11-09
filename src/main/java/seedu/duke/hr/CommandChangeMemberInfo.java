@@ -56,8 +56,7 @@ public class CommandChangeMemberInfo extends Command {
     @Override
     public String help() {
 
-        return "You can use 'hr changeInfo' command this way:\n"
-                + "hr changeInfo /n NAME (/p ITEM) (/e ITEM) (/r ITEM)\n"
+        return "Syntax: hr changeInfo /n NAME (/p ITEM) (/e ITEM) (/r ITEM)\n"
                 + "One or more information in the brackets need to be present.\n";
     }
 }

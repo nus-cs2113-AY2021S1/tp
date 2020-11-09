@@ -175,7 +175,7 @@ public class MemberList {
             }
         } catch (Exception e) {
             output = "OOPS!!! The format of the phone number given is incorrect.\n"
-                    + "The phone number should be a whole number less than 19 digits.\n";
+                    + "The phone number should be a whole number not more than 18 digits.\n";
             return output;
         }
 

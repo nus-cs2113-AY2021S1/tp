@@ -40,7 +40,7 @@ public class CommandDelMember extends Command {
 
     @Override
     public String help() {
-        return "You can use 'hr delete' command this way:\n" + "hr delete MEMBER_INDEX (INTEGER)\n";
+        return "Syntax: hr delete MEMBER_INDEX (INTEGER)\n";
     }
 
 }
