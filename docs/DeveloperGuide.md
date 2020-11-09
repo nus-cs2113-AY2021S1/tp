@@ -22,19 +22,12 @@ The `UiMessage` class has **dependencies** with the following enumeration classe
 
 * **Rationale**: Increased coupling was sacrificed to reduce code duplicates and increase ease of code extension/editing.
 * [`FitnessLevel`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/person/FitnessLevel.java): Descriptions of the five `FitnessLevel` are required in `UiMessage#getAskForUserInfoMessage(String name)` as shown in the code snippet below.
-```             
-+ "- Your fitness level, represented by a number from 1 to 5." + UiHelper.LINE_SEPARATOR
-   + "  1 = " + FitnessLevel.NONE.getDescription() + UiHelper.LINE_SEPARATOR
-   + "  2 = " + FitnessLevel.LOW.getDescription() + UiHelper.LINE_SEPARATOR
-   + "  3 = " + FitnessLevel.MEDIUM.getDescription() + UiHelper.LINE_SEPARATOR
-   + "  4 = " + FitnessLevel.HIGH.getDescription() + UiHelper.LINE_SEPARATOR
-   + "  5 = " + FitnessLevel.EXTREME.getDescription() + UiHelper.LINE_SEPARATOR             
-```
+
+![FitnessLevel In UiMessage](images/FitnessLevelInUiMessage.PNG)
+
 * [`Gender`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/person/Gender.java): Descriptions of the three `Gender` are required in `UiMessage#getAskForUserInfoMessage(String name)`as shown in the code snippet below.
-```             
- "- Your gender either F for " + Gender.FEMALE.getDescription() + " or M for "
- + Gender.MALE.getDescription() + " or O for " + Gender.OTHERS.getDescription() + "."
-```
+
+![Gender In UiMessage](images/GenderInUiMessage.PNG)
 
 In summary, the `UI` component,
 * Takes in user command, ensure that it is not empty before passing it to the `Logic` component for command execution.
