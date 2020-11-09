@@ -6,7 +6,7 @@
 Zoomaster is a desktop app for organizing website links, optimized for use via a 
 Command Line Interface (CLI) while retaining benefits of a Graphical User Interface (GUI). 
 If you can type fast, Zoomaster can help fetch useful website links for you quicker than the bookmark function on your browser.
-This user guide would help you walkthrough the features of Zoomaster and ways to input commands to it to access these features.
+This user guide will walk you through the features of Zoomaster and ways to input commands to it to access these features.
 
 <br/>
 
