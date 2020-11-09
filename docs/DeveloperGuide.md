@@ -29,10 +29,14 @@ Data of the user's diet is stored in the app's memory via the model: a `FoodList
 
 Additionally, it is not dependent on the other components listed. Instead, it is dependent on a common `Food` class, which is used by serval components, including the storage, database, and calculator.
 
+![Diagram of FoodList](diagrams/FoodList_Overall.png)
+
 <details>
     <summary>A more detailed class diagram is availble here</summary>
 
 ![Class diagram of FoodList](diagrams/FoodList_Overall_class.png)
+
+Some attributes and methods of the classes have been truncated for brevity. See the full details in the next subsections on `FoodListManager` and `FoodManager`.
 
 </details>
 
@@ -42,6 +46,7 @@ The above functions and the lack of dependency are met through the following mea
 * A `FoodListManager` is used to perform logical operations on the list of `FoodEntry` objects. A `FoodManager` is also used as a fascade that obscures calculations and prevents modification of `Food` data stored.
 * The result of an operation is typically a `String` that is meant to be supplied to the UI. In other data retrieval operations, such as those required by calculator, a list of `Food` objects is supplied as a means of data transfer between the components. Other lists of java data types such as `LocalDateTime` and `Integer` are also provided to the storage component.
 
+#### FoodListManager
 <details>
     <summary> Fascade pattern of `FoodListManager`</summary>
 
@@ -51,12 +56,20 @@ The above functions and the lack of dependency are met through the following mea
 
 It is only within `FoodListManager` that forced type conversions from `FoodEntry` to `DatedFoodEntry` are performed. Hence, only `FoodListManager` needs to be aware of the functions in `FoodEntry` and `DatedFoodEntry`.
 
+`FoodListManager` also reduces code repetition in `FoodList` by having generic list operations that can be combined to achieve the desired result (e.g. A method in `FoodList` may use `FoodListManager` for filtering followed by conversion to string. Yet another method in `FoodList` may use `FoodListManager` for its filtering function, scaling, and then conversion to string).
+
 </details>
+
+#### FoodManager
 
 <details>
     <summary> Fascade pattern of `FoodManager`</summary>
 
-`FoodManger` obscures the existence of the class `OptionalFood` from `FoodEntry`.
+![Class diagram of FoodManager](diagrams/FoodList_FoodManager_class.png)
+
+`FoodManger` obscures the existence of the class `OptionalFood` from `FoodEntry` and all classes dependent on `Food` from `FoodEntry`.
+It uses an obscured `NutrientCalculator` to handle the missing values from the user by providing a guesstimation/calculation of their value.
+The use of this fascade pattern, however, comes with downsides that will be further discussed in the implementation section.
 
 </details>
 
