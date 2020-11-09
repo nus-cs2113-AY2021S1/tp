@@ -59,7 +59,7 @@ If you plan to use Intellij IDEA (highly recommended):
 ## Design & implementation
 This section explains the architecture of our software and the design of each component.
 
-### **Major components**
+### Major components
 This section introduces the multiple components in Study It.
 
 ![](Images/ArchitectureDiagrams/components.png)
@@ -81,7 +81,7 @@ helpful functionalities. This will be further explained under Study It's design 
 
 <div style="page-break-after: always;"></div>
 
-### **Architecture**
+### Architecture
 This section describes the overall architecture of Study It.
 
 ![Architecture Diagram](Images/ArchitectureDiagrams/architecture.png)
@@ -134,7 +134,7 @@ to different components to be processed based on the software's current mode.
 
 <div style="page-break-after: always;"></div>
 
-### **Main Component**
+### Main Component
 
 This section will give an overview of the main component of Study It.
 
@@ -164,7 +164,7 @@ each mode’s functionality.
 
 <div style="page-break-after: always;"></div>
 
-### **Bookmark Component**
+### Bookmark Component
 
 This bookmark section consists of how the bookmark feature is implemented. 
 The bookmark feature is implemented similarly to the main architecture, however, 
@@ -209,7 +209,7 @@ in Bookmark mode.
 
 <div style="page-break-after: always;"></div>
 
-### **Timetable Component**
+### Timetable Component
 
 This section will describe in detail how some features inside the timetable section have been 
 implemented.
@@ -252,7 +252,7 @@ function from the TimeTableCommand Class.
 
 <div style="page-break-after: always;"></div>
 
-### **Academic Component**
+### Academic Component
 
 This section will describe in detail how some features inside the academic tracker section have been implemented.
 The following diagram illustrates the general overview, the associations and the multiplicity of the academic classes.
@@ -315,7 +315,7 @@ In terms of general structure, it is largely similar to that of `GradeBook`'s.
 <div style="page-break-after: always;"></div>
 
 <!-- @@author hailqueenflo -->
-### **Flashcard Component**
+### Flashcard Component
 
 This section will describe in detail how the flashcard feature is implemented.
 
