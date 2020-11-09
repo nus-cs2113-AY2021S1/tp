@@ -28,7 +28,6 @@ public class PrioritizeCommand extends Command {
             if (userInput.startsWith("*t")) {
                 String[] command = userInput.split("\\*t", 2);
                 index = Integer.parseInt(command[1].trim());
-                //index = Integer.parseInt(userInput.replace("*t", "").trim());
             } else {
                 throw new CommandException("prioritize");
             }
