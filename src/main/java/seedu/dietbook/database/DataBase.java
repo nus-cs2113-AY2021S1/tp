@@ -116,7 +116,7 @@ public class DataBase {
         System.out.println("Finished Printing out all data");
     }
 
-    // -------- Search functions --------
+    // ----- Food search functions -------
 
     /**
      * This method searchs the whole data base and returns the first food item whose name contains the provided string.
@@ -127,6 +127,10 @@ public class DataBase {
      */
     public Food searchFoodByName(String food) {
         return foodStream().filter(x -> x.getName().contains(food)).findFirst().orElseThrow();
+    }
+
+    public Food searchFoodByIndex(int index) {
+        return foodStream().skip(index - 1).findFirst().orElseThrow();
     }
 
     /**
