@@ -26,6 +26,15 @@ class BrowseParserTest {
     private static final String DUPLICATE_ORDER_INPUT = "-o asc -o dsc";
     private static final String DUPLICATE_PAGE_INPUT = "-p 3 -p 5";
     private static final String PREPEND_INVALID_INPUT = "browse invalidInput -s rating";
+    private static final String EXTRA_UNNECESSARY_STUFF_INPUT = "extra unnecessary stuff";
+
+    @Test
+    void parse_extraInputBrowse_throwsAniException() {
+        BrowseParser testParse = new BrowseParser();
+        assertThrows(AniException.class, () -> {
+            testParse.parse(EXTRA_UNNECESSARY_STUFF_INPUT);
+        });
+    }
 
     @Test
     void parse_prependingInvalidInput_throwsAniException() {

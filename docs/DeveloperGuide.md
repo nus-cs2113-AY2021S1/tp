@@ -50,11 +50,12 @@
 
 <br/>
 
+<!-- @@author OngDeZhi -->
 ## 1. Introduction
 
 **Welcome to AniChan!**
 
-**AniChan** is a free desktop command-line application aimed to improve the efficiency of anime translators. With AniChan, translators could manage their time more effectively by identifying the time needed to translate a script. Moreover, **AniChan** comes with management features such as workspace, watchlist and bookmark that can help them stay organized and focused on their work.
+**AniChan** is a free desktop command-line application aimed to improve the efficiency of anime translators. With AniChan, translators could manage and plan their time more effectively by identifying the time needed to translate a script. Moreover, **AniChan** comes with management features such as workspace, watchlist and bookmark that can help them stay organized and focused on their work.
 
 **AniChan** is written in **Java 11** and uses the Object-Oriented Programming (OOP) paradigm which provides us with means to structure a software program into organized and reusable pieces of codes, making it more efficient for future improvements and revisions.
 
@@ -62,6 +63,7 @@
 
 This document is for new and current developers of **AniChan**. It describes the overall architecture design of **AniChan** and lays out the current implementation details of our notable features with the rationale and considerations behind each one. It is a living document that will continue to be edited and updated with each major release. The current edition of this document is intended for the `v2.1` release.
 
+<!-- @@author EyoWeiChin -->
 ### 1.2 Using this Guide
 
 Along the way you might encounter several icons. These icons will provide you with different types of information that you may find useful.
@@ -74,6 +76,7 @@ Lastly, text that is blue like this [example](#12-using-this-guide), are clickab
 
 <br/>
 
+<!-- @@author OngDeZhi -->
 ## 2. Setting Up
 
 ### 2.1 Setting up the project in your computer
@@ -94,7 +97,7 @@ If you plan to use Intellij IDEA:
     1.  Click on `Import Project` and locate the `build.gradle` file and select it. Click `OK`.
     2.  If asked, choose to `Open as Project` (not `Open as File`).
     3.  Click `OK` to accept the default settings but do ensure that the selected version of `Gradle JVM` matches the JDK being used for the project.
-    4.  Wait for the importing process to finish (could take a few minutes).
+    4.  Wait for the importing process to finish (it could take a few minutes).
 
 3.  **Verify the setup**: 
     1.  After the importing is complete, locate the `src/main/java/anichan/Main.java` file, right-click it, and choose `Run Main.main()`. If the setup is correct, you should see the following:
@@ -123,11 +126,9 @@ If you plan to use Intellij IDEA:
 
 If you are using IDEA, follow this guide [IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to setup IDEA’s coding style to match ours.
     
-
 #### 2.2.2 Set up CI
 
 There is no set up required as the project comes with GitHub Actions config files, located in `.github/workflows` folder. When GitHub detects these files, it will run the CI for the project automatically at each push to the master branch or to any PR.
-    
 
 #### 2.2.3 Learn the Design
 
@@ -147,11 +148,10 @@ This section will help provide insight to the general overview of **AniChan**’
 
 <br/>
 
-![Architecture Diagram](images/Architecture-Design.png)
-
+![Architecture Diagram](images/Architecture-Design.png) <br/>
 *Figure 1: Architecture Design Diagram*
 
-> :bulb: The images used are stored in the directory: `images/`. If you wish to update a diagram you may replace the images in this folder.
+> :bulb: The images used are stored in the directory: `docs/images/`. If you wish to update a diagram you may replace the images in this folder.
 
 <br/>
 
@@ -162,6 +162,7 @@ The `Main` class is the starting point of the application and has only one class
 *   At launch: Initializes the various components in the correct sequence, connects them up with each other, and loads any saved data.
 *   At shut down: Shuts down the components and invokes any clean up methods where necessary.
 
+<!-- @@author EyoWeiChin -->
 The rest of **AniChan** consists of 6 components: 
 
 *   `Ui`: Manages the user interface of **AniChan**.
@@ -230,6 +231,7 @@ The `Command` component consists of different commands, each represented by `XYZ
 
 <br/>
 
+<!-- @@author -->
 ### 3.5 AnimeData Component
 
 ![AnimeData Class Diagram](images/AnimeData-Class-Diagram.png) <br/>
@@ -265,6 +267,7 @@ The `Workspace` component:
 
 <br/>
 
+<!-- @@author OngDeZhi -->
 ### 3.7 StorageManager Component
 
 ![StorageManager Class Diagram](images/StorageManager-Class-Diagram.png) <br/>
@@ -324,8 +327,7 @@ The sequence diagram presented below depicts the interaction between the compone
 
 > :memo: The sequence diagram shows the interaction from step 2 onward.
 
-![EstimateCommand Sequence Diagram](images/EstimateCommand-Sequence-Diagram.png)
-
+![EstimateCommand Sequence Diagram](images/EstimateCommand-Sequence-Diagram.png) <br/>
 *Figure 10: Sequence Diagram for `estimate script.txt -wph 300`*
 
 <br/>
@@ -360,6 +362,7 @@ We have decided to implement the first approach, **users should specify the file
 
 <br/>
 
+<!-- @@author EyoWeiChin -->
 ### 4.2 Browse Feature
 
 The browse feature is a useful feature that will allow users to quickly look through all the different anime series available in a browsing fashion.`browse` is also able to sort the order of how anime are displayed either in alphabetical order or by the anime's rating.
@@ -479,6 +482,7 @@ We have decided to implement the second approach of having **static browsing** w
 
 <br/>
 
+<!-- @@author -->
 ### 4.3 View Anime Information Feature
 
 The `info` command allows the user to view all the relevant information regarding a specific anime that the user specifies. This allows them to know more about a particular anime.
@@ -657,6 +661,7 @@ We picked the first approach as it is the safer option. By allowing **AniChan** 
 
 <br/>
 
+<!-- @@author OngDeZhi -->
 ### 4.5 Watchlist Management Feature
 
 The watchlist management feature aims to provide translators with a simple way to keep track of anime by being able to group anime based on their own criteria. This allows them to stay organized and focused on their work rather than being concerned over irrelevant issues.
@@ -680,8 +685,7 @@ Below is a table describing the 4 parameters supported by the `watchlist` comman
 
 Given below is an example usage scenario showing how the `WatchlistCommand` behaves at each step. In this example, we will look at the **watchlist creation process**.
 
-![WatchlistCommand Initial State](images/WatchlistCommand-Initial-State.png)
-
+![WatchlistCommand Initial State](images/WatchlistCommand-Initial-State.png) <br/>
 *Figure 21: WatchlistCommand Initial State*
 
 **Step 1:** User executes the command `watchlist -n NewAnime`. The application invokes `Parser#getCommand()` and because the command type is "watchlist", `WatchlistParser#parse()` is invoked to parse, validate, and construct `WatchlistCommand` with "-n" and "NewAnime". The created object is then returned to `Main`.
@@ -702,8 +706,7 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 
 **Step 6:** `WatchlistCommand` is terminated.
 
-![WatchlistCommand After Create State](images/WatchlistCommand-After-Create-State.png)
-
+![WatchlistCommand After Create State](images/WatchlistCommand-After-Create-State.png) <br/>
 *Figure 22: WatchlistCommand After Create State*
 
 <br/>
@@ -715,16 +718,14 @@ The following diagrams will **continue from step 6**, and it will show how the `
 
 **Step 7:** The user executes `watchlist -s 2` to set the second watchlist ("New Anime") in the list as the new active watchlist.
 
-![WatchlistCommand After Select State](images/WatchlistCommand-After-Select-State.png)
-
+![WatchlistCommand After Select State](images/WatchlistCommand-After-Select-State.png) <br/>
 *Figure 23: WatchlistCommand After Select State*
 
 <br/>
 
 **Step 8:** The user now decides that the "NewAnime" watchlist is no longer needed and decides to execute `watchlist -d 2` to delete it.
 
-![WatchlistCommand After Delete State](images/WatchlistCommand-After-Delete-State.png)
-
+![WatchlistCommand After Delete State](images/WatchlistCommand-After-Delete-State.png) <br/>
 *Figure 24: WatchlistCommand After Delete State*
 
 <br/>
@@ -735,8 +736,7 @@ The sequence diagram presented below depicts the interaction between the compone
 
 > :memo: The other parameters (list, select, and delete) follows a similar process, only the list and the select parameter does not interact with the `StorageManager` since they do not modify the watchlist data.
 
-![WatchlistCommand Create Watchlist Sequence Diagram](images/WatchlistCommand-CreateWatchlist-Sequence-Diagram.png)
-
+![WatchlistCommand Create Watchlist Sequence Diagram](images/WatchlistCommand-CreateWatchlist-Sequence-Diagram.png) <br/>
 *Figure 25: Sequence Diagram for `watchlist -n NewAnime`*
 
 <br/>
@@ -771,6 +771,7 @@ While both approach are valid in their own ways, we have decided to **restrict w
 
 <br/>
 
+<!-- @@author -->
 ### 4.6 Add To Watchlist Feature
 
 The `add` feature allows users to add an anime into the active watchlist. This helps them keep track of the anime they would like to watch next.
@@ -1297,7 +1298,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
     2.  Test case: `search -g Music` <br/>
     Expected: Will return all anime that has 'Music' as its genre.
     
-    3.  Test case: `search -n slice of life` <br/>
+    3.  Test case: `search -g slice of life` <br/>
     Expected: Will return anime that has 'Slice of Life' as its genre.
     
     4.  Other incorrect commands to try: 
@@ -1342,7 +1343,6 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
             
-
 ### D.8: Switch to a different Workspace
 
 1.  Switch to a different Workspace with `workspace` feature
@@ -1370,11 +1370,10 @@ If you wish to add new checks, simply add the check file with a filename `check-
     Expected: Workspace `Default` and `CrunchyOreo` will be listed.
     
         1.  Other incorrect commands to try: 
-            1.  `workspace`
+            1.  `workspace =l`
 
 <br/>
             
-
 ### D.10: Delete a Workspace
 
 1.  Delete a Workspace with `workspace` feature
