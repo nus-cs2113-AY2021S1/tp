@@ -204,7 +204,7 @@ If an edit command is passed to change individual profile characteristics, the `
 
 <!-- @@author hui444 -->
 ### 4.3 Help command
-When the user enters 'help', the `Ui` class reads it and passes it through `Parser`.  Once the input is parsed as a help command, the user input is passed to `HelpCommand`, which calls `Ui` to print the help message.
+When the user enters `help`, the `Ui` class reads it and passes it through `Parser`.  Once the input is parsed as a help command, the user input is passed to `HelpCommand`, which calls `Ui` to print the help message.
 Figure 11 below shows the sequence diagram when the user enters `help`.
 
 <p align="center"><img src="images/HelpCommandSequenceDiagram.png"></p>
@@ -216,7 +216,7 @@ the user enters a view command, the `Ui` class reads it and passes it through `P
 a view command, it is then passed to `ViewCommand`, where it is handled based on the type of view command. 
 Then the respective view method is called to output the messages via the `Ui` class.
 
-For example, as illustrated in Figure 12, if you intend to view your goal entry, the input is passed to `ViewCommand`
+For example, as illustrated in Figure 12, if you intend to view your goal entry with the command `view goal`, the input is passed to `ViewCommand`
 , which checks the arguments after 'view' and calls the `viewGoal()` method. It then performs the required steps to
 retrieve the goal status for each entry and prints the results using the `printCustomMessage()` method in the `Ui` class.
 
@@ -279,12 +279,12 @@ Figure 17 below shows the sequence diagram for giving a tip.
 ## Appendix A: Product Scope
 ### Target user profile
 
-Our target user profile is university students, at all fitness levels, who values an application that integrates the logging of food, exercises performed and the tracking of calories in one application. 
+Our target user profile is university students, at all fitness levels, who values an application that integrates the logging of food, exercises performed, the tracking of calories and goals in one application. 
 It is also aimed at those who prefer typing over mouse interactions and are reasonably comfortable with using command-line applications.
 
 ### Value proposition
 
-Our application helps users to keep fit without needing them to do any research on healthy living or workout options. 
+Our application helps users to keep fit without needing them to do extensive research on healthy living or workout options. 
 We will be collecting user information such as age, weight, fitness level, and the application will recommend users preset exercises.
 
 ## Appendix B: User Stories

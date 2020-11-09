@@ -6,10 +6,10 @@
 <!-- @@author -->
 
 # 1. Introduction
-**Fitr** is a command line application, helping you keep track of your food intake and exercises. 
-Fitr is targeted at university students, who want a comprehensive application to track your food consumption and exercises. 
+**Fitr** is a command line application, helping you keep track of your food intake, exercises and goals. 
+Fitr is targeted at university students, who want a comprehensive application to track your food consumption, exercises and goals. 
 You can enter your food intake and the exercises that you have done for the day, and track your net calories along the way. 
-If you are unsure of what exercises to do, you can also ask for recommendations from Fitr.
+Moreover, you can set goals to keep yourself motivated and if you are unsure of what exercises to do, you can also ask Fitr for recommendations.
 
 This user guide provides a detailed documentation on how to use Fitr and shows you how to get started using Fitr.
 
@@ -108,13 +108,12 @@ Fitr also understands particular keywords. If you would like to set a target for
 
 > :bulb: **Additional information:** 
 > * Smart food goals are linked to your calorie intake of its created date
+> * The progress of smart goals are automatically updated by Fitr
 > * Target number of calories can only be between 0 (inclusive) and 100 000 for 'more than' goals
 > * Target number of calories can only be between 0 and 100 000 for 'less than' goals
 
 Format: `goal food > NUMBER_OF_CALORIES`
-        or `goal food Eat more than NUMBER_OF_CALORIES calories`  
         or `goal food < NUMBER_OF_CALORIES`
-        or `goal food Eat less than NUMBER_OF_CALORIES calories`  
 
 For example, if your goal is to consume less than 800 calories, you can enter `goal food < 800` and the expected result after the application records the smart food goal entry should be as follows:
 
@@ -147,13 +146,12 @@ Fitr also understands particular keywords. If you would like to set a target for
 
 > :bulb: **Additional information:** 
 > * Smart exercise goals are linked to your calories burnt of its created date
+> * The progress of smart goals are automatically updated by Fitr
 > * Target number of calories can only be between 0 (inclusive) and 100 000 for 'more than' goals
 > * Target number of calories can only be between 0 and 100 000 for 'less than' goals
 
 Format: `goal exercise > NUMBER_OF_CALORIES` 
-        or `goal exercise Burn more than NUMBER_OF_CALORIES calories` 
         or `goal exercise < NUMBER_OF_CALORIES`
-        or `goal exercise Burn less than NUMBER_OF_CALORIES calories` 
 
 For example, you can enter `goal exercise > 3800` and you should expect the following:
 
@@ -553,7 +551,7 @@ Successfully edited goal to: [E] run 2.4km
 > :bulb:  **Additional information:** 
 > * As goals are ordered based on its created date and progress status, please view your goals before editing a goal
 > * By editing the goal entry, it will reset the status of the goal
-> * Smart goals will be updated based on the created date's calorie intake and calories burnt
+> * Smart goals will be automatically updated based on the created date's calorie intake and calories burnt
 
 <!-- @@author -->
 
@@ -601,6 +599,7 @@ Format: `delete goal INDEX`
 
 > :bulb:  **Additional information:** 
 > * As goals are ordered based on its created date and progress status, please view your goals before deleting a goal
+> * `INDEX` must be a positive integer
 
 For example, you can enter `delete goal 1`, and you should expect to see the following:
 ```
@@ -756,13 +755,15 @@ The following exercise has been added:
 <!-- @@author hui444 -->
 
 ### 2.6.2 Marking a goal as complete
-After completing a goal, you can mark it as complete. However, if it is a smart goal, Fitr will mark it as complete according to your calorie intake or calorie burnt.
+> :warning: **Warning:** The marking goal as complete action is irreversible.
+
+After completing a goal, you can mark it as complete. 
+If it is a smart goal, Fitr will automatically update the goal's status according to your calorie intake or calorie burnt.
 
 Format: `complete goal INDEX`
 
 > :bulb:  **Additional information:**
 > * As goals are ordered based on its created date and progress status, please view your goals before marking a particular one as complete
-> * Marking a goal as complete is irreversible (even if it is a smart goal marked by Fitr)!
 > * You are able to override the smart goal to mark them as complete
 > * When you mark a goal as complete, it is moved to the bottom of the list
 
