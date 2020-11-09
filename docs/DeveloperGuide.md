@@ -584,12 +584,12 @@ Below is a sequence diagram of the extended HelpCommand.
 *<center/> Figure 2.20 Sequence diagram for "HelpCommand" </center> <br/></br>*
 <br></br>
 
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/helpCommandDetailsIsEmpty.png)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/loadModuleList/helpCommandDetailsIsEmpty.png)  
 *<center/> Figure 2.21 Sequence diagram for 
 "details is empty" Block </center> <br/></br>*
 <br></br>
 
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/helpCommandDetailsIsNotEmpty.png)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/loadModuleList/helpCommandDetailsIsNotEmpty.png)  
 *<center/> Figure 2.22 Sequence diagram for 
 "details not empty" Block </center> <br/></br>*
 <br></br>
