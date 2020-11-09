@@ -271,13 +271,13 @@ Given below is a detailed explanation on how the add module mechanism behaves at
 1. The parser class makes sense of the user input and calls the `addMod()` function in ModuleList class.
 
 1. Within the `addMod()` function, it will first check if the module code is valid by calling 
-        `checkIfModuleValid()` function. The `checkIfModuleValid()` function will return true if the module code is 
-        valid, and return false otherwise. If `checkIfModuleValid()` function returns true, proceed to step 4.
+   `checkIfModuleValid()` function. The `checkIfModuleValid()` function will return true if the module code is 
+   valid, and return false otherwise. If `checkIfModuleValid()` function returns true, proceed to step 4.
 
 1. Within the addmod function, it will then check if the module already exists in the list of modules by 
-        calling `checkIfModuleExist()` function. The `checkIfModuleExist()` function will return true if the module 
-        already exists in the modlist, and false otherwise. If `checkIfModuleValid()` function returns true, 
-        proceed to step 5.  
+   calling `checkIfModuleExist()` function. The `checkIfModuleExist()` function will return true if the module 
+   already exists in the modlist, and false otherwise. If `checkIfModuleValid()` function returns true, 
+   proceed to step 5.  
 
 1. A new module with module code "CS2113T” is created by calling the constructor of Module class.
 
