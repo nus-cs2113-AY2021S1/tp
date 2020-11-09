@@ -314,7 +314,7 @@ This feature allows users to repeat all classes in the current week or a selecte
 
 ## 5. Documentation<a id="documentation"></a>
   
-All documentation are found in the `docs/` folder.
+All documentation can be found in the `docs/` folder.
 * [Jekyll](https://jekyllrb.com/) is used to manage documentation.
 * [Markdown](https://guides.github.com/features/mastering-markdown/) style is used for the documentation.
 * [PlantUML](https://plantuml.com/) is used to create the diagrams.

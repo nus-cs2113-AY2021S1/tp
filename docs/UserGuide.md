@@ -129,7 +129,7 @@ Adding a personal event:
 Adding an assignment:  
 ![add3](diagrams/add3.png)  
 
-Adding a self study event:
+Adding a self study event:<br>
 ![add5](diagrams/add5.png)  
 
 Adding an event with a timing clash:  
@@ -233,19 +233,13 @@ Delete events existing in the list, you can choose to delete all, auto delete or
 * Clear all events
   Format: `clear`
   
-* Switch the autoClear function on so that events happened one month ago will be automatically cleared
-<<<<<<< HEAD
+* Switch the autoClear function on so that events happened one month ago will be automatically cleared.
   Format: `autoClear on`
   Note that this function will clear all events which happened one month ago no matter they are done or not.  
 
 * Switch the autoClear function off  
   Format: `autoClear off`
 
-=======
-  Format: `autoClear on` OR `autoClear off`
-  Note that this function will clear all events which happened one month ago no matter they are done or not.
-  
->>>>>>> master
 * Clear events happened before a certain date
   Format: `clearBefore CLEAR_DATE`
   
@@ -291,7 +285,7 @@ Format: `delete INDEX`
 
 Example: `delete 1`  
 
-Example Output:
+Example Output:<br>
 ![Delete](diagrams/delete.png)
 
 ### Find a keyword
@@ -301,7 +295,7 @@ Format: `find KEYWORD`
 
 Example: `find CS`
 
-Example Output:
+Example Output:<br>
 ![Find](diagrams/find.png)  
 
 ### Find a date
@@ -311,7 +305,7 @@ Format: `date yyyy-MM-dd`
 
 Example `date 2020-11-10`  
 
-Example Output:
+Example Output:<br>
 ![findDate](diagrams/findDate.png)
 
 ### Find locations exist in a certain group
@@ -319,7 +313,7 @@ Find the locations in NUS that belongs to certain faculty or the hostels.
 
 Format: `FOS` OR `FOE` OR `SOC` OR `BIZ` OR `HOSTEL` OR `SDE` OR `FASS`  
 
-Example Output:
+Example Output:<br>
 ![locationsInNUS](diagrams/locationsInNUS.png)  
 
 ### Keep track on the study time
@@ -327,7 +321,7 @@ Find the amount of time you spent on study on a certain date.
 
 Format: `studyTime DATE`  
 
-Example Output:
+Example Output:<br>
 ![studyTime](diagrams/studyTime.png)
 
 ### Make the app know you
@@ -336,8 +330,8 @@ Tell the app your name, and whether you are a professor or a student. Whether yo
 
 Format: `student NAME` OR `professor NAME`
 
-Example Output:
-![userInfo1](diagrams/userInfo1.png)
+Example Output:<br>
+![userInfo1](diagrams/userInfo1.png)<br>
 ![userInfo2](diagrams/userInfo2.png)
 
 ### Exit the app
@@ -345,7 +339,7 @@ Exit.
 
 Format: `bye`
 
-Example Output:
+Example Output:<br>
 ![Exit](diagrams/exit.png)
 
 ## FAQ
