@@ -688,27 +688,32 @@ Below is the general flow on how the mechanism works:
 4. The user can also call the `add` command to add a new meeting, similar to the timetable feature.
 5. Finally, the user can call the `save` command to store the newly added meeting(s) to each individual timetable.
 
-The sequence diagram below explains how the load planner command is executed:
+<br>
 
-![](diagrams/load_planner.png) <br/>
-*<center/>Figure 2.26 Sequence diagram for LoadPlannerCommand</center> <br/>*
-
+The general flow of the loading process is as below:
 1. First, the command clear all the modules in the planner timetable.
 2. Next, the files inside the `planner` folder will be loaded and converted to a single timetable.
 3. The empty slots will be initialised based on the previous timetable and it will return an `EMPTY` module 
 along with all the empty slots.
 4. Finally, a confirmation message will be printed if the loading process is successful.
 
+The sequence diagram below explains how the load planner command is executed:
+
+![](diagrams/load_planner.png) <br/>
+*<center/>Figure 2.26 Sequence diagram for LoadPlannerCommand</center> <br/>*
+
 <br>
+
+The general flow of the saving process is as below:
+1. First, we store the file paths of the individual timetables to an array of files. 
+2. For each file, the command will load the timetable and add the newly added meeting to the timetable.
+3. Finally, a confirmation message will be printed  if the saving process is successful.
 
 The sequence diagram below explains how the load planner command is executed:
 
 ![](diagrams/save_planner.png) <br/>
 *<center/>Figure 2.27 Sequence diagram for SavePlannerCommand</center> <br/>*
 
-1. First, we store the file paths of the individual timetables to an array of files. 
-2. For each file, the command will load the timetable and add the newly added meeting to the timetable.
-3. Finally, a confirmation message will be printed  if the saving process is successful.
 
 <br>
 
