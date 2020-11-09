@@ -257,7 +257,6 @@ Format: exit
 ![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/exit.png?raw=true)
 
 <br/>
----
 <br/> 
 
 
@@ -386,7 +385,6 @@ Example of usage:
 
 
 <br/>
----
 <br/> 
 
 <a name="timetablemode"></a>  
@@ -749,8 +747,8 @@ and save the txt file. You can now add the module in Zoomaster.
 ***Global***|
 **help**|`help {COMMAND(optional)}`<br>example: `help`, `help add`
 **mode**|`mode {bookmark/timetable/planner}`<br>example: `mode bookmark`
-**clear**|`launch now`
-**launch now**|`clear`
+**clear**|`clear`
+**launch now**|`launch now`
 **show settings**|`showsettings`
 **set a setting**|`set {SETTING_NAME} {NEW_OPTION}`
 **exit**|`exit`
