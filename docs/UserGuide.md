@@ -415,7 +415,6 @@ Expected output:
 
 ![Bookmark_add link](Images/BookmarkUG/Figure8.png)
 
-<div style="page-break-after: always;"></div>
 
 >**Useful Information:**
 >* You can only use this command after choosing your category. (Refer to [1.2](#12-going-into-each-category-bm-number))
