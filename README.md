@@ -27,7 +27,7 @@ Prerequisites: JDK 11 (use the exact version), update Intellij to the most recen
 > Task :classes
 
 > Task :Athena.main()
-        ___   .__________.  __    __   _______  .__   __.      ___
+     ___   .__________.  __    __   _______  .__   __.      ___
     /   \  |          | |  |  |  | |   ____| |  \ |  |     /   \
    /  ^  \ `---|  |---` |  |__|  | |  |__    |   \|  |    /  ^  \
   /  /_\  \    |  |     |   __   | |   __|   |  . `  |   /  /_\  \
