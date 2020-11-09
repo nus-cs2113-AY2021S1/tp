@@ -502,34 +502,7 @@ The following sequence diagram shows how the check operation works:
 
 #### Goal feature
 
-The goal feature is achieved by `GoalCommand`. It either prints the current goal stored internally in
-`UserData` if there is one, or it sets the input as the new goal by replacing the previous goal.
-The user can only have one goal at any time.
 
-The following is the class diagram for goal command:
-
-![Class diagram for calendar command](./diagrams/GoalClassDiagram.png)
-
-Given below is an example usage scenario of the goal feature.
-
-Step 1. The user launches the application for the first time. `Ui#printGoal` is called, 
-a line informing them they have no goal is printed.
-
-Step 2. The user executes `goal save money` command to set the goal as "save money".
-The `goal` command is passed through a parser to return the GoalCommand with arguments initialised.
-
-Step 3. `GoalCommand#execute()` is called, setting the goal in `UserData` to "save money". The change is printed
-with `Ui#printChangeGoal()`.
-
-Step 4. The user executes `goal` command to print the current goal.
-The `goal` command is passed through a parser to return the GoalCommand with blank arguments.
-
-Step 5.  `GoalCommand#execute()` is called, to retrieve the current goal in `UserData` and print it
-with `Ui#printGoal()`.
-
-The following sequence diagram shows how `GoalCommand#execute()` works:
-
-![Sequence diagram for goal command execute](./diagrams/GoalExecuteSequenceDiagram.jpg)
 
 <div style="page-break-after: always;"></div>
 
