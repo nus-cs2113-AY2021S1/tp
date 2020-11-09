@@ -142,7 +142,7 @@ Since the program only searches for the idea and genre tag, it is lenient when r
 
 #### Usage and storage
 The diagram above is describes the storage of the Bunny ideas in Fluffle. 
-![Bunny Manager Component](graphics/diagrams/Bunny_manager_component.PNG)
+![Bunny Manager Component](graphics/diagrams/Bunny_manager_component.png)
 <p align = "center"><i><b>Figure 3: Bunny manager architecture</b></i></p>
 
 The BunnySaver class handles the loading of saved `Bunny` objects from the `bunny.txt` file into the `bunniesList`. The 
