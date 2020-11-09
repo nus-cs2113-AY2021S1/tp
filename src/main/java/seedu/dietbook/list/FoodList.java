@@ -13,7 +13,7 @@ import java.util.List;
  * This is a stateful object.
  */
 public class FoodList {
-    private ArrayList<FoodEntry> foodEntries;
+    private List<FoodEntry> foodEntries;
 
     /**
      * Default constructor that instantiates FoodList with an empty foodentry arraylist.
@@ -24,6 +24,7 @@ public class FoodList {
 
     /**
      * Convenience constructor for testing purposes.
+     * This is an unsafe method of building the FoodList as FoodEntry added may not be an instance of DatedFoodEntry.
      */
     protected FoodList(ArrayList<FoodEntry> entries) {
         this.foodEntries = entries;
@@ -52,19 +53,6 @@ public class FoodList {
         return entry.toString();
     }
 
-
-    /**
-     * Food database search functionality support.
-     * Not expected to function. Added for completeness.
-     * Currently just throws a not found exception when called in this manner.
-     * @param portionSize integer to designate number of servings
-     * @param name food object to be added
-     * @return string representation of entry added
-     * @throws FoodNotFoundException custom exception to indicate search for food in database failed.
-     */
-    public String addFood(int portionSize, String name) throws FoodNotFoundException {
-        throw new FoodNotFoundException();
-    }
 
 
     /**
@@ -121,14 +109,14 @@ public class FoodList {
      * @return Arraylist of ordered Food objects in Foodlist's foodEntries.
      */
     public List<Food> getFoods() {
-        return FoodListManager.listToFoods(foodEntries);
+        return FoodListManager.convertListToFoods(foodEntries);
     }
 
     /**
      * Obtain list of food objects in FoodList, scaled to portion size.
      */
     public List<Food> getPortionedFoods() {
-        return FoodListManager.listToPortionedFoods(foodEntries);
+        return FoodListManager.convertListToPortionedFoods(foodEntries);
     }
 
     /**
@@ -136,7 +124,7 @@ public class FoodList {
      */
     public List<Food> getFoodsAfterDateTime(LocalDateTime dateTime) {
         List<FoodEntry> entriesAfterDateTime = FoodListManager.filterListByDate(foodEntries, dateTime);
-        return FoodListManager.listToFoods(entriesAfterDateTime);
+        return FoodListManager.convertListToFoods(entriesAfterDateTime);
     }
 
     /**
@@ -144,7 +132,7 @@ public class FoodList {
      */
     public List<Food> getPortionedFoodsAfterDateTime(LocalDateTime dateTime) {
         List<FoodEntry> entriesAfterDateTime = FoodListManager.filterListByDate(foodEntries, dateTime);
-        return FoodListManager.listToFoods(entriesAfterDateTime);
+        return FoodListManager.convertListToFoods(entriesAfterDateTime);
     }
 
     /**
@@ -152,7 +140,7 @@ public class FoodList {
      */
     public List<Food> getFoodsInDateTimeRange(LocalDateTime start, LocalDateTime end) {
         List<FoodEntry> entriesInRange = FoodListManager.filterListByDate(foodEntries, start, end);
-        return FoodListManager.listToFoods(entriesInRange);
+        return FoodListManager.convertListToFoods(entriesInRange);
     }
 
     /**
@@ -160,7 +148,7 @@ public class FoodList {
      */
     public List<Food> getPortionedFoodsInDateTimeRange(LocalDateTime start, LocalDateTime end) {
         List<FoodEntry> entriesInRange = FoodListManager.filterListByDate(foodEntries, start, end);
-        return FoodListManager.listToPortionedFoods(entriesInRange);
+        return FoodListManager.convertListToPortionedFoods(entriesInRange);
     }
 
     /**
@@ -168,7 +156,7 @@ public class FoodList {
      * (For storage purposes)
      */
     public List<Integer> getPortionSizes() {
-        return FoodListManager.listToPortionSizes(foodEntries);
+        return FoodListManager.convertListToPortionSizes(foodEntries);
     }
 
 
@@ -177,12 +165,20 @@ public class FoodList {
      * (For storage purposes)
      */
     public List<LocalDateTime> getDateTimes() {
-        return FoodListManager.listToLocalDateTimes(foodEntries);
+        return FoodListManager.convertListToLocalDateTimes(foodEntries);
+    }
+
+    /**
+     * Sorts the list based on datetime of the entries.
+     */
+    public String sort() {
+        this.foodEntries = FoodListManager.sortListByDate(foodEntries);
+        return this.toString();
     }
 
     @Override
     public String toString() {
-        return FoodListManager.listToString(foodEntries);
+        return FoodListManager.convertListToString(foodEntries);
     }
 
     /**
@@ -192,18 +188,48 @@ public class FoodList {
      */
     public String getAfterDateTimeToString(LocalDateTime dateTime) {
         List<FoodEntry> entriesAfterDateTime = FoodListManager.filterListByDate(foodEntries, dateTime);
-        return FoodListManager.listToString(entriesAfterDateTime);
+        return FoodListManager.convertListToString(entriesAfterDateTime);
     }
 
     /**
      * Returns toString representation of the segmented list based on DateTime (within a range of 2 datetimes).
-     * @param start start DateTime.
-     * @param end   end DateTime.
+     * @param start lower bound of datetime (inclusive)
+     * @param end   upper bound of datetime (inclusive)
      * @return  string representation of FoodList
      */
     public String getInDateTimeRangeToString(LocalDateTime start, LocalDateTime end) {
         List<FoodEntry> entriesInRange = FoodListManager.filterListByDate(foodEntries, start, end);
-        return FoodListManager.listToString(entriesInRange);
+        return FoodListManager.convertListToString(entriesInRange);
+    }
+
+    /**
+     * Alternative toString method that also displays all the associated dates with each food entry.
+     */
+    public String toDatedString() {
+        return FoodListManager.convertListToDatedString(foodEntries);
+    }
+
+    /**
+     * Alternative toString method that provides associated dates with each food entry.
+     * Only returns entries within the bounds of a start and end date.
+     * @param start lower bound of datetime (inclusive)
+     * @param end upper bound of datetime (inclusive)
+     * @return string representation of FoodList with datetimes.
+     */
+    public String toDatedString(LocalDateTime start, LocalDateTime end) {
+        List<FoodEntry> entriesInRange = FoodListManager.filterListByDate(foodEntries, start, end);
+        return FoodListManager.convertListToDatedString(entriesInRange);
+    }
+
+    /**
+     * Alternative toString method that provides associated dates with each food entry.
+     * Only returns entries within the bounds of the start datetime and MAX.
+     * @param start lower bound of datetime (inclusive).
+     * @return string representation of FoodList with datetimes.
+     */
+    public String toDatedString(LocalDateTime start) {
+        List<FoodEntry> entriesInRange = FoodListManager.filterListByDate(foodEntries, start);
+        return FoodListManager.convertListToDatedString(entriesInRange);
     }
 
 }

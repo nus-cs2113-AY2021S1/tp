@@ -35,6 +35,7 @@ public class FileLoader extends Loader {
                 System.arraycopy(line, 1, entries[j], 0, width);
             }
         }
+        reader.close();
     }
 
     /**

@@ -1,14 +1,9 @@
 package seedu.dietbook.database;
 
-
 import seedu.dietbook.food.Food;
 
-
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -121,7 +116,7 @@ public class DataBase {
         System.out.println("Finished Printing out all data");
     }
 
-    // -------- Search functions --------
+    // ----- Food search functions -------
 
     /**
      * This method searchs the whole data base and returns the first food item whose name contains the provided string.
@@ -132,6 +127,10 @@ public class DataBase {
      */
     public Food searchFoodByName(String food) {
         return foodStream().filter(x -> x.getName().contains(food)).findFirst().orElseThrow();
+    }
+
+    public Food searchFoodByIndex(int index) {
+        return foodStream().skip(index - 1).findFirst().orElseThrow();
     }
 
     /**

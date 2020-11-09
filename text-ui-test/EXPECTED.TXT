@@ -7,9 +7,9 @@ _______  __ ______ ________ _______   ______   ______  __    __
 |_______/|__|______|  |__|  |_______/ \______/ \______/|__| \__\
 
 Hello! Welcome to DietBook!
-I am Diet, your guide to using DietBook. What is your name?
-Please input in the following format:
-  name YOUR_NAME
+I am Diet, your guide to using DietBook. How may I address you?
+Please input your name or nickname in the following format:
+  name YOUR_NAME_OR_NICKNAME
   Example: name Jack
 _____________________________________________________________________________________________________________________________________
 _____________________________________________________________________________________________________________________________________

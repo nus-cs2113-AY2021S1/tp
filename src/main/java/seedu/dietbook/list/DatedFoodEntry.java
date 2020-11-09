@@ -2,10 +2,12 @@ package seedu.dietbook.list;
 
 import seedu.dietbook.food.Food;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class DatedFoodEntry extends FoodEntry implements Comparable<DatedFoodEntry> {
 
     protected final LocalDateTime dateTime;
+    public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy HHmm");
 
     /** 
      * Default constructor method.
@@ -54,6 +56,15 @@ public class DatedFoodEntry extends FoodEntry implements Comparable<DatedFoodEnt
 
     protected LocalDateTime getDateTime() {
         return dateTime;
+    }
+
+    /**
+     * To String representation of a dated food entry that also contains a date.
+     * Do not want to overwrite super method so that option to print with and without date is possible.
+     * @return string rep of entry in the form of (entry details) [datetime]
+     */
+    public String toDatedString() {
+        return String.format("%s [%s]", super.toString(), dateTime.format(DATE_TIME_FORMAT));
     }
 
     @Override
