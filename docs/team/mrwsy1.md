@@ -51,7 +51,7 @@ Given below are my contributions to the project.
     `/clearfav`. ([#85](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/85), [#145](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/145))
     + Helped to fix formatting issues and typos.
 * Developer guide:
-    + Added implementation details and UML diagrams for the following features: `/dine`, `/dineinfo`. ([#114](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/114), [#186](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/186))
+    + Added implementation details and UML diagrams for the following features: `/dine`, `/dineinfo`. ([#114](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/114), [#186](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/186), [#229](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/229))
     + Added manual testing details for the following features: `/dine`, `/dineinfo`. ([#219](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/219))
 
 #### Review/mentoring contributions:
