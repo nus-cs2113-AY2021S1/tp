@@ -8,17 +8,16 @@ trying out creative writing. Fluffle aims to be the novice writers' companion an
 journey on creative writing!
 <br>
 ### 1.2. Accessing Fluffle:
-By accessing the below link, you can download Fluffle, as well as view the progress that our team has made for Fluffle 
+By accessing this [link](https://github.com/AY2021S1-CS2113T-W11-4/tp/issues), you can download Fluffle, as well as view the progress that our team has made for Fluffle 
 for the past 7 weeks.
 <br>
-https://github.com/AY2021S1-CS2113T-W11-4/tp/issues
 
 ## 2. Summary of Contributions
 
 ### 2.1. Code Contributed
 * Implemented the Word List class, as well as the Words class, together with its sub classes, Noun, Verb, and Adjective.
 * Implemented the "Three Words" function, which generates three random words for the user.
-* Link: https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=thngyuxuan&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other
+* Link to Code Contribution: [Here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=thngyuxuan&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 ### 2.2 Enhancements Implemented
 * Implemented the "Three Words" function, which generates three random words for the user from the word bank in Fluffle.
