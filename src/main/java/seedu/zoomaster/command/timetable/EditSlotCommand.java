@@ -103,7 +103,7 @@ public class EditSlotCommand extends Command {
             break;
         }
 
-        ui.print(message + System.lineSeparator());
+        ui.print(message + Ui.NEW_LINE);
     }
 
     /**

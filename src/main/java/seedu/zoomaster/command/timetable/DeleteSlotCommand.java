@@ -82,22 +82,22 @@ public class DeleteSlotCommand extends Command {
             if (slotIndex == null && !deleteBookmarks) {
                 // delete module
                 timetable.deleteModule(module);
-                message += DELETE_MODULE_MSG + moduleCode + System.lineSeparator();
+                message += DELETE_MODULE_MSG + moduleCode + Ui.NEW_LINE;
             } else if (slotIndex != null && !deleteBookmarks) {
                 // delete slot
                 Slot slot = module.getSlot(slotIndex);
                 module.removeSlot(slot);
-                message += DELETE_SLOT_MSG + slot + FROM + moduleCode + System.lineSeparator();
+                message += DELETE_SLOT_MSG + slot + FROM + moduleCode + Ui.NEW_LINE;
             } else if (slotIndex == null) {
                 // delete module bookmarks
                 module.removeAllBookmarks();
-                message += DELETE_BOOKMARKS_MSG + moduleCode + System.lineSeparator();
+                message += DELETE_BOOKMARKS_MSG + moduleCode + Ui.NEW_LINE;
             } else {
                 // delete slot bookmarks
                 Slot slot = module.getSlot(slotIndex);
                 slot.removeAllBookmarks();
                 message += DELETE_BOOKMARKS_MSG + slot.getDay() + " " + slot + FROM
-                        + moduleCode + System.lineSeparator();
+                        + moduleCode + Ui.NEW_LINE;
             }
 
         }
