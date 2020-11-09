@@ -65,6 +65,7 @@ public class MenuParser implements Parser {
 
     /**
      * Parses user input while user is in the main menu.
+     * @params bookmarkList a list of stored bookmarked questions as bookmarked by the user
      */
     public MenuParser(BookmarkList bookmarkList) {
         this.bookmarkList = bookmarkList;
