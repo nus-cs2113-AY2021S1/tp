@@ -112,11 +112,4 @@ public class LinkList extends ItemList<Link> {
         }
     }
 
-    /**
-     * Clears all the links in the list.
-     */
-    @Override
-    public void clearItems() {
-        links = new ArrayList<>();
-    }
 }
