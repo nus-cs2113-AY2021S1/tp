@@ -220,7 +220,7 @@ When the user keys in the command `remind DATE`, where `DATE` is the date the us
 Fluffle contains a word bank that stores words which are keyed in by the user, together with its meaning. The diagram
 below shows the implementation of the words, as well as the word list classes in the program.
 
-![UML Words class diagram](graphics/diagrams/Words_UML Diagram.png)
+![UML Words class diagram](graphics/diagrams/Words_UML_Diagram.png)
 <p align = "center"><i><b>Figure 5: Words UML Class Diagram</b></i></p>
 
 `WordsList` is an ArrayList which stores the objects of `Words` class. Each object has the following attributes:
