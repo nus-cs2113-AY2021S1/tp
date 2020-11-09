@@ -1,0 +1,579 @@
+[
+  {
+    "topic": "Requirements",
+    "questions": [
+      {
+        "description": "A software project may come in the form of:",
+        "hint": "Recall the types of software projects that exist.",
+        "explanation": "A brown-field project involves developing a product to replace/update an existing software product\nwhile a green-field project involves developing a totally new system with no precedent",
+        "options": [
+          {
+            "description": "A brown-field project and a green-field project.",
+            "correct": true
+          },
+          {
+            "description": "A green-field project and a blue-field project.",
+            "correct": false
+          },
+          {
+            "description": "A blue-field project and a red-field project.",
+            "correct": false
+          },
+          {
+            "description": "A red-field project and a brown-field project.",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Which of the following is a characteristic of a well-defined requirement?",
+        "hint": "Try to remember about what purpose requirements serve to pick out the correct answer.",
+        "explanation": "A well-defined requirement must be clear in what it conveys, without any confusion in meaning.",
+        "options": [
+          {
+            "description": "Qualitative",
+            "correct": false
+          },
+          {
+            "description": "Unambiguous",
+            "correct": true
+          },
+          {
+            "description": "Idealistic",
+            "correct": false
+          },
+          {
+            "description": "Malleable",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Requirements come from stakeholders.",
+        "hint": "Think about what you have done when writing OOP code and what OOP is useful for",
+        "explanation": "These people are who we are making the product for, so they provide the requirements as well.",
+        "options": [
+          {
+            "description": "True",
+            "correct": true
+          },
+          {
+            "description": "False",
+            "correct": false
+          },
+          {
+            "description": "NIL",
+            "correct": false
+          },
+          {
+            "description": "NIL",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Requirements should be prioritised based on:",
+        "hint": "Think about how a stakeholder would rank a list of requirements in order.",
+        "explanation": "Deadlines are part of projects, and so it becomes important to prioritise the most important requirements\n to be cleared first.",
+        "options": [
+          {
+            "description": "Order of creation and amount of work needed to be done to complete the requirement.",
+            "correct": false
+          },
+          {
+            "description": "There is no need to prioritise requirements.",
+            "correct": false
+          },
+          {
+            "description": "How much time it takes to implement the requirement and its level of intricacy. ",
+            "correct": false
+          },
+          {
+            "description": "Importance and urgency of the requirement.",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "description": "True or False: I can omit the benefit specified in a User Story if it is obvious.",
+        "hint": "If something is obvious, such that everyone knows what it does, is there a need to state it?",
+        "explanation": "If it's obvious, there really is no need to state it.",
+        "options": [
+          {
+            "description": "True",
+            "correct": true
+          },
+          {
+            "description": "False",
+            "correct": false
+          },
+          {
+            "description": "NIL",
+            "correct": false
+          },
+          {
+            "description": "NIL",
+            "correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "OOP",
+    "questions": [
+      {
+        "description": "Choose the correct statements",
+        "hint": "Recall the differences between the two core OOP concepts: abstraction and encapsulation.",
+        "explanation": "The second statement should be: An object is an abstraction because it lets ...",
+        "options": [
+          {
+            "description": "An object is an encapsulation because it packages data and behavior into one bundle.",
+            "correct": true
+          },
+          {
+            "description": "An object is an encapsulation because it lets us think in terms of higher level concepts \nsuch as Students rather than student-related functions and data separately.",
+            "correct": false
+          },
+          {
+            "description": "Nil",
+            "correct": false
+          },
+          {
+            "description": "Nil",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "OO is a higher level mechanism than the procedural paradigm.",
+        "hint": "OOP four core concepts are: Encapsulation, Abstraction, Inheritance and Polymorphism.",
+        "explanation": "Procedural languages work at simple data structures (e.g., integers, arrays) and functions level.\nBecause an object is an abstraction over data+related functions, OO works at a higher level.",
+        "options": [
+          {
+            "description": "True",
+            "correct": true
+          },
+          {
+            "description": "False",
+            "correct": false
+          },
+          {
+            "description": "Nil",
+            "correct": false
+          },
+          {
+            "description": "Nil",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Which of the following is NOT a core concept of OOP?",
+        "hint": "Think about what you have done when writing OOP code and what OOP is useful for",
+        "explanation": "The 4 pillars of OOP are Encapsulation, Abstraction, Inheritance and Polymorphism",
+        "options": [
+          {
+            "description": "Inheritance",
+            "correct": false
+          },
+          {
+            "description": "Abstraction",
+            "correct": false
+          },
+          {
+            "description": "Encapsulation",
+            "correct": false
+          },
+          {
+            "description": "Implementation",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "description": "Choose the WRONG statement with regards to the concept of Object-oriented (OO)",
+        "hint": "We are using OOP to help model solutions like how objects in real world work, in Java",
+        "explanation": "While many languages support the OO paradigm, OO is not a language itself. \nAlso, we are using OOP to help model solutions like how objects in real world work.",
+        "options": [
+          {
+            "description": "OO is a programming paradigm",
+            "correct": false
+          },
+          {
+            "description": "OO guides us in how to structure the solution",
+            "correct": false
+          },
+          {
+            "description": "OO is mainly an abstraction mechanism",
+            "correct": false
+          },
+          {
+            "description": "OO is a programming language",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "description": "Choose the WRONG statement with regards to programming languages",
+        "hint": "C language is not an OO language. Java code is able to be written like C code.",
+        "explanation": "C follows the procedural paradigm.\nYes, we can write procedural code using OO languages e.g., AddressBook-level1.",
+        "options": [
+          {
+            "description": "Java and C++ are OO languages",
+            "correct": false
+          },
+          {
+            "description": "C language follows the Functional Programming paradigm",
+            "correct": true
+          },
+          {
+            "description": "Java can be used to write procedural code",
+            "correct": false
+          },
+          {
+            "description": "Prolog follows the Logic Programming paradigm",
+            "correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "Code Quality",
+    "questions": [
+      {
+        "description": "What does SLAP stand for?",
+        "hint": "SLAP is used to avoid varying the level of abstraction within a code fragment.",
+        "explanation": "This is as per the textbook.",
+        "options": [
+          {
+            "description": "Single Level of Abstraction Per method",
+            "correct": true
+          },
+          {
+            "description": "Single Level of Abstraction Per class",
+            "correct": false
+          },
+          {
+            "description": "Simple Level of Abstraction Per method",
+            "correct": false
+          },
+          {
+            "description": "Simple Level of Association Per class",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Which of the following options is false about premature optimizations?",
+        "hint": "We have to avoid premature optimizations.",
+        "explanation": "Sometimes, optimization takes priority. Eg: writing code for resource-constrained environment.",
+        "options": [
+          {
+            "description": "You may not know which parts are the real performance bottlenecks.",
+            "correct": false
+          },
+          {
+            "description": "Optimizing code is always the last step, it should never be the priority.",
+            "correct": true
+          },
+          {
+            "description": "Optimizing code prematurely can complicate the code.",
+            "correct": false
+          },
+          {
+            "description": "Hand-optimized code can be harder for the compiler to optimize.",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Which of the following option should we strive to have in our code?",
+        "hint": "Understanding of the code is very important.",
+        "explanation": "Coders would prefer to have a simple solution instead of a complicated one.",
+        "options": [
+          {
+            "description": "Arrowhead style code",
+            "correct": false
+          },
+          {
+            "description": "Long methods",
+            "correct": false
+          },
+          {
+            "description": "Magic numbers",
+            "correct": false
+          },
+          {
+            "description": "Keep it simple, stupid (KISS)",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "description": "Which of the following option is true?",
+        "hint": "We should always aim to have excellent documentation value.",
+        "explanation": "This makes the class easier to comprehend and maintain.",
+        "options": [
+          {
+            "description": "Imported classes should always be listed explicitly.",
+            "correct": true
+          },
+          {
+            "description": "There is no need for javadoc header comment.",
+            "correct": false
+          },
+          {
+            "description": "Coders should follow their own coding style so that it can be traced to the author easily.",
+            "correct": false
+          },
+          {
+            "description": "One should never prioritize efficiency or performance over readability.",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Which of the following standards is FALSE? ",
+        "hint": "Following coding standards makes it easier for everyone to understand the code.",
+        "explanation": "This is the naming convention for boolean variables used by Java code packages.",
+        "options": [
+          {
+            "description": "Line length should be no longer than 120 characters.",
+            "correct": false
+          },
+          {
+            "description": "Indentation for wrapped lines should be 8 spaces.",
+            "correct": false
+          },
+          {
+            "description": "It is not mandatory for the naming of boolean variables to sound like booleans (eg isSet)",
+            "correct": true
+          },
+          {
+            "description": "We should always use Egytian Style.",
+            "correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "Revision Control",
+    "questions": [
+      {
+        "description": "Which of these is not considered a benefit of a typical RCS?",
+        "hint": "Typical RCS may not use any graphics",
+        "explanation": "Option 2 describes Work Breakdown Structure (WBS)",
+        "options": [
+          {
+            "description": "Help a single user manage revisions of a single file",
+            "correct": false
+          },
+          {
+            "description": "Depicts information about tasks and their details in terms of subtasks",
+            "correct": true
+          },
+          {
+            "description": "Makes it easier for a group of developers to collaborate on a project",
+            "correct": false
+          },
+          {
+            "description": "Detect when multiple developers make incompatible changes to the same file",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Merge conflicts can occur when:",
+        "hint": "Conflicts can normally occur when different developer change the same line of code",
+        "explanation": "This is the only case where developers change the same line of code",
+        "options": [
+          {
+            "description": "team members don't like each other",
+            "correct": false
+          },
+          {
+            "description": "changes happen at different locations in the codebase",
+            "correct": false
+          },
+          {
+            "description": "git cannot create a fast forward merge",
+            "correct": false
+          },
+          {
+            "description": "a developer deletes a file while others were modifying it",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "description": "Git:",
+        "hint": "Git can be quite flexible in its use",
+        "explanation": "Git can support both centralized and distributed revision control",
+        "options": [
+          {
+            "description": "supports distributed revision control",
+            "correct": true
+          },
+          {
+            "description": "is centralized revision control",
+            "correct": false
+          },
+          {
+            "description": "is distributed revision control",
+            "correct": false
+          },
+          {
+            "description": "requires a remote repo on GitHub",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Your local repository can communicate with ___ remote repositories:",
+        "hint": "Recall adding remote repositories through git",
+        "explanation": "There is no limit to the number of remote repositories you can communicate with",
+        "options": [
+          {
+            "description": "zero",
+            "correct": false
+          },
+          {
+            "description": "only one",
+            "correct": false
+          },
+          {
+            "description": "only two",
+            "correct": false
+          },
+          {
+            "description": "any number of",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "description": "What is branching?",
+        "hint": "Think about the use of branching for your team project",
+        "explanation": "Option 1 is called a checkout, option 2 is called committing and option 4 is making a fork",
+        "options": [
+          {
+            "description": "Restoring the state of the working directory at a point in the past",
+            "correct": false
+          },
+          {
+            "description": "Saving a snapshot of the current state of the tracked files in the revision control history",
+            "correct": false
+          },
+          {
+            "description": "The process of evolving multiple versions of the software in parallel",
+            "correct": true
+          },
+          {
+            "description": "Making a remote copy of a remote repo",
+            "correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "Java Basics",
+    "questions": [
+      {
+        "description": "What is the value of the following expression? \n 4 * 5 - 1",
+        "hint": "* has higher precedence than -",
+        "explanation": "Since there are no parentheses, '4 * 5' is computed before '- 1'. The result is thus 19",
+        "options": [
+          {
+            "description": "19",
+            "correct": true
+          },
+          {
+            "description": "16",
+            "correct": false
+          },
+          {
+            "description": "15",
+            "correct": false
+          },
+          {
+            "description": "4",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "What is the value of the following expression? \n 4 * (5 - 1)",
+        "hint": "Parentheses ( ) have higher precedence than *",
+        "explanation": "Since there are parentheses, '5 - 1' is computed before '4 *'. The result is thus 16",
+        "options": [
+          {
+            "description": "19",
+            "correct": false
+          },
+          {
+            "description": "16",
+            "correct": true
+          },
+          {
+            "description": "15",
+            "correct": false
+          },
+          {
+            "description": "4",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Which of the following expressions gives a boolean value of false?",
+        "hint": "What are the precedences of parentheses and conditional operators?",
+        "explanation": "Conditional operators are read from left to right. Additionally, parentheses have precedence",
+        "options": [
+          {
+            "description": "true && true",
+            "correct": false
+          },
+          {
+            "description": "(true || false) && true",
+            "correct": false
+          },
+          {
+            "description": "true && false || true",
+            "correct": false
+          },
+          {
+            "description": "true && false",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "description": "Consider\nint[] scores = new int[4]\nscores[5] = 0\nWhat is the error here?",
+        "hint": "The int array in the question has the size of 4",
+        "explanation": "Since the array has a size of 4, its indexes range from 0-3. 5 is not within this bound",
+        "options": [
+          {
+            "description": "There is no error here",
+            "correct": false
+          },
+          {
+            "description": "ArrayIndexOutOfBoundsException",
+            "correct": true
+          },
+          {
+            "description": "NullPointerException",
+            "correct": false
+          },
+          {
+            "description": "StackOverflowError",
+            "correct": false
+          }
+        ]
+      }
+    ]
+  }
+]

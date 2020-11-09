@@ -15,3 +15,9 @@ bin/
 
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
+
+/data/logs/
+/text-ui-test/data/logs
+
+/data/main/user.json
+/text-ui-test/data/main/user.json
