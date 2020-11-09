@@ -1,5 +1,5 @@
     ____________________________________________________________
-     The file cannot be loaded. Maybe this is your first time using termiNus?
+     ~Error~ The file cannot be loaded. Maybe this is your first time using termiNus?
     ____________________________________________________________
 
     ____________________________________________________________

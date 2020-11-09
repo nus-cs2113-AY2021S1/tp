@@ -21,13 +21,13 @@ command. We hope this guide is user-friendly!
 
 3. Copy the jar file to a new folder.
 
-4. Navigate to the directory which contains `termiNus.jar` using the command prompt. Alternatively, on windows, you
+4. Navigate to the directory which contains `termiNus.jar` using the command prompt. Alternatively, on Windows, you
    can open the folder which contains `termiNus.jar` and in the address bar type `cmd` and press enter. It will open up a
    command prompt with that directory.
 
 5. Run termiNus by typing `java -jar termiNus.jar` and press enter.
 
-6. A greeting message will be displayed as shown below
+6. A greeting message will be displayed as shown below.
 
 ```
 Hello from...
@@ -52,11 +52,10 @@ Hello from...
 
 **Take note:**
 
-    1. Priority 0: Default , Priority 1: Highest (As number increases, priority decreases) 
-    2. 
-    3.
+    1. Priority 0: Default , Priority 1: Highest (As number increases, priority decreases). 
+    2. Detailed descriptions are given for each command. Please follow exactly.
 
-### Adding a task: `add`
+### Adding a task: `add task`
 Adds a new item to the list of todo tasks.
 
 Format: `add task <description> <optional arguments>`
@@ -69,7 +68,6 @@ List of `<optional arguments>`:
 🚩: By default, there is **no category and date**, and the **priority is set to 0**.
 
 🚩: Optional arguments can be typed in **any** order.
-
 
 🚩: Duplicate entry of tasks are **allowed**. 
 
@@ -109,7 +107,6 @@ List of `<compulsory arguments>`:
 - `day/<mon/tue/wed/thu/fri/sat/sun>` day of recurring task.
 
 🚩: Optional and compulsory arguments can be typed in **any** order.
-
 
 🚩: Duplicate entry of recurring tasks are **allowed**. 
 
@@ -153,16 +150,16 @@ List of `<optional arguments>`:
 
 🚩: Modules will be **set to complete by default** if `d/<1 or 0>` is not provided. This feature lets users add incomplete modules and compute a projected CAP when `list modules` is entered.
 
-🚩: Optional and compulsory arguments can be typed in **any** order
-
 List of `<compulsory arguments>`:
 - `g/<grade>` grade of the module in **caps** (`A+`, `A`, `A-`, etc).
 - `ay/<XXXXSY>` academic year of the module where `X` is an integer and `Y` is `1` or `2` (`2021S1`, `2021S2`, etc...).
-- `mc/<MCs>` modular credits of the module. Valid for a range of 0 to 40 MCs.
+- `mc/<MCs>` modular credits of the module. Valid for a range of **0 to 40 MCs, inclusive**.
 
 🚩: All characters in academic year must be in **caps**. 
 
 🚩: Grades must be in **caps**.
+
+🚩: Optional and compulsory arguments can be typed in **any** order.
 
 Example of usage:
 
@@ -185,7 +182,7 @@ Output:
 🚩: `[CM]` indicates a completed module, and `[IC]` indicates an incomplete module.
 
 ### Adding a weblink: `add link`
-Add a link for lecture/tutorial sessions through zoom 
+Add a link for lecture/tutorial sessions through zoom.
 
 Format: `add link m/<module code> <compulsory arguments>`
 
@@ -209,7 +206,7 @@ Output:
     ____________________________________________________________
      Got it. I've added this link:
        CS2113 lecture
-       https://cs2113Lecture.zoom.com
+       https://CS2113Lecture.zoom.com
      Now you have 1 link(s) in the list.
     ____________________________________________________________
 ```
@@ -220,13 +217,21 @@ Add an expense item into the expense list.
 Format: `spend <description> <compulsory arguments> <optional arguments>`
 
 List of `<compulsory arguments>`:
-- `v/<value>` sets the amount of money spent
+- `v/<value>` sets the amount of money spent.
+
+🚩: value has a limit of **100 trillion** (100,000,000,000,000). 
+
+🚩: value must be **non-negative**.
 
 List of `<optional arguments>`:
 - `currency/<currency>` sets the currency of the expense.
 - `date/<yyyy-MM-dd>` sets the date of the expense.
 
-🚩: By default, the currency is set to "SGD" and date is set to the date when the user executed the `spend` command.
+🚩: By default, the currency is set to "SGD" and date is set to the date when the user executes the `spend` command.
+
+🚩: `currency` is user defined. It **does not** have to be a legal currency in the world.
+
+🚩: Optional and compulsory arguments can be typed in **any** order.
 
 Example of usage:
 
@@ -236,7 +241,7 @@ Example of usage:
 
 `spend lunch v/5 date/2020-10-28`
 
-`spend lunch v/5 currency/USD date/2020-11-08`
+`spend lunch v/5 date/2020-11-08 currency/USD `
 
 Output:
 
@@ -250,7 +255,7 @@ Output:
 ```
 
 ### Borrowing a book: `borrow`
-Loan a book and add into the book list 
+Loan a book and add into the book list. 
 
 Format: `borrow <book name> <compulsory argument>`
 
@@ -296,7 +301,7 @@ Output:
     ____________________________________________________________
 ```
 
-### Displaying tasks on list: `list`
+### Displaying tasks on list: `list tasks`
 Lists all the tasks.
 
 Format: `list tasks`
@@ -322,7 +327,7 @@ Output:
     ____________________________________________________________
 ```
 
-### Displaying tasks based on priority: `list`
+### Displaying tasks based on priority: `list tasks (by priority)`
 Lists all the tasks with the same priority.
 
 Format: `list tasks p/<priority>`
@@ -344,7 +349,7 @@ Output:
     ____________________________________________________________
 ```
 
-### Displaying tasks based on category: `list`
+### Displaying tasks based on category: `list tasks (by category)`
 Lists all the tasks with the same category.
 
 Format: `list tasks c/<category>`
@@ -365,7 +370,8 @@ Output:
      2.[T][N] lecture quiz (p:2) (category: cs2113)
     ____________________________________________________________
 ```
-### Displaying weblinks on list: `list`
+
+### Displaying weblinks on list: `list links`
 Lists all the links.
 
 Format: `list links`
@@ -381,13 +387,14 @@ Output:
      Here are the links in your list:
 
      1.CS2113 lecture
-       https://cs2113Lecture.zoom.com
+       https://CS2113Lecture.zoom.com
      2.CS2028 lecture
        https://zoom.com.sg
     ____________________________________________________________
 
 ```
-### Displaying books borrowed and returned on list: `list`
+
+### Displaying books borrowed and returned on list: `list books`
 List all books loaned and returned. 
 
 Format: `list books`
@@ -410,7 +417,8 @@ Output:
          (Due Date: 10 Nov 2020)
     ____________________________________________________________
 ```
-### Displaying modules on list: `list`
+
+### Displaying modules on list: `list modules`
 List all the modules in the module list and shows the computed, projected CAP and completed MCs.
 
 Format: `list modules`
@@ -436,25 +444,15 @@ Output:
     ____________________________________________________________
 ```
 
-### Displaying expense items on list: `list`
+### Displaying expense items on list: `list expenses`
 List all the expense items in the expense list and shows total amount of money spent for each currency and the current 
 day, week, month, and year.
 
-Format: `list expenses <optional arguments>`
+Format: `list expenses`
 
-List of `<optional arguments>`:
-- `currency/<currency>` displays all the expense items with currency `CURRENCY` as a list.
-- `date/<yyyy-MM-dd>` displays all the expense items with date in the format of yyyy-MM-dd.
-- `for/{DAY,WEEK,MONTH,YEAR}` Displays all the expense items for today/this week/this month/this year.
+🚩: Expense list is sorted **based on date** (*from the most recent to the least recent*). If the date of two expense items 
+are the **same**, the expense list is sorted **based on currency lexicographically**.
 
-🚩: Expense list is sorted based on date (from the most recent to the least recent). If the date of two expense items 
-are the same, the expense list is sorted based on currency lexicographically.
-
-🚩: `currency`, `date`, and `for` arguments can be used together.
-
-🚩: `date` must be in the format of `yyyy-MM-dd`, e.g. `2020-11-08`.
-
-🚩: `for` argument is case-insensitive, e.g. `list expenses for/week`.
 
 Example of usage:
 
@@ -497,6 +495,13 @@ Output:
 
 ```
 
+### Displaying expense items by a certain currency on list: `list expenses (by currency)` 
+List all the expense items in the expense list based on currency and shows total amount of money spent for each currency.
+
+Format: `list expenses currency/currency_name`
+
+Example of usage:
+
 `list expenses currency/USD`
 
 Output:
@@ -514,6 +519,13 @@ Output:
     
 ```
 
+### Displaying expense items on a certain date on list: `list expenses (by date)` 
+List all the expense items in the expense list based on the date and shows total amount of money spent for each currency.
+
+Format: `list expenses date/YYYY-MM-DD`
+
+Example of usage:
+
 `list expenses date/2020-11-08`
 
 Output:
@@ -529,50 +541,11 @@ Output:
      The total amount listed:
      0.60 SGD
      5.20 USD
-=======
-     breakfast (3.00 SGD) (date: Saturday, November 7, 2020)
-     bus (1.00 SGD) (date: Saturday, November 7, 2020)
-     pencil (0.30 SGD) (date: Saturday, November 7, 2020)
-     pen (0.40 USD) (date: Saturday, November 7, 2020)
-
-     Your total expense for today is:
-
-     Your total expense for this week is:
-     4.30 SGD
-     0.40 USD
-
-     Your total expense for this month is:
-     4.30 SGD
-     0.40 USD
-
-     Your total expense for this year is:
-     4.30 SGD
-     0.40 USD
     ____________________________________________________________
 ```
 
-### Displaying expense items on a certain date on list: `list` 
-List all the expense items in the expense list and shows total amount of money spent for each currency.
-
-Format: `list expenses date/YYYY-MM-DD`
-
-Example of usage:
-
-`list expenses date/2020-11-07`
-
-Output:
-```    
-    ____________________________________________________________
-     Here are the expense item(s) in your expense list of date Saturday, November 7, 2020:
-     book (15.00 SGD) (date: Saturday, November 7, 2020)
-
-     The total amount listed:
-     15.00 SGD
-    ____________________________________________________________
-```
-
-### Displaying expense items for a certain time period on list: `list` 
-List all the expense items in the expense list and shows total amount of money spent for each currency.
+### Displaying expense items for a certain time period on list: `list expenses (by time period)` 
+List all the expense items in the expense list based on the time period and shows total amount of money spent for each currency.
 
 Format: `list expenses for/<time period>`
 
@@ -590,61 +563,18 @@ Output:
      Here are the expense item(s) in your expense list for this week:
      breakfast (3.00 SGD) (date: Saturday, November 7, 2020)
      bus (1.00 SGD) (date: Saturday, November 7, 2020)
-     pencil (0.30 SGD) (date: Saturday, November 7, 2020)
-     pen (0.40 USD) (date: Saturday, November 7, 2020)
+     pencil (0.30 SGD) (date: Saturday, November 8, 2020)
+     pen (0.40 USD) (date: Saturday, November 9, 2020)
 
      The total amount listed:
      4.30 SGD
      0.40 USD
->>>>>>> 462c98736af6349f49405a0cbe8d2e4142f9df08
     ____________________________________________________________
 
 ```  
 
-`list expenses for/WEEK`
 
-Output:
-
-```
-    ____________________________________________________________
-     Here are the expense item(s) in your expense list for this week:
-     breakfast (0.10 SGD) (date: Sunday, November 8, 2020)
-     book (0.50 SGD) (date: Sunday, November 8, 2020)
-     bread (0.20 USD) (date: Sunday, November 8, 2020)
-     lunch (5.00 USD) (date: Sunday, November 8, 2020)
-     bottle (3.00 SGD) (date: Saturday, November 7, 2020)
-     pen (1.00 SGD) (date: Saturday, November 7, 2020)
-     earphone (0.30 SGD) (date: Saturday, November 7, 2020)
-     tablet (0.40 USD) (date: Saturday, November 7, 2020)
-
-     The total amount listed:
-     4.90 SGD
-     5.60 USD
-    ____________________________________________________________
-
-```  
-
-`list expenses for/DAY`
-
-Output:
-
-```
-    ____________________________________________________________
-     Here are the expense item(s) in your expense list for today:
-     breakfast (0.10 SGD) (date: Sunday, November 8, 2020)
-     book (0.50 SGD) (date: Sunday, November 8, 2020)
-     bread (0.20 USD) (date: Sunday, November 8, 2020)
-     lunch (5.00 USD) (date: Sunday, November 8, 2020)
-
-     The total amount listed:
-     0.60 SGD
-     5.20 USD
-    ____________________________________________________________
-
-```
-
-
-### Deleting a task from the list: `delete`
+### Deleting a task from the list: `delete task`
 Deletes a task from the list
 
 Format: `delete task <taskIndexNumber>`
@@ -665,8 +595,8 @@ Output:
     ____________________________________________________________
 
 ```
-### Deleting all tasks of a certain priority: `delete`
-Delete tasks of the same priority
+### Deleting all tasks of a certain priority: `delete tasks (by priority)`
+Delete tasks of the same priority.
 
 Format: `delete tasks p/<priority>`
 
@@ -689,8 +619,9 @@ Output:
     ____________________________________________________________
 
 ```
-### Deleting all tasks of a certain category: `delete`
-Delete tasks of the same category
+
+### Deleting all tasks of a certain category: `delete tasks (by category)`
+Delete tasks of the same category.
 
 Format: `delete tasks c/<category>`
 
@@ -713,8 +644,8 @@ Output:
     ____________________________________________________________
 
 ```
-### Deleting a link from the list: `delete`
-Deletes a link from the list 
+### Deleting a link from the list: `delete link`
+Delete a link from the list. 
 
 Format: `delete link <linkIndexNumber>`
 
@@ -736,8 +667,8 @@ Output:
 
 ```
 
-### Deleting a module from the list: `delete`
-Deletes a module from the list 
+### Deleting a module from the list: `delete module`
+Delete a module from the list.
 
 Format: `delete module <moduleIndexNumber>`
 
@@ -757,9 +688,8 @@ Output:
     ____________________________________________________________
 ```
 
-### Deleting an expense item from the list: `delete`
-
-Deletes an expense items from the list.
+### Deleting an expense item from the list: `delete expense`
+Delete an expense item from the list.
 
 Format: `delete expense <expenseIndexNumber>`
 
@@ -780,9 +710,8 @@ Output:
 
 ```
 
-### Deleting all the expense items of a certain currency: `delete`
-
-Delete expense items of the same currency
+### Deleting all the expense items of a certain currency: `delete expenses (by currency)`
+Delete expense items of the same currency.
 
 Format: `delete expenses currency/<currency>`
 
@@ -808,15 +737,13 @@ Output:
 
 ```
     ____________________________________________________________
-     There is no expense item deleted.
+     ~Info~ There is no expense item deleted.
 
     ____________________________________________________________
-
 ```
 
-### Deleting all expense items of the same date: `delete`
-
-Deletes expense items of the same date
+### Deleting all expense items of the same date: `delete expenses (by same date)`
+Delete expense items of the same date.
 
 Format: `delete expenses date/<yyyy-MM-dd>`
 
@@ -837,27 +764,7 @@ Output:
 
 ```
 
-### Deleting expense items on a certain date from the list: `delete`
-Deletes an expense item from the list 
-
-Format: `delete expenses date/YYYY-MM-DD`
-
-Example of usage:
-
-`delete expenses date/2020-11-07`
-
-Output: 
-```
-    ____________________________________________________________
-     Noted. I've removed all these expense item(s)
-
-     pencil (0.30 SGD) (date: Saturday, November 7, 2020)
-     pen (0.40 USD) (date: Saturday, November 7, 2020)
-     sandwich (3.00 SGD) (date: Saturday, November 7, 2020)
-    ____________________________________________________________
-```
-
-### Marking a task as done: `done`
+### Marking a task as done: `done task`
 Marks a given task as done.
 
 Format: `done task <taskIndexNumber>`
@@ -877,7 +784,7 @@ Output:
     ____________________________________________________________
 ```
 
-### Setting a module as complete: `done`
+### Setting a module as complete: `done module`
 Sets a module as complete.
 
 Format: `done module <moduleIndexNumber>`
@@ -916,6 +823,7 @@ Output:
        [R] java book
     ____________________________________________________________
 ```
+
 ### Setting the priority of a task: `set`
 Sets the priority of an existing task.
 
@@ -980,6 +888,7 @@ Output:
        [T][N] study for finals (p:0) (category: st2334) (date: 11 Nov 2020)
     ____________________________________________________________
 ```
+
 ### Printing task calendar: `calendar`
 Prints a calendar with tasks from current date to given number of days.
 
@@ -1009,8 +918,7 @@ Output:
     ____________________________________________________________
 ```
 
-### Searching for tasks with keyword: `find`
-
+### Searching for an item with keyword: `find`
 Finds all items in the corresponding item list with matching description.
 
 Format: `find {tasks,links,books,expenses,modules} k/<keyword>`
@@ -1051,7 +959,7 @@ Output:
 ```
 
 ### Clearing all tasks: `clear`
-Clears all tasks, lists, books, modules from the list 
+Clears all tasks, lists, books, modules, expenses from the list. 
 
 Format: `clear all`
 
@@ -1080,13 +988,32 @@ Output:
 
 ```
     ____________________________________________________________
-     add: Adds a task to the task list.
+     add:
+     1. add task: Adds a task to the task list.
      Parameters: TASK_NAME <optional arguments>
      List of <optional arguments>
        - p/<number> sets the priority of the task.
        - c/<category> sets the category of the task.
        - date/<dd-MM-yyyy> sets the date of the task.
      Example: add task example_task <optional arguments>
+
+     2. add module: Adds a module to the module list.
+     Parameters: MODULE_CODE <optional/compulsory arguments>
+     List of <optional arguments>:
+       - d/<1 or 0> sets whether a module is completed or not (1 for completed, 0 for incomplete).
+     List of <compulsory arguments>:
+       - g/<grade> grade of the module in caps (A+, A, A-, etc).
+       - ay/<XXXXSY> academic year of the module where X is an integer and Y is 1 or 2 (2021S1, 2021S2, etc...).
+       - mc/<MCs> modular credits of the module. Valid for a range of 0 to 40 MCs.
+     Example: add module example_module <optional/compulsory arguments>
+
+     3. add link: Adds a weblink to the link list.
+     Parameters: m/MODULE CODE <compulsory arguments>
+     List of <compulsory arguments>:
+       - t/<TYPE> type of use (lecture, tutorial, lab, project).
+       - u/<URL> the link.
+     Example: add link m/example_module <compulsory arguments>
+    
 
      addr: Adds multiple tasks to the list of tasks that occur weekly on a given day.
      Parameters: TASK_NAME <optional/compulsory arguments>
@@ -1109,7 +1036,7 @@ Output:
      calendar: Sets the date of a given task in the list.
      Example: calendar d/<daysToPrint>
 
-     category: Sets the category of a task identified by the task index number in the task list
+     category: Sets the category of a task identified by the task index number in the task list.
      Parameters: INDEX c/CATEGORY
      Example: category 1 c/Academics
 
@@ -1128,10 +1055,12 @@ Output:
              Example: delete tasks p/1
           Optional parameter 2: c/CATEGORY
              Deletes all the tasks with CATEGORY.
-             Example: delete tasks c/cs2113.
+             Example: delete tasks c/cs2113
+
      2. Deletes the link identified by the index number used in the link listing.
      Parameters: INDEX
      Example: delete link 1
+
      3. Deletes the expense items identified by the index number used in the expense list.
           Optional parameter 1: currency/CURRENCY
              Deletes all the expense items with CURRENCY.
@@ -1145,9 +1074,9 @@ Output:
      Accepted <type>: task, module
      Example: done task 1
 
-     find: Finds all items whose descriptions containthe specified keywords (case-insensitive) and displays them as a list with index numbers.
+     find: Finds all items whose descriptions contain the specified keywords (case-insensitive) and displays them in a list with index numbers.
      Parameters: {tasks, links, books, expenses, modules} k/KEYWORDS
-     Example: find expenses k/buy
+     Example: find expenses k/buy food
 
      help: Shows program usage instructions.
      Example: help
@@ -1164,11 +1093,14 @@ Output:
           Optional parameter 3: tasks sorted
              Displays all the tasks sorted by priority     2. Displays all the books in the book list.
              Example: list books
-     3. Displays all the links in the link list.
+
+     2. Displays all the links in the link list.
              Example: list links
-     4. Displays all the modules in the module list.
+
+     3. Displays all the modules in the module list.
              Example: list modules
-     5. Displays all the expense items in the expense list.
+
+     4. Displays all the expense items in the expense list.
           Optional parameter 1: currency/CURRENCY
              Displays all the expense items with currency CURRENCY as a list.
              Example: list expenses currency/SGD
@@ -1180,10 +1112,6 @@ Output:
              Example: list expenses for/YEAR
 
      makefolders: Make folders for your modules in the modulelist
-
-     return: Marks the book identified by the index number used in the book list as returned.
-     Parameters: INDEX
-     Example: return 2
 
      spend: Adds an expense item to the expense list.
      Parameters: DESCRIPTION <compulsory/optional argument>
@@ -1197,6 +1125,10 @@ Output:
      set: Sets the task identified by the index number used in the task listing to the new priority.
      Parameters: INDEX p/PRIORITY
      Example: set 1 p/2
+
+     return: Marks the book identified by the index number used in the book list as returned.
+     Parameters: INDEX
+     Example: return 2
     ____________________________________________________________
   
 ```
@@ -1214,7 +1146,7 @@ Output:
 
 ```
     ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Farewell student. Hope to see you again soon!
     ____________________________________________________________
 ```
 
@@ -1222,14 +1154,14 @@ Output:
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: `./tasks.txt`, `./books.txt`, `./links.txt` stores the user data, which can be transferred to another computer or instance of the program by
+**A**: `./tasks.txt`, `./books.txt`, `./links.txt`, `./modules.txt` and `./expenses.txt` stores the user data, which can be transferred to another computer or instance of the program by
 putting it in the same folder as `termiNus.jar`.
 
 **Q**: Are all commands case-sensitive?
 
 **A**: The case-sensitivity has been stated for the applicable commands. 
 
- 
+
 
 ## Quick Command Reference
 
@@ -1267,7 +1199,10 @@ Set priority of task | `set <taskIndexNumber> p/<priority>` | `set 1 p/2`
 Set category of task | `category <taskIndexNumber> c/<category>` | `category 1 c/CCA`
 Set date of task | `date <taskIndexNumber> date/<dd-MM-yyyy>` | `date 1 date/11-11-2020`
 Print calendar | `calendar d/<daysToPrint>` | `calendar d/7`
-Find tasks with matching keyword | `find {tasks,links,books,expenses,modules} k/<keyword>` | `find tasks k/tp meeting`
+Find an item with matching keyword | `find {tasks,links,books,expenses,modules} k/<keyword>` | `find tasks k/tp meeting`
 Clear everything | `clear all` | `clear all`
 Getting help | `help` | `help`
 Exiting the program | `bye` | `bye`
+
+
+<h1 align="center">End of termiNus User Guide</h1>

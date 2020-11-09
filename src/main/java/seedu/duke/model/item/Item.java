@@ -1,6 +1,3 @@
-//@@author GuoAi-reused
-//Reused from https://github.com/GuoAi/ip with minor modifications
-
 package seedu.duke.model.item;
 
 import seedu.duke.DukeException;
@@ -10,6 +7,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+//@@author GuoAi-reused
+//Reused from https://github.com/GuoAi/ip with minor modifications
 // Renamed from previous Task.java with some modifications.
 
 /**

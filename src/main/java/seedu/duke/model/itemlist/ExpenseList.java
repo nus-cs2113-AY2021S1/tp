@@ -1,4 +1,4 @@
-// @@author GuoAi
+
 
 package seedu.duke.model.itemlist;
 
@@ -23,6 +23,7 @@ import static java.time.temporal.TemporalAdjusters.lastDayOfYear;
 import static java.time.temporal.TemporalAdjusters.nextOrSame;
 import static java.time.temporal.TemporalAdjusters.previousOrSame;
 
+// @@author GuoAi
 
 /**
  * Represents a list of expense items.

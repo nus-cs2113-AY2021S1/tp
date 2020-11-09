@@ -1,5 +1,3 @@
-// @@author GuoAi
-
 package seedu.duke.commands;
 
 import seedu.duke.DukeException;
@@ -14,6 +12,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+// @@author GuoAi
 
 /**
  * Lists expense items in the expense list.

@@ -68,10 +68,11 @@ public class AddCommand extends Command {
     }
 
     // @@author iamchenjiajun
+
     /**
      * Adds tasks to Task List.
      *
-     * @param tasks         task to add
+     * @param tasks task to add
      * @throws DukeException If arguments in HashMap are invalid.
      */
     private void executeAddTask(TaskList tasks) throws DukeException {
@@ -84,10 +85,11 @@ public class AddCommand extends Command {
     }
 
     // @@author Cao-Zeyu
+
     /**
      * Adds links to Link List.
      *
-     * @param links         Link to add
+     * @param links Link to add
      * @throws DukeException If arguments in HashMap are invalid.
      */
     private void executeAddLink(LinkList links) throws DukeException {
@@ -111,10 +113,11 @@ public class AddCommand extends Command {
     }
 
     // @@author iamchenjiajun
+
     /**
      * Adds module to Module List.
      *
-     * @param modules         Module to add
+     * @param modules Module to add
      * @throws DukeException If arguments in HashMap are invalid.
      */
     private void executeAddModule(ModuleList modules) throws DukeException {
@@ -143,6 +146,7 @@ public class AddCommand extends Command {
     }
 
     // @@author iamchenjiajun
+
     /**
      * Sets the properties of a given Task.
      *

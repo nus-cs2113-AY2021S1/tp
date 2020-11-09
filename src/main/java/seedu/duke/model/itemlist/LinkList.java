@@ -1,4 +1,4 @@
-// @@author Cao-Zeyu
+
 
 package seedu.duke.model.itemlist;
 
@@ -8,6 +8,8 @@ import seedu.duke.model.item.Link;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
+
+// @@author Cao-Zeyu
 
 public class LinkList extends ItemList<Link> {
     private ArrayList<Link> links;

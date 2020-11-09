@@ -21,12 +21,13 @@ This section gives a summary of my contributions towards our project.
 #### Enhancements to existing features: 
 1. Deletion of tasks based on priority and category (DeleteCommand class)
     * *what it does*: Initially students could only delete their task one at a time. Now they are able to delete all **tasks** with the same priority and category in just one command. 
-    [DeleteCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/blob/master/src/main/java/seedu/duke/commands/DeleteCommand.java)
+    [DeleteCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/blob/master/src/main/java/seedu/duke/commands/DeleteCommand.java) <br>
 
 
 2. Finding **tasks** based on a keyword (FindCommand class)
     * *what it does*: Allow students to find their tasks easily with the help of this command rather than manually searching through the list.
-    [FindCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/blob/master/src/main/java/seedu/duke/commands/FindCommand.java)
+    [FindCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/blob/master/src/main/java/seedu/duke/commands/FindCommand.java) <br>
+    *However, this was modified to finding item specific {tasks,links,books,expenses,modules} by my teammate* <br>
 
 3. Clearing **all** data which includes tasks, modules, web links, books (ClearCommand class)
     * *what it does*: Allow students to clear everything and start afresh every new semester.
@@ -54,6 +55,8 @@ These are the following sections I contributed to:
 4. User stories
 5. Non-functional Requirements
 6. Glossary
+
+<div style="page-break-after: always;"></div>
 
 #### Contributions to Team-based tasks:
 These are the following team-tasks done by me:
@@ -117,18 +120,18 @@ This command allow students to delete several tasks with the same priority and c
             delete tasks <p/priorityNumber>
              <p/priorityNumber> refers to the priority given to each task
          Format: 
-            delete tasks <c/categoryr>
+            delete tasks <c/category>
              <c/category> refers to the category (if assigned) to a task. 
-7. Searching tasks by keyword: `find`
-This command allow students to narrow down their search for a specific task. The keyword has to be a **whole word**. 
+7. Searching for an item with keyword: `find`
+This command allow students to narrow down their search for a specific item.
  
     *Example*
          The student can enter this command to find only those task associated with the keyword:
-         **find meeting**
+         **find tasks tp meeting**
 
         Format: 
-            find <keyword>
-             <keyword> refers to the word to be matched with the tasks description.
+            find {tasks,links,books,expenses,modules} k/<keyword>
+             <keyword> refers to the word or phrase to be matched with the item description.
 8. Clearing all data from system: `clear` 
 This command allow students to wipe off all their data.
 
@@ -137,5 +140,5 @@ This command allow students to wipe off all their data.
              **clear all**
     
             Format: 
-                clear all
+                clear all               
 9. Quick Command Summary

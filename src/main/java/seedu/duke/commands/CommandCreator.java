@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 public class CommandCreator {
 
+    // @@author
     /**
      * Creates and returns an AddCommand with given arguments.
      *
@@ -37,6 +38,8 @@ public class CommandCreator {
         }
     }
 
+    // @@author iamchenjiajun
+
     /**
      * Creates and returns an AddRecurringCommand with given arguments.
      *
@@ -52,7 +55,9 @@ public class CommandCreator {
         }
         return new AddRecurringCommand(description, argumentsMap);
     }
-    
+
+    // @@author GuoAi
+
     public static Command createSpendCommand(String description, HashMap<String, String> argumentsMap) {
         return new SpendCommand(description, argumentsMap);
     }
@@ -75,6 +80,8 @@ public class CommandCreator {
             throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
         }
     }
+
+    // @@author
 
     /**
      * Creates and returns a ListCommand with given arguments.
@@ -130,6 +137,7 @@ public class CommandCreator {
         }
     }
 
+    // @@author
     /**
      * Creates and returns a DeleteCommand with given arguments.
      *
@@ -189,6 +197,8 @@ public class CommandCreator {
             throw new DukeException(Messages.WARNING_NO_TASK);
         }
     }
+
+    // @@author
 
     /**
      * Creates and returns a DateCommand with given arguments.

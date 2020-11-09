@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
+// @@author
+
 public class SetCommand extends Command {
     public static final String COMMAND_WORD = "set";
     public static final String MESSAGE_USAGE = COMMAND_WORD

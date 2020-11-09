@@ -1,5 +1,3 @@
-// @@author GuoAi
-
 package seedu.duke.commands;
 
 import seedu.duke.DukeException;
@@ -14,6 +12,8 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+
+// @@author GuoAi
 
 public class SpendCommand extends Command {
 
@@ -62,8 +62,11 @@ public class SpendCommand extends Command {
         }
         Double value = 0.0;
         try {
-            value = Double.valueOf(argumentsMap.get("v"));
+            value = Double.parseDouble(argumentsMap.get("v"));
         } catch (NumberFormatException e) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_VALUE);
+        }
+        if (value < 0) {
             throw new DukeException(Messages.EXCEPTION_INVALID_VALUE);
         }
         Expense newExpense = new Expense(description, value);
