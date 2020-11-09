@@ -3,9 +3,6 @@
 ## Overview
 DietBook is a Command Line Interface (CLI) desktop application designed mainly _NUS students staying on campus_. It helps users **track their food and nutritional intake** as well as provide them with their **daily calorie recommendation**. It also has a **database prepopulated with food items commonly found around NUS** so that thse food items can be easily added to the list of food items consumed for tracking. DietBook is written mainly in Java.
 
-* Table of Contents
-{:toc} 
-
 ### Summary of Contributions
 
 #### Code contributed
