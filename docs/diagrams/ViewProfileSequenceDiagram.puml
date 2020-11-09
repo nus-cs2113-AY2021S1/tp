@@ -3,8 +3,12 @@ skinparam Shadowing false
 
 participant ":Fitr"
 participant "<<class>>\n:Parser"
+participant ":ViewCommand"
 
 activate ":Fitr"
+":Fitr" -> "<<class>>\n:Ui" : read()
+activate "<<class>>\n:Ui"
+return
 ":Fitr" -> "<<class>>\n:Parser" ++ : parse("view profile")
 
 create ":ViewCommand"
@@ -15,7 +19,6 @@ return
 
 'To position the delete symbol below activation bar
 "<<class>>\n:Parser" -[hidden]-> ":ViewCommand"
-destroy "<<class>>\n:Parser"
 
 ":Fitr"->":ViewCommand" : execute()
 activate ":ViewCommand"
