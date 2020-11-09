@@ -126,9 +126,8 @@ You can install version 11 of Java from this [link](https://docs.aws.amazon.com/
 1. Install Java 11 or above in your computer if you have not done so 
 1. Download the latest scheduler.jar from [here](https://github.com/AY2021S1-CS2113T-T12-4/tp/releases) 
 1. Copy the file to the folder you want to use as the folder for the Scheduler. 
-1. Open the command prompt by entering `cmd` into the search bar and press enter 
-1. Navigate to the folder where you saved the jar file using the command prompt 
-1. Right click the top of the command prompt window, go to 'properties' and change the font to NSimSun to support ticks and crosses used in Scheduler-\-;. 
+1. Open the command prompt by entering `cmd` into the search bar and press enter. 
+1. Navigate to the folder where you saved the jar file using the command prompt.
 1. Type `java -jar scheduler.jar` into the command prompt and press enter. 
 1. The welcome message for the program should appear. 
 
