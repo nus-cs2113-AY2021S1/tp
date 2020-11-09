@@ -568,7 +568,7 @@ Expected output:
 >**Useful Information:** 
 >* Currently this feature does not support adding activity past 12am. If you wish to schedule an activity overnight, 
 >add the activity in 2 separate sessions.
->
+
 <div style="page-break-after: always;"></div>
 
 ### 2.4 Showing links: `show link`
@@ -595,6 +595,9 @@ Instruction:
 Expected output:
 
 ![Timetable_2_5](Images/TimetableUG/Timetable_2_5.png){:height="80%" width="80%"}
+
+>**Warning:**
+>* If the name of event is more than 10 character only the first 10 character will be shown.
 
 <div style="page-break-after: always;"></div>
 
