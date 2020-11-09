@@ -12,7 +12,6 @@
     - [Clearing task](#clearing-tasks--clear)
     - [Undo](#undo--undo)
     - [Redo](#redo--redo)
-    - [Setting reminder](#setting-a-reminder--reminder)
     - [Exiting program](#exiting-program--bye)
 - [FAQ](#faq)
 - [Java 11 Installation Guide](#java-11-installation-guide)
