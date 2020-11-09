@@ -153,7 +153,7 @@ This section will help provide insight to the general overview of **AniChan**’
 ![Architecture Diagram](images/Architecture-Design.png) <br/>
 *Figure 1: Architecture Design Diagram*
 
-> :bulb: The images used are stored in the directory: `images/`. If you wish to update a diagram you may replace the images in this folder.
+> :bulb: The images used are stored in the directory: `docs/images/`. If you wish to update a diagram you may replace the images in this folder.
 
 <br/>
 
