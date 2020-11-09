@@ -19,7 +19,7 @@ Given below are my contributions to the project.
   recorded. It also considers the case when certain event is across more than one day, the study time will be calculated correctly
   for different dates.
  
-* **New Feature**: Added the ability to mark an event as done.
+* **New Feature**: Added the ability to mark an event as done, as well as reject it if the current time is before the ending time.
 
 * **New Feature**: Added the ability to delete an event.
 
@@ -48,7 +48,8 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Fix bugs happening to the features. (Pull requests [\#37](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/37), [\#145](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/145))
-
+  * Make Auto Clear as an option that user can turn on or off. (Pull request [\#182](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/182))
+  
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `delete` and `find` [\#72]()
