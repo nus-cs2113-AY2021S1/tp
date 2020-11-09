@@ -306,9 +306,9 @@ public class Ui {
 
     public static void printFlashcardDelete(Flashcard flashcard, int total) {
         System.out.println(DIVIDER);
-        System.out.println(" Noted. I've removed this flashcard:");
-        System.out.println("   " + flashcard.getQuestion() + "; " + flashcard.getAnswer());
-        System.out.println(" Now you have " + total + (total == 1 ? " flashcard " : " flashcards " + "in the list."));
+        System.out.println("Noted. I've removed this flashcard:");
+        System.out.println("  Q: " + flashcard.getQuestion() + "\n  A: " + flashcard.getAnswer());
+        System.out.println("Now you have " + total + (total == 1 ? " flashcard " : " flashcards " + "in the list."));
         System.out.println(DIVIDER);
     }
 
@@ -409,7 +409,7 @@ public class Ui {
     public static void printFlashcard(Flashcard flashcard, List<Flashcard> flashcards) {
         System.out.println(DIVIDER);
         System.out.println("Got it. I've added this flashcard:");
-        System.out.println(flashcard.getQuestion() + "; " + flashcard.getAnswer());
+        System.out.println("  Q: " + flashcard.getQuestion() + "\n  A: " + flashcard.getAnswer());
         System.out.println("Now you have " + flashcards.size() + (flashcards.size() == 1
                 ? " flashcard " : " flashcards ") + "in the list.");
         System.out.println(DIVIDER);
@@ -469,7 +469,7 @@ public class Ui {
 
                 if (task.getDateTime() != null) {
                     if (task.getDateTime().isBefore(nextWeek) & task.getDateTime().isAfter(LocalDateTime.now())
-                            & !task.getIsDone()) {
+                            & ! task.getIsDone()) {
                         taskList.add(task);
                         if (firstTask == 0) {
                             System.out.println("Here are the upcoming tasks for next week!");
@@ -573,40 +573,44 @@ public class Ui {
 
     /**
      * Prints a tree of all subjects, topics, tasks, and flashcards.
-     * Tells user which subject you are currently looking at.
+     * Tells user which subject you are currently accessing.
      *
      * @param subjects      the list of all subjects to be printed
-     * @param activeSubject Subject that the user is currently looking at. null if user is not looking at a subject
-     * @param activeTopic   Topic that the user is currently looking at. null if user is not looking at a topic
+     * @param activeSubject Subject that the user is currently accessing. null if user is not accessing a subject
+     * @param activeTopic   Topic that the user is currently accessing. null if user is not accessing a topic
      */
     public static void printAll(List<Subject> subjects, Subject activeSubject, Topic activeTopic) {
         assert !(activeSubject != null && activeTopic != null);
         System.out.println(DIVIDER);
         System.out.println("Here's a list of all items:");
         if (activeSubject == null && activeTopic == null) {
-            System.out.println("(You are currently here)");
+            printActiveTreeMessage();
         }
 
         int i = 1;
-        for (Subject s : subjects) {
+        for (Subject subject : subjects) {
             boolean isLastSubject = i == subjects.size();
-            System.out.println((isLastSubject ? "└─ " : "├─ ")
-                    + (i++) + ". " + s.toString()
-                    + ((activeSubject != null && s == activeSubject) ? " (You are currently here)" : ""));
-            printAllUnderSubject(isLastSubject, s, activeTopic);
+            System.out.print((isLastSubject ? "└─ " : "├─ ")
+                    + (i++) + ". " + subject.toString() + " ");
+            if (activeSubject != null && subject == activeSubject) {
+                printActiveTreeMessage();
+            } else {
+                System.out.println();
+            }
+            printTreeUnderSubject(isLastSubject, subject, activeTopic);
         }
         System.out.println(DIVIDER);
     }
 
     /**
      * Prints a subtree of all items under a subject.
-     * If the user is looking at a topic, tells which topic the user is currently looking at.
+     * Prints where in the tree the user is currently accessing.
      *
      * @param isLastSubject Whether the subject containing the topics is the last subject in the list
      * @param subject       The subject containing all the topics to be printed
-     * @param activeTopic   Topic that the user is currently looking at. null if user is not looking at a topic
+     * @param activeTopic   Topic that the user is currently accessingaccessing. null if user is not accessing a topic
      */
-    public static void printAllUnderSubject(boolean isLastSubject, Subject subject, Topic activeTopic) {
+    public static void printTreeUnderSubject(boolean isLastSubject, Subject subject, Topic activeTopic) {
         // Print topics
         int i = 1;
         TopicList topicList = subject.getTopics();
@@ -618,18 +622,8 @@ public class Ui {
         } else {
             System.out.println(subjectTreeSymbol + "  │  Topics");
         }
-
         for (Topic topic : topics) {
-            System.out.println(subjectTreeSymbol + "  ├─ "
-                    + (i++) + ". " + topic.toString()
-                    + (activeTopic != null && topic == activeTopic ? " (You are currently here)" : ""));
-            int numberOfFlashcards = topic.getFlashcards().size();
-            if (numberOfFlashcards != 0) {
-                System.out.println(subjectTreeSymbol
-                        + "  │  └─ "
-                        + numberOfFlashcards
-                        + (numberOfFlashcards == 1 ? " Flashcard" : " Flashcards"));
-            }
+            printTreeTopic(topic, activeTopic, subjectTreeSymbol, i++);
         }
 
         // Print tasks
@@ -643,11 +637,52 @@ public class Ui {
             System.out.println(subjectTreeSymbol + "  │  Tasks");
         }
         for (Task task : tasks) {
-            System.out.println(subjectTreeSymbol
-                    + "  "
-                    + ((i == tasks.size()) ? "└─ " : "├─ ")
-                    + (i++) + ". " + task.toString());
+            printTreeTask(task, subjectTreeSymbol, tasks.size(), i++);
         }
+    }
+
+    /**
+     * Prints the subtree of a topic.
+     *
+     * @param topic The topic to be printed
+     * @param activeTopic The topic the user is accessing. Null if user is accessing a topic
+     * @param subjectTreeSymbol Appropriate symbol to print under subject column
+     * @param index Index number of topic
+     */
+    public static void printTreeTopic(Topic topic, Topic activeTopic, String subjectTreeSymbol, int index) {
+        System.out.print(subjectTreeSymbol + "  ├─ "
+                + index + ". " + topic.toString() + " ");
+        if (activeTopic != null && topic == activeTopic) {
+            printActiveTreeMessage();
+        } else {
+            System.out.println();
+        }
+        int numberOfFlashcards = topic.getFlashcards().size();
+        if (numberOfFlashcards != 0) {
+            System.out.println(subjectTreeSymbol
+                    + "  │  └─ "
+                    + numberOfFlashcards
+                    + (numberOfFlashcards == 1 ? " Flashcard" : " Flashcards"));
+        }
+    }
+
+    /**
+     * Prints the subtree of a task.
+     *
+     * @param task The task to be printed
+     * @param subjectTreeSymbol Appropriate symbol to print under subject column
+     * @param tasksSize Size of the list of tasks
+     * @param index Index number of task
+     */
+    public static void printTreeTask(Task task, String subjectTreeSymbol, int tasksSize, int index) {
+        System.out.println(subjectTreeSymbol
+                + "  "
+                + ((index == tasksSize) ? "└─ " : "├─ ")
+                + index + ". " + task.toString());
+    }
+
+    public static void printActiveTreeMessage() {
+        System.out.println("(You are currently here)");
     }
 }
 
