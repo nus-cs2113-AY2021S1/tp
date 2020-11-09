@@ -16,7 +16,7 @@ public class CommandSearchEvent extends Command {
 
     @Override
     public String help() {
-        return "Syntax: event search /s <KEYWORD>";
+        return "Syntax: event search /s KEYWORD";
     }
 
     @Override

@@ -28,6 +28,6 @@ public class CommandEventList extends Command {
 
     @Override
     public String help() {
-        return null;
+        return "Syntax: event listEvent";
     }
 }
