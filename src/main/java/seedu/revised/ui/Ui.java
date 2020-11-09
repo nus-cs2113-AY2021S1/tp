@@ -214,7 +214,7 @@ public class Ui {
     }
 
     public static void printTaskMatch(boolean isTaskFound) {
-        if(!isTaskFound) {
+        if (!isTaskFound) {
             System.out.println(" Here are the matching task(s) in your list:");
         }
     }
@@ -255,7 +255,7 @@ public class Ui {
     }
 
     public static void printTopicMatch(boolean isTopicFound) {
-        if(!isTopicFound){
+        if (!isTopicFound) {
             System.out.println("Here are the matching topic(s) in your list:");
         }
     }
