@@ -348,7 +348,7 @@ The timetable component stores an array of all events and 5 different arrays of 
   1. occursDuringEvent(): Returns true if another event is occurring during this event's time duration.
   1. equals(): Checks if the title of another event is the same and has a clashing time period. If both conditions are satisfied, return true.
   
-  <div style="page-break-after: always;"></div>
+<div style="page-break-after: always;"></div>
   
   RecurringEvent Class Key Methods Provided:
   1. timeStep(): Returns a LocalDateTime with one time step depending on what the event is.
@@ -356,7 +356,6 @@ The timetable component stores an array of all events and 5 different arrays of 
   1. getRecurrences(): Get an ArrayList of Events of all instances this event will reoccur during the specified time period.
   1. checkAfterEndRecurrences(): Checks if this Event should still reoccur as of this date.
   
-<div style="page-break-after: always;"></div>
   
 #### <a id="tag"><ins>2.7 Tags</ins></a>
 
@@ -453,6 +452,8 @@ IntelliJ's *'Dracula'* and *'High Contrast'* themes print white fonts as black a
 
 - Go under Settings -> Editor -> Color Scheme -> Console Colors -> ANSI colors -> Change the Foreground color for Black and White to the correct RGB value.
 
+<div style="page-break-after: always;"></div>
+
 Figure 22 below illustrates what you should see on your screen.
 
 <p align="center">
@@ -468,6 +469,8 @@ While Jansi provides support for Windows terminal to print colored texts, it doe
  `AnsiConsole.systemUninstall();`
  
 Remember to uncomment them when building jar files for release.
+
+<div style="page-break-after: always;"></div>
 
 ## <a id="scope">3. Product Scope</a>
 
@@ -492,7 +495,7 @@ A all-in-one solution for note-taking and managing your schedule. NotUS solves t
 1. Lack of access to organizing schedule
 1. Lack of access to organizing notes
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ## <a id="userstories">4. User Stories</a>
 
