@@ -1,10 +1,11 @@
 package academic;
 
-import exceptions.InvalidEmailException;
-import exceptions.InvalidCommandException;
-import exceptions.InvalidGradeException;
-import exceptions.RepeatedGradeException;
 import exceptions.InvalidMcException;
+import exceptions.RepeatedGradeException;
+import exceptions.InvalidGradeException;
+import exceptions.InvalidCommandException;
+import exceptions.InvalidEmailException;
+import exceptions.EmptyInputException;
 
 import studyit.StudyItLog;
 import userinterface.ErrorMessage;
@@ -103,6 +104,9 @@ public class AcademicRun {
         } catch (RepeatedGradeException e) {
             ErrorMessage.printRepeatedGrade();
             StudyItLog.logger.warning("Invalid academic command: Repeated Grade");
+        } catch (EmptyInputException e) {
+            ErrorMessage.printEmptyInput();
+            StudyItLog.logger.warning("Invalid academic command: Empty Input!");
         }
 
 
