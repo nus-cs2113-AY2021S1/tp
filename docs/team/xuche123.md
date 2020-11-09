@@ -19,15 +19,15 @@ Given below are my contributions to the project.
 * **Project management**:
   * Managed releases `v1.0` - `v2.1` (3 releases) on GitHub
 
-
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `edit` and `sort` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+   * Added documentation for the features `edit` and `sort` [\#72]()
+   * Added sections on Introduction, quick start and command summary [\#78](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/78/files)
   * Developer Guide:
-    * Added implementation details of the `edit` and `sort` feature.
+   * Added implementation details and sequence diagrams of the `edit` and `sort` feature. [\#167](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/167)
+   * Added sections on Introduction, Architecture, Documentation and Appendix [\#74](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/74), [\#171](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/171)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#33](https://github.com/nus-cs2113-AY2021S1/tp/pulls?q=is%3Aopen+is%3Apr+CS2113T-T12-1+)
+  * Revied developer guide for team [Study It](https://github.com/nus-cs2113-AY2021S1/tp/pulls?q=is%3Aopen+is%3Apr+CS2113T-T12-1+).
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/177), [2](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/175), [3](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/174))
 
