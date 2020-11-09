@@ -180,8 +180,7 @@ public class Messages {
             + "     \"delete module <index number>\"\n"
             + "     \"delete expense <index number>\"\n"
             + "     \"delete expenses currency/CURRENCY\"\n"
-            + "     \"delete expenses date/yyyy-MM-dd\"\n"
-            + "     \"delete expenses currency/CURRENCY date/yyy-MM-dd\"";
+            + "     \"delete expenses date/yyyy-MM-dd\"";
     public static final String EXCEPTION_INVALID_DONE_COMMAND = "~Error~ Please input a valid done command "
             + "using the format: \n\n"
             + "     \"done task <index number>\"\n"
@@ -194,13 +193,16 @@ public class Messages {
             + "     \"list links\"\n"
             + "     \"list modules\"\n"
             + "     \"list books\"\n"
-            + "     \"list expenses\"";
+            + "     \"list expenses\"\n"
+            + "     \"list expenses currency/CURRENCY\"\n"
+            + "     \"list expenses date/yyyy-MM-dd\"\n"
+            + "     \"list expenses for/{DAY,WEEK,MONTH,YEAR}\"";
     public static final String EXCEPTION_INVALID_FIND_COMMAND = "~Error~ Please input a valid find command "
             + "using the format: \n\n"
-            + "     \"list tasks k/KEYWORD\"\n"
-            + "     \"list expenses k/KEYWORD\"\n"
-            + "     \"list modules k/KEYWORD\"\n"
-            + "     \"list links k/KEYWORD\"\n"
-            + "     \"list books k/KEYWORD\"\n";
+            + "     \"find tasks k/KEYWORD\"\n"
+            + "     \"find expenses k/KEYWORD\"\n"
+            + "     \"find modules k/KEYWORD\"\n"
+            + "     \"find links k/KEYWORD\"\n"
+            + "     \"find books k/KEYWORD\"\n";
     public static final String EXCEPTION_INVALID_URL = "~Error~ Invalid url entered. Please refer to the User Guide.";
 }

@@ -66,7 +66,7 @@ public class SpendCommand extends Command {
         } catch (NumberFormatException e) {
             throw new DukeException(Messages.EXCEPTION_INVALID_VALUE);
         }
-        if (value < 0) {
+        if (value < 0 || value > 100000000000000L) {
             throw new DukeException(Messages.EXCEPTION_INVALID_VALUE);
         }
         Expense newExpense = new Expense(description, value);
