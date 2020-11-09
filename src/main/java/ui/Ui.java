@@ -126,11 +126,23 @@ public class Ui {
         out.println(message);
     }
 
+    /**
+     * Prints the contents of the card that is currently being revised.
+     *
+     * @param c flashcard that is currently being revised
+     * @param scanner scanner that was initialized during revision
+     */
     public void showCardRevision(Card c, Scanner scanner) {
         out.println(c.getRevisionQuestion() + MESSAGE_SHOW_ANSWER_PROMPT);
         getAnswerInput(c, scanner);
     }
 
+    /**
+     * Gets input "s" from user to show the answer for the flashcard.
+     *
+     * @param c flashcard that is currently being revised
+     * @param scanner scanner that was initialized during revision
+     */
     public void getAnswerInput(Card c, Scanner scanner) {
         String input = scanner.nextLine();
         while (!input.trim().equalsIgnoreCase("s")) {
@@ -140,7 +152,13 @@ public class Ui {
         out.println(c.getRevisionAnswer());
     }
 
-
+    /**
+     * Gets input from user during revision.
+     *
+     * @param prompt prompt to show user during revision
+     * @param scanner scanner that was initialized during revision
+     * @return user's input
+     */
     public String getInput(String prompt, Scanner scanner) {
         out.println(prompt);
         return scanner.nextLine();
