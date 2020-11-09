@@ -255,7 +255,8 @@ public class UiMessage {
         uiHelper.performAssertionsForStringInputs(nutrientUnit, "Nutrient Unit");
         uiHelper.performAssertionsForNutritionalIntake(nutrientIntake, nutrientType);
 
-        return getNutritionalIntakeMessage(nutrientIntake, nutrientType, nutrientUnit);
+        return getRecalculatedFoodsMessage() + UiHelper.LINE_SEPARATOR +  UiHelper.LINE_SEPARATOR
+                + getNutritionalIntakeMessage(nutrientIntake, nutrientType, nutrientUnit);
     }
 
     /**
@@ -305,31 +306,17 @@ public class UiMessage {
         String stringProteinIntake = getNutritionalIntakeMessage(proteinIntake, "protein", "g");
         String stringFatIntake = getNutritionalIntakeMessage(fatIntake, "fat", "g");
 
-        return stringCalorieIntake + UiHelper.LINE_SEPARATOR
+        return getRecalculatedFoodsMessage() + UiHelper.LINE_SEPARATOR +  UiHelper.LINE_SEPARATOR
+                + stringCalorieIntake + UiHelper.LINE_SEPARATOR
                 + stringCarbIntake + UiHelper.LINE_SEPARATOR
                 + stringProteinIntake + UiHelper.LINE_SEPARATOR
                 + stringFatIntake + UiHelper.LINE_SEPARATOR;
     }
 
-    /**
-     * Returns a string with a header and recalculatedFoods or a string stating that no food items had their
-     * nutritional information recalculated if calculatedFoods is an empty string.
-     *
-     * @param recalculatedFoods The list of food items which had their nutritional information recalculated by
-     *         DietBook.
-     * @return A string with a header and recalculatedFoods or a string stating that no food items had their
-     *         nutritional information recalculated if calculatedFoods is an empty string.
-     */
-    String getRecalculatedFoodsMessage(String recalculatedFoods) {
-        String message = "No food items had their nutritional information recalculated by DietBook.";
-        if (!uiHelper.isEmptyString(recalculatedFoods)) {
-            mainLogger.log(Level.FINE, "There are food with their nutritional information"
-                    + " being recalculated");
 
-            message = "Food items which had their nutritional information recalculated by DietBook: "
-                    + UiHelper.LINE_SEPARATOR + recalculatedFoods;
-        }
-        return message;
+    String getRecalculatedFoodsMessage() {
+        return "DietBook has recalculated the nutritional information for some food items with incomplete "
+                + "nutritional information.";
     }
 
     /**
@@ -348,104 +335,6 @@ public class UiMessage {
         mainLogger.log(Level.FINE, "Nutrient unit: " + nutrientUnit);
 
         return "Total " + nutrientType + " intake: " + nutrientIntake + nutrientUnit;
-    }
-
-    /**
-     * Returns a string representation of the total amount of a nutrient consumed by the user and
-     * the list of food items which had their nutritional information recalculated by DietBook if any.
-     *
-     * @param nutrientIntake The amount of a particular type of nutrient consumed.
-     * @param nutrientType A string representation of the type of nutrient consumed.
-     * @param nutrientUnit A string representation of the unit of the nutrient consumed.
-     * @param recalculatedFoods The list of food items which had their nutritional information recalculated by
-     *         DietBook.
-     * @return A string representation of the the total amount of a nutrient consumed by the user and
-     *         the list of food items which had their nutritional information recalculated by DietBook if any.
-     */
-    String getOneIntakeAndFoodsMessage(int nutrientIntake, String nutrientType,
-                                       String nutrientUnit, String recalculatedFoods) {
-        mainLogger.log(Level.FINE, "Nutrient intake: " + nutrientIntake);
-        mainLogger.log(Level.FINE, "Nutrient type: " + nutrientType);
-        mainLogger.log(Level.FINE, "Nutrient unit: " + nutrientUnit);
-        mainLogger.log(Level.FINE, "Recalculated food: " + recalculatedFoods);
-
-        uiHelper.performAssertionsForStringInputs(nutrientType, "Nutrient Type");
-        uiHelper.performAssertionsForStringInputs(nutrientUnit, "Nutrient Unit");
-        uiHelper.performAssertionsForNutritionalIntake(nutrientIntake, nutrientType);
-        uiHelper.performAssertionsForNullStringInputs(recalculatedFoods,
-                "List of foods that had their nutritional information recalculated");
-
-        String stringNutrientIntake = getNutritionalIntakeMessage(nutrientIntake, nutrientType, nutrientUnit);
-        String message = getRecalculatedFoodsMessage(recalculatedFoods);
-        return stringNutrientIntake + UiHelper.LINE_SEPARATOR + message;
-    }
-
-    /**
-     * Returns a string representation of the total amount of a nutrient or all nutrientS consumed by the
-     * user  during a given time period and the list of food items recorded during the same time period
-     * which had their nutritional information recalculated by DietBook if any.
-     *
-     * @param intakeAndFoodsWithoutTime A string representation of the the total amount of a nutrient or
-     *         all nutrients consumed by the user and the list of food items which had their nutritional
-     *         information recalculated by DietBook if any.
-     * @param start Starting date time of the time period given.
-     * @param end Ending date time of the time period given.
-     * @return A string representation of the the total amount of a nutrient or all nutrient consumed by the
-     *         user during a given time period and the list of food items recorded during the same time period
-     *         which had their nutritional information recalculated by DietBook if any.
-     */
-    String getIntakeAndFoodsWithTimeMessage(String intakeAndFoodsWithoutTime,
-                                            LocalDateTime start, LocalDateTime end) {
-        mainLogger.log(Level.FINE, "Intake and foods without time: " + intakeAndFoodsWithoutTime);
-        mainLogger.log(Level.FINE, "Start: " + start);
-        mainLogger.log(Level.FINE, "End: " + end);
-
-        uiHelper.performAssertionsForTimePeriod(start, end);
-
-        String timePeriod = "Time period:" + stringDateTimePeriod(start, end);
-        return timePeriod + UiHelper.LINE_SEPARATOR + UiHelper.LINE_SEPARATOR + intakeAndFoodsWithoutTime;
-    }
-
-    /**
-     * Returns a string representation of the total amount of all nutrients consumed by the user and
-     * the list of food items which had their nutritional information recalculated by DietBook if any.
-     *
-     * @param carbIntake The total amount of carbohydrates of all the food in the food list.
-     * @param calorieIntake The total amount of calories of all the food in the food list.
-     * @param proteinIntake The total amount of proteins of all the food in the food list.
-     * @param fatIntake The total amount of fats of all the food in the food list.
-     * @param recalculatedFoods The list of food items which had their nutritional information recalculated by
-     *         DietBook.
-     * @return A string representation of the total amount of all nutrients consumed by the user and
-     *         the list of food items which had their nutritional information recalculated by DietBook if any.
-     */
-    String getAllIntakeAndFoodsMessage(int calorieIntake, int carbIntake, int proteinIntake,
-                                       int fatIntake, String recalculatedFoods) {
-        mainLogger.log(Level.FINE, "Calorie intake: " + calorieIntake);
-        mainLogger.log(Level.FINE, "Carb intake: " + carbIntake);
-        mainLogger.log(Level.FINE, "Protein intake: " + proteinIntake);
-        mainLogger.log(Level.FINE, "Fat intake: " + fatIntake);
-        mainLogger.log(Level.FINE, "Recalculated food: " + recalculatedFoods);
-
-        uiHelper.performAssertionsForNutritionalIntake(carbIntake, "carbohydrate");
-        uiHelper.performAssertionsForNutritionalIntake(calorieIntake, "calorie");
-        uiHelper.performAssertionsForNutritionalIntake(proteinIntake, "protein");
-        uiHelper.performAssertionsForNutritionalIntake(fatIntake, "fat");
-        uiHelper.performAssertionsForNullStringInputs(recalculatedFoods,
-                "List of foods that had their nutritional information recalculated");
-
-        String stringCarbIntake = getNutritionalIntakeMessage(carbIntake, "carbohydrate", "g");
-        String stringCalorieIntake = getNutritionalIntakeMessage(calorieIntake, "calorie", "kcal");
-        String stringProteinIntake = getNutritionalIntakeMessage(proteinIntake, "protein", "g");
-        String stringFatIntake = getNutritionalIntakeMessage(fatIntake, "fat", "g");
-        String message = getRecalculatedFoodsMessage(recalculatedFoods);
-
-        return stringCalorieIntake + UiHelper.LINE_SEPARATOR
-                + stringCarbIntake + UiHelper.LINE_SEPARATOR
-                + stringProteinIntake + UiHelper.LINE_SEPARATOR
-                + stringFatIntake + UiHelper.LINE_SEPARATOR
-                + message;
-
     }
 
     /**
