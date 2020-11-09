@@ -581,6 +581,7 @@ You should see the full list of questions you have answered wrongly in your prev
 <br>
 ![quizrecord](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/quizrecord.png)
 
+<!-- @@author untitle4 -->
 ### Contact component of Plan&Score
 
 #### Adding a contact `add contact`

@@ -132,7 +132,7 @@ API: EventStorageManager.java
 
 It utilises a decoder (`EventListDecoder.java`) for the reading of data, and an encoder (`EventListEncoder.java`) for the writing of data. 
 
-###### Reading events
+##### Reading events
 
 `EventListDecoder` is responsible for the decoding of data from `events.txt`.
 
@@ -142,7 +142,7 @@ It returns an `EventParameter` to `EventStorageManager`.
 
 Figure 8. Sequence Diagram of the reading of data
 
-###### Writing events
+##### Writing events
 
 `EventListEncoder` is responsible for the creation of the encoded strings for `EventStorageManager` to write to `events.txt`.
 
@@ -153,6 +153,7 @@ It returns a `String` to `EventStorageManager` for further writing.
 Figure 9. Sequence Diagram of the writing of data
 <!-- @@author -->
 
+<!-- @@author untitle4 -->
 ##### Quiz Storage
 API: QuizStorageManager.java
 
@@ -168,6 +169,7 @@ The Quiz Storage,
 * Checks existence of the quiz data file in the `data` directory. If the file does not exist, create a new data file for quiz storage.
 * Invokes the `quizListEncoder` class to encode the ArrayList of type Quiz into its String representations and writes them into the quiz data file.
 * Invokes the `quizListDecoder` class to decode the String representations of quizzes in the quiz data file and add the quizzes back into the ArrayList of type Quiz.
+<!-- @@author -->
 
 <!-- @@author Aliciaho-->
 ##### Config Storage
@@ -404,6 +406,8 @@ The diagram below shows the execution flow explained below.
 
 Figure 20. Sequence diagram for finding events.
 <!-- @@author -->
+
+<!-- @@author untitle4 -->
 #### Find quiz <keyword(s)>
 
 The execution of FindCommand will cause the `QuizManager` class to create an instance of the `FindQuiz` class, with all the quizzes data as its attributes. 
@@ -417,6 +421,7 @@ The diagram below shows the execution flow explained below.
 ![findquiz](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/FindQuiz.png)
 
 Figure 21. Sequence diagram for finding quizzes.
+<!-- @@author -->
 
 ### Quiz feature
 
@@ -559,5 +564,5 @@ Corrupted forms can be in the following forms, but not limited to:
 * “[CLASS]\|false\|Math tutorial\|2020-09-21 1600”: one of the date-time parameter is missing from the encoded string
 * “[CLASS]+false+Math tutorial+2020-09-21 1500+2020-09-21 1600”: the parameter separator “+” is not recognized by our decoder.
 
-Expected: the program will not be able to start, with the error message “): Storage file corrupted. Please delete your data directory and relaunch.” shown.
+Expected: the program will not be able to start, with the error message “): Storage file corrupted." shown.
 <!-- @@author -->
