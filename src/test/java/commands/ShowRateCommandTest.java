@@ -19,6 +19,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -77,6 +79,19 @@ public class ShowRateCommandTest {
         return expected;
     }
 
+    private String getExpected(String expectedResult) {
+        String os = System.getProperty("os.name").toLowerCase();
+        StringWriter expectedStringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(expectedStringWriter);
+        printWriter.print(expectedResult);
+        printWriter.close();
+        String expected = expectedStringWriter.toString();
+        if (!(os.contains("win"))) {
+            expected = expected.replaceAll("\\r\\n", "\n");
+        }
+        return expected;
+    }
+
     @Test
     public void execute_validInput_showSuccessful() throws Exception {
         showRateCommand = new ShowRateCommand();
@@ -87,7 +102,8 @@ public class ShowRateCommandTest {
                 + String.format(ShowRateCommand.MESSAGE_SHOW_PERCENTAGE_PROMPT, ShowRateCommand.MEDIUM, 0.20) + "\r\n"
                 + String.format(ShowRateCommand.MESSAGE_SHOW_PERCENTAGE_PROMPT, ShowRateCommand.HARD, 0.20) + "\r\n"
                 + String.format(ShowRateCommand.MESSAGE_SHOW_PERCENTAGE_PROMPT, ShowRateCommand.CANNOT_ANSWER, 0.20);
-        assertEquals(expectedResult.trim(), getOutput().trim());
+        String expected = getExpected(expectedResult);
+        assertEquals(expected.trim(), getOutput().trim());
     }
 
     @Test
