@@ -121,7 +121,7 @@ Another example of printing help message at bookmark mode:
 
 >**Useful information:**
 >* The message varies in different modes to show you the commands at that mode. 
->Try the command at other modes when you are using the application!
+>Try it out!
 
 <div style="page-break-after: always;"></div>
 
