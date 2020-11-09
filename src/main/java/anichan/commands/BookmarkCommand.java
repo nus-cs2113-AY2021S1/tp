@@ -111,13 +111,13 @@ public class BookmarkCommand extends Command {
     /**
      * Handles the main execution of bookmark command using the bookmark action.
      * <ul>
-     *     <li>e: edit bookmark episode</li>
-     *     <li>a: add a bookmark entry</li>
-     *     <li>d: delete a bookmark entry</li>
-     *     <li>l: list all bookmark entry</li>
-     *     <li>i: display all information for a bookmark entry </li>
-     *     <li>n: add a note to bookmark entry</li>
-     *     <li>r: remove a note from bookmark entry</li>
+     *     <li>e: edit bookmark episode.</li>
+     *     <li>a: add a bookmark entry.</li>
+     *     <li>d: delete a bookmark entry.</li>
+     *     <li>l: list all bookmark entry.</li>
+     *     <li>i: display all information for a bookmark entry.</li>
+     *     <li>n: add a note to bookmark entry.</li>
+     *     <li>r: remove a note from bookmark entry.</li>
      * </ul>
      *
      * @param animeData      used to retrieve anime information
