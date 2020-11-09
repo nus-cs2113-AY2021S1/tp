@@ -435,7 +435,7 @@ Example of usage:
 <br/><br/>
 <a name="showmoduledetails"></a>
 #### 5.3.2 Show module and slot details: `show` (Xing Rong)
-Shows the details of a module or slot that has been added.  
+You can use this command to show the details of a module or slot that has been added.  
 You can see the respective indexes of each of the slots from the module 
 and using the `bookmarks` keyword will show the bookmarks which are saved in the module and its slots.
 
@@ -501,41 +501,41 @@ Format (chaining commands): add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_T
   exists or is valid from left to right of the input before adding them.
   * In the command `add cs2113t lecture fri 16:00 18:00`, if `cs2113t` module already exists, 
     then it will not be added into the timetable. The slot `lecture fri 16:00 18:00` 
-    which is valid and not a duplicate will then be added to the existing `cs2113t` module.
+    will then be added to the existing `cs2113t` module.
 
 
 Example of usage:   
 
->* Adding a module  
->input: `add CS2113T`  
->output:  
+>* **Adding a module**  
+>  * Input: `add CS2113T`  
+>  * Output:  
 >![](images/addSlotCommand/addmoduleoutput.PNG)  
 >
->* Adding a slot to a module  
->input: `add CS2102 tutorial fri 10:00 12:00`  
->output:  
+>* **Adding a slot to a module**  
+>  * Input: `add CS2102 tutorial fri 10:00 12:00`  
+>  * Output:  
 >![](images/addSlotCommand/addslottomoduleoutput.PNG)  
 >
->* Adding a bookmark to a module  
->input: `add CS2113T module-website https://nus-cs2113-ay2021s1.github.io/website/index.html`  
->output:  
+>* **Adding a bookmark to a module**  
+>  * Input: `add CS2113T module-website https://nus-cs2113-ay2021s1.github.io/website/index.html`  
+>  * Output:  
 >![](images/addSlotCommand/addbookmarktomoduleoutput.PNG)  
 >
->* Adding a bookmark to a slot  
->input: `add CS2102 tutorial fri 10:00 12:00 www.google.com`   
->output:  
+>* **Adding a bookmark to a slot**  
+>  * Input: `add CS2102 tutorial fri 10:00 12:00 www.google.com`   
+>  * Output:  
 >![](images/addSlotCommand/addbookmarktoslotoutput.PNG)  
 >
->* Chaining commands  
->input: `add CG2271 tutorial thu 11:00 12:00, lecture wed 09:00 11:00 www.yahoo.com, example-bookmark https://www.youtube.com`  
->output:  
+>* **Chaining commands**  
+>  * Input: `add CG2271 tutorial thu 11:00 12:00, lecture wed 09:00 11:00 www.yahoo.com, example-bookmark https://www.youtube.com`  
+>  * Output:  
 >(The indentation of each line of the output shows the relationships between the components.
 >In the output shown below, `bookmarks added to CG2271 lecture` is one level of indentation 
 >higher than the previous line. This means that the bookmark is added to that lecture slot.
 >Similarly, `bookmark added to module` is one level of indentation higher than `CG2271 added`, 
 >which suggests that the bookmark is added to the module CG2271.)  
 >![](images/addSlotCommand/addchaincommandoutput.PNG)  
->result:  
+>  * Result:  
 >![](images/addSlotCommand/addresult.PNG)
   
 
