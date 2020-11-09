@@ -153,13 +153,20 @@ The storage component,
 
 ![Diagram for storageOverall](./diagrams/storageOverall.jpg)
 
-How the storage component load files
+How does the storage component load files
 - the storage component will read the correct txt file.
 - It passes the text to the StorageParser.
-- The event strings are converted to actual events using their respective class constructors.
-- the events are added back into the UserData structure.
+- The event strings are converted to actual events using their respective class constructors
 
-How the storage component save files
+The following object diagram shows the state of the storage object upon completion of converting each txt file to their respective events.
+![Diagram for storageOverall](./diagrams/object_diagram_storage_before.png)
+
+- The events are stored within the UserData object to be used by the program
+
+The following object diagram illustrates the state of the storage object upon completion of this step
+![Diagram for storageOverall](./diagrams/object_diagram_storage_after.png)
+
+How does the storage component save files
 - The storage component will first retrieve the correct EventList from the UserData.
 - It will next send this EventList into the StorageParser
 - The StorageParser uses its functions to convert the events into string representations
