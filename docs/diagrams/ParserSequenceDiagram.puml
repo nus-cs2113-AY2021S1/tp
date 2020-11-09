@@ -15,11 +15,24 @@ activate Parser
 Parser --> Parser : description
 deactivate Parser
 
+opt !rootCommand.equals("find")
+
 Parser -> Parser : getArgumentsFromRegex
 activate Parser
 
 Parser --> Parser : argumentsMap
 deactivate Parser
+
+Parser -> Parser : checkValidDescription
+activate Parser
+
+Parser --> Parser
+deactivate Parser
+
+end
+
+ref over Parser : checkAllowedArguments for certain commands
+ref over Parser : checkEmptyDescription for single word commands
 
 Parser -> CommandCreator : get corresponding rootCommand
 activate CommandCreator
