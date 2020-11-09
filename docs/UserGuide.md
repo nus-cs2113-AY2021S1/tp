@@ -1,3 +1,8 @@
+---
+layout: page
+title: User Guide
+---
+
 # User Guide
 ![Logo](UG_Figures/Nav@NUSLogo.jpg)
 ## Opening words
@@ -6,40 +11,9 @@ The purpose of this user guide is to provide you with all the necessary informat
 around NUS campus via the school's shuttle service.<br>
 
 ## Table of Contents
+
+* Table of Contents
 {:toc}
-
-
-- [1. Overview](#1-overview)
-  * [1.1 What is Nav@NUS?](#11-what-is-navnus)
-  * [1.2 About the User Guide](#12-about-the-user-guide)
-  * [1.3 Introduction to Command Line Interface (CLI)](#13-introduction-to-command-line-interface-cli)
-- [2. Quick Start](#2-quick-start)
-- [3. Features](#3-features)
-  + [3.1. Bus Features](#31-bus-features)
-      * [3.1.1. List available help: ```/help```](#311-list-available-help-help)
-      * [3.1.2. Check for direct bus: ```/route```](#312-check-for-direct-bus-route---wamika)
-      * [3.1.3. Check bus route: ```/routemap```](#313-check-bus-route-routemap)
-      * [3.1.4. Check for buses at a bus stop: ```/bus```](#314-check-for-buses-at-a-bus-stop-bus)
-      * [3.1.5. List all bus available in NUS ```/allbus```](#315-list-all-bus-available-in-nus-allbus---shuyi)
-      * [3.1.6. List all bus stops in NUS: ```/liststops```](#316-list-all-bus-stops-in-nus-liststops)
-      * [3.1.7. List all faculties in NUS: ```/faculty```](#317-list-all-faculties-in-nus-faculty---shuyi)
-  + [3.2. Dine Features](#32-dine-features)    
-      * [3.2.1. Search for dining options within a faculty: ```/dine```](#321-search-for-dining-options-within-a-faculty-dine---shuyi)
-      * [3.2.2. Search for specific dining outlet: ```/dineinfo```](#322-search-for-specific-dining-outlet-dineinfo---shuyi)
-  + [3.3. Favourite Features](#33-favourite-features)      
-      * [3.3.1. Add a favourite command: `/addfav`](#331-add-a-favourite-command-addfav)
-      * [3.3.2. List all favourite commands: `/listfav`](#332-list-all-favourite-commands-listfav---shuyi)
-      * [3.3.3. Delete a favourite command: `/deletefav`](#333-delete-a-favourite-command-deletefav)
-      * [3.3.4. Execute a favourite command: `/execfav`](#334-execute-a-favourite-command-execfav)
-      * [3.3.5. Change the description for a favourite command: `/descfav`](#335-change-the-description-for-a-favourite-command-descfav---wamika)
-      * [3.3.6. Clear the list of favourite commands: `/clearfav`](#336-clear-the-list-of-favourite-commands-clearfav---shuyi)
-  + [3.4. Common Features](#34-common-features)       
-      * [3.4.1. Similarity Checks](#341-similarity-checks---wamika)
-      * [3.4.2. Reset frequent search data: ```/reset```](#342-reset-frequent-search-data-reset)
-      * [3.4.3. Exit the program: ```/exit```](#343-exit-the-program-exit)
-- [4. FAQ](#4-faq)
-- [5. Command Summary](#5-command-summary)
-- [6. Glossary](#6-glossary---wamika)
 
 ## 1. Overview
 ### 1.1 What is Nav@NUS?
@@ -551,8 +525,7 @@ Command | Format | Example
 /help | `/help` | `/help`
 /reset | `/reset` | `/reset`
 
-<!-- @@author wamikamalik -->
-## 6. Glossary - Wamika
+## 6. Glossary
 This section defines key technical terms we have used throughout the user guide.
 1. Case-sensitive: Capital and lower case letters are treated differently.
 2. Command Line Interface(CLI): Processes commands to a computer program in the form of lines of text.
@@ -561,4 +534,4 @@ This section defines key technical terms we have used throughout the user guide.
 5. Direct bus: Commute between two locations does not require changing buses.
 6. Execute: Run the command to display the output.
 7. Similarity check: Check for possible spelling errors.
-<!-- @@author -->
+
