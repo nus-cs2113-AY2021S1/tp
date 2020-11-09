@@ -46,6 +46,7 @@ public class Storage {
     }
 
     /**
+     *
      * Load data from file and add tasks to TaskList.
      */
     public TaskMap loadTasks() throws IOException {

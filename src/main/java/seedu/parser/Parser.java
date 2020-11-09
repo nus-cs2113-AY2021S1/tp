@@ -93,10 +93,17 @@ public class Parser {
     }
 
     /**
+<<<<<<< HEAD
      * Gets the command word from the raw input
      *
      * @param rawInput the user input
      * @return the command word. e.g add/edit/delete
+=======
+     * Returns the command word string. e.g add/edit/delete
+     *
+     * @param rawInput the user input.
+     * @return the command word.
+>>>>>>> dd2a3d5e0f0beb279d1fba4730059d32fcfdef99
      */
     public String getCommandWord(String rawInput) {
         String commandWord = rawInput;
@@ -108,10 +115,17 @@ public class Parser {
     }
 
     /**
+<<<<<<< HEAD
      * Gets everything after the command word
      *
      * @param rawInput the user input
      * @return the string after the command word
+=======
+     * Returns the arguments, which is everything after the command word.
+     *
+     * @param rawInput the user input.
+     * @return the argument of the command.
+>>>>>>> dd2a3d5e0f0beb279d1fba4730059d32fcfdef99
      */
     public String getCommandArgs(String rawInput) {
         String commandArgs = "";
