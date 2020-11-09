@@ -2,9 +2,9 @@
 
 ## Table of contents
 - [Introduction](#introduction)
-  * [What is *25HoursADay*?](#what-is--25hoursaday--)
+  * [What is *25HoursADay*?](#what-is-25hoursaday-?)
   * [Purpose and scope](#purpose-and-scope)
-- [Setting Up & Getting started](#setting-up---getting-started)
+- [Setting Up & Getting started](#setting-up-&-getting-started)
   * [Setting up](#setting-up)
   * [Getting started](#getting-started)
 - [Design](#design)
@@ -44,17 +44,17 @@
   * [Testing guide](#testing-guide)
 - [DevOps guide](#devops-guide)
   * [Build automation](#build-automation)
-  * [Continuous integration (CI)](#continuous-integration--ci-)
+  * [Continuous integration](#continuous-integration)
   * [Make a release](#make-a-release)
-- [Appendix A: About the product](#appendix-a--about-the-product)
+- [Appendix A: About the product](#appendix-a-:-about-the-product)
   * [Product scope](#product-scope)
   * [Target user profile](#target-user-profile)
   * [Value proposition](#value-proposition)
-- [Appendix B: User Stories](#appendix-b--user-stories)
-- [Appendix C: Non-Functional Requirements](#appendix-c--non-functional-requirements)
-- [Appendix D: Glossary](#appendix-d--glossary)
-- [Appendix E: Contact the initial developers](#appendix-e--contact-the-initial-developers)
-- [Appendix F: Instructions for manual testing](#appendix-f--instructions-for-manual-testing)
+- [Appendix B: User Stories](#appendix-b-:-user-stories)
+- [Appendix C: Non-Functional Requirements](#appendix-c-:-non-functional-requirements)
+- [Appendix D: Glossary](#appendix-d-:-glossary)
+- [Appendix E: Contact the initial developers](#appendix-e-:-contact-the-initial-developers)
+- [Appendix F: Instructions for manual testing](#appendix-f-:-instructions-for-manual-testing)
   * [Command summary](#command-summary)
 
 ## Introduction
@@ -393,7 +393,7 @@ e.g. `./gradlew shadowJar`
     * `./gradlew test` - Runs all tests
     * `./gradlew clean test` - Cleans the project and runs tests
 
-### Continuous integration (CI)
+### Continuous integration
 This project uses GitHub Actions for CI. The project comes with the necessary GitHub Actions configurations files 
 (in the `.github/workflows` folder). No further setting up required.
 
