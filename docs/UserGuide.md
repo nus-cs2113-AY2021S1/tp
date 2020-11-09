@@ -60,7 +60,7 @@ Any points with the 💡 emoji represents an additional information. You can acc
 
 5\. Use the command `help` to get a list of commands and their usages before using the application (if needed).
 
-💡 Supported terminals are: Windows 10 Command Prompt, Windows Powershell, macOS and linux Terminals. Other terminals, such as Cygwin may not support color display.
+💡 Supported terminals are: Windows 10 Command Prompt, Windows Powershell, macOS and linux Terminals. Other terminals, such as Cygwin may not support color display.<br>
 💡 Recommended to use black background for better color contrast.
 
 <div style="page-break-after: always;"></div>
