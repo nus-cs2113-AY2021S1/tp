@@ -119,6 +119,8 @@ Param Type| Param | Param Format
 > Example: 
 
 ![](developerGuide_images/screenshots_manualtracker/manual_delete1.png)
+
+<div style="page-break-after: always;"></div>
     
 ## Open ledger
 Users will gain access into the entries associated with the specified ledger, referenced by date or id on the list.
@@ -242,6 +244,8 @@ Param Type| Param | Param Format
 ![](developerGuide_images/screenshots_entrytracker/entry_create.png)
 
 > Note that ';' is an illegal input character! Also, you can force indent to your text using '>' key. 
+
+<div style="page-break-after: always;"></div>
 
 ## Edit entry
 Edit an existing entry in the ledger record.
@@ -380,6 +384,8 @@ Displays a list of all recurring entries.
     
 
 ![](screenshots/recurringtracker/list.png)
+
+<div style="page-break-after: always;"></div>
 
 ## Delete entry
 Deletes an entry at the given index. Index can be found via `list` and then checking the 
