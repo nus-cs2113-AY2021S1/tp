@@ -53,7 +53,6 @@ enhancements.
   * [E.11 Saving of favourite list - Wong Heng Chin](#e11-saving-of-favourite-list---wong-heng-chin)
   * [E.12 Saving of search frequncies of each bus stop - Johnson](#e12-saving-of-search-frequncies-of-each-bus-stop---johnson)
 
-<div style="page-break-after: always;"></div>
 ## 1. Setting up, getting started
 
 Refer to the guide [Setting up and getting started](https://github.com/AY2021S1-CS2113T-F14-3/tp/blob/master/README.md#duke-project-template).
@@ -107,8 +106,6 @@ The following class diagram briefly explains how different classes in the Logic 
 
 <img src="DG_Diagrams/Components/LogicComponent.png" alt="logiccomponent" width=1400>
 
-<div style="page-break-after: always;"></div>
-
 #### 2.1.3. Model Component
 The Model component is responsible for the following tasks:
 - Stores the bus data, dine info data and favourites list in memory.
@@ -131,8 +128,6 @@ retrieves it everytime the user enters the application.
 The following class diagram briefly explains how different classes in the Storage component interact with each other.
 
 ![StorageComponent](DG_Diagrams/Components/StorageComponent.png)
-
-<div style="page-break-after: always;"></div>
 
 ## 3. Implementation
 This section provides details of how the main features of Nav@NUS have been implemented.
@@ -194,8 +189,6 @@ Given the above alternatives, alternative 1 was used considering the implementat
 application.
 <!-- @@author -->
 
-<div style="page-break-after: always;"></div>
-
 <!-- @@author Johnson-Yee -->
 ### 3.2. Full Route Display (`/routemap` Feature) - Johnson
 
@@ -237,8 +230,6 @@ of busStops objects.
 Given the above alternatives, alternative 1 was used considering the scalability of the application.
 <!-- @@author -->
 
-<div style="page-break-after: always;"></div>
-
 <!-- @@author EthanWong22 -->
 ### 3.3. Bus at bus stop finder (`/bus` Feature) - Wong Heng Chin
 
@@ -261,8 +252,6 @@ The following sequence diagram illustrates the steps taken by the program when t
 The following sequence diagram explains the interactions omitted in the main diagram.
 ![getBusStop_Sequence_Diagram](DG_Diagrams/BusCommand/getBusStop.png)
 <!-- @@author -->
-
-<div style="page-break-after: always;"></div>
 
 <!-- @@author Lezn0 -->
 ### 3.4. List All stops (`/liststops` Feature) - Yuxin
@@ -291,8 +280,6 @@ The following sequence diagram illustrates the steps taken by the program when t
 Given the above alternatives, alternative 1 was used considering the integration of other commands.
 <!-- @@author -->
 
-<div style="page-break-after: always;"></div>
-
 <!-- @@author mrwsy1 -->
 ### 3.5. Dining options finder (`/dine` Feature) - Shuyi
 
@@ -310,8 +297,6 @@ The `DineCommand#executeCommand()` method of DineCommand Class executes the comm
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/dine` command.<br>
 <img src="DG_Diagrams/DineSequence.png" alt="dine" width=450>
 
-<div style="page-break-after: always;"></div>
-
 ### 3.6. Find specific dining outlets (`/dineinfo` Feature) - Shuyi
 
 `/dineinfo <outlet>` is the command that has to be entered by the user to see information of a specified dining outlet.
@@ -326,8 +311,6 @@ The `DineInfoCommand#executeCommand()` method of DineInfoCommand Class executes 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/dineinfo` command. <br>
 <img src="DG_Diagrams/DineInfoSequence.png" alt="dine info" width=450>
 <!-- @@author -->
-
-<div style="page-break-after: always;"></div>
 
 ### 3.7. Favourite command adder (`/addfav` Feature) - Yuxin
 
@@ -348,8 +331,6 @@ The following sequence diagram illustrates the steps taken by the program when t
 <img src="DG_Diagrams/AddFavSequence.png" alt="add fav" width=650>
 <!-- @@author -->
 
-<div style="page-break-after: always;"></div>
-
 <!-- @@author Johnson-Yee -->
 ### 3.8. Removing specific delete command (`/deletefav` Feature) - Johnson
 `/deletefav <index>` is the command to remove a favourite command in the user's list of favourite commands. It allows the
@@ -365,8 +346,6 @@ index has been deleted.
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/deletefav` command.
 ![Sequence ](DG_Diagrams/DeleteFavCommand/DeleteFavSeq.png)
 <!-- @@author -->
-
-<div style="page-break-after: always;"></div>
 
 <!-- @@author EthanWong22 -->
 ### 3.9. Favourite command executor (`/execfav` Feature) - Wong Heng Chin
@@ -401,8 +380,6 @@ The following sequence diagram illustrates the steps taken by the program when t
     
 Therefore, choosing commands based on index (alternative 1) is easier to implement, more efficient, reduces possible bugs encountered and provides better user experience.
 <!-- @@author -->
-
-<div style="page-break-after: always;"></div>
 
 <!-- @@author wamikamalik -->
 ### 3.10. Modifying the description of a favourite command (`/descfav` Feature) - Wamika
@@ -459,8 +436,6 @@ the description is different from what is already stored.
 While alternative 2 would place all checks in one place, it can be tedious to test or debug. Therefore, alternative 1 
 was chosen. It also made the code look neater and more readable. 
 
-<div style="page-break-after: always;"></div>
-
 ### 3.11. Performing similarity checks - Wamika
 This feature provides the user with suggestions for possible spelling errors, if any. It does not require any explicit 
 instruction or command from the user and runs every time the user enters a `/route` or `/bus` command.<br>
@@ -482,8 +457,6 @@ Refer to [`/route` feature implementation](#31-finding-a-direct-route-route-feat
 _Credits: The Levenshtein distance algorithm was adapted from 
 [this site.](http://rosettacode.org/wiki/Levenshtein_distance#Java)_
 <!-- @@author -->
-
-<div style="page-break-after: always;"></div>
 
 <!-- @@author Johnson-Yee -->
 ### 3.12 Displaying most searched bus stop on start-up - Johnson
@@ -521,8 +494,6 @@ variable called searchCount.
     
 Given the above alternatives, alternative 1 was used considering the integration of other commands.
 
-<div style="page-break-after: always;"></div>
-
 ### 3.13 Resetting search frequencies of bus stops (`/reset` Feature) - Johnson
 This feature allows the user to reset the search frequencies of all bus stops.
 
@@ -533,8 +504,6 @@ The `ResetSearchFreqCommand#executeCommand()` method of ResetSearchFreqCommand C
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/reset` command.
 ![Sequence ](DG_Diagrams/ResetSearchFreqCommand/ResetSearchFreqSeq.png)
 <!-- @@author -->
-
-<div style="page-break-after: always;"></div>
 
 ## 4. Appendix A: Product Scope
 
@@ -556,8 +525,6 @@ Nav@NUS seeks to help the intended audience to achieve the following:
  - Personalised application suited to the user's needs
 <!-- @@author -->
 
-<div style="page-break-after: always;"></div>
-
 <!-- @@author wamikamalik -->
 ## 5. Appendix B: User Stories - Wamika
 
@@ -574,8 +541,6 @@ Nav@NUS seeks to help the intended audience to achieve the following:
 |v2.0|frequent user|be able to change how I describe my favorite commands|I know when and why I usually use that command and so that I can use it accordingly later.|
 |v2.0|food connoisseur|know what dining options are available in my faculty|I can find food that suits my taste|
 |v2.0|freshman|know the locations and opening hours of the cafes in my faculty|I do not waste time looking for them|
-
-<div style="page-break-after: always;"></div>
 
 ## 6. Appendix C: Non-Functional Requirements - Wamika
 
@@ -602,9 +567,7 @@ This portion contains instructions on how to perform manual testing.
 2. Shutdown
     - Type `/exit` followed by enter key to exit<br>
     Expected: The CLI application closes with an exit message. List of favourite commands and search frequency will be saved
-
-<div style="page-break-after: always;"></div>
-
+    
 <!-- @@author wamikamalik -->
 ### E.2 Check for direct bus - Wamika
 > Note: The user can list all bus stop names using the `/liststops` command if unsure of the starting location or 
@@ -644,8 +607,6 @@ Expected: No bus routes will be displayed as there is no such bus in our databas
 Expected: No bus routes will be displayed. Error details will be shown to remind users to type in
 the needed parameter.<br>
 <!-- @@author -->
-
-<div style="page-break-after: always;"></div>
 
 <!-- @@author EthanWong22 -->
 ### E.4 Check for buses at a bus stop - Wong Heng Chin
@@ -703,8 +664,6 @@ the needed parameter.<br>
     Expected: Similar to previous.<br> 
 <!-- @@author -->
 
-<div style="page-break-after: always;"></div>
-
 <!-- @@author Lezn0 -->
 ### E.7 Add a favourite command - Yuxin
 1. Adding a command to the list of favourites.
@@ -757,8 +716,6 @@ Expected: No command executed.Error details will be shown to remind users to typ
     - Other incorrect data to test: `/execfav`, `/execfav words`, `/execfav x`(where x is larger than list).<br>
     Expected: Similar to previous.
 <!-- @@author -->
-
-<div style="page-break-after: always;"></div>
 
 <!-- @@author wamikamalik -->
 ### E.10 Change description of favourite command in favourite list - Wamika
