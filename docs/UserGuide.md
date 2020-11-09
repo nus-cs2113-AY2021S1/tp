@@ -1043,13 +1043,13 @@ Here is a key point:
 * Step 1: Type `help` into the command prompt and press `Enter` to execute it.<br>
 
 <p align="center">
-    <img src="UG_Images/help1.png" alt="Help 1"/>
+    <img src="UG_Images/help1.png" width="600" alt="Help 1"/>
 </p>
 
 * Step 2: Part the result for the list of commands will be displayed as shown.<br>
 
 <p align="center">
-    <img src="UG_Images/help2.png" alt="Help 2"/>
+    <img src="UG_Images/help2.png" width="600" alt="Help 2"/>
 </p>
 
 * After knowing what are the commands, you can try any commands on the correct level.
