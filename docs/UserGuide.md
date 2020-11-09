@@ -110,7 +110,7 @@ Expected output:
 Example of printing help message at menu:
 
 <p align="left">
-    <img width="80%" height="80%" src="Images/GeneralUG/help.png">
+    <img width="100%" height="100%" src="Images/GeneralUG/help.png">
 </p>
 
 <div style="page-break-after: always;"></div>
@@ -118,7 +118,7 @@ Example of printing help message at menu:
 Another example of printing help message at bookmark mode:
 
 <p align="left">
-    <img width="80%" height="80%" src="Images/GeneralUG/bookmarkhelp.png">
+    <img width="100%" height="100%" src="Images/GeneralUG/bookmarkhelp.png">
 </p>
 
 >**Useful information:**
@@ -146,6 +146,8 @@ Command: `cd 2`
 
 ![CDBookmark](Images/GeneralUG/cdBookmark.png)
 
+<div style="page-break-after: always;"></div>
+
 Command: `cd academic`
 
 ![CDAcademic](Images/GeneralUG/cdacademic.png)
@@ -161,6 +163,8 @@ Command: `cd academic`
 >* You can use this command anywhere in the app to switch between modes quickly!
 >* This command STILL works if you don't have space/have excess space 
 >between `cd` and the `MODE_NAME/MODE_INDEX`
+
+<div style="page-break-after: always;"></div>
 
 ### 3. Shows the current location: `location`
 
@@ -179,6 +183,8 @@ At flashcard mode:
 
 ![](Images/GeneralUG/location_flashcard.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 4. Prints starred items: `highlight`
 
 This command will print out the starred items in Bookmark and Academic
@@ -189,6 +195,8 @@ Instruction:
 Expected output:
 
 ![](Images/GeneralUG/highlight.png)
+
+<div style="page-break-after: always;"></div>
 
 ### 5. Exits the current mode or application: `exit`
 
