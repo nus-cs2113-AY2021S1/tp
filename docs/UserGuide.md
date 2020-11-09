@@ -53,8 +53,8 @@ Firstly, please ensure that your computer fulfills the following requirement:
   * You may refer to this [website](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html) to download the Java 11.0.8 installer
   * The installation guide can be found in the following websites:
     * [Windows](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-A7E27B90-A28D-4237-9383-A58B416071CA)
-    * [Linux](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-linux-platforms.html#GUID-737A84E4-2EFF-4D38-8E60-3E29D1B884B8) 
-    * [MacOS](https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-macos.htm)
+    , [Linux](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-linux-platforms.html#GUID-737A84E4-2EFF-4D38-8E60-3E29D1B884B8) 
+    , [MacOS](https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-macos.htm)
 
 Once you are done installing Java 11.0.8 onto your PC, you may follow these procedures to start using Study It:
 
@@ -68,13 +68,12 @@ Once you are done installing Java 11.0.8 onto your PC, you may follow these proc
 1. If the application runs successfully, you’ll be greeted by the following welcome message:
 
 <p align="center">
-    <img width="80%" height="80%" src="Images/GeneralUG/welcomemessage.png">
+    <img width="70%" height="70%" src="Images/GeneralUG/welcomemessage.png">
 </p>
 
 Congratulations! You are now able to run Study It. To access its various functionalities,
-you would need to type in the command at the Command Prompt and press Enter. 
-
-Whenever you feel lost, refer to the following sections of this User Guide or call the `help` function in the app 
+you would need to type in the command at the Command Prompt and press Enter. Whenever you feel lost, 
+refer to the following sections of this User Guide or call the `help` function in the app 
 for guidance. We hope that you have fun using our app!
 
 <div style="page-break-after: always;"></div>
