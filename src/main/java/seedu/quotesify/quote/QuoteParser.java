@@ -335,7 +335,10 @@ public class QuoteParser {
      * @throws QuotesifyException If invalid parameters are provided by user.
      */
     public static Quote getEditedQuote(String userInput) throws QuotesifyException {
-        String quoteAndInformation = userInput.split(Command.FLAG_EDIT, 2)[1];
+        String quoteAndInformation = userInput.split(FLAG_EDIT, 2)[1];
+        if (hasExtraFlag(quoteAndInformation, FLAG_EDIT)) {
+            throw new QuotesifyException(ERROR_DUPLICATE_EDIT_FLAG);
+        }
         return parseParametersIntoQuote(quoteAndInformation);
     }
 
