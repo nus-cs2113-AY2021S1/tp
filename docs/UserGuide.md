@@ -236,7 +236,7 @@ While `showsettings` shows you the settings, this command lets you change one of
 * `{NEW_OPTION}` is the new setting option that you would like to select. This needs to be typed in exactly as show from the `showsettings` command.
 
 For example, let's say that you want Zoomaster to enter `bookmark` mode when you start it. 
-You can type in `set def_mode bookmark` and Zoomaster will change your settings, as shown below.
+You can type in `set def_mode bookmark` and Zoomaster will change your settings, as shown below.  
 
 ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/setsettings.png)
 
@@ -310,7 +310,7 @@ Example of usage:
 * `delete 2`  
 * `delete 4`  
 
-You should see a message similar to the screenshot below.
+You should see a message similar to the screenshot below.  
 ![](images/deletebookmarksoutput.PNG)
 
 <!-- @@author fchensan -->
@@ -350,7 +350,7 @@ Example of usage:
 * `find cs2113t-website`
 * `find notes`  
 
-You should see a message similar to the screenshot below when a successful match is found.
+You should see a message similar to the screenshot below when a successful match is found.  
 ![](images/findBookmarkoutput.PNG)
 
 Else you should see "No bookmarks contain the specified keyword!".
@@ -605,7 +605,7 @@ The second `DAY` parameter is for the new day of the week you wish to set your s
 > For example, let's say that you have these two slots on wednesday:
 > ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslotcontext.png)
 > If you want to change the title of the second slot to "tutorial", you can simply type `edit title wed 2 tutorial`.
-> You should then see a message as shown below:
+> You should then see a message as shown below:  
 > ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslot.png)
 
 > More examples of usage:   
