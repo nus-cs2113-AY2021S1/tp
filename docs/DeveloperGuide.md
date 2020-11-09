@@ -52,6 +52,8 @@ With the aim of increasing maintainability of Fluffle, separated packages and cl
 |Gradle|A build tool used for automated testing. It checks for code style violations and runs unit tests to ensure the code is functional between iterations.| 
 |IntelliJ|An integrated development environment that used to write and test java code.|
 
+[Jump to top](#developer-guide)
+
 ## Setting up the project in your computer
 **Prerequisites:**
 * JDK 11
@@ -89,6 +91,8 @@ What can I do for you?
 What is your name?
 ```
 
+[Jump to top](#developer-guide)
+
 ## Design
 
 The following sections describe the high-level overview of our application, Fluffle.
@@ -96,8 +100,12 @@ The following sections describe the high-level overview of our application, Fluf
 ### Technological overview
 The Integrated Development Environment, IntelliJ, is used to develop our program. The program is written in Java, and uses Gradle for building and testing purposes. Our source code is mostly original, with some functions imported from the java.util package. The remaining packages and classes which form the structure of our program are independently developed.
 
+[Jump to top](#developer-guide)
+
 ### Project overview
 Fluffle is built using IntelliJ and all concepts for the user interfaces, as well as the backend data management of the application, was created by our team. Due to the restrictions of the project, the main file format used for storage is .txt. We opted to save the data in the text files in a user readable format as opposed to the comma separated format as it is easier for users to directly refer to and edit their saved files.
+
+[Jump to top](#developer-guide)
 
 ### Architecture
 The following figure describes the overall architecture of Fluffle.
@@ -113,6 +121,8 @@ The design of Fluffle contains four main components:
 
 All components can be accessed by the user through Fluffle's UI. On loading Fluffle, all components will be loaded from the storage. On exiting Fluffle, all components will be saved to the storage.
 
+[Jump to top](#developer-guide)
+
 ### Writing Manager Component
 
 Given below is the overall architecture of Fluffle's writing component.
@@ -123,6 +133,8 @@ In Fluffle, the writings are saved in the local hard drive text file `writings.t
 - Adding writings to the database.
 - Deleting writings from the database.
 - Getting a reminder to continue some writings on a specific date.
+
+[Jump to top](#developer-guide)
 
 ### Bunny Manager Component
 There are two methods for the user to load their bunny ideas into the application: loading it using the app or directly editing the `bunny.txt` data file.
@@ -184,6 +196,8 @@ Transferring `Bunny` ideas from the `bunny.txt` to the `bunniesList` file via th
 
 Note that all the other functions in the bunny related classes such as `BunnyList`, `DeleteBunny`, `BunnyFilter` and `GenBunny` can also access this `bunniesList` ArrayList to perform their various functions as it is passed by reference from the `commandExecutor` function, which imports the `bunniesList` from the `BunnyList` class. Find out more [here](#bunny-class-family).
 
+[Jump to top](#developer-guide)
+
 ### Word Manager Component
 Given below is the general architecture of our Word Manager Component.
 
@@ -197,6 +211,8 @@ The operations that can be done on the words list are:
 - Getting three random words.
 - Filtering words (by word types or by substrings).
 
+[Jump to top](#developer-guide)
+
 ### Name Manager Component
 
 ## Implementation
@@ -207,6 +223,8 @@ The operations that can be done on the words list are:
 After the initial logo printing and registration step, the `main` in the `Duke` class enters a while loop, which will only exit when the `exit` command is detected. This component handles the processing of various commands in Fluffle and makes it easier for developers to add new commands without interfering with implementation of other commands.
 
 For simplicity when the `CommandExecutor` class is referenced in later UML diagrams in this document, you may assume that it is a continuation of the `excecuteCommand` section of this diagram.
+
+[Jump to top](#developer-guide)
 
 ### Writing Features
 #### Constitution (member classes)
@@ -251,6 +269,8 @@ When the user keys in the command `remind DATE`, where `DATE` is the date the us
 1. In `WritingReminder.filterWritingsOnADate()`, the `DATE` will be parsed by `LocalDate.parse()`.
 1. The Java stream is used to filter the list of writings and get which ones are scheduled for that `DATE`.
 1. Private `WritingReminder.printWritingsOnADate()` will be called to print out the result.
+
+[Jump to top](#developer-guide)
 
 ### Word Features
 Fluffle contains a word bank that stores words which are keyed in by the user, together with its meaning. The diagram
@@ -321,6 +341,8 @@ In **Figure 7** above, the flow of the program after it enters the filter proces
 1. Filter list is printed by calling `FilterList.printFilterList()`.
 1. The filter process terminates.
    
+[Jump to top](#developer-guide)
+
 ### Bunny class family overivew
 ![UML Bunny class diagram](graphics/diagrams/Class_diagram_bunny.png)
 <p= "center"><i><b>Figure 8:  Bunny ideas UML Class Diagram</b></i></p>
@@ -336,6 +358,8 @@ The `BunnySaver` class accesses the `bunniesList` and overwrites the current `bu
 
 #### `GenBunny` class overview
 The `GenBunny` class can access the `bunniesList` as well. The function `pickRandomBunny` from the `GenBunny` class first randomly generates an integer between 0 and the max number of `Bunny` idea in the `bunniesList` ArrayList. It then selects that indexed `Bunny` from the `bunniesList` and returns it to the user. This allows the user to easily choose an idea to start working on without struggling to decide which idea to use.
+
+[Jump to top](#developer-guide)
 
 ### Bunny command implementations
 
@@ -362,6 +386,8 @@ The `random bunny` command uses the `pickRandomBunny` method of the `GenBunny` c
 
 #### Resetting the entire list of Bunny ideas: `reset bunny`
 The `reset bunny` command simply calls `clearAllBunny` function to clear the `bunniesList` in the current run of the program. To save the cleared list the function simply reminds the user that they should use the `save bunny` command mentioned above.
+
+[Jump to top](#developer-guide)
 
 ### Names class family
 
@@ -405,9 +431,13 @@ As shown in Figure 10, both the NamesDB class and the Names class will create th
 ### Changing line divider in Fluffle: `divider`
 The line divider is saved as a static string in the `UI` class. When the `divider` command is detected, the `changeLineDivider` method from the UI class is called to parse the selected line divider option and the `getDivider` method retrives the new divider String from the `Logos` class and saves it as the new `currentLineDivider` String in the `UI`.
 
+[Jump to top](#developer-guide)
+
 ## Testing
 
 If you are using IntelliJ IDEA with Gradle, there are two ways to run tests for Fluffle.
+
+[Jump to top](#developer-guide)
 
 ### Using JUnit test
 - To run all test, in IntelliJ, right click on `test/java/seedu.duke` and choose `Run Tests in 'seedu.duke'`
@@ -415,6 +445,8 @@ If you are using IntelliJ IDEA with Gradle, there are two ways to run tests for 
 
 ### Using Gradle
 - To run all test, open the terminal in IntelliJ IDEA, move to the root folder of the project and key in `gradlew clean test` for Windows (`./gradlew clean test` for Mac OS/Linux).
+
+[Jump to top](#developer-guide)
 
 ## Appendices
 
@@ -426,12 +458,16 @@ The target user group are creative writers.
 * Writers who enjoy creating short pieces but lack the organisation to do so.
 * Writers who want to improve their creative writing skills and need a proper way to achieve it.
 
+[Jump to top](#developer-guide)
+
 ### Appendix B: Value proposition
 
 The application aims to provide the writer with the following services:
 * Provide them with an organised way to store and select their plot ideas which may be otherwise abandoned
 * Provide them with customised prompt suggestions to inspire them to write
 * Provide them with a system to organise longer writing projects in a neat and logical manner to facilitate the writing of long works
+
+[Jump to top](#developer-guide)
 
 ### Appendix C: User Stories
 
@@ -454,6 +490,8 @@ The application aims to provide the writer with the following services:
 |v2.0|writer facing writers block|generate a random idea from my bunny storage|warm up or brainstorms on my writings|
 |v2.0|writer facing writers block|have an app that randomly generate the words|brainstorm for my writings based on those words|
 
+[Jump to top](#developer-guide)
+
 ### Appendix D: Non-Functional Requirements
 
 - Should be a Command-line Interface application.
@@ -465,6 +503,8 @@ The application aims to provide the writer with the following services:
 - Should work without requiring an installer.
 - Should work for single user.
 - Should work without Internet connection.
+
+[Jump to top](#developer-guide)
 
 ### Appendix E: Instructions for manual testing
 Given below are the instructions to test Fluffle manually.
@@ -498,3 +538,6 @@ What is your name?
 7. If you want to shutdown Fluffle, use the command `exit`.
 
 **For a more specific explanation and demonstration of the commands, visit our User Guide [here](https://ay2021s1-cs2113t-w11-4.github.io/tp/UserGuide.html).**
+
+[Jump to top](#developer-guide)
+
