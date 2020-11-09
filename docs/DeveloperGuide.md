@@ -307,7 +307,7 @@ A `Quote` object holds the following attributes:
 * A `String` that holds the reference title from where the quote was from.
 * A `String` that holds the user given reflection of the quote.
 
-* The Quote management system containsthe following commands: `AddQuoteCommand`, `ListQuoteCommand`, `EditQuoteCommand`, 
+* The Quote management system contains the following commands: `AddQuoteCommand`, `ListQuoteCommand`, `EditQuoteCommand`, 
 `DeleteQuoteCommand`, `FindQuoteCommand`, `AddQuoteReflectionCommand`, `ListQuoteReflectionCommand`, 
 `EditQuoteReflectionCommand`, `DeleteQuoteReflectionCommand`.
 
@@ -511,9 +511,7 @@ Given below is the class diagram for classes related to the Rating System in Quo
 ![Class Diagram for Rating system](images/ClassDiagram_Rating.png)
 
 * A `Book` must exists before a `Rating` can be created.
-* The `XRatingCommand` class represents `AddRatingCommand`, `DeleteRatingCommand`, `ListRatingCommand`
-, `EditRatingCommand`, `FindRatingCommand` classes which all extends their respective parent `XCommand` classes.
-* All the `XCommand` classes extends the abstract `Command` class.
+* A `Book` object will have an attribute rating.
 
 #### 4.5.1 Add rating
 
