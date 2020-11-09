@@ -738,8 +738,6 @@ The sequence diagram below explains how the load planner command is executed:
 ![](diagrams/plannerCommand/save_planner.png) <br/>
 *<center/>Figure 2.27 Sequence diagram for SavePlannerCommand</center> <br/>*
 
-<br>
-
 #### Design consideration:
 
 ##### Aspect: How to load and save the group meeting to the timetables.
