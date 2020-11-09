@@ -13,6 +13,7 @@ BLK/E5A/Raffles Hall
 BLK/E6/Opp YIH,YIH
 BLK/IT/Information Technology,CLB
 H/Raffles Hall/Raffles Hall,NUS Museum
+H/Kent Ridge Hall/
 L/LT1/E2
 L/LT2/E2
 L/LT6/E4
