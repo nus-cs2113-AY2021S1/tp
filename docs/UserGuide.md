@@ -200,6 +200,8 @@ To find indirect bus routes:
 if there is a direct bus route from these bus stops.<br><br>
 <img src="UG_Figures/routemap3.png" alt="inputRouteMapCommand" width=650><br>
 
+<div style="page-break-after: always;"></div>
+
 **<u>Example 2</u>**<br>
 This command is also useful in showing you the previous bus stops of your intended bus. You could use this information
 to gauge how crowded the bus would be.<br><br>
@@ -282,6 +284,8 @@ To see the description of each location:
 1. Type <code>/liststops</code> into the CLI and press <kbd>Enter</kbd>.<br><br>
 <img src="UG_Figures/listOutput.png" alt="inputCommand" width=800><br>
 <!-- @@author -->
+
+<div style="page-break-after: always;"></div>
 
 <!-- @@author mrwsy1 -->
 #### 3.1.6. List all faculties in NUS: ```/faculty``` - Shuyi
