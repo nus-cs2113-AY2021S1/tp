@@ -381,7 +381,7 @@ The StorageManager saves and loads data to text files. On launch, the storage ma
    <br><em>Figure 15</em>
 </p>
 
-While loading information is passed to the parser manager to prepare the information to be added. Following that, the respective Add Command will be called to add the event/note to the program Below is the sequence for loading the notes and events when the program first starts up. 
+While loading information is passed to the parser manager to prepare the information to be added. Following that, the respective Add Command will be called to add the event/note to the program. Below is the sequence for loading the notes and events when the program first starts up. 
 
 <p align="center">
    <img alt="StorageManagerObjectDiagram" src="diagrams/out/StorageManagerObject.png"/>
@@ -454,7 +454,7 @@ IntelliJ's *'Dracula'* and *'High Contrast'* themes print white fonts as black a
 
 <div style="page-break-after: always;"></div>
 
-Figure 22 below illustrates what you should see on your screen.
+Figure 23 below illustrates what you should see on your screen.
 
 <p align="center">
   <img alt="Changing console color" src="diagrams/out/ConsoleColor.png" />
