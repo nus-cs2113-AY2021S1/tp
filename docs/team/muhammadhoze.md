@@ -56,6 +56,8 @@ These are the following sections I contributed to:
 5. Non-functional Requirements
 6. Glossary
 
+<div style="page-break-after: always;"></div>
+
 #### Contributions to Team-based tasks:
 These are the following team-tasks done by me:
 1. Did smoke-tests on our program to ensure all commands were working as expected and the intended messages printed were correct. 
@@ -139,4 +141,7 @@ This command allow students to wipe off all their data.
     
             Format: 
                 clear all
+                
+<div style="page-break-after: always;"></div>
+
 9. Quick Command Summary
