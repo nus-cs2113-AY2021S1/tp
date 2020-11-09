@@ -1027,10 +1027,10 @@ Aspect: **How should bookmark entries keep anime information**
 
 The second design consideration was how to keep the reference to the `Anime` object. The main issue here was the storage and duplication of data.
 
-| Approach | Pros | Cons  |
-| --- | --- | --- |
+| Approach                                                   | Pros                                                         | Cons                                                         |
+| ---------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Keep only the anime index information within the bookmark. | - Easy to add and delete, which also simplifies the information to keep in offline storage. | - Bookmark Commands have to communicate with AnimeData for anime-related functionalities. |
-| Keep the entire `Anime` object in `Bookmark`.                  | - Do not need to reference AnimeData for anime information.    | - Keep a duplicate of anime data, requires synchronisation. <br/> - Hard to keep anime object information offline. |
+| Keep the entire `Anime` object in `Bookmark`.              | - Do not need to reference AnimeData for anime information.  | - Keep a duplicate of anime data, requires synchronisation. <br/> - Hard to keep anime object information offline. |
 
 We have decided to implement the first approach, **the bookmark will keep the anime index within bookmark entries**. Although the lookup for anime information of a bookmark entry requires a query to `AnimeData`, the management and offline storage of the bookmark entries will be more efficient (keeping only anime index). There are more considerations like synchronisation and duplication of the object data that comes with using `Anime` object.
 
@@ -1148,6 +1148,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 ## Appendix A: Product Scope
 
 ### A.1 Target User Profile
+
 *   Professional anime translators.
 *   Works on multiple projects and with various companies.
 *   Has difficulty managing their time and information.
@@ -1155,6 +1156,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 *   Able to type fast.
 
 ### A.2 Value Proposition
+
 *   Helps the target user estimate the time needed to translate their scripts.
 *   Allows the user to organise work from different projects and companies into workspaces.
 *   Allows the user to write and refer to notes on different anime series while translating.
@@ -1166,28 +1168,28 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 ## Appendix B: User Stories
 
-| Version | As a ... | I want to ...        | So that I ...                                               |
-| ------- | -------- | -------------------- | ----------------------------------------------------------- |
-| v1.0 | user | create new watchlist | can keep track of anime easily based on my defined criteria |
-| v1.0 | user | add and remove an anime to a watchlist | can organise my anime into the defined criterion |
-| v1.0 | forgetful user | find out all watchlist I have created | can find out what watchlist I have |
-| v1.0 | user | save the data I have created | can remember what I have done |
-| v1.0 | user | load the data I created previously | can continue to work on these data |
-| v1.0 | new user | view all available commands | can easily find a specific command and its usage |
-| v1.0 | user | be able to browse through all anime series | can easily see what anime are available  |
-| v1.0 | user | be able to sort my browsing session | will only browse through relevant data |
-| v1.0 | freelance translator | be able to create new workspaces | can have a clear separation of my work at different companies |
-| v1.0 | freelance translator | switch between workspaces | can swap my workspace to a specific company that my current project is tied to |
-| v1.0 | forgetful user | bookmark specific anime | remember which anime I am currently interested in |
-| v1.0 | forgetful user | set an episode for each bookmarked anime | can remember which episode I'm watching or translating |
-| v2.0 | translator | write notes for a bookmark | can remember helpful information regarding a specific anime series |
-| v2.0 | translator | remove notes for a bookmark | can remove outdated information or mistakes in my notes |
-| v2.0 | user | view detailed information of a specific anime | can find out more about that anime series |
-| v2.0 | user | be able to select a watchlist from my list of watchlist to use | can stay focused on working on one watchlist |
-| v2.0 | user | delete watchlist that I no longer need | can keep my list of watchlist organized and up-to-date |
-| v2.0 | translator | estimate the time needed to translate a script | can better manage and plan my time |
-| v2.0 | user | search for a specific anime with a keyword | can find an anime series without remembering its full title |
-| v2.0 | user | search for all anime in a genre | can find all similar types anime  |
+| Version | As a ...             | I want to ...                                                | So that I ...                                                |
+| ------- | -------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| v1.0    | user                 | create new watchlist                                         | can keep track of anime easily based on my defined criteria  |
+| v1.0    | user                 | add and remove an anime to a watchlist                       | can organise my anime into the defined criterion             |
+| v1.0    | forgetful user       | find out all watchlist I have created                        | can find out what watchlist I have                           |
+| v1.0    | user                 | save the data I have created                                 | can remember what I have done                                |
+| v1.0    | user                 | load the data I created previously                           | can continue to work on these data                           |
+| v1.0    | new user             | view all available commands                                  | can easily find a specific command and its usage             |
+| v1.0    | user                 | be able to browse through all anime series                   | can easily see what anime are available                      |
+| v1.0    | user                 | be able to sort my browsing session                          | will only browse through relevant data                       |
+| v1.0    | freelance translator | be able to create new workspaces                             | can have a clear separation of my work at different companies |
+| v1.0    | freelance translator | switch between workspaces                                    | can swap my workspace to a specific company that my current project is tied to |
+| v1.0    | forgetful user       | bookmark specific anime                                      | remember which anime I am currently interested in            |
+| v1.0    | forgetful user       | set an episode for each bookmarked anime                     | can remember which episode I'm watching or translating       |
+| v2.0    | translator           | write notes for a bookmark                                   | can remember helpful information regarding a specific anime series |
+| v2.0    | translator           | remove notes for a bookmark                                  | can remove outdated information or mistakes in my notes      |
+| v2.0    | user                 | view detailed information of a specific anime                | can find out more about that anime series                    |
+| v2.0    | user                 | be able to select a watchlist from my list of watchlist to use | can stay focused on working on one watchlist                 |
+| v2.0    | user                 | delete watchlist that I no longer need                       | can keep my list of watchlist organized and up-to-date       |
+| v2.0    | translator           | estimate the time needed to translate a script               | can better manage and plan my time                           |
+| v2.0    | user                 | search for a specific anime with a keyword                   | can find an anime series without remembering its full title  |
+| v2.0    | user                 | search for all anime in a genre                              | can find all similar types anime                             |
 
 <br/>
 
@@ -1204,7 +1206,9 @@ If you wish to add new checks, simply add the check file with a filename `check-
 ## Appendix D: Instructions for Manual Testing
 
 ### D.1: Launch and Shutdown
+
 #### Initial Launch
+
 1.  Download the jar file and copy it into an empty folder.
 2.  Open a new command prompt or terminal and navigate to the directory containing `AniChan.jar`.
 3.  Enter the command `java -jar AniChan.jar` to launch **AniChan**.
@@ -1214,11 +1218,13 @@ If you wish to add new checks, simply add the check file with a filename `check-
 > <br/> <br/> ![AniChan's Input Prompt](images/AniChan-Input-Prompt.png) <br/> *Figure 36: AniChan's Input Prompt*
 
 #### Shutdown
+
 1.  To exit **AniChan**, enter the `exit` command.
 
 <br/>
 
 ### D.2: Estimate the time needed to translate a script
+
 1.  Estimating the time needed to translate a script.
     1.  Prerequisite: Have a non-empty `script.txt` file in the current workspace folder.
         1.  Create a `.txt` file and name it "script" such that the file name with the file extension is `script.txt`, then fill it up with some content (i.e. random words and sentences).
