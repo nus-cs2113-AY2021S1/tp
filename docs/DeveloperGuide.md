@@ -38,6 +38,7 @@ Wan Shi Jie Brendan<br>
     * [4.6. Sort events](#sort) <br>
     * [4.7. View events](#view) <br>
     * [4.8. Help](#help) <br>
+    * [4.9. Print locations by area](#print_areas) <br>
 * [5. Documentation](#documentation) <br>
 * [6. Testing](#6-testing)<br>
 * [Appendix A. Product scope](#appendix-a-product-scopea-idproduct_scopea)<br>
@@ -306,6 +307,10 @@ The sequence diagram below shows what happens when user enters `help`:
 
 ![HelpCommand Sequence Diagram](diagrams/HelpCommand.png)<br>
 *Figure 4.8 Sequence Diagram for help function*
+
+### 4.9 Print locations by area<a id="print_areas"></a>
+
+This feature allows
 
 ## 5. Documentation<a id="documentation"></a>
   
