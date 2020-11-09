@@ -10,7 +10,10 @@ import seedu.financeit.datatrackers.manualtracker.ManualTracker;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
+import seedu.financeit.utils.storage.GoalTrackerSaver;
+import seedu.financeit.utils.storage.RecurringTrackerSaver;
 
+import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.Month;
 
@@ -104,6 +107,7 @@ public class GoalTracker {
             } else if (userInput[1].equals("income")) {
                 editIncomeGoal(userInput);
             }
+            GoalTrackerSaver.getInstance().save();
         } catch (IndexOutOfBoundsException e) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter either expense "
                     + "or income");
@@ -113,6 +117,8 @@ public class GoalTracker {
         } catch (DateTimeException e) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter a valid "
                     + "int month");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -248,6 +254,7 @@ public class GoalTracker {
                     totalGoalList.addGoal(goalToSet);
                     UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "You have set $" + expenseGoal
                             + " as your Expense Goals for " + month);
+                    GoalTrackerSaver.getInstance().save();
                 }
             }
             month = null;
@@ -262,6 +269,8 @@ public class GoalTracker {
         } catch (IllegalArgumentException e) {
             expenseGoal = 0;
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
@@ -296,6 +305,7 @@ public class GoalTracker {
                     totalGoalList.addGoal(goalToSet);
                     UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "You have set $" + incomeGoal
                             + " as your Income Goals for " + month);
+                    GoalTrackerSaver.getInstance().save();
                 }
             }
             month = null;
@@ -310,6 +320,8 @@ public class GoalTracker {
         } catch (IllegalArgumentException e) {
             incomeGoal = 0;
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

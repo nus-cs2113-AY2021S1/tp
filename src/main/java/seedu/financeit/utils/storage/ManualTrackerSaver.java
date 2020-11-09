@@ -97,9 +97,11 @@ public class ManualTrackerSaver extends SaveHandler {
         String[] classContents;
         String inputString = "";
         int ledgerIndex = -1;
+        int line = 0;
         while (scanner.hasNext()) {
             try {
                 String saveString = scanner.nextLine();
+                line++;
                 classContents = saveString.split(";");
                 switch (classContents[0]) {
                 case "Entry":
@@ -128,7 +130,7 @@ public class ManualTrackerSaver extends SaveHandler {
                     break;
                 }
             } catch (Exception e) {
-                // Fall -through
+                System.out.println("saveMt.txt line " + line + " failed to load: " + e);
             }
         }
     }

@@ -11,24 +11,24 @@ import java.io.IOException;
 import java.util.Scanner;
 
 //@@author Feudalord
-public class ReccuringTrackerSaver extends SaveHandler {
+public class RecurringTrackerSaver extends SaveHandler {
 
-    private static ReccuringTrackerSaver saver;
+    private static RecurringTrackerSaver saver;
 
-    private ReccuringTrackerSaver() {
+    private RecurringTrackerSaver() {
         super();
     }
 
-    private ReccuringTrackerSaver(String directory, String filepath) {
+    private RecurringTrackerSaver(String directory, String filepath) {
         super(directory, filepath);
     }
 
-    public static ReccuringTrackerSaver getInstance(String... paths) {
+    public static RecurringTrackerSaver getInstance(String... paths) {
         if (saver == null) {
             if (paths.length == 2) {
-                saver = new ReccuringTrackerSaver(paths[0], paths[1]);
+                saver = new RecurringTrackerSaver(paths[0], paths[1]);
             } else {
-                saver = new ReccuringTrackerSaver();
+                saver = new RecurringTrackerSaver();
             }
         }
         return saver;
@@ -82,29 +82,35 @@ public class ReccuringTrackerSaver extends SaveHandler {
         String[] classContents;
         String inputString;
         String incomeExpense;
+        int line = 0;
         while (scanner.hasNext()) {
-            String saveString = scanner.nextLine();
-            classContents = saveString.split(">&@#<");
-            if (!classContents[2].equals("")) {
-                classContents[2] = classContents[2].substring(2, classContents[2].length() - 2);
-                incomeExpense = "-e ";
-            } else {
-                classContents[3] = classContents[3].substring(2, classContents[3].length() - 2);
-                incomeExpense = "-i ";
-            }
+            try {
+                String saveString = scanner.nextLine();
+                line++;
+                classContents = saveString.split(">&@#<");
+                if (!classContents[2].equals("")) {
+                    classContents[2] = classContents[2].substring(2, classContents[2].length() - 2);
+                    incomeExpense = "-e ";
+                } else {
+                    classContents[3] = classContents[3].substring(2, classContents[3].length() - 2);
+                    incomeExpense = "-i ";
+                }
 
-            if (classContents[5].equals("Auto deduction")) {
-                classContents[5] = "-auto ";
-            } else {
-                classContents[5] = "";
-            }
-            inputString = "add " + incomeExpense + classContents[5] + "/desc " + classContents[1]
-                    + " /amt " + classContents[2] + classContents[3] + " /day " + classContents[0];
+                if (classContents[5].equals("Auto deduction")) {
+                    classContents[5] = "-auto ";
+                } else {
+                    classContents[5] = "";
+                }
+                inputString = "add " + incomeExpense + classContents[5] + "/desc " + classContents[1]
+                        + " /amt " + classContents[2] + classContents[3] + " /day " + classContents[0];
 
-            if (classContents.length == 7) {
-                inputString += " /notes " + classContents[6];
+                if (classContents.length == 7) {
+                    inputString += " /notes " + classContents[6];
+                }
+                RecurringTracker.loadEntry(InputParser.getInstance().parseInput(inputString));
+            } catch (Exception e) {
+                System.out.println("saveAt.txt line " + line + " failed to load: " + e);
             }
-            RecurringTracker.loadEntry(InputParser.getInstance().parseInput(inputString));
         }
     }
 }

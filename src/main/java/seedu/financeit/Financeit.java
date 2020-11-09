@@ -12,7 +12,7 @@ import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.LoggerCentre;
 import seedu.financeit.utils.RunHistory;
-import seedu.financeit.utils.storage.ReccuringTrackerSaver;
+import seedu.financeit.utils.storage.RecurringTrackerSaver;
 import seedu.financeit.utils.storage.GoalTrackerSaver;
 import seedu.financeit.utils.storage.ManualTrackerSaver;
 import seedu.financeit.utils.storage.SaveHandler;
@@ -36,7 +36,7 @@ public class Financeit {
 
         ManualTrackerSaver.getInstance("./data", "./data/saveMt.txt");
         GoalTrackerSaver.getInstance("./data", "./data/saveGt.txt");
-        ReccuringTrackerSaver.getInstance("./data", "./data/saveAt.txt");
+        RecurringTrackerSaver.getInstance("./data", "./data/saveAt.txt");
         load();
 
         //Loads the dateTime when the program was last ran
@@ -106,7 +106,6 @@ public class Financeit {
     }
 
     public static void load() {
-
         try {
             GoalTrackerSaver.getInstance().load();
         } catch (Exception m) {
@@ -120,7 +119,7 @@ public class Financeit {
         }
 
         try {
-            ReccuringTrackerSaver.getInstance().load();
+            RecurringTrackerSaver.getInstance().load();
         } catch (Exception m) {
             System.out.println("Auto Tracker failed to load: " + m);
         }
@@ -141,7 +140,7 @@ public class Financeit {
         }
 
         try {
-            ReccuringTrackerSaver.getInstance().save();
+            RecurringTrackerSaver.getInstance().save();
         } catch (Exception m) {
             System.out.println("Auto Tracker failed to save: " + m);
         }

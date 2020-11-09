@@ -83,10 +83,16 @@ public class GoalTrackerSaver extends SaveHandler {
         File file = new File(paths.length == 2 ? paths[1] : fullPath);
         Scanner scanner = new Scanner(file);
         String[] classContents;
+        int line = 0;
         while (scanner.hasNext()) {
-            String saveString = scanner.nextLine();
-            classContents = saveString.split(";");
-            GoalTracker.setGoals(classContents[1], classContents[0], classContents[2]);
+            try {
+                String saveString = scanner.nextLine();
+                line++;
+                classContents = saveString.split(";");
+                GoalTracker.setGoals(classContents[1], classContents[0], classContents[2]);
+            } catch (Exception e) {
+                System.out.println("saveGt.txt line " + line + " failed to load: " + e);
+            }
         }
     }
 }
