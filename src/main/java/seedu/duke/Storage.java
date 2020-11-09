@@ -116,60 +116,7 @@ public class Storage {
             String[] taskInFile = sc.nextLine().split("\\|");
             int num = taskInFile.length;
             assert taskInFile[TYPE] != null : "the type of the task should not be null";
-            switch (taskInFile[TYPE]) {
-            case "T":
-                if (num == 4) {
-                    item = new Todo(taskInFile[TASK_DESCRIPTION]);
-                } else {
-                    System.out.println("element in file is lost in " + taskInFile[TASK_DESCRIPTION]);
-                }
-                break;
-            case "D":
-                if (num == 5) {
-                    item = readDeadlineTask(taskInFile);
-                } else {
-                    System.out.println("element in file is lost in deadline: " + taskInFile[TASK_DESCRIPTION]);
-                }
-                break;
-            case "ACT":
-                if (num >= 7) {
-                    item = readActivity(taskInFile);
-                } else {
-                    System.out.println("element in file is lost in act: " + taskInFile[DETAILS]);
-                }
-                break;
-            case "LEC":
-                if (num >= 7) {
-                    item = readLectureEvent(taskInFile);
-                } else {
-                    System.out.println("element in file is lost in lec: " + taskInFile[EVENT_MODULE_CODE]);
-                }
-                break;
-            case "TUT":
-                if (num >= 7) {
-                    item = readTutorialEvent(taskInFile);
-                } else {
-                    System.out.println("element in file is lost in tut: " + taskInFile[EVENT_MODULE_CODE]);
-                }
-                break;
-            case "LAB":
-                if (num >= 7) {
-                    item = readLabEvent(taskInFile);
-                } else {
-                    System.out.println("element in file is lost in lab: " + taskInFile[EVENT_MODULE_CODE]);
-                }
-                break;
-            case "EXAM":
-                if (num >= 7) {
-                    item = readExamEvent(taskInFile);
-                } else {
-                    System.out.println("element in file is lost in exam: " + taskInFile[EVENT_MODULE_CODE]);
-                }
-                break;
-            default:
-                Ui.printWrongStorageInput();
-                break;
-            }
+            item = getItemsFromFile(item, taskInFile, num);
             countFileTasks++;
             addItemToCalendarList(calendarList, item);
             markTaskAsDone(item, taskInFile);
@@ -177,6 +124,64 @@ public class Storage {
             markTaskAsImportant(item, taskInFile);
             loadAdditionInformation(item, taskInFile, num);
         }
+    }
+
+    private static CalendarItem getItemsFromFile(CalendarItem item, String[] taskInFile, int num) {
+        switch (taskInFile[TYPE]) {
+        case "T":
+            if (num == 4) {
+                item = new Todo(taskInFile[TASK_DESCRIPTION]);
+            } else {
+                System.out.println("element in file is lost in " + taskInFile[TASK_DESCRIPTION]);
+            }
+            break;
+        case "D":
+            if (num == 5) {
+                item = readDeadlineTask(taskInFile);
+            } else {
+                System.out.println("element in file is lost in deadline: " + taskInFile[TASK_DESCRIPTION]);
+            }
+            break;
+        case "ACT":
+            if (num >= 7) {
+                item = readActivity(taskInFile);
+            } else {
+                System.out.println("element in file is lost in act: " + taskInFile[DETAILS]);
+            }
+            break;
+        case "LEC":
+            if (num >= 7) {
+                item = readLectureEvent(taskInFile);
+            } else {
+                System.out.println("element in file is lost in lec: " + taskInFile[EVENT_MODULE_CODE]);
+            }
+            break;
+        case "TUT":
+            if (num >= 7) {
+                item = readTutorialEvent(taskInFile);
+            } else {
+                System.out.println("element in file is lost in tut: " + taskInFile[EVENT_MODULE_CODE]);
+            }
+            break;
+        case "LAB":
+            if (num >= 7) {
+                item = readLabEvent(taskInFile);
+            } else {
+                System.out.println("element in file is lost in lab: " + taskInFile[EVENT_MODULE_CODE]);
+            }
+            break;
+        case "EXAM":
+            if (num >= 7) {
+                item = readExamEvent(taskInFile);
+            } else {
+                System.out.println("element in file is lost in exam: " + taskInFile[EVENT_MODULE_CODE]);
+            }
+            break;
+        default:
+            Ui.printWrongStorageInput();
+            break;
+        }
+        return item;
     }
 
     /**
