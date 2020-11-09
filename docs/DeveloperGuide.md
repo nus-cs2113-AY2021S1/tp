@@ -379,7 +379,7 @@ There are two ways to run tests.
 
 ### Build automation
 This project uses Gradle for **build automation and dependency management.**
-**You are highly recommended to read [this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html).
+You are highly recommended to read [this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html).
 
 Given below are how to use Gradle for some important project tasks.
 
