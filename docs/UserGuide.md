@@ -142,7 +142,7 @@ amazing features!
 ### Viewing help: `help`
 Shows all available commands that you can use
 
-Firstly, type ‘help’ in the command line as seen below, and press ‘Enter’ to execute it.
+Firstly, type `help` in the command line as seen below, and press ‘Enter’ to execute it.
 
 ![help1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/help1.png)
 
@@ -156,7 +156,7 @@ It allows you to plan and track the following category types:
 * Class
 * Cca
 * Test
-* Tuitions
+* Tuition
 
 ![indexinfo](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/indexinfo.png)
 
