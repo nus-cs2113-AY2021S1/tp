@@ -1,1 +1,47 @@
 James Gosling
+add
+add S9Z
+add B1234422B
+add S123B422Z
+add S123B4222
+add S9123456Z
+Trump
+06-06-1960
+1960-06-14
+retrieve S9993222A
+retrieve S9123456Z
+edit S9992222A
+edit S9123456Z
+Donald
+1962-06-14
+add S9993222A
+John
+1985-06-14
+delete S9992222A
+delete S9993222A
+book S9123456Z
+create
+2020-10-40
+create
+2020-10-10
+doctor tan
+book S9123456Z
+t
+book S9123456Z
+tan
+0
+book S9123456Z
+tan
+1
+appointments S9123456Z
+create
+2020-12-12
+editappt S9123456Z
+1
+1
+tan
+deleteappt S9123456Z
+1
+nodoctor tan
+list
+bye

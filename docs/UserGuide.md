@@ -2,41 +2,215 @@
 
 ## Introduction
 
-{Give a product intro}
+Hospitalsaurus ReX is a program to help administrative staff to keep track of patients.
 
 ## Quick Start
 
-{Give steps to get started quickly}
-
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+1. Download the latest version of `Hospitalsaurus ReX` from [here](https://github.com/AY2021S1-CS2113-T16-4/tp).
 
-## Features 
+## Features
 
-{Give detailed description of each feature}
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+### Adding a patient: `add`
+Adds a patient to the database.
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Format: `add NRIC`
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+* The `NRIC` must be valid.
+* Program will prompt name and date of birth to be entered.
 
 Example of usage: 
 
-`todo n/Write the rest of the User Guide d/next week`
+`add S9922312D`
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+`add S7423213Z`
+
+<div style="page-break-after: always;"></div><br><br>
+
+### Retrieve a patient: `retrieve`
+Retrieves a patient to the database.
+
+Format: `retrieve NRIC`
+
+* The `NRIC` must be valid and in the database.
+* Program will show name and date of birth of the patient.
+
+Example of usage:
+
+`retrieve S9922312D`
+
+`retrieve S7423213Z`
+
+
+### Edit a patient: `edit`
+Edits a patient to the database.
+
+Format: `edit NRIC`
+
+* The `NRIC` must be valid and in the database.
+* Program will prompt name and date of birth to be edited.
+
+Example of usage:
+
+`edit S9922312D`
+
+`edit S7423213Z`
+
+
+### Delete a patient: `delete`
+Deletes a patient to the database.
+
+Format: `delete NRIC`
+
+* The `NRIC` must be valid and in the database.
+* Program will delete patient with nric as `NRIC`.
+
+Example of usage:
+
+`delete S9922312D`
+
+`delete S7423213Z`
+
+<div style="page-break-after: always;"></div><br><br>
+
+### Create an appointment: `create`
+Creates an appointment date.
+
+Format: `create`
+
+* Program will prompt for date to be inputted.
+
+Example of usage:
+
+`create`
+
+
+### Book an appointment: `book`
+Books an appointment date.
+
+Format: `book NRIC`
+
+* The `NRIC` should be valid and in the database, else `add` command will run
+* Program will show a lists of available dates and prompt for which date to use.
+
+Example of usage:
+
+`book S9922312D`
+
+`book S7423213Z`
+
+
+### Add a doctor: `doctor`
+Adds a doctor.
+
+Format: `doctor NAME`
+
+* The `NAME` should not already be inside the list.
+
+Example of usage:
+
+`doctor tan`
+
+`doctor trump`
+
+<div style="page-break-after: always;"></div><br><br>
+
+### Remove a doctor: `doctor`
+Remove a doctor.
+
+Format: `nodoctor NAME`
+
+* The `NAME` should be in the list.
+
+Example of usage:
+
+`nodoctor tan`
+
+`nodoctor trump`
+
+
+### View patient's appointments: `appointments`
+View patient's appointments
+
+Format: `appointments NRIC`
+
+* The `NRIC` should be valid and in the list.
+
+Example of usage:
+
+`appointments S2233445D`
+
+`appointments S1234556F`
+
+
+### List patients: `list`
+View patient's appointments
+
+Format: `list`
+
+* The patient list should not be empty.
+
+Example of usage:
+
+`list`
+
+<div style="page-break-after: always;"></div><br><br>
+
+### Edit patient's appointment: `editappt`
+Edit patient's appointment
+
+Format: `editappt NRIC`
+
+* The patient with `NRIC` should already exist.
+* The program will prompt user to select the booked appointment to be replaced, the new appointment to be booked, and the doctor to be in charge.
+
+Example of usage:
+
+`editappt S9900999D`
+
+`editappt S9900299D`
+
+
+### Exit program: `bye`
+Exit the program
+
+Format: `bye`
+
+* The program will miss you.
+
+Example of usage:
+
+`bye`
+
 
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: {your answer here}
+**A**: Clone the program to the other computer, and copy the data folder over.
+
+**Q**: Why is the name Hospitalsaurus Rex?
+
+**A**: Because we are nerds.
+
+**Q**: How do I request for more features?
+
+**A**: Contact us.
+
+<div style="page-break-after: always;"></div><br><br>
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+* Add patient `add NRIC`
+* Retrieve patient `retrieve NRIC`
+* Edit patient `edit NRIC`
+* Delete patient `delete NRIC`
+* Create appointment `create`
+* Book appointment `book NRIC`
+* Add doctor `doctor NAME`
+* Remove doctor `nodoctor NAME`
+* View appointments of a patient `appointments NRIC`
+* List patients `list`
+* Edit patient's appointment `editappt NRIC`
+* Exit `bye`
