@@ -765,8 +765,7 @@ Scheduler--; prints an error message and use case ends.
 1. Initial Launch
     1. Copy the Java Archive file into an empty directory
     1. On windows machines, open up the terminal and navigate to the directory
-    1. Type in `chcp 65001` and press enter
-    1. Type in `java -Dfile.encoding=UTF-8 -jar scheduler.jar` and press enter
+    1. Type in `java -jar scheduler.jar` and press enter
     1. You should now see the welcome message printed on the screen
 1. Shutdown
     1. In the program, type the word `bye` and press enter
@@ -781,19 +780,20 @@ Scheduler--; prints an error message and use case ends.
     1. Launch the program as shown in the previous section
     1. Type `list all`
     1. You should now see the files listed on the program as shown
+    
 
 ### Adding new event
 1. Add a personal event
     1. Load the program
-    1. Type `add personal dental appointment`
+    1. Type `add personal; dental appointment`
     1. Type `list personal`, your new personal event should be displayed on the screen
 
 ### Delete Event
 1. Deleting a personal event
     1. Load the program
-    1. Type `add personal dental appointment`
+    1. Type `add personal; dental appointment`
     1. Type `list personal`, your new personal event should be displayed on the screen
-    1. Test Case: `delete 1` 
+    1. Test Case: `delete personal; 1` 
         When you type `list personal`, you should notice that the list is blank
     1. Test Case: `delete 0`
         An error message should be displayed as none of the events are labelled with event index 0.
