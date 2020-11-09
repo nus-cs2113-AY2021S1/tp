@@ -383,7 +383,7 @@ All indexes are less than or equal to four-digit numbers.
     - Test case: delete 3542  
     Expected: Task with the index of 3542 is deleted from the list. 
 
-    - Test case: delete 12378
+    - Test case: delete 12378  
     Expected: No task is deleted, and an Invalid index error is shown.
 
 ### Editing a task
