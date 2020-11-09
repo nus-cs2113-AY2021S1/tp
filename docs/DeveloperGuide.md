@@ -873,6 +873,6 @@ Hence, Zoomaster helps to organise students’ Zoom links for easy access to the
 5. Testing `launch now`
     1. First, get your current system time. You can view this via your clock app on your device.
     2. Secondly, in timetable mode, use the `add` command to create a new slot with period overlapping with your current system time.
-    3. Thirdly, use `add` command to add a bookmark(Eg. www.google.com) to the slot you created in step 2. 
+    3. Thirdly, use `add` command to add a bookmark (e.g. www.google.com) to the slot you created in step 2. 
     4. Lastly, enter `launch now`, you should see the bookmark you entered launched in your browser.
     
