@@ -460,6 +460,8 @@ __<a name = table1></a> Param Handling Behavior__
 |---------|----------------|----------------|-----------|---------------------|
 |```PARAM.DATE```|"/date"|Various format of date in string, eg. "2020-03-02"| Call ```currLedger.setDate()``` to set date for the ```Ledger``` instance. | ```ParamChecker.checkAndReturnDate(packet)```|
 
+<div style="page-break-after: always;"></div>
+
 __<a name = diag1></a> Sequence Diagram__
 
 ![](uml_images/images_updated/manualTrackerCreateLedgerSeqDiagram.png)
@@ -489,9 +491,13 @@ __<a name = table2></a> Param Handling Behavior__
 |```PARAM.DATE```|"/date"|Various format of date in string, eg. "2020-03-02"| Call ```ledgerList.setIndexToModify()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnDate(packet)```|
 |```PARAM.INDEX```|"/index"|Valid index on the list from 1 onwards.|Call ```ledgerList.setIndexToModify()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnIndex(packet)```|
 
+<div style="page-break-after: always;"></div>
+
 __<a name = diag2></a> Sequence Diagram__
 
 ![](uml_images/images_updated/manualTrackerDeleteLedgerSeqDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 **<a name = entryseq></a>Entry Tracker: Edit of entries** <br />
 The editing of details within the entry is performed in two phases: Entry Retrieval and Entry Edit.
@@ -518,6 +524,8 @@ __<a name = table3></a> Param Handling Behavior__
 |---------|----------------|----------------|-----------|---------------------|
 |```PARAM.INDEX```|"/index"|Valid index on the list <br/>from 1 onwards.|Call ```entryList.setIndexToModify()``` <br/>to set index of retrieved item. | ```ParamChecker.checkAndReturnIndex(packet)```|
 
+<div style="page-break-after: always;"></div>
+
 __<a name = diag3></a> Sequence Diagram__ 
 
 ![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram2.png)
@@ -531,6 +539,7 @@ __<a name = diag3></a> Sequence Diagram__
         1. Refer to the section on [Param Handling](#logic) for more details pertaining to general param handling. 
         1. For ```EditEntryHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table4).
     1. The edited entry is added back into the list.
+    
 __<a name = table4></a> Param Handling Behavior__          
 
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
@@ -541,6 +550,8 @@ __<a name = table4></a> Param Handling Behavior__
 |```PARAM.EXP```|"-e"|Expense entry type flag|Call ```entryList.setEntryType(EntryType.EXP)``` to set index of retrieved item. | ```nil```|
 |```PARAM.DESCRIPTION```|"/desc"|Description in string, ';' character is illegal.|Call ```entryList.setDescription()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnDescription(packet)```|
 |```PARAM.CATEGORY```|"/cat"|A set of strings that corresponds with entry type|Call ```entryList.setCategory()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnCategories(packet)```|
+
+<div style="page-break-after: always;"></div>
 
 __<a name = diag4></a> Sequence Diagram__
 
