@@ -45,7 +45,7 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 
 *Enhancements to existing features*
 
-1\. Multiple improvements/bug-fixes made for [`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/111), [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/88) and [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/180) after each milestone.
+1\. Multiple improvements/bug-fixes made for [`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/111), [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/88) and [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/180).
 
 *Code contributed*
 
