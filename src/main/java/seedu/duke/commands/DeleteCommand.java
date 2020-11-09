@@ -1,7 +1,8 @@
 package seedu.duke.commands;
 
-import seedu.duke.utility.ErrorHandling;
 import seedu.duke.utility.ShowList;
+
+//@@author bryanbeh1998
 
 public class DeleteCommand extends Command {
     String showName;

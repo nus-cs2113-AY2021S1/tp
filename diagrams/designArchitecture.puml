@@ -1,12 +1,13 @@
 @startuml
-
+hide circle
+skinparam classAttributeIconSize 0
 class Command
 class Show
 class Storage
 class WatchTime
 class Duke
 class Ui
-interface SaveState
+interface "<<interface>> \n SaveState"
 class ErrorHandling
 class ShowList
 class InputParser
@@ -18,7 +19,7 @@ Duke *--> "1" Storage
 Duke *--> "1" WatchTime
 Duke --> "1" InputParser
 
-Storage ..|> SaveState
+Storage ..|> "<<interface>> \n SaveState"
 Storage --> "1" WatchTime
 Show <..> Ui
 Ui ..> ShowList

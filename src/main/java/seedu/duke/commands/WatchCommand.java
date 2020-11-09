@@ -13,10 +13,15 @@ import java.util.ArrayList;
 public class WatchCommand extends Command {
     ArrayList<String> inputs;
 
+    public static final Integer VALID_NUMBER_OF_ARGUMENTS = 2;
+    public static final Integer SECOND_ARGUMENT_IN_INPUT = 1;
+    public static final Integer FIRST_EPISODE_IN_NEW_SEASON = 1;
+    public static final Integer INCREMENT_SEASON_OR_EPISODE = 1;
+
     public WatchCommand(String description, ArrayList<String> inputs) throws NullPointerException {
         super(description);
         this.inputs = inputs;
-        if (inputs.size() != 2) {
+        if (inputs.size() != VALID_NUMBER_OF_ARGUMENTS) {
             throw new NullPointerException();
         }
     }
@@ -28,7 +33,7 @@ public class WatchCommand extends Command {
      */
     public void processCommand() {
 
-        String showName = inputs.get(1);
+        String showName = inputs.get(SECOND_ARGUMENT_IN_INPUT);
         Show show = ShowList.getShow(showName);
 
         int showEpisode = show.getCurrentEpisode();
@@ -43,14 +48,14 @@ public class WatchCommand extends Command {
             Ui.printFinishedAllSeasons(showName);
             return;
         } else if (hasFinishedSeason) {
-            int updatedSeason = currentSeason + 1;
+            int updatedSeason = currentSeason + INCREMENT_SEASON_OR_EPISODE;
             show.setCurrentSeason(updatedSeason);
-            show.setEpisodeWatched(1);
+            show.setEpisodeWatched(FIRST_EPISODE_IN_NEW_SEASON);
             ShowList.setShow(showName, show);
             Ui.printWatchingNewSeason(showName, updatedSeason);
             Ui.printChangeEpisode(showName);
         } else {
-            show.setEpisodeWatched(showEpisode + 1);
+            show.setEpisodeWatched(showEpisode + INCREMENT_SEASON_OR_EPISODE);
             ShowList.setShow(showName, show);
             Ui.printChangeEpisode(showName);
         }

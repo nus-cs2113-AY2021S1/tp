@@ -2,7 +2,9 @@ package seedu.duke.utility;
 
 import java.util.ArrayList;
 
-
+/**
+ * Represents a class that is responsible for processing certain command inputs by the user.
+ */
 public class StringOperations {
 
     /**

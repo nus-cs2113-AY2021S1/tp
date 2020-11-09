@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class SearchCommand extends Command {
     ArrayList<String> inputs;
 
-
     public SearchCommand(String description, ArrayList<String> inputs) throws NullPointerException {
         super(description);
         this.inputs = inputs;
@@ -21,6 +20,10 @@ public class SearchCommand extends Command {
         }
     }
 
+    /**
+     * Searches for show in ShowList.
+     * @return true when found
+     */
     public boolean processCommand() {
         String showName = inputs.get(1);
         String showsWithKeyword = "";

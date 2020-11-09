@@ -178,22 +178,11 @@ public class InputParser {
      *
      * @param input full input of user in string format.
      * @param command command input by user in string format.
-     * @throws IndexOutOfBoundsException if input is invalid or unable to be processed.
-     * @throws NullPointerException      if the command format input by the user is invalid.
-     * @throws NumberFormatException     if the time limit input by the user is not a number.
      */
     private static void parseUpdateTimeLimitCommand(String input, String command) {
         ArrayList<String> tokenizedString = tokenizeStringArray(input);
-        try {
-            UpdateTimeLimitCommand newTimeLimitCommand = new UpdateTimeLimitCommand(command, tokenizedString);
-            newTimeLimitCommand.processCommand();
-        } catch (IndexOutOfBoundsException e) {
-            Ui.printBadInputException();
-        } catch (NullPointerException e) {
-            Ui.printInvalidFormatException();
-        } catch (NumberFormatException e) {
-            Ui.printInvalidFormatException();
-        }
+        UpdateTimeLimitCommand newTimeLimitCommand = new UpdateTimeLimitCommand(command, tokenizedString);
+        newTimeLimitCommand.processCommand();
     }
 
     /**
@@ -201,7 +190,7 @@ public class InputParser {
      *
      * @param input full input of user in string format.
      * @param command command input by user in string format.
-     * @throws NullPointerException      if the show specified is invalid or could not be found.
+     * @throws NullPointerException if the show specified is invalid or could not be found.
      */
     private static void parseWatchCommand(String input, String command) {
         ArrayList<String> tokenizedString = tokenizeStringArray(input);
@@ -213,6 +202,14 @@ public class InputParser {
         }
     }
 
+    /**
+     * Parses command when user is searching for a show in the watch list.
+     *
+     * @param input keyword input of user in string format.
+     * @param command command input by user in string format.
+     * @throws NullPointerException      if the show specified is invalid or could not be found.
+     * @throws IndexOutOfBoundsException if input is invalid.
+     */
     private static void parseSearchCommand(String command,String input) {
         ArrayList<String> tokenizedString = tokenizeStringArray(input);
         try {
@@ -225,6 +222,14 @@ public class InputParser {
         }
     }
 
+    /**
+     * Parses command when user wishes to update the current episode progress for a show in the watch list.
+     *
+     * @param input full input of user in string format.
+     * @param command command input by user in string format.
+     * @throws NullPointerException  if the show specified is invalid or could not be found.
+     * @throws NumberFormatException if episode input is invalid.
+     */
     private static void parseEpisodeUpdateCommand(String input, String command) {
         ArrayList<String> updateInputs = tokenizeStringArray(input);
         UpdateShowEpisodeProgressCommand updateShowProgress;
@@ -240,6 +245,14 @@ public class InputParser {
 
     }
 
+    /**
+     * Parses command when user wishes to update the current season progress for a show in the watch list.
+     *
+     * @param input full input of user in string format.
+     * @param command command input by user in string format.
+     * @throws NullPointerException  if the show specified is invalid or could not be found.
+     * @throws NumberFormatException if season input is invalid.
+     */
     private static void parseSeasonUpdateCommand(String input, String command) {
         ArrayList<String> seasonInputs = tokenizeStringArray(input);
         UpdateShowSeasonCommand updateShowSeason;
@@ -378,6 +391,10 @@ public class InputParser {
         }
     }
 
+    /**
+     * Changes a review.
+     * @param input user input
+     */
     private static void parseChangeReviewCommand(String input) {
         input = removeFirstWord(input);
         if (!input.contains("/")) {
@@ -398,7 +415,11 @@ public class InputParser {
             Ui.printInvalidFormatException();
         }
     }
-    
+
+    /**
+     * Deletes a review.
+     * @param input user input
+     */
     private static void parseDeleteReviewCommand(String input) {
         input = removeFirstWord(input);
         DeleteReviewCommand deletingReview = new DeleteReviewCommand(input);

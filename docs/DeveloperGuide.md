@@ -74,7 +74,7 @@ This will generate all the resources required by the application and tests.
 ## 3. Design
 
 WatchNext was designed drawing from the ideas of the __Event-driven architectural style__. <br>
-The class diagram below describes the relationship between the different components in **WatchNext**
+The class diagram below describes the relationship between the different components in **WatchNext**.<br><br>
 <img src = "images/designDG/designArchitecture.png" width = "700"> <br><br>
 <br>The Ui and the Scanner components work together as event emitters. The `Ui` class prompts the user for input, and the scanner is ready to receive the input. Should the format of the input be unrecognised or incorrect, the `Ui` class guides the user with prompts to rectify the errors.<br>
 <br>Events will be passed onto the `InputParser` which serves as the dispatcher. The `InputParser` uses various string manipulation operations from the `StringOperations` class to recognise the intention of the user input. After recognising the command, the input will be parsed, and the command information will be passed onto the various command classes for processing. The `InputParser` communicates the events to event consumers which are the command classes in this case. <br>
@@ -122,6 +122,7 @@ episodes for each season respectively,Duration of an episode)
 **Step 4**
 
 * A new `Show` instance is created with the 4 parameters created in step 3 using the default constructor for show.
+* The duration of the show is parsed by the utility class `InputParser`.
 
 **Step 5**
 
@@ -592,6 +593,25 @@ The `processCommand` method will attempt to parse `hello` to an integer.
 * The `printInvalidFormatException` method in `Ui` class will call the `ErrorHandling` class and get the `EXCEPTION_INVALID_FORMAT` enumeration, along with its `exceptionMessage`.
 The `Ui` class prints the `exceptionMessage` into the terminal.
 
+### InputParser
+
+* The InputParser reads in the user input, matches the user input with any possible command and invokes the command on the user's behalf.
+
+* It detects any illegal inputs and throws the relevant exceptions.
+
+### TimeParser
+
+* The TimeParser class handles all functionality related to reading in the users' time input.
+
+* It takes input in two different formats
+
+1. `<A>h<B>m`
+2. `<C>`
+
+* Format 1 is in hours and minutes, while format 2 is in minutes only. The <> represent user input.
+
+* The TimeParser will return -1 if the time input has any negative numbers, or if the number of hours exceed 24 or minutes exceed 59.
+
 ## 5. Documentation
 
 This project comes with 2 pieces of documentation, the developers' guide, which you are reading right now and the user guide, which helps new users get acquainted with the program.
@@ -630,7 +650,7 @@ After the project is finalised and released, if you find any bugs or problems, o
 
 **WatchNext** is a program made for teenagers and young adults.For users who use multiple free streaming platforms or other open source stream websites,
 the application will track their progress in the different shows they watch, and the upcoming shows they wish to watch.In addition, it provides a tracker 
-to limit your weekly show progress to help manage your time.
+to limit your daily show progress to help manage your time.
 
 **WatchNext** is optimized for users who prefer to work with the Command Line Interface (CLI).
 
@@ -838,12 +858,12 @@ Expected: An error message indicating that the input supplied was in a wrong for
 1. Prerequisites: The show name `friends` has already been added into the list. 
 
 2. Test case: `search friends`<br>
-Expected: An acknowledgement message that `friends` has been found from the watch list. The details for `friends` is also displayed in the terminal.
+Expected: An acknowledgement message that shows containing the keyword `friends` has been found from the watch list. The details for `friends` is also displayed in the terminal.
 
 3. Test case: `search`<br>
 
 Expected: An error message indicating that the input supplied was in a wrong format.
 
-4. Test case: `search a`<br>
-Expected: An error message indicating that the show input was not found in the watch list.
+4. Test case: `search fri`<br>
+Expected: An acknowledgement message that shows containing the keyword `fri` has been found from the watch list. The details for `friends` is also displayed in the terminal.
 

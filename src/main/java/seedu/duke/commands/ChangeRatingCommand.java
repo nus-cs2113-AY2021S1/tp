@@ -3,6 +3,8 @@ package seedu.duke.commands;
 import seedu.duke.classes.Show;
 import seedu.duke.utility.ShowList;
 
+//@@author bryanbeh1998
+
 public class ChangeRatingCommand extends Command {
     String showName;
 
@@ -11,10 +13,11 @@ public class ChangeRatingCommand extends Command {
     }
 
     /**
-     * Changes a rating of a show the user requests to change.
-     *
-     * @param showName name of show which rating is to be changed
-     * @param targetRating  new rating to update
+     * Changes rating of a show.
+     * @param showName Name of show which rating is to be changed
+     * @param targetRating New rating to be updated into showlist
+     * @throws NullPointerException throws exception when show is not in list
+     * @throws IndexOutOfBoundsException throws exception when invalid rating is provided
      */
     public void changeRating(String showName, int targetRating) throws NullPointerException,IndexOutOfBoundsException {
         if (ShowList.getShowList().containsKey(showName)) {

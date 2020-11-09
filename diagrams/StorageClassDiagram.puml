@@ -4,12 +4,12 @@ hide circle
 skinparam classAttributeIconSize 0
 class Duke
 class Storage
-interface SaveState
+interface "<<interface>> \n SaveState"
 class WatchTime
 class ShowList
 
 Duke "1" *--> "1" Storage
-Storage ..|> SaveState
+Storage ..|> "<<interface>> \n SaveState"
 Duke "1" *--> "1" WatchTime
 Storage --> "0..1" WatchTime
 Duke "1" *--> "1" ShowList
