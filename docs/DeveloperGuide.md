@@ -660,7 +660,7 @@ This content format is a result of converting a list of `Subject` objects with p
 
 The parser package contains the following three classes which are responsible for making sense of the user input.
 
-####SubjectParser
+#### SubjectParser
 
 The SubjectParser class parses the user inputs at the main level.
 The diagram below shows how the SubjectParser class is implemented.
@@ -668,7 +668,7 @@ The diagram below shows how the SubjectParser class is implemented.
 ![SUbjectParser](http://www.plantuml.com/plantuml/svg/VTBBIiD05CRn_Jp5q5LRY0zGfBHumOKBjKympPngv2HfvoAjJ-yO8npbEt4JoF_B-AFC9YONKcxP69TJx-hKVBX4jkzCjTxb_JlLwSc5I65r_7xCToaqtQizPEQRlcrTvnV6E4xopHMTikCud-qlD5iOM_x-76MhjRqxDsbyENwrN9hVVmygEEMwgj3GqzGnXZWIn78JawPzB4tLWegrO2Yqg4vhhMEU4c-PLJGUOBVSOZeUw7ew7_kGrBinL9KEEvQBAOIF7RhhVsRdlGRUUgzhPPoWZZli114ZFJ4bqfotGrMfi6Ejc48mxjXyQ3glYUzBKxsWOgqO0Ykg-jLz8pvgseVIL2seM2k6G8ig_btZpqYzj7LDCQfSs35OJ24PTum-vUPJ4p-Nfdf1nLen15PKiJHGp9oYXdqPiig57OF5599n7zKOj-j3kAWsb35DBA5CEuZAS_XS7hYoNMOscn9po-OB)
 <sub>***Figure 4.4.1** UML sequence diagram for subject parser*</sub>
 
-####FlashcardParser
+#### FlashcardParser
 
 The FlashcardParser class parses the user inputs at the topic level.
 The diagram below shows how the FlashcardParser class is implemented.
@@ -676,7 +676,7 @@ The diagram below shows how the FlashcardParser class is implemented.
 ![FlashcardParser](http://www.plantuml.com/plantuml/svg/ZPBTIiD048NlzocMNhM5-015Iei_UE65q2SOCgCDJ9AwFw9lxo1I9CmUpCt2dhCVtu4SSg5KwgWXK2qpzMNue29ndaAtVrJAvvuIlr3AadONEsHzAccOtk9hLRsRnv4ctjXZBNzlRkIzakRrIZw7ijg4QD-25hjzVB3qUltxTBiDLmilTrctNUUNMJ0iY6PnpNN8mFpPKc3kvC3SBRDW63QFf8hjZwfeW5_16xm-YuFqblIB5SJS7d1aHlBB68bxNHQ8yeLPL8gqdUz_SgJjDO1veyw2WUZNEOjUsWkUB0N-JWxitJAB2rkOj_nESqfVID0f04E_pV8FdDXfY2Ls5wUg6WuMrr6_0G00)
 <sub>***Figure 4.4.2** UML sequence diagram for flashcard parser*</sub>
 
-####TopicParser
+#### TopicParser
 
 The TopicParser class parses the user inputs at the topic level.
 This class is implemented in a similar manner as the FlashcardParser and SubjectParser classes.
