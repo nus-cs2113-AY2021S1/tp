@@ -410,6 +410,8 @@ to store the command in to your list of favourites with no description  as shown
 <img src="UG_Figures/addfav2.png" alt="output" width=600><br>
 <!-- @@author -->
 
+<div style="page-break-after: always;"></div>
+
 <!-- @@author mrwsy1 -->
 #### 3.3.2. List all favourite commands: `/listfav` - Shuyi
 This command displays all the commands in your list of favourite commands, along with their index and description.
