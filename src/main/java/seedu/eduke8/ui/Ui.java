@@ -149,7 +149,7 @@ public class Ui {
     public static final String OS_MAC = "mac";
     public static final String NUMBERS_ONLY = "[0-9]+";
     public static final String EMPTY = "";
-    public static final String NOTE_LIST_ERROR = "nPlease try again!";
+    public static final String NOTE_LIST_ERROR = "Please try again!";
 
     private static String operatingSystem = null;
 
