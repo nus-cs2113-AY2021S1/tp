@@ -27,7 +27,6 @@
     * [Reminder](#reminder-feature)
     * [Extract](#extract-feature)    
     * [Bye](#bye-feature)
-- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
     * [Product scope](#product-scope)   
     * [User Stories](#user-stories) 
@@ -57,20 +56,21 @@ Scheduler--; (S--) is a desktop app for managing deadlines from different source
 
 ## Setting up, getting started
 
-1. Fork the Scheduler--; repo from this [link](https://github.com/AY2021S1-CS2113T-T12-4/tp).
-2. Clone the fork on to your computer.
-3. Open Intellij. If you are not in the welcome screen, click `File` -> 'Close project' 
+1. Ensure you have version 11 of Java. You can install it from this [link](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html).
+2. Fork the Scheduler--; repo from this [link](https://github.com/AY2021S1-CS2113T-T12-4/tp).
+3. Clone the fork on to your computer.
+4. Open Intellij. If you are not in the welcome screen, click `File` -> 'Close project' 
 to close the existing project dialog. 
-4. Set up the correct JDK version for Gradle.
+5. Set up the correct JDK version for Gradle.
     1. Click `Configure` -> `Project Defaults` -> `Project Structure`
     2. Click `New...` and set it to the directory of the JDK.
-5. Click `Open or Import` in Intellij.
-6. Locate the `build.gradle` file, select it and click `OK`.
-7. If asked, choose to `Open as Project`.
-8. Click `OK` to accept the default settings.
-9. Wait for the importing process to finish.
-10. Locate run the 'Duke.java' file, right click and select `Run Duke.main()`.
-11. Navigate to the `test\java` folder and right click `seedu.duke` and select `Run Tests in 'seedu.duke'`.
+6. Click `Open or Import` in Intellij.
+7. Locate the `build.gradle` file, select it and click `OK`.
+8. If asked, choose to `Open as Project`.
+9. Click `OK` to accept the default settings.
+10. Wait for the importing process to finish.
+11. Locate run the 'Duke.java' file, right click and select `Run Duke.main()`.
+12. Navigate to the `test\java` folder and right click `seedu.duke` and select `Run Tests in 'seedu.duke'`.
 If the setup is successful, you should see this after step 10. All tests should also pass.
 ````
 _________________________________
@@ -78,8 +78,11 @@ Welcome to scheduler--;!
 What can I do for you?
 _________________________________
 File Created: Personal
+0/0 loaded successfully for Personal
 File Created: Zoom
+0/0 loaded successfully for Zoom
 File Created: Timetable
+0/0 loaded successfully for Timetable
 File Created: Goal
 The file has successfully been loaded!
 _________________________________
@@ -156,13 +159,20 @@ The storage component,
 
 ![Diagram for storageOverall](./diagrams/storageOverall.jpg)
 
-How the storage component load files
+How does the storage component load files
 - the storage component will read the correct txt file.
 - It passes the text to the StorageParser.
-- The event strings are converted to actual events using their respective class constructors.
-- the events are added back into the UserData structure.
+- The event strings are converted to actual events using their respective class constructors
 
-How the storage component save files
+The following object diagram shows the state of the storage object upon completion of converting each txt file to their respective events.
+![Diagram for storageOverall](./diagrams/object_diagram_storage_before.png)
+
+- The events are stored within the UserData object to be used by the program
+
+The following object diagram illustrates the state of the storage object upon completion of this step
+![Diagram for storageOverall](./diagrams/object_diagram_storage_after.png)
+
+How does the storage component save files
 - The storage component will first retrieve the correct EventList from the UserData.
 - It will next send this EventList into the StorageParser
 - The StorageParser uses its functions to convert the events into string representations
@@ -434,10 +444,24 @@ Given below is how the deadline command behave: <br>
 
 #### Check feature
 
-The check feature is implemented using the `CheckCommand` class. `CheckCommand` accesses the `Event` stored within `EventList`s in order to determine if events are occurring within a given time period. It implements the following operations:
+The check feature allows the user to check for events happening during a defined time period. The format for the check command is `check [START_DATE]; [START_TIME]; [END_DATE]; [END_TIME]`.
+
+|Argument| Description |
+|--------|----------|
+|START_DATE|The start date of the defined time period. Accepted formats are: d/M/yyyy, M/yyyy, yyyy, d/M/yy, M/yy, yy. Slashes may also be replaced with dashes. If left blank, the current date is taken by default. Missing fields (e.g. 2020 missing d/M) will be filled in using the current date (i.e if today's date is 15/10/2021, input 2020 will be read as 15/10/2020). |
+|START_TIME|The start time of the defined time period. Accepted formats are: hh:mm a, hhmm a, hh a, HH:mm, HHmm, HH. If left blank, current time is taken by default. If only hour is given, the time at the start of the hour is taken. |
+|END_DATE|The end date of the defined time period. Accepted formats are: d/M/yyyy, M/yyyy, yyyy, d/M/yy, M/yy, yy. Slashes may also be replaced with dashes. If left blank, the current date is taken by default. Missing fields (e.g. 2020 missing d/M) will be filled in using the current date (i.e if today's date is 15/10/2021, input 2020 will be read as 15/10/2020). |
+|END_TIME|The start time of the defined time period. Accepted formats are: hh:mm a, hhmm a, hh a, HH:mm, HHmm, HH. If left blank, current time is taken by default. If only hour is given, the time at the start of the hour is taken. |
+
+The following is the class diagram for CheckCommand:
+
+![CheckCommand Class Diagram](./diagrams/CheckCommandClassDiagram.jpg)
+
+The check feature is implemented using the `CheckCommand` class. `CheckCommand` accesses the `Event` stored within `EventList` in order to determine if events are occurring within a given time period. It implements the following operations:
 
 - `CheckCommand#getDate(stringDate)` -- Parses a given string to get a LocalDate variable (either the start or end date for the time period).
 - `CheckCommand#getTime(stringTime)` -- Parses a given string to get a LocalTime variable (either the start or end time for the time period).
+- `CheckCommand#verifyValidTimePeriod(LocalDate, LocalDate, LocalTime, LocalTime)` -- Verifies that the given start of the time period is before the given end of the time period.
 - `CheckCommand#checkEventsInTimeRange(eventsList, startDate, endDate, startTime, endTime)` -- Checks each event in the eventsList to see if they occur within the time period defined in the command, and saves all coinciding events in an ArrayList.
 
 These operations are not exposed, and are used as private methods within the `CheckCommand` interface.
@@ -454,15 +478,25 @@ This sequence diagram shows how the `getDate` method functions:
 
 ![Sequence Diagram for getDate](./diagrams/getDate_seq_diagram.jpg)
 
-Step 4. Within `CheckCommand#execute()`, the start date time and end date time is passed to `CheckCommand#checkEventsInTimeRange()` along with an `EventList` (i.e. Zoom, Personal or Timetable). This method checks each `Event` in the `EventList` to determine if the event occurs within the time period. If the event date time coincides with the time period, the event is added to an ArrayList that stores all the coinciding events in the current `EventList`. This is done for each `EventList`. 
+![getDate only year](./diagrams/getDate-only-year-given.jpg)
 
-Step 5. The contents of the ArrayLists returned by `CheckCommand#checkEventsInTimeRange()` are combined into a single ArrayList, and a new `EventList` ("coinciding") is created using this combined list of events.
+![getDate only month year](./diagrams/getDate-only-month-year.jpg)
 
-Step 6. `Ui#printList()` is called to print the list of coinciding events.
+![getDate day month year](./diagrams/getDate-day-month-year.jpg)
+
+Step 4. Within `CheckCommand#execute()`, the start date, start time, end date and end time are passed to `CheckCommand#verifyValidTimePeriod()`. This method checks that the start date and time of the time period happen before the end date and time, and returns a boolean indicating the validity of the given time period.
+
+Step 5. Within `CheckCommand#execute()`, the start date time and end date time is passed to `CheckCommand#checkEventsInTimeRange()` along with an `EventList` (i.e. Zoom, Personal or Timetable). This method checks each `Event` in the `EventList` to determine if the event occurs within the time period. If the event date time coincides with the time period, the event is added to an ArrayList that stores all the coinciding events in the current `EventList`. This is done for each `EventList`. 
+
+Step 6. The contents of the ArrayLists returned by `CheckCommand#checkEventsInTimeRange()` are combined into a single ArrayList, and a new `EventList` ("coinciding") is created using this combined list of events.
+
+Step 7. `Ui#printList()` is called to print the list of coinciding events.
 
 The following sequence diagram shows how the check operation works:
 
 ![Sequence Diagram for CheckCommand](./diagrams/CheckCommand_seq_diagram.jpg)
+
+
 
 <div style="page-break-after: always;"></div>
 
@@ -501,12 +535,111 @@ The following sequence diagram shows how `GoalCommand#execute()` works:
 
 #### Done feature
 (WIP)
+The done feature allows users to mark events in Scheduler as done. The format for the done command is `done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
+
+|Argument| Description |
+|--------|----------|
+|EVENT_TYPE|The type of event to be marked done. Accepted arguments are `personal`, `timetable` or `zoom`.|
+|EVENT_INDEX|Index number of the event to be marked done that is stored on the Event List.|
+|EVENT_DATE|The date on which the repeated event to be marked done should occur. Accepted formats are: d/M/yyyy, d/M/yy, yyyy/M/d, yy/M/d. Slashes may also be replaced by dashes.|
+
+The following is the class diagram for DoneCommand:
+
+![DoneCommand Class Diagram](./diagrams/DoneCommandClassDiagram.jpg)
+
+The done feature is implemented using the `DoneCommand` class. `DoneCommand` accesses the `Event` stored within `EventList` and marks it as done. It implements the following operations:
+
+- `DoneCommand#parse(input)` -- Parses the processed input from `Parser` to create a `DoneCommand` with the parsed event list type and event identifier.
+- `DoneCommand#scanRepeatList(repeatEventList, doneEventDate, ui)` -- Scans the `repeatEventList` of a repeat event and marks the matching event as done.
+
+`DoneCommand#parse(input)` is exposed and is used in Parser to create the `DoneCommand`.
+`DoneCommand#scanRepeatList(repeatEventList, doneEventDate, ui)` is not exposed, and is used as a private method within the `DoneCommand` interface.
+
+Given below is an example usage scenario and how the done feature functions.
+
+Step 1. The user inputs `done personal; 4` in order to mark the 4th `Personal` event as done. This input is received by the Ui, which processes it into a string. The string is parsed by the Parser, which removes "done" from the string and parses the resulting string with `DoneCommand#parse()`. This returns a `DoneCommand`.
+
+![Created DoneCommand](./diagrams/CreatedDoneCommand.jpg)
+
+Step 2. `DoneCommand#execute()` is called. The `command` string is split at semicolons to separate the event index from an event date (if event date is given). The event index for this DoneCommand is 4, and it has no event date.
+
+Step 3. Within `DoneCommand#execute()`, the 4th `Event` is called from the Personal `EventList` and is marked as done.
+
+![DoneCommand state diagram](./diagrams/DoneCommandStates.jpg)
+
+If the called event is a repeat event and an event date is given, `DoneCommand#scanRepeatList()` is called to check for events matching the event date in the repeat event's `repeatEventList`. When a matching event is found, it is marked as done.
+
+Step 4. `Ui#printEventMarkedDoneMessage()` is called to print the event marked as done.
+
+Step 5. `Storage#saveFile()` is called to save the updated event list to the external file.
 
 #### Undone feature
 (WIP)
+The undone feature allows users to mark events in Scheduler as undone. The format for the undone command is `undone EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
+
+|Argument| Description |
+|--------|----------|
+|EVENT_TYPE|The type of event to be marked undone. Accepted arguments are `personal`, `timetable` or `zoom`.|
+|EVENT_INDEX|Index number of the event to be marked undone that is stored on the Event List.|
+|EVENT_DATE|The date on which the repeated event to be marked undone should occur. Accepted formats are: d/M/yyyy, d/M/yy, yyyy/M/d, yy/M/d. Slashes may also be replaced by dashes.|
+
+The following is the class diagram for UndoneCommand:
+
+![UndoneCommand Class Diagram](./diagrams/UndoneCommandClassDiagram.jpg)
+
+The undone feature is implemented using the `UndoneCommand` class. `UndoneCommand` accesses the `Event` stored within `EventList` and marks it as undone. It implements the following operations:
+
+- `UndoneCommand#parse(input)` -- Parses the processed input from `Parser` to create an `UndoneCommand` with the parsed event list type and event identifier.
+- `UndoneCommand#scanRepeatList(repeatEventList, doneEventDate, ui)` -- Scans the `repeatEventList` of a repeat event and marks the matching event as undone.
+
+`UndoneCommand#parse(input)` is exposed and is used in Parser to create the `UndoneCommand`.
+`UndoneCommand#scanRepeatList(repeatEventList, undoneEventDate, ui)` is not exposed, and is used as a private method within the `UndoneCommand` interface.
+
+Given below is an example usage scenario and how the done feature functions.
+
+Step 1. The user inputs `undone personal; 4` in order to mark the 4th `Personal` event as undone. This input is received by the Ui, which processes it into a string. The string is parsed by the Parser, which removes "undone" from the string and parses the resulting string with `UndoneCommand#parse()`. This returns a `UndoneCommand`.
+
+Step 2. `UndoneCommand#execute()` is called. The event identifier is split to separate the event index from an event date (if event date is given). 
+
+Step 3. Within `UndoneCommand#execute()`, the event indicated by the given event index is called from the indicated event list. If an event date is given and the called event is a repeat event, `UndoneCommand#scanRepeatList()` is called to check for events matching the date in the repeat list. When the target event is found, it is marked as undone.
+
+Step 4. `Ui#printEventMarkedUndoneMessage()` is called to print the event marked as undone.
+
+Step 5. `Storage#saveFile()` is called to save the updated event list to the external file.
 
 #### Delete feature
 (WIP)
+The delete feature allows users to delete events from Scheduler. The format for the delete command is `delete EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
+
+|Argument| Description |
+|--------|----------|
+|EVENT_TYPE|The type of event to be deleted. Accepted arguments are `personal`, `timetable` or `zoom`.|
+|EVENT_INDEX|Index number of the event to be deleted that is stored on the Event List.|
+|EVENT_DATE|The date on which the repeated event to deleted should occur. Accepted formats are: d/M/yyyy, d/M/yy, yyyy/M/d, yy/M/d. Slashes may also be replaced by dashes.|
+
+The following is the class diagram for DeleteCommand:
+
+![DeleteCommand Class Diagram](./diagrams/DeleteCommandClassDiagram.jpg)
+
+The delete feature is implemented using the `DeleteCommand` class. `DeleteCommand` accesses the `Event` stored within `EventList` and removes it from the `EventList` to delete it from Scheduler--;. It implements the following operations:
+
+- `DeleteCommand#parse(input)` -- Parses the processed input from `Parser` to create an `DeleteCommand` with the parsed event list type and event identifier.
+- `DeleteCommand#scanRepeatList(repeatEventList, deleteEventDate, ui, deleteEvent)` -- Scans the `repeatEventList` of a repeat event and deletes the matching event from the `repeatEventList`.
+
+`DeleteCommand#parse(input)` is exposed and is used in Parser to create the `DeleteCommand`.
+`DeleteCommand#scanRepeatList(repeatEventList, undoneEventDate, ui)` is not exposed, and is used as a private method within the `DeleteCommand` interface.
+
+Given below is an example usage scenario and how the done feature functions.
+
+Step 1. The user inputs `delete personal; 4` in order to delete the 4th `Personal` event. This input is received by the Ui, which processes it into a string. The string is parsed by the Parser, which removes "delete" from the string and parses the resulting string with `DeleteCommand#parse()`. This returns a `DeleteCommand`.
+
+Step 2. `DeleteCommand#execute()` is called. The event identifier is split to separate the event index from an event date (if event date is given). 
+
+Step 3. Within `DeleteCommand#execute()`, the event indicated by the given event index is called from the indicated event list. If an event date is given and the called event is a repeat event, `DeleteCommand#scanRepeatList()` is called to check for events matching the date in the repeat list. When the target event is found, it is deleted.
+
+Step 4. `Ui#printEventDeletedMessage()` is called to print the event that was deleted.
+
+Step 5. `Storage#saveFile()` is called to save the updated event list to the external file.
 
 #### Note feature
 
@@ -676,7 +809,6 @@ The following sequence diagram shows how the Bye feature works:
 ![Sequence Diagram for Bye Command](./diagrams/ByeCommandSequenceDiagram.png)
 <div style="page-break-after: always;"></div>
  
-## Documentation, logging, testing, configuration, dev-ops
 
 <div style="page-break-after: always;"></div>
 
@@ -795,104 +927,138 @@ Scheduler--; prints an error message and use case ends.
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+Below are some instructions provided for use in manual testing
 
 ### Launch and Shutdown
 1. Initial Launch
     1. Copy the Java Archive file into an empty directory
     1. On windows machines, open up the terminal and navigate to the directory
-    1. Type in `chcp 65001` and press enter
-    1. Type in `java -Dfile.encoding=UTF-8 -jar scheduler.jar` and press enter
-    1. You should now see the welcome message printed on the screen
+    1. Type in `java -jar scheduler.jar` and press enter. Expected: You should now see the welcome message printed on the screen
 1. Shutdown
     1. In the program, type the word `bye` and press enter
-    1. You should now see the goodbye message printed on the screen
-    1. The program should return you back to the main terminal window
-
-### Loading  and Saving Data
-1. Sample Load data
-    1. Copy the Java Archive file into an empty directory
-    1. In this directory, make a directory called `data`
-    1. Copy the files in the `storagetester` directory into the `data` directory
-    1. Launch the program as shown in the previous section
-    1. Type `list all`
-    1. You should now see the files listed on the program as shown
+    1. You should now see the goodbye message printed on the screen. Expected: The program should return you back to the main terminal window
 
 ### Adding new event
 1. Add a personal event
     1. Load the program
-    1. Type `add personal dental appointment`
+    1. Type `add personal; dental appointment`
+    1. Type `list personal`. Expected: your new personal event should be displayed on the screen
+1. Add a zoom event
+    1. Load the program
+    1. Type `add zoom; math lesson; www.zoom.com; 20/10/2020; 15:00`
+    1. Type `list zoom`. Expected: your new zoom event should be displayed on the screen
+1. Add a timetable event
+    1. Load the program
+    1. Type `add timetable; science class; S17; 23/10/2020; 11:00`
+    1. Type `list timetable`. Expected: your new timetable event should be displayed on the screen
+    
+### Loading  and Saving Data
+1. Sample Save Data
+    1. Follow the instructions for "Initial Launch"
+    1. Type `add personal; dental appointment`
     1. Type `list personal`, your new personal event should be displayed on the screen
+    1. Type `save` into the terminal
+    1. Type `bye` to exit the program
+    1. At your current file directory, find the file `personal.txt` located in the `data` directory of where your program is running. Expected:You should see that the file is no longer empty and should see one line with the words `dental appointment` written. 
+1. Sample Load data
+    1. Follow the instructions in "Sample Save Data"
+    1. Launch the program
+    1. Type `list personal`. Expected: your previous personal event should be displayed on the screen
 
 ### Delete Event
 1. Deleting a personal event
-    1. Load the program
-    1. Type `add personal dental appointment`
+    1. Launch the program
+    1. Type `add personal; dental appointment`
     1. Type `list personal`, your new personal event should be displayed on the screen
-    1. Test Case: `delete 1` 
-        When you type `list personal`, you should notice that the list is blank
-    1. Test Case: `delete 0`
-        An error message should be displayed as none of the events are labelled with event index 0.
+    1. Test Case: `delete personal; 1` 
+        Expected: When you type `list personal`, you should notice that the list is blank
+    1. Test Case: `delete personal; 3`
+        Expected: An error message should be displayed as none of the events are labelled with event index 3.
 
 ### Repeat Event
 1. Repeating a personal event
     1. Load the program
-    1. Type `add personal dental appointment; 18/09/2020`
-    1. Type `add personal birthday`
+    1. Type `add personal; dental appointment; 18/09/2020`
+    1. Type `add personal; birthday`
     1. Type `list personal`, your new personal events should be displayed on the screen
-    1. Test Case: `repeat personal 2 monthly 3`
-        An error message should be displayed indicating that you cannot repeat an event with no deadline
-    1. Test Case: `repeat personal 1 monthly 3`
-        When you type `repeat personal 1`, you should see a message indicating to you that the event is repeated monthly for three more times. 
+    1. Test Case: `repeat personal; 2; monthly; 3`
+        Expected: An error message should be displayed indicating that you cannot repeat an event with no deadline
+    1. Test Case: `repeat personal; 1; monthly; 3`
+        Expected:When you type `repeat personal; 1`, you should see a message indicating to you that the event is repeated monthly for three more times. 
 
 ### Changing status of events
 1. Changing the status of a personal event
     1. Load the program
-    1. Type `add personal dental appointment; 18/09/2020`
-    1. Type `add personal birthday`
+    1. Type `add personal; dental appointment; 18/09/2020`
+    1. Type `add personal; birthday`
     1. Type `list personal`, your new personal events should be displayed on the screen
-    1. Test Case: `done pesonal 1`
-        When you type `list personal`, you should see that the symbol of the first event has changed from a cross to a tick
-    1. Test Case: `undone personal 1`
-        When you type `list personal`, you should see that the symbol of the first event has changed from a tick to a cross 
+    1. Test Case: `done pesonal; 1`
+        Expected: When you type `list personal`, you should see that the symbol of the first event has changed from a cross to a tick
+    1. Test Case: `undone personal; 1`
+        Expected: When you type `list personal`, you should see that the symbol of the first event has changed from a tick to a cross 
 
 ### Help Command
 1. Getting generic help
     1. Load the program
     1. Type `help` and press enter
-    1. You should see a summary of all the commands available to the user printed on the screen
+    Expected: You should see a summary of all the commands available to the user printed on the screen
 
 ### Printing calendar
 1. Printing calendar
-    1. Copy the Java Archive file into an empty directory
-    1. In this directory, make a directory called `data`
-    1. Copy the files in the `storagetester` directory into the `data` directory
-    1. Launch the program as shown in the previous section
-    1. Type `list all`
-    1. You should now see the files listed on the program as shown
+    1. Launch the program
+    1. Type `add personal; dental appointment; 18/09/2020; 1400`
+    1. Type `add personal; birthday; 19/10/2020; 1200`
+    1. Type `list all` Expected: You should now see the events listed on the terminal
     1. Type `calendar`
-    1. As you press enter, you should see all your events and timings being displayed in chronological order
-    1. Once all the events have been printed, the `End of calendar` message should appear
-    
+    Expected: As you press enter, you should see all your events and timings displayed in chronological order. Once all the events have been printed, the `End of calendar` message should appear.
+    Your calendar should appear as shown:
+    ```
+   calendar
+   _________________________________
+   Calendar has 2 dates to display
+   ---------------------------------------------------------------------------------------
+   18 Sep 2020
+   ---------------------------------------------------------------------------------------
+   P | 2:00 PM | X | dental appointment 
+   ---------------------------------------------------------------------------------------
+   Enter 'q' to exit or enter to continue...
+   
+   ---------------------------------------------------------------------------------------
+   19 Oct 2020
+   ---------------------------------------------------------------------------------------
+   P | 12:00 PM | X | birthday 
+   ---------------------------------------------------------------------------------------
+   End of calendar
+   _________________________________
+
+   ```
+   
+   
 ### Checking schedule availability
 1. Check Schedule
-    1. Copy the Java Archive file into an empty directory
-    1. In this directory, make a directory called `data`
-    1. Copy the files in the `storagetester` directory into the `data` directory
-    1. Launch the program as shown in the previous section
-    1. Type `list all`
-    1. You should now see the files listed on the program as shown
+    1. Launch the program
+    1. Type `add personal; dental appointment; 18/09/2020; 1400`
+    1. Type `add personal; birthday; 19/10/2020; 1200`
+    1. Type `list all` Expected: You should now see the events listed on the terminal
     1. Test Case: `check 01/01/2010; 1100; 01/01/2010; 2359;`
-        1. You should see the check command prints out all events that fall between the timing of 01 Jan 2010 1100hrs to 2359hrs
-    1. Test Case: `check 01/01/2020; 1100; 01/01/2020; 2359`
-        1. The message `You have no coinciding events!` should be printed. 
+    Expected: The message `You have no coinciding events!` should be printed. 
+    1. Test Case: `check 01/01/2020; 1100; 01/01/2021; 2359;`
+    Expectd: You should see the check command prints out all events that fall between the timing of 01 Jan 2010 1100hrs to 2359hrs as shown below
+    ```
+   _________________________________
+   Here is a list of your coinciding events:
+   1. [P][X] dental appointment on 2020-09-18, 14:00
+   2. [P][X] birthday on 2020-10-19, 12:00
+   _________________________________
+
+   ```
 
 ### Adding deadline to event
 1. Repeating a personal event
     1. Load the program
     1. Type `add personal dental appointment; 18/09/2020`
     1. Type `add personal birthday`
-    1. Type `list personal`, your new personal events should be displayed on the screen
+    1. Type `list all` Expected: You should now see the events listed on the terminal
     1. Test Case: `deadline 2; 03/08/2020`
         A success message should be printed, indicating that the new deadline has been set
         When `list personal` is typed, you should see that the second event now has a deadline attached to it

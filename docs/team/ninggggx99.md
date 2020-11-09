@@ -35,7 +35,7 @@ Given below are my contributions to the project.
 - **Code Contributed:** [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=ninggggx99&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=ninggggx99&tabRepo=AY2021S1-CS2113T-T12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 - **Project Management**
-    * Managed releases `v1.0` - `v2.0` (2 releases) on GitHub
+    * Managed releases `v1.0` - `v2.1` (3 releases) on GitHub
 - **Documentation:**
     * User Guide:
         *  Added documentation for the `deadline`, `notes`, `bye` , `view`  and `reminder` features.
