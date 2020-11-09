@@ -430,7 +430,7 @@ Given below is how the deadline command behave: <br>
 
 #### Check feature
 
-The check feature is implemented using the `CheckCommand` class. `CheckCommand` accesses the `Event`s stored within `EventList`s in order to determine if events are occurring within a given time period. It implements the following operations:
+The check feature is implemented using the `CheckCommand` class. `CheckCommand` accesses the `Event` stored within `EventList`s in order to determine if events are occurring within a given time period. It implements the following operations:
 
 - `CheckCommand#getDate(stringDate)` -- Parses a given string to get a LocalDate variable (either the start or end date for the time period).
 - `CheckCommand#getTime(stringTime)` -- Parses a given string to get a LocalTime variable (either the start or end time for the time period).
