@@ -44,7 +44,7 @@ Feature|Command|Description|
 -------|-------|-----------|
 Manual Tracker|```manual```| Manual entry of transactions. In Manual Tracker, the user manages daily lists of entries called Ledgers. 
 Entry Tracker|```entry```| Subsidiary subroutine of Manual Tracker. In Entry Tracker, the user manages ledger entries, which represents a unit of transaction for a particular day.
-Recurring Tracker|```recur```| In recurring Tracker, the user manages special recurring entries that are deducted on a regular basis, which are too cumbersome to record regularly with Entry Tracker.
+Recurring Tracker|```recur```| In recurring Tracker, the user manages special recurring entries that reoccur on a monthly basis, for instance monthly bills and salary.
 Goal Tracker|```goal```| Sets income or expense goals, whereby the tracker will report to user his progress towards them whenever an entry is added.
 Save Manager|```saver```| Allows save of multiple program running states and load them anytime you want. May also delete and reset running state.
 Finance Tools|```finance```| FinanceTools contains tools related to financial calculations.
@@ -347,7 +347,7 @@ of reward points on a monthly basis.
 Vice versa for expense entries.
 
 **Parameters** <br />
-* `-e` OR `-i` - Indicates whether entry is income or expense (Mandatory to have 1 out of 2)
+* `-e` OR `-i` - Indicates whether entry is income or expense (Mandatory to have 1 of 2, but not both)
 * `-auto` - Indicates that entry is an automatically deducted/credited expense/income. Only serves as a reminder, 
 is not linked to any functionality. (Optional)
 * `/desc` - Description of entry (Mandatory)
@@ -357,18 +357,18 @@ is not linked to any functionality. (Optional)
 
 >Syntax
 
-    new {-e OR -i} [-auto] /desc <DESCRIPTION> /amt <AMOUNT> /day <DAY_OF_MONTH> [/notes <NOTES>]
+    new [-e OR -i] [-auto] /desc {DESCRIPTION} /amt {AMOUNT} /day {DAY_OF_MONTH} [/notes {NOTES}]
    
 
 >Example
     
-    new -e -auto /desc Netflix /amt 40 /day 2 /notes Cancel if Homemade ends
+    new -e -auto /desc Netflix /amt 40 /day 10 /notes Cancel if Homemade ends
     //Netflix, $40 per month, auto-payment via credit card 
-    on the 2nd of every month. Saved with a note of “Cancel if Homemade ends"
+    on the 10th of every month. Saved with a note of “Cancel if Homemade ends"
     
-    new -i /desc Redeem air miles for vouchers /amt 50 /day 27
+    new -i /desc Redeem air miles for vouchers /amt 50 /day 12
     //Redeem air miles for vouchers, $50 per month, user has to take manual action 
-    by 27th of every month.
+    by 12th of every month.
     
 ## List all entries
 Displays a list of all recurring entries.
@@ -377,8 +377,8 @@ Displays a list of all recurring entries.
 
     list
     
-**Parameters** <br />
-None
+
+![](screenshots/recurringtracker/list.png)
 
 ## Delete entry
 Deletes an entry at the given index. Index can be found via `list` and then checking the 
@@ -386,7 +386,7 @@ associated index in the leftmost column.
 
 >Syntax
 
-    delete /id <INDEX>
+    delete /id {INDEX}
     
 **Parameters** <br />
 * `/id` - Index of item to be deleted. 1-based indexing (Mandatory)
@@ -401,7 +401,7 @@ field(s) being modified.
 
 >Syntax
 
-    edit /id <INDEX> [field(s) to edit]
+    edit /id {INDEX} [field(s) to edit]
     
 **Parameters** <br />
 * `/id` - Index of entry to edit. 1-based indexing (Mandatory)
@@ -412,7 +412,7 @@ Overwrites previous value present.
 >Example
     
     edit /id 2 /desc Updated name!! /day 23
-    //Overwrites existing description and day. Other fields are untouched.
+    //Overwrites existing description and day for entry 2. Other fields are untouched.
     
 ## Exit tracker
 Exits to main menu.
@@ -420,6 +420,15 @@ Exits to main menu.
 >Syntax
 
     exit
+    
+## Reminders
+The program will check the list of recurring entries, and automatically print reminders for
+entries which are within 5 days from current system date.
+
+For instance, if the two examples in [New Entry](#new-entry) are entered and current system date is the 9th,
+the following reminders will be shown upon launching the program or returning to main menu.
+
+![](screenshots/recurringtracker/reminders.png)
 
 
 <!-- @@author bqxy -->
@@ -810,6 +819,17 @@ No. | Feature | Syntax |
 3.|list Entries|_list_|
 4.|Delete Entry|_delete /id {INDEX}_|
 5.|List Transaction Categories|_cat_|
+6.|Exit to Manual Tracker|_exit_|
+
+
+## Recurring Tracker
+
+No. | Feature | Syntax |
+----|---------|---------|
+1.|New Entry|_new [-e OR -i] [-auto] /desc {DESCRIPTION} /amt {AMOUNT} /day {DAY_OF_MONTH} [/notes {NOTES}]_|
+2.|Edit Entry|_edit /id {INDEX} {PARAM_TYPE} {PARAM} ..._|
+3.|list Entries|_list_|
+4.|Delete Entry|_delete /id {INDEX}_|
 6.|Exit to Manual Tracker|_exit_|
 
 <!-- @@author bqxy -->
