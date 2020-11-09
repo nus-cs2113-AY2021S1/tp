@@ -23,7 +23,7 @@ I implemented the segment of the code that printed out the logo at the start of 
 
 ####Miscellaneous enhancements
 
-I wrote the function description and explanations for the all the bunny related commands as well as the divider command listed by the help function, which helps the user recall the various commands while using the Fluffle.
+I wrote the function description and explanations for the all the bunny related commands as well as the `divider` command listed by the help function, which helps the user recall the various commands while using the Fluffle. The only bunny related command I did not implement was the `reset bunny` command. While I did not implement the `reset bunny` command of the bunny list commands, I did the UG, DG and help segments for it.
 
 ### Contributions to documentation
 In the UG,
