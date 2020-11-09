@@ -74,7 +74,7 @@ public class RecurringEntry extends Item {
             return amount;
         case ParamChecker.PARAM_INC:
         case ParamChecker.PARAM_EXP:
-            return entryType;
+            return "";
         case ParamChecker.PARAM_DESCRIPTION:
             return description;
         case ParamChecker.PARAM_AUTO:

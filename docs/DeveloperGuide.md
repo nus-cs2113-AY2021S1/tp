@@ -583,7 +583,7 @@ Below are the compulsory params; an Exception will be thrown by `CreateEntryHand
 
 Optional params are
 * "-auto"
-* "-notes"
+* "/notes"
 
 The following sequence diagram illustrates the process:
 
@@ -593,7 +593,7 @@ The following sequence diagram illustrates the process:
 
 The only compulsory param is `/id`, the 1-based index of the item to delete.
 
-* Uses`RetrieveEntryHandler`, who will call `ParamChecker` to verify
+* Uses `RetrieveEntryHandler`, who will call `ParamChecker` to verify
 that a valid index was provided. 
 * The handler will then remove the entry at the given index
 by calling `entries#removeItemAtCurrIndex()`.
@@ -605,7 +605,9 @@ Compulsory params are "/id" and at least one other param to edit
 * `RetrieveEntryHandler` is first called to retrieve the entry to be edited, similar to what 
 occurs in `handleDeleteEntry().
 * `EditEntryHandler` is then called to operate on the given entry. The overall process is 
-similar to that of `handleCreateEntry()`.
+similar to that of `handleCreateEntry()`, which is illustrated in the above sequence diagram,
+with the only difference being that there can be any number of paramTypes in the command packet
+depending on how many fields the user wishes to change.
 
 
 
@@ -1201,7 +1203,7 @@ removed from the list.
 * The following testing guide assumes that the testing above has been completed. <br />
 Enter `list`. Output:
 
-![](developerGuide_images/screenshots_recurringtracker/list.png)
+<img src="developerGuide_images/screenshots_recurringtracker/list.png" width="800"/>
 
 **Testing Edit Entry** <br />
 * The following testing guide assumes that the testing above has been completed. <br />
@@ -1210,7 +1212,7 @@ Enter `list`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry.png)
 1. Enter `list`. Output:
 
-![](developerGuide_images/screenshots_recurringtracker/list_after_edit.png)
+<img src="developerGuide_images/screenshots_recurringtracker/list_after_edit.png" width="800"/>
 
 **Negative Test: No Params to Edit** <br />
 
@@ -1235,7 +1237,7 @@ Enter `list`. Output:
 
 1. Enter `list`. Output:
 
-![](developerGuide_images/screenshots_recurringtracker/list_after_delete.png)
+<img src="developerGuide_images/screenshots_recurringtracker/list_after_delete.png" width="800"/>
 
 **Testing Reminders** <br />
 * The following testing guide assumes that all previous entries have been deleted. This can be achieved by running `delete /id 1` repeatedly until list is empty.

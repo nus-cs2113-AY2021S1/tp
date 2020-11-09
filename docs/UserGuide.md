@@ -383,8 +383,7 @@ Displays a list of all recurring entries.
 
     list
     
-
-![](screenshots/recurringtracker/list.png)
+<img src="screenshots/recurringtracker/list.png" width="800"/>
 
 <div style="page-break-after: always;"></div>
 
