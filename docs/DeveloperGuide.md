@@ -77,8 +77,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.15. [Excluding a module/chapter](#5615-excluding-a-modulechapter)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.16. [Including a module/chapter](#5616-including-a-modulechapter)<br>
 
-<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 1. Introduction
 
