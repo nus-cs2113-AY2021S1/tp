@@ -24,7 +24,7 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 - `list-n`: Allows the user to see all available notes. User can also sort the notes in ascending or descending order for convenience, or list by tags. User can view all archived notes.
 - `unarchive-n`: Allows the user to unarchive a note if the user wants to make changes to the note.
 
-<div style="page-break-after: always;">
+<div style="page-break-after: always;"></div>
 
 2\. In the `Notebook` class, created: `archivedNotes`, `unarchivedNotes`, `getArchivedNotes`, `getNote`, `checkPinned`, `getSortedList`, `getPinnedNotes`, `getUnpinnedNotes`, `findNotes`. In the `Note` class, created: `toggleArchived`, `getIsArchived`, `getPinned`. Added a couple of `formatNotes` methods into the `Formatter` class.
 
