@@ -13,7 +13,7 @@
 &nbsp;&nbsp;3.1. [Architecture](#architecture)<br>
 &nbsp;&nbsp;3.2. [UI Component](#ui-component)<br>
 &nbsp;&nbsp;3.3. [Logic Component](#logic-component)<br>
-&nbsp;&nbsp;3,4. [Model Component](#model-component)<br>
+&nbsp;&nbsp;3.4. [Model Component](#model-component)<br>
 &nbsp;&nbsp;3.5. [Storage Component](#storage-component)<br>
 1. [Implementation](#implementation) <br>
 &nbsp;&nbsp;4.1. [Project](#project)<br>
@@ -158,7 +158,7 @@ The `ParserManager` then returns the command back to `SCRUMptious`, which then e
 
 
 
-### 3.4. <a id="model_component">Model Component</a>
+### 3.4. <a id="model-component">Model Component</a>
 ![Figure 3.4: Simplified class diagram for Model Component](./image/developerguide/modelcomponent.png "Storage Component UML") 
 
 _Figure 3.4: Simplified class diagram for Model Component_
@@ -241,7 +241,7 @@ This requires the model classes to implement two methods required for JSON seria
 - `toJson()`: Contains logic required to convert the model object into JSON string.  
 - `fromJson()`: Contains logic required to convert JSON object into its respective model class.    
 
-## 4. <a id="implemtation">Implementation</a>
+## 4. <a id="implentation">Implementation</a>
 ### 4.1. <a id="project">Project</a>
 ![Figure 4.1: Project Class Diagram](./image/developerguide/ProjectClassDiagram.png
  "Project Class Diagram")
