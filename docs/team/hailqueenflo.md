@@ -30,7 +30,7 @@ The following are my contributions to the project.
     * Justification: The best way the user can revise their study materials is by grading their own work, effectively
     helping them retain information and improve their grades.
     * Highlights: This feature has thoughtful functionalities, such as a way for users to find out the answer
-    immediately when they are able to answer a question, helping them save time while revising. The score feature also
+    immediately when they are unable to answer a question, helping them save time while revising. The score feature also
     acts as an encouragement for revision. For the convenience of the user, the test mode ignores the case of the user's
     answers.
 
@@ -54,7 +54,7 @@ The following are my contributions to the project.
 * Developer Guide:
   * Added the implementation details for the flashcard component, including the UMLs used in that section.
   
- ### Community:
+### Community:
  
  * Reported bugs and suggestions to teammates: 
     * [#127](https://github.com/AY2021S1-CS2113T-T12-1/tp/pull/127)
