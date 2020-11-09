@@ -2,35 +2,42 @@
 actor User
 
 box Logic
-participant ":NuSchedule" as NuSchedule
-participant ":Parser" as Parser
-participant ":EditCommand" as EditCommand
+participant "NuSchedule" as NuSchedule
+participant "Parser" as Parser
+participant "EditCommand" as EditCommand
 end box
 
 box Model
 participant ":EventList" as EventList
 end box
 
-User -> NuSchedule : edit
+User -> NuSchedule: (edit index)
 activate NuSchedule
 
-NuSchedule -> Parser : parse(edit)
-activate  Parser
+NuSchedule -> Parser: (edit index)
+activate Parser
 
-Parser --> NuSchedule : command to execute
-deactivate Parser
-
-NuSchedule -> EditCommand : execute(edit)
+create EditCommand
+Parser -> EditCommand:newEditInformation()
 activate EditCommand
 
-EditCommand -> EventList : editCommand(event)
+EditCommand --> Parser: String[] editInformation
+deactivate EditCommand
+
+Parser --> NuSchedule: parsed command
+deactivate Parser
+
+NuSchedule -> EditCommand: execute()
+activate EditCommand
+
+EditCommand -> EventList: editEvent()
 activate EventList
 
-EventList --> EditCommand : event
+EventList --> EditCommand: event
 deactivate EventList
 
 EditCommand --> NuSchedule
 deactivate EditCommand
 
-deactivate NuSchedule
+
 @enduml
