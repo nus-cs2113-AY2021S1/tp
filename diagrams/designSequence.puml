@@ -17,6 +17,7 @@ activate SaveState
 SaveState -> ShowList : Loaded Data
 ShowList -> ShowList : Insert Loaded Data
 activate ShowList
+ShowList --> ShowList : Data loaded successfully
 deactivate ShowList
 ShowList --> SaveState : Loaded Data Successfully
 deactivate ShowList
@@ -36,8 +37,8 @@ Ui -> InputParser : User Input
 opt invalid command
 InputParser -> ErrorHandling : Error detected
 activate ErrorHandling
-ErrorHandling --> Ui : Error
 Ui -> User : Error Message
+ErrorHandling --> Ui : Error
 deactivate ErrorHandling
 end
 create Command
@@ -49,11 +50,12 @@ activate ShowList
 ShowList --> Command : Data
 Command -> Command : Processing Data
 activate Command
+Command --> Command : Finish Processing Data
 deactivate Command
 Command -> ShowList : Processed Data
 Command --> Ui : Command Outcome
-destroy Command
 Duke -> SaveState : Save Data
+destroy Command
 activate SaveState
 SaveState --> Duke : Save Success
 deactivate SaveState
