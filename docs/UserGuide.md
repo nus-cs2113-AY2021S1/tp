@@ -39,7 +39,7 @@ from the text file and loads the appliances' data back.
 4.  Open your Command Prompt/Terminal. Navigate to the folder which you place the SmartHomeBot.jar. Then input `java -jar SmartHomeBot.jar` and 
 press ENTER.The display similar to the below should appear in a few seconds.
     
-    ![](images/user_guide/start_image.PNG)
+    ![](images/user_guide/startMessage.png)
      
 5.  Type the command in the command box and press Enter to execute it. 
 e.g. typing `exit` and pressing Enter, it will exit the program.
@@ -264,7 +264,8 @@ Output:
 Exits the application and switch off all appliances within SmartHomeBot. The monitoring of all appliances will be stop.
 
 Format: `exit`
-   
+ 
+   ![](images/user_guide/ExitMessage.png) 
 <br/><br/>
 
 ### Saving the data
