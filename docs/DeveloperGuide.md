@@ -216,11 +216,12 @@ The `RouteMapCommand#executeCommand()` method of RouteMapCommand Class executes 
 1. Calls `RouteMapCommand#selectAndPrintBusRoute()`to attempt to retrieve user-specified bus code. (Bus code is stored
 as a string variable in the command)
 2. Calls `RouteMapCommand#checkBusCode()` to make sure bus code entered by the user is not empty or a white-space.
+
+<div style="page-break-after: always;"></div>
+
 3. Calls static `BusData#selectBus()` to find the user-specified bus in the bus data list. If found, the Bus object will be 
 returned. Else, null is returned.
 4. Calls `Ui#printFullRoute()` to display full route of the specified bus.
-
-<div style="page-break-after: always;"></div>
 
 The following sequence diagram explains the above steps when the user enters `/routemap busCode`.<br>
 ![Overview](DG_Diagrams/RouteMapCommand/RouteMapCommandOverallSeq.png)<br>
@@ -262,8 +263,12 @@ The command is executed in the following steps:
 6. `BusData#getBusAtStop()` is called and returns an array list of buses.
 7. `BusData#printBusAtBusStop()` is called to print array list of buses.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/bus` command.
 ![ExecFav_Sequence_Diagram](DG_Diagrams/BusCommand/BusCommand.png)
+
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram explains the interactions omitted in the main diagram.
 ![getBusStop_Sequence_Diagram](DG_Diagrams/BusCommand/getBusStop.png)
