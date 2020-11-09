@@ -733,6 +733,7 @@ Expected: An error message indicating that the show was not found.
 1. Prerequisites: The show name `friends` has already been added into the list. Reach the edit prompt by the program using the `edit friends` command. 
 <br>
 > **[NOTE]** Refer to our manual testing for [adding a show](#adding-a-show) if you need help with the command. 
+> The following test cases should be enter after going into the edit prompt.
 
 2. Test case: `season 3` followed by `episode 3,10`<br>
 Expected: An error message displayed due to the different number of seasons and episodes for each season given.
@@ -743,6 +744,8 @@ Expected: A message acknowledging the change. `Updated show details.`
 4. Test case: `season 3` followed by `episode 10,10,10` followed by `done`<br>
 Expected: A message acknowledging the change. `Updated show details.`
 
+5. Test case: `name f.r.i.e.n.d.s` followed by `done`<br>
+   Expected: A message acknowledging the change. `Updated show details.`
 
 ### Managing Reviews and Ratings
 
