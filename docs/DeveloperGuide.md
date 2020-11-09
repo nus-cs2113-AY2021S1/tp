@@ -93,16 +93,10 @@ What is your name?
 The following sections describe the high-level overview of our application, Fluffle.
 
 ### Technological overview
-The Integrated Development Environment, IntelliJ, is used to develop our program. The program is written in Java, 
-and uses Gradle for building and testing purposes. Our source code is mostly original, with some functions imported 
-from the java.util package. The remaining packages and classes which form the structure of our program 
-are independently developed.
+The Integrated Development Environment, IntelliJ, is used to develop our program. The program is written in Java, and uses Gradle for building and testing purposes. Our source code is mostly original, with some functions imported from the java.util package. The remaining packages and classes which form the structure of our program are independently developed.
 
 ### Project overview
-Fluffle is built using IntelliJ and all concepts for the user interfaces, as well as the backend data management of the 
-application, was created by our team. Due to the restrictions of the project, the main file format used for storage is 
-.txt. We opted to save the data in the text files in a user readable format as opposed to the comma separated format 
-as it is easier for users to directly refer to and edit their saved files.
+Fluffle is built using IntelliJ and all concepts for the user interfaces, as well as the backend data management of the application, was created by our team. Due to the restrictions of the project, the main file format used for storage is .txt. We opted to save the data in the text files in a user readable format as opposed to the comma separated format as it is easier for users to directly refer to and edit their saved files.
 
 ### Architecture
 The following figure describes the overall architecture of Fluffle.
@@ -152,11 +146,7 @@ User: Represents the Users registered to the System
 ![UML Class diagram for WritingList family](graphics/diagrams/classDiagram_WritingList.png)
 <p align = "center"><i><b>Figure 3: WritingList family UML diagram</b></i></p>
 
-The above class diagram describes the overall architecture of Writings class functionalities and associations within 
-the scope of related classes. By checking “start”, “type” command with checkStartCommand() then checkTypeCommand() 
-methods on that sequence respectively, the user should be able to access the process of creating and saving new writings 
-into the database. During this process, the user has the ability of choosing their preferred type of writings(which are 
-either poem or essay at this stage)
+The above class diagram describes the overall architecture of Writings class functionalities and associations within the scope of related classes. By checking “start”, “type” command with checkStartCommand() then checkTypeCommand() methods on that sequence respectively, the user should be able to access the process of creating and saving new writings into the database. During this process, the user has the ability of choosing their preferred type of writings(which are either poem or essay at this stage)
 
 ![UML WritingList family sequence diagram](graphics/diagrams/UMLSequenceDiagram_WritingList.png)
 <p align = "center"><i><b>Figure 4: General interactions between member classes when generating a new writing</b></i></p>
@@ -222,61 +212,34 @@ In **Figure 6** above, the flow of the program after it enters the filter proces
 1. The filter process terminates.
    
 ### Bunny class family
+
 ![UML Bunny class diagram](graphics/diagrams/Class_diagram_bunny.png)
-<center><i>Figure 7:  Bunny ideas UML Class Diagram</i></center>
+<p = "center"><i><b>Figure 7:  Bunny ideas UML Class Diagram</b></i></p>
+
 The above class diagram describes the overall architecture of the bunny list functionalities. Recall that the term bunny refers to  plot ideas that have yet to be devloped. 
 The above classes provide the functionality of storing such ideas in an organised manner that can easily be searched, saved and loaded.
 
-The `BunnyList` class has the public ArrayList of bunnies `bunniesList` that is accessed by the `DeleteBunny` class method `deleteBunny` which removes 
-a selected bunny from the `bunniesList` ArrayList. Similarly, `bunniesList` is also accessed by the `BunnyFilter` class which 
-contains the `filterBunny` function which can filter through the list and obtain bunnies with specified keywords in the 
-idea or the genre using the command `filter bunny i\IDEA g\GENRE`, where the user may choose to omit either the `IDEA` 
-or the `GENRE` when running the command. 
+The `BunnyList` class has the public ArrayList of bunnies `bunniesList` that is accessed by the `DeleteBunny` class method `deleteBunny` which removes a selected bunny from the `bunniesList` ArrayList. Similarly, `bunniesList` is also accessed by the `BunnyFilter` class which contains the `filterBunny` function which can filter through the list and obtain bunnies with specified keywords in the idea or the genre using the command `filter bunny i\IDEA g\GENRE`, where the user may choose to omit either the `IDEA` or the `GENRE` when running the command. 
 
-The `BunnySaver` class accesses the `bunniesList` and overwrites the current `bunny.txt` file in the data directory, 
-saving all `Bunny` objects into the file using the `saveAllBunny`  method. Bunny objects saved in that file can then 
-be read by the `BunnyLoader` class and added into the `bunniesList` ArrayList each time the program is started up, which is done 
-by calling the `loadBunnyFile` method.
+The `BunnySaver` class accesses the `bunniesList` and overwrites the current `bunny.txt` file in the data directory, saving all `Bunny` objects into the file using the `saveAllBunny`  method. Bunny objects saved in that file can then be read by the `BunnyLoader` class and added into the `bunniesList` ArrayList each time the program is started up, which is done by calling the `loadBunnyFile` method.
 
-The `GenBunny` class can access the `bunniesList` as well. The function `pickRandomBunny` from the `GenBunny` class first randomly 
-generates an integer between 0 and the max number of `Bunny` idea in the `bunniesList` ArrayList. It then selects that indexed `Bunny` from the 
-`bunniesList` and returns it to the user. This allows the user to easily choose an idea to start working on without struggling to decide which idea to use.
+The `GenBunny` class can access the `bunniesList` as well. The function `pickRandomBunny` from the `GenBunny` class first randomly generates an integer between 0 and the max number of `Bunny` idea in the `bunniesList` ArrayList. It then selects that indexed `Bunny` from the `bunniesList` and returns it to the user. This allows the user to easily choose an idea to start working on without struggling to decide which idea to use.
 
 ![UML BunnyList sequence diagram](graphics/diagrams/Sequence_diagram_bunny.png)
 <p align = "center"><i><b>Figure 8: Bunny list UML Sequence Diagram</b></i></p>
 
-The user may call upon the `bunny` command to add bunnies to the list. The user input is first processed by the `extractCommandType` method from 
-the `CommandChecker` class, and the command type detected is sent to the `executeCommand` method from the `CommandExecutor` class. The `addBunny` function is called by this 
-method accordingly. The `addBunny` command calls the `parseSingleCharacterTaggedParamsFromUserInput` method from the `Parsers` class to extract the `idea` and `genre` arguments 
-from the command. These are then used to create a new `Bunny` object that is then added to the `bunniesList` ArrayList. The `addBunnyMessage` method from `UI` is then called
-to print the message that the `Bunny` idea object has been sucessfully added to the ArrayList.
+The user may call upon the `bunny` command to add bunnies to the list. The user input is first processed by the `extractCommandType` method from the `CommandChecker` class, and the command type detected is sent to the `executeCommand` method from the `CommandExecutor` class. The `addBunny` function is called by this method accordingly. The `addBunny` command calls the `parseSingleCharacterTaggedParamsFromUserInput` method from the `Parsers` class to extract the `idea` and `genre` arguments from the command. These are then used to create a new `Bunny` object that is then added to the `bunniesList` ArrayList. The `addBunnyMessage` method from `UI` is then called to print the message that the `Bunny` idea object has been sucessfully added to the ArrayList.
 
 ### Names class family
 
 ![Names UML Class Diagram](graphics/diagrams/classDiagram_Names.png)
-<center><i>Figure 9: Names UML Class Diagram</i></center>
+<p = "center"><i><b>Figure 9: Names UML Class Diagram</b></i></p>
 
-The above class diagram (Figure 9) describes the overall architecture of the name list functionalities. The Names class 
-has the protected ArrayList of names, nameList, that is accessed by the Names class method getName which randomly gets 
-a selected name from the nameList ArrayList. Similarly, nameList is also accessed by the Names class which contains the 
-filterNames function which can filter through the list and obtain names with specified keywords using the command filter 
-name <NAME>, where the user may choose to omit the NAME when running the command. Similarly, nameList is also accessed 
-by the Names class which contains the listNames function which displays all the names stored in the nameList ArrayList. 
-This is the same as the filterNames function when given no input String. Similarly, nameList is also accessed by the 
-Names class which contains the addName function which adds a name to the list of names stored in the nameList ArrayList 
-using the command add name <NAME>. The NAME cannot be omitted. Similarly, nameList is also accessed by the Names class 
-which contains the deleteName function which removes a name from the list of names stored in the nameList ArrayList. 
-The command to do this deletes name <INDEX>. The INDEX cannot be omitted and the range of the INDEX can be determined 
-from the listNames function above.
+The above class diagram (Figure 9) describes the overall architecture of the name list functionalities. The Names class has the protected ArrayList of names, nameList, that is accessed by the Names class method getName which randomly gets a selected name from the nameList ArrayList. Similarly, nameList is also accessed by the Names class which contains the filterNames function which can filter through the list and obtain names with specified keywords using the command filter name <NAME>, where the user may choose to omit the NAME when running the command. Similarly, nameList is also accessed by the Names class which contains the listNames function which displays all the names stored in the nameList ArrayList. This is the same as the filterNames function when given no input String. Similarly, nameList is also accessed by the Names class which contains the addName function which adds a name to the list of names stored in the nameList ArrayList using the command add name <NAME>. The NAME cannot be omitted. Similarly, nameList is also accessed by the Names class which contains the deleteName function which removes a name from the list of names stored in the nameList ArrayList. The command to do this deletes name <INDEX>. The INDEX cannot be omitted and the range of the INDEX can be determined from the listNames function above.
 
-The NamesDB class accesses the nameList and overwrites the current Names.txt file in the data directory, saving all 
-String objects in nameList into the file using the updateDB method. String objects saved in that file can then be read 
-by the NamesDB class and saved into the nameList ArrayList using the loadDB method. In the event of the database 
-Names.txt not existing, the NamesDB class will create the Names.txt database and populate the database with 500 names using the loadDB method.
+The NamesDB class accesses the nameList and overwrites the current Names.txt file in the data directory, saving all String objects in nameList into the file using the updateDB method. String objects saved in that file can then be read by the NamesDB class and saved into the nameList ArrayList using the loadDB method. In the event of the database Names.txt not existing, the NamesDB class will create the Names.txt database and populate the database with 500 names using the loadDB method.
 
-As shown in Figure 9, both the NamesDB class and the Names class will create the NameException class. This is a subclass 
-that inherits from the Exception superclass and passes the exception message to the superclass. In the event of an 
-exception, it is thrown from the methods in NamesDB class and Names class and handled by the NameException class.
+As shown in Figure 9, both the NamesDB class and the Names class will create the NameException class. This is a subclass that inherits from the Exception superclass and passes the exception message to the superclass. In the event of an exception, it is thrown from the methods in NamesDB class and Names class and handled by the NameException class.
 
 ## Testing
 
