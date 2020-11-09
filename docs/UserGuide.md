@@ -1057,4 +1057,12 @@ which you can access using the cd command!
 
 <div align="center">Table: Command Cheatsheet for Study It</div>
 
-![](Images/cheatsheet.png)
+<p align="center">
+    <img width="80%" height="80%" src="Images/cheatsheet1.png">
+</p>
+
+<div style="page-break-after: always;"></div>
+
+<p align="center">
+    <img width="80%" height="80%" src="Images/cheatsheet2.png">
+</p>
