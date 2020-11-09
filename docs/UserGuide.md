@@ -34,8 +34,8 @@
     * [Giving suggestion](#giving-suggestion)
     * [Printing time line](#printing-timeline)
         * [Printing default calendar](#printing-default-calendar)
-        * [Printing calendar for the current week](#printing-calendar-for-the-current-week)
-        * [Printing calendar for the current month](#printing-calendar-for-the-current-month)
+        * [Printing calendar for the next 7 days](#printing-calendar-for-the-next-7-days)
+        * [Printing calendar for the next 31 days](#printing-calendar-for-the-next-31-days)
         * [Printing calendar before a specific date](#printing-calendar-before-a-specific-date)
     * [Printing countdown](#printing-countdown)
         * [Printing countdown of both deadline and exam events](#printing-countdown-of-both-deadline-and-exam-events)
@@ -98,7 +98,7 @@ For example:
 
 `help` is a valid command while `HELP` is an invalid command!
 
-**2. All command parameters are not be used as user input!**
+**2. All command parameters are not allowed to be used as user inputs!**
 
 For example:
 
