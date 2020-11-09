@@ -80,8 +80,6 @@ public class Zoomaster {
                 performSave(isExit);
             } catch (ZoomasterException e) {
                 ui.showErrorMessage(e);
-            } catch (Exception e) {
-                ui.print(e.getMessage());
             }
         } while (!isExit);
     }
