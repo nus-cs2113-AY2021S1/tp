@@ -455,10 +455,6 @@ Instruction:
 e.g. `star 1`
 Expected output:   
 
-<p align="center">
-    <img width="40%" height="40%" src="Images/GeneralUG/welcomemessage.png">
-</p>
-
 ![Bookmark_star](Images/BookmarkUG/Figure11.png)
 
 >**Useful Information:** 
