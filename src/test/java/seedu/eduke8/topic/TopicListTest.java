@@ -33,4 +33,11 @@ class TopicListTest extends Eduke8Test {
 
         assertThrows(Eduke8Exception.class, () -> topicList.find(NONSENSE_DESCRIPTION));
     }
+
+    @Test
+    void get_topicTwo_expectEduke8Exception() {
+        TopicList topicList = createTestTopicList();
+
+        assertEquals(PLACEHOLDER_TOPIC_ONE_DESCRIPTION, topicList.get(0).getDescription());
+    }
 }

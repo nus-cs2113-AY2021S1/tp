@@ -19,10 +19,22 @@ public class TopicList implements DisplayableList {
         this.topics = topics;
     }
 
+    /**
+     * Prints out description from Topic objects in TopicList
+     *
+     * @param ui
+     */
     public void showTopics(Ui ui) {
         ui.printTopicList(topics);
     }
 
+
+    /**
+     * Returns boolean result to indicate if the Topic object exists.
+     *
+     * @param topicName
+     * @return boolean result.
+     */
     public boolean doesTopicExist(String topicName) {
         boolean result = false;
         for (int i = 0; i < topics.size(); i++) {
@@ -33,11 +45,23 @@ public class TopicList implements DisplayableList {
         return result;
     }
 
+    /**
+     * Returns all Topic objects in the TopicList.
+     *
+     * @return topics.
+     */
     @Override
     public ArrayList<Displayable> getInnerList() {
         return topics;
     }
 
+    /**
+     * Returns a Topic object that has the same description as the input.
+     *
+     * @param topicName which is the description of the Topic object to be found.
+     * @return Topic topic if the topic is found, null if the topic is not found.
+     * @throws Eduke8Exception
+     */
     @Override
     public Displayable find(String topicName) throws Eduke8Exception {
         for (Displayable topic : topics) {
@@ -48,10 +72,22 @@ public class TopicList implements DisplayableList {
         throw new Eduke8Exception(ERROR_TOPIC_DOES_NOT_EXIST);
     }
 
+    /**
+     * Returns the Topic object which has the same index in the TopicList as the index
+     * provided in the input.
+     *
+     * @param i the index of the Topic object that is to be retrieved.
+     * @return Topic topic.
+     */
     public Topic get(int i) {
         return (Topic) topics.get(i);
     }
 
+    /**
+     * Returns the number of Topic objects currently in the TopicList.
+     *
+     * @return int number of Topic objects.
+     */
     public int getCount() {
         return topics.size();
     }

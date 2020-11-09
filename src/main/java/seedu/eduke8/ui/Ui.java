@@ -402,16 +402,20 @@ public class Ui {
         if (topicList.doesTopicExist(topicName) && noteCount > 0) {
             showNotes(noteList);
 
-            System.out.println(DELETE_NOTE_PROMPT_FOR_INDEX);
+            printWithoutLines(DELETE_NOTE_PROMPT_FOR_INDEX);
             String input = SCANNER.nextLine().trim();
 
-            if (input.matches(NUMBERS_ONLY) && Integer.parseInt(input) > 0
-                    && Integer.parseInt(input) <= noteList.getCount()) {
-                int index = Integer.parseInt(input);
-                topic.getNoteList().delete(index - 1);
-                printWithoutLines(DELETE_NOTE_SUCCESSFULLY);
-            } else {
-                printMessage(INVALID_TOPIC_INDEX + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
+            try {
+                if (input.matches(NUMBERS_ONLY) && Integer.parseInt(input) > 0
+                        && Integer.parseInt(input) <= noteList.getCount()) {
+                    int index = Integer.parseInt(input);
+                    topic.getNoteList().delete(index - 1);
+                    printWithoutLines(DELETE_NOTE_SUCCESSFULLY);
+                } else {
+                    printMessage(INVALID_TOPIC_INDEX + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
+                }
+            } catch (NumberFormatException e){
+                printWithoutLines(INVALID_TOPIC_INDEX);
             }
         } else {
             printWithoutLines(INVALID_TOPIC);
@@ -449,7 +453,7 @@ public class Ui {
             printWithoutLines(MESSAGE_PRINT_NOTE_LIST);
             for (int i = 0; i < notes.getCount(); i++) {
                 printWithoutLines(HORIZONTAL_LINE);
-                Note note = (Note) notes.get(i);
+                Note note = notes.get(i);
                 printWithoutLines((i + 1) + DOT + note.getDescription());
                 printWithoutLines(note.getNoteText());
             }
