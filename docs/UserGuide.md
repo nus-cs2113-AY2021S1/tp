@@ -65,7 +65,7 @@ Some example commands you can try:
    `create Bedroom1`.
    * Words in **[UPPER_CASE]** are case-sensitive.
    * Words in **[LOCATION_NAME]** and **[APPLIANCE_NAME]** has to be unique and not duplicate of each other. 
-   * Words in **[LOCATION_NAME]** and **[APPLIANCE_NAME]** cannot contain `space` or ` / ` or ` \| ` when `Create` or `Add`
+   * Words in **[LOCATION_NAME]** and **[APPLIANCE_NAME]** cannot contain `space` or ` / ` or ` \| ` when `create` or `add`
 
 ### Viewing help: `help`
 Shows all available commands to the user
