@@ -22,15 +22,17 @@ Given below are my contributions to the project
 - **Project Management:**
     - Help set up the team organisation repo
     - Necessary general code enhancements
+    - Help set up logging code for the project.
+    - Managed releases `v1.0` - `v2.1` (3 releases) on Github.
     
 - **Enhancements to Existing Features:**
-    - Updated the parser to accept multiple commands in succession for users who are familar with the product and would like to execute more than one command at once
-    - Assisted with the note taking application in terms of intepreting various special characters. 
+    - Updated the parser to accept multiple commands in succession for users who are familiar with the product and would like to execute more than one command at once
+    - Assisted with the note taking application in terms of interpreting various special characters. 
 
 - **Documentation:**
     - User guide
-        - Added documentation for the features `repeat`, `help` and `save`.
-        - Added documentation for setting up the program.
+        - Add documentation for the features `repeat`, `help` and `save`.
+        - Add documentation for setting up the program.
     - Developer Guide:
         - Added implementation details for the saving functions.
         - Added sequence diagram of the `repeat` command implementation.

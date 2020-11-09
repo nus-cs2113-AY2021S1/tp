@@ -22,6 +22,13 @@ public class StorageParser {
 
     private static Logger logger = EventLogger.getEventLogger();
 
+    /**
+     * Function helps to convert any event to a recordable string format to be written to txt file.
+     *
+     * @param activity Event object to be convert to a string representation
+     * @param type What kind of event the activity is
+     * @return String representation to be recorded into the txt files
+     */
     public static String eventToString(Event activity, String type) {
 
         ArrayList<String> words = new ArrayList<>();
@@ -46,6 +53,13 @@ public class StorageParser {
 
     }
 
+    /**
+     * Function used for recording down statuses of repeated events.
+     *
+     * @param statuses Location of where the list of statuses will be recorded
+     * @param activities The list of repeated activities
+     * @param repeatCount number of repetitions present
+     */
     public static void handleRepeatSave(ArrayList<String> statuses, ArrayList<Event> activities, int repeatCount) {
 
         for (int i = 0; i < repeatCount; i++) {
@@ -54,6 +68,12 @@ public class StorageParser {
         }
     }
 
+    /**
+     * Converts a personal event properties into strings.
+     *
+     * @param activity Personal event to be converted
+     * @param words Array List of strings that the arguments will be recorded to
+     */
     public static void personalToArguments(Personal activity, ArrayList<String> words) {
 
         ArrayList<String> statuses = new ArrayList<>();
@@ -103,6 +123,12 @@ public class StorageParser {
 
     }
 
+    /**
+     * Converts a Zoom event properties into strings.
+     *
+     * @param activity Personal event to be converted
+     * @param words Array List of strings that the arguments will be recorded to
+     */
     public static void zoomToArguments(Zoom activity, ArrayList<String> words) {
 
         ArrayList<String> statuses = new ArrayList<>();
@@ -154,6 +180,12 @@ public class StorageParser {
 
     }
 
+    /**
+     * Converts a timetable event properties into strings.
+     *
+     * @param activity timetable event to be converted
+     * @param words Array List of strings that the arguments will be recorded to
+     */
     public static void timetableToArguments(Timetable activity, ArrayList<String> words) {
 
         ArrayList<String> statuses = new ArrayList<>();
@@ -209,6 +241,14 @@ public class StorageParser {
 
     }
 
+    /**
+     * Converts a string into the proper event.
+     *
+     * @param line text from the txt file
+     * @param type what kind of event we are reconstructing
+     * @param ui UserInterface for printing things such as error messages
+     * @return Event object constructed by the txt file
+     */
     public static Event stringToEvent(String line, String type, Ui ui) {
         String[] words = line.split("\\|");
         String[] statuses;
@@ -244,6 +284,15 @@ public class StorageParser {
         return null;
     }
 
+    /**
+     * Creates a personal event from a string of arguments.
+     *
+     * @param info Array of strings containing all the event information in text form
+     * @param statuses Array of strings containing statuses of repeated event if any
+     * @param notes Array of strings containing the notes associated with the event
+     * @return Personal event constructed from the arguments provided
+     * @throws Exception if there is data corruption in the files
+     */
     private static Personal makePersonal(String[] info, String[] statuses, String[] notes) throws Exception {
         //0 is name, 1 is date, 2 is time, 3 is repeat unit, 4 is repeat number
         Personal p = new Personal(info[0]);
@@ -272,6 +321,15 @@ public class StorageParser {
 
     }
 
+    /**
+     * Creates a zoom event from a string of arguments.
+     *
+     * @param info Array of strings containing all the event information in text form
+     * @param statuses Array of strings containing statuses of repeated event if any
+     * @param notes Array of strings containing the notes associated with the event
+     * @return zoom event constructed from the arguments provided
+     * @throws Exception if there is data corruption in the files
+     */
     private static Zoom makeZoom(String[] info, String[] statuses, String[] notes) throws Exception {
         //0 is name, 1 is date, 2 is time, 3 is repeat unit, 4 is repeat number, 5 is zoom link
         Zoom z = new Zoom(info[0], info[5]);
@@ -298,6 +356,15 @@ public class StorageParser {
         return z;
     }
 
+    /**
+     * Creates a personal event from a string of arguments.
+     *
+     * @param info Array of strings containing all the event information in text form
+     * @param statuses Array of strings containing statuses of repeated event if any
+     * @param notes Array of strings containing the notes associated with the event
+     * @return Personal event constructed from the arguments provided
+     * @throws Exception if there is data corruption in the files
+     */
     private static Timetable makeTimetable(String[] info, String[] statuses, String[] notes) throws Exception {
         //0 is name, 1 is date, 2 is time, 3 is repeat unit, 4 is repeat number, 5 is location
         LocalDate date = DateTimeParser.dateParser(info[1]);
@@ -312,6 +379,13 @@ public class StorageParser {
         return t;
     }
 
+    /**
+     * Set the done status of the event from the string argument.
+     *
+     * @param e The event for the status to be set
+     * @param doneStatus String containing the status. "T" for true, "F" for false
+     * @throws InvalidStatusException if the status is not a "T" or "F"
+     */
     private static void setDone(Event e, String doneStatus) throws InvalidStatusException {
         boolean isDone = doneStatus.equals("T");
         boolean isNotDone = doneStatus.equals("F");
@@ -325,6 +399,15 @@ public class StorageParser {
 
     }
 
+    /**
+     * Setup of of repeated events.
+     *
+     * @param activity the event object where the repeated event is to be set
+     * @param statuses status information of all repeated events to be recorded
+     * @param timeUnit The time increment used to make the repeated event
+     * @param repeatNumber How many times the event repeated
+     * @throws Exception if there are file corruption errors
+     */
     private static void repeatSetter(Event activity, String[] statuses, String timeUnit, String repeatNumber)
             throws Exception {
 
