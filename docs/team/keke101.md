@@ -25,7 +25,7 @@ The challenge to this solution is it requires the discipline to ensure that each
 #### Contributions to Documentation
 ##### User Guide  
 * Add clear storage command. (Pull Request [#133](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/133))
-* Updated for v2.0. (Pull Request [#138](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/138) [#139](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/139))-CS2113T-F11-4/tp/pull/139))
+* Updated for v2.0. (Pull Request [#138](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/138) [#139](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/139))
 * Untracked
   * Add _**3.4 Sprint**_ section for the first draft (before first commit)
  
