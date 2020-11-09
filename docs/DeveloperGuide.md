@@ -1379,7 +1379,7 @@ There will only be changes to the rating after a revision session.
 1. Viewing history of revision completed in a day
     1. Prerequisites: Launch Kaji successfully.
     2. Test case: `history` <br>
-       Expected output: List the module and chapter which you have completed revision for. If no revision was done on the day, a message stating that no revision for that session will be shown.
+       Expected output: Lists the module and chapter which you have completed revision for. If no revision was done on the day, a message stating that no revision for that session will be shown.
     3. Test case: `history 2020-11-09`
        Expected output: List the module and chapter which you have completed revision for on 2020-11-09. If no revision was done on the day, a message stating that no revision for that session will be shown.
     4. Other incorrect commands to try: `history blah` (where the argument is not in the correct date format) <br>
