@@ -33,7 +33,7 @@ Given below are my coding, documentation, and other helpful contributions to the
     * Added table of contents and overall structure for user guide. (PR [#31](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/31) , [#52](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/52))
     * Added documentation in user guide for `watch` command, `updatetimelimit` command and Command Summary. (PR [#87](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/87))
     * General formatting updates and fixes in user guide each time a new feature was added into the guide. (PR [#101](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/101) , [#105](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/105))
-    * Added documentation to some methods in the `InputParser` Class. Included documentation to most methods in UI Class (PR [#65](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/65) , [#204](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/204))
+    * Added documentation to some methods in the `InputParser` Class. Included documentation to most methods in `UI` Class (PR [#65](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/65) , [#204](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/204))
 
 
 * **Contributions to DG**:
