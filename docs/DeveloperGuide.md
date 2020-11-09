@@ -1,7 +1,7 @@
 # Developer Guide
 
 ## Table of Contents
-
+// update later on <br>
 [Introduction](#introduction) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Purpose](#purpose) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Scope](#scope) <br>
@@ -26,25 +26,20 @@
 
 ## Introduction
 
+### Background
+Fluffle is a **desktop app for creative writers**, optimized for use via a **Command Line Interface (CLI)**. It aids users in creating and managing their writings and ideas. As a fast-typing writer, this CLI app is highly suitable for you.
+
 ### Purpose
 This document specified architecture and software design decisions for the creative writing assistant, Fluffle. 
 
 ### Scope
-This describes the software architecture and software design decisions for the implementation of Fluffle. The intended 
-audience of this document is the developers, designers, and software testers of Fluffle.
+This describes the software architecture and software design decisions for the implementation of Fluffle. The intended audience of this document is the developers, designers, and software testers of Fluffle.
 
 ### Design Goals
-Creating an app which improves users’ ability of writing and creativity. Developers should work closely with CS2113T’s 
-module instructors, who represent technical advisors and CS2101’s module instructors, who represent non-technical 
-advisors. By adhering to these tutors’ specific requirements, which imitate industrial professional standards, 
-beginner software engineers will be able to levitate their expertises and mindset in the process of developing 
-and presenting a new product.
+Our goal is to create an app which improves users’ ability of writing and creativity. Developers should work closely with CS2113T’s module instructors, who represent technical advisors and CS2101’s module instructors, who represent non-technical advisors. By adhering to these tutors’ specific requirements, which imitate industrial professional standards, beginner software engineers will be able to levitate their expertises and mindset in the process of developing and presenting a new product.
 
 ### Maintainability
-With the aim of increasing maintainability of Fluffle, separated packages and classes were implemented in strict 
-compliance with Object-oriented Programming. Since it is important to be able to easily change functionality of one 
-class without disturbing other dependent classes, each class only serves one purpose to reduce dependency on other 
-classes. With low coupling and high cohesion, subsequent developers can make minimal effort in maintaining Fluffle.
+With the aim of increasing maintainability of Fluffle, separated packages and classes were implemented in strict compliance with Object-oriented Programming. Since it is important to be able to easily change functionality of one class without disturbing other dependent classes, each class only serves one purpose to reduce dependency on other classes. With low coupling and high cohesion, subsequent developers can make minimal effort in maintaining Fluffle.
 
 ## Definitions
 
@@ -65,36 +60,43 @@ classes. With low coupling and high cohesion, subsequent developers can make min
 
 ⚠ **Caution:**
 
-Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
+You should follow the steps with caution. Otherwise, things will not work.
 </div>
 
 First, **fork** this repo, and **clone** the fork into your computer.
 
 If you plan to use Intellij IDEA (highly recommended):
 1. **Configure the JDK**: Follow the guide [_[se-edu/guides] IDEA: Configuring the JDK_](https://se-education.org/guides/tutorials/intellijJdk.html) to to ensure Intellij is configured to use **JDK 11**.
-1. **Import the project as a Gradle project**: Follow the guide [_[se-edu/guides] IDEA: Importing a Gradle project_](https://se-education.org/guides/tutorials/intellijImportGradleProject.html) to import the project into IDEA.<br>
+1. **Import the project as a Gradle project**: Follow the guide [_[se-edu/guides] IDEA: Importing a Gradle project_](https://se-education.org/guides/tutorials/intellijImportGradleProject.html) to import the project into IntelliJ IDEA.<br>
   :exclamation: Note: Importing a Gradle project is slightly different from importing a normal Java project.
 1. **Verify the setup**:
-   1. Run the `java -jar duke.jar` and try a few commands.
-   2. [Run the tests](Testing.md) to ensure they all pass. 
-//Note: should ask team W11-02 the permission for the above part.
-//Note: No need to create another testing.md, i have created a testing section below we can put all the things there
+   1. In IntelliJ IDEA, choose to run `Duke.main()`. Gradle will need some time to build the project at first.
+   1. If your setup is correct, you should see something like below:
+```
+--------------------------------------------------------------
+Write a story with
+  ______ _        __  __ _
+ |  ____| |      / _|/ _| |
+ | |__  | |_   _| |_| |_| | ___
+ |  __| | | | | |  _|  _| |/ _ \
+ | |    | | |_| | | | | | |  __/
+ |_|    |_|\__,_|_| |_| |_|\___|
+--------------------------------------------------------------
+Hello User! Welcome to Fluffle!
+What can I do for you?
+--------------------------------------------------------------
+What is your name?
+```
 
 ## Design
 
 The following sections describe the high-level overview of our application, Fluffle.
 
 ### Technological overview
-The Integrated Development Environment, IntelliJ, is used to develop our program. The program is written in Java, 
-and uses Gradle for building and testing purposes. Our source code is mostly original, with some functions imported 
-from the java.util package. The remaining packages and classes which form the structure of our program 
-are independently developed.
+The Integrated Development Environment, IntelliJ, is used to develop our program. The program is written in Java, and uses Gradle for building and testing purposes. Our source code is mostly original, with some functions imported from the java.util package. The remaining packages and classes which form the structure of our program are independently developed.
 
 ### Project overview
-Fluffle is built using IntelliJ and all concepts for the user interfaces, as well as the backend data management of the 
-application, was created by our team. Due to the restrictions of the project, the main file format used for storage is 
-.txt. We opted to save the data in the text files in a user readable format as opposed to the comma separated format 
-as it is easier for users to directly refer to and edit their saved files.
+Fluffle is built using IntelliJ and all concepts for the user interfaces, as well as the backend data management of the application, was created by our team. Due to the restrictions of the project, the main file format used for storage is .txt. We opted to save the data in the text files in a user readable format as opposed to the comma separated format as it is easier for users to directly refer to and edit their saved files.
 
 ### Architecture
 The following figure describes the overall architecture of Fluffle.
@@ -108,9 +110,7 @@ The design of Fluffle contains four main components:
 - Word Manager component
 - Name Manager component
 
-All components can be accessed by the user through Fluffle's UI. 
-On loading Fluffle, all components will be loaded from the storage. 
-On exiting Fluffle, all components will be saved to the storage.
+All components can be accessed by the user through Fluffle's UI. On loading Fluffle, all components will be loaded from the storage. On exiting Fluffle, all components will be saved to the storage.
 
 ### Writing Manager Component
 
@@ -133,7 +133,7 @@ The operations that can be done on the words list are:
 
 ## Implementation
 
-### Writings class family
+### Writing Features
 #### Constitution (member classes)
 WritingList: Represent the objects which are particular lists of Writings to be used in the application.
 
@@ -148,11 +148,7 @@ User: Represents the Users registered to the System
 ![UML Class diagram for WritingList family](graphics/diagrams/classDiagram_WritingList.png)
 <p align = "center"><i><b>Figure 3: WritingList family UML diagram</b></i></p>
 
-The above class diagram describes the overall architecture of Writings class functionalities and associations within 
-the scope of related classes. By checking “start”, “type” command with checkStartCommand() then checkTypeCommand() 
-methods on that sequence respectively, the user should be able to access the process of creating and saving new writings 
-into the database. During this process, the user has the ability of choosing their preferred type of writings(which are 
-either poem or essay at this stage)
+The above class diagram describes the overall architecture of Writings class functionalities and associations within the scope of related classes. By checking “start”, “type” command with checkStartCommand() then checkTypeCommand() methods on that sequence respectively, the user should be able to access the process of creating and saving new writings into the database. During this process, the user has the ability of choosing their preferred type of writings(which are either poem or essay at this stage)
 
 ![UML WritingList family sequence diagram](graphics/diagrams/writingList_whileAddingWriting.png)
 <p align = "center"><i><b>Figure 4: General interactions between member classes when generating a new writing</b></i></p>
@@ -169,112 +165,116 @@ either poem or essay at this stage)
 <br>
 The main purpose of this approach is not to make the process of configuring the modes more complicated but to prevent careless typos that usually occur while flags are used to indicate too many attributes.
 
+#### Getting reminder for writings scheduled on a specific date
+This feature allows users to be reminded of which writings they should continue on a specific date.
+
+**Implementation**
+
+When the user keys in the command `remind DATE`, where `DATE` is the date the user wants to be reminded about in form of `dd/MM/yyyy`, the program will check the validity of the command by using `CommandChecker.extractCommandType()`. Since the command is recognized, enumeration `REMIND` is returned. Then, the program flow is as follows:
+
+1. `WritingReminder.filterWritingsOnADate()` is called by `CommandExecutor.executeCommand()`.
+1. In `WritingReminder.filterWritingsOnADate()`, the `DATE` will be parsed by `LocalDate.parse()`.
+1. The Java stream is used to filter the list of writings and get which ones are scheduled for that `DATE`.
+1. Private `WritingReminder.printWritingsOnADate()` will be called to print out the result.
+
 ### Word Features
+Fluffle contains a word bank that stores words which are keyed in by the user, together with its meaning. The diagram
+below shows the implementation of the words, as well as the word list classes in the program.
+![UML Words class diagram](graphics/diagrams/Words_UML Diagram.png)
+<p align = "center"><i><b>Figure 5: Words UML Class Diagram</b></i></p>
+
+WordsList is an ArrayList which stores the objects of Words class. Each object has the following attributes:
+- Description: the word itself
+- Definition: the definition of the word  
+- Getters of the description and definition of the object.
+
+Each Words object is further classified into Noun, Verb, or Adjective class, which have a getter for its type that 
+identifies whether it is a noun, verb, or adjective.
 
 #### Adding a noun
+This feature allows users to add a Noun into the word bank of Fluffle.
 
 #### Adding a verb 
+This feature allows users to add a Verb into the word bank of Fluffle.
 
 #### Adding an adjective
+This feature allows users to add an Adjective into the word bank of Fluffle.
 
 #### Listing words
+This feature allows users to list all the words that are currently stored in Fluffle.
 
 #### Generating three random words
+This feature generates three random words for the user.
 
 #### Filtering words
 This feature allows users to getting words as they wish. The diagram below shows the overall architecture of filter words functionality.
 
 ![UML Filter word class diagram](graphics/diagrams/classDiagram_FilterWords.png)
-<p align = "center"><i><b>Figure 5: Filter word UML Class Diagram</b></i></p>
+<p align = "center"><i><b>Figure 6: Filter word UML Class Diagram</b></i></p>
 
 **Implementation**
 
-1. `FilterExecutor` class has the static void method `executeFilterCommand` that will be called first when the user enters a `filter words` command. 
-1. In the `executeFilterCommand` method, the program will:
-    1. Use the `getTypeOfFilter` method in enumeration `FilterType` to get the filter type (`WORD_TYPE`, `STARTING_STRING` or `INCLUDING_STRING`). 
-    1. Use the `FilterCommandSlicer` static methods `isNewFilter` to determine whether the user wants to continue on the last filtered list or start a new filter on an entire word list. 
-    1. check whether the user has entered a print limit using `FilterCommandSlicer`'s method `getWordPrintLimitFromFilterCommand`. 
-    1. Depending on the filter type, `getTargetedWordTypes` or `getTargetedStringTags` will be called to get an array of strings containing the word types or strings required for the filter process.
-    1. The array of strings will be passed to either one of `WordsFilter`’s static methods `filterByType` `filterByStartingString` and `filterByIncludedString` to process the filtering.
-    1. Call the method `printFilterList` to print out the result.
+When the user enters a `filter words` command, the program will check the validity of the command by using `CommandChecker.extractCommandType()`. Since the command is recognized, `FILTER_WORDS` will be returned. Then, the program flow is as follows:
+
+1. `FilterExecutor.executeFilterCommand()` will be called by `CommandExecutor.executeCommand()``. 
+1. In `FilterExecutor.executeFilterCommand()` method, the program will:
+    1. Call `FilterType.getTypeOfFilter()` to get the filter type enumeration (`WORD_TYPE`, `STARTING_STRING` or `INCLUDING_STRING`). 
+    1. Call `FilterCommandSlicer.isNewFilter()` to determine whether the user wants to continue on the last filtered list or start a new filter on an entire word list. 
+    1. Check whether the user has entered a print limit using `FilterCommandSlicer.getWordPrintLimitFromFilterCommand()`. 
+    1. Depending on the filter type, `FilterCommandSlicer.getTargetedWordTypes()` or `FilterCommandSlicer.getTargetedStringTags()` will be called to get an array of strings containing the word types or strings required for the filter process.
+    1. The array of strings will be passed to either one of the three methods `WordsFilter.filterByType()`, `WordsFilter.filterByStartingString()` or `WordsFilter.filterByIncludedString()` to process the filtering.
+    1. Call `FilterList.printFilterList()` to print out the result.
 
 The following sequence diagram shows how the components interact with each other for the scenario where the user issues the command `filter -continue by\start limit\10 -cs -cg.`
 
 ![UML Filter word sequence diagram](graphics/diagrams/Sequence_FilterWords.png)
 
-<p align = "center"><i><b>Figure 6: Interactions between components for the command filter -continue by\start limit\10 -cs -cg</b></i></p>
+<p align = "center"><i><b>Figure 7: Interactions between components for the command filter -continue by\start limit\10 -cs -cg</b></i></p>
 
-In **Figure 6** above, the flow of the program is as follow:
-1. After getting the `filter words` command, the `CommandExecutor` calls `executeFilterCommand` in `FilterExecutor` class.
-1. In the method `executeFilterCommand`, the method `getTypeOfFilter` of `FilterType` class is called to get the filter mode, which is `START`.
-1. Then, `FilterCommandSlicer`'s methods `isNewFilter`, `getWordPrintLimitFromFilterCommand`, `getTargetedStringTags` is called to check whether the program should continue on the last filter list and to get print limit as well as the strings used for filtering.
-    1. The returned result of `isNewFilter` method is `true`.
-    1. The returned result of `getWordPrintLimitFromFilterCommand` method is an integer `10`.
-    1. The returned result of `getTargetedStringTags` method is the array `["cs", "cg"]`
-1. The method `filterByStartString` in `WordsFilter` class in called to execute the main filter process.
-1. Filter list is printed by `printFilterList` method in `FilterList` class.
-1. The filter process ends.
+In **Figure 7** above, the flow of the program after it enters the filter process is as follows:
+1. The `CommandExecutor` calls `FilterExecutor.executeFilterCommand()`.
+1. In the method `executeFilterCommand`, `FilterType.getTypeOfFilter()` is called to get the filter mode, which is `START`.
+1. Then, `FilterCommandSlicer.isNewFilter()`, `FilterCommandSlicer.getWordPrintLimitFromFilterCommand()`, `FilterCommandSlicer.getTargetedStringTags()` is called to check whether the program should continue on the last filter list and to get print limit as well as the strings used for filtering.
+    1. The returned result of `FilterCommandSlicer.isNewFilter()` is `true`.
+    1. The returned result of `FilterCommandSlicer.getWordPrintLimitFromFilterCommand()` is an integer `10`.
+    1. The returned result of `FilterCommandSlicer.getTargetedStringTags()` is the array `["cs", "cg"]`
+1. Since the filter type is `START`, the method `WordsFilter.filterByStartString()` class is called to execute the main filter process.
+1. Filter list is printed by calling `FilterList.printFilterList()`.
+1. The filter process terminates.
    
 ### Bunny class family
+
 ![UML Bunny class diagram](graphics/diagrams/Class_diagram_bunny.png)
-<p align = "center"><b><i>Figure 7:  Bunny ideas UML Class Diagram</i></b><p>
+<p = "center"><i><b>Figure 8:  Bunny ideas UML Class Diagram</b></i></p>
+
 The above class diagram describes the overall architecture of the bunny list functionalities. Recall that the term bunny refers to  plot ideas that have yet to be devloped. 
 The above classes provide the functionality of storing such ideas in an organised manner that can easily be searched, saved and loaded.
 
-The `BunnyList` class has the public ArrayList of bunnies `bunniesList` that is accessed by the `DeleteBunny` class method `deleteBunny` which removes 
-a selected bunny from the `bunniesList` ArrayList. Similarly, `bunniesList` is also accessed by the `BunnyFilter` class which 
-contains the `filterBunny` function which can filter through the list and obtain bunnies with specified keywords in the 
-idea or the genre using the command `filter bunny i\IDEA g\GENRE`, where the user may choose to omit either the `IDEA` 
-or the `GENRE` when running the command. 
+The `BunnyList` class has the public ArrayList of bunnies `bunniesList` that is accessed by the `DeleteBunny` class method `deleteBunny` which removes a selected bunny from the `bunniesList` ArrayList. Similarly, `bunniesList` is also accessed by the `BunnyFilter` class which contains the `filterBunny` function which can filter through the list and obtain bunnies with specified keywords in the idea or the genre using the command `filter bunny i\IDEA g\GENRE`, where the user may choose to omit either the `IDEA` or the `GENRE` when running the command. 
 
-The `BunnySaver` class accesses the `bunniesList` and overwrites the current `bunny.txt` file in the data directory, 
-saving all `Bunny` objects into the file using the `saveAllBunny`  method. Bunny objects saved in that file can then 
-be read by the `BunnyLoader` class and added into the `bunniesList` ArrayList each time the program is started up, which is done 
-by calling the `loadBunnyFile` method.
+The `BunnySaver` class accesses the `bunniesList` and overwrites the current `bunny.txt` file in the data directory, saving all `Bunny` objects into the file using the `saveAllBunny`  method. Bunny objects saved in that file can then be read by the `BunnyLoader` class and added into the `bunniesList` ArrayList each time the program is started up, which is done by calling the `loadBunnyFile` method.
 
-The `GenBunny` class can access the `bunniesList` as well. The function `pickRandomBunny` from the `GenBunny` class first randomly 
-generates an integer between 0 and the max number of `Bunny` idea in the `bunniesList` ArrayList. It then selects that indexed `Bunny` from the 
-`bunniesList` and returns it to the user. This allows the user to easily choose an idea to start working on without struggling to decide which idea to use.
+The `GenBunny` class can access the `bunniesList` as well. The function `pickRandomBunny` from the `GenBunny` class first randomly generates an integer between 0 and the max number of `Bunny` idea in the `bunniesList` ArrayList. It then selects that indexed `Bunny` from the `bunniesList` and returns it to the user. This allows the user to easily choose an idea to start working on without struggling to decide which idea to use.
 
 ![UML BunnyList sequence diagram](graphics/diagrams/Sequence_diagram_bunny.png)
-<p align = "center"><b><i>Figure 8:  Bunny list UML Sequence Diagram</i></b></p>
+<p align = "center"><b><i>Figure 9:  Bunny list UML Sequence Diagram</i></b></p>
 
-The user may call upon the `bunny` command to add bunnies to the list. The user input is first processed by the `extractCommandType` method from 
-the `CommandChecker` class, and the command type detected is sent to the `executeCommand` method from the `CommandExecutor` class. The `addBunny` function is called by this 
-method accordingly. The `addBunny` command calls the `parseSingleCharacterTaggedParamsFromUserInput` method from the `Parsers` class to extract the `idea` and `genre` arguments 
-from the command. These are then used to create a new `Bunny` object that is then added to the `bunniesList` ArrayList. The `addBunnyMessage` method from `UI` is then called
-to print the message that the `Bunny` idea object has been sucessfully added to the ArrayList.
+The user may call upon the `bunny` command to add bunnies to the list. The user input is first processed by the `extractCommandType` method from the `CommandChecker` class, and the command type detected is sent to the `executeCommand` method from the `CommandExecutor` class. The `addBunny` function is called by this method accordingly. The `addBunny` command calls the `parseSingleCharacterTaggedParamsFromUserInput` method from the `Parsers` class to extract the `idea` and `genre` arguments from the command. These are then used to create a new `Bunny` object that is then added to the `bunniesList` ArrayList. The `addBunnyMessage` method from `UI` is then called to print the message that the `Bunny` idea object has been sucessfully added to the ArrayList.
 
 ### Names class family
 
 ![Names UML Class Diagram](graphics/diagrams/classDiagram_Names.png)
-<p align = "center"><b><i>Figure 9: Names UML Class Diagram</i></b><p>
+<p = "center"><i><b>Figure 10: Names UML Class Diagram</b></i></p>
 
-The above class diagram (Figure 9) describes the overall architecture of the name list functionalities. The Names class 
-has the protected ArrayList of names, nameList, that is accessed by the Names class method getName which randomly gets 
-a selected name from the nameList ArrayList. Similarly, nameList is also accessed by the Names class which contains the 
-filterNames function which can filter through the list and obtain names with specified keywords using the command filter 
-name <NAME>, where the user may choose to omit the NAME when running the command. Similarly, nameList is also accessed 
-by the Names class which contains the listNames function which displays all the names stored in the nameList ArrayList. 
-This is the same as the filterNames function when given no input String. Similarly, nameList is also accessed by the 
-Names class which contains the addName function which adds a name to the list of names stored in the nameList ArrayList 
-using the command add name <NAME>. The NAME cannot be omitted. Similarly, nameList is also accessed by the Names class 
-which contains the deleteName function which removes a name from the list of names stored in the nameList ArrayList. 
-The command to do this deletes name <INDEX>. The INDEX cannot be omitted and the range of the INDEX can be determined 
-from the listNames function above.
+The above class diagram (Figure 10) describes the overall architecture of the name list functionalities. The Names class has the protected ArrayList of names, nameList, that is accessed by the Names class method getName which randomly gets a selected name from the nameList ArrayList. Similarly, nameList is also accessed by the Names class which contains the filterNames function which can filter through the list and obtain names with specified keywords using the command filter name <NAME>, where the user may choose to omit the NAME when running the command. Similarly, nameList is also accessed by the Names class which contains the listNames function which displays all the names stored in the nameList ArrayList. This is the same as the filterNames function when given no input String. Similarly, nameList is also accessed by the Names class which contains the addName function which adds a name to the list of names stored in the nameList ArrayList using the command add name <NAME>. The NAME cannot be omitted. Similarly, nameList is also accessed by the Names class which contains the deleteName function which removes a name from the list of names stored in the nameList ArrayList. The command to do this deletes name <INDEX>. The INDEX cannot be omitted and the range of the INDEX can be determined from the listNames function above.
 
-The NamesDB class accesses the nameList and overwrites the current Names.txt file in the data directory, saving all 
-String objects in nameList into the file using the updateDB method. String objects saved in that file can then be read 
-by the NamesDB class and saved into the nameList ArrayList using the loadDB method. In the event of the database 
-Names.txt not existing, the NamesDB class will create the Names.txt database and populate the database with 500 names using the loadDB method.
+The NamesDB class accesses the nameList and overwrites the current Names.txt file in the data directory, saving all String objects in nameList into the file using the updateDB method. String objects saved in that file can then be read by the NamesDB class and saved into the nameList ArrayList using the loadDB method. In the event of the database Names.txt not existing, the NamesDB class will create the Names.txt database and populate the database with 500 names using the loadDB method.
 
-As shown in Figure 8, both the NamesDB class and the Names class will create the NameException class. This is a subclass 
-that inherits from the Exception superclass and passes the exception message to the superclass. In the event of an 
-exception, it is thrown from the methods in NamesDB class and Names class and handled by the NameException class.
+As shown in Figure 10, both the NamesDB class and the Names class will create the NameException class. This is a subclass that inherits from the Exception superclass and passes the exception message to the superclass. In the event of an exception, it is thrown from the methods in NamesDB class and Names class and handled by the NameException class.
 
 ### ClearLoader class
 ![ClearLoader Class sequence diagram](graphics/diagrams/ClearLoader_Sequencediagram.png)
-<p align = "center"><b><i>Figure 10: Sequence diagram of Clear Loader while operating the removing method for the app's writings and words</i></b></p>
+<p align = "center"><b><i>Figure 11: Sequence diagram of Clear Loader while operating the removing method for the app's writings and words</i></b></p>
 
 **Implementation**
 
@@ -302,8 +302,9 @@ Put methods of testing here !!! JUnit test, Unit testing, integration testing, .
 #### Target user profile
 
 The target user group are creative writers.
-* Writers who enjoy digitally typing up their works and thus can integrate using our CLI based app into their workflow
-* Writers who enjoy creating short pieces but lack the organisation to do so
+* Writers who enjoy digitally typing up their works and thus can integrate using our CLI based app into their workflow.
+* Writers who enjoy creating short pieces but lack the organisation to do so.
+* Writers who want to improve their creative writing skills and need a proper way to achieve it.
 
 ### Appendix B: Value proposition
 
@@ -376,25 +377,4 @@ What is your name?
     1. `list word`: to view your word list.
 7. If you want to shutdown Fluffle, use the command `exit`.
 
-Following are the commands to help you test Fluffle manually.
-
-### Basic commands
-
-### Words list command
-
-### Bunnies list command
-
-### Names list command
-
-### Writings list command
-#### Getting reminders for your writings schedules for a specific day: `remind`
-* Test case: `remind 01/12/2020`. 
-* Expected output:
-```
-On 01/12/2020, you should continue on the following writing(s):
-1.
-  Id: 222
-  Title: CS2113T Final
-```
-
-For a more specific explanation of the commands, visit our User Guide [here](https://ay2021s1-cs2113t-w11-4.github.io/tp/UserGuide.html).
+**For a more specific explanation and demonstration of the commands, visit our User Guide [here](https://ay2021s1-cs2113t-w11-4.github.io/tp/UserGuide.html).**
