@@ -74,6 +74,10 @@ public class Module extends Item {
         if (!matcher.find()) {
             return false;
         }
+        if (ay.startsWith("9900")) {
+            return true;
+        }
+
         assert ay.length() == 6;
         int start = Integer.parseInt(ay.substring(0, 2));
         int end = Integer.parseInt(ay.substring(2, 4));

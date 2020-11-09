@@ -126,11 +126,12 @@ public class Messages {
     public static final String EXCEPTION_INVALID_LINK_INDEX = "~Error~ Please input a valid link index.";
     public static final String EXCEPTION_INVALID_PRIORITY = "~Error~ Invalid priority number.";
 
-    public static final String EXCEPTION_INVALID_VALUE = "Please input a valid value. It must be a non-negative "
-            + "floating point number/integer less than 10^14.";
+    public static final String EXCEPTION_INVALID_VALUE = "~Error~ Please input a valid value. It must be a non-negative"
+            + " floating point number/integer less than 10^14.";
     public static final String EXCEPTION_CATEGORY_NOT_FOUND = "~Error~ Invalid category.";
     public static final String EXCEPTION_LOAD_FILE = "~Error~ The file cannot be loaded. "
             + "Maybe this is your first time using termiNus?";
+    public static final String EXCEPTION_INVALID_BOOLEAN = "Only boolean values allowed are: <1 or 0>";
 
     public static final String EXCEPTION_WRONG_DATE_FORMAT = "~Error~ Please input the date string in the format "
             + "\"yyyy-MM-dd\"";
