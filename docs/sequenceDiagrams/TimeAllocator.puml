@@ -1,0 +1,36 @@
+@startuml
+title Allocator
+hide footbox
+
+participant "allocator:TimeAllocator" as timeAllocator
+participant "dayLog:Log" as log
+participant "bestLog:Log" as Log
+participant "currSlot:TimeSlot" as TimeSlot
+
+->timeAllocator++: runAllocate()
+timeAllocator->log**
+activate log
+return
+timeAllocator->log++:setFixedTasks()
+return dayLog
+timeAllocator->TimeSlot**
+activate TimeSlot
+return
+loop hasNextTimeSlot
+timeAllocator->TimeSlot++:findNextSlot()
+return
+timeAllocator->Log**:
+activate Log
+return
+
+timeAllocator->Log++:removeAssignedTasks()
+return
+
+
+timeAllocator->log++:populateLog()
+return
+
+end
+
+<--timeAllocator--
+@enduml
