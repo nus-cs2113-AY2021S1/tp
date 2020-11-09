@@ -2,6 +2,10 @@ package command;
 
 import event.Event;
 import eventlist.EventList;
+import exception.InvalidEventIndexException;
+import exception.InvalidLocationException;
+import exception.NuScheduleException;
+import exception.UnknownErrorException;
 import location.Location;
 import locationlist.BusStopList;
 import locationlist.LocationList;
@@ -30,21 +34,15 @@ public class LocateCommand extends Command {
     @Override
     public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) {
         int eventNum;
-        try {
+        if (locations.checkIfInteger(input)) {
             eventNum = Integer.parseInt(input) - 1;
             Location location = events.get(eventNum).getLocation();
             System.out.println(events.get(eventNum).getDescription() + " is located at:");
             System.out.println(location);
-        } catch (NumberFormatException e) {
-            if (locations.checkValidLocation(input)) {
-                Location location = locations.findLocation(input);
-                System.out.println("Location Information: ");
-                System.out.println(location);
-            } else {
-                System.out.println("Please input a valid location or event number.");
-            }
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Please input an event number that is within the event list.");
+        } else if (locations.checkValidLocation(input)) {
+            Location location = locations.findLocation(input);
+            System.out.println("Location Information: ");
+            System.out.println(location);
         }
     }
 }
