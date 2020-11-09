@@ -50,4 +50,19 @@ public class LocationList {
         }
         return locationReturned;
     }
+
+    /**
+     * Method to check if string can be converted to an integer.
+     *
+     * @param input String to be converted
+     * @return flag if string can be converted
+     */
+    public boolean checkIfInteger(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }
