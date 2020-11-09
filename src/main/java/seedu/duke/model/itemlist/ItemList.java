@@ -3,6 +3,7 @@ package seedu.duke.model.itemlist;
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.model.item.Item;
+import seedu.duke.model.item.Link;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
@@ -172,13 +173,21 @@ public abstract class ItemList<T extends Item> {
      *
      * @param keyword the keyword to be searched in the items list
      */
-    public void findItem(String keyword) {
+    public void findItem(String keyword, boolean isLink) {
         ArrayList<T> matchingItems = new ArrayList<>();
         int count = 0;
         String message = "";
         for (T item : items) {
+            System.out.println("check");
             String[] description;
             description = item.getDescription().trim().toLowerCase().split(" ");
+            if (isLink) {
+                Class linkClass = Link.class;
+                System.out.println("yes");
+                description = new String[1];
+                description[0] = (((Link) item).getModule().toLowerCase());
+                System.out.println(description[0]);
+            }
             if (Arrays.asList(description).contains(keyword.trim().toLowerCase())) {
                 matchingItems.add(item);
                 count++;
