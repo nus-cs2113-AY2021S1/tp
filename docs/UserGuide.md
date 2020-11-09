@@ -33,11 +33,11 @@ By: `Team CS2113T-F11-3` Since: `August 2020`
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.4. [Removing a flashcard: `remove`](#334-removing-a-flashcard-remove)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.5. [Returning to module level: `back`](#335-returning-to-module-level-back)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.6. [Checking overall performance for a chapter: `showrate`](#336-checking-overall-performance-for-a-chapter-showrate)<br>
-3.4. [Scheduling In KAJI](#34-scheduling-in-kaji)<br>
+3.4. [Scheduling in KAJI](#34-scheduling-in-kaji)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.1. [Listing the chapters due for today: `due`](#341-listing-the-chapters-due-for-today-due)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.2. [Listing the chapters that are due in the upcoming week: `preview`](#342-listing-the-chapters-that-are-due-in-the-upcoming-week-preview)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.3. [Adding chapters to your list of Excluded Modules: `exclude`](#343-adding-chapters-to-your-list-of-excluded-modules-exclude)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.4. [Removing chapters from the list of Excluded Modules: `include`](#344-removing-chapters-from-the-list-of-excluded-modules-include)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.3. [Adding chapters to your list of excluded modules: `exclude`](#343-adding-chapters-to-your-list-of-excluded-modules-exclude)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.4. [Removing chapters from the list of excluded modules: `include`](#344-removing-chapters-from-the-list-of-excluded-modules-include)<br>
 3.5. [General](#35-general)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.5.1. [Showing a list of commands available: `help`](#351-showing-a-list-of-commands-available-help)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.5.2. [Viewing the revision history: `history`](#352-viewing-the-revision-history-history)<br>
@@ -46,7 +46,7 @@ By: `Team CS2113T-F11-3` Since: `August 2020`
 4.1. [Admin Level](#41-admin-level)<br>
 4.2. [Module Level](#42-module-level)<br>
 4.3. [Chapter Level](#43-chapter-level)<br>
-4.4. [Scheduling In Kaji](#44-scheduling-in-kaji)<br>
+4.4. [Scheduling in Kaji](#44-scheduling-in-kaji)<br>
 4.5. [General](#45-general)<br>
 
 
@@ -91,11 +91,11 @@ To use KAJI, you have to first know the Command Line Interface, the platform tha
 
 #### 1.4.1. Content Management
 KAJI's content management system is similar to a physical folder which you may use to organize your lecture handouts. <br>
-KAJI manages content in four different levels, they are the Admin Level, the Module Level, the Chapter Level and the Flash Card Level: <br>
+KAJI manages content in four different levels, they are the Admin Level, the Module Level, the Chapter Level and the Flashcard Level:
 
 <p align="center">
-  <img src="UG_Images/contentManagement.png" alt="Content Management"/>
-  <br/>Figure <2>. Content management diagram
+  <img src="UG_Images/contentManagement.png" width="600" alt="Content Management"/>
+  <br/>Figure 2. Content Management Diagram
 </p>
 
 * **Admin Level** is like your **bookshelf** to keep all the separated module folder in place.
@@ -160,8 +160,8 @@ Ensure that you are at the **Admin Level** before trying the commands in the nex
 
 Welcome to the first feature of KAJI! In order to use this program, you first will need to create a module deck. Creating a new module deck in KAJI is like getting a new folder to store all the handouts for one module. This is important because it helps you to organize your messy notes. <br>
 
-##### Format: `add MODULE_CODE`
-MODULE_CODE is the name of the new module that you would like to create, such as `CS2113`, `Module 1` or `Biology`. 
+##### Format: `add MODULE_NAME`
+MODULE_NAME is the name of the new module that you would like to create, such as `CS2113`, `Module 1` or `Biology`. 
 
 Here are some key pointers:
 * KAJI does not allow duplicate of module names, therefore, if the existing module has the same name as the new module, you will get an error message.
@@ -302,9 +302,8 @@ For instance, you are currently at the admin level and want to remove the module
 #### 3.1.5. Accessing the module level: `go`
 (by Jiayi)
 
-Now you have learnt how to create, edit and delete the module deck, let's move to the next page. You can now access the module deck you have created by using the command `go \MODULE_CODE`.
+Now you have learnt how to create, edit and delete the module deck, let's move to the next page. You can now access the module deck you have created by using the command `go MODULE_INDEX`.
 ##### Format: `go MODULE_INDEX`
-MODULE_INDEX is the index of the module that you can find in the list command, such as `1`, `2` or `3`. 
 
 ##### Key Pointers:
 * Kaji only allow access to the existing modules that are shown in the list, therefore, module that is deleted or has never been created will result in an error message.
@@ -765,12 +764,12 @@ Below are steps of using this `showrate` command: <br>
   <img src="UG_Images/showrate2.png" alt="Show rate 2"/>
 </p>
 
-### 3.4 Scheduling In KAJI
+### 3.4 Scheduling in KAJI
 (by Yan An)
 
 Now that you know how to make KAJI manage your Database of revision content for you, **what about scheduling?** For your benefit, the **scheduling** in KAJI is mostly **automated**! 
 
-**You don't have to do a thing** to enjoy the benefits of Spaced Repetition. Everything is scheduled for you, so all you have to do is to use the commands [`due`](#) and [`preview`](#) to view what chapters are due and complete the revision  for them accordingly. 
+**You don't have to do a thing** to enjoy the benefits of Spaced Repetition. Everything is scheduled for you, so all you have to do is to use the commands `due` and `preview` to view what chapters are due and complete the revision  for them accordingly. 
 
 Despite that, this **does not mean that you cannot customise** the scheduling process. KAJI allows you to `reschedule`, `include` and `exclude` Chapters manually if you wish to do so, but more on that later. First, let us get into the specific introduction of each command.
 <br><br>
@@ -842,7 +841,7 @@ At any point, if you **want to see a preview of which Chapters are going to be d
 
 <br><br>
 
-### 3.4.3. Adding chapters to your list of Excluded Modules: `exclude`
+### 3.4.3. Adding chapters to your list of excluded modules: `exclude`
 (by Yan An)
 
 Apart from viewing your schedule, what if the Semester has ended and you would like to take a Module or Chapter out of your schedule? If you were to remove the files from your database completely, it would be really tedious to add the content back Card by Card. Therefore, we created the `exclude` command.
@@ -911,7 +910,7 @@ Example of ***`exclude chapter`***
 
 
 
-### 3.4.4. Removing chapters from the list of Excluded Modules: `include`
+### 3.4.4. Removing chapters from the list of excluded modules: `include`
 (by Yan An)
 
 However, what should be done if you had excluded the Chapters of a Module from your schedule, only to find that it is a prerequisite for another module the next semester. To prepare for the upcoming semester, you would like to revise the excluded content again. This is why we created the `include` command.
