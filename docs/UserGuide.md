@@ -46,12 +46,12 @@
 
 Plan&Score is an application consisting of 2 key components:
 
-1. Event scheduler
-1. Quiz component
+* Event scheduler
+* Quiz component
 
 and a sub-component:
 
-1. Contact list
+* Contact list
 
 
 These components aim to tackle the issue of poor planning and revision most Primary 6 students in Singapore face.
@@ -68,7 +68,7 @@ This User Guide serves to provide an in-depth explanation of Plan&Score’s usag
 ## How to use this User Guide
 To navigate to the contents of your desired feature, simply click on the hyperlinks provided in the contents page above.
 
-The highlights and symbols used in this document are as follow:
+The highlights and symbols used in this document are as follows:
 
 ![information](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/information.png)
 
@@ -82,7 +82,7 @@ The highlights and symbols used in this document are as follow:
 
 1. Ensure that you have Java `11` or above installed.
 2. Download the latest version of `Plan&Score` from [here](https://github.com/AY2021S1-CS2113T-W12-4/tp/releases).
-3. Run the program by entering `java -jar plan.jar` in your terminal.
+3. Run the program by entering `java -jar CS2113T-W12-4\ Plan\&Score.jar` in your terminal.
 4. You can exit the program by running `bye`.
 
 <!-- @@author Aliciaho -->
@@ -97,7 +97,7 @@ Type in your name and press 'Enter' to proceed.
 
 ![keyname](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/name.png)
 
-Afterwards, you will be prompt to enter the number of recommended hours that 
+Afterwards, you will be prompted to enter the number of recommended hours that 
 you wish to accomplish per day. Key in your desired number of hours 
 and press 'Enter' to proceed. 
 
@@ -118,7 +118,7 @@ amazing features!
 * Command parameters cannot be swapped.
     * `add test /n [name of test] /s [start date-time of test] /e [end date-time of test]` will work but `add test /s [start date-time of test] /e [end date-time of test] /n [name of test]` will give an error
 * Extra spaces in the command will be sanitized.
-    * `   list     event      ` will be sanitized to `list event`
+    * `    list     event       ` will be sanitized to `list event`
 * Command will be converted as lowercase.
     * `LIST EVENT` will be modified to `list event`
 * Commands with extra parameters provided will give an error
