@@ -1,7 +1,7 @@
 package com.scrumptious.parser;
 
 import org.junit.jupiter.api.Test;
-import com.scrumptious.exception.DukeException;
+import com.scrumptious.exception.ScrumptiousException;
 import com.scrumptious.model.project.ProjectManager;
 
 import java.util.Hashtable;
@@ -17,7 +17,7 @@ class MemberParserTest {
     @Test
     void parseMultipleCommandsExceptions_missingName_returnsDukeException() {
         String add = "add";
-        assertThrows(DukeException.class, () ->
+        assertThrows(ScrumptiousException.class, () ->
             memberParser.parseMultipleCommandsExceptions(parameters, add, projectManager));
     }
 }

@@ -1,6 +1,6 @@
 package com.scrumptious.command.sprint;
 
-import com.scrumptious.exception.DukeException;
+import com.scrumptious.exception.ScrumptiousException;
 import com.scrumptious.logger.ScrumLogger;
 import com.scrumptious.model.member.Member;
 import com.scrumptious.model.project.ProjectManager;
@@ -40,7 +40,7 @@ public class AllocateSprintTaskCommand extends SprintCommand {
             Ui.showToUser(this.sprintOwner.toIdString());
             allocateTask();
             logExecution();
-        } catch (DukeException e) {
+        } catch (ScrumptiousException e) {
             e.printExceptionMessage();
             ScrumLogger.LOGGER.warning(e.getMessage());
         }
@@ -82,12 +82,12 @@ public class AllocateSprintTaskCommand extends SprintCommand {
     /**
      * Check if all tasks are allocated to all users.
      */
-    private void checkAllocation() throws DukeException {
+    private void checkAllocation() throws ScrumptiousException {
         for (int taskId : this.taskIds) {
             Task task = this.projOwner.getBacklog().getTask(taskId);
             for (String member : this.userIds) {
                 if (task.getMemberList().contains(member)) {
-                    throw new DukeException(member + " is already allocated with Task " + taskId);
+                    throw new ScrumptiousException(member + " is already allocated with Task " + taskId);
                 }
             }
         }

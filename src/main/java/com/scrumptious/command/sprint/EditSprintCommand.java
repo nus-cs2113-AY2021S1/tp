@@ -1,6 +1,6 @@
 package com.scrumptious.command.sprint;
 
-import com.scrumptious.exception.DukeException;
+import com.scrumptious.exception.ScrumptiousException;
 import com.scrumptious.logger.ScrumLogger;
 import com.scrumptious.model.project.ProjectManager;
 import com.scrumptious.ui.Ui;
@@ -35,7 +35,7 @@ public class EditSprintCommand extends SprintCommand {
             Ui.showToUser(this.projOwner.toIdString());
             editSprint();
             logExecution();
-        } catch (DukeException e) {
+        } catch (ScrumptiousException e) {
             e.printExceptionMessage();
             ScrumLogger.LOGGER.warning(e.getMessage());
         }

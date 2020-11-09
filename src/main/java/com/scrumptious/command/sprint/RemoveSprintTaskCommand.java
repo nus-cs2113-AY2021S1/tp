@@ -1,6 +1,6 @@
 package com.scrumptious.command.sprint;
 
-import com.scrumptious.exception.DukeException;
+import com.scrumptious.exception.ScrumptiousException;
 import com.scrumptious.logger.ScrumLogger;
 import com.scrumptious.model.project.ProjectManager;
 import com.scrumptious.model.task.Task;
@@ -33,7 +33,7 @@ public class RemoveSprintTaskCommand extends SprintCommand {
             Ui.showToUser(this.projOwner.toIdString());
             removeTasks();
             logExecution();
-        } catch (DukeException e) {
+        } catch (ScrumptiousException e) {
             e.printExceptionMessage();
             ScrumLogger.LOGGER.warning(e.getMessage());
         }
@@ -67,7 +67,7 @@ public class RemoveSprintTaskCommand extends SprintCommand {
     /**
      * Prepare the parameters.
      */
-    private void prepareParameters() throws DukeException {
+    private void prepareParameters() throws ScrumptiousException {
         if (checkTagSpecified("task")) {
             chooseSprint();
             parseParamsToInt(parameters.get("task").split(" "));

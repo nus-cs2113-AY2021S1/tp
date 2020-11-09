@@ -5,7 +5,7 @@ import com.scrumptious.command.project.CreateProjectCommand;
 import com.scrumptious.command.project.ListProjectCommand;
 import com.scrumptious.command.project.SelectProjectCommand;
 import com.scrumptious.command.project.ViewProjectCommand;
-import com.scrumptious.exception.DukeException;
+import com.scrumptious.exception.ScrumptiousException;
 import com.scrumptious.model.project.ProjectManager;
 
 import java.util.Hashtable;
@@ -24,33 +24,33 @@ public class ProjectParser implements ExceptionsParser {
     @Override
     public Command parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
                                                    ProjectManager projectListManager)
-            throws DukeException {
+            throws ScrumptiousException {
         switch (action.toLowerCase()) {
         //Creates a new project and adds it to the ProjectManager
         case CREATE:
             if (!parameters.containsKey(TITLE) || !parameters.containsKey(DESCRIPTION)
                     || !parameters.containsKey(DURATION) || !parameters.containsKey(SPRINT_DURATION)) {
-                throw new DukeException("Missing parameters.");
+                throw new ScrumptiousException("Missing parameters.");
             }
             if (parameters.get(TITLE).isBlank()) {
-                throw new DukeException("No title.");
+                throw new ScrumptiousException("No title.");
             }
             if (parameters.get(DESCRIPTION).isBlank()) {
-                throw new DukeException("No description.");
+                throw new ScrumptiousException("No description.");
             }
             if (parameters.get(DURATION).isBlank() || !ParserManager.isStringIntParsable(parameters.get(DURATION))) {
-                throw new DukeException("Please give a number for duration.");
+                throw new ScrumptiousException("Please give a number for duration.");
             }
             if (parameters.get(SPRINT_DURATION).isBlank()
                     || !ParserManager.isStringIntParsable(parameters.get(SPRINT_DURATION))) {
-                throw new DukeException("Please give a number for sprint duration.");
+                throw new ScrumptiousException("Please give a number for sprint duration.");
             } else {
                 return new CreateProjectCommand(parameters, projectListManager);
             }
             // View the current selected project, and the details of the same.
         case VIEW:
             if (!parameters.isEmpty()) {
-                throw new DukeException("Invalid action!");
+                throw new ScrumptiousException("Invalid action!");
             } else {
                 return new ViewProjectCommand(parameters, projectListManager);
             }
@@ -58,10 +58,10 @@ public class ProjectParser implements ExceptionsParser {
         case SELECT:
 
             if (parameters.get("0") == null) {
-                throw new DukeException("Please enter a project id and do not include any dashes.");
+                throw new ScrumptiousException("Please enter a project id and do not include any dashes.");
             }
             if (!ParserManager.isStringIntParsable(parameters.get("0"))) {
-                throw new DukeException("Please give a project number.");
+                throw new ScrumptiousException("Please give a project number.");
             }
             // Get index of the project to select
             try {
@@ -70,21 +70,21 @@ public class ProjectParser implements ExceptionsParser {
                 if (index <= projectListManager.size() && index > 0) {
                     return new SelectProjectCommand(parameters, projectListManager);
                 } else {
-                    throw new DukeException("Invalid index, no corresponding project exists.");
+                    throw new ScrumptiousException("Invalid index, no corresponding project exists.");
                 }
             } catch (NumberFormatException e) {
-                throw new DukeException("Invalid input.");
+                throw new ScrumptiousException("Invalid input.");
             }
             // Show a list of all projects added, with id to select it.
         case LIST:
             if (projectListManager.isEmpty()) {
-                throw new DukeException("There are no projects added.");
+                throw new ScrumptiousException("There are no projects added.");
             } else {
                 assert projectListManager.getSelectedProject() != null : "Project exists, but is null type\n.";
                 return new ListProjectCommand(parameters, projectListManager);
             }
         default:
-            throw new DukeException("Invalid action!");
+            throw new ScrumptiousException("Invalid action!");
         }
     }
 }

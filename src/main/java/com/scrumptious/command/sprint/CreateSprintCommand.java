@@ -2,7 +2,7 @@ package com.scrumptious.command.sprint;
 
 import com.scrumptious.parser.DateTimeParser;
 import com.scrumptious.Scrumptious;
-import com.scrumptious.exception.DukeException;
+import com.scrumptious.exception.ScrumptiousException;
 import com.scrumptious.logger.ScrumLogger;
 import com.scrumptious.model.project.ProjectManager;
 import com.scrumptious.model.sprint.Sprint;
@@ -43,7 +43,7 @@ public class CreateSprintCommand extends SprintCommand {
             sprintList.addSprint(this.projOwner, sprintGoal, sprintStart, sprintEnd);
             printCreatedSprint();
             logExecution();
-        } catch (DukeException e) {
+        } catch (ScrumptiousException e) {
             e.printExceptionMessage();
             ScrumLogger.LOGGER.warning(e.getMessage());
         }
@@ -55,10 +55,10 @@ public class CreateSprintCommand extends SprintCommand {
      * @First_Sprint - start parameter is used for project and sprint start date
      * @Subsequent_Sprints - New sprint will start right after previous sprint ends
      */
-    private void prepareParameters() throws DukeException {
+    private void prepareParameters() throws ScrumptiousException {
         this.sprintGoal = this.parameters.get("goal");
         if (this.sprintGoal.trim().equals("")) {
-            throw new DukeException("Goal cannot be empty.");
+            throw new ScrumptiousException("Goal cannot be empty.");
         }
         if (checkIsFirstSprint()) {
             if (this.parameters.containsKey("start")) {
@@ -66,7 +66,7 @@ public class CreateSprintCommand extends SprintCommand {
                 try {
                     String correctDate = DateTimeParser.catchDateFormat(date);
                     this.sprintStart = DateTimeParser.parseDate(correctDate);
-                } catch (DukeException e) {
+                } catch (ScrumptiousException e) {
                     Ui.showError(e.getMessage());
                 }
             }
@@ -117,12 +117,12 @@ public class CreateSprintCommand extends SprintCommand {
      * Check if there is room for new sprints.
      * Not executed for first sprint
      *
-     * @throws DukeException if all sprints are created
+     * @throws ScrumptiousException if all sprints are created
      */
-    private void checkAllSprintCreated() throws DukeException {
+    private void checkAllSprintCreated() throws ScrumptiousException {
         if (!checkIsFirstSprint()) {
             if (DateTimeParser.diff(this.projOwner.getEndDate(), this.sprintStart) >= 0) {
-                throw new DukeException("All sprints are already created.");
+                throw new ScrumptiousException("All sprints are already created.");
             }
         }
     }

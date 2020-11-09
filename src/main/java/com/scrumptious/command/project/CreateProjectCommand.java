@@ -1,6 +1,6 @@
 package com.scrumptious.command.project;
 
-import com.scrumptious.exception.DukeException;
+import com.scrumptious.exception.ScrumptiousException;
 import com.scrumptious.model.project.Project;
 import com.scrumptious.model.project.ProjectManager;
 import com.scrumptious.logger.ScrumLogger;
@@ -48,7 +48,7 @@ public class CreateProjectCommand extends ProjectCommand {
 
         try {
             checkParameter(sd, duration);
-        } catch (DukeException e) {
+        } catch (ScrumptiousException e) {
             e.printExceptionMessage();
             ScrumLogger.LOGGER.warning(e.getMessage());
             return;
@@ -94,14 +94,14 @@ public class CreateProjectCommand extends ProjectCommand {
      * Checks if sd and duration of project specified agree with the rules.
      * @param sd Duration of each sprint of project
      * @param duration Total duration of projects
-     * @throws DukeException When sd==0, or duration is not in multiples of sd
+     * @throws ScrumptiousException When sd==0, or duration is not in multiples of sd
      */
-    private void checkParameter(int sd, int duration) throws DukeException {
+    private void checkParameter(int sd, int duration) throws ScrumptiousException {
         if (sd == 0) {
-            throw new DukeException("Sprint duration cannot be zero.");
+            throw new ScrumptiousException("Sprint duration cannot be zero.");
         }
         if (sd > duration || (duration % sd) != 0) {
-            throw new DukeException("Project duration must be in multiples of Sprint intervals.");
+            throw new ScrumptiousException("Project duration must be in multiples of Sprint intervals.");
         }
     }
 

@@ -3,7 +3,7 @@ package com.scrumptious.parser;
 import com.scrumptious.command.Command;
 import com.scrumptious.command.member.AddMemberCommand;
 import com.scrumptious.command.member.DeleteMemberCommand;
-import com.scrumptious.exception.DukeException;
+import com.scrumptious.exception.ScrumptiousException;
 import com.scrumptious.model.project.ProjectManager;
 
 import java.util.Hashtable;
@@ -16,11 +16,11 @@ public class MemberParser implements ExceptionsParser {
     @Override
     public Command parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
                                                    ProjectManager projectListManager)
-            throws DukeException {
+            throws ScrumptiousException {
         if (!parameters.containsKey("0")) {
-            throw new DukeException("Missing name.");
+            throw new ScrumptiousException("Missing name.");
         } else if (projectListManager.size() == 0) {
-            throw new DukeException("You currently have no projects created.");
+            throw new ScrumptiousException("You currently have no projects created.");
         }
         switch (action.toLowerCase()) {
         case ADD:
@@ -28,7 +28,7 @@ public class MemberParser implements ExceptionsParser {
         case DELETE:
             return new DeleteMemberCommand(parameters, projectListManager);
         default:
-            throw new DukeException("Invalid action!");
+            throw new ScrumptiousException("Invalid action!");
         }
     }
 }

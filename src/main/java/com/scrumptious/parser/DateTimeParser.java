@@ -1,7 +1,7 @@
 package com.scrumptious.parser;
 
 
-import com.scrumptious.exception.DukeException;
+import com.scrumptious.exception.ScrumptiousException;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
@@ -20,21 +20,21 @@ public class DateTimeParser {
      * @param dateTime String in the DATETIME_FORMAT
      * @return LocalDateTime object based on the String
      */
-    public static LocalDateTime parseDateTime(String dateTime) throws DukeException {
+    public static LocalDateTime parseDateTime(String dateTime) throws ScrumptiousException {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DATETIME_FORMAT);
         try {
             return LocalDateTime.parse(dateTime, dateTimeFormatter);
         } catch (DateTimeException e) {
-            throw new DukeException(e.getMessage());
+            throw new ScrumptiousException(e.getMessage());
         }
     }
 
-    public static String catchDateFormat(String date) throws DukeException {
+    public static String catchDateFormat(String date) throws ScrumptiousException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
         try {
             LocalDate.parse(date, formatter);
         } catch (Exception e) {
-            throw new DukeException("Please indicate a valid date in this following format: YYYYMMDD.");
+            throw new ScrumptiousException("Please indicate a valid date in this following format: YYYYMMDD.");
         }
         try {
             String monthInString = date.substring(4, 6);
@@ -48,23 +48,23 @@ public class DateTimeParser {
                 int year = Integer.parseInt(yearInString.trim());
                 boolean isLeapYear = checkLeapYear(year);
                 if (isLeapYear && (day > 29 && day < 32)) {
-                    throw new DukeException("There are only 29 days on the February in the specified year.");
+                    throw new ScrumptiousException("There are only 29 days on the February in the specified year.");
                 }
                 if (!isLeapYear && (day > 28 && day < 32)) {
-                    throw new DukeException("There are only 28 days on the February in the specified year.");
+                    throw new ScrumptiousException("There are only 28 days on the February in the specified year.");
                 }
 
             } else if (isThirtyDays) {
                 if (day > 30) {
-                    throw new DukeException("There are only 30 days on the specified month.");
+                    throw new ScrumptiousException("There are only 30 days on the specified month.");
                 }
             } else {
                 if (day > 31) {
-                    throw new DukeException("There are only 31 days on the specified month.");
+                    throw new ScrumptiousException("There are only 31 days on the specified month.");
                 }
             }
         } catch (Exception e) {
-            throw new DukeException(e.getMessage());
+            throw new ScrumptiousException(e.getMessage());
         }
         return date;
     }
@@ -80,12 +80,12 @@ public class DateTimeParser {
         return false;
     }
 
-    public static LocalDate parseDate(String date) throws DukeException {
+    public static LocalDate parseDate(String date) throws ScrumptiousException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
         try {
             return LocalDate.parse(date, formatter);
         } catch (Exception e) {
-            throw new DukeException("Please indicate a valid date in this following format: YYYYMMDD.");
+            throw new ScrumptiousException("Please indicate a valid date in this following format: YYYYMMDD.");
         }
     }
 

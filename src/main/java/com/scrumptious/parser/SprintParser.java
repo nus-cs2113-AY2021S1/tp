@@ -8,7 +8,7 @@ import com.scrumptious.command.sprint.ViewSprintCommand;
 import com.scrumptious.command.sprint.AllocateSprintTaskCommand;
 import com.scrumptious.command.sprint.EditSprintCommand;
 import com.scrumptious.command.sprint.DeallocateSprintTaskCommand;
-import com.scrumptious.exception.DukeException;
+import com.scrumptious.exception.ScrumptiousException;
 import com.scrumptious.model.project.ProjectManager;
 
 import java.util.Hashtable;
@@ -26,7 +26,7 @@ public class SprintParser implements ExceptionsParser {
     @Override
     public Command parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
                                                    ProjectManager projectListManager)
-            throws DukeException {
+            throws ScrumptiousException {
 
 
         switch (action.toLowerCase()) {
@@ -52,7 +52,7 @@ public class SprintParser implements ExceptionsParser {
             checkAllocateDeallocateTaskParams(parameters);
             return new DeallocateSprintTaskCommand(parameters, projectListManager);
         default:
-            throw new DukeException("Invalid action!");
+            throw new ScrumptiousException("Invalid action!");
         }
     }
 
@@ -60,7 +60,7 @@ public class SprintParser implements ExceptionsParser {
     /**
      * Validate parameters for CreateSprintCommand.
      */
-    private void checkCreateSprintParams(Hashtable<String, String> parameters) throws DukeException {
+    private void checkCreateSprintParams(Hashtable<String, String> parameters) throws ScrumptiousException {
         //Mandatory fields
         checkParamExist(parameters, "goal");
         //Optional fields.
@@ -71,7 +71,7 @@ public class SprintParser implements ExceptionsParser {
     /**
      * Validate parameters for EditSprintCommand.
      */
-    private void checkEditSprintParams(Hashtable<String, String> parameters) throws DukeException {
+    private void checkEditSprintParams(Hashtable<String, String> parameters) throws ScrumptiousException {
         //Mandatory fields
         checkParamExist(parameters, "goal");
         //Optional fields
@@ -82,7 +82,7 @@ public class SprintParser implements ExceptionsParser {
     /**
      * Validate parameters for AddSprintTaskCommand and RemoveSprintTaskCommand.
      */
-    private void checkAddRemoveTaskParams(Hashtable<String, String> parameters) throws DukeException {
+    private void checkAddRemoveTaskParams(Hashtable<String, String> parameters) throws ScrumptiousException {
         //Mandatory fields
         checkTaskParam(parameters);
         //Optional fields
@@ -93,7 +93,7 @@ public class SprintParser implements ExceptionsParser {
     /**
      * Validate parameters for ViewSprintCommand.
      */
-    private void checkViewSprintParams(Hashtable<String, String> parameters) throws DukeException {
+    private void checkViewSprintParams(Hashtable<String, String> parameters) throws ScrumptiousException {
         //Optional fields
         checkParamIntegerParsable(parameters, "project", "Project ID");
         checkParamIntegerParsable(parameters, "sprint", "Sprint ID");
@@ -102,7 +102,7 @@ public class SprintParser implements ExceptionsParser {
     /**
      * Validate parameters for AllocateSprintTaskCommand and DeallocateSprintTaskCommand.
      */
-    private void checkAllocateDeallocateTaskParams(Hashtable<String, String> parameters) throws DukeException {
+    private void checkAllocateDeallocateTaskParams(Hashtable<String, String> parameters) throws ScrumptiousException {
         //Mandatory fields
         checkParamExist(parameters, "user");
         checkParamExist(parameters, "task");
@@ -117,7 +117,7 @@ public class SprintParser implements ExceptionsParser {
      * Validate if parameter is Integer parsable and throws custom exception accordingly.
      */
     private void checkParamIntegerParsable(Hashtable<String, String> parameters, String paramName, String paramDesc)
-            throws DukeException {
+            throws ScrumptiousException {
         if (parameters.containsKey(paramName)) {
             checkIntegerParsable(paramDesc, parameters.get(paramName));
         } else if (parameters.containsKey("0")) {
@@ -129,12 +129,12 @@ public class SprintParser implements ExceptionsParser {
      * Validate if String is Integer parsable and throws custom exception accordingly.
      */
     private void checkIntegerParsable(String paramDesc, String... inputs)
-            throws DukeException {
+            throws ScrumptiousException {
         for (String input : inputs) {
             try {
                 Integer.parseInt(input);
             } catch (NumberFormatException error) {
-                throw new DukeException(String.format("Please include a positive integer for %s.", paramDesc));
+                throw new ScrumptiousException(String.format("Please include a positive integer for %s.", paramDesc));
             }
         }
     }
@@ -143,19 +143,19 @@ public class SprintParser implements ExceptionsParser {
      * Check if the "task" params is specified and if parsable into an Integer.
      */
     private void checkTaskParam(Hashtable<String, String> parameters)
-            throws DukeException {
+            throws ScrumptiousException {
 
         if (parameters.containsKey("task")) {
             checkTaskParamTag(parameters, "task");
         } else if (parameters.containsKey("0")) {
             checkTaskParamTag(parameters, "0");
         } else {
-            throw new DukeException("Please indicate the task(s) to be allocated/deallocated.");
+            throw new ScrumptiousException("Please indicate the task(s) to be allocated/deallocated.");
         }
     }
 
     private void checkTaskParamTag(Hashtable<String, String> parameters, String tag)
-            throws DukeException {
+            throws ScrumptiousException {
         String[] taskIds;
         if (tag.equals("task")) {
             taskIds = parameters.get(tag).split(" ");
@@ -169,28 +169,28 @@ public class SprintParser implements ExceptionsParser {
      * Check if a parameter exist.
      * @param parameters - All parameters supplied by user
      * @param paramName - Parameter to be check if exist in @parameters
-     * @throws DukeException if do not exist
+     * @throws ScrumptiousException if do not exist
      */
     private void checkParamExist(Hashtable<String, String> parameters, String paramName)
-            throws DukeException {
+            throws ScrumptiousException {
         if (!parameters.containsKey(paramName)) {
-            throw new DukeException("Missing parameter(s): " + paramName);
+            throw new ScrumptiousException("Missing parameter(s): " + paramName);
         }
     }
 
     /**
      * Check if a start parameter exist and DateTime parsable.
      * @param parameters - All parameters supplied by user
-     * @throws DukeException if not DateTime parsable
+     * @throws ScrumptiousException if not DateTime parsable
      */
-    private void checkStartParam(Hashtable<String, String> parameters) throws DukeException {
+    private void checkStartParam(Hashtable<String, String> parameters) throws ScrumptiousException {
         if (parameters.containsKey("start")) {
             try {
                 String date = parameters.get("start");
                 String correctDate = DateTimeParser.catchDateFormat(date);
                 DateTimeParser.parseDate(correctDate);
-            } catch (DukeException e) {
-                throw new DukeException(e.getMessage());
+            } catch (ScrumptiousException e) {
+                throw new ScrumptiousException(e.getMessage());
             }
         }
     }

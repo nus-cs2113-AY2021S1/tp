@@ -2,8 +2,8 @@ package com.scrumptious.exception;
 
 import com.scrumptious.ui.Ui;
 
-public class DukeException extends Exception {
-    public DukeException(String message) {
+public class ScrumptiousException extends Exception {
+    public ScrumptiousException(String message) {
         super(message);
     }
 

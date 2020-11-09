@@ -4,7 +4,7 @@ import com.scrumptious.command.Command;
 import com.scrumptious.command.EmptyCommand;
 import com.scrumptious.command.help.MainHelpCommand;
 import com.scrumptious.command.InvalidCommand;
-import com.scrumptious.exception.DukeException;
+import com.scrumptious.exception.ScrumptiousException;
 import com.scrumptious.logger.ScrumLogger;
 import com.scrumptious.model.project.ProjectManager;
 import com.scrumptious.ui.Ui;
@@ -88,7 +88,7 @@ public class ParserManager {
                 default:
                     return new InvalidCommand(parameters);
                 }
-            } catch (DukeException e) {
+            } catch (ScrumptiousException e) {
                 e.printExceptionMessage();
                 ScrumLogger.LOGGER.warning(e.getMessage());
             }
