@@ -59,7 +59,7 @@ public class FormatGoal {
                         throw new UpperBoundLessThanException();
                     }
                 } catch (NumberFormatException e) {
-                    throw new UpperBoundMoreThanException();
+                    throw new UpperBoundLessThanException();
                 }
                 String wordCalorie = (Integer.parseInt(targetCalories) == 1) ? (SPACE_STRING + KEYWORD_CALORIE)
                         : (SPACE_STRING + KEYWORD_CALORIES);
