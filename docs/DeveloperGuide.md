@@ -500,7 +500,6 @@ method.
 1. A time of `2` hours in academic week `4` will now be the new actual workload of the `CS2113T` module. 
  
 1. The system will print the string 
- 
  `2 hours have been added to CS2113T`
  `2 hours have been spent on this module in week 4`
  
