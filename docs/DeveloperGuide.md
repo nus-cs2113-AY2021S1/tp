@@ -636,6 +636,8 @@ Ensure that BedRoom1 is created: `create Bedroom1` and ac Appliance is added: `a
 5. Test case: `list appliance l/Bedroom1`, assume that `Bedroom1` is created but no Appliance is added to `Bedroom1`.   
    Expected-printout: There is no Appliance in "Bedroom1". 
 
+
+### Saving data to disk
 #### Dealing with missing data files:
 
 When the program is started for the first time, the directory "data" and the text file "data/SmartHomeBot.txt" should be 
