@@ -23,19 +23,31 @@
 &nbsp;&nbsp;&nbsp;&nbsp;[Non-Functional Requirements](#appendix-d-non-functional-requirements) <br>
 [Instruction for manual testing](#instructions-for-manual-testing) <br>
 
+[Jump to top](#developer-guide)
+
 ## Introduction
+
+[Jump to top](#developer-guide)
 
 ### Background
 Fluffle is a **desktop app for creative writers**, optimized for use via a **Command Line Interface (CLI)**. It aids users in creating and managing their writings and ideas. As a fast-typing writer, this CLI app is highly suitable for you.
 
+[Jump to top](#developer-guide)
+
 ### Purpose
 This document specified architecture and software design decisions for the creative writing assistant, Fluffle. 
+
+[Jump to top](#developer-guide)
 
 ### Scope
 This describes the software architecture and software design decisions for the implementation of Fluffle. The intended audience of this document is the developers, designers, and software testers of Fluffle.
 
+[Jump to top](#developer-guide)
+
 ### Design Goals
 Our goal is to create an app which improves users’ ability of writing and creativity. Developers should work closely with CS2113T’s module instructors, who represent technical advisors and CS2101’s module instructors, who represent non-technical advisors. By adhering to these tutors’ specific requirements, which imitate industrial professional standards, beginner software engineers will be able to levitate their expertises and mindset in the process of developing and presenting a new product.
+
+[Jump to top](#developer-guide)
 
 ### Maintainability
 With the aim of increasing maintainability of Fluffle, separated packages and classes were implemented in strict compliance with Object-oriented Programming. Since it is important to be able to easily change functionality of one class without disturbing other dependent classes, each class only serves one purpose to reduce dependency on other classes. With low coupling and high cohesion, subsequent developers can make minimal effort in maintaining Fluffle.
@@ -96,6 +108,8 @@ What is your name?
 ## Design
 
 The following sections describe the high-level overview of our application, Fluffle.
+
+[Jump to top](#developer-guide)
 
 ### Technological overview
 The Integrated Development Environment, IntelliJ, is used to develop our program. The program is written in Java, and uses Gradle for building and testing purposes. Our source code is mostly original, with some functions imported from the java.util package. The remaining packages and classes which form the structure of our program are independently developed.
@@ -215,7 +229,11 @@ The operations that can be done on the words list are:
 
 ### Name Manager Component
 
+[Jump to top](#developer-guide)
+
 ## Implementation
+
+[Jump to top](#developer-guide)
 
 ### User interaction overview
 ![UML sequence diagram for user interaction](graphics/diagrams/Sequence_diagram_general_command.png)
@@ -394,7 +412,7 @@ The `reset bunny` command simply calls `clearAllBunny` function to clear the `bu
 ![Names UML Class Diagram](graphics/diagrams/classDiagram_Names.png)
 <p align = "center"><i><b>Figure 10: Names UML Class Diagram</b></i></p>
 
-#### Overview of main function
+#### Overview of main functions
 
 The above class diagram (Figure 10) describes the overall architecture of the name list functionalities. The `Names` class has the protected ArrayList of names, `nameList`, that is accessed by the `Names` class method `getName` which randomly gets a selected name from the `nameList` ArrayList. Similarly, `nameList` is also accessed by the `Names` class which contains the `filterNames` function which can filter through the list and obtain names with specified keywords using the command `filter name <NAME>`, where the user may choose to omit the `NAME` when running the command. Similarly, `nameList` is also accessed by the `Names` class which contains the `listNames` function which displays all the names stored in the `nameList` ArrayList. This is the same as the `filterNames` function when given no input String. Similarly, `nameList` is also accessed by the `Names` class which contains the `addName` function which adds a name to the list of names stored in the `nameList` ArrayList using the command `add name <NAME>`. The `NAME` cannot be omitted. Similarly, `nameList` is also accessed by the `Names` class which contains the `deleteName` function which removes a name from the list of names stored in the `nameList` ArrayList. The command to do this is `delete name <INDEX>`. The `INDEX` cannot be omitted, and the range of the `INDEX` can be determined from the `listNames` function above.
 
@@ -405,6 +423,32 @@ The `NamesDB` class accesses the `nameList` and overwrites the current `Names.tx
 #### Names Exception Handling
 
 As shown in Figure 10, both the NamesDB class and the Names class will create the `NameException` class. This is a subclass that inherits from the `Exception` superclass and passes the exception message to the superclass. In the event of an exception, it is thrown from the methods in `NamesDB` class and `Names` class and handled by the `NameException` class.
+
+[Jump to top](#developer-guide)
+
+### Names method implementation
+
+#### `getName` method
+
+Loads the database first so we are working with the latest version of the database. Generates a random number within a range and using that number, we can use it as an index and get a random name from `nameList`. Exceptions are also handled properly.
+
+#### `filterNames` method
+
+Loads the database first so we are working with the latest version of the database. Uses filtering to get the list of names matching the String provided. Returns a collection from the `filteredNames` and checks if any names were matched during the filter. If none, then outputs none and if any are found, all are printed. Exceptions are handled properly using the `NameException` class.
+
+#### `listNames` method
+
+Loads the database first so we are working with the latest version of the database. Prints the list of names found in the updated `nameList`. Checks if there are no names stored in `nameList` and prints an appropriate message.
+
+#### `addName` method
+
+Loads the database first so we are working with the latest version of the database. Strips the given name of all extra white spaces and adds it the ArrayList of names named `nameList`. `nameList` is then passed to `NamesDB`'s method called `updateDB`. `updateDB` will then update the text file stored locally named `Names.txt`. Outputs the success of adding a name if successful and throws Exception to `NameException` if invalid.
+
+#### `deleteName` method
+
+Loads the database first so we are working with the latest version of the database. Using the index received, parse the index accordingly. Will handle exceptions in the case the index is not valid. The index will be used to remove the name entry at that index minus one in the `nameList` ArrayList. The updated `nameList` is then passed to the `NamesDB`'s method called `updateDB`. `updateDB` will then update the text file stored locally named `Names.txt`. Outputs the success of deleting a name if successful and throws Exception to `NameException` if invalid.
+
+[Jump to top](#developer-guide)
 
 ### ClearLoader class
 ![ClearLoader Class sequence diagram](graphics/diagrams/ClearLoader_Sequencediagram.png)
@@ -428,6 +472,8 @@ As shown in Figure 10, both the NamesDB class and the Names class will create th
 
 ## Aesthetic components
 
+[Jump to top](#developer-guide)
+
 ### Changing line divider in Fluffle: `divider`
 The line divider is saved as a static string in the `UI` class. When the `divider` command is detected, the `changeLineDivider` method from the UI class is called to parse the selected line divider option and the `getDivider` method retrives the new divider String from the `Logos` class and saves it as the new `currentLineDivider` String in the `UI`.
 
@@ -443,12 +489,16 @@ If you are using IntelliJ IDEA with Gradle, there are two ways to run tests for 
 - To run all test, in IntelliJ, right click on `test/java/seedu.duke` and choose `Run Tests in 'seedu.duke'`
 - To run test on a separate package/class/method, right click on that package/class/method in `test` directory and choose `Run 'NAME'`.
 
+[Jump to top](#developer-guide)
+
 ### Using Gradle
 - To run all test, open the terminal in IntelliJ IDEA, move to the root folder of the project and key in `gradlew clean test` for Windows (`./gradlew clean test` for Mac OS/Linux).
 
 [Jump to top](#developer-guide)
 
 ## Appendices
+
+[Jump to top](#developer-guide)
 
 ### Appendix A: Product scope
 #### Target user profile
@@ -509,6 +559,8 @@ The application aims to provide the writer with the following services:
 ### Appendix E: Instructions for manual testing
 Given below are the instructions to test Fluffle manually.
 
+[Jump to top](#developer-guide)
+
 #### Launch and Shutdown
 Following are the instructions to launch and shutdown Fluffle
 
@@ -540,4 +592,3 @@ What is your name?
 **For a more specific explanation and demonstration of the commands, visit our User Guide [here](https://ay2021s1-cs2113t-w11-4.github.io/tp/UserGuide.html).**
 
 [Jump to top](#developer-guide)
-
