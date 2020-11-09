@@ -47,6 +47,7 @@ Wan Shi Jie Brendan<br>
     * [4.14 Study time](#study_time) <br>
     * [4.15 Done](#done) <br>
     * [4.16 User Info](#user_info) <br>
+    * [4.17 Print Locations](#417-print-locations) <br>
 * [5. Documentation](#documentation) <br>
 * [6. Testing](#6-testing)<br>
 * [Appendix A. Product scope](#appendix-a-product-scopea-idproduct_scopea)<br>
@@ -371,9 +372,8 @@ Step 2: This calls the UserInfoCommand, which stores his name, Harry, and type, 
 1. The user enters `delete NUMBER` where `NUMBER` refers to the index of the command to be deleted. The user input is parsed by the Parser class which creates a new `DeleteCommand` object.
 
 2. `Eventlist#remove()` is called which will delete the event with the specified index.
-### 4.11 Find 
 
-### 4.12 Print locations
+### 4.17 Print locations
 This feature allows users to know locations in a certain faculty, including blocks and lecture theatres when users input
 abbreviations of various faculties (e.g. FOS).
 
@@ -444,6 +444,7 @@ NUSchedule aims to assist the target audience with:
 |2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
 |2.0|professor|Know whether my students have another lesson after mine and the expected time of travelling|Pace my lesson appropriately
 |2.0|student using zoom for lessons|record the virtual locations|store the links and passwords of the meetings
+|2.1|student having periodic classes|repeat the events|do not add them again and again
 
 ## Appendix C: Non-Functional Requirements
   
