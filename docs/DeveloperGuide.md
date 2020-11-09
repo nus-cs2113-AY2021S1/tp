@@ -1,4 +1,4 @@
-# CCA Manager Developer Guide
+# Developer Guide
 
 ![](CCAManager_logo.png)
 
@@ -51,7 +51,7 @@ Input parsing describes the process of converting the user's input into an execu
 
 The `Parser` is responsible for the input conversion to a `UserInput` object. Subsequently, we use `validate()` in a loop to identify the command to execute, then we execute the command action with `execute()`.
 
-**Current Implementation**  
+**3.1.1 Current Implementation**  
 The `Parser` class in `seedu.duke.backend` handles most of the input parsing. The `Parser` is a standalone class. Its purpose is to handle the conversion of read Strings from the `Ui` to UserInput objects
 safely for the rest of the program to handle. It implements the following operations:
 
@@ -71,7 +71,7 @@ Given below is an explanation on the logical flow of the `parse()` function.
 6. A new `UserInput` object is created with the arguments in the HashMap, the category of the command and the command.
 7. The function returns the `UserInput` to the `Ui` for further execution.
 
-**Design Considerations**  
+**3.1.2 Design Considerations**  
 Aspect: Statefulness of Parser object
 * Alternative 1 (Current Choice): Parser does not preserve state between parses.
     * Pros: Easy to implement. Easy to test. Promotes use of single commands over multi-step commands.
@@ -94,9 +94,9 @@ Aspect: Design of parser
 [Return to top](#CCA-manager-developer-guide)
 
 ### 3.2. Commands
-**Current Implementation**  
-The abstract `Command` class in `seedu.duke` defines how the rest of the commands interact with the UI and UserInput objects.
-Its purpose is to ensure that all commands conform to the same design and coding standards to be compatible with the UI layer while also being
+**3.2.1 Current Implementation**  
+The abstract `Command` class in `seedu.duke` defines how the rest of the commands interact with the `UI` and `UserInput` objects.
+Its purpose is to ensure that all commands conform to the same design and coding standards to be compatible with the `UI` layer while also being
 sufficiently flexible to allow for complex commands to be created. It specifies the following *abstract* methods:
 
 * `Command#help()` - Allows commands to specify a default help `String` to be displayed if the argument supplied is incorrect.
@@ -115,7 +115,7 @@ Given below is the logical flow of the `Command` input to execution flow:
 5. The `Ui` calls the `execute()` method of the command that `ACCEPT` the `UserInput`.
 6. The `Ui` prints the output String returned from the `execute()` method.
 
-**Design Considerations**    
+**3.2.2 Design Considerations**    
 Aspect: The need to instantiate a `Command`
 * Alternative 1 (Current Choice): Classes that inherit `Command` are instantiated on `UI` initialization.
     * Pros: Easy to implement. Less overhead from executing commands. Locality of the code allows for minimal merge conflicts when developing collaboratively.
@@ -136,7 +136,7 @@ Aspect: Design of `Command` criteria checking
     * Pros: Further separates the job of command resolution from the `Ui` and `Command`. Simplifies `Command` class.
     * Cons: Would be a class which features a very un-elegant large `if-else` block or `switch` block. Requires every new command to update this class with a substantial amount of new lines. Harder to develop collaboratively, increases chances of merge conflicts.
 
-**Creating a Command**  
+**3.2.3 Creating a Command**  
 This subsection demonstrates how simple it is to create a new command in the application.
 
 1. Create a new command class. The class should extend the `Command` class in `seedu.duke.`  
@@ -203,14 +203,14 @@ The sequence diagram for deleting a finance log entry is shown below:
 
 **3.3.1.2. Design Considerations**  
 Aspect: User input format for adding a finance log entry  
-* Alternative 1(Current Choice): The user inputs command in format of "finance addLog ITEM_NAME ITEM_VALUE".  
+* Alternative 1(Current Choice): The user inputs command in format `finance addLog ITEM_NAME ITEM_VALUE`.  
     * Pros: It is more convenient for the user to type commands and easier to memorize the command format.  
-    * Cons: It takes longer time to execute the command for the program has to identify which part is ITEM_NAME and which part is
-    ITEM_VALUE. If the user inputs a separate number for ITEM_NAME but forgets to type ITEM_VALUE, then the program will mistake 
-    the separate number in ITEM_NAME for its ITEM_VALUE. For example, if the user just input `finance summary iphone 12` but forgot to
+    * Cons: It takes longer time to execute the command for the program has to identify which part is `ITEM_NAME` and which part is
+    `ITEM_VALUE`. If the user inputs a separate number for `ITEM_NAME` but forgets to type `ITEM_VALUE`, then the program will mistake 
+    the separate number in `ITEM_NAME` for its `ITEM_VALUE`. For example, if the user just input `finance summary iphone 12` but forgot to
     type the price, then the finance log entry will become `iphone $12`.    
     
-* Alternative 2: The user inputs command in format of "finance addLog /n ITEM_VALUE /v ITEM_VALUE".  
+* Alternative 2: The user inputs command in format `finance addLog /n ITEM_VALUE /v ITEM_VALUE`.  
     * Pros: The program can easily detect if the input command is valid.  
     * Cons: It is harder for the user to memorize the command format. It also costs more time when executing.  
     
@@ -279,7 +279,7 @@ Aspect: User input format
 * Alternative 1(Current Choice): It changes both `finLog` and `finLogVal` together at the same time.  
     * Pros: The user does not need to remember two different command formats and the current format can increase the 
     efficiency of the program.  
-    * Cons: Every time the user has to type in both ITEM_NAME and ITEM_VALUE, it may waste some time for the user.  
+    * Cons: Every time the user has to type in both `ITEM_NAME` and `ITEM_VALUE`, it may waste some time for the user.  
     
 * Alternative 2: Split the command into changeName and changeNum.  
     * Pros: The user can choose whether just change only `finLog` or `finLogVal` and it is easier to debug.  
@@ -297,15 +297,15 @@ The sequence diagram of changing information of a finance log entry is shown bel
 ### 3.4. Event
 
 (By: Varsha)<br/>
-The diagram below shows the overall architecture for Event feature. 
+The diagram below shows the overall architecture for `Event` feature. 
 
 ![](EventDiagram/eventArchi.png)
 
 
-There are a total of 9 commands under Event feature.
+There are a total of 9 commands under `Event` feature.
  `CommandEventAdd`, `CommandEventDel`, `CommandEventList`  ,`CommandEventStatus`, `CommandSearchEvent` , `CommandEventCountdown` , `CommandAddEventAttendance`,`CommandDelEventAttendance`, `CommandViewEventAttendence`. 
 
- The implementation for each Event command is described in detail below.
+ The implementation for each `Event` command is described in detail below.
                                                              
 **3.4.1. Add/delete events feature** `CommandEventAdd` , `CommandEventDel` 
 
@@ -315,8 +315,8 @@ There are a total of 9 commands under Event feature.
 The `CommandEventAdd` class in `seedu.duke.event` handles the adding of events. According to the `userInput`, it adds a new event to the `EventList`. 
 The `CommandEventDel` class in the same package handles deleting of a event. It deletes an `Event` instance according to the index provided by `userInput` from the `EventList`.  
 They implement the following operations:  
-* `CommandEventAdd#execute()` - Adds a new event into the `EventList` according to `userInput`.  
-* `CommandEventDel#execute()` - Deletes an event from `EventList` or deletes all the events in the list. 
+* `CommandEventAdd#execute()` - Adds a new `Event` into the `EventList` according to `userInput`.  
+* `CommandEventDel#execute()` - Deletes an `Event` from `EventList` or deletes all the events in the list. 
  
 Note: To delete a particular event, enter the index of the event. For example, `event delEvent 2` <br/>
 Note: To delete all the events in the list, enter `all` instead of the index of the event. For example, `event delEvent all` <br/>
@@ -417,17 +417,17 @@ It implements the following operation:
 
  ![](EventDiagram/SequenceDiagram/CommandSearchEvent.png)
  
- **3.5.4.2. Design Considerations**  
- Aspect: Search conditions  <br/>
- *Alternative 1(Current choice): It will search for `events` by the name or date entered.  
-     *Pros: Its faster. If the name or date of the first `event` in the does not match it skips to the next `event` instead of checking other conditions.
-     *Cons: If the user input contains some common strings like "and" or "the", there will be too many results shown to the user.
-           
- *Alternative 2: It will search for `events` whose information matches all the conditions provided by user input.  
-     *Pros: There will not be too many results when the user input includes common strings like "The" or "and".
-     *Cons: Since it's a linear search, therefore, the bigger the data size, the longer the search, especially with more conditions to check.
- 
- [Return to top](#CCA-manager-developer-guide)
+**3.5.4.2. Design Considerations**  
+Aspect: Search conditions  <br/>
+* Alternative 1(Current choice): It will search for `Event` by the name or date entered.  
+    * Pros: Its faster. If the name or date of the first `Event` in the does not match it skips to the next `Event` instead of checking other conditions.
+    * Cons: If the user input contains some common strings like "and" or "the", there will be too many results shown to the user.
+          
+* Alternative 2: It will search for `Event` whose information matches all the conditions provided by user input.  
+    * Pros: There will not be too many results when the user input includes common strings like "The" or "and".
+    * Cons: Since it's a linear search, therefore, the bigger the data size, the longer the search, especially with more conditions to check.
+
+[Return to top](#CCA-manager-developer-guide)
  
 **3.4.4. Displaying countdown to upcoming events** `CommandEventCountdown`
 
@@ -446,7 +446,7 @@ The sequence diagram for displaying countdown is as shown below:
 
 **3.5.4.2. Design Considerations**  
  Aspect: Format of countdown feature <br/> 
- * Alternative 1(Current choice): `event countdown` Events are sorted such that the most upcoming events is displayed ahead of others. <br/?
+ * Alternative 1(Current choice): `event countdown` events are sorted such that the most upcoming events is displayed ahead of others. <br/>
     * Pros: Users can view the most urgent event easily. It lists out all the events with the countdown feature. <br/>
     * Cons: The more events added, the longer it will take to list the events. <br/>
  * Alternative 2: `event countdown EVENT_INDEX` Will only display the countdown for the event in the index given. <br/>
@@ -514,23 +514,23 @@ The sequence diagram for deleting a participant from a particular event is as sh
 
 ![CommandDelEventAttendance](EventDiagram/SequenceDiagram/CommandDelEventAttendance.png)
 
-**3.4.6.2. Design Considerations** <br/>
+**3.4.6.2. Design Considerations** <br/>  
 
 Aspect: Delete participant attendance from an event  <br/>
-*Alternative 1 (Current Choice): `event delAttendance` command will only delete member from each event by the member name. <br/>
-    *Pros : The user can delete quickly if he is familiar with the name of the targeted participant. <br/>
-    *Cons : The user needs to type in the full name of the participant in order to delete the person, might be less convenient if the user is not familiar with the names.
+* Alternative 1 (Current Choice): `event delAttendance` command will only delete member from each event by the member name. <br/>
+    * Pros : The user can delete quickly if he is familiar with the name of the targeted participant. <br/>
+    * Cons : The user needs to type in the full name of the participant in order to delete the person, might be less convenient if the user is not familiar with the names.
     
-*Alternative 2 : `event delAttendance` command will only delete member from each event by the member's index in the participant list. <br/>
-    *Pros : It is easier to implement.  
-    *Cons : The user needs to view the participant list of the event first to view the index, hence requires more typing and less convenient. <br/>
+* Alternative 2 : `event delAttendance` command will only delete member from each event by the member's index in the participant list. <br/>
+    * Pros : It is easier to implement.  
+    * Cons : The user needs to view the participant list of the event first to view the index, hence requires more typing and less convenient. <br/>
 
 [Return to top](#CCA-manager-developer-guide)
 
 **3.4.7. Listing event participants** `CommandViewEventAttendance`
 
 (By: Ye Yutong)<br/>
-**3.4.7.1 Current implementation**
+**3.4.7.1 Current implementation**  
 The `CommandViewEventAttendance` class in `seedu.duke.event` handles listing all the participants of the given event in the event participants list.
 
 It implements the following operation:  
@@ -702,16 +702,16 @@ The sequence diagram for changing contacts and role information of a member is a
 
 **3.5.3.2. Design Considerations** 
 Aspect: Changing member information <br/>
-*Alternative 1(Current Choice): Member information is to be modified based on the member's full name.  
-    *Pros: Easy to implement. Also, if the user knows the name of the target member, which is a likely case in actual 
+* Alternative 1(Current Choice): `Member` information is to be modified based on the member's full name.  
+    * Pros: Easy to implement. Also, if the user knows the name of the target `Member`, which is a likely case in actual 
     practice, he can change the member's information quickly.
-    *Cons: Member name cannot be easily modified. If the user wants to change the name of the member, the user has to delete 
-    the target member, and add the member back using the new name.
+    * Cons: Member name cannot be easily modified. If the user wants to change the name of the `Member`, the user has to delete 
+    the target `Member`, and add the `Member` back using the new name.
     
-*Alternative 2: Member Information is to be modified based on the member's index in the list.  
-    *Pros: Member name can be easily modified. 
-    *Cons: This feature is very dependent on the list member feature. The user will always need to call the `hr listMember` 
-    command to find out the index of the target member, before he can change the member's information.  
+* Alternative 2: `Member` Information is to be modified based on the member's index in the list.  
+    * Pros: `Member` name can be easily modified. 
+    * Cons: This feature is very dependent on the list `Member` feature. The user will always need to call the `hr listMember` 
+    command to find out the index of the target `Member`, before he can change the member's information.  
 
 [Return to top](#CCA-manager-developer-guide)
 
@@ -750,15 +750,15 @@ The sequence diagram for searching is given below:
 
 **3.5.4.2. Design Considerations**  
 Aspect: Search condition  
-*Alternative 1(Current choice): It will search for `Members` whose inforamtion matches any conditions provided by user input.  
-    *Pros: It can maximize the number of results that are provided to user just like what google search is doing now. It can 
+* Alternative 1(Current choice): It will search for `Members` whose inforamtion matches any conditions provided by user input.  
+    * Pros: It can maximize the number of results that are provided to user just like what google search is doing now. It can 
     also decrease the running time in some degree because it can jump to the next `Member` if the previous `Member`'s name or phone 
     number or email matches the search condition.  
     *Cons: If the user input contains some common strings like ".com" or "a", there will be too many results shown to the user.  
     
-*Alternative 2: It will search for `Members` whose information matches all the conditions provided by user input.  
-    *Pros: There will not be too many results when the user input includes common strings with other conditions.  
-    *Cons: It will increase the running time a lot because it has to check all the information of `Member`s, especially 
+* Alternative 2: It will search for `Members` whose information matches all the conditions provided by user input.  
+    * Pros: There will not be too many results when the user input includes common strings with other conditions.  
+    * Cons: It will increase the running time a lot because it has to check all the information of `Member`s, especially 
     when there are many members.  
 
 [Return to top](#CCA-manager-developer-guide)  
@@ -793,14 +793,14 @@ The sequence diagram for listing professors and administrators is shown below:
 
 **3.5.5.2. Design Considerations**  
 Aspect: Just use `hr search` or use `hr list prof&admin`  
-*Alternative 1(Current choice): Use `hr list prof&admin`
-    *Pros: The user can just type one command, instead of typing `hr search prof` and `hr search admin`.  
-    *Cons: It increases the time of searching all the `Command`s in command list and this command looks similar 
+* Alternative 1(Current choice): Use `hr list prof&admin`
+    * Pros: The user can just type one command, instead of typing `hr search prof` and `hr search admin`.  
+    * Cons: It increases the time of searching all the `Command`s in command list and this command looks similar 
     to `hr list` that may confuse the user.  
     
-*Alternative 2: Use `hr search`  
-    *Pros: The time of searching all `Command`s in command list will not be influenced.
-    *Cons: The user has to type `hr search` twice to list professors and administrators and the lists are separated.  
+* Alternative 2: Use `hr search`  
+    * Pros: The time of searching all `Command`s in command list will not be influenced.
+    * Cons: The user has to type `hr search` twice to list professors and administrators and the lists are separated.  
 
 [Return to top](#CCA-manager-developer-guide)  
 
@@ -834,14 +834,14 @@ The sequence diagram for listing connection is shown below:
 
 **3.5.5.2. Design Considerations**  
 Aspect: Just use `hr search` or use `hr list connections`  
-*Alternative 1(Current choice): Use `hr list connections`
-    *Pros: The user can just type one command, instead of typing `hr search speaker` and `hr search alumni`.  
-    *Cons: It increases the time of searching all the `Command`s in command list and this command looks similar 
+* Alternative 1(Current choice): Use `hr list connections`
+    * Pros: The user can just type one command, instead of typing `hr search speaker` and `hr search alumni`.  
+    * Cons: It increases the time of searching all the `Command`s in command list and this command looks similar 
     to `hr list` that may confuse the user.  
     
-*Alternative 2: Use `hr search`  
-    *Pros: The time of searching all `Command`s in command list will not be influenced.
-    *Cons: The user has to type `hr search` twice to list speakers and alumni and the lists are separated.  
+* Alternative 2: Use `hr search`  
+    * Pros: The time of searching all `Command`s in command list will not be influenced.
+    * Cons: The user has to type `hr search` twice to list speakers and alumni and the lists are separated.  
 
 [Return to top](#CCA-manager-developer-guide)  
 
@@ -961,7 +961,7 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 **Cash flow** - Real or virtual movement of money.  
 **IO** - Input/Output. Also known as the process of communicating within various parts of the operating system. The most common IO task is file related operations such as opening a file.
 **Proprietary format** - A non-standard File format designed by a particular company, organization or individual. Could be designed with the details of the implementation kept secret.
-
+**HR** - Human Resource
 
 [Return to top](#CCA-manager-developer-guide)
 ## 8. Instructions for manual testing

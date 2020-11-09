@@ -61,7 +61,7 @@ public class CommandFinanceAdd extends Command {
 
     @Override
     public String help() {
-        return "Syntax: finance addLog ITEM ITEM_VALUE";
+        return "Syntax: finance addLog ITEM_NAME ITEM_VALUE";
     }
 
     public int validate(UserInput ui) {
