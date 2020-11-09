@@ -174,19 +174,19 @@ Here's a list of all items:
 │  ├─ 1. Pass Transistor Multiplexers
 │  ├─ 2. Arithmetic Logic Unit
 │  │  Tasks
-│  └─ 1. [T][✘] revise on Arithmetic Logic Unit
+│  └─ 1. [T][N] revise on Arithmetic Logic Unit
 ├─ 2. CS2101
 │  │  Topics
 │  ├─ 1. Oral Presentation
 │  ├─ 2. Product Demo
 │  │  Tasks
-│  └─ 1. [E][✓] Product Demo (at: 2:00 PM 5 Nov 2020)
+│  └─ 1. [E][Y] Product Demo (at: 2:00 PM 5 Nov 2020)
 └─ 3. CS2113T
    │  Topics
    ├─ 1. Class Diagram
    ├─ 2. Abstraction
    │  Tasks
-   └─ 1. [D][✘] Final Project (by: 11:59 PM 11 Nov 2020)
+   └─ 1. [D][N] Final Project (by: 11:59 PM 11 Nov 2020)
 ____________________________________________________________
 ```
 
@@ -469,7 +469,7 @@ Here are the topic(s) under CS2101:
 2. Product Demo
 ____________________________________________________________
 Here are the tasks(s) under CS2101: 
-1. [E][✘] Product Demo (at: 2:00 PM 5 Nov 2020)
+1. [E][N] Product Demo (at: 2:00 PM 5 Nov 2020)
 ____________________________________________________________
 ```
 #### 3.2.3 Listing all items: `list all`
@@ -496,21 +496,23 @@ Here's a list of all items:
 │  ├─ 1. Pass Transistor Multiplexers
 │  ├─ 2. Arithmetic Logic Unit
 │  │  Tasks
-│  └─ 1. [T][✘] revise on Arithmetic Logic Unit
+│  └─ 1. [T][N] revise on Arithmetic Logic Unit
 ├─ 2. CS2101 (You are currently here)
 │  │  Topics
 │  ├─ 1. Oral Presentation
 │  ├─ 2. Product Demo
 │  │  Tasks
-│  └─ 1. [E][✓] Product Demo (at: 2:00 PM 5 Nov 2020)
+│  └─ 1. [E][Y] Product Demo (at: 2:00 PM 5 Nov 2020)
 └─ 3. CS2113T
    │  Topics
    ├─ 1. Class Diagram
    ├─ 2. Abstraction
    │  Tasks
-   └─ 1. [D][✘] Final Project (by: 11:59 PM 11 Nov 2020)
+   └─ 1. [D][N] Final Project (by: 11:59 PM 11 Nov 2020)
 ____________________________________________________________
 ```
+
+### Topic commands
 #### 3.2.4 Adding a topic: `add` <a name="add-topic"></a>
 
 Adds a topic to the current subject.
@@ -596,7 +598,7 @@ Product Demo
 
 ____________________________________________________________
  Here are the matching task(s) in your list:
-[E][✓] Product Demo (at: 2:00 PM 5 Nov 2020)
+[E][Y] Product Demo (at: 2:00 PM 5 Nov 2020)
 ____________________________________________________________
 ```
 
@@ -627,6 +629,7 @@ Type help for all available commands
 ____________________________________________________________
 ```
 
+### Task commands
 #### 3.2.8 Adding a 'todo' task: `todo` <a name="todo"></a>
 
 Adds a todo task.
@@ -636,6 +639,13 @@ Format: `todo [DESCRIPTION]`
 - Adds a todo task with a description of `[DESCRIPTION]`.
 - The application will print the description of the todo task you have added into the task list, 
 as well as the amount of tasks in the task list on the command line.
+- The format for task when the application is printing out information is:
+`[T/D/E][Y/N] TASK DESCRIPTION`
+    * T - Todo
+    * D - Deadline
+    * E - Event
+    * Y - Done
+    * N - Not done yet
 
 Example of usage: 
 ```
@@ -646,10 +656,12 @@ Sample output:
 ```
 ____________________________________________________________
 Got it. I've added this task:
-  [T][✘] look up on what is active listening
+  [T][N] look up on what is active listening
 Now you have 2 tasks in the list.
 ____________________________________________________________
 ```
+
+>
 
 #### 3.2.9 Adding a 'deadline' task - `deadline` <a name="deadline"></a>
 
@@ -661,6 +673,13 @@ Format: `deadline [DESCRIPTION] /by [TIME]`
 - A deadline must have a `[TIME]`. If you do not wish to set a time, add a <a href="#todo">todo</a> instead.
 - The application will print the description of the deadline task you have added into the task list, 
 as well as the amount of tasks in the task list on the command line.
+- The format for task when the application is printing out information is:
+`[T/D/E][Y/N] TASK DESCRIPTION`
+    * T - Todo
+    * D - Deadline
+    * E - Event
+    * Y - Done
+    * N - Not done yet
 
 > 📝️️ **_NOTE:_** Add the time using the HH:MM DD-MM-YYYY format. 
 
@@ -673,7 +692,7 @@ Sample output:
 ```
 ____________________________________________________________
 Got it. I've added this task:
-  [D][✘] assignment (by: 11:59 PM 21 Oct 2020)
+  [D][N] assignment (by: 11:59 PM 21 Oct 2020)
 Now you have 2 tasks in the list.
 ____________________________________________________________
 ```
@@ -688,6 +707,13 @@ Format: `event [DESCRIPTION] /at [TIME]`
 - An event must have a `[TIME]`. If you do not wish to set a time, add a <a href="#todo">todo</a> instead.
 - The application will print the description of the event task you have added into the task list, 
 as well as the amount of tasks in the task list on the command line.
+- The format for task when the application is printing out information is:
+`[T/D/E][Y/N] TASK DESCRIPTION`
+    * T - Todo
+    * D - Deadline
+    * E - Event
+    * Y - Done
+    * N - Not done yet
 
 > 📝️️ **_NOTE:_** Add the time using the HH:MM DD-MM-YYYY format. 
 
@@ -700,7 +726,7 @@ Sample output:
 ```
 ____________________________________________________________
 Got it. I've added this task:
-  [E][✘] tutorial (at: 4:00 PM 21 Oct 2020)
+  [E][N] tutorial (at: 4:00 PM 21 Oct 2020)
 Now you have 3 tasks in the list.
 ____________________________________________________________
 ```
@@ -733,7 +759,7 @@ Sample output:
 ```
 ____________________________________________________________
  Noted. I've removed this task:
-   [E][✘] tutorial (at: 4:00 PM 21 Oct 2020)
+   [E][N] tutorial (at: 4:00 PM 21 Oct 2020)
  Now you have 2 tasks in the list.
 ____________________________________________________________
 ```
@@ -759,7 +785,7 @@ Sample output:
 ```
 ____________________________________________________________
  Nice! I've marked this task as done:
-   [D][✓] assignment (by: 11:59 PM 21 Oct 2020)
+   [D][Y] assignment (by: 11:59 PM 21 Oct 2020)
 ____________________________________________________________
 ```
 
@@ -912,14 +938,14 @@ Here's a list of all items:
 │  ├─ 1. Arithmetic Logic Unit
 │  ├─ 2. Pass Transistor Multiplexers
 │  │  Tasks
-│  └─ 1. [T][✘] revise on Arithmetic Logic Unit
+│  └─ 1. [T][N] revise on Arithmetic Logic Unit
 ├─ 2. CS2101
 │  │  Topics
 │  ├─ 1. Oral Presentation
 │  ├─ 2. Product Demo
 │  │  Tasks
-│  ├─ 1. [E][✓] Product Demo (at: 2:00 PM 5 Nov 2020)
-│  └─ 2. [T][✘] look up on what is active listening
+│  ├─ 1. [E][Y] Product Demo (at: 2:00 PM 5 Nov 2020)
+│  └─ 2. [T][N] look up on what is active listening
 └─ 3. CS2113T
    │  Topics
    ├─ 1. Abstraction
@@ -927,7 +953,7 @@ Here's a list of all items:
    ├─ 3. Java (You are currently here)
    │  └─ 1 Flashcard
    │  Tasks
-   └─ 1. [D][✘] Final Project (by: 11:59 PM 11 Nov 2020)
+   └─ 1. [D][N] Final Project (by: 11:59 PM 11 Nov 2020)
 ____________________________________________________________
 ```
 
@@ -1289,8 +1315,8 @@ Suppose you use the `list` command and get this output:
 <pre><code>
 ____________________________________________________________
 Here are the tasks(s) under CS2113T: 
-1. [D][✘] homework (by: 6:00 PM 6 Nov 2020)
-2. [E][✘] marathon (at: 6:00 PM 9 Nov 2020)
+1. [D][N] homework (by: 6:00 PM 6 Nov 2020)
+2. [E][N] marathon (at: 6:00 PM 9 Nov 2020)
 ____________________________________________________________
 </code></pre>
 
@@ -1298,9 +1324,9 @@ Adding the following deadline by `deadline project /by 18:00 07-11-2020` and usi
 <pre><code>
 ____________________________________________________________
 Here are the tasks(s) under CS2113T: 
-1. [D][✘] homework (by: 6:00 PM 6 Nov 2020)
-2. [D][✘] project (by: 6:00 PM 7 Nov 2020)
-3. [E][✘] marathon (at: 6:00 PM 9 Nov 2020)
+1. [D][N] homework (by: 6:00 PM 6 Nov 2020)
+2. [D][N] project (by: 6:00 PM 7 Nov 2020)
+3. [E][N] marathon (at: 6:00 PM 9 Nov 2020)
 ____________________________________________________________
 </code></pre>
 
@@ -1324,9 +1350,9 @@ Hello! I'm revisED
 ____________________________________________________________
 Here are the upcoming tasks for next week!
 CS2113T
-1. [D][✘] homework (by: 6:00 PM 6 Nov 2020)
+1. [D][N] homework (by: 6:00 PM 6 Nov 2020)
 CG2027
-2. [E][✘] exam (at: 7:00 PM 9 Nov 2020)
+2. [E][N] exam (at: 7:00 PM 9 Nov 2020)
 ____________________________________________________________
 Alright, What can I do for you?
 ____________________________________________________________
