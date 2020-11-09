@@ -3,6 +3,7 @@ skinparam Shadowing false
 
 participant ":Fitr"
 participant "<<class>>\n:Parser"
+participant ":ViewCommand"
 
 activate ":Fitr"
 ":Fitr" -> "<<class>>\n:Ui" : read()
