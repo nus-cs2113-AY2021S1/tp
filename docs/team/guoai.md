@@ -1,11 +1,8 @@
 # Guo Ai - Project Portfolio 
 
-
 ## Overview
 
-termiNus is an interactive Command Line Interface (CLI) task manager for undergraduate students in NUS. 
-This program will help them achieve a better grip on their school life as well as assist in better management of their 
-daily expenses and be reminded of any library loans. 
+termiNus is an interactive task manager for students in NUS.
 
 ## Summary of Contributions:
 
@@ -15,15 +12,12 @@ daily expenses and be reminded of any library loans.
 ##### Enhancement implemented:
 
 1. Features added to Task List
-
    - Implement the `category` command.
       - Allow users to set the category of a task.
    - Implement the listing sorted tasks feature.
       - Allow users to list the tasks sorted firstly by priority in ascending order (high-priority tasks are displayed 
       first). If multiple tasks have the same priority, they are sorted based on category lexicographically.
-
 2. Features added to Expense List
-
    - Implement the `spend` command.
      - Allow users to add an expense item with a value to the expense list.
      - Allow users to optionally label expense items with currency and date.
@@ -47,9 +41,7 @@ daily expenses and be reminded of any library loans.
         - One expense item identified by index from the expense list.
         - One or multiple expense item(s) with a specified currency or date from the expense list.
      - Display the deleted expense item(s).
-
 3. Features added to all the 5 Item Lists (i.e. Task List, Expense List, Module List, Link List, Book List)
-   
    - Implement the `find` command.
      - Allow users to search for items (i.e. tasks, expenses, modules, links, books) whose description contains the 
      keyword(s) specified.
@@ -58,21 +50,15 @@ daily expenses and be reminded of any library loans.
      - If the input keyword contains multiple words separated by whitespaces, in order for the item to be matched, the 
      entire keyword string must appear in the item description, and each individual word in the keyword string must also 
      be a whole word in the item description.
-
-4. Write JUnit tests to test the features.
-     
+4. Write JUnit tests to test the features.   
 5. Provide a skeleton codebase based on my ip. Almost all the functionalities changed, but the basic structure for 
 commands, storage, UI, runner, and exception did not change.
-
 6. Refactor code and build a structure for classes.
-   
    - Refactor the previous `Task` and `TaskList` classes into superclasses `Item` and `ItemList`.
    - All other Items (i.e. `Task`, `Expense`, `Module`, `Link`, `Book`) and Item Lists (i.e. `TaskList`, `ExpenseList`, 
    `ModuleList`, `LinkList`, `BookList`) inherit from `Item` and `ItemList` classes.
    - This design is used among all the features and incorporates more OOP principle.
-
 7. Follow software engineering principles
-
    - Apply SLAP principle, DRY principle, facade design pattern when implementing features.
    - Use functional programming and improve readability when writing code as much as possible.
 
@@ -156,6 +142,248 @@ Output:
      Got it. I've added this expense item:
        lunch (5.00 USD) (date: Sunday, November 8, 2020)
      Now you have 9 expense items in the list.
+    ____________________________________________________________
+
+```
+
+### Displaying expense items on list: `list expenses`
+List all the expense items in the expense list and shows total amount of money spent for each currency and the current 
+day, week, month, and year.
+
+Format: `list expenses`
+
+🚩: Expense list is sorted **based on date** (*from the most recent to the least recent*). If the date of two expense items 
+are the **same**, the expense list is sorted **based on currency lexicographically**.
+
+
+Example of usage:
+
+`list expenses`
+
+Output:
+
+```
+    ____________________________________________________________
+     Here are the expense item(s) in your list:
+
+     dinner (0.60 A) (date: Monday, November 9, 2020)
+     breakfast (0.10 SGD) (date: Sunday, November 8, 2020)
+     book (0.50 SGD) (date: Sunday, November 8, 2020)
+     bread (0.20 USD) (date: Sunday, November 8, 2020)
+     lunch (5.00 USD) (date: Sunday, November 8, 2020)
+     bottle (3.00 SGD) (date: Saturday, November 7, 2020)
+     pen (1.00 SGD) (date: Saturday, November 7, 2020)
+     earphone (0.30 SGD) (date: Saturday, November 7, 2020)
+     tablet (0.40 USD) (date: Saturday, November 7, 2020)
+
+     Your total expense for today is:
+     0.60 SGD
+     5.20 USD
+
+     Your total expense for this week is:
+     4.90 SGD
+     5.60 USD
+
+     Your total expense for this month is:
+     0.60 A
+     4.90 SGD
+     5.60 USD
+
+     Your total expense for this year is:
+     0.60 A
+     4.90 SGD
+     5.60 USD
+    ____________________________________________________________
+
+```
+
+### Displaying expense items by a certain currency on list: `list expenses (by currency)` 
+List all the expense items in the expense list based on currency and shows total amount of money spent for each currency.
+
+Format: `list expenses currency/<currency_name>`
+
+🚩: currency_name is **case-sensitive**.
+
+Example of usage:
+
+`list expenses currency/USD`
+
+Output:
+
+```
+    ____________________________________________________________
+     Here are the expense item(s) in your expense list of currency USD:
+     bread (0.20 USD) (date: Sunday, November 8, 2020)
+     lunch (5.00 USD) (date: Sunday, November 8, 2020)
+     tablet (0.40 USD) (date: Saturday, November 7, 2020)
+
+     The total amount listed:
+     5.60 USD
+    ____________________________________________________________
+    
+```
+
+### Displaying expense items on a certain date on list: `list expenses (by date)` 
+List all the expense items in the expense list based on the date and shows total amount of money spent for each currency.
+
+Format: `list expenses date/<YYYY-MM-DD>`
+
+Example of usage:
+
+`list expenses date/2020-11-08`
+
+Output:
+
+```
+    ____________________________________________________________
+     Here are the expense item(s) in your expense list of date Sunday, November 8, 2020:
+     breakfast (0.10 SGD) (date: Sunday, November 8, 2020)
+     book (0.50 SGD) (date: Sunday, November 8, 2020)
+     bread (0.20 USD) (date: Sunday, November 8, 2020)
+     lunch (5.00 USD) (date: Sunday, November 8, 2020)
+
+     The total amount listed:
+     0.60 SGD
+     5.20 USD
+    ____________________________________________________________
+```
+
+### Displaying expense items for a certain time period on list: `list expenses (by time period)` 
+List all the expense items in the expense list based on the time period and shows total amount of money spent for each currency.
+
+Format: `list expenses for/<time period>`
+
+🚩: `<time period>` can only be `day`, `week`, `month`, or `year`.
+
+🚩: time period is **case-insensitive**.
+
+Example of usage:
+
+`list expenses for/week`
+
+Output:
+```    
+    ____________________________________________________________
+     Here are the expense item(s) in your expense list for this week:
+     breakfast (3.00 SGD) (date: Saturday, November 7, 2020)
+     bus (1.00 SGD) (date: Saturday, November 7, 2020)
+     pencil (0.30 SGD) (date: Saturday, November 8, 2020)
+     pen (0.40 USD) (date: Saturday, November 9, 2020)
+
+     The total amount listed:
+     4.30 SGD
+     0.40 USD
+    ____________________________________________________________
+
+```  
+
+### Deleting an expense item from the list: `delete expense`
+Delete an expense item from the list.
+
+Format: `delete expense <expenseIndexNumber>`
+
+🚩: `<expenseIndexNumber>` corresponds to the index given on `list expenses` command output.
+
+Example of usage:
+
+`delete expense 2`
+
+Output: 
+
+```
+    ____________________________________________________________
+     Noted. I've removed all these expense item(s)
+
+     breakfast (0.10 SGD) (date: Sunday, November 8, 2020)
+    ____________________________________________________________
+
+```
+
+### Deleting all the expense items of a certain currency: `delete expenses (by currency)`
+Delete expense items of the same currency.
+
+Format: `delete expenses currency/<currency_name>`
+
+🚩: currency_name is **case-sensitive**.
+
+Example of usage:
+
+`delete expenses currency/SGD`
+
+Output:
+
+```
+    ____________________________________________________________
+     Noted. I've removed all these expense item(s)
+
+     earphone (0.30 SGD) (date: Saturday, November 7, 2020)
+     pen (1.00 SGD) (date: Saturday, November 7, 2020)
+     book (0.50 SGD) (date: Sunday, November 8, 2020)
+     bottle (3.00 SGD) (date: Saturday, November 7, 2020)
+    ____________________________________________________________
+
+```
+
+### Deleting all expense items of the same date: `delete expenses (by same date)`
+Delete expense items of the same date.
+
+Format: `delete expenses date/<yyyy-MM-dd>`
+
+🚩: `date` argument must be in the format of `yyyy-MM-dd`, e.g. `2020-11-08`.
+
+Example of usage:
+
+`delete expenses date/2020-11-08`
+
+Output:
+
+```
+    ____________________________________________________________
+     Noted. I've removed all these expense item(s)
+
+     bread (0.20 USD) (date: Sunday, November 8, 2020)
+     lunch (5.00 USD) (date: Sunday, November 8, 2020)
+
+```
+
+### Searching for an item with keyword: `find`
+Finds all items in the corresponding item list with matching description.
+
+Format: `find {tasks,links,books,expenses,modules} k/<keyword>`
+
+🚩: `<keyword>` is **case-insensitive**.
+
+🚩: `<keyword>` can be a **single word** or a **phrase**.
+ 
+🚩: `<keyword>` must contain **whole words** from the item description, e.g `tp meeting`, `ip` etc.
+
+🚩: Incomplete keywords will **not be matched**. e.g `mee`, `t` etc.
+
+🚩: `<keyword>` for finding modules or links can only be the related **module name**.
+
+Example of usage:
+
+`find tasks k/tp meeting`
+
+Output:
+
+```
+    ____________________________________________________________
+     Here are the matching items in your list:
+     1.[T][N] tp meeting (p:0) (category: cs2113)
+     2.[T][N] tp meeting 2 (p:0)
+    ____________________________________________________________
+
+```
+
+`find expenses k/dinner`
+
+Output:
+
+```
+    ____________________________________________________________
+     Here are the matching items in your list:
+     1.dinner (0.60 A) (date: Monday, November 9, 2020)
     ____________________________________________________________
 
 ```
