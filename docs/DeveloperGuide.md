@@ -3,6 +3,8 @@
 * Table of Contents
 {:toc}
 
+<div style="page-break-after: always;"></div>
+
 ## Introduction
 Welcome to Study It Developer Guide!
 
@@ -19,6 +21,7 @@ study life. It will also provide various functionalities to help with their stud
 The 4 main functionalities available now are bookmark, timetable, academic tracker and flashcard. 
 Each of this will be discussed in detail under the “Design & Implementation” section later in the document.
 
+<div style="page-break-after: always;"></div>
 
 ## Setting up & getting started
 **Requirements**
@@ -38,6 +41,10 @@ place it in an empty folder
 4. Type `java -jar tp.jar` into the command prompt and press Enter to execute it
 5. If the application runs successfully, you’ll be greeted by a welcome message
 
+<p align="center">
+    <img width="70%" height="70%" src="Images/GeneralUG/welcomemessage.png">
+</p>
+
 **Setting up the project on your PC**
 First, **fork** this repo, and **clone** the fork into your computer.
 
@@ -46,6 +53,8 @@ If you plan to use Intellij IDEA (highly recommended):
 2. Import the project as a Gradle project.
 3. Run the studyit.StudyIt and try a few commands.
 4. Run the tests to ensure they all pass.
+
+<div style="page-break-after: always;"></div>
 
 ## Design & implementation
 This section explains the architecture of our software and the design of each component.
@@ -70,7 +79,9 @@ The **main component** of Study It helps user access each of these components.
 It processes the user input, provides general functionalities to traverse the software and other
 helpful functionalities. This will be further explained under Study It's design later.
 
-### Architecture
+<div style="page-break-after: always;"></div>
+
+### **Architecture**
 This section describes the overall architecture of Study It.
 
 ![Architecture Diagram](Images/ArchitectureDiagrams/architecture.png)
@@ -121,6 +132,8 @@ The commands received will then be parsed to identify the type of command. If th
 general commands, it'll be processed and provide output. Otherwise, the command will be relayed
 to different components to be processed based on the software's current mode. 
 
+<div style="page-break-after: always;"></div>
+
 ### **Main Component**
 
 This section will give an overview of the main component of Study It.
@@ -148,6 +161,8 @@ program. ErrorMessage, HelpMessage and MainMenu are subclasses of Ui to make use
 StudyIt class will also initialize various instances of classes such as TimeTableRun, FlashCardRun, 
 ArrayList<BookmarkCategory>, ArrayList<Grade>, ArrayList<Person> and pass it to Command class to perform 
 each mode’s functionality.
+
+<div style="page-break-after: always;"></div>
 
 ### **Bookmark Component**
 
@@ -191,6 +206,8 @@ and `BookmarkList` interacts with each other for the scenario when the user inpu
 in Bookmark mode.
 
 ![BookmarkCommand ClassDiagram](Images/BookmarkDG/AddCommand.png)
+
+<div style="page-break-after: always;"></div>
 
 ### **Timetable Component**
 
@@ -337,6 +354,8 @@ This project uses Gradle for build automation management.
 ./gradlew build - check for checkstyle error and runs all tests
 Code coverage
 This project uses code coverage that is in IntelliJ IDE to check for the coverage of the code. 
+
+<div style="page-break-after: always;"></div>
 
 ## Appendix: Requirement 
 ### Product scope
