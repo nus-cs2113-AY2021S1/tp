@@ -146,7 +146,7 @@ public class BrowseParser extends CommandParser {
      * @return true if first loop, false if not first loop.
      * @throws AniException if not blank to prevent input injection.
      */
-    protected boolean firstSplitHandler(int paramLoops, String param) throws AniException {
+    private boolean firstSplitHandler(int paramLoops, String param) throws AniException {
         if (paramLoops == FIRST_LOOP) {
             checkForExtraParam(param);
             return true;
