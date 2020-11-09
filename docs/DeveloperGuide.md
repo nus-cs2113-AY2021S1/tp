@@ -126,21 +126,23 @@ The following sequence diagrams explain the interactions omitted in the main dia
 
 <img src="DG_Diagrams/RouteCommand/BusData.png" alt="bus data" width = 600>
 
-#### Design Considerations
+**Design Considerations**
+
 The main aim here is to find if the starting location and destination exist in a particular list of bus stops in 
 that order.
 
-##### Aspect: How bus data should be stored and retrieved.
+**_Aspect: How bus data should be stored and retrieved._**
+
 * **Alternative 1 (current choice):** Each bus is an object that contains the bus number and full route as an ArrayList.
-    + Pros: Makes it easier to integrate with other functions of the app such as displaying bus route of a particular 
+    + _Pros:_ Makes it easier to integrate with other functions of the app such as displaying bus route of a particular 
     bus.  
-    + Cons: Each bus number's route has to be scanned to check for the starting location and destination in that order.
+    + _Cons:_ Each bus number's route has to be scanned to check for the starting location and destination in that order.
      
 * **Alternative 2:** Each location is an object that contains the location name and an ArrayList of bus objects. Each
 bus object contains the list of remaining stops in the route of that bus.
-    + Pros: It is easier and somewhat faster to find the buses that go from the starting location to the destination as 
+    + _Pros:_ It is easier and somewhat faster to find the buses that go from the starting location to the destination as 
     the data itself has filtered out the buses that stop at the starting location.
-    + Cons: A lot of duplicate data is stored since each bus stop will have a list of the remaining route for every bus 
+    + _Cons:_ A lot of duplicate data is stored since each bus stop will have a list of the remaining route for every bus 
     that stops there. 
     
 Given the above alternatives, alternative 1 was used considering the implementation of other features of the 
@@ -170,22 +172,47 @@ The following sequence diagram explains the above steps when the user enters `/r
 The following sequence diagrams explain the interactions for bus route retrieval.
 ![Internal](DG_Diagrams/RouteMapCommand/RouteMapCommandSeq.png)
 
-#### Design Considerations
-##### Aspect: Retrieval of bus routes
+**Design Considerations**
+
+**_Aspect: Retrieval of bus routes_**
+
 * **Alternative 1 (current choice):** Each bus is an object that contains the bus number and full route as an ArrayList
 of busStops objects.
-    + Pros: It is easy to maintain and updating of bus stops and bus codes are easier to implement.
-    + Cons: Has to loop through the array of bus stops and obtain their individual bus description.
+    + _Pros:_ It is easy to maintain and updating of bus stops and bus codes are easier to implement.
+    + _Cons:_ Has to loop through the array of bus stops and obtain their individual bus description.
      
 * **Alternative 2:** The full route of each bus is stored in a string format and is directly accessed.
-    + Pros: It is easier and quicker to print out the full route of a user-specified bus.
-    + Cons: Alot of manual work is needed if the bus route/ bus stop is updated. It is not scalable for large-scale 
+    + _Pros:_ It is easier and quicker to print out the full route of a user-specified bus.
+    + _Cons:_ Alot of manual work is needed if the bus route/ bus stop is updated. It is not scalable for large-scale 
     projects.
     
 Given the above alternatives, alternative 1 was used considering the scalability of the application.
 
+<!-- @@author EthanWong22 -->
+### 3.. Bus at bus stop finder (`/bus` Feature) - Wong Heng Chin
+
+`/bus <bus stop>` is the command to execute to see buses which stop at a specific bus stop.<br>
+
+The command is executed in the following steps:
+1. The user calls `Parser#setUserInput(<UserInput>)` by entering the command `/bus <bus stop>`. The new user input is updated.
+2. `Parser#extractType()` is called to instantiate `BusCommand` and run the user command.
+3. `BusCommand#similarLocations()` is self invoked and calls `SimilarityCheck#similarLoc()` which returns an arraylist of possible location.
+4. `BusCommand#setBusStop()` is self invoked in which, if `SimilarityCheck#similarLoc()` returns an empty array list, `BusStops#findBusStop()` is called.
+    - If `SimilarityCheck#similarLoc()` returns non-empty array list, `Ui#printPossibleLocsMessage()` is called and an exception is thrown.
+    - If `BusStops#findBusStop()` returns null, an exception is thrown.
+5. `BusCommand#executeCommand()` is called.
+6. `BusData#getBusAtStop()` is called and returns an array list of buses.
+7. `BusData#printBusAtBusStop()` is called to print array list of buses.
+
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/bus` command.
+![ExecFav_Sequence_Diagram](DG_Diagrams/BusCommand/BusCommand.png)
+
+The following sequence diagram explains the interactions omitted in the main diagram.
+![getBusStop_Sequence_Diagram](DG_Diagrams/BusCommand/getBusStop.png)
+<!-- @@author -->
+
 <!-- @@author Lezn0 -->
-### 3.3. List All stops (/liststops Feature) - Yuxin
+### 3.3. List All stops (`/liststops` Feature) - Yuxin
 `/liststops` is the command which prints all bus stops declared in the BusStops enum.
 
 The `ListStopsCommand#executeCommand()` method of ListStopsCommand Class executes the command in the following steps:
@@ -196,18 +223,53 @@ The `ListStopsCommand#executeCommand()` method of ListStopsCommand Class execute
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/liststops` command. <br>
 ![add favourites](DG_Diagrams/ListStopsSequence.png)
 
-#### Design Considerations
-##### Aspect: Close names of bus stops
+**Design Considerations**
+
+**_Aspect: Close names of bus stops_**
 
 * **Alternative 1 (current choice):** Close names are only mentioned but not implemented for users to use in other functions.
-    + Pros: It is easy to implement and there will be no bugs since it only uses the print function.
-    + Cons: Inconvenient for users as they have to re-enter the command using the full name of the bus stop.
+    + _Pros:_ It is easy to implement and there will be no bugs since it only uses the print function.
+    + _Cons:_ Inconvenient for users as they have to re-enter the command using the full name of the bus stop.
      
 * **Alternative 2:** Able to use close names in other functions.
-    + Pros: It is quicker and more convenient for the user as they can run commands using close names they prefer.
-    + Cons: It is very time-consuming to implement and can lead to many bugs.
+    + _Pros:_ It is quicker and more convenient for the user as they can run commands using close names they prefer.
+    + _Cons:_ It is very time-consuming to implement and can lead to many bugs.
     
 Given the above alternatives, alternative 1 was used considering the integration of other commands.
+<!-- @@author -->
+
+<!-- @@author mrwsy1 -->
+### 3.7. Dining options finder (`/dine` Feature) - Shuyi
+
+`/dine <faculty>` is the command that has to be entered by the user to see all the dining options available in the 
+specified faculty.
+
+The `DineCommand#executeCommand()` method of DineCommand Class executes the command in the following steps:
+1. Checks the user input and throws an exception if the input is empty.
+2. Calls `DineCommand#checkFaculty()` method to check for a match between the data and user input.
+    + Sets the `isFound` parameter to **true** if there is any match.
+        + Calls `Ui#printDineResult()` method to print the matching results.
+    + Sets the `isFound` parameter to **false** if there is no match.
+        + Throws an exception if `isFound` is false.
+
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/dine` command.<br>
+![bus data](DG_Diagrams/DineSequence.png)
+
+### 3.8 Find specific dining outlets (`/dineinfo` Feature) - Shuyi
+
+`/dineinfo <outlet>` is the command that has to be entered by the user to see information of a specified dining outlet.
+
+The `DineInfoCommand#executeCommand()` method of DineInfoCommand Class executes the command in the following steps:
+1. Checks the user input and throws an exception if the input is empty.
+2. Calls `DineInfoCommand#checkFoodPlace()` method to check for a match between the data and user input.
+    + Adds any matching data to an ArrayList `searchList`.
+    + Throws an exception if `searchList` is empty.
+    + Calls `Ui#printDineInfoResult()` method to print the data in `searchList` if it is not empty.
+
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/dineinfo` command. <br>
+![bus data](DG_Diagrams/DineInfoSequence.png)
+<!-- @@author -->
+
 
 ### 3.4. Favourite command adder (`/addfav` Feature) - Yuxin
 
@@ -228,6 +290,20 @@ The following sequence diagram illustrates the steps taken by the program when t
 ![add favourites](DG_Diagrams/AddFavSequence.png)
 <!-- @@author -->
 
+### 3.12 Removing specific delete command (`/deletefav` Feature)
+`/deletefav <index>` is the command to remove a favourite command in the user's list of favourite commands. It allows the
+user to customise the list of favourite commands to the user's liking.
+
+The DeleteFavCommand#executeCommand() method of DeleteFavCommand Class executes the command in the following steps:
+1.`Parser#extractType()` is called to instantiate `DeleteFavCommand`. During instantiation, if the user specified
+index is empty or blank, an exception would be thrown.
+2.`Ui#printDeleteFavMessage(<index>)` is called to inform the user that the favourite command corresponding to the
+index has been deleted.
+3.`FavList#deleteFav(<index>)` is executed to remove the favourite command from the list of favourite commands.
+
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/deletefav` command.
+![Sequence ](DG_Diagrams/DeleteFavCommand/DeleteFavSeq.png)
+
 <!-- @@author EthanWong22 -->
 ### 3.5. Favourite command executor (`/execfav` Feature) - Wong Heng Chin
 `/execfav <index>` is the command to execute a command with the specific index in the list of favourite commands. <br>
@@ -245,19 +321,22 @@ The command is executed in the following steps:
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/execfav` command.
 ![ExecFav_Sequence_Diagram](DG_Diagrams/ExecFavCommand/ExecFavCommand.png)
-<!-- @@author -->
-#### Design Considerations
-##### Aspect: Choice of command object in FavList to execute
+
+**Design Considerations**
+
+**_Aspect: Choice of command object in FavList to execute_**
+
 * **Alternative 1 (current choice):** Choosing command by index in list.
-    + **Implementation:** Easy to implement as `Fav` object can be extracted directly through index in `FavList`
-    + **Bugs handling:** Bugs for the first approach are easier to handle and limited. As all `Fav` objects in `FavList` have a unique index, the only bug to check for is whether the `<index>` keyed in by the user can be converted into an integer and whether the index is larger than the size of `FavList`.
-    + **User experience:** Command to execute fav object will be shorter.
+    + _Implementation:_ Easy to implement as `Fav` object can be extracted directly through index in `FavList`
+    + _Bugs handling:_ Bugs for the first approach are easier to handle and limited. As all `Fav` objects in `FavList` have a unique index, the only bug to check for is whether the `<index>` keyed in by the user can be converted into an integer and whether the index is larger than the size of `FavList`.
+    + _User experience:_ Command to execute fav object will be shorter.
 * **Alternative 2:** Choosing command by description in list.
-    + **Implementation:** Implementation is more difficult as the description of all the `Fav` objects in the `FavList` will have to be scanned through and compared with the required description. This may adversely affect processing time as well.
-    + **Bugs handling:** Handling of bugs is more difficult as the description of `Fav` objects in the `FavList` are not unique. This causes extra complications to allow users to be able to choose which command to execute amongst those with duplicate descriptions instead of executing the wrong command.
-    + **User experience:** Command to execute fav object will be longer.
+    + _Implementation:_ Implementation is more difficult as the description of all the `Fav` objects in the `FavList` will have to be scanned through and compared with the required description. This may adversely affect processing time as well.
+    + _Bugs handling:_ Handling of bugs is more difficult as the description of `Fav` objects in the `FavList` are not unique. This causes extra complications to allow users to be able to choose which command to execute amongst those with duplicate descriptions instead of executing the wrong command.
+    + _User experience:_ Command to execute fav object will be longer.
     
 Therefore, choosing commands based on index (alternative 1) is easier to implement, more efficient, reduces possible bugs encountered and provides better user experience.
+<!-- @@author -->
 
 <!-- @@author wamikamalik -->
 ### 3.6. Modifying the description of a favourite command (`/descfav` Feature) - Wamika
@@ -295,81 +374,26 @@ The following sequence diagram explains the interactions omitted in the main dia
 
 <img src="DG_Diagrams/DescFavCommand/descFavInternal.png" alt="executing command" width=700>
 
-#### Design Considerations
+**Design Considerations**
+
 The main aim here is to change the description of a particular command in the list of favourites.
 
-##### Aspect: How index and description are verified.
+**_Aspect: How index and description are verified._**
+
 * **Alternative 1 (current choice):** Perform checks on the validity of index and description at intermediate steps
-    + Pros: The checks specific to `FavList` and `Fav` will be performed in those classes and all these methods 
+    + _Pros:_ The checks specific to `FavList` and `Fav` will be performed in those classes and all these methods 
     will be called in the main `DescFavCommand#executeCommand()` thus reducing coupling.
-    + Cons: It requires more methods to be written for any particular class.
+    + _Cons:_ It requires more methods to be written for any particular class.
     
 * **Alternative 2:** Use the `DescFavParser` class to determine if the index is within bounds of the list and 
 the description is different from what is already stored.
-    + Pros: It is quicker to determine that the command is invalid.
-    + Cons: Requires calling functions from `FavList` and `Fav` in the parser which would increase coupling.
+    + _Pros:_ It is quicker to determine that the command is invalid.
+    + _Cons:_ Requires calling functions from `FavList` and `Fav` in the parser which would increase coupling.
     
 While alternative 2 would place all checks in one place, it can be tedious to test or debug. Therefore, alternative 1 
 was chosen. It also made the code look neater and more readable. 
-<!-- @@author -->
-    
-<!-- @@author mrwsy1 -->
-### 3.7. Dining options finder (/dine Feature) - Shuyi
 
-`/dine <faculty>` is the command that has to be entered by the user to see all the dining options available in the 
-specified faculty.
-
-The `DineCommand#executeCommand()` method of DineCommand Class executes the command in the following steps:
-1. Checks the user input and throws an exception if the input is empty.
-2. Calls `DineCommand#checkFaculty()` method to check for a match between the data and user input.
-    + Sets the `isFound` parameter to **true** if there is any match.
-        + Calls `Ui#printDineResult()` method to print the matching results.
-    + Sets the `isFound` parameter to **false** if there is no match.
-        + Throws an exception if `isFound` is false.
-
-The following sequence diagram illustrates the steps taken by the program when the user calls the `/dine` command.<br>
-![bus data](DG_Diagrams/DineSequence.png)
-
-### 3.8 Find specific dining outlets (/dineinfo Feature) - Shuyi
-
-`/dineinfo <outlet>` is the command that has to be entered by the user to see information of a specified dining outlet.
-
-The `DineInfoCommand#executeCommand()` method of DineInfoCommand Class executes the command in the following steps:
-1. Checks the user input and throws an exception if the input is empty.
-2. Calls `DineInfoCommand#checkFoodPlace()` method to check for a match between the data and user input.
-    + Adds any matching data to an ArrayList `searchList`.
-    + Throws an exception if `searchList` is empty.
-    + Calls `Ui#printDineInfoResult()` method to print the data in `searchList` if it is not empty.
-
-The following sequence diagram illustrates the steps taken by the program when the user calls the `/dineinfo` command. <br>
-![bus data](DG_Diagrams/DineInfoSequence.png)
-<!-- @@author -->
-
-<!-- @@author EthanWong22 -->
-### 3.9. Bus at bus stop finder (`/bus` Feature) - Wong Heng Chin
-
-`/bus <bus stop>` is the command to execute to see buses which stop at a specific bus stop.<br>
-
-The command is executed in the following steps:
-1. The user calls `Parser#setUserInput(<UserInput>)` by entering the command `/bus <bus stop>`. The new user input is updated.
-2. `Parser#extractType()` is called to instantiate `BusCommand` and run the user command.
-3. `BusCommand#similarLocations()` is self invoked and calls `SimilarityCheck#similarLoc()` which returns an arraylist of possible location.
-4. `BusCommand#setBusStop()` is self invoked in which, if `SimilarityCheck#similarLoc()` returns an empty array list, `BusStops#findBusStop()` is called.
-    - If `SimilarityCheck#similarLoc()` returns non-empty array list, `Ui#printPossibleLocsMessage()` is called and an exception is thrown.
-    - If `BusStops#findBusStop()` returns null, an exception is thrown.
-5. `BusCommand#executeCommand()` is called.
-6. `BusData#getBusAtStop()` is called and returns an array list of buses.
-7. `BusData#printBusAtBusStop()` is called to print array list of buses.
-
-The following sequence diagram illustrates the steps taken by the program when the user calls the `/bus` command.
-![ExecFav_Sequence_Diagram](DG_Diagrams/BusCommand/BusCommand.png)
-
-The following sequence diagram explains the interactions omitted in the main diagram.
-![getBusStop_Sequence_Diagram](DG_Diagrams/BusCommand/getBusStop.png)
-<!-- @@author -->
-
-<!-- @@author wamikamalik -->
-### 3.10. Performing similarity checks -Wamika
+### 3.10. Performing similarity checks - Wamika
 This feature provides the user with suggestions for possible spelling errors, if any. It does not require any explicit 
 instruction or command from the user and runs every time the user enters a `/route` or `/bus` command.<br>
 The following steps explain how the similarity checks are performed.
@@ -408,17 +432,20 @@ The following steps explain how the most searched bus stop is displayed.
 
 The following sequence diagram illustrates the steps taken by the program on start-up.
 ![Display_Search_Freq_Sequence_Diagram](DG_Diagrams/ResetSearchFreqCommand/DisplaySearchFreq.png)
-#### Design Considerations
-##### Aspect: Implementing search frequencies
+
+**Design Considerations**
+
+**_Aspect: Implementing search frequencies_**
+
 * **Alternative 1 (current choice):** Each value in the BusStops enumeration has a private integer
 variable called searchCount.
-    + Pros: It is easier to maintain and updating of bus stops are easier to implement. It provides a template to be
+    + _Pros:_ It is easier to maintain and updating of bus stops are easier to implement. It provides a template to be
     used for locations with many bus stops.
-    + Cons: Has to loop through the array of bus stops and obtain their respective search counts.
+    + _Cons:_ Has to loop through the array of bus stops and obtain their respective search counts.
      
 * **Alternative 2:** The search frequency of each bus stop is stored in an array of tuple and is directly accessed.
-    + Pros: It is easier and quicker to obtain the most searched bus stop.
-    + Cons: It does not blend in well with other features that accesses the BusStops class.
+    + _Pros:_ It is easier and quicker to obtain the most searched bus stop.
+    + _Cons:_ It does not blend in well with other features that accesses the BusStops class.
     
 Given the above alternatives, alternative 1 was used considering the integration of other commands.
 
@@ -431,20 +458,6 @@ The `ResetSearchFreqCommand#executeCommand()` method of ResetSearchFreqCommand C
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/reset` command.
 ![Sequence ](DG_Diagrams/ResetSearchFreqCommand/ResetSearchFreqSeq.png)
-
-### 3.12 Removing specific delete command (`/deletefav` Feature)
-`/deletefav <index>` is the command to remove a favourite command in the user's list of favourite commands. It allows the
-user to customise the list of favourite commands to the user's liking.
-
-The DeleteFavCommand#executeCommand() method of DeleteFavCommand Class executes the command in the following steps:
-1.`Parser#extractType()` is called to instantiate `DeleteFavCommand`. During instantiation, if the user specified
-index is empty or blank, an exception would be thrown.
-2.`Ui#printDeleteFavMessage(<index>)` is called to inform the user that the favourite command corresponding to the
-index has been deleted.
-3.`FavList#deleteFav(<index>)` is executed to remove the favourite command from the list of favourite commands.
-
-The following sequence diagram illustrates the steps taken by the program when the user calls the `/deletefav` command.
-![Sequence ](DG_Diagrams/DeleteFavCommand/DeleteFavSeq.png)
 
 ## 4. Appendix A: Product Scope
 
