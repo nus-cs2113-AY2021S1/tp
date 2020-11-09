@@ -1364,7 +1364,7 @@ You should see the following:
 ![capture6](uml_images/saveManager/puml/Capture6.PNG)
 
 <!-- @@author bqxy -->
-## FinanceTools
+## Testing FinanceTools
 **Simple Interest Calculator** <br />
 Enter ```simple /a 1000 /r 5``` into the console. <br />
 You should see the following:
