@@ -1276,9 +1276,8 @@ Enter `list`. Output:
     * E.g. if today is 15th, input will be `/day 22`
     * E.g. if today is 28th, input will be `/day 5` OR `day 4` depending on whether the current month has 30 or 31 days respectively.
 
-1. Enter `exit` to quit to main menu. Reminders are printed above the Main Menu prompt. Note: Screenshot was taken on 6th, hence entries entered above are on the 6th, 8th and 13th respective.
-
-    Output:
+1. Enter `exit` to quit to main menu. Reminders are printed above the Main Menu prompt. Note: Screenshot was taken on 6th, hence entries entered above are on the 6th, 8th and 13th respective. Output:
+    
 ![](developerGuide_images/screenshots_recurringtracker/reminders.png)
 
 1. Enter `exit` to quit the program. Run the .jar file again. Reminders are printed below the logo and above the Main Menu prompt.
