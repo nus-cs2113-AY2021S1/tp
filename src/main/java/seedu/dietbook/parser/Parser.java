@@ -100,9 +100,9 @@ public class Parser {
         int portionSize = 1;
         int dataIndex = 0;
         int calorie = 0;
-        int carb = 0;
-        int protein = 0;
-        int fat = 0;
+        int carb = -1;
+        int protein = -1;
+        int fat = -1;
         String foodName = "Food Name";
         String trimmedParam;
         String[] processedParam;

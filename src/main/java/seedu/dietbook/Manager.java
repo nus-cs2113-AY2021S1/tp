@@ -23,6 +23,9 @@ import seedu.dietbook.parser.Parser;
 import seedu.dietbook.person.FitnessLevel;
 import seedu.dietbook.person.Gender;
 import seedu.dietbook.person.Person;
+import seedu.dietbook.saveload.FoodPortionDateSaveLoadManager;
+import seedu.dietbook.saveload.PersonSaveLoadManager;
+import seedu.dietbook.ui.Ui;
 
 /**
  * Manager class of the program.
@@ -35,10 +38,12 @@ public class Manager {
     private Person person;
     private FoodList foodList;
     private String name;
-    private int commandCount = 1; // This is currently unused
+    public static int commandCount = 1;
     private DataBase dataBase;
     private CalculatorData data = new CalculatorData();
     private Calculator calculator;
+    private PersonSaveLoadManager personSave = new PersonSaveLoadManager();
+    private FoodPortionDateSaveLoadManager foodSave = new FoodPortionDateSaveLoadManager();
 
     public static final String COMMAND_ADD = "add";
     public static final String COMMAND_CALCULATE = "calculate";
@@ -142,6 +147,43 @@ public class Manager {
         default:
             throw new DietException("There's no such command!");
         }
+    }
+
+    public void save() {
+        FitnessLevel fitLvl = getPerson().getFitnessLevel();
+        int fitLvlInt = 1;
+        if (fitLvl.equals(FitnessLevel.NONE)) {
+            fitLvlInt = 1;
+        } else if (fitLvl.equals(FitnessLevel.LOW)) {
+            fitLvlInt = 2;
+        } else if (fitLvl.equals(FitnessLevel.MEDIUM)) {
+            fitLvlInt = 3;
+        } else if (fitLvl.equals(FitnessLevel.HIGH)) {
+            fitLvlInt = 4;
+        } else if (fitLvl.equals(FitnessLevel.EXTREME)) {
+            fitLvlInt = 5;
+        }
+
+        Gender gender = getPerson().getGender();
+        String genderString;
+        if (gender.equals(Gender.MALE)) {
+            genderString = "Male";
+        } else if (gender.equals(Gender.FEMALE)) {
+            genderString = "Female";
+        } else {
+            genderString = "Others";
+        }
+
+        personSave.setActivityLevel(fitLvlInt);
+        personSave.setAge(getPerson().getAge());
+        personSave.setCurrentWeight(getPerson().getCurrentWeight());
+        personSave.setGender(genderString);
+        personSave.setHeight(getPerson().getHeight());
+        personSave.setName(getPerson().getName());
+        personSave.setOriginalWeight(getPerson().getOriginalWeight());
+        personSave.setTargetWeight(getPerson().getTargetWeight());
+        personSave.save("UserInfo.txt");
+        foodSave.saveFoodList(getFoodList(), "FoodList.txt");
     }
 
 }

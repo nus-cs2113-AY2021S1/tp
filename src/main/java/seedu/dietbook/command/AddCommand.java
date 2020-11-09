@@ -15,12 +15,13 @@ public class AddCommand extends Command {
 
     @Override
     public void execute(Manager manager, Ui ui) throws DietException {
-        if (commandCount == 1) {
+        if (Manager.commandCount == 1) {
             throw new DietException("Please enter your name first!");
-        } else if (commandCount == 2) {
+        } else if (Manager.commandCount == 2) {
             throw new DietException("Please enter your basic information first!");
         }
         InputChecker.checkSlashes(this.input);
         ui.printNewFood(Parser.getProcessedAdd(this.input, manager.getFoodList(), manager.getDataBase()));
+        manager.save();
     }
 }

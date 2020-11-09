@@ -7,8 +7,8 @@ import seedu.dietbook.exception.DietException;
 import seedu.dietbook.command.Command;
 import seedu.dietbook.person.FitnessLevel;
 import seedu.dietbook.person.Gender;
-import seedu.dietbook.saveload.FoodSaveLoadManager;
 import seedu.dietbook.saveload.PersonSaveLoadManager;
+import seedu.dietbook.saveload.FoodPortionDateSaveLoadManager;
 
 //@@author tikimonarch
 /**
@@ -26,7 +26,7 @@ public class DietBook {
     private Manager manager;
     private DataBase dataBase;
     private PersonSaveLoadManager loadPerson;
-    private FoodSaveLoadManager loadFood;
+    private FoodPortionDateSaveLoadManager loadFood;
     public static boolean isExit = false;
 
     /**
@@ -34,7 +34,7 @@ public class DietBook {
      */
     public DietBook() {
         ui = new Ui();
-        loadFood = new FoodSaveLoadManager();
+        loadFood = new FoodPortionDateSaveLoadManager();
         loadPerson = new PersonSaveLoadManager();
         foodList = new FoodList();
         dataBase = new DataBase();
@@ -47,7 +47,8 @@ public class DietBook {
      */
     public void loadPerson() {
         try {
-            loadPerson.load("resources/UserInfo.txt");
+            System.out.println("Loading personal information...");
+            loadPerson.load("UserInfo.txt");
             FitnessLevel fitLvl = FitnessLevel.NONE;
             int fitLvlInt = loadPerson.getFitnessLevel();
             if (fitLvlInt == 1) {
@@ -74,9 +75,9 @@ public class DietBook {
             manager.getPerson().setAll(loadPerson.getName(), gender, loadPerson.getAge(),
                     loadPerson.getHeight(), loadPerson.getOriginalWeight(), loadPerson.getCurrentWeight(),
                     loadPerson.getTargetWeight(), fitLvl);
-
+            Manager.commandCount = 3;
         } catch (FileNotFoundException e) {
-            ui.printErrorMessage("Person data file not found!");
+            ui.printErrorMessage("Person data file not found! Creating new personal data....");
         } catch (IllegalAccessException e) {
             ui.printErrorMessage(e.getMessage());
         }
@@ -87,12 +88,12 @@ public class DietBook {
      */
     public void loadFood() {
         try {
-            loadFood.load("resources/UserInfo.txt");
-            loadFood.getFoodList();
-            //foodList = new FoodList(loadFood.getFoodList());
-            ui.printWelcomeBackMessage(manager.getPerson().getName());
+            System.out.println("Loading personal food data...");
+            loadFood.load("FoodList.txt");
+            manager.setFoodList(loadFood.getFoodList());
+            Manager.commandCount = 3;
         } catch (FileNotFoundException e) {
-            ui.printErrorMessage("FoodList data file not found!");
+            ui.printErrorMessage("FoodList data file not found! Creating new food list...");
         } catch (IllegalAccessException e) {
             ui.printErrorMessage(e.getMessage());
         }
@@ -102,11 +103,15 @@ public class DietBook {
     /**
      * Main method to run the program.
      */
-    public static void main(String[] args) throws DietException {
+    public static void main(String[] args) {
         DietBook dietBook = new DietBook();
-        dietBook.ui.printWelcomeMessage();
-        //dietBook.loadPerson();
-        //dietBook.loadFood();
+        dietBook.loadPerson();
+        dietBook.loadFood();
+        if (Manager.commandCount > 2) {
+            dietBook.ui.printWelcomeBackMessage(dietBook.manager.getPerson().getName());
+        } else if (Manager.commandCount <= 2) {
+            dietBook.ui.printWelcomeMessage();
+        }
 
         while (!isExit) {
             try {
@@ -115,10 +120,9 @@ public class DietBook {
                 c.execute(dietBook.manager, dietBook.ui);
             } catch (DietException e) {
                 dietBook.ui.printErrorMessage(e.getMessage());
+            } catch (Exception e) {
+                dietBook.ui.printErrorMessage("Oops something went wrong!");
             }
-            //} catch (Exception e) {
-            //    dietBook.ui.printErrorMessage("Oops something went wrong!");
-            //}
         }
     }
 }
