@@ -502,29 +502,29 @@ A all-in-one solution for note-taking and managing your schedule. NotUS solves t
 | Version | Target User | Function/Feature | User's Benefit |
 |--------|----------|---------------|------------------|
 |v1.0| As a ... | I want to ... | So that I can ... |
-|v1.0|SOC/FOE student|Keep track of my notes|Be organized and find notes easily|
+|v1.0|CEG student|Keep track of my notes|Be organized and find notes easily|
 |v1.0|Meticulous student|Categorize my notes by level of importance|Focus on the important topics|
 |v1.0|Student who is overloading|Categorize my notes by module|Be more aware of which notes are necessary for the upcoming lessons|
 |v1.0|Student who is more visual|Categorize my notes by colour (visible on CLI)|Be able to easily identify which module is which|
 |v1.0|Meticulous student|Create daily and weekly task lists|Keep track of my work progress|
 |v1.0|Forgetful student|To obtain reminders about my schedule for the day|So I do not forget what I have on for the day|
 |v1.0|Busy student|Pin important notes, events and todo list|Focus on the important information|
-|v1.0|SOC/FOE student|Be able to edit my notes|Update missing information|
-|v1.0|SOC/FOE student|Be able to read my notes|To revise before exams|
-|v1.0|SOC/FOE student|Be able to delete my notes|To clear up space and keep it more organized|
+|v1.0|CEG student|Be able to edit my notes|Update missing information|
+|v1.0|CEG student|Be able to read my notes|To revise before exams|
+|v1.0|CEG student|Be able to delete my notes|To clear up space and keep it more organized|
 
 | Version | Target User | Function/Feature | User's Benefit |
 |--------|----------|---------------|------------------|
 |v2.0|Outgoing student|Able to add my social events to the timetable|View all my upcoming events and classes|
 |v2.0|Busy student|Be alerted if there are clashes in between my events and classes|Reschedule my plan|
 |v2.0|Student leader|Be able to share certain events with others|Can get people to join events more conveniently|
-|v2.0|SOC/FOE student|Archive old notes|Keep dashboard neat while allowing me to refer to old notes when necessary|
-|v2.0|SOC/FOE student|Be able to import my notes|To make edits|
-|v2.0|SOC/FOE student|Be able to export my notes|To share my notes with my peers|
-|v2.0|SOC/FOE student|Be able to import my timetable/events|To make adjustments to my schedule|
-|v2.0|SOC/FOE student|Be able to export my timetable/events|To share my schedule with my peers|
+|v2.0|CEG student|Archive old notes|Keep dashboard neat while allowing me to refer to old notes when necessary|
+|v2.0|CEG student|Be able to import my notes|To make edits|
+|v2.0|CEG student|Be able to export my notes|To share my notes with my peers|
+|v2.0|CEG student|Be able to import my timetable/events|To make adjustments to my schedule|
+|v2.0|CEG student|Be able to export my timetable/events|To share my schedule with my peers|
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ## <a id="nfr">5. Non-Functional Requirements</a>
 
@@ -553,7 +553,7 @@ A all-in-one solution for note-taking and managing your schedule. NotUS solves t
 * *FOE* - Faculty of Engineering
 * *CEG* - Computer Engineering
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ## <a id="testinstr">7. Instructions for Manual Testing</a>
 
@@ -563,6 +563,8 @@ A all-in-one solution for note-taking and managing your schedule. NotUS solves t
 1. Enter the command `help` to get a list of all available commands and its usages.
 1. For a detailed list on the command features, refer to the [user guide](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/UserGuide.md#features).
 1. Simply enter `exit` to terminate and exit the application.
+
+<div style="page-break-after: always;"></div>
 
 ## <a id="appendix">8. Appendix</a>
 
