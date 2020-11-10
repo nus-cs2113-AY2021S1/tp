@@ -1,0 +1,55 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+Package " "<<Rectangle>>{
+    Class Command <<abstract>>
+    Class AddEventCommand
+    Class AddNoteCommand
+    Class ArchiveNoteCommand
+    Class CreateTagCommand
+    Class DeleteEventCommand
+    Class DeleteNoteCommand
+    Class DeleteTagCommand
+    Class EditEventCommand
+    Class EditNoteCommand
+    Class ExitCommand
+    Class FindCommand
+    Class HelpCommand
+    Class IncorrectCommand
+    Class ListEventCommand
+    Class ListNoteCommand
+    Class ListTagCommand
+    Class PinCommand
+    Class RemindCommand
+    Class TagEventCommand
+    Class TagNoteCommand
+    Class UnarchiveNoteCommand
+    Class ViewNoteCommand
+}
+
+AddEventCommand -up-|> Command
+AddNoteCommand -up-|> Command 
+ArchiveNoteCommand -up-|> Command 
+CreateTagCommand -up-|> Command 
+DeleteEventCommand -up-|> Command
+DeleteNoteCommand -up-|> Command 
+DeleteTagCommand -up-|> Command 
+EditEventCommand -down-|> Command 
+EditNoteCommand -down-|> Command 
+ExitCommand -down-|> Command
+FindCommand -down-|> Command 
+HelpCommand -down-|> Command
+IncorrectCommand -down-|> Command
+ListEventCommand -down-|> Command 
+ListNoteCommand -left-|> Command 
+ListTagCommand -left-|> Command
+PinCommand -left-|> Command 
+RemindCommand -left-|> Command 
+TagNoteCommand -right-|> Command
+TagEventCommand -right-|> Command
+UnarchiveNoteCommand -right-|> Command 
+ViewNoteCommand -right-|> Command 
+
+@enduml

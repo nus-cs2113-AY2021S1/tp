@@ -1,4 +1,4 @@
-# Duke project template
+# NotUS project template
 
 This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
 
@@ -8,24 +8,29 @@ Prerequisites: JDK 11 (use the exact version), update Intellij to the most recen
 
 1. **Configure Intellij for JDK 11**, as described [here](https://se-education.org/guides/tutorials/intellijJdk.html).
 1. **Import the project _as a Gradle project_**, as described [here](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
-1. **Verify the set up**: After the importing is complete, locate the `src/main/java/seedu/duke/Duke.java` file, right-click it, and choose `Run Duke.main()`. If the setup is correct, you should see something like the below:
+1. **Verify the set up**: After the importing is complete, locate the `src/main/java/seedu.notus/Notus.java` file, right-click it, and choose `Run Notus.main()`. If the setup is correct, you should see something like the below:
    ```
-   > Task :compileJava
+   > Task :compileJava UP-TO-DATE
    > Task :processResources NO-SOURCE
-   > Task :classes
+   > Task :classes UP-TO-DATE
    
-   > Task :Duke.main()
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   
-   What is your name?
-   ```
-   Type some word and press enter to let the execution proceed to the end.
+   > Task :Notus.main()
+   Welcome to NotUS! 
 
+             .-') _               .-') _                 .-')    
+            ( OO ) )             (  OO) )               ( OO ).  
+        ,--./ ,--,'  .-'),-----. /     '._ ,--. ,--.   (_)---\_) 
+        |   \ |  |\ ( OO'  .-.  '|'--...__)|  | |  |   /    _ |  
+        |    \|  | )/   |  | |  |'--.  .--'|  | | .-') \  :` `.  
+        |  .     |/ \_) |  | |  |   |  |   |  | |( OO ) '..`''.) 
+        |  |\    |    \ |  | |  |   |  |   |  | | `-' /.-._)   \ 
+        |  | \   |     `'  '-'  '   |  |  ('  '-'(_.-' \       / 
+        `--'  `--'       `-----'    `--'    `-----'     `-----'  
+
+    Type "help" if you need to see a list of commands and their usages.
+
+    Enter command:
+1. Type some word and press enter to let the execution proceed to the end.
 ## Build automation using Gradle
 
 * This project uses Gradle for build automation and dependency management. It includes a basic build script as well (i.e. the `build.gradle` file).
@@ -39,7 +44,7 @@ Prerequisites: JDK 11 (use the exact version), update Intellij to the most recen
 
 ### JUnit tests
 
-* A skeleton JUnit test (`src/test/java/seedu/duke/DukeTest.java`) is provided with this project template. 
+* A skeleton JUnit test (`src/test/java/seedu/notus/NotusTest.java`) is provided with this project template. 
 * If you are new to JUnit, refer to the [JUnit Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/junit.html).
 
 ## Checkstyle
@@ -62,3 +67,12 @@ Steps for publishing documentation to the public:
 1. Scroll down to the `GitHub Pages` section.
 1. Set the `source` as `master branch /docs folder`.
 1. Optionally, use the `choose a theme` button to choose a theme for your documentation.
+
+## Acknowledgments 
+
+1. References were made to [addressbook-level2](https://se-education.org/addressbook-level2/) for the structure of the classes and packages. The structures have been modified to meet the needs of our application.
+1. Used [Jcolor](https://github.com/dialex/JColor) 3rd-party library.
+1. Used [jansi](https://fusesource.github.io/jansi/) 3rd-party library.
+1. 'NotUS' ASCII art code adapted from [http://patorjk.com/software/taag/#p=display&f=Ghost&t=NotUS](http://patorjk.com/software/taag/#p=display&f=Ghost&t=NotUS)
+1. 'Bye' ASCII art code adapted from [https://patorjk.com/software/taag/#p=display&f=Ghost&t=Bye](https://patorjk.com/software/taag/#p=display&f=Ghost&t=Bye)
+1. Casper ASCII art code referenced from [https://www.asciiart.eu/cartoons/casper](https://www.asciiart.eu/cartoons/casper)

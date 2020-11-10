@@ -1,0 +1,39 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+Package " "<<Rectangle>>{
+    Class StorageManager
+    Class InterfaceManager
+    Class Notebook
+    Class Timetable
+    Class TagManager
+    Class ParserManager
+    Class Command
+    Class Notus
+    Class Formatter
+    Class SystemException
+    Class Parser
+}
+
+Notus -left> InterfaceManager
+Notus -down-> ParserManager
+Notus -right> Command
+ParserManager -up-> Command
+ParserManager -right> Parser
+Parser -> Command
+
+Notus -up-> StorageManager
+Notus -up-> Notebook
+Notus -up-> Timetable
+Notus -up-> TagManager
+
+Command -up> StorageManager
+Command -up> Notebook
+Command -up> Timetable
+Command -up> TagManager
+
+Command ..right> Formatter
+
+@enduml

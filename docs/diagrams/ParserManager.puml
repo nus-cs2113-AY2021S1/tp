@@ -1,0 +1,49 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class "{abstract} \n Parser" {
+<u># CONTAINS_TAG_COLOR_INFO: int</u>
+<u># NULL_INDEX: int</u>
+<u># INSTRUNCTIONS_INPUT_CONTENTS: String </u>
+# userMessage: String
++ parse(): Command {abstract}
+<u>splitInfoDetails(String): ArrayList<String[]></u>
+<u>checkBlank(String, SystemException.ExceptionType): String</u>
+<u>handleTagPrefix(String[]): Tag</u>
+<u>+ inputContent(): ArrayList<String></u>
+<u>+ sortByKey(Map<Integer, String>): Map<Integer, String></u>
+<u>+ addToLists(String, Map<Integer, String>, String): Map<Integer, String></u>
+}
+
+class ParseXYZCommand {
++ ParseXYZCommand()
++ parse(): Command
+}
+
+class XYZCommand {
+}
+
+class ParserManager {
++ parseCommand(String): Command
+}
+
+ParserManager "creates" -down-> ParseXYZCommand
+ParserManager -> Command
+
+ParseXYZCommand -left|> "{abstract} \n Parser"
+ParseXYZCommand "creates" --up> XYZCommand
+XYZCommand -up|> Command
+
+note right of XYZCommand
+XYZCommand = AddNoteCommand,
+AddEventCommand, etc
+end note
+
+note right of ParseXYZCommand
+ParseXYZCommand = ParseAddNoteCommand,
+ParseAddEventCommand, etc
+end note
+
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class InterfaceManager {
+- in: Scanner
+- out: PrintStream
++ InterfaceManager(InputStream, PrintStream)
++ getUserCommandInput(): String
++ prints(String): void
+}
+
+@enduml

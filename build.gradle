@@ -10,8 +10,13 @@ repositories {
 }
 
 dependencies {
+    implementation 'junit:junit:4.12'
+    implementation 'org.junit.jupiter:junit-jupiter:5.4.2'
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
+    // https://mvnrepository.com/artifact/com.diogonunes/JColor
+    compile group: 'com.diogonunes', name: 'JColor', version: '5.0.1'
+    compile group: 'org.fusesource.jansi', name: 'jansi', version: '1.18'
 }
 
 test {
@@ -29,11 +34,11 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "seedu.notus.Notus"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "[CS2113-T13-1][NotUS]"
     archiveClassifier = null
 }
 
@@ -42,5 +47,6 @@ checkstyle {
 }
 
 run{
+    enableAssertions = true
     standardInput = System.in
 }

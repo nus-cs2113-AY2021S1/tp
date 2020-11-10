@@ -1,0 +1,16 @@
+title: "NotUS"
+theme: minima
+
+header_pages:
+  - AboutUs.md
+  - UserGuide.md
+  - DeveloperGuide.md
+  - DevelopmentPractices.md
+
+markdown: kramdown
+
+repository: "AY2021S1-CS2113-T13-1/tp"
+github_icon: "diagrams/github-icon.png"
+
+plugins:
+  - jemoji

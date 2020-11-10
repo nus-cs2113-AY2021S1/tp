@@ -1,0 +1,13 @@
+@startuml
+
+!define LOGIC_COLOR #3333C4
+!define LOGIC_COLOR_T1 #7777DB
+!define LOGIC_COLOR_T2 #5252CE
+!define LOGIC_COLOR_T3 #1616B0
+!define LOGIC_COLOR_T4 #101086
+!define YELLOW_COLOR #fefe69
+!define RED_COLOR #fa867e
+!define GREEN_COLOR #98fb98
+!define BLUE_COLOR #bdd7ee
+
+@enduml

@@ -1,0 +1,72 @@
+@startuml
+
+hide footbox
+
+participant ":NotUS" as NotUS
+participant ":ParseAddNoteCommand" as ParseAddNoteCommand
+participant ":AddNoteCommand" as AddNoteCommand
+participant ":Parser" as Parser
+participant ":TagManager" as TagManager
+participant ":Notebook" as Notebook
+participant ":StorageManager" as StorageManager
+participant ":Formatter" as Formatter
+
+activate NotUS
+
+create ParseAddNoteCommand
+activate ParseAddNoteCommand
+
+create AddNoteCommand
+ParseAddNoteCommand -> AddNoteCommand: <<create>>
+
+activate AddNoteCommand
+AddNoteCommand --> NotUS
+deactivate AddNoteCommand
+deactivate ParseAddNoteCommand
+
+deactivate ParseAddNoteCommand
+
+NotUS -> AddNoteCommand: setData()
+
+activate AddNoteCommand
+AddNoteCommand --> NotUS
+deactivate AddNoteCommand
+
+NotUS -> NotUS: executeCommand()
+
+destroy ParseAddNoteCommand
+activate NotUS
+NotUS -> AddNoteCommand: execute()
+
+activate AddNoteCommand
+AddNoteCommand -> Parser: inputContent()
+activate Parser
+return
+
+deactivate Parser
+AddNoteCommand -> TagManager: rebindTags()
+activate TagManager
+return
+deactivate TagManager
+
+AddNoteCommand -> Notebook: addNote()
+activate Notebook
+return
+deactivate Notebook
+
+AddNoteCommand -> StorageManager: saveNote()
+activate StorageManager
+return
+deactivate StorageManager
+
+AddNoteCommand -> Formatter: formatNote()
+activate Formatter
+return
+deactivate Formatter
+
+AddNoteCommand --> NotUS: result
+deactivate AddNoteCommand
+
+deactivate NotUS
+
+@enduml

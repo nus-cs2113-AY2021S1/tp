@@ -1,0 +1,56 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+Note --|> "{abstract} \n TaggableObject"
+Notebook "1" --> "*" Note
+Note "*"-> Tag
+"{abstract} \n TaggableObject" "*" --> Tag
+
+class Notebook {
+-notes: <ArrayList<Note>
+-archivedNotes: <ArrayList<Note>
++addNote(Note): Note
++getNote(int): Note
++getNote(String): boolean
++getNote(String, boolean): Note
++setNotes(int, Note): boolean
++getNoteIndex(Note): int
++getSize(): int
++findNotes(String): ArrayList<Note>
++deleteNote(int): boolean
++deleteNote(String): boolean
++checkPinned(): boolean
++getPinnedNotes(): ArrayList<Note>
++getPinnedNotes(ArrayList<Note>): ArrayList<Note>
++getUnpinnedNotes(): ArrayList<Note>
++getUnpinnedNotes(ArrayList<Note>): ArrayList<Note>
++getSortedList(Boolean, Boolean): ArrayList<Note>
++getSortedList(Boolean, Boolean, ArrayList<Note>): ArrayList<Note>
++archiveNotes(int): String
++archiveNotes(String): boolean
++unarchiveNotes(int): String
++unarchiveNotes(String): boolean
++getArchivedNoteSize(): int
+}
+
+class Note {
+-title: String
+-content: ArrayList<String>
+-isPinned: Boolean
+-isArchived: boolean
++getContentString(): String
++getPinnedString(): String
++getIsArchivedString(): String
++togglePinned(): void
++toggleArchived(): void
++toSaveString(): String
+}
+
+class "{abstract} \n TaggableObject" {
+-tags: ArrayList<Tag>
++getTagsName(): String
+}
+
+@enduml

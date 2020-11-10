@@ -1,0 +1,42 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+Timetable --> "*" Event
+Timetable --> "*" Event
+Timetable --> "*" Event
+Timetable --> "*" Event
+Timetable --> "*" Event
+
+
+class Timetable {
++Timetable()
++Timetable(ArrayList<Event>)
++getEvents(): ArrayList<Event>
++getEvent(int): Event
++setEvents(ArrayList<Event>): void
++setEvent(int, Event): void
++addEvent(Event): void
++addEvent(int, Event): void
++deleteEvent(int): void
++getDailyEvents(): ArrayList<Event>
++getAllNonRecurringEvents(): ArrayList<Event>
++getAllRecurringEventsArray(): ArrayList<Event>
++getYearTimetable(int): HashMap<Month, HashMap<Integer, ArrayList<Event>>>
++getMonthTimetable(int, int): HashMap<Month, HashMap<Integer, ArrayList<Event>>>
++getTimetable(LocalDate, LocalDate): HashMap<Month, HashMap<Integer, ArrayList<Event>>>
++getAllEvents(LocalDate, LocalDate): ArrayList<Event>
+-getNonRecurringEvents(LocalDate, LocalDate, ArrayList<Event>): ArrayList<Event>
+-getRecurringEvents(LocalDate, LocalDate, ArrayList<? extends RecurringEvent>: ArrayList<Event>
+-getAllRecurringEvents(LocalDate, LocalDate, ArrayList<? extends RecurringEvent>: ArrayList<Event>
+-getEventSetReminder(ArrayList<Event>): PriorityQueue<Reminder>
++getReminders(): ArrayList<Reminder>
++getClashingEvents(Event): ArrayList<Event>
+}
+
+class Event {
+}
+
+
+@enduml
