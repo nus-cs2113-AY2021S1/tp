@@ -60,14 +60,16 @@ public class WritingsLoader {
 
         try {
             while (s.hasNext()) {
-                String currentLine = s.nextLine();
 
-                // skip the first two line for the information of total number of writings in the list
-                currentLine = s.nextLine();
-                if (s.hasNext()) {
+                String currentLine = s.nextLine();
+                if (countWritings == 0) {
+                    // skip the first two line for the information of total number of writings in the list
                     currentLine = s.nextLine();
-                } else {
-                    return 0;
+                    if (s.hasNext()) {
+                        currentLine = s.nextLine();
+                    } else {
+                        return 0;
+                    }
                 }
                 //Reset the content to blank
                 content = "";
