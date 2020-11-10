@@ -301,7 +301,6 @@ The diagram below shows the overall architecture for `Event` feature.
 
 ![](EventDiagram/eventArchi.png)
 
-
 There are a total of 9 commands under `Event` feature.
  `CommandEventAdd`, `CommandEventDel`, `CommandEventList`  ,`CommandEventStatus`, `CommandSearchEvent` , `CommandEventCountdown` , `CommandAddEventAttendance`,`CommandDelEventAttendance`, `CommandViewEventAttendence`. 
 
