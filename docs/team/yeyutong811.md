@@ -43,5 +43,9 @@ This is the link to view the code and documentations that I have contributed to 
  * Added feature description and design considerations for `hr` feature and
   `addAttendance`, `delAttendance`, `listAttendance` in `event` part   
  
+ **Contributions beyond the project team:**  
+ * Reported bugs in the program for other teams. Examples: [1](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/186), [2](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/185), [3](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/183)  
+ * Gave feedback to documentations of other teams.   
+
 
 
