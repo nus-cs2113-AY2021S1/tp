@@ -19,7 +19,7 @@ The latest release of Fluffle can be accessed from **[here](https://github.com/A
 
 #### 2.2.2 Miscellaneous enhancements
 - Fixed print format for `noun`, `verb` and `adjective` commands. [#293](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/293)
-- Enhanced print format for some word-related `help` commands and make them in sync with the User Guide. [#306](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/306)
+- Enhanced print format for some word-related `help` commands and made them in sync with the User Guide. [#306](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/306)
 - Added JUnit test methods for filter-words-related classes. [#150](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/150)
 
 ### 2.3 Contributions to documentation
@@ -43,14 +43,14 @@ Java-doc comments are provided for most of the public classes and methods that I
 - Added v2.0 entries in "Appendix C: User Stories" table.
 - Added Appendix D and Appendix E.
 
-### 2.5 Contributions to team-based tasks
+### 2.4 Contributions to team-based tasks
 - Setup the team repo as instructed by the details on the module website.
-- Kept an eye on the module's requirements and remind team members to finish their tasks and credit on the tP progress dashboard.
+- Kept an eye on the module's requirements and reminded team members to finish their tasks and got credit on the tP progress dashboard.
 - Assigned team members to their issues.
 - Released v1.0 and v2.0. [v1.0](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases/tag/v1.0) [v2.0](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases/tag/v2.0)
 - Reported issues and evaluated team members' code, sometimes helped them fix the issues, too. [#187](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/187) [#223](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/223/files) [#274](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/274)
 - Refactored the packages to be more OOP. [#315](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/315)
 
-### 2.6 Contributions beyond the project team
+### 2.5 Contributions beyond the project team
 - Reviewed and gave thoughtful feedback on other team's Developer Guide in tutorial. [#12](https://github.com/nus-cs2113-AY2021S1/tp/pull/12)
 - Reported bugs for other team's project in mock Practical Exam. [ped](https://github.com/hungvo0603/ped/issues)

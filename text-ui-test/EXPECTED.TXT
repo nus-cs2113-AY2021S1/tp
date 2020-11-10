@@ -29,6 +29,7 @@ Available commands:
 - save bunny
 - delete bunny
 - random bunny
+- reset bunny
 - list
 - list filter words
 - start

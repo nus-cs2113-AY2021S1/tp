@@ -22,11 +22,19 @@ public class BunnyListTest {
         }
     }
 
-
     @Test
-    void numBunny() {
+    void numBunny_checkCountValue_sevenEntriesTest() {
         BunnyList.bunniesList.clear();
         initializeBunnyListTestDatabase();
         assertEquals(7, BunnyList.numBunny());
+    }
+
+    @Test
+    void clearAllBunny_clearWholeList_returnListSizeZero() {
+        BunnyList.bunniesList.clear();
+        initializeBunnyListTestDatabase();
+        assertEquals(7, BunnyList.numBunny());
+        BunnyList.clearAllBunny();
+        assertEquals(0, BunnyList.numBunny());
     }
 }
