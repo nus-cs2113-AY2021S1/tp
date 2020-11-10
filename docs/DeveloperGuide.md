@@ -298,7 +298,7 @@ The sequence diagram of changing information of a finance log entry is shown bel
 
 (By: Varsha)<br/>
 
-The diagram below shows the overall architecture for `Event` feature. 
+The diagram below shows the overall architecture for `Event` feature. <br/>
 
 
 ![](EventDiagram/eventArchi.png)
