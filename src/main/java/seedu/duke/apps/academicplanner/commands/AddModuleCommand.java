@@ -118,7 +118,7 @@ public class AddModuleCommand extends Command {
         validateInputGrade(gradeValue);
 
         if (isRetake && !moduleValidator.isRetakeGrade(gradeValue)
-                && semesterValue < getLatestFailSemester(currentPerson.getModulesList(),moduleCode)) {
+                && semesterValue < getLatestFailSemester(currentPerson.getModulesList(), moduleCode)) {
             throw new AcademicException(INVALID_RETAKE_GRADE);
         }
 
