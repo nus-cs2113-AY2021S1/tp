@@ -2,6 +2,7 @@
 
 ## Table of Contents
 [Introduction](#introduction) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Background](#background) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Purpose](#purpose) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Scope](#scope) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Design Goals](#design-goals) <br>
@@ -10,54 +11,62 @@
 [Setting up the project in your computer](#setting-up-the-project-in-your-computer) <br>
 [Design](#design) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Technological view](#technological-overview) <br>
-[Architecture](#architecture) <br>
-[Writing Manager Component](#writing-manager-component) <br>
-[Bunny Manager Component](#bunny-manager-component) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Saving bunnies via the program commands](#saving-bunnies-via-the-program-commands) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Loading bunnies directly into the bunny.txt file](#loading-bunnies-directly-into-the-bunnytxt-file) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Usage and storage](#usage-and-storage) <br>
-[Word Manager Component](#word-manager-component) <br>
-[Name Manager Component](#name-manager-component) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Architecture](#architecture) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Writing Manager Component](#writing-manager-component) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Bunny Manager Component](#bunny-manager-component) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Saving bunnies via the program commands](#saving-bunnies-via-the-program-commands) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Loading bunnies directly into the bunny.txt file](#loading-bunnies-directly-into-the-bunnytxt-file) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Usage and storage](#usage-and-storage) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Word Manager Component](#word-manager-component) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Name Manager Component](#name-manager-component) <br>
 [Implementation](#implementation) <br>
-[User interaction overview](#user-interaction-overview) <br>
-[Writing Features](#writing-features) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Constitution (member classes)](#constitution-member-classes) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Getting reminder for writings scheduled on a specific date](#getting-reminder-for-writings-scheduled-on-a-specific-date) <br>
-[Word Features](#word-features) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Adding a `noun`](#adding-a-noun) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Adding a `verb`](#adding-a-verb) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Adding an `adjective`](#adding-an-adjective) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Listing words](#listing-words) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Generating three random words](#generating-three-random-words) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Filtering words](#filtering-words) <br>
-[Bunny class family overivew](#bunny-class-family-overivew) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [`BunnyList`, `BunnyFilter`, and `DeleteBunny` class overview](#bunnylist-bunnyfilter-and-deletebunny-class-overview) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [`BunnySaver` and `BunnyLoader` class overview](#bunnysaver-and-bunnyloader-class-overview) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [`GenBunny` class overview](#genbunny-class-overview) <br>
-[Bunny command implementations](#bunny-command-implementations) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Adding bunny idea `bunny`](#adding-bunny-idea-bunny) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Listing bunny ideas `list bunny`](#listing-bunny-ideas-list-bunny) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Filtering bunny ideas: `filter bunny`](#filtering-bunny-ideas-filter-bunny) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Saving bunny ideas: `save bunny`](#saving-bunny-ideas-save-bunny) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Deleting a bunny idea: `delete bunny`](#deleting-a-bunny-idea-delete-bunny) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Generating a random bunny idea: `random bunny`](#generating-a-random-bunny-idea-random-bunny) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Resetting the entire list of Bunny ideas: `reset bunny`](#resetting-the-entire-list-of-bunny-ideas-reset-bunny) <br>
-[Names class family](#names-class-family) <br>
-[ClearLoader class](#clearloader-class) <br>
-[Aesthetic components](#aesthetic-components) <br>
-[Changing line divider in Fluffle: `divider`](#changing-line-divider-in-fluffle-divider) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[User interaction overview](#user-interaction-overview) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Writing Features](#writing-features) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Constitution (member classes)](#constitution-member-classes) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Getting reminder for writings scheduled on a specific date](#getting-reminder-for-writings-scheduled-on-a-specific-date) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Word Features](#word-features) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;[Adding a `noun`](#adding-a-noun) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;[Adding a `verb`](#adding-a-verb) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;[Adding an `adjective`](#adding-an-adjective) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;[Listing words](#listing-words) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;[Generating three random words](#generating-three-random-words) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;[Filtering words](#filtering-words) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Bunny class family overivew](#bunny-class-family-overivew) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;[`BunnyList`, `BunnyFilter`, and `DeleteBunny` class overview](#bunnylist-bunnyfilter-and-deletebunny-class-overview) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [`BunnySaver` and `BunnyLoader` class overview](#bunnysaver-and-bunnyloader-class-overview) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;[`GenBunny` class overview](#genbunny-class-overview) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Bunny command implementations](#bunny-command-implementations) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Adding bunny idea `bunny`](#adding-bunny-idea-bunny) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Listing bunny ideas `list bunny`](#listing-bunny-ideas-list-bunny) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Filtering bunny ideas: `filter bunny`](#filtering-bunny-ideas-filter-bunny) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Saving bunny ideas: `save bunny`](#saving-bunny-ideas-save-bunny) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Deleting a bunny idea: `delete bunny`](#deleting-a-bunny-idea-delete-bunny) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Generating a random bunny idea: `random bunny`](#generating-a-random-bunny-idea-random-bunny) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Resetting the entire list of Bunny ideas: `reset bunny`](#resetting-the-entire-list-of-bunny-ideas-reset-bunny) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Names class family](#names-class-family) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Overview of main function](#overview-of-main-function) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [`Names` Storage](#names-storage) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [`Names` Exception Handling](#names-exception-handling) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Names method implementation](#names-method-implementation) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [`getName` method](#getname-method) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [`filterNames` method](#filternames-method) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [`listNames` method](#listnames-method) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [`addName` method](#addname-method) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [`deleteName` method](#deletename-method) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ClearLoader class](#clearloader-class) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Aesthetic components](#aesthetic-components) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Changing line divider in Fluffle: `divider`](#changing-line-divider-in-fluffle-divider) <br>
 [Testing](#testing) <br>
-[Using JUnit test](#using-junit-test) <br>
-[Using Gradle](#using-junit-test) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Using JUnit test](#using-junit-test) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Using Gradle](#using-junit-test) <br>
 [Appendices](#appendices) <br>
-[Appendix A: Product scope](#appendix-a-product-scope) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Target user profile](#target-user-profile) <br>
-[Appendix B: Value proposition](#appendix-b-value-proposition) <br>
-[Appendix C: User Stories](#appendix-c-user-stories) <br>
-[Appendix D: Non-Functional Requirements](#appendix-d-non-functional-requirements) <br>
-[Appendix E: Instructions for manual testing](#appendix-e-instructions-for-manual-testing) <br>
-&nbsp;&nbsp;&nbsp;&nbsp; [Launch and Shutdown](#launch-and-shutdown) <br>
-
+&nbsp;&nbsp;&nbsp;&nbsp;[Appendix A: Product scope](#appendix-a-product-scope) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Target user profile](#target-user-profile) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Appendix B: Value proposition](#appendix-b-value-proposition) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Appendix C: User Stories](#appendix-c-user-stories) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Appendix D: Non-Functional Requirements](#appendix-d-non-functional-requirements) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Appendix E: Instructions for manual testing](#appendix-e-instructions-for-manual-testing) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Launch and Shutdown](#launch-and-shutdown) <br>
 
 ## Introduction
 
@@ -87,6 +96,8 @@ With the aim of increasing maintainability of Fluffle, separated packages and cl
 |CLI|Command-line Interface. </br></br>A command-line interface (CLI) processes command to a computer program in the form of lines of text. The program in the computer will read the command and start proceeding.|
 |Gradle|A build tool used for automated testing. It checks for code style violations and runs unit tests to ensure the code is functional between iterations.| 
 |IntelliJ|An integrated development environment that used to write and test java code.|
+
+[Jump to top](#developer-guide)
 
 ## Setting up the project in your computer
 **Prerequisites:**
@@ -125,6 +136,8 @@ What can I do for you?
 What is your name?
 ```
 
+[Jump to top](#developer-guide)
+
 ## Design
 
 The following sections describe the high-level overview of our application, Fluffle.
@@ -132,8 +145,12 @@ The following sections describe the high-level overview of our application, Fluf
 ### Technological overview
 The Integrated Development Environment, IntelliJ, is used to develop our program. The program is written in Java, and uses Gradle for building and testing purposes. Our source code is mostly original, with some functions imported from the java.util package. The remaining packages and classes which form the structure of our program are independently developed.
 
+[Jump to top](#developer-guide)
+
 ### Project overview
 Fluffle is built using IntelliJ and all concepts for the user interfaces, as well as the backend data management of the application, was created by our team. Due to the restrictions of the project, the main file format used for storage is .txt. We opted to save the data in the text files in a user readable format as opposed to the comma separated format as it is easier for users to directly refer to and edit their saved files.
+
+[Jump to top](#developer-guide)
 
 ### Architecture
 The following figure describes the overall architecture of Fluffle.
@@ -149,9 +166,12 @@ The design of Fluffle contains four main components:
 
 All components can be accessed by the user through Fluffle's UI. On loading Fluffle, all components will be loaded from the storage. On exiting Fluffle, all components will be saved to the storage.
 
+[Jump to top](#developer-guide)
+
 ### Writing Manager Component
 
 Given below is the overall architecture of Fluffle's writing component.
+
 <img align = "center" alt = "Writing Manager Component" src = "graphics/diagrams/WritingMangerComponent.PNG"></img>
 <p align = "center"><i><b>Figure 2: Writing manager architecture</b></i></p>
 
@@ -159,6 +179,8 @@ In Fluffle, the writings are saved in the local hard drive text file `writings.t
 - Adding writings to the database.
 - Deleting writings from the database.
 - Getting a reminder to continue some writings on a specific date.
+
+[Jump to top](#developer-guide)
 
 ### Bunny Manager Component
 There are two methods for the user to load their bunny ideas into the application: loading it using the app or directly editing the `bunny.txt` data file.
@@ -186,7 +208,7 @@ number of plot bunnies: 2
 
 Since the program only searches for the idea and genre tag, it is lenient when reading in the bunny such that if the user keys in the wrong line divider or index it can still read it in. It can excuse spacing and typo as long as each Bunny is listed with an idea tag followed by its corresponding genre tag. This makes it easy for the user to directly edit the `bunny.txt` file if they wish. It will read the file until it can no longer has a next line in `bunny.txt` to read from.
 
-#### Usage and storage 
+#### Usage and storage
 The diagram above is describes the storage of the Bunny ideas in Fluffle. 
 
 ![Bunny Manager Component](graphics/diagrams/Bunny_manager_component.png)
@@ -196,22 +218,22 @@ Transferring `Bunny` ideas from the `bunniesList` to the `bunny.txt` file via th
 * When the user calls the `save bunny` command from the CLI, the Bunny from bunnies list are read by `saveAllBunny` command.
 * The `bunniesList` ArrayList is passed by the `commandExecutor` function in the `CommandExecutor` class.
 * The `saveAllBunny` command first prints the number of `Bunny` objects found in the `bunnyList` as follows:
-    ```
-    number of plot bunnies: 10
-    --------------------------------------------------------------
-    ```
+```
+number of plot bunnies: 10
+--------------------------------------------------------------
+```
 
 * The `BunnySaver` class formats the idea and genre into neatly tagged strings, numbered following their index in the ArrayList and seperated by plain line dividers as follows:
-    ```
-    1.
-      idea: bunny idea 1
-      genre: none
-    --------------------------------------------------------------
-    2.
-      idea: test idea 2
-      genre: none
-    --------------------------------------------------------------
-    ```
+```
+1.
+  idea: bunny idea 1
+  genre: none
+--------------------------------------------------------------
+2.
+  idea: test idea 2
+  genre: none
+--------------------------------------------------------------
+```
 
 Transferring `Bunny` ideas from the `bunny.txt` to the `bunniesList` file via the BunnyLoader:
 * The `BunnyLoader` class handles the loading of saved `Bunny` objects from the `bunny.txt` file into the `bunniesList`. 
@@ -220,11 +242,13 @@ Transferring `Bunny` ideas from the `bunny.txt` to the `bunniesList` file via th
 
 Note that all the other functions in the bunny related classes such as `BunnyList`, `DeleteBunny`, `BunnyFilter` and `GenBunny` can also access this `bunniesList` ArrayList to perform their various functions as it is passed by reference from the `commandExecutor` function, which imports the `bunniesList` from the `BunnyList` class. Find out more [here](#bunny-class-family).
 
+[Jump to top](#developer-guide)
+
 ### Word Manager Component
 Given below is the general architecture of our Word Manager Component.
 
 ![WordManagerComponent](graphics/diagrams/WordManagerComponent.PNG)
-<p align = "center"><i><b>Figure 2: Word Manager Architecture</b></i></p>
+<p align = "center"><i><b>Figure 4: Word Manager Architecture</b></i></p>
 
 In Fluffle, the words list is stored in the local hard drive location `data/words.txt`. 
 Fluffle can hold three types of word: `Noun`, `Verb` and `Adjective`. 
@@ -233,7 +257,19 @@ The operations that can be done on the words list are:
 - Getting three random words.
 - Filtering words (by word types or by substrings).
 
+[Jump to top](#developer-guide)
+
 ### Name Manager Component
+
+Given below is the overall architecture of Name Component.
+
+![NameComponent](graphics/diagrams/Names.PNG)
+<p align = "center"><i><b>Figure 5: Name Manager Architecture</b></i></p>
+
+Fluffle can hold a list of names for your reference when writing. The names are stored in a text file named `Names.txt`. Some operations that can be done on names are:
+- Adding a new name.
+- Removing an exisiting name.
+- Generating a random name.
 
 ## Implementation
 
@@ -243,6 +279,8 @@ The operations that can be done on the words list are:
 After the initial logo printing and registration step, the `main` in the `Duke` class enters a while loop, which will only exit when the `exit` command is detected. This component handles the processing of various commands in Fluffle and makes it easier for developers to add new commands without interfering with implementation of other commands.
 
 For simplicity when the `CommandExecutor` class is referenced in later UML diagrams in this document, you may assume that it is a continuation of the `excecuteCommand` section of this diagram.
+
+[Jump to top](#developer-guide)
 
 ### Writing Features
 #### Constitution (member classes)
@@ -257,12 +295,12 @@ This Writings class is also the parent of 2 subclasses which are Poem and Essay.
 User: Represents the Users registered to the System
 
 ![UML Class diagram for WritingList family](graphics/diagrams/classDiagram_WritingList.png)
-<p align = "center"><i><b>Figure 3: WritingList family UML diagram</b></i></p>
+<p align = "center"><i><b>Figure 6: WritingList family UML diagram</b></i></p>
 
 The above class diagram describes the overall architecture of Writings class functionalities and associations within the scope of related classes. By checking “start”, “type” command with checkStartCommand() then checkTypeCommand() methods on that sequence respectively, the user should be able to access the process of creating and saving new writings into the database. During this process, the user has the ability of choosing their preferred type of writings(which are either poem or essay at this stage)
 
 ![UML WritingList family sequence diagram](graphics/diagrams/writingList_whileAddingWriting.png)
-<p align = "center"><i><b>Figure 4: General interactions between member classes when generating a new writing</b></i></p>
+<p align = "center"><i><b>Figure 7: General interactions between member classes when generating a new writing</b></i></p>
 
 **Implementation**
 
@@ -288,12 +326,14 @@ When the user keys in the command `remind DATE`, where `DATE` is the date the us
 1. The Java stream is used to filter the list of writings and get which ones are scheduled for that `DATE`.
 1. Private `WritingReminder.printWritingsOnADate()` will be called to print out the result.
 
+[Jump to top](#developer-guide)
+
 ### Word Features
 Fluffle contains a word bank that stores words which are keyed in by the user, together with its meaning. The diagram
 below shows the implementation of the words, as well as the word list classes in the program.
 
 ![UML Words class diagram](graphics/diagrams/Words_UML_Diagram.png)
-<p align = "center"><i><b>Figure 5: Words UML Class Diagram</b></i></p>
+<p align = "center"><i><b>Figure 8: Words UML Class Diagram</b></i></p>
 
 `WordsList` is an ArrayList which stores the objects of `Words` class. Each object has the following attributes:
 - `Description`: the word itself
@@ -325,7 +365,7 @@ This feature generates three random words for the user.
 This feature allows users to getting words as they wish. The diagram below shows the overall architecture of filter words functionality.
 
 ![UML Filter word class diagram](graphics/diagrams/classDiagram_FilterWords.png)
-<p align = "center"><i><b>Figure 6: Filter word UML Class Diagram</b></i></p>
+<p align = "center"><i><b>Figure 9: Filter word UML Class Diagram</b></i></p>
 
 **Implementation**
 
@@ -344,9 +384,9 @@ The following sequence diagram shows how the components interact with each other
 
 ![UML Filter word sequence diagram](graphics/diagrams/Sequence_FilterWords.png)
 
-<p align = "center"><i><b>Figure 7: Interactions between components for the command filter -continue by\start limit\10 -cs -cg</b></i></p>
+<p align = "center"><i><b>Figure 10: Interactions between components for the command filter -continue by\start limit\10 -cs -cg</b></i></p>
 
-In **Figure 7** above, the flow of the program after it enters the filter process is as follows:
+In **Figure 10** above, the flow of the program after it enters the filter process is as follows:
 1. The `CommandExecutor` calls `FilterExecutor.executeFilterCommand()`.
 1. In the method `executeFilterCommand`, `FilterType.getTypeOfFilter()` is called to get the filter mode, which is `START`.
 1. Then, `FilterCommandSlicer.isNewFilter()`, `FilterCommandSlicer.getWordPrintLimitFromFilterCommand()`, `FilterCommandSlicer.getTargetedStringTags()` is called to check whether the program should continue on the last filter list and to get print limit as well as the strings used for filtering.
@@ -357,9 +397,11 @@ In **Figure 7** above, the flow of the program after it enters the filter proces
 1. Filter list is printed by calling `FilterList.printFilterList()`.
 1. The filter process terminates.
    
+[Jump to top](#developer-guide)
+
 ### Bunny class family overivew
 ![UML Bunny class diagram](graphics/diagrams/Class_diagram_bunny.png)
-<p= "center"><i><b>Figure 8:  Bunny ideas UML Class Diagram</b></i></p>
+<p align = "center"><i><b>Figure 11:  Bunny ideas UML Class Diagram</b></i></p>
 
 The above class diagram describes the overall architecture of the bunny list functionalities. Recall that the term bunny refers to  plot ideas that have yet to be devloped. 
 The above classes provide the functionality of storing such ideas in an organised manner that can easily be searched, saved and loaded.
@@ -373,11 +415,13 @@ The `BunnySaver` class accesses the `bunniesList` and overwrites the current `bu
 #### `GenBunny` class overview
 The `GenBunny` class can access the `bunniesList` as well. The function `pickRandomBunny` from the `GenBunny` class first randomly generates an integer between 0 and the max number of `Bunny` idea in the `bunniesList` ArrayList. It then selects that indexed `Bunny` from the `bunniesList` and returns it to the user. This allows the user to easily choose an idea to start working on without struggling to decide which idea to use.
 
+[Jump to top](#developer-guide)
+
 ### Bunny command implementations
 
 #### Adding bunny idea `bunny`
 ![UML BunnyList sequence diagram](graphics/diagrams/Sequence_diagram_bunny.png)
-<p align = "center"><b><i>Figure 9:  Bunny list UML Sequence Diagram</i></b></p>
+<p align = "center"><b><i>Figure 12:  Bunny list UML Sequence Diagram</i></b></p>
 
 The user may call upon the `bunny` command to add bunnies to the list. The user input is first processed by the `extractCommandType` method from the `CommandChecker` class, and the command type detected is sent to the `executeCommand` method from the `CommandExecutor` class. The `addBunny` function is called by this method accordingly. The `addBunny` command calls the `parseSingleCharacterTaggedParamsFromUserInput` method from the `Parsers` class to extract the `idea` and `genre` arguments from the command. These are then used to create a new `Bunny` object that is then added to the `bunniesList` ArrayList. The `addBunnyMessage` method from `UI` is then called to print the message that the `Bunny` idea object has been sucessfully added to the ArrayList.
 
@@ -399,14 +443,16 @@ The `random bunny` command uses the `pickRandomBunny` method of the `GenBunny` c
 #### Resetting the entire list of Bunny ideas: `reset bunny`
 The `reset bunny` command simply calls `clearAllBunny` function to clear the `bunniesList` in the current run of the program. To save the cleared list the function simply reminds the user that they should use the `save bunny` command mentioned above.
 
+[Jump to top](#developer-guide)
+
 ### Names class family
 
 ![Names UML Class Diagram](graphics/diagrams/classDiagram_Names.png)
-<p align = "center"><i><b>Figure 10: Names UML Class Diagram</b></i></p>
+<p align = "center"><i><b>Figure 13: Names UML Class Diagram</b></i></p>
 
 #### Overview of main function
 
-The above class diagram (Figure 10) describes the overall architecture of the name list functionalities. The `Names` class has the protected ArrayList of names, `nameList`, that is accessed by the `Names` class method `getName` which randomly gets a selected name from the `nameList` ArrayList. Similarly, `nameList` is also accessed by the `Names` class which contains the `filterNames` function which can filter through the list and obtain names with specified keywords using the command `filter name <NAME>`, where the user may choose to omit the `NAME` when running the command. Similarly, `nameList` is also accessed by the `Names` class which contains the `listNames` function which displays all the names stored in the `nameList` ArrayList. This is the same as the `filterNames` function when given no input String. Similarly, `nameList` is also accessed by the `Names` class which contains the `addName` function which adds a name to the list of names stored in the `nameList` ArrayList using the command `add name <NAME>`. The `NAME` cannot be omitted. Similarly, `nameList` is also accessed by the `Names` class which contains the `deleteName` function which removes a name from the list of names stored in the `nameList` ArrayList. The command to do this is `delete name <INDEX>`. The `INDEX` cannot be omitted, and the range of the `INDEX` can be determined from the `listNames` function above.
+The above class diagram (Figure 13) describes the overall architecture of the name list functionalities. The `Names` class has the protected ArrayList of names, `nameList`, that is accessed by the `Names` class method `getName` which randomly gets a selected name from the `nameList` ArrayList. Similarly, `nameList` is also accessed by the `Names` class which contains the `filterNames` function which can filter through the list and obtain names with specified keywords using the command `filter name <NAME>`, where the user may choose to omit the `NAME` when running the command. Similarly, `nameList` is also accessed by the `Names` class which contains the `listNames` function which displays all the names stored in the `nameList` ArrayList. This is the same as the `filterNames` function when given no input String. Similarly, `nameList` is also accessed by the `Names` class which contains the `addName` function which adds a name to the list of names stored in the `nameList` ArrayList using the command `add name <NAME>`. The `NAME` cannot be omitted. Similarly, `nameList` is also accessed by the `Names` class which contains the `deleteName` function which removes a name from the list of names stored in the `nameList` ArrayList. The command to do this is `delete name <INDEX>`. The `INDEX` cannot be omitted, and the range of the `INDEX` can be determined from the `listNames` function above.
 
 #### Names Storage
 
@@ -414,11 +460,37 @@ The `NamesDB` class accesses the `nameList` and overwrites the current `Names.tx
 
 #### Names Exception Handling
 
-As shown in Figure 10, both the NamesDB class and the Names class will create the `NameException` class. This is a subclass that inherits from the `Exception` superclass and passes the exception message to the superclass. In the event of an exception, it is thrown from the methods in `NamesDB` class and `Names` class and handled by the `NameException` class.
+As shown in Figure 13, both the NamesDB class and the Names class will create the `NameException` class. This is a subclass that inherits from the `Exception` superclass and passes the exception message to the superclass. In the event of an exception, it is thrown from the methods in `NamesDB` class and `Names` class and handled by the `NameException` class.
+
+[Jump to top](#developer-guide)
+
+### Names method implementation
+
+#### `getName` method
+
+Loads the database first so we are working with the latest version of the database. Generates a random number within a range and using that number, we can use it as an index and get a random name from `nameList`. Exceptions are also handled properly.
+
+#### `filterNames` method
+
+Loads the database first so we are working with the latest version of the database. Uses filtering to get the list of names matching the String provided. Returns a collection from the `filteredNames` and checks if any names were matched during the filter. If none, then outputs none and if any are found, all are printed. Exceptions are handled properly using the `NameException` class.
+
+#### `listNames` method
+
+Loads the database first so we are working with the latest version of the database. Prints the list of names found in the updated `nameList`. Checks if there are no names stored in `nameList` and prints an appropriate message.
+
+#### `addName` method
+
+Loads the database first so we are working with the latest version of the database. Strips the given name of all extra white spaces and adds it the ArrayList of names named `nameList`. `nameList` is then passed to `NamesDB`'s method called `updateDB`. `updateDB` will then update the text file stored locally named `Names.txt`. Outputs the success of adding a name if successful and throws Exception to `NameException` if invalid.
+
+#### `deleteName` method
+
+Loads the database first so we are working with the latest version of the database. Using the index received, parse the index accordingly. Will handle exceptions in the case the index is not valid. The index will be used to remove the name entry at that index minus one in the `nameList` ArrayList. The updated `nameList` is then passed to the `NamesDB`'s method called `updateDB`. `updateDB` will then update the text file stored locally named `Names.txt`. Outputs the success of deleting a name if successful and throws Exception to `NameException` if invalid.
+
+[Jump to top](#developer-guide)
 
 ### ClearLoader class
 ![ClearLoader Class sequence diagram](graphics/diagrams/ClearLoader_Sequencediagram.png)
-<p align = "center"><b><i>Figure 11: Sequence diagram of Clear Loader while operating the removing method for the app's writings and words</i></b></p>
+<p align = "center"><b><i>Figure 14: Sequence diagram of Clear Loader while operating the removing method for the app's writings and words</i></b></p>
 
 **Implementation**
 
@@ -441,9 +513,13 @@ As shown in Figure 10, both the NamesDB class and the Names class will create th
 ### Changing line divider in Fluffle: `divider`
 The line divider is saved as a static string in the `UI` class. When the `divider` command is detected, the `changeLineDivider` method from the UI class is called to parse the selected line divider option and the `getDivider` method retrives the new divider String from the `Logos` class and saves it as the new `currentLineDivider` String in the `UI`.
 
+[Jump to top](#developer-guide)
+
 ## Testing
 
 If you are using IntelliJ IDEA with Gradle, there are two ways to run tests for Fluffle.
+
+[Jump to top](#developer-guide)
 
 ### Using JUnit test
 - To run all test, in IntelliJ, right click on `test/java/seedu.duke` and choose `Run Tests in 'seedu.duke'`
@@ -451,6 +527,8 @@ If you are using IntelliJ IDEA with Gradle, there are two ways to run tests for 
 
 ### Using Gradle
 - To run all test, open the terminal in IntelliJ IDEA, move to the root folder of the project and key in `gradlew clean test` for Windows (`./gradlew clean test` for Mac OS/Linux).
+
+[Jump to top](#developer-guide)
 
 ## Appendices
 
@@ -462,12 +540,16 @@ The target user group are creative writers.
 * Writers who enjoy creating short pieces but lack the organisation to do so.
 * Writers who want to improve their creative writing skills and need a proper way to achieve it.
 
+[Jump to top](#developer-guide)
+
 ### Appendix B: Value proposition
 
 The application aims to provide the writer with the following services:
 * Provide them with an organised way to store and select their plot ideas which may be otherwise abandoned
 * Provide them with customised prompt suggestions to inspire them to write
 * Provide them with a system to organise longer writing projects in a neat and logical manner to facilitate the writing of long works
+
+[Jump to top](#developer-guide)
 
 ### Appendix C: User Stories
 
@@ -490,17 +572,21 @@ The application aims to provide the writer with the following services:
 |v2.0|writer facing writers block|generate a random idea from my bunny storage|warm up or brainstorms on my writings|
 |v2.0|writer facing writers block|have an app that randomly generate the words|brainstorm for my writings based on those words|
 
+[Jump to top](#developer-guide)
+
 ### Appendix D: Non-Functional Requirements
 
 - Should be a Command-line Interface application.
 - Should work on any common Operating System (Windows, Linux or OS-X platform) as long as Java 11 is installed in the system.
-- Should be user-friendly to new and expert creative writers with average or fast typing speed.
+- Should be user-friendly to new and expert creative writers with average typing speed.
 - Should help creative writers do their tasks faster by commands rather than any other programs that uses mouses and other pointing devices.
 - Should display characters in ISO basic Latin alphabet and basic numbers correctly.
 - Should have local storage of editable text files (.txt).
 - Should work without requiring an installer.
 - Should work for single user.
 - Should work without Internet connection.
+
+[Jump to top](#developer-guide)
 
 ### Appendix E: Instructions for manual testing
 Given below are the instructions to test Fluffle manually.
@@ -534,3 +620,6 @@ What is your name?
 7. If you want to shutdown Fluffle, use the command `exit`.
 
 **For a more specific explanation and demonstration of the commands, visit our User Guide [here](https://ay2021s1-cs2113t-w11-4.github.io/tp/UserGuide.html).**
+
+[Jump to top](#developer-guide)
+

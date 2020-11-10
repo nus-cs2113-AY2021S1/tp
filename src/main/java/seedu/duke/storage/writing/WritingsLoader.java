@@ -64,7 +64,11 @@ public class WritingsLoader {
 
                 // skip the first two line for the information of total number of writings in the list
                 currentLine = s.nextLine();
-                currentLine = s.nextLine();
+                if (s.hasNext()) {
+                    currentLine = s.nextLine();
+                } else {
+                    return 0;
+                }
                 //Reset the content to blank
                 content = "";
                 while (!currentLine.equals(WRITING_COMPONENT_DIVIDER)) {

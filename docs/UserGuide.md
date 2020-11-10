@@ -276,6 +276,14 @@ Format: `three words`
 Suppose you need to list out all the nouns in your word bank, or you want to find out the words starting with the 
 strings “st” and “cg”. In such cases, you can use the `filter words` command to achieve your goal.
 
+#### Clear all of words stored in the database: `reset words`
+Remove all of your added words automatically
+```
+reset words
+--------------------------------------------------------------
+--------------------------------------------------------------
+```
+
 **Note**: You must key in the parameters in order for the application to work properly.
 
 Format: `filter words [-continue] [limit\PRINT_LIMIT] by\TYPE_OF_FILTER -TARGET_STRING...`: 
@@ -700,6 +708,15 @@ You want to continue on this writing on 01/12/2020
 
 #### Getting reminders for your writings scheduled for a specific date: `remind`
 Let’s say you are an absent-minded person, and you would like the program to remind you which writings you are about to continue on a specific day. In this scenario, you can use the `remind` command.
+
+#### Reset the entire writing list: `reset writings`
+Clear the whole writings stored in the database
+```
+reset writings
+--------------------------------------------------------------
+We have clear all data in the writings list
+--------------------------------------------------------------
+```
 
 **Format**: `remind DATE`
 * `DATE` is the date that you want to continue on some of your writings. `DATE` should be in the form of 
