@@ -3,7 +3,7 @@
 
 activate ":CommandSearchEvent"
 
-":CommandSearchEvent" -> ":EventList" :searchEvents()
+":CommandSearchEvent" -> ":EventList" : searchEvents()
 activate ":EventList"
 ":EventList" -> ":EventList" : checkEventNameMatch()
 activate ":EventList"

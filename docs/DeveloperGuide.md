@@ -91,7 +91,7 @@ Aspect: Design of parser
     * Pros: Command classes are free to simplify the parsing step depending on the required complexity of the command. No intermediate step and overhead.
     * Cons: More difficult to enforce parsing standards across Commands. String manipulation becomes required in every command.
 
-[Return to top](#CCA-manager-developer-guide)
+[Return to top](#Developer-guide)
 
 ### 3.2. Commands
 **3.2.1 Current Implementation**  
@@ -162,7 +162,7 @@ This subsection demonstrates how simple it is to create a new command in the app
 ![](BackendDiagram/command8.png)
 7. If all steps were completed correctly, you should be able to use your new command after compiling and running the program.
 
-[Return to top](#CCA-manager-developer-guide)
+[Return to top](#Developer-guide)
 
 ### 3.3. Finance  
 (by: Wang Zixin)  
@@ -292,14 +292,17 @@ The sequence diagram of changing information of a finance log entry is shown bel
 ![](financeDiagramPic/CommandFinanceChange.png)
 
 
-[Return to top](#CCA-manager-developer-guide)
+[Return to top](#Developer-guide)
 
 ### 3.4. Event
 
 (By: Varsha)<br/>
-The diagram below shows the overall architecture for `Event` feature. 
 
-![](EventDiagram/eventArchi.png)
+The diagram below shows the overall architecture for `Event` feature. <br/>
+
+
+![](EventDiagram/EventSteps/eventArchi.png)
+
 
 
 There are a total of 9 commands under `Event` feature.
@@ -359,7 +362,7 @@ Aspect : User input format for adding an event <br/>
     * Pros: It is more convenient for the user to type commands and easier to memorise the command format. <br/>
     * Cons : It takes longer to execute the command as the program will take time to identify the respective parameters within the command entered. <br/>
 
-[Return to top](#CCA-manager-developer-guide)
+[Return to top](#Developer-guide)
 
 **3.4.2. Listing Events** `CommandEventList`
 
@@ -401,7 +404,7 @@ The sequence diagram for listing events is as shown below:
 
 ![](EventDiagram/SequenceDiagram/CommandEventList.png)
 
-[Return to top](#CCA-manager-developer-guide)
+[Return to top](#Developer-guide)
 
 **3.4.3. Searching for an event via name or date** `CommandSearchEvent`
 
@@ -427,7 +430,7 @@ Aspect: Search conditions  <br/>
     * Pros: There will not be too many results when the user input includes common strings like "The" or "and".
     * Cons: Since it's a linear search, therefore, the bigger the data size, the longer the search, especially with more conditions to check.
 
-[Return to top](#CCA-manager-developer-guide)
+[Return to top](#Developer-guide)
  
 **3.4.4. Displaying countdown to upcoming events** `CommandEventCountdown`
 
@@ -455,7 +458,7 @@ The sequence diagram for displaying countdown is as shown below:
  
   
 
- [Return to top](#CCA-manager-developer-guide)
+[Return to top](#Developer-guide)
  
 **3.4.5. Mark an event as completed** `CommandEventStatus`
 
@@ -525,7 +528,7 @@ Aspect: Delete participant attendance from an event  <br/>
     * Pros : It is easier to implement.  
     * Cons : The user needs to view the participant list of the event first to view the index, hence requires more typing and less convenient. <br/>
 
-[Return to top](#CCA-manager-developer-guide)
+[Return to top](#Developer-guide)
 
 **3.4.7. Listing event participants** `CommandViewEventAttendance`
 
@@ -562,7 +565,7 @@ The sequence diagram for listing participants in an event is as shown below:
 
 ![](EventDiagram/SequenceDiagram/CommandViewEventAttendance.png)
 
-[Return to top](#CCA-manager-developer-guide)
+[Return to top](#Developer-guide)
 
 ### 3.5. HR
 The diagram below shows the overall architecture for HR feature.<br/>
@@ -638,7 +641,7 @@ The method `MemberList#deleteFromEvents()` referenced in the above diagram is as
 
 Refer to section 3.4.6.1 for the sequence diagram of the method `EventList#deletAttendance()` referenced in the above diagram. 
 
-[Return to top](#CCA-manager-developer-guide)
+[Return to top](#Developer-guide)
 
 **3.5.2. List the members**  
 
@@ -669,7 +672,7 @@ Step 2. The user executes `hr listMember` command to list the summary of `Member
  
  ![CommandViewMember](hrDiagramPic/CommandViewMember.png)
  
- [Return to top](#CCA-manager-developer-guide)
+[Return to top](#Developer-guide)
 
 **3.5.3. Change member information**  
 
@@ -713,7 +716,7 @@ Aspect: Changing member information <br/>
     * Cons: This feature is very dependent on the list `Member` feature. The user will always need to call the `hr listMember` 
     command to find out the index of the target `Member`, before he can change the member's information.  
 
-[Return to top](#CCA-manager-developer-guide)
+[Return to top](#Developer-guide)
 
 
 **3.5.4. Search for members**  
@@ -761,8 +764,7 @@ Aspect: Search condition
     * Cons: It will increase the running time a lot because it has to check all the information of `Member`s, especially 
     when there are many members.  
 
-[Return to top](#CCA-manager-developer-guide)  
-
+[Return to top](#Developer-guide)
 
 **3.5.5. List Professors and Administrators**  
 (by: Wang Zixin)  
@@ -802,7 +804,7 @@ Aspect: Just use `hr search` or use `hr list prof&admin`
     * Pros: The time of searching all `Command`s in command list will not be influenced.
     * Cons: The user has to type `hr search` twice to list professors and administrators and the lists are separated.  
 
-[Return to top](#CCA-manager-developer-guide)  
+[Return to top](#Developer-guide) 
 
 
 **3.5.6. List Connection**  
@@ -843,7 +845,7 @@ Aspect: Just use `hr search` or use `hr list connections`
     * Pros: The time of searching all `Command`s in command list will not be influenced.
     * Cons: The user has to type `hr search` twice to list speakers and alumni and the lists are separated.  
 
-[Return to top](#CCA-manager-developer-guide)  
+[Return to top](#Developer-guide) 
 
 
 ### 3.6. Storage
@@ -899,7 +901,7 @@ Aspect: The format of the file
     * Pros: Able to tailor the design of the file format to suit the requirements of the program.
     * Cons: May not be editable by the user with a text editor. Does not offer compatibility with any existing programs.
     
-[Return to top](#CCA-manager-developer-guide)
+[Return to top](#Developer-guide)
 
 ## 4. Product Scope
 ### 4.1. Target user profile
@@ -907,7 +909,7 @@ Aspect: The format of the file
 Our product targets people who manage interest groups and CCAs. 
 However, our software solution allows us to easily expand the target audience to target schools and corporate enterprise clients in the future.
 
-[Return to top](#CCA-manager-developer-guide)
+[Return to top](#Developer-guide)
 ### 4.2. Value proposition
 
 Management software is expensive and complex, training employees to use it is time-consuming. CCA Manager aims to solve these
@@ -915,7 +917,8 @@ problems by offering an all-in-one solution focused on simplicity and efficiency
 Our use of industry standard csv format ensures compatibility with leading industry tools. 
 Shorthand Commands and Relative Time allow advanced users to enter up to 70% more commands per minute. The import command allows users to migrate existing data quickly and get started in no time.
 
-[Return to top](#CCA-manager-developer-guide)
+
+[Return to top](#Developer-guide)
 ## 5. User Stories
 
 (By: Varsha)
@@ -938,7 +941,7 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 |v2.0|user|view the list of contacts of the connections (alumni, speakers) | So that I can source for collaborators or speakers for our events easily|
 |v2.0|user| import other csv files | So that I can transfer my existing data into the program easily|
 
-[Return to top](#CCA-manager-developer-guide)
+[Return to top](#Developer-guide)
 
 ## 6. Non-Functional Requirements
 
@@ -947,7 +950,7 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 3. A user with average typing speed should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The program should support writing to a universally supported and easy to edit non-proprietary file format such as RFC 4180 .csv files.
 
-[Return to top](#CCA-manager-developer-guide)
+[Return to top](#Developer-guide)
 ## 7. Glossary
 
 **CCA** - Co-curricular Activity <br/>
@@ -964,7 +967,8 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 **Proprietary format** - A non-standard File format designed by a particular company, organization or individual. Could be designed with the details of the implementation kept secret.
 **HR** - Human Resource
 
-[Return to top](#CCA-manager-developer-guide)
+[Return to top](#Developer-guide)
+
 ## 8. Instructions for manual testing
 
 This section contains information on how to test CCA Manager to ensure that the basic functionalities are working.
@@ -1000,4 +1004,4 @@ This section contains information on how to test CCA Manager to ensure that the 
 18. Type `bye` to exit the program
 19. Launch the application again and repeat step 3 to verify that all the entries have been deleted.
 
-[Return to top](#CCA-manager-developer-guide)
+[Return to top](#Developer-guide)
