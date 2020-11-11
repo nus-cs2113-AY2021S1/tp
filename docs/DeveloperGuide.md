@@ -52,12 +52,12 @@
 
 ## Introduction
 
-Scheduler--; (S--) is a desktop app for managing deadlines from different sources. The user will use a Command Line Interface to control it. It is specially designed for Computing students who are comfortable in using CLI and have Git project deadlines as well as consolidated Zoom session links due which will suit home based learning in this COVID period. 
+Scheduler-\-; (S-\-) is a desktop app for managing deadlines from different sources. The user will use a Command Line Interface to control it. It is specially designed for Computing students who are comfortable in using CLI and have Git project deadlines as well as consolidated Zoom session links due which will suit home based learning in this COVID period. 
 
 ## Setting up, getting started
 
 1. Ensure you have version 11 of Java. You can install it from this [link](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html).
-2. Fork the Scheduler--; repo from this [link](https://github.com/AY2021S1-CS2113T-T12-4/tp).
+2. Fork the Scheduler-\-; repo from this [link](https://github.com/AY2021S1-CS2113T-T12-4/tp).
 3. Clone the fork on to your computer.
 4. Open Intellij. If you are not in the welcome screen, click `File` -> 'Close project' 
 to close the existing project dialog. 
@@ -149,7 +149,7 @@ The `UserData`
 
 #### Storage Component
 
-![Diagram for storage class](./diagrams/classDiagramStorage.jpg)
+![Diagram for storage class](./diagrams/storageclass.jpg)
 
 API [Storage.java](https://github.com/AY2021S1-CS2113T-T12-4/tp/blob/master/src/main/java/seedu/duke/storage/Storage.java) 
 
@@ -165,14 +165,18 @@ How does the storage component load files
 - The event strings are converted to actual events using their respective class constructors
 
 The following object diagram shows the state of the storage object upon completion of converting each txt file to their respective events.
-![Diagram for storageOverall](./diagrams/object_diagram_storage_before.png)
+![Diagram for storageLoadBefore](./diagrams/object_diagram_storage_before.png)
 
 - The events are stored within the UserData object to be used by the program
 
 The following object diagram illustrates the state of the storage object upon completion of this step
-![Diagram for storageOverall](./diagrams/object_diagram_storage_after.png)
+![Diagram for storageLoadAfter](./diagrams/object_diagram_storage_after.png)
 
 How does the storage component save files
+
+The following diagram is a sequence diagram showing the process of saving information
+ ![Diagram for storageSave](./diagrams/savefull.png)
+ 
 - The storage component will first retrieve the correct EventList from the UserData.
 - It will next send this EventList into the StorageParser
 - The StorageParser uses its functions to convert the events into string representations
@@ -186,13 +190,28 @@ How does the storage component save files
 In this section, the features implemented will be explained using various UML diagrams and code snippets.
 
 #### Help feature
-(WIP)
 
-<div style="page-break-after: always;"></div>
+The help feature in the program allows the user to extract out help information for a specified command. Information for help is stored in a file titled `helpfile.txt` located in the `resources` folder of the project
+
+When the help command is executed, help looks through `helpfile.txt` for information about the command requested. The following section shows how the help information for `calendar` is stored:
+
+```
+begin calendar
+calendar - displays your events in chronological order
+Format: calendar
+
+Enter calendar into the terminal. Your events will be displayed in chronological order, day by day
+To advance to the next day, press the enter key
+To terminate the function early, press the 'q' key
+
+end calendar
+```
+
+The `begin calendar` and `end calendar` serves as brackets to tell the help function what information to print from the help file. 
 
 #### Add feature
 
-The add feature in the program allows the user to create one of 3 different events in scheduler--;.
+The add feature in the program allows the user to create one of 3 different events in scheduler-\-;.
 These 3 are the Personal, Zoom and Timetable events. These events have varying numbers of arguments or fields that can 
 be inserted upon creation. 
 
@@ -335,14 +354,14 @@ The following sequence diagram shows how `CalendarCommand#execute()` works:
 #### Repeat feature
 
 The repeat feature on the program allows for the user to be able to make certain events repeat several times over a defined time period.
-For instance, the user can request for a personal event to be repeated monthly for four months. To run the program, the user will need to key in the command `repeat [event type] [index] [timeUnit] [count]`
+For instance, the user can request for a personal event to be repeated monthly for four months. To run the program, the user will need to key in the command `repeat EVENT_TYPE; INDEX; TIME_UNIT; COUNT`
 
 |Argument| Description |
 |--------|----------|
-|event type|What type of event is to be repeated? Accepted arguments are `personal`, `timetable` or `zoom`|
-|index|Index number of the event to be repeated that is stored on the Event List|
-|timeUnit|For what unit of time each event is to be repeated. Accepted arguments are `daily`, `weekly` and `monthly`|
-|count|Integer indicating how many times the event is to be repeated|
+|EVENT_TYPE|What type of event is to be repeated? Accepted arguments are `personal`, `timetable` or `zoom`|
+|INDEX|Index number of the event to be repeated that is stored on the Event List|
+|TIME_UNIT|For what unit of time each event is to be repeated. Accepted arguments are `daily`, `weekly` and `monthly`|
+|COUNT|Integer indicating how many times the event is to be repeated|
 
 For example, to repeat a personal event located at index 2 for 3 days, the user will key in this: `repeat personal 2 daily 3`.
 
@@ -484,6 +503,8 @@ This sequence diagram shows how the `getDate` method functions:
 
 ![getDate day month year](./diagrams/getDate-day-month-year.jpg)
 
+`getTime` adds ":00" to the back if only hh or HH is given, then uses `DateTimeParser#timeParser` to parse the time. The parsed time is then returned.
+
 Step 4. Within `CheckCommand#execute()`, the start date, start time, end date and end time are passed to `CheckCommand#verifyValidTimePeriod()`. This method checks that the start date and time of the time period happen before the end date and time, and returns a boolean indicating the validity of the given time period.
 
 Step 5. Within `CheckCommand#execute()`, the start date time and end date time is passed to `CheckCommand#checkEventsInTimeRange()` along with an `EventList` (i.e. Zoom, Personal or Timetable). This method checks each `Event` in the `EventList` to determine if the event occurs within the time period. If the event date time coincides with the time period, the event is added to an ArrayList that stores all the coinciding events in the current `EventList`. This is done for each `EventList`. 
@@ -496,8 +517,6 @@ The following sequence diagram shows how the check operation works:
 
 ![Sequence Diagram for CheckCommand](./diagrams/CheckCommand_seq_diagram.jpg)
 
-
-
 <div style="page-break-after: always;"></div>
 
 #### Goal feature
@@ -508,7 +527,7 @@ The user can only have one goal at any time.
 
 The following is the class diagram for goal command:
 
-![Class diagram for calendar command](./diagrams/GoalClassDiagram.png)
+![Class diagram for goal command](./diagrams/GoalClassDiagram.png)
 
 Given below is an example usage scenario of the goal feature.
 
@@ -534,8 +553,8 @@ The following sequence diagram shows how `GoalCommand#execute()` works:
 <div style="page-break-after: always;"></div>
 
 #### Done feature
-(WIP)
-The done feature allows users to mark events in Scheduler as done. The format for the done command is `done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
+
+The done feature allows users to mark events in Scheduler-\- as done. The format for the done command is `done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
 
 |Argument| Description |
 |--------|----------|
@@ -567,15 +586,15 @@ Step 3. Within `DoneCommand#execute()`, the 4th `Event` is called from the Perso
 
 ![DoneCommand state diagram](./diagrams/DoneCommandStates.jpg)
 
-If the called event is a repeat event and an event date is given, `DoneCommand#scanRepeatList()` is called to check for events matching the event date in the repeat event's `repeatEventList`. When a matching event is found, it is marked as done.
+If the called event is a repeat event and an event date not matching the called event's date is given, `DoneCommand#scanRepeatList()` is called to check for events matching the event date in the repeat event's `repeatEventList`. When a matching event is found, it is marked as done.
 
 Step 4. `Ui#printEventMarkedDoneMessage()` is called to print the event marked as done.
 
 Step 5. `Storage#saveFile()` is called to save the updated event list to the external file.
 
 #### Undone feature
-(WIP)
-The undone feature allows users to mark events in Scheduler as undone. The format for the undone command is `undone EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
+
+The undone feature allows users to mark events in Scheduler-\- as undone. The format for the undone command is `undone EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
 
 |Argument| Description |
 |--------|----------|
@@ -599,17 +618,23 @@ Given below is an example usage scenario and how the done feature functions.
 
 Step 1. The user inputs `undone personal; 4` in order to mark the 4th `Personal` event as undone. This input is received by the Ui, which processes it into a string. The string is parsed by the Parser, which removes "undone" from the string and parses the resulting string with `UndoneCommand#parse()`. This returns a `UndoneCommand`.
 
-Step 2. `UndoneCommand#execute()` is called. The event identifier is split to separate the event index from an event date (if event date is given). 
+![Created UndoneCommand](./diagrams/CreatedUndoneCommand.jpg)
 
-Step 3. Within `UndoneCommand#execute()`, the event indicated by the given event index is called from the indicated event list. If an event date is given and the called event is a repeat event, `UndoneCommand#scanRepeatList()` is called to check for events matching the date in the repeat list. When the target event is found, it is marked as undone.
+Step 2. `UndoneCommand#execute()` is called. The `command` string is split at semicolons to separate the event index from an event date (if event date is given). The event index for this UndoneCommand is 4, and it has no event date.
+
+Step 3. Within `UndoneCommand#execute()`, the 4th `Event` is called from the Personal `EventList` and is marked as undone. 
+
+![UndoneCommand state diagram](./diagrams/UndoneCommandStates.jpg)
+
+If the called event is a repeat event and an event date not matching the called event's date is given, `UndoneCommand#scanRepeatList()` is called to check for events matching the event date in the repeat event's `repeatEventList`. When a matching event is found, it is marked as undone.
 
 Step 4. `Ui#printEventMarkedUndoneMessage()` is called to print the event marked as undone.
 
 Step 5. `Storage#saveFile()` is called to save the updated event list to the external file.
 
 #### Delete feature
-(WIP)
-The delete feature allows users to delete events from Scheduler. The format for the delete command is `delete EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
+
+The delete feature allows users to delete events from Scheduler-\-. The format for the delete command is `delete EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
 
 |Argument| Description |
 |--------|----------|
@@ -621,7 +646,7 @@ The following is the class diagram for DeleteCommand:
 
 ![DeleteCommand Class Diagram](./diagrams/DeleteCommandClassDiagram.jpg)
 
-The delete feature is implemented using the `DeleteCommand` class. `DeleteCommand` accesses the `Event` stored within `EventList` and removes it from the `EventList` to delete it from Scheduler--;. It implements the following operations:
+The delete feature is implemented using the `DeleteCommand` class. `DeleteCommand` accesses the `Event` stored within `EventList` and removes it from the `EventList` to delete it from Scheduler-\-;. It implements the following operations:
 
 - `DeleteCommand#parse(input)` -- Parses the processed input from `Parser` to create an `DeleteCommand` with the parsed event list type and event identifier.
 - `DeleteCommand#scanRepeatList(repeatEventList, deleteEventDate, ui, deleteEvent)` -- Scans the `repeatEventList` of a repeat event and deletes the matching event from the `repeatEventList`.
@@ -631,11 +656,15 @@ The delete feature is implemented using the `DeleteCommand` class. `DeleteComman
 
 Given below is an example usage scenario and how the done feature functions.
 
-Step 1. The user inputs `delete personal; 4` in order to delete the 4th `Personal` event. This input is received by the Ui, which processes it into a string. The string is parsed by the Parser, which removes "delete" from the string and parses the resulting string with `DeleteCommand#parse()`. This returns a `DeleteCommand`.
+Step 1. The user inputs `delete timetable; 1; 10/10/2020` in order to delete the 1st `Timetable` repeat event that occurs on 10 October 2020. This input is received by the Ui, which processes it into a string. The string is parsed by the Parser, which removes "delete" from the string and parses the resulting string with `DeleteCommand#parse()`. This returns a `DeleteCommand`.
 
-Step 2. `DeleteCommand#execute()` is called. The event identifier is split to separate the event index from an event date (if event date is given). 
+![Created DeleteCommand](./diagrams/CreatedDeleteCommand.jpg)
 
-Step 3. Within `DeleteCommand#execute()`, the event indicated by the given event index is called from the indicated event list. If an event date is given and the called event is a repeat event, `DeleteCommand#scanRepeatList()` is called to check for events matching the date in the repeat list. When the target event is found, it is deleted.
+Step 2. `DeleteCommand#execute()` is called. The `command` string is split at semicolons to separate the event index from an event date (if event date is given). The event index for this DeleteCommand is 1, and the event date is 10/10/2020.
+
+Step 3. Within `DeleteCommand#execute()`, the 1st `Event` is called from the Timetable `EventList`. Since the called event is a repeat event and an event date not matching the called event date was provided, `DeleteCommand#scanRepeatList()` is called to check for events matching the date in the repeat list. When a matching event is found, it is deleted. Since there are no more events in the repeatEventList, the repeat status of the called event is set to null.
+
+![DeleteCommand state diagram](./diagrams/DeleteCommandStates.jpg)
 
 Step 4. `Ui#printEventDeletedMessage()` is called to print the event that was deleted.
 
@@ -796,7 +825,7 @@ For the detection of zoom link, the Regex pattern used first detects any URL sta
 
 The Bye feature allows user to exit smoothly after saving all the files.
 
-Step 1. The user executes `bye` command to exit Scheduler.
+Step 1. The user executes `bye` command to exit Scheduler-\-.
 
 Step 2. `ByeCommand#execute()` is called and `ByeCommand` will set `isExit` to true.
 
@@ -857,17 +886,17 @@ and also extract deadlines from any body of text.
 <div style="page-break-after: always;"></div>
 
 ### Use Cases
-(For all use cases below, the System is Scheduler--; and the Actor is the user, unless specified otherwise)
+(For all use cases below, the System is Scheduler-\-; and the Actor is the user, unless specified otherwise)
 
 **Use case: Extracting deadlines from an email**
 
 MSS:
 1. User enters extract command for a body of text/email
-2. Scheduler--; shows a list of dates detected
+2. Scheduler-\-; shows a list of dates detected
 3. User chooses one of the dates
-4. Scheduler--; shows a list of the time slots detected
+4. Scheduler-\-; shows a list of the time slots detected
 5. User chooses one of the time slots
-6. Scheduler--; creates a personal event based on the user's choices
+6. Scheduler-\-; creates a personal event based on the user's choices
 
 Use case ends.
 
@@ -875,17 +904,17 @@ Extensions:
 
 2a. There are no dates detected.
 
-Scheduler--; creates a Personal event with no date or time.
+Scheduler-\-; creates a Personal event with no date or time.
 
  3a. User selects an invalid index from the list of dates.
-- 3a1. Scheduler--; requests for the user to pick a valid number.
+- 3a1. Scheduler-\-; requests for the user to pick a valid number.
 - 3a2. User enters new index.
 
 Steps 3a1-3a2 are repeated until the index entered is valid.
 Use case resumes from step 4.
 
  5a. User selects an invalid index from the list of time slots.
-- 5a1. Scheduler--; requests for the user to pick a valid number.
+- 5a1. Scheduler-\-; requests for the user to pick a valid number.
 - 5a2. User enters new index.
 
 Steps 5a1-5a2 are repeated until the index entered is valid.
@@ -896,11 +925,11 @@ Use case resumes from step 6.
 MSS:
 
 1. User uses list command for one of the three types of events.
-2. Scheduler--; prints a list for the event type chosen.
+2. Scheduler-\-; prints a list for the event type chosen.
 3. User enters repeat command for one of the events.
-4. Scheduler--; prints a confirmation message.
+4. Scheduler-\-; prints a confirmation message.
 5. User uses repeat command to check status of the repeated event.
-6. Scheduler--; prints out the status of the repeated event.
+6. Scheduler-\-; prints out the status of the repeated event.
 
 Use case ends.
 
@@ -908,7 +937,7 @@ Extensions:
 
 3a. User selects a personal event that does not have a deadline
 
-Scheduler--; prints an error message and use case ends.
+Scheduler-\-; prints an error message and use case ends.
 
 
 
@@ -1012,26 +1041,28 @@ Below are some instructions provided for use in manual testing
     1. Type `calendar`
     Expected: As you press enter, you should see all your events and timings displayed in chronological order. Once all the events have been printed, the `End of calendar` message should appear.
     Your calendar should appear as shown:
+    
     ```
-   calendar
-   _________________________________
-   Calendar has 2 dates to display
-   ---------------------------------------------------------------------------------------
-   18 Sep 2020
-   ---------------------------------------------------------------------------------------
-   P | 2:00 PM | X | dental appointment 
-   ---------------------------------------------------------------------------------------
-   Enter 'q' to exit or enter to continue...
-   
-   ---------------------------------------------------------------------------------------
-   19 Oct 2020
-   ---------------------------------------------------------------------------------------
-   P | 12:00 PM | X | birthday 
-   ---------------------------------------------------------------------------------------
-   End of calendar
-   _________________________________
+      calendar
+      _________________________________
+      Calendar has 2 dates to display
+      ---------------------------------------------------------------------------------------
+      18 Sep 2020
+      ---------------------------------------------------------------------------------------
+      P | 2:00 PM | X | dental appointment 
+      ---------------------------------------------------------------------------------------
+      Enter 'q' to exit or enter to continue...
+      
+      ---------------------------------------------------------------------------------------
+      19 Oct 2020
+      ---------------------------------------------------------------------------------------
+      P | 12:00 PM | X | birthday 
+      ---------------------------------------------------------------------------------------
+      End of calendar
+      _________________________________
 
    ```
+
    
    
 ### Checking schedule availability
@@ -1043,7 +1074,8 @@ Below are some instructions provided for use in manual testing
     1. Test Case: `check 01/01/2010; 1100; 01/01/2010; 2359;`
     Expected: The message `You have no coinciding events!` should be printed. 
     1. Test Case: `check 01/01/2020; 1100; 01/01/2021; 2359;`
-    Expectd: You should see the check command prints out all events that fall between the timing of 01 Jan 2010 1100hrs to 2359hrs as shown below
+    Expected: You should see the check command prints out all events that fall between the timing of 01 Jan 2010 1100hrs to 2359hrs as shown below
+    
     ```
    _________________________________
    Here is a list of your coinciding events:
@@ -1056,46 +1088,95 @@ Below are some instructions provided for use in manual testing
 ### Adding deadline to event
 1. Repeating a personal event
     1. Load the program
-    1. Type `add personal dental appointment; 18/09/2020`
-    1. Type `add personal birthday`
+    1. Type `add personal; dental appointment; 18/09/2020`
+    1. Type `add personal; birthday`
     1. Type `list all` Expected: You should now see the events listed on the terminal
-    1. Test Case: `deadline 2; 03/08/2020`
-        A success message should be printed, indicating that the new deadline has been set
-        When `list personal` is typed, you should see that the second event now has a deadline attached to it
+    1. Test Case: `deadline 2; <date>; <time>` where `date` and `time` are any date and time that is past the current date and time this test is being run.
+        Expected: A success message should be printed, indicating that the new deadline has been set
+        When `list personal` is typed, you should see that the second birthday event now has a deadline attached to it.
 
 ### Setting reminder
 1. Repeating a personal event
     1. Load the program
-    1. Type `add personal dental appointment; 18/09/2020`
-    1. Type `add personal birthday; <<current date that test is run>>`
+    1. Type `add personal; dental appointment; 18/09/2020`
+    1. Type `add personal; birthday; <<current date that test is run>>`
     1. Test Case: `reminder`
-        The program should show that the personal birthday event is the event that you have for today. 
+        Expected: The program should show that the personal birthday event is the event that you have for today. 
+        
+        ```
+       reminder
+       _________________________________
+       You have the following events today: 
+       
+       _________Events Without Time_____
+       [P][X] birthday on 2020-11-09
+       _________________________________
+
+       ```
+        
 
 ### Adding note for an event
 1. Add a new note for an event
     1. Load the program
-    1. Type `add personal dental appointment; 18/09/2020`
+    1. Type `add personal; dental appointment; 18/09/2020`
     1. Test Case:  `note personal; 1`
         1. Upon Scheduler prompt , type the following
+        
             ```
            Teeth polished
            Cost: 100
            noteend
            ```
-        The program should show that the note has been successfully created with the content of the note printed.
+           
+        Expected: The program should show that the note has been successfully created with the content of the note printed.
         
 
 ### Viewing note for an event 
 1. View note for an event
     1. Load the program
-    1. Type `add personal dental appointment; 18/09/2020`
+    1. Type `add personal; dental appointment; 18/09/2020`
     1. Type `note personal; 1`
         1. Upon Scheduler prompt , type the following
+        
             ```
            Teeth polished
            Cost: 100
            noteend
            ```
+           
     1. Test Case: `view personal; 1`
-         The program should show that the notes for the dental appointment that you previously created
+         Expected: The program should show that the notes for the dental appointment that you previously created
+         
+         ```
+       _________________________________
+       These are the notes that you have taken: 
+       ---------2020-11-09T22:57:09.242317700---------
+       Teeth polished
+       Cost: 100
+       _________________________________
+
+       ```
         
+### Extract information for an event
+1. Extracting information
+    1. Load the program
+    1. Type `extract quiz; `
+        1. Upon Scheduler prompt, type the following
+        
+        ```
+       7 October 2020 at 4pm there is a quiz
+       extractend
+       ```
+     
+    Expected: The terminal should indicate that you have added a personal event as shown below
+    
+    ```
+   7 October 2020 at 4pm there is a quiz
+   extractend
+   One date detected and chosen: 2020-10-07
+   One timing detected and chosen: 16:00
+   You have successfully added this event to your list!
+   [P][X] quiz on 2020-10-07, 16:00
+   _________________________________
+
+   ```
