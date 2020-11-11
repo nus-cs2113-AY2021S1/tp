@@ -40,13 +40,15 @@
 - [7. Glossary](#7-glossary)
 
 ## 1. Introduction
+*(By: John)*
+
 
 Welcome to **CCA Manager!**
 CCA Manager is a revolutionary tool that changes the way you can manage interest groups with unrivaled efficiency and simplicity. Its lightweight Command Line Interface (CLI) allows administrators to breeze through tasks quickly and easily while offering powerful features to advanced users.
 
 **Feature Overview**
 
-* Allows you to manage a HR list of members and contacts
+* Allows you to manage an HR list of members and contacts
 * Allows you to create events and record member attendance for events
 * Allows you to track the financial spending and budgeting of your interest group
 * You can import data from other programs
@@ -110,9 +112,11 @@ For example, as shown in the picture below, instead of typing `event`, you can t
 
 
 ### 4.1 Help `help`
+*(By: John)*
+
 Shows a list of available commands.<br/>
 
-This command allows you to view a summary of all the available commands and how to use them.  
+This command allows you to view a summary of all the available commands at a glance and gives you information how to use them.  
 Format: `help`
 
 Expected Outcome: 
@@ -122,9 +126,11 @@ Expected Outcome:
 [Return to the top](#user-guide)
 
 ### 4.2 Exit the program: `bye` 
+*(By: John)*
+
 Exits the program.
 
-With this command you can exit the program directly from the terminal without closing it. <br/>
+With this command you can gracefully exit the program directly, without having to close the terminal window. <br/>
 Format: `bye`
 
 [Return to the top](#user-guide)
@@ -688,11 +694,12 @@ summary | `finance summary` |   -
 [Return to the top](#user-guide)
 
 ## 7. Glossary
+*(By: John)*
 
 This section explains certain technical terms used in the guide which may require more detail.
 
 **CCA** - Co-curricular Activity <br/>
-**CSV - Comma-separated values. This typically refers to the file type with extension .csv  <br/>
+**CSV** - Comma-separated values. This typically refers to the file type with extension .csv  <br/>
 **Command Line Interface(CLI)** - Processes commands to a computer program in the form of lines of text. <br/>
 **Terminal/Command Prompt** - An interface where you can type and execute text based commands. It is a basic feature of most Operating Systems.  
 **Directory** - Folder. A directory is a more technical name for referring to folders. 
