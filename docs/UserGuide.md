@@ -597,95 +597,159 @@ Do you have any events that repeat frequently? For example, a dental appointment
 Format: `repeat EVENT_TYPE EVENT_INDEX [UNIT] [COUNT]` 
 
 - `EVENT_TYPE` specify what kind of event you would like to repeat. The accepted arguments for this are “personal”, “timetable” and “zoom” 
-- `EVENT_INDEX` is an number. It contains the index of the event that is to be repeated 
+- `EVENT_INDEX` is a number. It contains the index of the event that is to be repeated 
 - `[UNIT]` can either take the word “Weekly” or “Monthly”. It tells the program to repeat the event either every week or every month. 
 - `[COUNT]` takes an integer which indicates how many units of time will this event repeat itself. For instance, if the unit input is Weekly, placing a number 5 will repeat the event for 5 weeks. 
 
-When the optional arguments of `[UNIT]` and `[COUNT]` are omitted in the code, repeat will instead display the repeat status of the event.  
+If you would like to make an event a repeated event, the format for the command is as follows.
+
+Format: `repeat EVENT_TYPE EVENT_INDEX [UNIT] [COUNT]` 
+
+If you would like to view the status of a repeated event, the format for the command is as follows.
+
+Format: `repeat EVENT_TYPE EVENT_INDEX`
 
 > **Note!**
 >
 > When you repeat an event monthly, the date does not always increment up by 30 days. Incrementing monthly mainly changes the month without changing the day of the date being incremented.
 > In the case of incrementing monthly from 31 Jan, the code will increment to 28 or 29 Feb followed by 31 Mar and 30 April and so on
 > In the case of incrementing monthly from 30 Jan, the code will increment to 28 or 29 Feb followed by 30 Mar and 30 April and so on
+>
+> Setting the `EVENT_INDEX` argument to zero will cause the event to revert to a standard non-repeating event
 
 <div style="page-break-after: always;"></div>
 
-#### How to use? 
+#### Example Usage
 
-We will use the example of repeating a personal event named “Dental Appointment” for 3 months from the start date. 
+The following few sections present several examples of how the repeat command can be used
 
-##### Step 1: Find the index number of the event to be repeated. 
+##### Scenario 1: Setting a personal event to repeat monthly for four months
+
+Let us assume that you have a personal event titled `dental appointment` that you would like to repeat monthly for four additional months.
+
+Firstly, find out what index number the `dental appointment` personal event has been assigned to. You can do this easily by typing in `list personal`.
+In my case, the following things will be printed out on the terminal.
 
 You can do this by typing the command list personal into your application. The result for the following command is shown in the following photo. 
 
 ```
-_________________________________
 list personal
 _________________________________
 Here is a list of your Personal events:
-1. [P][X] party on 2000-10-09, 13:00
-2. [P][X] surprise on 2020-09-14, 08:00
-3. [P][X] hello there on 2002-02-02, 07:00
-4. [P][X] dental appointment on 2020-03-02, 15:00
+1. [P][X] dental appointment on 2020-09-18
+2. [P][X] birthday on 2020-11-09
+3. [P][X] quiz on 2020-10-07, 16:00
 _________________________________
-```
-In this case, the index number of our dental appointment is 4.
-
-##### Step 2: Type the command into the terminal
-
-In our example, the arguments are set as such:
-
-- EVENT_TYPE is set to personal
-- EVENT_INDEX is set to 4
-- UNIT is set to monthly
-- COUNT is set to 3
-
-When you type in the command repeat personal 4 monthly 3, the program automatically notes that this event will repeat for three subsequent months at the same timing. The program reports that it has set the event to repeat as shown in the following image. 
 
 ```
-repeat personal 4 monthly 3
-_________________________________
-[P][X] dental appointment on 2020-03-02, 15:00
-is now repeating monthly for 3 times
-_________________________________
-```
+In this case, the index number of the event `dental appointment` is 1. 
 
-<div style="page-break-after: always;"></div>
-
-##### Step 3: Verify the dates that the event occurs
-To check the status of the repeated event, simply key in repeat personal 4 in this case and you will obtain the status as shown in the following picture. 
+Next, type in the command `repeat personal; 1; monthly; 4;`. You should now see that the repeat command has successfully set your event `dental appointment` to be repeated monthly for the next four months.
 
 ```
-repeat personal 4
+repeat personal; 1; monthly; 4
 _________________________________
-[P][X] dental appointment on 2020-03-02, 15:00 is also on:
-02 Apr 2020 3:00 PM [X]
-02 May 2020 3:00 PM [X]
-02 Jun 2020 3:00 PM [X]
+[P][X] dental appointment on 2020-09-18
+is now repeating monthly for 4 times.
 _________________________________
-```
 
->**Warning!**
->
->When setting personal events to repeat, do take note that the personal event needs to contain a deadline before it cn be repeated. Use the dateline command to provide a deadline to personal events that you want to repeat, but does not have a deadline. 
+``` 
 
+##### Scenario 2: Erasing the repeat status of a personal event
 
-Examples:
+Let us look at the previous scenario where we have set the personal event `dental appointment` to repeat for four months. 
+Let us assume that you would like to remove the repeated event and set it to occur only once.
 
-- `repeat personal 4 weekly 2` will repeat the personal event numbered 4 for another 2 weeks. Personal event 4 will app ear on the same day of the week for the next 2 weeks.  
-- `repeat zoom 5 monthly 3` will repeat the zoom event numbered 5 for another 3 months. Zoom event 5 will appear on the same day of the month for the next 3 months.  
-- `repeat personal 4` will show the repeat status of the event. In the following screenshot, running this command in the terminal reveals that the personal event will be repeated for 3 more times on a daily basis.  
+Firstly, find out what index number the `dental appointment` personal event has been assigned to. You can do this easily by typing in `list personal`.
+The result for the following command is shown in the following snapshot.
 
 ```
-repeat personal 4
+list personal
 _________________________________
-[P][X] eat dinner on 2020-01-09, 18:00 is also on:
-10 Jan 2020 6:00 PM [X]
-10 Jan 2020 6:00 PM [X]
-10 Jan 2020 6:00 PM [X]
+Here is a list of your Personal events:
+1. [P][X] dental appointment on 2020-09-18 is also on:
+    1. 2020-10-18 [X]
+    2. 2020-11-18 [X]
+    3. 2020-12-18 [X]
+    4. 2021-01-18 [X]
+2. [P][X] birthday on 2020-11-09
+3. [P][X] quiz on 2020-10-07, 16:00
 _________________________________
+
+
 ```
+In this case, the index number of the event `dental appointment` is 1. 
+
+Next, type in the command `repeat personal; 1; monthly; 0;`. You should now see that the repeat command has successfully reverted your `dental appointment` personal event to be an ordinary, non-repeating event.
+
+```
+repeat personal; 1; monthly; 0
+_________________________________
+[P][X] dental appointment on 2020-09-18
+is no longer a repeated event
+_________________________________
+
+``` 
+
+##### Scenario 3: Setting a zoom event to repeat daily for three days
+
+Let us assume that you have a zoom event titled `math class` that you would like to repeat daily for three additional days.
+
+Firstly, find out what index number the `math class` zoom event has been assigned to. You can do this easily by typing in `list zoom`.
+In my case, the following things will be printed out on the terminal.
+ 
+
+```
+list zoom
+_________________________________
+Here is a list of your Zoom events:
+1. [Z][X] math class, Link: www.zoom.com/mathclass on 2020-12-03, 10:00
+_________________________________
+
+```
+In this case, the index number of the event `math class` is 1. 
+
+Next, type in the command `repeat zoom; 1; daily; 3;`. You should now see that the repeat command has successfully set your event `math class` to be repeated daily for the next three days.
+
+```
+repeat zoom; 1; daily; 3
+_________________________________
+[Z][X] math class, Link: www.zoom.com/mathclass on 2020-12-03, 10:00
+is now repeating daily for 3 times.
+_________________________________
+
+``` 
+
+##### Scenario 4: Viewing the repeat status of events
+
+Let us assume that you have a zoom event titled `math class` that you would like to view the repeat status.
+
+Firstly, find out what index number the `math class` zoom event has been assigned to. You can do this easily by typing in `list zoom`.
+In my case, the following things will be printed out on the terminal.
+
+```
+list zoom
+_________________________________
+Here is a list of your Zoom events:
+1. [Z][X] math class, Link: www.zoom.com/mathclass on 2020-12-03, 10:00
+_________________________________
+
+```
+In this case, the index number of the event `math class` is 1. 
+
+Next, type in the command `repeat zoom; 1;`. You should now see that the repeat command has successfully displayed the repeat status of the `math class` zoom event.
+
+```
+repeat zoom; 1;
+_________________________________
+[Z][X] math class, Link: www.zoom.com/mathclass on 2020-12-03, 10:00 is also on:
+    1. 2020-12-04 10:00 [X]
+    2. 2020-12-05 10:00 [X]
+    3. 2020-12-06 10:00 [X]
+_________________________________
+
+``` 
+From this, we know that the event `math class` is a repeated event that repeats itself daily for the next three days.
 
 <div style="page-break-after: always;"></div>
 
