@@ -529,51 +529,6 @@ Format: `deadline EVENT_INDEX; DD/MM/YY; [HH:MM AM/PM]`
 
 `deadline 7; 29/08/20; 11:20 PM` sets the deadline of event number 7 to be on the 29 August 2020 at 11:20PM. 
 
-Expected output: 
-```
-You have successfully updated the deadline for this event!
-[P][X] sleep on 2020-08-29, 23:20
-```
-
-<div style="page-break-after: always;"></div>
-
-#### How to use? 
-
-We will use the example of created a deadline for personal event named “sleep”. 
-
-##### Step 1: Find the index number of the event to be repeated. 
-
-You can do this by typing the command list personal into your application. The result for the following command is shown in the following photo. 
-
-```
-_________________________________
-list personal
-_________________________________
-Here is a list of your Personal events:
-1. [P][X] party on 2000-10-09, 13:00
-2. [P][X] surprise on 2020-09-14, 08:00
-3. [P][X] sleep on 2002-02-02, 23:00
-4. [P][X] dental appointment on 2020-03-02, 15:00
-_________________________________
-```
-In this case, the index number of our sleep is 3.
-
-##### Step 2: Type the command into the terminal
-
-In our example, the arguments are set as such:
-
-- EVENT_TYPE is set to personal
-- EVENT_INDEX is set to 3
-- DD/MM/YY is set to 29/08/20
-- HH:MM AM/PM is set to 11:20 PM
-
-When you type in the command deadline 3; 29/08/20; 11:20 PM, the program reports that it has set the event deadline as shown in the following image. 
-
-```
-You have successfully updated the deadline for this event!
-[P][X] sleep on 2020-08-29, 23:20
-```
-
 > **Note!**
 >
 > * Deadline can only be used to set/update for Personal events
@@ -586,6 +541,41 @@ You have successfully updated the deadline for this event!
 > **Warning!**
 >
 > The event index keyed in have to be valid so that deadline can be created for the specified event index.
+
+#### Example Usage
+
+The following section present an example of how the deadline command can be used
+
+##### Scenario 1: Setting a deadline for a personal event
+
+Let us assume that you have a personal event titled `dental appointment` that you would like to set the deadline for.
+
+Firstly, find out what index number the `dental appointment` personal event has been assigned to. You can do this easily by typing in `list personal`.
+In my case, the following things will be printed out on the terminal.
+
+You can do this by typing the command list personal into your application. The result for the following command is shown in the code snippet below:  
+
+```
+_________________________________
+list personal
+_________________________________
+Here is a list of your Personal events:
+1. [P][X] party on 2000-10-09, 13:00
+2. [P][X] surprise on 2020-09-14, 08:00
+3. [P][X] sleep on 2002-02-02, 23:00
+4. [P][X] dental appointment 
+_________________________________
+```
+In this case, the index number of our dental appointement is 4.
+
+Next, type in the command `deadline 4; 29/08/20; 11:20 PM`. You should now see that the deadline command has successfully set your event `dental appointment` to be due on the 29/08/20 at 11:20 PM.
+
+```
+deadline 4; 29/08/20; 11:20 PM`
+You have successfully updated the deadline for this event!
+[P][X] sleep on 2020-08-29, 23:20
+```
+
 
 <div style="page-break-after: always;"></div>
 
@@ -630,7 +620,7 @@ Let us assume that you have a personal event titled `dental appointment` that yo
 Firstly, find out what index number the `dental appointment` personal event has been assigned to. You can do this easily by typing in `list personal`.
 In my case, the following things will be printed out on the terminal.
 
-You can do this by typing the command list personal into your application. The result for the following command is shown in the following photo. 
+You can do this by typing the command list personal into your application. The result for the following command is shown in the following code snippet. 
 
 ```
 list personal
@@ -661,7 +651,7 @@ Let us look at the previous scenario where we have set the personal event `denta
 Let us assume that you would like to remove the repeated event and set it to occur only once.
 
 Firstly, find out what index number the `dental appointment` personal event has been assigned to. You can do this easily by typing in `list personal`.
-The result for the following command is shown in the following snapshot.
+The result for the following command is shown in the following code snippet.
 
 ```
 list personal
@@ -768,7 +758,7 @@ Example: `check 20/08/2020; 15:05; 25/08/2020; 13:00`
 
 This will check from 20 August 2020 3:05pm to 25 August 2020 1pm. 
 
-Expected result:
+Expected output:
 ```
 _________________________________
 check 20/08/2020; 15:05; 25/08/2020; 13:00
@@ -920,54 +910,63 @@ Format: `note EVENT_TYPE; EVENT_INDEX`
 
 * The `EVENT_TYPE` have to be either personal, zoom or timetable.
 * Scheduler will prompt you to type your notes
-Example of usage: 
-
-`note personal; 1 `
-
-#### How to use?
-
-##### Step 1: Find the index number of the event to write the note for 
-You can do this by typing the command list EVENT_TYPE into your application. The result for the following command is shown in the following:
-
-```
-Here is a list of your Personal events:
-1. [P][X] sleep 
-```
-In this case, the index number that you want is 1.
-
-##### Step 2: Type the command into the terminal
-````
-note personal; 1 
-````
-
-##### Step 3: Scheduler will prompt you to type your notes
-```
-Please type in your notes. To stop note taking, ensure that you are in a new line and type 'noteend' and press enter 
-
-```
-
-##### Step 4: Tell Scheduler you are done 
-By pressing enter to go to a new line and type 
-```
-noteend
-```
-
-##### Step 5: Voilà! Your notes have been saved! 
-```
-You have successfully written the note for this event!
-[P][X] sleep
----------2020-10-30T00:53:01.907824900---------
-hello there!
-scheduler says hi:)
-_________________________________
-``` 
-
-
 
 > **Warning!**
 >
 > * The event index keyed in have to be valid so that note can be created for the specified event index.
 > * The grave accent symbol \` is an illegal character. If you use this symbol, the notes program will intepret it as a new line.
+
+#### Example Usage
+
+The following few section present an example of how the note command can be used
+
+##### Scenario 1: Creating a note for a personal event
+
+Let us assume that you have a personal event titled `dental appointment` that you would like to create a note for.
+
+Firstly, find out what index number the `dental appointment` personal event has been assigned to. You can do this easily by typing in `list personal`.
+In my case, the following things will be printed out on the terminal.
+
+You can do this by typing the command list personal into your application. The result for the following command is shown in the following code snippet. 
+
+```
+list personal
+_________________________________
+Here is a list of your Personal events:
+1. [P][X] dental appointment on 2020-09-18
+2. [P][X] birthday on 2020-11-09
+3. [P][X] quiz on 2020-10-07, 16:00
+_________________________________
+
+```
+In this case, the index number of the event `dental appointment` is 1. 
+
+Next, type in the command `note personal; 1`. Scheduler will prompt you to key in your notes as shown in the code snippet below.
+
+```
+Please type in your notes. To stop note taking, ensure that you are in a new line and type 'noteend' and press enter 
+
+```
+
+Type in your notes and indicate end of note by `enter` to a new line and type `noteend`. The following code snippet should be what you type in.
+
+```
+Bring appointment card 
+Bring reports for dental appointment
+noteend
+```
+
+You should now see that the note command has successfully created your note for  `dental appointment`.
+
+```
+You have successfully written the note for this event!
+[P][X] dental appointment on 2020-09-18
+---------2020-10-30T00:53:01.907824900---------
+Bring appointment card 
+Bring reports for dental appointment
+_________________________________
+``` 
+
 
 <div style="page-break-after: always;"></div>
 
@@ -978,6 +977,10 @@ Format: `view EVENT_TYPE; EVENT_INDEX`
 
 * The `EVENT_TYPE` have to be either personal, zoom or timetable.
 * Scheduler will prompt you to type your notes
+> **Warning!**
+>
+> The event index keyed in have to be valid so that note can be viewed for the specified event index.
+
 Example of usage: 
 
 `view personal; 1 `
@@ -1007,11 +1010,43 @@ scheduler says hi:)
 _________________________________
 ``` 
 
+#### Example Usage
 
+The following few section present an example of how the view command can be used
 
-> **Warning!**
->
-> The event index keyed in have to be valid so that note can be viewed for the specified event index.
+##### Scenario 1: Creating a note for a personal event
+
+Let us assume that you have a personal event titled `dental appointment` that you would like to view the notes from.
+
+Firstly, find out what index number the `dental appointment` personal event has been assigned to. You can do this easily by typing in `list personal`.
+In my case, the following things will be printed out on the terminal.
+
+You can do this by typing the command list personal into your application. The result for the following command is shown in the following code snippet. 
+
+```
+list personal
+_________________________________
+Here is a list of your Personal events:
+1. [P][X] dental appointment on 2020-09-18
+2. [P][X] birthday on 2020-11-09
+3. [P][X] quiz on 2020-10-07, 16:00
+_________________________________
+
+```
+In this case, the index number of the event `dental appointment` is 1. 
+
+Next, type in the command `view personal; 1`.
+
+You should now see that the view command has successfully shown your note for  `dental appointment`.
+
+```
+These are the notes that you have taken:
+---------2020-10-30T00:53:01.907824900---------
+Bring appointment card 
+Bring reports for dental appointment
+_________________________________
+``` 
+
 
 <div style="page-break-after: always;"></div>
 
