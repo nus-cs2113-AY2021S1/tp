@@ -301,7 +301,7 @@ The sequence diagram of changing information of a finance log entry is shown bel
 The diagram below shows the overall architecture for `Event` feature. <br/>
 
 
-![](EventDiagram/eventArchi.png)
+![](EventDiagram/EventSteps/eventArchi.png)
 
 
 
