@@ -1151,24 +1151,6 @@ In this section, you can find some frequently asked questions(FAQ).
 
 Here is a summary of all the commands with the accepted format and short examples for ease of usage.
 
-| Action | Format, Examples |
-|--------|------------------|
-|Add|Personal Format: add Personal; EVENT_DESCRIPTION; [DD/MM/YY]; [HH:MM AM/PM] <br> Eg: add personal; Family Meeting; 18/09/20 <br> <br> Zoom Format: add Zoom; EVENT_DESCRIPTION; LINK; [DD/MM/YY]; [HH:MM AM/PM] <br> Eg: add Zoom; CS2113T Meeting; zoom.com.sg; 16/09/20; 2100 <br> <br> Timetable Format: add Timetable; EVENT_DESCRIPTION; [LOCATION]; DD/MM/YY; HH:MM AM/PM <br> Eg: add Timetable; CS2101 Lecture; NUS Computing; 18/09/2020; 3:30 pm <br>|
-|List|list all <br> <br> list TYPE <br> Eg: list Zoom <br>|
-|Calendar|calendar <br>|
-|Check|check [START_DATE]; [START_TIME]; [END_DATE]; [END_TIME] <br> Eg: check 20/08/20; 15:05; 25/8/2020; 1 pm; <br>|
-|Repeat|repeat EVENT_TYPE; EVENT_INDEX; [UNIT]; [COUNT] <br> Eg: repeat timetable; 2; weekly; 4 <br>|
-|Goal|goal <br> <br> goal GOAL <br> Eg: goal “Get CAP 5.0 for year 2” <br>|
-|Deadline|deadline EVENT_INDEX; DD/MM/YY; <br> Eg: deadline 2 23/07/20 <br> <br> deadline EVENT_INDEX; DD/MM/YY; [HHMM] <br> Eg: deadline 7 29/08/20 1425 <br> <br> deadline EVENT_INDEX; DD/MM/YY; [HH:MM] AM/PM <br> Eg: deadline 7 29/08/20 11:25 PM <br>|
-|Set event as done|done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE] <br> Eg: done personal; 1; 1/4/2020 <br>|
-|Set event as undone|undone EVENT_TYPE; EVENT_INDEX; [EVENT_DATE] <br> Eg: undone zoom; 1; 3/12/2020 <br>|
-|Delete|delete EVENT_TYPE; EVENT_INDEX; [EVENT_DATE] <br> Eg: delete timetable; 3 <br>|
-|Notes|note EVENT_TYPE; EVENT_INDEX <br> note personal; 1 <br>|
-|View notes|view EVENT_TYPE; EVENT_INDEX <br> view personal; 1 <br>|
-|Extract|extract TEXT_SUBJECT; <br>|
-|Reminder|reminder <br>|
-|Save|save <br>|
-|Help|help <br>|
-|Bye|bye<br>|
+![Command Summary Table](./diagrams/command-summary.jpg)
 
 
