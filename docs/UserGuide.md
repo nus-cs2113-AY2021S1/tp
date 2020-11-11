@@ -301,6 +301,7 @@ The types of events available to be added include:
 - Zoom Meetings: Zoom
 - NUS timetable/lessons: Timetable
 - Personal Events: Personal
+Each event can have different combinations of fields.
 
 General Format: `add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM`
 
@@ -310,53 +311,74 @@ General Format: `add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; H
 - `DD/MM/YY` is the date associated with the event in the format `DD/MM/YY`.
 - `HH:MM AM/PM` is the time of the event. It can be written in 12 or 24 hour format. 
 
-Each event can have different combinations of fields for example:
+If you would like to make a Timetable event, the format for the command is as follows.
+
+Timetable Format: `add Timetable; EVENT_DESCRIPTION; [LOCATION]; DD/MM/YY; HH:MM AM/PM`
 
 Timetable events can contain:
 - Description, date and time 
 - Description, location, date and time
 
-Timetable Format: `add Timetable; EVENT_DESCRIPTION; [LOCATION]; DD/MM/YY; HH:MM AM/PM`
+If you would like to make a Zoom event, the format for the command is as follows.
+
+Zoom Format: `add Zoom; EVENT_DESCRIPTION; LINK; [DD/MM/YY]; [HH:MM AM/PM]`
 
 Zoom events can contain: 
 - Description and link 
 - Description, link, date and time
 
-Zoom Format: `add Zoom; EVENT_DESCRIPTION; LINK; [DD/MM/YY]; [HH:MM AM/PM]`
+If you would like to make a Personal event, the format for the command is as follows.
+
+Personal Format: `add Personal; EVENT_DESCRIPTION; [DD/MM/YY]; [HH:MM AM/PM]`
 
 Personal events can contain: 
 - Description 
 - Description and date 
 - Description, date and time
 
-Personal Format: `add Personal; EVENT_DESCRIPTION; [DD/MM/YY]; [HH:MM AM/PM]`
+#### Example usage
 
-Examples: 
-- `add Zoom; CS2113T Meeting; zoom.com.sg; 16/09/20; 2100` 
-- `add personal; Family Meeting; 18/09/20`  
-- `add Timetable; CS2101 Lecture; NUS Computing; 18/09/20; 3:30 pm` 
-- `add zoom; Team meeting; nus.sg.zoom.sg` 
-- `add timetable; math class; 10/10/2020; 12pm`
+The following few sections present 3 scenarios of how the add command is used.
 
-Expected Output:
+##### Scenario 1: Adding a Timetable event
 
-For the first 3 examples above,
-```
-_________________________________
-You have successfully added this event to your list!
-[Z][X] CS2113T Meeting, Link: zoom.com.sg on 2020-09-16, 21:00
-_________________________________
-```
-```
-_________________________________
-You have successfully added this event to your list!
-[P][X] Family Meeting on 2020-09-18
-_________________________________
-```
+You want to add a Timetable event for a CS2101 Lecture at NUS Computing on 18/09/20 at 3.30pm.
+
+You should input: `add Timetable; CS2101 Lecture; NUS Computing; 18/09/20; 3:30 pm`. 
+
+The output from the program should be:
 ```
 _________________________________
 You have successfully added this event to your list!
 [T][X] CS2101 Lecture, Location: NUS Computing on 2020-09-18, 15:30
+_________________________________
+```
+
+##### Scenario 2: Adding a Zoom event
+
+You want to add a Zoom event for a CS2113T meeting on 16/09/20 at 9pm.
+
+You should input: `add Zoom; CS2113T meeting; zoom.com.sg; 16/09/20; 2100`. 
+
+The output from the program should be:
+```
+_________________________________
+You have successfully added this event to your list!
+[Z][X] CS2113T meeting, Link: zoom.com.sg on 2020-09-16, 21:00
+_________________________________
+```
+
+##### Scenario 3: Adding a Personal event
+
+You want to add a Personal event for a family meeting on 18/09/20.
+
+You should input: `add personal; family meeting; 18/09/20` .
+
+The output from the program should be:
+```
+_________________________________
+You have successfully added this event to your list!
+[P][X] family meeting on 2020-09-18
 _________________________________
 ```
 
@@ -946,23 +968,34 @@ You have the following events today:
 
 ### 3.15 Extracting events from texts: `extract` (Matthew Gani)
 Ever feel tired of reading long emails everyday? Copy and paste your email into this feature!
-You can use our extract function which will help you read any text and extract out possible dates and times. 
+You can use our extract command which will help you read any text and extract out possible dates and times. 
 You’ll be able to choose the dates and times detected and create a Personal or Zoom event. 
 
 The extract feature detects dates in the DD/Month Name/YYYY format or the Month Name/DD/YYYY format which is used the most in emails. <br>
 It will detect time in 12 and 24 Hour formats, with ":" or "." in between the time. It can detect time in the format of HH AM/PM too. <br>
-If a valid zoom link is detected (links containing '.zoom.' and start with 'https://' or 'http://'), it will try to create a Zoom event for you. 
+If a valid zoom link is detected (links containing '.zoom.' and start with 'https://' or 'http://'), it will try to create a Zoom event for you.
+Otherwise, a Personal event will be made.
 
-Format: `extract TEXT_SUBJECT;`
-- `TEXT_SUBJECT` is the subject of the email or the name you want your event to be.
+Format: `extract EVENT_DESCRIPTION;`
+- `EVENT_DESCRIPTION` could be the subject of the email or the name you want your event to be.
 
-#### How to use?
-An example will be used to explain how this feature works.
-##### Step 1: Type the command into the terminal
-```
+#### Example Usage
+
+One scenario will be used to explain how the extract command works.
+
+##### Scenario 1:
+
+You receive an email for CG2271 Quiz 2 where the email body is "Hi all, we will be having the quiz on either
+ 4th October 2020 or October 15 2020 at either 3pm or 3.30pm. 
+ The link is at https://nus-sg.zoom.us/j/2226375MG`".
+ 
+ You want to use the extract command to quickly sieve out dates, times and zoom links for you.
+ 
+ Firstly, you should type in 
+ ```
 extract CG2271 Quiz 2;
-```
-##### Step 2: Scheduler will prompt you to copy and paste or enter the text you want to extract from.
+ ```
+Secondly, Scheduler--; will prompt you to copy and paste or enter the text you want to extract from.
 ````
 _________________________________
 Copy and paste or enter the body of the text you want to extract from!
@@ -970,17 +1003,19 @@ At the end of your text, press enter to go to the next line, enter 'extractend' 
      no quotation marks and press enter once more.
 _________________________________
 ````
-##### Step 3: Copy and paste or type in the text you want to extract from.
+Thirdly, copy and paste or type in the text you want to extract from.
 ````
 Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020 at 
     either 3pm or 3.30pm. 
 The link is at https://nus-sg.zoom.us/j/2226375MG`
 ````
-##### Step 4: Tell Scheduler you are done by typing `extractend` on a new line.
+Fourthly, tell Scheduler--; you are done by typing `extractend` on a new line.
 ````
 extractend
 ````
-##### Step 5: Choose from the multiple zoom link/date/time detected if applicable.
+Lastly, you can choose from the multiple zoom link/date/time detected.
+As shown below, if you want the event to be on 15th October 2020 and at 3.30pm, you should select the second option both times for date and time
+which can be seen circled when '2' is selected twice. Since a zoom link was detected, the event created will be a Zoom event.
 ````
 One zoom link detected and chosen: https://nus-sg.zoom.us/j/2226375MG
 We have detected 2 dates in this text body!
@@ -1001,10 +1036,7 @@ You have successfully added this event to your list!
 [Z][X] CG2271 Quiz 2, Link: https://nus-sg.zoom.us/j/2226375MG on 2020-10-15, 15:30
 _________________________________
 ````
-As shown above, the user can choose the date/time they want for the event as long as it is a valid number in the list.
- In the example, the user picks the second option for both date and time, shown by the two times '2' was input.
- 
- 
+
 > **Note!**
 > * The extract feature can also detect when there are suffixes like st/nd/rd/th for the day portion of the date.
 > * The extract feature has the ability to attach the current year to the date if it is not specified in the text.
@@ -1016,7 +1048,6 @@ As shown above, the user can choose the date/time they want for the event as lon
 > **Warning!**
 > * It is not advised to edit the copy and pasted text in the command line. It may result in this feature not working as expected.
 > * It is not advised to copy and paste text containing emojis into the command line because the command line may crash. It is recommended to remove these emojis by editing the text in a text editor first like the Notepad app.
-
 
 
 <div style="page-break-after: always;"></div>
