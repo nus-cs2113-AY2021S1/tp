@@ -543,7 +543,7 @@ Format: `deadline EVENT_INDEX; DD/MM/YY; [HH:MM AM/PM]`
 
 * `[HH:MM AM/PM]` is an optional argument containing the time of the deadline for the personal event. It can be written in either 12-hour or 24-hour format. 
 
-`deadline 2; 23/07/20` sets the deadline of event number 2 to be on 23 July 2020 a 
+`deadline 2; 23/07/20` sets the deadline of event number 2 to be on 23 July 2020.
 
 `deadline 7; 29/08/20; 14:25` sets the deadline of event number 7 to be on the 29 August 2020 at 2:25PM. 
 
