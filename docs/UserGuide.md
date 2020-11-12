@@ -203,10 +203,17 @@ If you are ever unsure on how to use a command, or you would like to learn more 
 
 Format: `help [COMMAND]`
 
-#### How to use? 
+#### Example usage
 
-When you type in `help`, a generic help screen will be printed as shown below 
+The following few sections present 3 scenarios of how the help command is used.
 
+##### Scenario 1: Getting the summary of commands
+
+Let us assume that you want to see all the commands that is available. 
+
+You can do this by typing `help`.
+
+The output from the program should be:
 ```
 help
 _________________________________
@@ -232,7 +239,13 @@ _________________________________
 
 <div style="page-break-after: always;"></div>
 
-If you want to get help for a specific command, type in `help [COMMAND]`. For example, the following screenshot shows what happens if you type in `help add`. 
+##### Scenario 2: Getting help for `add` command
+
+Let us assume that you want to add an event but you are unsure of the command. 
+
+You can do this by typing `help add`.
+
+The output from the program should be:
 
 ```
 help add
@@ -272,7 +285,14 @@ Personal Format: add Personal; EVENT_DESCRIPTION; [DD/MM/YY]; [HH:MM AM/PM]
 _________________________________
 ```
 
-You can even get help on how to use the help command by typing in `help help` as shown in the following screenshot
+##### Scenario 3: Getting help to understand `help` command
+
+Let us assume that you want to use the help command but you are unsure of how to read it.
+
+You can do this by typing `help help`.
+
+The output from the program should be:
+
 ```
 help help
 _________________________________
@@ -523,7 +543,7 @@ Format: `deadline EVENT_INDEX; DD/MM/YY; [HH:MM AM/PM]`
 
 * `[HH:MM AM/PM]` is an optional argument containing the time of the deadline for the personal event. It can be written in either 12-hour or 24-hour format. 
 
-`deadline 2; 23/07/20` sets the deadline of event number 2 to be on 23 July 2020 a 
+`deadline 2; 23/07/20` sets the deadline of event number 2 to be on 23 July 2020.
 
 `deadline 7; 29/08/20; 14:25` sets the deadline of event number 7 to be on the 29 August 2020 at 2:25PM. 
 
@@ -985,36 +1005,11 @@ Example of usage:
 
 `view personal; 1 `
 
-#### How to use?
-
-##### Step 1: Find the index number of the event that you want to view the note
-You can do this by typing the command list EVENT_TYPE into your application. The result for the following command is shown in the following:
-
-```
-Here is a list of your Personal events:
-1. [P][X] sleep 
-```
-In this case, the index number that you want is 1.
-
-##### Step 2: Type the command into the terminal
-````
-view personal; 1 
-````
-
-##### Step 3: Voilà! Here's your notes! 
-```
-These are the notes that you have taken:
----------2020-10-30T00:53:01.907824900---------
-hello there!
-scheduler says hi:)
-_________________________________
-``` 
-
 #### Example Usage
 
 The following few section present an example of how the view command can be used
 
-##### Scenario 1: Creating a note for a personal event
+##### Scenario 1: Viewing a note for a personal event
 
 Let us assume that you have a personal event titled `dental appointment` that you would like to view the notes from.
 
