@@ -796,19 +796,6 @@ Acceptable time formats:
 - 24 Hour format – HHmm or HH:mm (e.g. 14:00)
 - 12 Hour format – hh:mm am/pm or hhmm am/pm (e.g. 2:00 pm)
 
-Example: `check 20/08/2020; 15:05; 25/08/2020; 13:00`
-
-This will check from 20 August 2020 3:05pm to 25 August 2020 1pm. 
-
-Expected output:
-```
-_________________________________
-check 20/08/2020; 15:05; 25/08/2020; 13:00
-_________________________________
-You have no coinciding events!
-_________________________________
-```
-
 > **Note!**
 >
 > *	You may omit the DD or DD/MM in a date. If you do not fill in these fields for the date, the command takes the current date for that field by default (e.g.  input 2021 on 11 Oct 2020 would be taken as 11/10/2021)
@@ -820,6 +807,43 @@ _________________________________
 > **Warning!**
 >
 > * Even when you leave a time field (e.g. `[START_DATE]`) as blank, a semicolon (;) should still be used to denote the blank field (e.g. `check ; 2:00 pm; 25/12/2020; 2359`)
+> * The start date and time should occur before the end date and time (i.e. start date and time cannot be 11/11/2020; 1 pm if end date and time is 11/11/2020; 12 pm)
+
+#### Example Usage
+
+The following few sections present several examples of how the check command can be used.
+
+##### Scenario 1: Checking availability between 9 May 2021 and 1 August 2021
+ 
+Let's say you want to check your availability between 9 May 2021 and 1 August 2021 in order to make plans for a holiday.
+
+To do so, you can type in the command `check 9/5/2021; 12 am; 1/8/2021; 11:59 am`. This will check for events from the start of 9 May 2021 (12 am) till the end of 1 August 2021 (11:59 pm). If for instance you have a driving test set as a Personal event on 15 June 2021, it will show up in a list as shown in the following output:
+
+```
+check 9/5/2021; 12 am; 1/8/2021; 11:59 pm
+_________________________________
+Here is a list of your coinciding events:
+1. [P][X] driving test on 2021-06-15, 13:00
+_________________________________
+```
+
+##### Scenario 2: Checking availability from now till 25 December 2020
+
+Let's say you are planning to do some Christmas shopping, and would like to check if you have any other events going on from now till then.
+
+To do so, you can type in the command `check ; ; 25/12/2020; 2359`. Leaving the start date and start time fields blank sets them to the current date and time. This will check for events from now till 25 December 2020 11:59 pm. Assuming you have no events within that time period, you can expect the following output:
+
+```
+check ; ; 25/12/2020; 2359
+_________________________________
+You have no coinciding events!
+_________________________________
+```
+
+> **Note!**
+>
+> * This assumes that the current date and time is before 25 December at 2359, since the start date and time has to be before the end date and time.
+
 
 <div style="page-break-after: always;"></div>
 
@@ -886,23 +910,68 @@ Acceptable date formats: DD/MM/YYYY or DD/MM/YY
 
 If you wish to mark a specific event in a repeated task as done, you may enter the date of that repeated event.
 
-Examples:
--	`done personal; 1` marks the 1st Personal event as done.
--	`done personal; 2; 1/3/2020` if the 2nd Personal event is a repeated event with a repetition occurring on 1st March 2020, that repetition will be marked as done 
+> **Note!**
+>
+> *	If you want to mark an original repeat event as done rather than one of the subsequent repeated events, you can omit the date in the command. 
 
-Expected output:
+#### Example Usage
+
+##### Scenario 1: Marking a non-repeat event as done
+
+Let's say you wish to mark a Personal event `buy groceries` as done. In order to find the index of the event, you may type in the command `list personal` as shown below:
+                                                                     
 ```
+list personal
 _________________________________
-done personal; 2; 1/3/2020
+Here is a list of your Personal events:
+1. [P][X] buy groceries on 2020-10-15, 13:00
+2. [P][X] clean room on 2020-11-20, 12:00
+_________________________________
+```
+
+You may also type in `list all` to list all Personal, Timetable and Zoom events.
+
+As seen from the list, the index of the Personal event `buy groceries` is 1. To mark it as done, type in the command `done personal; 1`. This will set the event to done, as shown by the status icon changing from 'X' to 'O' in the following output:
+
+```
+done personal; 1
 _________________________________
 You have successfully marked this event as done!
-[P][O] test 2 on 2020-03-01, 14:00
+[P][O] buy groceries on 2020-10-15, 13:00
+_________________________________
+```
+
+##### Scenario 2: Setting a particular repetition of a repeat event as done
+
+Let's say you now wish to mark a particular occurrence of the Timetable event `CG2271 lab` on 23 October 2020 as done. In order to find the event index, you may type in `list timetable` as shown below: 
+                                                                                                                       
+```
+list timetable
+_________________________________
+Here is a list of your Timetable events:
+1. [T][O] CG2271 lab, Location: E4A-04-08 on 2020-10-09, 08:00 is also on:
+   1. 2020-10-16 08:00 [O]
+   2. 2020-10-23 08:00 [O]
+   3. 2020-10-30 08:00 [X]
+   4. 2020-11-06 08:00 [X]
+   5. 2020-11-13 08:00 [X]
+2. [T][X] GER exam on 2020-11-16, 12:00
+_________________________________
+``` 
+
+As seen from the list, the index of the Timetable event `CG2271 lab` is 1. To mark the repetition on 23 October 2020 as done, type in the command `done timetable; 1; 23/10/2020`. This sets the intended repetition of the event to done, as shown in the following output:
+
+```
+done timetable; 1; 23/10/2020
+_________________________________
+You have successfully marked this event as done!
+[T][O] CG2271 lab, Location: E4A-04-08 on 2020-10-23, 08:00
 _________________________________
 ```
 
 > **Note!**
 >
-> *	If you want to mark an original repeat event as done rather than one of the subsequent repeated events, you can omit the date in the command. 
+> * In this scenario, marking the first repetition of `CG2271 lab` occurring on 9 October 2020 can be done by typing the command `done timetable; 1`, without needing to enter the date.
 
 <div style="page-break-after: always;"></div>
 
@@ -915,44 +984,71 @@ Acceptable date formats: DD/MM/YYYY or DD/MM/YY
 
 If you wish to mark a specific event in a repeated task as undone, you may enter the date of that repeated event.
 
-Examples:
--	`undone zoom; 3` marks the 3rd Zoom event as not done.
--	`undone personal; 2; 1/3/2020` if the 2nd Personal event is a repeated event with a repetition occurring on 1st March 2020, that repetition will be marked as undone 
-
-Expected output:
-```
-_________________________________
-undone personal; 2; 1/3/2020
-_________________________________
-You have successfully marked this event as undone!
-[P][X] test 2 on 2020-03-01, 14:00
-_________________________________
-```
-
 > **Note!**
 >
 > *	If you want to mark an original repeat event as undone rather than one of the subsequent repeated events, you can omit the date in the command. 
 
+##### Scenario 1: Marking a non-repeat event as undone
+
+Let's say you marked a Personal event `buy groceries` as done by accident, and want to mark it as undone again. In order to find the index of the event, you may type in the command `list personal` as shown below:
+
+```
+list personal
+_________________________________
+Here is a list of your Personal events:
+1. [P][O] buy groceries on 2020-10-15, 13:00
+2. [P][X] clean room on 2020-11-20, 12:00
+_________________________________
+```
+
+You may also type in `list all` to list all Personal, Timetable and Zoom events.
+
+As seen from the list, the index of the Personal event `buy groceries` is 1. To mark it as undone, type in the command `undone personal; 1`. This will set the event back to undone, as shown by the status icon changing from 'O' to 'X' in the following output:
+
+```
+undone personal; 1
+_________________________________
+You have successfully marked this event as undone!
+[P][X] buy groceries on 2020-10-15, 13:00
+_________________________________
+```
+
+##### Scenario 2: Setting a particular repetition of a repeat event as undone
+
+Let's say you also marked another particular occurrence of the Timetable event `CG2271 lab` on 30 October 2020 as done by accident. In order to find the event index, you may type in `list timetable` as shown below: 
+
+```
+list timetable
+_________________________________
+Here is a list of your Timetable events:
+1. [T][O] CG2271 lab, Location: E4A-04-08 on 2020-10-09, 08:00 is also on:
+    1. 2020-10-16 08:00 [O]
+    2. 2020-10-23 08:00 [O]
+    3. 2020-10-30 08:00 [O]
+    4. 2020-11-06 08:00 [X]
+    5. 2020-11-13 08:00 [X]
+2. [T][X] GER exam on 2020-11-16, 12:00
+_________________________________
+``` 
+
+As seen from the list, the index of the Timetable event `CG2271 lab` is 1. To mark the repetition on 30 October 2020 as undone, type in the command `undone timetable; 1; 30/10/2020`. This sets the intended repetition of the event back to undone, as shown in the following output:
+
+```
+undone timetable; 1; 30/10/2020
+_________________________________
+You have successfully marked this event as undone!
+[T][X] CG2271 lab, Location: E4A-04-08 on 2020-10-30, 08:00
+_________________________________
+```
+
+
 <div style="page-break-after: always;"></div>
 
 ### 3.11 Deleting an event: `delete` (Marcus Tan)
+
 Want to remove an event from your schedule? Use the delete command to get rid of unnecessary events.
 
 Format: `delete EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`
-
-Examples:
--	`delete personal; 3` deletes the 3rd Personal event from Scheduler.
--	`delete zoom; 4; 5/3/2020` if the 4th Zoom event is a repeated event with a repetition occurring on 5th March 2020, that repetition will be deleted 
-
-Expected output:
-```
-_________________________________
-delete personal; 3
-_________________________________
-You have successfully deleted this event!
-[P][X] test 3 on 2020-01-01
-_________________________________
-```
 
 > **Note!**
 >
@@ -963,6 +1059,66 @@ _________________________________
 >
 > * If you delete the original repeat event, all the subsequent repeated events will be deleted along with it.
 > * Deleting an event on the original event's date will delete the main event, along with all the subsequent repeated events.
+
+
+##### Scenario 1: Deleting a non-repeat event
+
+Let's say you had a doctor's appointment (stored as a Personal event `doctor's appointment`) that you cancelled, and now wish to remove the event from Scheduler. In order to find the index of the event, you may type in the command `list personal` as shown below:
+
+```
+list personal
+_________________________________
+Here is a list of your Personal events:
+1. [P][X] buy groceries on 2020-10-15, 13:00
+2. [P][X] clean room on 2020-11-20, 12:00
+3. [P][X] doctor's appointment on 2020-11-30, 15:00
+_________________________________
+```
+
+You may also type in `list all` to list all Personal, Timetable and Zoom events.
+
+As seen from the list, the index of the Personal event `doctor's appointment` is 3. To delete it, type in the command `delete personal; 3`. This will delete the event from Scheduler, as shown in the following output:
+
+```
+delete personal; 3
+_________________________________
+You have successfully deleted this event!
+[P][X] doctor's appointment on 2020-11-30, 15:00
+_________________________________
+```
+
+##### Scenario 2: Deleting a particular repetition of a repeat event
+
+Let's say you repeated the Timetable event `CG2271 lab` one too many times. In order to find the event index, you may type in `list timetable` as shown below: 
+
+```
+list timetable
+_________________________________
+Here is a list of your Timetable events:
+1. [T][O] CG2271 lab, Location: E4A-04-08 on 2020-10-09, 08:00 is also on:
+    1. 2020-10-16 08:00 [O]
+    2. 2020-10-23 08:00 [O]
+    3. 2020-10-30 08:00 [X]
+    4. 2020-11-06 08:00 [X]
+    5. 2020-11-13 08:00 [X]
+2. [T][X] GER exam on 2020-11-16, 12:00
+_________________________________
+``` 
+
+As seen from the list, the index of the Timetable event `CG2271 lab` is 1. To delete the last repetition on 13 November 2020, type in the command `delete timetable; 1; 13/11/2020`. This deletes the intended repetition of the event, as shown in the following output:
+
+```
+delete timetable; 1; 13/11/2020
+_________________________________
+You have successfully deleted this event!
+[T][X] CG2271 lab, Location: E4A-04-08 on 2020-11-13, 08:00
+_________________________________
+```
+
+> **Warning!**
+>
+> * Deleting the first repetition of a repeat event (such as the one occurring on 9 October 2020 for `CG2271 lab` here) will delete all subsequent repetitions along with it.
+> * In this scenario, typing `delete timetable; 1` or `delete timetable; 1; 9/10/2020` will delete all repetitions of `CG2271 lab`.
 
 <div style="page-break-after: always;"></div>
 
