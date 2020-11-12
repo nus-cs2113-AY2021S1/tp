@@ -2,7 +2,7 @@
 
 CS2113T – T12 – 04 Scheduler-\-;
  
-Scheduler-\-; Does the job
+Scheduler-\-; does the job.
 
 ## Table of Contents
 
@@ -25,8 +25,6 @@ Scheduler-\-; Does the job
     - [3.1 Viewing help: help](#31-viewing-help-help-colin-ng)
     - [3.2 Adding an event: add](#32-adding-an-event-add-matthew-gani)
     - [3.3 List events: list](#33-list-events-list-marcus-ng)
-        - [3.3.1 List all events](#331-list-all-events-of-a-type)
-        - [3.3.2 List all events of a type](#332-list-all-events)
     - [3.4 Calendar format list: calendar](#34-calendar-format-list-calendar-marcus-ng)
     - [3.5 Deadlines: deadline](#35-deadlines-deadline-qing-ning)
     - [3.6 Repeat on daily/weekly/monthly basis: repeat](#36-repeat-on-dailyweeklymonthly-basis-repeat-colin-ng)
@@ -79,32 +77,21 @@ Once you have set up the application, you may use the table of contents present 
 
 ### 1.4 Conventions used in this document
 
-Words that are highlighted in grey, for instance, list, indicate that the words are commands to be typed into the command line interface. 
+Words that are highlighted in grey, for instance, `list`, indicate that the words are commands to be typed into the command line interface. 
 
 - Words that are highlighted in grey and are in lower case indicates commands that are to be typed exactly. For instance, if the instructions says to type the words `list all` to run a command,  type on the program the exact words “list all” 
 
 - Words that are highlighted in grey and are in upper case indicates command arguments or parameters that are to be provided by the user. For instance, if the usage instruction informs you to type `delete EVENT_INDEX` and you know that the EVENT_INDEX is 2, type into the computer program “delete 2”. 
 
+- Words that are highlighted in grey, in upper case and are surrounded by square brackets indicates command arguments or parameters that the user can choose to provide or not to provide. For instance, if the command instruction informs you to type `goal [NEW_GOAL]`, you can choose to omit the argument for NEW_GOAL and instead just simply type “goal”.
 
 >**Note!**
 >
 >This is a note section. Additional information about the command will be written in sections such as this one. 
 
-Words that are highlighted in grey, in upper case and are surrounded by square brackets indicates command arguments or parameters that the user can choose to provide or not to provide. For instance, if the command instruction informs you to type `goal [NEW_GOAL]`, you can choose to omit the argument for NEW_GOAL and instead just simply type “goal”.
-
 >**Warning!**
 >
 >This is a warning section. Any user interaction with the program that may result in issues or unintended results will be written in sections such as this one. 
-
-
->**Notes about the command format**
->
-> - Words in `UPPER_CASE` are the parameters to be supplied by the user.
-> e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-> - Items in square brackets are optional
-> e.g. `n/Name [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-> - Items with ... after them can be used multiple times including zero times.
-> e.g. `[t/TAG]...` can be used as  (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 <div style="page-break-after: always;"></div>
 
@@ -114,8 +101,8 @@ Words that are highlighted in grey, in upper case and are surrounded by square b
 
 To run Scheduler-\-;, your computer must meet these minimum system requirements:
 
-- Operating System: Windows 7 and above, Mac OS X or Linux 
-- Java 11 installed on computer 
+- Operating System: Windows 7 and above, Mac OS X or Linux. 
+- Java 11 installed on your computer. 
 
 You can install version 11 of Java from this [link](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html).
 
@@ -123,8 +110,8 @@ You can install version 11 of Java from this [link](https://docs.aws.amazon.com/
 
 #### 2.2.1 Windows
 
-1. Install Java 11 or above in your computer if you have not done so 
-1. Download the latest scheduler.jar from [here](https://github.com/AY2021S1-CS2113T-T12-4/tp/releases) 
+1. Install Java 11 or above in your computer if you have not done so. 
+1. Download the latest scheduler.jar from [here](https://github.com/AY2021S1-CS2113T-T12-4/tp/releases).
 1. Copy the file to the folder you want to use as the folder for the Scheduler. 
 1. Open the command prompt by entering `cmd` into the search bar and press enter. 
 1. Navigate to the folder where you saved the jar file using the command prompt.
@@ -133,21 +120,21 @@ You can install version 11 of Java from this [link](https://docs.aws.amazon.com/
 
 #### 2.2.2 Mac OS X
 
-1. Install Java 11 or above in your computer if you have not done so 
-1. Download the latest scheduler.jar from here 
-1. Copy the file to the folder you want to use as the folder for the Scheduler-\-; 
-1. Open the terminal by clicking on Launchpad->Utilities->Terminal 
-1. Navigate to the folder you have stored the jar file in the command prompt 
+1. Install Java 11 or above in your computer if you have not done so. 
+1. Download the latest scheduler.jar from here.
+1. Copy the file to the folder you want to use as the folder for the Scheduler-\-;. 
+1. Open the terminal by clicking on Launchpad->Utilities->Terminal. 
+1. Navigate to the folder you have stored the jar file in the command prompt. 
 1. Type `java -jar scheduler.jar` into the terminal and press enter. 
 1. The welcome message for the program should appear. 
 
 #### 2.2.3 Linux
 
-1. Install Java 11 or above in your computer if you have not done so 
-1. Download the latest scheduler.jar from here 
-1. Copy the file to the folder you want to use as the folder for the Scheduler-\-; 
-1. Open the terminal in your linux distribution
-1. Navigate to the folder you have stored the jar file in the command prompt 
+1. Install Java 11 or above in your computer if you have not done so. 
+1. Download the latest scheduler.jar from here. 
+1. Copy the file to the folder you want to use as the folder for the Scheduler-\-;. 
+1. Open the terminal in your linux distribution.
+1. Navigate to the folder you have stored the jar file in the command prompt. 
 1. Type `java -jar scheduler.jar` into the terminal and press enter. 
 1. The welcome message for the program should appear. 
 
@@ -157,16 +144,16 @@ Type the command in the command box and press Enter to execute.
 Refer to the [Features](#3-features) section for details of each command. 
 
 Some examples you can try: 
-- `list`: List all events
-- `add personal; run; 12/10/20; 4pm`: Add a personal event to the scheduler 
-- `bye`: exit the program 
+- `add personal; run; 12/10/20; 4pm`: Adds a personal event to the scheduler. 
+- `list personal`: Lists all personal events.
+- `bye`: Exits the program. 
     
 Congratulations! You have just finished setting up Scheduler-\-; Feel free to explore the program, or if you would like some assistance, take a look at the subsequent sections for instructions on how to use the available features of this program. Happy scheduling!
 
 ### 2.4 For Experienced users
 
-If you are familiar with the commands used in the program, Scheduler-\-; now supports the processing of multiple commands
-To input more than one command into Scheduler-\-;, simply separate each command with a pipe character '|'
+If you are familiar with the commands used in the program, Scheduler-\-; now supports the processing of multiple commands.
+To input more than one command into Scheduler-\-;, simply separate each command with a pipe character '|'.
 
 Some examples you can try:
 - `add personal; dental appointment; 2020-05-05; | repeat personal; 1; monthly; 3;` will cause the program to add a new personal event named "Dental Appointment" and subsequently set the event to repeat monthly for three more months as shown below:
@@ -185,7 +172,7 @@ _________________________________
 
 > **Warning!**
 >
-> When writing multiple commands at once, keep in mind that the program processes each command entry from left to right. If you make a mistake for one command, the subsequent commands towards the right of the mistake will not be processed by the program
+> When writing multiple commands at once, keep in mind that the program processes each command entry from left to right. If you make a mistake for one command, the subsequent commands towards the right of the mistake will not be processed by the program.
 >
 
 <div style="page-break-after: always;"></div>
@@ -199,14 +186,21 @@ This section introduces and explains the features of Scheduler-\-;!
 
 ### 3.1 Viewing help: help (Colin Ng)
 
-If you are ever unsure on how to use a command, or you would like to learn more about the uses of a command, the help command is scheduler-\-; onboard help line for getting information. The help command allows you to get more information when you are unsure on how to use the program. It can also assist you with getting more information on how to use a specific command in the program. 
+If you are ever unsure on how to use a command, or you would like to learn more about the uses of a command, the help command is Scheduler-\-;'s onboard helpline for getting information. The help command allows you to get more information when you are unsure on how to use the program. It can also assist you with getting more information on how to use a specific command in the program. 
 
 Format: `help [COMMAND]`
 
-#### How to use? 
+#### Example usage
 
-When you type in `help`, a generic help screen will be printed as shown below 
+The following few sections present 3 scenarios of how the help command is used.
 
+##### Scenario 1: Getting the summary of commands
+
+Let us assume that you want to see all the commands that is available. 
+
+You can do this by typing `help`.
+
+The output from the program should be:
 ```
 help
 _________________________________
@@ -232,7 +226,13 @@ _________________________________
 
 <div style="page-break-after: always;"></div>
 
-If you want to get help for a specific command, type in `help [COMMAND]`. For example, the following screenshot shows what happens if you type in `help add`. 
+##### Scenario 2: Getting help for `add` command
+
+Let us assume that you want to add an event but you are unsure of the command. 
+
+You can do this by typing `help add`.
+
+The output from the program should be:
 
 ```
 help add
@@ -272,7 +272,14 @@ Personal Format: add Personal; EVENT_DESCRIPTION; [DD/MM/YY]; [HH:MM AM/PM]
 _________________________________
 ```
 
-You can even get help on how to use the help command by typing in `help help` as shown in the following screenshot
+##### Scenario 3: Getting help to understand `help` command
+
+Let us assume that you want to use the help command but you are unsure of how to read it.
+
+You can do this by typing `help help`.
+
+The output from the program should be:
+
 ```
 help help
 _________________________________
@@ -342,9 +349,8 @@ The following few sections present 3 scenarios of how the add command is used.
 
 ##### Scenario 1: Adding a Timetable event
 
-You want to add a Timetable event for a CS2101 Lecture at NUS Computing on 18/09/20 at 3.30pm.
-
-You should input: `add Timetable; CS2101 Lecture; NUS Computing; 18/09/20; 3:30 pm`. 
+If you want to add a Timetable event for a CS2101 Lecture at NUS Computing on 18/09/20 at 3.30pm,
+you should input: `add Timetable; CS2101 Lecture; NUS Computing; 18/09/20; 3:30 pm`. 
 
 The output from the program should be:
 ```
@@ -356,9 +362,8 @@ _________________________________
 
 ##### Scenario 2: Adding a Zoom event
 
-You want to add a Zoom event for a CS2113T meeting on 16/09/20 at 9pm.
-
-You should input: `add Zoom; CS2113T meeting; zoom.com.sg; 16/09/20; 2100`. 
+If you want to add a Zoom event for a CS2113T meeting on 16/09/20 at 9pm,
+you should input: `add Zoom; CS2113T meeting; zoom.com.sg; 16/09/20; 2100`. 
 
 The output from the program should be:
 ```
@@ -370,9 +375,8 @@ _________________________________
 
 ##### Scenario 3: Adding a Personal event
 
-You want to add a Personal event for a family meeting on 18/09/20.
-
-You should input: `add personal; family meeting; 18/09/20` .
+If you want to add a Personal event for a family meeting on 18/09/20,
+you should input: `add personal; family meeting; 18/09/20` .
 
 The output from the program should be:
 ```
@@ -385,9 +389,9 @@ _________________________________
 > **Note!**
 >
 > * When giving the event type, take note that it is case-insensitive:
-> `add Zoom` is the same as `add zoom`
+> `add Zoom` is the same as `add zoom`.
 > * Only the full word will be recognized as the event type:
->   `add z` will NOT add a zoom event
+>   `add z` will NOT add a zoom event.
 
 > **Warning!**
 >
@@ -410,11 +414,17 @@ The accepted arguments for this are “personal”, “timetable” and “zoom�
 When the optional argument `[EVENT_TYPE]` is omitted,
 list will print a list of available event types.
 
-#### 3.3.1 List all events of a type
+#### Example usage
 
-Example: ```list Zoom```
+The following section present an example of how the list command can be used.
 
-Expected output:
+##### Scenario 1: Listing Zoom events
+
+You want to list all your Zoom events.
+
+You should input: ```list Zoom```
+
+The output from the program should be:
 
 ```
 list zoom
@@ -433,13 +443,13 @@ _________________________________
 > * You do not need to type the exact event type, it is case-insensitive. In other words,
 > `list Zoom` is the same as `list zoom`
 
-<div style="page-break-after: always;"></div>
+##### Scenario 2: Listing all events
 
-#### 3.3.2 List all events
+You want to list all your events.
 
-You can print a list of all events by executing the following command: ```list all```
+You should input: ```list all```
 
-Expected output:
+The output from the program should be:
 
 ```
 list all
@@ -479,7 +489,39 @@ This brings you into calendar printing mode.
 - To exit the calendar printing mode, simply type in ```q```.
 - This mode is exited once you see ```End of calendar``` on pressing enter.
 
-Expected output:
+#### Example usage
+
+The following section present an example of how the calendar command can be used.
+
+##### Scenario 1: Listing events in calendar
+
+You want to list your events in a calendar format.
+
+You should input: ```calendar```
+
+The output from the program should be:
+
+```
+calendar
+_________________________________
+Calendar has 1 dates to display
+1 event not on the calendar because it has no date and time
+---------------------------------------------------------------------------------------
+04 May 2020
+---------------------------------------------------------------------------------------
+T | 3:00 PM | X | Science class | S17
+---------------------------------------------------------------------------------------
+End of calendar
+_________________________________
+```
+
+##### Scenario 2: Listing events in calendar but not all of them
+
+You want end the calendar before all the dates are displayed.
+
+You should input: `q` after inputting `calendar`
+
+The output from the program should be:
 
 ```
 calendar
@@ -523,56 +565,11 @@ Format: `deadline EVENT_INDEX; DD/MM/YY; [HH:MM AM/PM]`
 
 * `[HH:MM AM/PM]` is an optional argument containing the time of the deadline for the personal event. It can be written in either 12-hour or 24-hour format. 
 
-`deadline 2; 23/07/20` sets the deadline of event number 2 to be on 23 July 2020 a 
+`deadline 2; 23/07/20` sets the deadline of event number 2 to be on 23 July 2020.
 
 `deadline 7; 29/08/20; 14:25` sets the deadline of event number 7 to be on the 29 August 2020 at 2:25PM. 
 
 `deadline 7; 29/08/20; 11:20 PM` sets the deadline of event number 7 to be on the 29 August 2020 at 11:20PM. 
-
-Expected output: 
-```
-You have successfully updated the deadline for this event!
-[P][X] sleep on 2020-08-29, 23:20
-```
-
-<div style="page-break-after: always;"></div>
-
-#### How to use? 
-
-We will use the example of created a deadline for personal event named “sleep”. 
-
-##### Step 1: Find the index number of the event to be repeated. 
-
-You can do this by typing the command list personal into your application. The result for the following command is shown in the following photo. 
-
-```
-_________________________________
-list personal
-_________________________________
-Here is a list of your Personal events:
-1. [P][X] party on 2000-10-09, 13:00
-2. [P][X] surprise on 2020-09-14, 08:00
-3. [P][X] sleep on 2002-02-02, 23:00
-4. [P][X] dental appointment on 2020-03-02, 15:00
-_________________________________
-```
-In this case, the index number of our sleep is 3.
-
-##### Step 2: Type the command into the terminal
-
-In our example, the arguments are set as such:
-
-- EVENT_TYPE is set to personal
-- EVENT_INDEX is set to 3
-- DD/MM/YY is set to 29/08/20
-- HH:MM AM/PM is set to 11:20 PM
-
-When you type in the command deadline 3; 29/08/20; 11:20 PM, the program reports that it has set the event deadline as shown in the following image. 
-
-```
-You have successfully updated the deadline for this event!
-[P][X] sleep on 2020-08-29, 23:20
-```
 
 > **Note!**
 >
@@ -586,6 +583,41 @@ You have successfully updated the deadline for this event!
 > **Warning!**
 >
 > The event index keyed in have to be valid so that deadline can be created for the specified event index.
+
+#### Example Usage
+
+The following section present an example of how the deadline command can be used.
+
+##### Scenario 1: Setting a deadline for a personal event
+
+Let us assume that you have a personal event titled `dental appointment` that you would like to set the deadline for.
+
+Firstly, find out what index number the `dental appointment` personal event has been assigned to. You can do this easily by typing in `list personal`.
+In my case, the following things will be printed out on the terminal.
+
+You can do this by typing the command list personal into your application. The result for the following command is shown in the code snippet below:  
+
+```
+_________________________________
+list personal
+_________________________________
+Here is a list of your Personal events:
+1. [P][X] party on 2000-10-09, 13:00
+2. [P][X] surprise on 2020-09-14, 08:00
+3. [P][X] sleep on 2002-02-02, 23:00
+4. [P][X] dental appointment 
+_________________________________
+```
+In this case, the index number of our dental appointment is 4.
+
+Next, type in the command `deadline 4; 29/08/20; 11:20 PM`. You should now see that the deadline command has successfully set your event `dental appointment` to be due on the 29/08/20 at 11:20 PM.
+
+```
+deadline 4; 29/08/20; 11:20 PM`
+You have successfully updated the deadline for this event!
+[P][X] sleep on 2020-08-29, 23:20
+```
+
 
 <div style="page-break-after: always;"></div>
 
@@ -612,16 +644,16 @@ Format: `repeat EVENT_TYPE EVENT_INDEX`
 > **Note!**
 >
 > When you repeat an event monthly, the date does not always increment up by 30 days. Incrementing monthly mainly changes the month without changing the day of the date being incremented.
-> In the case of incrementing monthly from 31 Jan, the code will increment to 28 or 29 Feb followed by 31 Mar and 30 April and so on
-> In the case of incrementing monthly from 30 Jan, the code will increment to 28 or 29 Feb followed by 30 Mar and 30 April and so on
+> In the case of incrementing monthly from 31 Jan, the code will increment to 28 or 29 Feb followed by 31 Mar and 30 April and so on.
+> In the case of incrementing monthly from 30 Jan, the code will increment to 28 or 29 Feb followed by 30 Mar and 30 April and so on.
 >
-> Setting the `EVENT_INDEX` argument to zero will cause the event to revert to a standard non-repeating event
+> Setting the `EVENT_INDEX` argument to zero will cause the event to revert to a standard non-repeating event.
 
 <div style="page-break-after: always;"></div>
 
 #### Example Usage
 
-The following few sections present several examples of how the repeat command can be used
+The following few sections present several examples of how the repeat command can be used.
 
 ##### Scenario 1: Setting a personal event to repeat monthly for four months
 
@@ -630,7 +662,7 @@ Let us assume that you have a personal event titled `dental appointment` that yo
 Firstly, find out what index number the `dental appointment` personal event has been assigned to. You can do this easily by typing in `list personal`.
 In my case, the following things will be printed out on the terminal.
 
-You can do this by typing the command list personal into your application. The result for the following command is shown in the following photo. 
+You can do this by typing the command list personal into your application. The result for the following command is shown in the following code snippet. 
 
 ```
 list personal
@@ -661,7 +693,7 @@ Let us look at the previous scenario where we have set the personal event `denta
 Let us assume that you would like to remove the repeated event and set it to occur only once.
 
 Firstly, find out what index number the `dental appointment` personal event has been assigned to. You can do this easily by typing in `list personal`.
-The result for the following command is shown in the following snapshot.
+The result for the following command is shown in the following code snippet.
 
 ```
 list personal
@@ -768,7 +800,7 @@ Example: `check 20/08/2020; 15:05; 25/08/2020; 13:00`
 
 This will check from 20 August 2020 3:05pm to 25 August 2020 1pm. 
 
-Expected result:
+Expected output:
 ```
 _________________________________
 check 20/08/2020; 15:05; 25/08/2020; 13:00
@@ -804,16 +836,37 @@ When the optional argument `[GOAL]` is omitted, the current goal will be display
 
 When `[GOAL]` is specified as `delete`, the current goal will be removed.
 
-Examples:
-- ```goal get cap 5.0``` will set your current goal as “get cap 5.0”. 
-- ```goal save up $100``` after executing the above command will change your current goal to “save up $100”. 
+#### Example usage
 
-Expected output:
+The following few sections present several examples of how the goal command can be used.
+
+##### Scenario 1: Setting goal
+
+You want to set `get cap 5.0` as your goal.
+
+You should input: `goal get cap 5.0`
+
+The output from the program should be:
 
 ```
-goal save up $100
+goal get cap 5.0
 _________________________________
-Goal changed to: save up $100
+Goal changed to: get cap 5.0
+_________________________________
+```
+
+##### Scenario 2: Delete goal
+
+You want to delete your goal.
+
+You should input: `goal delete`
+
+The output from the program should:
+
+```
+goal delete
+_________________________________
+No more goal!
 _________________________________
 ```
 
@@ -920,54 +973,63 @@ Format: `note EVENT_TYPE; EVENT_INDEX`
 
 * The `EVENT_TYPE` have to be either personal, zoom or timetable.
 * Scheduler will prompt you to type your notes
-Example of usage: 
-
-`note personal; 1 `
-
-#### How to use?
-
-##### Step 1: Find the index number of the event to write the note for 
-You can do this by typing the command list EVENT_TYPE into your application. The result for the following command is shown in the following:
-
-```
-Here is a list of your Personal events:
-1. [P][X] sleep 
-```
-In this case, the index number that you want is 1.
-
-##### Step 2: Type the command into the terminal
-````
-note personal; 1 
-````
-
-##### Step 3: Scheduler will prompt you to type your notes
-```
-Please type in your notes. To stop note taking, ensure that you are in a new line and type 'noteend' and press enter 
-
-```
-
-##### Step 4: Tell Scheduler you are done 
-By pressing enter to go to a new line and type 
-```
-noteend
-```
-
-##### Step 5: Voilà! Your notes have been saved! 
-```
-You have successfully written the note for this event!
-[P][X] sleep
----------2020-10-30T00:53:01.907824900---------
-hello there!
-scheduler says hi:)
-_________________________________
-``` 
-
-
 
 > **Warning!**
 >
 > * The event index keyed in have to be valid so that note can be created for the specified event index.
 > * The grave accent symbol \` is an illegal character. If you use this symbol, the notes program will intepret it as a new line.
+
+#### Example Usage
+
+The following few section present an example of how the note command can be used
+
+##### Scenario 1: Creating a note for a personal event
+
+Let us assume that you have a personal event titled `dental appointment` that you would like to create a note for.
+
+Firstly, find out what index number the `dental appointment` personal event has been assigned to. You can do this easily by typing in `list personal`.
+In my case, the following things will be printed out on the terminal.
+
+You can do this by typing the command list personal into your application. The result for the following command is shown in the following code snippet. 
+
+```
+list personal
+_________________________________
+Here is a list of your Personal events:
+1. [P][X] dental appointment on 2020-09-18
+2. [P][X] birthday on 2020-11-09
+3. [P][X] quiz on 2020-10-07, 16:00
+_________________________________
+
+```
+In this case, the index number of the event `dental appointment` is 1. 
+
+Next, type in the command `note personal; 1`. Scheduler will prompt you to key in your notes as shown in the code snippet below.
+
+```
+Please type in your notes. To stop note taking, ensure that you are in a new line and type 'noteend' and press enter 
+
+```
+
+Type in your notes and indicate end of note by `enter` to a new line and type `noteend`. The following code snippet should be what you type in.
+
+```
+Bring appointment card 
+Bring reports for dental appointment
+noteend
+```
+
+You should now see that the note command has successfully created your note for  `dental appointment`.
+
+```
+You have successfully written the note for this event!
+[P][X] dental appointment on 2020-09-18
+---------2020-10-30T00:53:01.907824900---------
+Bring appointment card 
+Bring reports for dental appointment
+_________________________________
+``` 
+
 
 <div style="page-break-after: always;"></div>
 
@@ -978,40 +1040,51 @@ Format: `view EVENT_TYPE; EVENT_INDEX`
 
 * The `EVENT_TYPE` have to be either personal, zoom or timetable.
 * Scheduler will prompt you to type your notes
+> **Warning!**
+>
+> The event index keyed in have to be valid so that note can be viewed for the specified event index.
+
 Example of usage: 
 
 `view personal; 1 `
 
-#### How to use?
+#### Example Usage
 
-##### Step 1: Find the index number of the event that you want to view the note
-You can do this by typing the command list EVENT_TYPE into your application. The result for the following command is shown in the following:
+The following few section present an example of how the view command can be used
+
+##### Scenario 1: Viewing a note for a personal event
+
+Let us assume that you have a personal event titled `dental appointment` that you would like to view the notes from.
+
+Firstly, find out what index number the `dental appointment` personal event has been assigned to. You can do this easily by typing in `list personal`.
+In my case, the following things will be printed out on the terminal.
+
+You can do this by typing the command list personal into your application. The result for the following command is shown in the following code snippet. 
 
 ```
+list personal
+_________________________________
 Here is a list of your Personal events:
-1. [P][X] sleep 
+1. [P][X] dental appointment on 2020-09-18
+2. [P][X] birthday on 2020-11-09
+3. [P][X] quiz on 2020-10-07, 16:00
+_________________________________
+
 ```
-In this case, the index number that you want is 1.
+In this case, the index number of the event `dental appointment` is 1. 
 
-##### Step 2: Type the command into the terminal
-````
-view personal; 1 
-````
+Next, type in the command `view personal; 1`.
 
-##### Step 3: Voilà! Here's your notes! 
+You should now see that the view command has successfully shown your note for  `dental appointment`.
+
 ```
 These are the notes that you have taken:
 ---------2020-10-30T00:53:01.907824900---------
-hello there!
-scheduler says hi:)
+Bring appointment card 
+Bring reports for dental appointment
 _________________________________
 ``` 
 
-
-
-> **Warning!**
->
-> The event index keyed in have to be valid so that note can be viewed for the specified event index.
 
 <div style="page-break-after: always;"></div>
 
@@ -1051,7 +1124,7 @@ One scenario will be used to explain how the extract command works.
 
 You receive an email for CG2271 Quiz 2 where the email body is "Hi all, we will be having the quiz on either
  4th October 2020 or October 15 2020 at either 3pm or 3.30pm. 
- The link is at https://nus-sg.zoom.us/j/2226375MG`".
+ The link is at https://nus-sg.zoom.us/j/2226375MG.".
  
  You want to use the extract command to quickly sieve out dates, times and zoom links for you.
  
@@ -1071,7 +1144,7 @@ Thirdly, copy and paste or type in the text you want to extract from.
 ````
 Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020 at 
     either 3pm or 3.30pm. 
-The link is at https://nus-sg.zoom.us/j/2226375MG`
+The link is at https://nus-sg.zoom.us/j/2226375MG.
 ````
 Fourthly, tell Scheduler--; you are done by typing `extractend` on a new line.
 ````
