@@ -203,10 +203,17 @@ If you are ever unsure on how to use a command, or you would like to learn more 
 
 Format: `help [COMMAND]`
 
-#### How to use? 
+#### Example usage
 
-When you type in `help`, a generic help screen will be printed as shown below 
+The following few sections present 3 scenarios of how the help command is used.
 
+##### Scenario 1: Getting the summary of commands
+
+Let us assume that you want to see all the commands that is available. 
+
+You can do this by typing `help`.
+
+The output from the program should be:
 ```
 help
 _________________________________
@@ -232,7 +239,13 @@ _________________________________
 
 <div style="page-break-after: always;"></div>
 
-If you want to get help for a specific command, type in `help [COMMAND]`. For example, the following screenshot shows what happens if you type in `help add`. 
+##### Scenario 2: Getting help for `add` command
+
+Let us assume that you want to add an event but you are unsure of the command. 
+
+You can do this by typing `help add`.
+
+The output from the program should be:
 
 ```
 help add
@@ -272,7 +285,14 @@ Personal Format: add Personal; EVENT_DESCRIPTION; [DD/MM/YY]; [HH:MM AM/PM]
 _________________________________
 ```
 
-You can even get help on how to use the help command by typing in `help help` as shown in the following screenshot
+##### Scenario 3: Getting help to understand `help` command
+
+Let us assume that you want to use the help command but you are unsure of how to read it.
+
+You can do this by typing `help help`.
+
+The output from the program should be:
+
 ```
 help help
 _________________________________
