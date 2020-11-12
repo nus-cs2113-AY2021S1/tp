@@ -1005,36 +1005,11 @@ Example of usage:
 
 `view personal; 1 `
 
-#### How to use?
-
-##### Step 1: Find the index number of the event that you want to view the note
-You can do this by typing the command list EVENT_TYPE into your application. The result for the following command is shown in the following:
-
-```
-Here is a list of your Personal events:
-1. [P][X] sleep 
-```
-In this case, the index number that you want is 1.
-
-##### Step 2: Type the command into the terminal
-````
-view personal; 1 
-````
-
-##### Step 3: Voilà! Here's your notes! 
-```
-These are the notes that you have taken:
----------2020-10-30T00:53:01.907824900---------
-hello there!
-scheduler says hi:)
-_________________________________
-``` 
-
 #### Example Usage
 
 The following few section present an example of how the view command can be used
 
-##### Scenario 1: Creating a note for a personal event
+##### Scenario 1: Viewing a note for a personal event
 
 Let us assume that you have a personal event titled `dental appointment` that you would like to view the notes from.
 
