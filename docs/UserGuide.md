@@ -25,8 +25,6 @@ Scheduler-\-; Does the job
     - [3.1 Viewing help: help](#31-viewing-help-help-colin-ng)
     - [3.2 Adding an event: add](#32-adding-an-event-add-matthew-gani)
     - [3.3 List events: list](#33-list-events-list-marcus-ng)
-        - [3.3.1 List all events](#331-list-all-events-of-a-type)
-        - [3.3.2 List all events of a type](#332-list-all-events)
     - [3.4 Calendar format list: calendar](#34-calendar-format-list-calendar-marcus-ng)
     - [3.5 Deadlines: deadline](#35-deadlines-deadline-qing-ning)
     - [3.6 Repeat on daily/weekly/monthly basis: repeat](#36-repeat-on-dailyweeklymonthly-basis-repeat-colin-ng)
@@ -410,11 +408,17 @@ The accepted arguments for this are “personal”, “timetable” and “zoom�
 When the optional argument `[EVENT_TYPE]` is omitted,
 list will print a list of available event types.
 
-#### 3.3.1 List all events of a type
+#### Example usage
 
-Example: ```list Zoom```
+The following section present an example of how the list command can be used.
 
-Expected output:
+##### Scenario 1: Listing Zoom events
+
+You want to list all your Zoom events.
+
+You should input: ```list Zoom```
+
+The output from the program should be:
 
 ```
 list zoom
@@ -433,13 +437,13 @@ _________________________________
 > * You do not need to type the exact event type, it is case-insensitive. In other words,
 > `list Zoom` is the same as `list zoom`
 
-<div style="page-break-after: always;"></div>
+##### Scenario 2: Listing all events
 
-#### 3.3.2 List all events
+You want to list all your events.
 
-You can print a list of all events by executing the following command: ```list all```
+You should input: ```list all```
 
-Expected output:
+The output from the program should be:
 
 ```
 list all
@@ -479,7 +483,39 @@ This brings you into calendar printing mode.
 - To exit the calendar printing mode, simply type in ```q```.
 - This mode is exited once you see ```End of calendar``` on pressing enter.
 
-Expected output:
+#### Example usage
+
+The following section present an example of how the calendar command can be used.
+
+##### Scenario 1: Listing events in calendar
+
+You want to list your events in a calendar format.
+
+You should input: ```calendar```
+
+The output from the program should be:
+
+```
+calendar
+_________________________________
+Calendar has 1 dates to display
+1 event not on the calendar because it has no date and time
+---------------------------------------------------------------------------------------
+04 May 2020
+---------------------------------------------------------------------------------------
+T | 3:00 PM | X | Science class | S17
+---------------------------------------------------------------------------------------
+End of calendar
+_________________________________
+```
+
+##### Scenario 2: Listing events in calendar but not all of them
+
+You want end the calendar before all the dates are displayed.
+
+You should input: `q` after inputting `calendar`
+
+The output from the program should be:
 
 ```
 calendar
@@ -544,7 +580,7 @@ Format: `deadline EVENT_INDEX; DD/MM/YY; [HH:MM AM/PM]`
 
 #### Example Usage
 
-The following section present an example of how the deadline command can be used
+The following section present an example of how the deadline command can be used.
 
 ##### Scenario 1: Setting a deadline for a personal event
 
@@ -611,7 +647,7 @@ Format: `repeat EVENT_TYPE EVENT_INDEX`
 
 #### Example Usage
 
-The following few sections present several examples of how the repeat command can be used
+The following few sections present several examples of how the repeat command can be used.
 
 ##### Scenario 1: Setting a personal event to repeat monthly for four months
 
@@ -794,16 +830,37 @@ When the optional argument `[GOAL]` is omitted, the current goal will be display
 
 When `[GOAL]` is specified as `delete`, the current goal will be removed.
 
-Examples:
-- ```goal get cap 5.0``` will set your current goal as “get cap 5.0”. 
-- ```goal save up $100``` after executing the above command will change your current goal to “save up $100”. 
+#### Example usage
 
-Expected output:
+The following few sections present several examples of how the goal command can be used.
+
+##### Scenario 1: Setting goal
+
+You want to set `get cap 5.0` as your goal.
+
+You should input: `goal get cap 5.0`
+
+The output from the program should be:
 
 ```
-goal save up $100
+goal get cap 5.0
 _________________________________
-Goal changed to: save up $100
+Goal changed to: get cap 5.0
+_________________________________
+```
+
+##### Scenario 2: Delete goal
+
+You want to delete your goal.
+
+You should input: `goal delete`
+
+The output from the program should:
+
+```
+goal delete
+_________________________________
+No more goal!
 _________________________________
 ```
 
