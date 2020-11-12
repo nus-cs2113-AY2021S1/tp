@@ -2,7 +2,7 @@
 
 CS2113T – T12 – 04 Scheduler-\-;
  
-Scheduler-\-; Does the job
+Scheduler-\-; does the job.
 
 ## Table of Contents
 
@@ -77,32 +77,21 @@ Once you have set up the application, you may use the table of contents present 
 
 ### 1.4 Conventions used in this document
 
-Words that are highlighted in grey, for instance, list, indicate that the words are commands to be typed into the command line interface. 
+Words that are highlighted in grey, for instance, `list`, indicate that the words are commands to be typed into the command line interface. 
 
 - Words that are highlighted in grey and are in lower case indicates commands that are to be typed exactly. For instance, if the instructions says to type the words `list all` to run a command,  type on the program the exact words “list all” 
 
 - Words that are highlighted in grey and are in upper case indicates command arguments or parameters that are to be provided by the user. For instance, if the usage instruction informs you to type `delete EVENT_INDEX` and you know that the EVENT_INDEX is 2, type into the computer program “delete 2”. 
 
+- Words that are highlighted in grey, in upper case and are surrounded by square brackets indicates command arguments or parameters that the user can choose to provide or not to provide. For instance, if the command instruction informs you to type `goal [NEW_GOAL]`, you can choose to omit the argument for NEW_GOAL and instead just simply type “goal”.
 
 >**Note!**
 >
 >This is a note section. Additional information about the command will be written in sections such as this one. 
 
-Words that are highlighted in grey, in upper case and are surrounded by square brackets indicates command arguments or parameters that the user can choose to provide or not to provide. For instance, if the command instruction informs you to type `goal [NEW_GOAL]`, you can choose to omit the argument for NEW_GOAL and instead just simply type “goal”.
-
 >**Warning!**
 >
 >This is a warning section. Any user interaction with the program that may result in issues or unintended results will be written in sections such as this one. 
-
-
->**Notes about the command format**
->
-> - Words in `UPPER_CASE` are the parameters to be supplied by the user.
-> e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-> - Items in square brackets are optional
-> e.g. `n/Name [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-> - Items with ... after them can be used multiple times including zero times.
-> e.g. `[t/TAG]...` can be used as  (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 <div style="page-break-after: always;"></div>
 
@@ -112,8 +101,8 @@ Words that are highlighted in grey, in upper case and are surrounded by square b
 
 To run Scheduler-\-;, your computer must meet these minimum system requirements:
 
-- Operating System: Windows 7 and above, Mac OS X or Linux 
-- Java 11 installed on computer 
+- Operating System: Windows 7 and above, Mac OS X or Linux. 
+- Java 11 installed on your computer. 
 
 You can install version 11 of Java from this [link](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html).
 
@@ -121,8 +110,8 @@ You can install version 11 of Java from this [link](https://docs.aws.amazon.com/
 
 #### 2.2.1 Windows
 
-1. Install Java 11 or above in your computer if you have not done so 
-1. Download the latest scheduler.jar from [here](https://github.com/AY2021S1-CS2113T-T12-4/tp/releases) 
+1. Install Java 11 or above in your computer if you have not done so. 
+1. Download the latest scheduler.jar from [here](https://github.com/AY2021S1-CS2113T-T12-4/tp/releases).
 1. Copy the file to the folder you want to use as the folder for the Scheduler. 
 1. Open the command prompt by entering `cmd` into the search bar and press enter. 
 1. Navigate to the folder where you saved the jar file using the command prompt.
@@ -131,21 +120,21 @@ You can install version 11 of Java from this [link](https://docs.aws.amazon.com/
 
 #### 2.2.2 Mac OS X
 
-1. Install Java 11 or above in your computer if you have not done so 
-1. Download the latest scheduler.jar from here 
-1. Copy the file to the folder you want to use as the folder for the Scheduler-\-; 
-1. Open the terminal by clicking on Launchpad->Utilities->Terminal 
-1. Navigate to the folder you have stored the jar file in the command prompt 
+1. Install Java 11 or above in your computer if you have not done so. 
+1. Download the latest scheduler.jar from here.
+1. Copy the file to the folder you want to use as the folder for the Scheduler-\-;. 
+1. Open the terminal by clicking on Launchpad->Utilities->Terminal. 
+1. Navigate to the folder you have stored the jar file in the command prompt. 
 1. Type `java -jar scheduler.jar` into the terminal and press enter. 
 1. The welcome message for the program should appear. 
 
 #### 2.2.3 Linux
 
-1. Install Java 11 or above in your computer if you have not done so 
-1. Download the latest scheduler.jar from here 
-1. Copy the file to the folder you want to use as the folder for the Scheduler-\-; 
-1. Open the terminal in your linux distribution
-1. Navigate to the folder you have stored the jar file in the command prompt 
+1. Install Java 11 or above in your computer if you have not done so. 
+1. Download the latest scheduler.jar from here. 
+1. Copy the file to the folder you want to use as the folder for the Scheduler-\-;. 
+1. Open the terminal in your linux distribution.
+1. Navigate to the folder you have stored the jar file in the command prompt. 
 1. Type `java -jar scheduler.jar` into the terminal and press enter. 
 1. The welcome message for the program should appear. 
 
@@ -155,16 +144,16 @@ Type the command in the command box and press Enter to execute.
 Refer to the [Features](#3-features) section for details of each command. 
 
 Some examples you can try: 
-- `list`: List all events
-- `add personal; run; 12/10/20; 4pm`: Add a personal event to the scheduler 
-- `bye`: exit the program 
+- `add personal; run; 12/10/20; 4pm`: Adds a personal event to the scheduler. 
+- `list personal`: Lists all personal events.
+- `bye`: Exits the program. 
     
 Congratulations! You have just finished setting up Scheduler-\-; Feel free to explore the program, or if you would like some assistance, take a look at the subsequent sections for instructions on how to use the available features of this program. Happy scheduling!
 
 ### 2.4 For Experienced users
 
-If you are familiar with the commands used in the program, Scheduler-\-; now supports the processing of multiple commands
-To input more than one command into Scheduler-\-;, simply separate each command with a pipe character '|'
+If you are familiar with the commands used in the program, Scheduler-\-; now supports the processing of multiple commands.
+To input more than one command into Scheduler-\-;, simply separate each command with a pipe character '|'.
 
 Some examples you can try:
 - `add personal; dental appointment; 2020-05-05; | repeat personal; 1; monthly; 3;` will cause the program to add a new personal event named "Dental Appointment" and subsequently set the event to repeat monthly for three more months as shown below:
@@ -183,7 +172,7 @@ _________________________________
 
 > **Warning!**
 >
-> When writing multiple commands at once, keep in mind that the program processes each command entry from left to right. If you make a mistake for one command, the subsequent commands towards the right of the mistake will not be processed by the program
+> When writing multiple commands at once, keep in mind that the program processes each command entry from left to right. If you make a mistake for one command, the subsequent commands towards the right of the mistake will not be processed by the program.
 >
 
 <div style="page-break-after: always;"></div>
@@ -197,7 +186,7 @@ This section introduces and explains the features of Scheduler-\-;!
 
 ### 3.1 Viewing help: help (Colin Ng)
 
-If you are ever unsure on how to use a command, or you would like to learn more about the uses of a command, the help command is scheduler-\-; onboard help line for getting information. The help command allows you to get more information when you are unsure on how to use the program. It can also assist you with getting more information on how to use a specific command in the program. 
+If you are ever unsure on how to use a command, or you would like to learn more about the uses of a command, the help command is Scheduler-\-;'s onboard helpline for getting information. The help command allows you to get more information when you are unsure on how to use the program. It can also assist you with getting more information on how to use a specific command in the program. 
 
 Format: `help [COMMAND]`
 
@@ -360,9 +349,8 @@ The following few sections present 3 scenarios of how the add command is used.
 
 ##### Scenario 1: Adding a Timetable event
 
-You want to add a Timetable event for a CS2101 Lecture at NUS Computing on 18/09/20 at 3.30pm.
-
-You should input: `add Timetable; CS2101 Lecture; NUS Computing; 18/09/20; 3:30 pm`. 
+If you want to add a Timetable event for a CS2101 Lecture at NUS Computing on 18/09/20 at 3.30pm,
+you should input: `add Timetable; CS2101 Lecture; NUS Computing; 18/09/20; 3:30 pm`. 
 
 The output from the program should be:
 ```
@@ -374,9 +362,8 @@ _________________________________
 
 ##### Scenario 2: Adding a Zoom event
 
-You want to add a Zoom event for a CS2113T meeting on 16/09/20 at 9pm.
-
-You should input: `add Zoom; CS2113T meeting; zoom.com.sg; 16/09/20; 2100`. 
+If you want to add a Zoom event for a CS2113T meeting on 16/09/20 at 9pm,
+you should input: `add Zoom; CS2113T meeting; zoom.com.sg; 16/09/20; 2100`. 
 
 The output from the program should be:
 ```
@@ -388,9 +375,8 @@ _________________________________
 
 ##### Scenario 3: Adding a Personal event
 
-You want to add a Personal event for a family meeting on 18/09/20.
-
-You should input: `add personal; family meeting; 18/09/20` .
+If you want to add a Personal event for a family meeting on 18/09/20,
+you should input: `add personal; family meeting; 18/09/20` .
 
 The output from the program should be:
 ```
@@ -403,9 +389,9 @@ _________________________________
 > **Note!**
 >
 > * When giving the event type, take note that it is case-insensitive:
-> `add Zoom` is the same as `add zoom`
+> `add Zoom` is the same as `add zoom`.
 > * Only the full word will be recognized as the event type:
->   `add z` will NOT add a zoom event
+>   `add z` will NOT add a zoom event.
 
 > **Warning!**
 >
@@ -622,7 +608,7 @@ Here is a list of your Personal events:
 4. [P][X] dental appointment 
 _________________________________
 ```
-In this case, the index number of our dental appointement is 4.
+In this case, the index number of our dental appointment is 4.
 
 Next, type in the command `deadline 4; 29/08/20; 11:20 PM`. You should now see that the deadline command has successfully set your event `dental appointment` to be due on the 29/08/20 at 11:20 PM.
 
@@ -658,10 +644,10 @@ Format: `repeat EVENT_TYPE EVENT_INDEX`
 > **Note!**
 >
 > When you repeat an event monthly, the date does not always increment up by 30 days. Incrementing monthly mainly changes the month without changing the day of the date being incremented.
-> In the case of incrementing monthly from 31 Jan, the code will increment to 28 or 29 Feb followed by 31 Mar and 30 April and so on
-> In the case of incrementing monthly from 30 Jan, the code will increment to 28 or 29 Feb followed by 30 Mar and 30 April and so on
+> In the case of incrementing monthly from 31 Jan, the code will increment to 28 or 29 Feb followed by 31 Mar and 30 April and so on.
+> In the case of incrementing monthly from 30 Jan, the code will increment to 28 or 29 Feb followed by 30 Mar and 30 April and so on.
 >
-> Setting the `EVENT_INDEX` argument to zero will cause the event to revert to a standard non-repeating event
+> Setting the `EVENT_INDEX` argument to zero will cause the event to revert to a standard non-repeating event.
 
 <div style="page-break-after: always;"></div>
 
@@ -1138,7 +1124,7 @@ One scenario will be used to explain how the extract command works.
 
 You receive an email for CG2271 Quiz 2 where the email body is "Hi all, we will be having the quiz on either
  4th October 2020 or October 15 2020 at either 3pm or 3.30pm. 
- The link is at https://nus-sg.zoom.us/j/2226375MG`".
+ The link is at https://nus-sg.zoom.us/j/2226375MG.".
  
  You want to use the extract command to quickly sieve out dates, times and zoom links for you.
  
@@ -1158,7 +1144,7 @@ Thirdly, copy and paste or type in the text you want to extract from.
 ````
 Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020 at 
     either 3pm or 3.30pm. 
-The link is at https://nus-sg.zoom.us/j/2226375MG`
+The link is at https://nus-sg.zoom.us/j/2226375MG.
 ````
 Fourthly, tell Scheduler--; you are done by typing `extractend` on a new line.
 ````
