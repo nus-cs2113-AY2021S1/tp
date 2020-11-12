@@ -473,6 +473,9 @@ The output when you search by name is as follows: <br/>
 The output when you search by date is as follows:  <br/>
 ![EventSearchByDate](userGuidePic/eventSearch1.PNG)
 
+
+> :information_source: Notice that both return the same output.
+>
 [Return to the top](#user-guide)
 
 #### Add a participant to an event: `addAttendance`
