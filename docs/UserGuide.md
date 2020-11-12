@@ -44,7 +44,7 @@ The following is a list of common notations and symbols you’ll encounter throu
 
 <div style="page-break-after: always;"></div>
 
-## Getting Started
+## Getting Started - *Lim Yuan Bing*
 
 Let’s get started with using Study It! This section will show you how you can run our app on your computer.
 
@@ -78,7 +78,7 @@ for guidance. We hope that you have fun using our app!
 
 <div style="page-break-after: always;"></div>
 
-## General Commands
+## General Commands - *Lim Yuan Bing*
 
 The following section details the general commands you can use in the app. 
 These commands can be used anywhere in the app to help you navigate around the app.
@@ -225,7 +225,7 @@ Expected output:
 
 ## Features 
 <!-- @@author lingsihui -->
-## 1. Bookmark
+## 1. Bookmark - *Ling Si Hui, Shiho*
 
 Now that more lessons are moving online, are you managing your links well? You might 
 want to save your time finding your zoom links in your email inbox and save all your 
@@ -479,7 +479,7 @@ If you encounter any errors, take note of the following warnings.
 <div style="page-break-after: always;"></div>
 
 <!-- @@author slightlyharp -->
-## 2. Timetable
+## 2. Timetable - *Lin Yuheng*
 Do you find it a hassle to keep track of all your activities and Zoom links for online classes?
 Do you wish there was a simple, visual way to organise your day and foresee any clashes in your schedule?
 The timetable mode intends to address these issues, helping you keep track of your work and helping you achieve
@@ -691,7 +691,8 @@ Expected output:
 
 <div style="page-break-after: always;"></div>
 
-## 3. Academic
+## 3. Academic - *Lu Ziyi*
+
 Have you ever had to dig through tons of emails to look for the contact of a particular TA 
 or sweat over your calculator when trying to estimate your CAPS this semester? 
 Academic tracker provides a convenient experience where you can store 
@@ -921,7 +922,7 @@ Expected output:
 
 <div style="page-break-after: always;"></div>
 
-## 4. Flashcard
+## 4. Flashcard - *Lim Si Qiao Florence*
 
 Do you wish you had a quick way to refer to the content that will be tested in your upcoming tests?
 Or a more efficient way to verify your knowledge?
@@ -1057,7 +1058,9 @@ Expected output:
 
 <div style="page-break-after: always;"></div>
 
-## FAQ
+## FAQ - *Ziyi & Si Hui*
+
+*Lu Ziyi*
 
 **Q**: How do I transfer my data to another computer? 
 
@@ -1076,6 +1079,8 @@ feel free to refer to the About Us page and contact any of the developers.
 **A**: As this app is still under development, there are many features we would like to add in the future.
 Do feedback to us what features you would like to see in Study It!
 
+*Ling Si Hui, Shiho*
+
 **Q**: What to do if bookmark data does not load properly after changing the bookmark.txt file?
 
 **A**: This is for users who edited the bookmark.txt file in the data folder. If you encounter trouble after editing the data file, 
@@ -1089,7 +1094,7 @@ you can do one of the following steps:
 
 <div style="page-break-after: always;"></div>
 
-## Command Summary
+## Command Summary - *Lim Yuan Bing*
 
 The following table is a compiled list of all available commands in our application that you can easily refer to! 
 
