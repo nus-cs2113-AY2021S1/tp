@@ -1,9 +1,25 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Welcome to Zer0Note!
+You are now in timetable mode
+Added: task
+1:[x] task (by: Oct 15 2020 11.59 PM)
+Yay! I've marked these task as done:
+ [o] task
+[o] task (by: Oct 15 2020 11.59 PM)
+Noted. I've removed this task:
+[o] task (by: Oct 15 2020 11.59 PM)
+	Now you have 0 tasks in the list.
+You are now in notebook mode
+Added notebook with title: Notebook 1
+now in notebook book: Notebook 1
+Added section with title : Section 1
+now in notebook section: Section 1
+Added page with title:
+Added page with title:
+Noted. I've removed this page:
 
-What is your name?
-Hello James Gosling
+Added page with title:
+You are now in notebook mode
+Noted. I've removed this section:
+	Section 1
+* Notebook 1
+Bye!

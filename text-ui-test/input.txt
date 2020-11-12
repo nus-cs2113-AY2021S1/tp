@@ -1,1 +1,15 @@
-James Gosling
+add /ttask /by15-10-2020 2359
+done 1
+list
+delete 1
+mode /n
+add /nNotebook 1
+select /nNotebook 1
+add /sSection 1
+select /sSection 1
+add /pPage 1; some text
+add /pPage 3; some text
+mode /n
+delete /nNotebook 1 /sSection 1
+list
+exit

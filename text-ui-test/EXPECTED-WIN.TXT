@@ -1,0 +1,28 @@
+File was not found. A new save file will be created upon exit. 
+Welcome to
+ _ _ _                  _ _ _   _    _            _
+|_ _  |   _ _    _  _  |  _  | |  \ | |   _ _   _| |_    _ _
+  /  /  /  _  \ | |/_\ | | | | |   \| |  /   \ |_   _| /   _ \
+ /  /_  |  _ _/ | |    | |_| | |  |\  | |  [] |  | |_  |  _ _/
+|_ _ _|  \ _ _| |_|    |_ _ _| | _| \_|  \ _ /   |_ _|  \ _ _|
+You are now in timetable mode
+Added: task
+1:[x] task (by: Oct 15 2020 11.59 PM)
+Yay! I've marked this task as done:
+ [o] task (by: Oct 15 2020 11.59 PM)
+1:[o] task (by: Oct 15 2020 11.59 PM)
+Noted. I've removed this task:
+[o] task (by: Oct 15 2020 11.59 PM)
+	Now you have 0 tasks in the list.
+You are now in notebook mode
+Added notebook with title: Notebook 1
+now in notebook book: Notebook 1
+Added section with title : Section 1
+now in notebook section: Section 1
+Added page with title: Page 1
+Added page with title: Page 3
+You are now in notebook mode
+Noted. I've removed this section: 
+	Section 1
+* Notebook 1
+Bye!
