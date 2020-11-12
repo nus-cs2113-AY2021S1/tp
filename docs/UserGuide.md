@@ -319,7 +319,14 @@ Example of usage: <br/>
  `e a /n arduino course /d 2020-12-30 /t 23-59`<br/>
  `e a /n arduino course /d next friday /t 00-00`<br/>
  
-Expected Outcome:
+Example scenario: <br/>
+
+Let's say you want to add an event called `arduino course` on `2000-12-30` at time `08-00`. 
+Type `event addEvent /n arduino course /d 2020-12-30 /t 08-00` into the terminal and press enter to execute the command as shown below.
+
+![](userGuidePic/eventAdd1.png)
+
+The result will be a message that the event has been successfully added as shown in the figure below.
 
 ![EventAddCommand](userGuidePic/eventAddCommand.PNG)
 
@@ -345,9 +352,17 @@ Example of usage:
 `event d 19` <br/>
 `e d 1` <br/>
  
- Expected Outcome: 
+Example scenario: <br/> 
+
+Let's say you want to remove the event that you have entered above. i.e. `event addEvent /n arduino course /d 2020-12-30 /t 08-00`
+To delete, type `event delEvent 1` into the terminal and press enter as shown in the figure below.
+
+
+![](userGuidePic/eventdel1.PNG) 
+
+The result will be a message that the event has been removed successfully as shown in the figure below.
  
- ![EventDeleteAtIndex](userGuidePic/eventDelEvent.PNG)
+![EventDeleteAtIndex](userGuidePic/eventDelEvent.PNG)
  
  [Return to the top](#user-guide)
 
@@ -364,9 +379,9 @@ Shorthand Format: <br/>
 Example of usage:   
 `event delEvent all` <br/>
 
-> :information_source: A confirmation message will be prompted. To clear, type `Y` in terminal.
-
-Expected Outcome:  
+Example scenario: <br/> 
+You may want to clear all the events in your list. To do so, type in `event delEvent all` into the terminal and press enter. It will prompt you with a confirmation message.
+Type in `Y` to clear the list as shown below.
 
 ![EventDeleteAll](userGuidePic/eventDeleteAll.PNG)
 
@@ -431,7 +446,7 @@ Example of usage: <br/>
 `e done 1` <br/>
 
 Example scenario: <br/>
-Let's say you have added one event and the event is over. You can mark it as complete by entering `event done 1`. The status will change 
+Let's say you have added one event to your list and the event is over. You can mark it as complete by entering `event done 1`in the terminal. The status will change 
 from `Up-coming` to `Done` as shown below.
 
 Expected Outcome: <br/>
@@ -459,11 +474,14 @@ Example of usage: <br/>
 Expected Outcome:
 
 The output when you search by name is as follows: <br/>
-![EventSearchByName](userGuidePic/eventSearch1.PNG) 
+![EventSearchByName](userGuidePic/eventSearchBydate.PNG) 
 
 The output when you search by date is as follows:  <br/>
-![EventSearchByDate](userGuidePic/eventSearchBydate.PNG)
+![EventSearchByDate](userGuidePic/eventSearch1.PNG)
 
+
+> :information_source: Notice that both return the same output.
+>
 [Return to the top](#user-guide)
 
 #### Add a participant to an event: `addAttendance`
