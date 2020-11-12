@@ -468,10 +468,10 @@ Example of usage: <br/>
 Expected Outcome:
 
 The output when you search by name is as follows: <br/>
-![EventSearchByName](userGuidePic/eventSearch1.PNG) 
+![EventSearchByName](userGuidePic/eventSearchBydate.PNG) 
 
 The output when you search by date is as follows:  <br/>
-![EventSearchByDate](userGuidePic/eventSearchBydate.PNG)
+![EventSearchByDate](userGuidePic/eventSearch1.PNG)
 
 [Return to the top](#user-guide)
 
