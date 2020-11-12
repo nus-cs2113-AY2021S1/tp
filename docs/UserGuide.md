@@ -112,7 +112,7 @@ Example:
 ```
 N:$ select /sChapter 1
 -------------------------------------------------------------
-    now in notebook section: Chapter 1
+now in notebook section: Chapter 1
 -------------------------------------------------------------
 ```
 
@@ -135,7 +135,7 @@ N/noteboo...:$
 <!-- @@author chuckiex3-->
 ## 2. Quick Start
 
-Here is a list of instructions on how you can run Zer0Note!
+Here is a list of instructions on how you can run **Zer0Note**!
 
 1. Ensure that you have Java 11 or above installed. You may use the
 [Oracle Java SE runtime](https://www.oracle.com/java/technologies/javase-downloads.html)
@@ -157,7 +157,7 @@ or an open-source alternative like [AdoptOpenJDK](https://adoptopenjdk.net/index
 
     *Figure 2. Welcome message on successful run*
 
-Great! Now that you have successfully run Zer0Note, go ahead and try out the different commands available (shown in section 3. Features).
+Great! Now that you have successfully run **Zer0Note**, go ahead and try out the different commands available (shown in section 3. Features).
 
 <hr>
 
@@ -169,7 +169,7 @@ This section introduces the available features, and the format required for each
 1. Timetable Mode
 2. Notebook Mode
 
-The following sections will explain more about the different commands that can be used in anywhere,
+The following sections will explain more about the different commands that can be used anywhere,
 and commands specific to [Timetable Mode](#34-timetable-mode) and [Notebook Mode](#35-notebook-mode).
 
 <!-- @@author neilbaner-->
@@ -219,7 +219,7 @@ You are now in timetable mode
 We have included personalised messages to compliment your works!
 
 A personalised message will be printed out to you in the command line interface whenever you enter a particular command.
-Personalised messages will include a random generated encouraging message followed by the name provided by you upon the launch of Zer0Note.
+Personalised messages will include a random generated encouraging message followed by the name provided by you upon the launch of **Zer0Note**.
 
 Example of how a personalised message will look like:  
 ```
@@ -252,7 +252,7 @@ Added: Read Book
 ### 3.4. Timetable Mode
 
 Keeping up with deadlines may seem like a daunting task, especially when you're already busy with school.
-With Zer0Note's Timetable Mode, you'll be able to manage a list of tasks.
+With **Zer0Note**'s Timetable Mode, you'll be able to manage a list of tasks.
 You can `add`, `delete`, `list` and mark your deadlines as `done`!
 
 For example, you can add your assignments with their due dates as tasks.
@@ -270,7 +270,7 @@ Format: `add /t[TASK] /by[dd-MM-yyyy] [hhmm]`
 These are the parameters required in the command:
 
 * `TASK`: name of the task.
-* `dd-MM-yyyy`: the due date of the task, in the format day/month/year.
+* `dd-MM-yyyy`: the due date of the task, in the format day-month-year.
 * `hhmm`: time the task is due, in 24h format.
 
 Example of usage:
@@ -560,7 +560,7 @@ Example of usage:
 
 Now that you have a notebook for `CS2113T`, you can make a `section` for each academic week.
 
-> :bulb: Remember to select the `CS2113T` notebook!
+> :bulb: Remember to select the `CS2113T` notebook first!
 
 ```
 N/CS2113T:$ add /sW1: Java
@@ -638,7 +638,7 @@ notebook.
 In a selected *SECTION*:
 * `select /pHELLO WORLD` - selects the page titled `HELLO WORLD` in the selected section.
 
-> :bulb: Whenever you want to select something, you may want to use the list all function, `list /a`
+> :bulb: Whenever you want to select something, you may want to use the list function, `list`
 > to ensure that you're typing in the correct parameters.
 
 Example of usage:
