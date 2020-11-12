@@ -922,7 +922,7 @@ Expected output:
 
 <div style="page-break-after: always;"></div>
 
-## 4. Flashcard - *Florence Lim Si Qiao*
+## 4. Flashcard - *Lim Si Qiao Florence*
 
 Do you wish you had a quick way to refer to the content that will be tested in your upcoming tests?
 Or a more efficient way to verify your knowledge?
