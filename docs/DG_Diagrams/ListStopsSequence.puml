@@ -1,0 +1,29 @@
+@startuml
+skinparam BoxPadding 30
+box logic #LightBlue
+participant ":Parser"
+participant ":ListStopsCommand"
+end box
+box model #A9DFDF
+participant "<<class>>\n :BusStops"
+end box
+
+[-> ":Parser" : SetUserInput("/liststops")
+activate ":Parser"
+[<-- ":Parser"
+deactivate ":Parser"
+[-> ":Parser" : extractType()
+activate ":Parser"
+create ":ListStopsCommand"
+":Parser" -> ":ListStopsCommand"
+activate ":ListStopsCommand"
+":ListStopsCommand" -> "<<class>>\n :BusStops" :liststops()
+activate "<<class>>\n :BusStops"
+"<<class>>\n :BusStops" --> ":ListStopsCommand"
+deactivate "<<class>>\n :BusStops"
+":ListStopsCommand" --> ":Parser"
+deactivate ":ListStopsCommand"
+[<--":Parser"
+deactivate ":Parser"
+
+@enduml

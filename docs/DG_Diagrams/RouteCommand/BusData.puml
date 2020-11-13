@@ -1,0 +1,20 @@
+@startuml
+mainframe **sd** get possible bus routes
+box Model #lightPink
+[-> "<<class>>\n:BusData":possibleBuses(loc1,loc2)
+activate "<<class>>\n:BusData"
+
+loop until all bus routes are exhausted
+"<<class>>\n:BusData" -> ":Bus" : getPossibleRoute(loc1, loc2)
+activate ":Bus"
+":Bus" -> ":Bus" : getStopNames()
+activate ":Bus"
+":Bus" <-- ":Bus" : ArrayList<String> of stop names
+deactivate ":Bus"
+"<<class>>\n:BusData" <-- ":Bus" : ArrayList of intermediate stops
+deactivate ":Bus"
+end
+
+<-- "<<class>>\n:BusData": ArrayList of possible routes
+deactivate "<<class>>\n:BusData"
+@enduml

@@ -1,0 +1,49 @@
+@startuml
+mainframe **sd** bus route retrieval
+skinparam BoxPadding 20
+
+box logic #LightBlue
+participant ":RouteMapCommand"
+end box
+box model #A9DFDF
+participant "<<class>>\n:BusData"
+participant ":Bus"
+end box
+box Ui #A9D1D0
+participant ":Ui"
+end box
+
+
+create ":RouteMapCommand"
+[-> ":RouteMapCommand" : executeCommand()
+activate ":RouteMapCommand"
+":RouteMapCommand" -> ":RouteMapCommand":checkBusCode("Bus code")
+activate ":RouteMapCommand"
+":RouteMapCommand" <-- ":RouteMapCommand"
+deactivate ":RouteMapCommand"
+":RouteMapCommand" -> "<<class>>\n:BusData" : selectAndPrintBusRoute("Bus code");
+
+activate "<<class>>\n:BusData"
+loop number of bus routes
+    "<<class>>\n:BusData" -> ":Bus" : equals()
+     activate ":Bus"
+    ":Bus" --> "<<class>>\n:BusData" : Bus object
+    deactivate ":Bus"
+end
+
+alt Bus object found
+"<<class>>\n:BusData" --> ":RouteMapCommand" : Bus object
+else Bus object not found
+"<<class>>\n:BusData" --> ":RouteMapCommand" : null
+deactivate "<<class>>\n:BusData"
+end
+":RouteMapCommand" -> ":Ui" : printFullRoute()
+activate ":Ui"
+":Ui" --> ":RouteMapCommand"
+deactivate ":Ui"
+
+[<-- ":RouteMapCommand"
+deactivate ":RouteMapCommand"
+
+
+@enduml

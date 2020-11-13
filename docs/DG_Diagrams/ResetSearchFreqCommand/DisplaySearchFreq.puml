@@ -1,0 +1,44 @@
+@startuml
+skinparam BoxPadding 1
+
+box Ui #5784BA
+participant "<<class>>\n:Ui"
+end box
+box model #9AC8EB
+participant "<<class>>\n:BusStops"
+end box
+
+[-> "<<class>>\n:Ui" : printWelcomeMessage()
+activate "<<class>>\n:Ui"
+"<<class>>\n:Ui" -> "<<class>>\n:Ui" :printMostSearchBusStop()
+activate "<<class>>\n:Ui"
+"<<class>>\n:Ui" -> "<<class>>\n:BusStops":mostSearchedBusStop()
+activate "<<class>>\n:BusStops"
+
+loop number of bus stops
+"<<class>>\n:BusStops" -> "<<class>>\n:BusStops" : findMaxSearchCount();
+activate "<<class>>\n:BusStops"
+"<<class>>\n:BusStops" --> "<<class>>\n:BusStops" : BusStops object\n(mostSearchedBusStop)
+deactivate "<<class>>\n:BusStops"
+end
+alt "if most searched bus \nstop exists"
+"<<class>>\n:BusStops" --> "<<class>>\n:Ui" : BusStops object\n(mostSearchedBusStop)
+else
+
+"<<class>>\n:BusStops" --> "<<class>>\n:Ui" : null
+deactivate "<<class>>\n:BusStops"
+"<<class>>\n:Ui" --> "<<class>>\n:Ui":
+deactivate "<<class>>\n:Ui"
+end
+
+[<--"<<class>>\n:Ui"
+deactivate "<<class>>\n:Ui"
+
+
+
+
+
+
+
+
+@enduml

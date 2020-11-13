@@ -1,0 +1,30 @@
+@startuml
+
+box Logic
+participant ":Parser"
+participant ":FacultyCommand"
+end box
+box Ui
+participant "<<class>>\n:Ui"
+end box
+
+[-> ":Parser": user command
+activate ":Parser"
+create ":FacultyCommand"
+":Parser" -> ":FacultyCommand"
+activate ":FacultyCommand"
+":FacultyCommand" --> ":Parser"
+deactivate ":FacultyCommand"
+":Parser" -> ":FacultyCommand": executeCommand()
+activate ":FacultyCommand"
+
+":FacultyCommand" -> "<<class>>\n:Ui": printFacultyResult()
+activate "<<class>>\n:Ui"
+"<<class>>\n:Ui" --> ":FacultyCommand"
+deactivate "<<class>>\n:Ui"
+
+":FacultyCommand" --> ":Parser": list of faculties
+deactivate ":FacultyCommand"
+[<-- ":Parser": isOngoing
+deactivate ":Parser"
+@enduml

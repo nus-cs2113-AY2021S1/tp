@@ -1,0 +1,78 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+!define ABSTRACT &#123;abstract&#125;
+
+Class "{abstract}\nCommand" {
+# isValid: boolean
+
++ executeCommand() ABSTRACT
+}
+Class RouteCommand {
+- rawMessage: String
+
++ executeCommand()
+- areValidLocations(: String[]): boolean
+- checkLocations(: String[])
+- similarLocations(: String[]): ArrayList<String>
+}
+
+Class RouteParser {
+
++ getLocations(): String[]
+- checkTooManyDelimiters(: String[])
+}
+Class Parser
+
+Class BusData {
++ {static} possibleBuses (: String, : String) : ArrayList<Bus>
+}
+
+Class Bus {
+# busNumber: String
+# getPossibleRoute(: String, : String): ArrayList<BusStops>
+}
+
+Class SimilarityCheck {
+{static} similarLoc(: String): ArrayList<String>
+}
+
+Class Ui {
++ {static} printRouteMessage(:ArrayList<Bus>)
++ {static} printPossibleLocsMessage(:ArrayList<String>)
+}
+
+enum "<<Enumeration>>\nBusStops" {
+PGP
+KENTRIDGEMRTSTATION
+...
+COLLEGEGREEN
+OEITIONGHAM
+}
+
+'enum "<<Enumeration>>\nExceptionType" {
+'NO_ROUTE_DELIMITER
+'NO_LOCATIONS
+'SAME_LOCATIONS
+'...
+'}
+
+"{abstract}\nCommand" <|-- RouteCommand
+hide Parser members
+Parser <|--up RouteParser
+RouteParser "1"<- RouteCommand
+RouteCommand .> BusData
+BusData --> "*" Bus
+Bus -left>"*" "<<Enumeration>>\nBusStops"
+'RouteCommand ..down> CustomException: throws
+'RouteParser ..> CustomException: throws
+'Bus ..> CustomException: throws
+'CustomException -> "<<Enumeration>>\nExceptionType"
+RouteCommand ..up> SimilarityCheck
+RouteCommand ..> "<<Enumeration>>\nBusStops"
+RouteCommand ..> Bus
+
+RouteCommand ..up> Ui
+
+@enduml

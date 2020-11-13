@@ -1,0 +1,30 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+hide members
+
+Rectangle Model {
+Rectangle bus {
+show "<<Enumeration>>\nBusStops" fields
+enum "<<Enumeration>>\nBusStops" {
+PGP
+KENTRIDGEMRTSTATION
+...
+COLLEGEGREEN
+OEITIONGHAM
+}
+Bus ->"*" "<<Enumeration>>\nBusStops"
+BusData ->"*" Bus
+BusInfo ->"*" Bus
+BusInfo ..> BusData
+}
+Rectangle favorite {
+FavList->"*"Fav
+}
+Rectangle foodoptions {
+FoodPlace ->"*" DiningOptions
+FoodPlacesData ..>FoodPlace
+}
+}
+
+@enduml

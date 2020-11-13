@@ -1,0 +1,67 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+!define ABSTRACT &#123;abstract&#125;
+
+class FavList {
++ {static} changeDesc(:int, :String) : String
+- {static} checkIndexAndDesc(:int, :String) : String
+}
+
+class Fav {
+- command: String
+- desc: String
+
+~ changeDesc(:String)
+}
+
+enum "<<Enumeration>>\nExceptionType" {
+NO_INPUT
+EMPTY_DESCRIPTION
+NOT_A_NUMBER
+INVALID_INDEX
+...
+}
+
+Class Ui {
++ {static} printDescChangeMessage(:String, :String, :String)
+}
+
+Class "{abstract}\nCommand" {
+# isValid: boolean
+
++ executeCommand() ABSTRACT
+}
+
+Class DescFavCommand {
+- rawMessage: String
+
++ executeCommand()
+- getCommand(: int): String
+}
+
+Class DescFavParser {
+- index: int
+- description: String
+
++ parseInput()
+}
+
+"{abstract}\nCommand" <|- DescFavCommand
+hide Parser members
+Parser <|-left DescFavParser
+DescFavParser "1"<--down DescFavCommand
+
+DescFavCommand ..> FavList
+hide CustomException members
+FavList ..> CustomException : throws
+DescFavParser ..> CustomException : throws
+
+FavList ->"*" Fav
+
+CustomException -> "<<Enumeration>>\nExceptionType"
+
+DescFavCommand .> Ui
+
+@enduml

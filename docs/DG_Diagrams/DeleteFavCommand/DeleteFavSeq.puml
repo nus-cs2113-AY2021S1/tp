@@ -1,0 +1,48 @@
+@startuml
+skinparam BoxPadding 5
+box logic #B6D8F2
+participant ":Parser"
+participant ":DeleteFavCommand"
+end box
+box model #9AC8EB
+participant ":FavList"
+end box
+box Ui #5784BA
+participant "<<class>>\n:Ui"
+end box
+[-> ":Parser" : setUserInput("/deletefav <valid index>")
+activate ":Parser"
+[<-- ":Parser"
+deactivate ":Parser"
+
+[-> ":Parser" : extractType()
+activate ":Parser"
+create ":DeleteFavCommand"
+":Parser" -> ":DeleteFavCommand"
+activate ":DeleteFavCommand"
+":DeleteFavCommand" --> ":Parser"
+deactivate ":DeleteFavCommand"
+":Parser" -> ":DeleteFavCommand" : executeCommand()
+
+
+activate ":DeleteFavCommand"
+":DeleteFavCommand" -> ":FavList" : getSize()
+activate ":FavList"
+":FavList" --> ":DeleteFavCommand" : Int sizeOfArray
+deactivate ":FavList"
+
+":DeleteFavCommand" -> "<<class>>\n:Ui" :printDeleteFavMessage(index)
+activate "<<class>>\n:Ui"
+"<<class>>\n:Ui" --> ":DeleteFavCommand"
+deactivate "<<class>>\n:Ui"
+
+":DeleteFavCommand" -> ":FavList" : deleteFav(index)
+activate ":FavList"
+":FavList" --> ":DeleteFavCommand"
+deactivate ":FavList"
+":DeleteFavCommand" --> ":Parser"
+deactivate ":DeleteFavCommand"
+[<--":Parser" : Boolean isOngoing
+deactivate ":Parser"
+
+@enduml

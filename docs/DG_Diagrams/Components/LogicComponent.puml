@@ -1,0 +1,57 @@
+@startuml
+
+hide members
+hide circle
+skinparam classAttributeIconSize 0
+
+Rectangle Logic {
+Rectangle commands {
+Rectangle commons {
+Class "{abstract}\nCommand"
+'Command <|-left ExitCommand
+'Command <|- HelpCommand
+}
+Rectangle buscommand {
+'Command <|-- AllBusCommand
+"{abstract}\nCommand" <|-- BusCommand
+'Command <|-- ListStopsCommand
+'Command <|-- ResetSearchFreqCommand
+"{abstract}\nCommand" <|-- RouteCommand
+"{abstract}\nCommand" <|-- XYZCommand
+note right: XYZCommand = AllBusCommand,\n ListStopsCommand,\n ResetSearchFreqCommand,\n RouteMapCommand
+'Command <|-- RouteMapCommand
+}
+Rectangle dinecommand {
+'Command <|-left DineCommand
+'Command <|-left DineInfoCommand
+"{abstract}\nCommand" <|-left PQRCommand
+note right: PQRCommand = DineCommand,\n DineInfoCommand,\n FacultyCommand
+}
+Rectangle favcommand {
+'Command <|--up AddFavCommand
+'Command <|--up ClearFavCommand
+'Command <|--up DeleteFavCommand
+"{abstract}\nCommand" <|--up DescFavCommand
+"{abstract}\nCommand" <|--up ExecFavCommand
+"{abstract}\nCommand" <|--up ABCFavCommand
+note right: ABCFavCommand = AddFavCommand,\n ClearFavCommand,\n DeleteFavCommand,\n ListFavCommand
+'Command <|-- ListFavCommand
+}
+}
+Rectangle parser {
+"{abstract}\nParser" <|-- RouteParser
+RouteParser <-down RouteCommand
+"{abstract}\nParser" <|-- DescFavParser
+DescFavParser <- DescFavCommand
+"{abstract}\nParser" <|--up ExecFavParser
+ExecFavParser <- ExecFavCommand
+}
+
+Rectangle similaritycheck {
+SimilarityCheck <..down RouteCommand
+SimilarityCheck <..down BusCommand
+}
+}
+
+"{abstract}\nParser" --left> commands
+@enduml
