@@ -167,7 +167,7 @@ Health Center"** instead.
 Here's what you can do: 
 
 1. When you type <code>/route <strong>Univerity Health Center</strong> /to <strong>PGPR</strong></code> into the CLI and 
-press <kbd>Enter</kbd> to execute the command as done in example 1, the result will be a message displaying suggestions 
+press <kbd>Enter</kbd> to execute the command, the result will be a message displaying suggestions 
 for possible spelling errors you may have made.<br><br>
 <img src="UG_Figures/routeOutput2.png" alt="output" width=550><br>
 
@@ -324,7 +324,6 @@ Format:<br>
 
 **Examples of Usage**
 
-**<u>Example 1</u>**<br>
 Let's say you want to know the names of all faculties in NUS.
 
 These are the steps to follow:
@@ -445,7 +444,6 @@ Format:<br>
 
 **Examples of Usage**
 
-**<u>Example 1</u>**<br>
 Let's say you want to take a look at all the commands that were previously added to your list of favourite commands.
 
 These are the steps to follow:
@@ -464,7 +462,6 @@ Format: <br>
 
 **Examples of Usage**
 
-**<u>Example 1</u>**<br>
 Let's say that you have stored the command <code>/routemap <strong>AA1</strong></code> in your list of favourite commands.
 After reviewing your list of favourite commands, you do not want to have this command in it.
 
@@ -536,7 +533,6 @@ Format:<br>
 
 **Examples of Usage**
 
-**<u>Example 1</u>**<br>
 Let's say you no longer need any of the commands in your list of favourite commands. Instead of using 
 <code>/deletefav</code> to remove the commands one by one, you can use the <code>/clearfav</code> feature to clear 
 your favourites list at one go.
@@ -597,7 +593,6 @@ Format:<br> <code>/reset</code>
 
 **Examples of usage**
 
-**<u>Example 1</u>**<br>
 Let us suppose that you are transitioning to a new academic semester, and the locations that you will key in to the
 application changes. To create a new data set that will cater to your needs in this new semester, you will key in the
 command <code>/reset</code> to reset the data set and start the application on a clean slate.<br><br>
