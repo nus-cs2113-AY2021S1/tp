@@ -1,42 +1,628 @@
 # User Guide
 
+
 ## Introduction
+CEGMods is a software working on desktop, aiming to help NUS CEG (Computer Engineering) students better manage their courses via a Command Line Interface, which is a text-based interface used for entering commands. If you are an NUS CEG student and looking for an app to manage your course and project schedule, CEGMods can help you get all your tasks down in an organized manner.
 
-{Give a product intro}
+## How to use this User Guide
+This User Guide aims to help you get familiarised with the commands used in this Command Line Interface (CLI) application. You may also find a [summary of commands](#4-command-summary-1) used in the application at the end of the User Guide.
 
-## Quick Start
+For your reference:
+* Words in bold are **keywords**;
+* Words in special text `are code snippets`;
+* Words in blue are [hyperlinks to the respective sections]().
 
-{Give steps to get started quickly}
+<div style="page-break-after: always;"></div>
 
-1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+## Content page
+#### [1. Quick Start](#1-quick-start-1)
+#### [2. Features](#2-features-1)
+#### [2.1 Adding a Module: `add mod`](#21-adding-a-module-add-mod-zhang-shenjia)
+#### [2.2 Deleting a Module: `delete mod`](#22-deleting-a-module-delete-mod-zhang-shenjia)
+#### [2.3 Checking Modules: `check modules`](#23-checking-modules-check-modules-zhang-shenjia)
+#### [2.4 Viewing Timetable: `timetable`](#24-viewing-timetable-timetable-zhong-ningmou)
+#### [2.5 Viewing Task List: `task list`](#25-viewing-task-list-task-list-jin-yixuan)
+#### [2.6 Adding a Task:](#26-adding-a-task-yu-geng)
+#### [2.6.1 Adding a Todo Task: `todo`](#261-adding-a-todo-task-todo-1) 
+#### [2.6.2 Adding a Deadline Task: `deadline`](#262-adding-a-deadline-deadline)
+#### [2.6.3 Adding a Event Task: `event`](#263-adding-an-event-event)
+#### [2.7 Marking a Task as Done: `done`](#27-marking-a-task-as-done-done-yu-geng)
+#### [2.8 Deleting a Task: `delete`](#28-deleting-a-task-delete-yu-geng)
+#### [2.9 Finding a Task with Keyword: `find`](#29-finding-a-task-with-keyword-find-yu-geng)
+#### [2.10 Adding a Project Task: `project task`](#210-adding-a-project-task-project-task-jin-yixuan)
+#### [2.11 Viewing project task list: `project task list`](#211-viewing-project-task-list-project-task-list-jin-yixuan)
+#### [2.12 Viewing project progress: `project progress`](#212-viewing-project-progress-project-progress-jin-yixuan)
+#### [2.13 Viewing to do list: `print todo list`](#213-viewing-to-do-list-print-todo-list-zhang-danrui)
+#### [2.14 Viewing event list: `print event list`](#214-viewing-event-list-print-event-list-zhang-danrui)
+#### [2.15 Viewing the deadline list: `print deadline list`](#215-viewing-the-deadline-list-print-deadline-list-zhang-danrui)
+#### [2.16 Viewing the undone task list: `print undone task list`](#216-viewing-the-undone-task-list-print-undone-task-list-zhang-danrui)
+#### [2.17 Clearing past deadlines: `clear deadlines`](#217-clearing-past-deadlines-clear-deadlines-zhang-danrui)
+#### [2.18 Delete done task: `delete done task`](#218-delete-done-tasks-delete-done-task-zhang-danrui)
+#### [2.19 Viewing today's deadlines: `today deadline`](#219-viewing-todays-deadline-today-deadline-zhong-ningmou)
+#### [2.20 Viewing this week's deadlines: `this week deadline`](#220-viewing-this-weeks-deadline-this-week-deadline-zhong-ningmou)
+#### [2.21 Exiting the Program: `exit`](#221-exiting-the-program-exit-zhong-ningmou)
+#### [2.22 Viewing Help: `help`](#222-viewing-help-help-zhang-shenjia)
+#### [3. FAQ](#3-faq-jin-yixuan)
+#### [4. Command Summary](#4-command-summary-zhang-shenjia)
 
-## Features 
+<div style="page-break-after: always;"></div>
 
-{Give detailed description of each feature}
+## 1. Quick Start
+1. Ensure you have Java 11 installed on your computer.
+2. Download the jar file from [here](https://github.com/AY2021S1-CS2113T-F11-2/tp/releases/tag/v2.1).
+3. Copy the file to the folder you want to use as the home folder for your CEGmods
+4. Ensure you have internet connection.
+5. Open a command window. Run the java -version command to ensure you are using Java 11. 
+6. Launch the jar file using the java -jar command (do not use double-clicking). On a successful launch, you will be greeted with a welcome screen as seen below:
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+```
+_______________________________________________________
+                   __ _                      _           
+   __      ___    / _` |  _ __     ___    __| |    ___   
+  / _|    / -_)   \__, | | '  \   / _ \  / _` |   (_-<   
+  \__|_   \___|   |___/  |_|_|_|  \___/  \__,_|   /__/_  
+_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""| 
+"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-' 
+Hello, this is CEGMods! What can I do for you?
+Enter 'help' to get more information.
+_______________________________________________________
+Task list has been loaded successfully.
+Module list has been loaded successfully.
+Today is 2020-11-09
+Now is 20:14
+Currently you don't have any event!
+```
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+6. Type `help` in the command box as prompted and press Enter to execute it. You will see the commands available.
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+7. Refer to the feature list below for details of each command.
 
+<div style="page-break-after: always;"></div>
+
+## 2. Features
+### 2.1 Adding a Module: `add mod` (Zhang Shenjia)
+You can add a module to the module list and timetable by typing in the module code and its time slots of lectures and tutorials (the time slot of lab is optional).
+
+**Step 1:** Type in the module code of the module you want to add following the command format. 
+
+Format: `add mod/<MODULE_CODE>`
+Example of usage: `add mod/ST2334`
+
+Then you will see the following: 
+```
+_______________________________________________________
+Module code: ST2334
+Title: Probability and Statistics
+Description: Basic concepts of probability, conditional probability, independence, random variables, joint and marginal distributions, mean and variance, some common probability distributions, sampling distributions, estimation and hypothesis testing based on a normal population.  This module is targeted at students who are interested in Statistics and are able to meet the pre-requisites. Preclude ME students taking or have taken ME4273.
+_______________________________________________________
+Please enter your time slots for lectures, tutorials, and labs (optional) for this module.
+The format of the time slots is: Day HH:mm-HH:mm (Eg. Thur 12:00-13:00)
+Lecture slot:
+```
+
+**Step 2:** Key in the day and time of the lecture(s), tutorial and lab (if applicable), according to the format given.
+
+Format: `Day HH:mm-HH:mm`
+Example of usage: `Tue 12:00-14:00`
+
+For example, if you key in the following:
+```
+Lecture slot: Tue 12:00-14:00
+Does this module have another lecture slot?([Y] for yes,type any other character for no)
+Y
+Another lecture slot: Fri 12:00-14:00
+Tutorial slot: Mon 14:00-15:00
+Does this module have lab? ([Y] for yes,type any other character for no)
+N
+Noted! I have added this module.
+```
+
+If you have **conflicting module timeslots**, you will see the following as per the example:
+```
+OOPS!!! There is a time conflict.
+_______________________________________________________
+Which module do you want to keep? Please enter the module name.
+Module: ST2334
+Lecture Slot: Tue 12:00-14:00
+Tutorial Slot: Mon 14:00-15:00
+Lab Slot: null
+_______________________________________________________
+Module: GEH1036
+Lecture Slot: Tue 12:00-14:00
+Tutorial Slot: Mon 13:00-14:00
+Lab Slot: null
+_______________________________________________________
+```
+Please enter the module you wish to keep, and you will see the following:
+```
+ST2334
+Got it! I have add ST2334 to timetable.
+```
+
+**Step 3:** Add the task for the module if necessary.
+>Note: Please refer to [`Adding a Task`](#26-Adding-a-Task1) feature to see the detailed formats.
+
+For example, if you key in the following:
+```
+Is there any task you want to add for this module? Y/N
+Y
+Please enter T for todo, D for deadline, E for event, P for project subtask.
+E
+Add an event: event <DESCRIPTION> /at <YYYY-MM-DD HH:mm>
+event final exam /at 2020-11-23 17:00
+Please type the duration of the event in hours:(e.g. 1, 0.5)
+2
+    ____________________________________________________________
+     Got it. I've added this task:
+      [E][F]final exam (at:2020-11-23 17:00)
+     Now you have 3 tasks in the list.
+    ____________________________________________________________
+
+```
+<div style="page-break-after: always;"></div>
+
+### 2.2 Deleting a Module: `delete mod` (Zhang Shenjia)
+You can delete a module from the module list.
+
+Format: `delete mod/<MODULE_CODE>`
+Example of usage: `delete mod/CG1111`
+
+Expected outcome:
+```
+Noted. I've removed this module.
+```
+
+### 2.3 Checking modules: `check modules` (Zhang Shenjia)
+You can check all the modules existing in the module list.
+
+Format: `check modules`
+Expected outcome:
+```
+_______________________________________________________
+Module: CG1111
+Lecture Slot: Tue 14:00-17:00
+Tutorial Slot: Fri 14:00-16:00
+Lab Slot: null
+_______________________________________________________
+_______________________________________________________
+_______________________________________________________
+Module: ST2334
+Lecture Slot: Tue 12:00-14:00
+Tutorial Slot: Mon 14:00-15:00
+Lab Slot: null
+_______________________________________________________
+_______________________________________________________
+```
+<div style="page-break-after: always;"></div>
+
+### 2.4 Viewing Timetable: `timetable` (Zhong Ningmou)
+You can view the whole timetable.
+
+Format: 
+1.`today timetable`: viewing today's timetable
+2.`this week timetable`: viewing weekly timetable
+
+Expected outcome:
+```
+today timetable
+_______________________________________________________
+2020-10-21
+_______________________________________________________
+14:00-15:00 CG1111 tutorial
+_______________________________________________________
+
+```
+```
+this week timetable
+_______________________________________________________
+2020-11-09
+_______________________________________________________
+14:00-15:00 ST2334 tutorial
+_______________________________________________________
+2020-11-10
+_______________________________________________________
+12:00-14:00 ST2334 lecture
+14:00-17:00 CG1111 lecture
+_______________________________________________________
+2020-11-11
+_______________________________________________________
+_______________________________________________________
+2020-11-12
+_______________________________________________________
+14:00-17:00 CG1111 lecture
+_______________________________________________________
+2020-11-13
+_______________________________________________________
+12:00-14:00 ST2334 lecture
+14:00-16:00 CG1111 tutorial
+_______________________________________________________
+2020-11-14
+_______________________________________________________
+11:00-13:00 team meeting
+_______________________________________________________
+2020-11-15
+_______________________________________________________
+
+```
+
+### 2.5 Viewing Task List: `task list` (Jin Yixuan)
+You can view the to-do list.
+
+Format: `task list`
+
+Constraint: The task list must contain at least 1 task.
+
+Expected outcome:
+```
+____________________________________________________________
+     Here are the tasks in your list:
+      1.[T][T]debug project
+      2.[E][F]final exam (at:2020-11-23 17:00)
+      3.[E][F]team meeting (at:2020-11-14 11:00)
+      4.[D][F]project (by:2020-11-10 00:00) [Remaining time: 0 days 5 hours 10 minutes]
+	You  have 3 undone task in your list. (3/4)
+____________________________________________________________
+```
+<div style="page-break-after: always;"></div>
+
+### 2.6 Adding a Task (Yu Geng)
+#### 2.6.1 Adding a Todo Task: `todo`
+You can add a task todo to the task list.
+
+Format: `todo <DESCRIPTION> `
+Example of usage: `todo read book`
+
+Expected outcome:
+```
+____________________________________________________________
+     Got it. I've added this task:
+      [T][F]read book
+     Now you have 2 tasks in the list.
+____________________________________________________________
+```
+#### 2.6.2 Adding a Deadline: `deadline`
+You can add a deadline to the task list.
+Format: `deadline <DESCRIPTION> /by <YYYY-MM-DD HH:mm>`
+Example of usage: `deadline lab report /by 2020-11-26 00:00`
+
+Expected outcome:
+```
+deadline CS2113T project submission /by 2020-11-09 23:59
+    ____________________________________________________________
+     Got it. I've added this task:
+      [D][F]CS2113T project submission (by:2020-11-09 23:59) [Remaining time: 0 days 3 hours 34 minutes]
+     Now you have 4 tasks in the list.
+    ____________________________________________________________
+```
+#### 2.6.3 Adding an Event: `event`
+You can add an event to the task list.
+Format: `event <DESCRIPTION> /at <YYYY-MM-DD HH:mm>`
 Example of usage: 
+`event team meeting /at 2020-09-10 10:00`
+Please type the duration of the event in hours:(e.g. 1, 0.5)
+`1`
 
-`todo n/Write the rest of the User Guide d/next week`
+Expected outcome:
+```
+____________________________________________________________
+     Got it. I've added this task:
+      [E][F]party (at:2020-09-10 08:00)
+     Now you have 5 tasks in the list.
+    ____________________________________________________________
+```
+### 2.7 Marking a Task as Done: `done` (Yu Geng)
+You can mark a task as done.
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+Format: `done task/<TASK_INDEX>`
+Example of usage: `done task/2`
 
-## FAQ
+Expected outcome:
+```
+_______________________________________________________
+ 	Nice! I've marked this task as done:
+	[T][T]lab report
+_______________________________________________________
 
-**Q**: How do I transfer my data to another computer? 
+```
+### 2.8 Deleting a Task: `delete` (Yu Geng)
+You can delete a task from task list.
 
-**A**: {your answer here}
+Format: `delete task/<TASK_INDEX>`
+Example of usage: `delete task/1`
 
-## Command Summary
+Expected outcome:
+```
+____________________________________________________________
+	Noted. I've removed this task:
+	   [T][T]lab report
+    Now you have 1 task in the list.
+    ____________________________________________________________
+```
+<div style="page-break-after: always;"></div>
 
-{Give a 'cheat sheet' of commands here}
+### 2.9 Finding a Task with Keyword `find` (Yu Geng)
+You can find a task from task list with the keyword.
 
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+Format: `find <KEYWORD>`
+Example of usage: `find book`
+
+Expected outcome:
+```
+____________________________________________________________
+	Here are the matching tasks in your list:
+	1.[T][F]read book
+____________________________________________________________
+```
+<!-- @@author -->
+### 2.10 Adding a Project Task: `project task` (Jin Yixuan)
+You can add a subtask of a specific project to the task list.
+
+Format: `mod/<MODULE_CODE> ptask/<DESCRIPTION> by/<DEADLINE>`
+Example of usage: `mod/CG2271 ptask/write report by/Fri 23:59`
+
+Expected outcome:
+```
+_______________________________________________________
+Is there any material you need for this project task?
+Enter your materials or NA
+NA
+Module: CG2271
+ProjectTask: write report
+By: Fri 23:59
+Materials: NA
+_______________________________________________________
+    ____________________________________________________________
+     Got it. I've added this task:
+      [P][F]write report (by:Fri 23:59) material: NA
+     Now you have 2 tasks in the list.
+    ____________________________________________________________
+
+```
+<div style="page-break-after: always;"></div>
+
+### 2.11 Viewing project task list: `project task list` (Jin Yixuan)
+You can view the project task list.
+
+Format: `mod/<MODULE_CODE> project task list`
+Example of usage: `mod/CG2271 project task list`
+
+Expected outcome:
+```
+CG2271
+
+1. [P][F]write report (by:Fri 23:59) material: NA
+```
+
+### 2.12 Viewing project progress: `project progress` (Jin Yixuan)
+You can view the progress of a specific project.
+
+Format: `mod/<MODULE_CODE> progress`
+Example of usage: `mod/CG2271 progress`
+
+Expected outcome:
+```
+CG2271
+You have done 0/1 (0.00%).
+```
+### 2.13 Viewing to do list: `print todo list` (Zhang Danrui)
+You can view the list of all the todo tasks
+Format: `print todo list`
+Expected outcome:
+```
+print todo list
+    ____________________________________________________________
+     Here are the todo tasks in your list:
+      1.[T][F]read book
+      2.[T][F]return book
+	You have 2 undone tasks in your todo list (2/2).
+    ____________________________________________________________
+
+```
+<div style="page-break-after: always;"></div>
+
+### 2.14 Viewing event list: `print event list` (Zhang Danrui)
+You can view the list of all the events
+Format:`print event list`
+Expected outcome:
+```
+print event list
+    ____________________________________________________________
+     Here are the events in your list:
+      1.[E][F]attend CS2113T project meeting (at:2020-11-19 20:00)
+	You have 1 undone event in your list (1/1).
+    ____________________________________________________________
+
+```
+### 2.15 Viewing the deadline list: `print deadline list` (Zhang Danrui)
+You can view the list of all the deadlines
+Format:`print deadline list`
+
+Expected outcome:
+```
+print deadline list
+    ____________________________________________________________
+     Here are the deadlines in your list:
+      1.[D][F]CS2102 assignment (by:2020-11-11 23:59) [Remaining time: 2 days 3 hours 46 minutes]
+	You have 1 undone deadline in your list (1/1).
+    ____________________________________________________________
+
+
+```
+### 2.16 Viewing the undone task list: `print undone task list` (Zhang Danrui)
+You can view the list of all the undone tasks
+Format: `print undone task list`
+
+Expected outcome:
+```
+print undone task list
+    ____________________________________________________________
+     Here are the undone tasks in your list:
+      1.[T][F]read book
+      2.[T][F]return book
+      3.[E][F]attend CS2113T project meeting (at:2020-11-19 20:00)
+      4.[D][F]CS2102 assignment (by:2020-11-11 23:59) [Remaining time: 2 days 3 hours 40 minutes]
+	You have 4 undone tasks in your list.
+    ____________________________________________________________
+
+```
+<div style="page-break-after: always;"></div>
+
+### 2.17 Clearing past deadlines: `clear deadlines` (Zhang Danrui)
+You can clear all the past deadlines
+Format:`clear deadlines`
+
+Expected outcome:
+```
+clear deadlines
+You have removed all the past deadlines!
+    ____________________________________________________________
+     Here are the deadlines in your list:
+      1.[D][F]CS2102 assignment (by:2020-11-11 23:59) [Remaining time: 2 days 3 hours 37 minutes]
+	You have 1 undone deadline in your list (1/1).
+    ____________________________________________________________
+
+```
+### 2.18 Delete done tasks: `delete done task` (Zhang Danrui)
+You can delete all the tasks that have been marked as done
+
+Format:`delete done task`
+
+Expected outcomes:
+```
+delete done task
+You have deleted all the done tasks from task list.
+     Now you have 3 tasks in the list.
+    ____________________________________________________________
+
+```
+### 2.19 Viewing today's deadline: `today deadline` (Zhong Ningmou)
+You can print out today's deadline that is not done and the remaining time left to complete.
+
+Format: `today deadline`
+
+Expected outcome:
+```
+_______________________________________________________
+2020-11-09 Deadline (haven't done):
+_______________________________________________________
+[D][F]Homework (by:2020-11-09 23:59) [Remaining time: 0 days 2 hours 29 minutes]
+```
+### 2.20 Viewing this week's deadline `this week deadline` (Zhong Ningmou)
+You can print out this week's deadline that is not done and the remaining time left to complete.
+
+Format: `this week deadline`
+
+Expected outcome:
+```
+_______________________________________________________
+2020-11-09 Deadline (haven't done):
+_______________________________________________________
+[D][F]Homework (by:2020-11-09 23:59) [Remaining time: 0 days 2 hours 27 minutes]
+_______________________________________________________
+2020-11-10 Deadline (haven't done):
+_______________________________________________________
+_______________________________________________________
+2020-11-11 Deadline (haven't done):
+_______________________________________________________
+[D][F]Homework2 (by:2020-11-11 12:00) [Remaining time: 1 days 14 hours 28 minutes]
+_______________________________________________________
+2020-11-12 Deadline (haven't done):
+_______________________________________________________
+_______________________________________________________
+2020-11-13 Deadline (haven't done):
+_______________________________________________________
+_______________________________________________________
+2020-11-14 Deadline (haven't done):
+_______________________________________________________
+_______________________________________________________
+2020-11-15 Deadline (haven't done):
+_______________________________________________________
+```
+
+### 2.21 Exiting the Program: `exit` (Zhong Ningmou)
+You can exit the program.
+
+Format: `exit`
+
+Expected outcome:
+```
+_______________________________________________________
+Bye! Have a nice day with CEG!
+_______________________________________________________
+```
+<div style="page-break-after: always;"></div>
+
+### 2.22 Viewing Help: `help` (Zhang Shenjia)
+You can view help message, which contains a list of all the commands, fully colored in the code.
+
+Format: `help`
+
+Expected outcome:
+```
+_______________________________________________________
+Commands are colored green while user input are colored blue.
+Please enter using the format as stated strictly!
+1. Add a module: add mod/<MODULE_CODE>
+2. Delete a module: delete mod/<MODULE_CODE>
+3. View today's timetable: today timetable
+4. View weekly timetable: this week timetable
+5. View task list: task list
+6. Add a todo task: todo <DESCRIPTION>
+7. Add a deadline: deadline <DESCRIPTION> /by <YYYY-MM-DD HH:mm>
+8. Add an event: event <DESCRIPTION> /at <YYYY-MM-DD HH:mm>
+9. Mark a task as done: done task/<TASK_INDEX>
+10. Delete a task: delete task/<TASK_INDEX>
+11. Find a task with keyword: find <KEYWORD>
+12. Add a project subtask: mod/<MODULE_CODE> ptask/<DESCRIPTION> by/<DEADLINE> 
+13. View project task list: mod/<MODULE_CODE> project task list
+14. View project progress: mod/<MODULE_CODE> progress
+15. View today's deadline: today deadline
+16. View this week deadline: this week deadline
+17. View all modules' information: check modules
+18. View to do list: print todo list
+19. View event list: print event list
+20. View deadline list: print deadline list
+21. View undone task list: print undone task list
+22. Clear past deadlines: clear deadlines
+23. Delete done tasks: delete done tasks
+24. Exit CEGMods: exit
+_______________________________________________________
+```
+<!-- @@author JinYixuan-Au -->
+## 3. FAQ (Jin Yixuan)
+**Q:** How can I save my data?
+**A:** **CEGMods** automatically saves your data on every action you take. You can find them in /data folder in the same directory you run **CEGMods** in.
+
+**Q:** Can I edit the information in data directory?
+**A:** Yes! As **CEGMods** saves and loads your information from the data directory, editing the files in data folder works. However, we would highly recommend you not to as you may cause data corruption. Use the command line instead if you wish to edit your information!
+
+<div style="page-break-after: always;"></div>
+
+## 4. Command Summary (Zhang Shenjia)
+
+|Feature                              |Command                                               |
+|---                                   |---                                                   |
+| Adding a Module                    |`add mod/<MODULE_CODE>`                             |
+| Deleting a Module                    |`delete m/<MODULE_CODE>`                             |
+| Checking Modules | `check mod` |
+| Viewing Timetable                  |`today timetable`, `this week timetable`  |
+| Viewing Task List                   |`task list`     |
+| Adding a Todo Task	                        |`todo <DESCRIPTION>` 
+| Adding a Deadline Task	                        |`deadline <DESCRIPTION> /by <YYYY-MM-DD HH:mm`   |
+| Adding an Event Task	                        |`event <DESCRIPTION> /at <YYYY-MM-DD HH:mm>` | 
+| Marking a Task as Done               |`done <TASK_INDEX>`                                      |
+| Deleting a Task  |`delete <TASK_INDEX>`                                    |
+| Finding a Task with Keyword   |`find/ <KEYWORD>`                                              |
+| Adding a Project Task   |  `mod/<MODULE_CODE> ptask/<DESCRIPTION> by/<DEADLINE>`       |
+| Viewing Project Task List  |  `mod/<MODULE_CODE> project task list`                      |
+| Viewing project progress   |    `mod/<MODULE_CODE> progress`                                  |
+| Viewing to do list | `print todo list` |
+| Viewing event list | `print event list` |
+| Viewing deadline list | `print deadline list` |
+| Viewing the undone task list | `print undone task list` |
+| Clearing past deadlines | `clear deadlines` |
+| Delete done tasks | `delete done task` |
+| Viewing today's deadlines | `today deadline` |
+| Viewing this week's deadlines | `this week deadline` |
+| Exiting the Program                       |`exit`                                                |
+| Viewing Help                                 |`help`                                                 |
