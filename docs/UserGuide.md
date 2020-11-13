@@ -24,25 +24,25 @@ This gives the application both simplicity and speed, setting it apart from othe
 * [Quick Start](#quick-start)
 * [Features](#features)
     * [View available commands](#view-available-commands)
-    * [Add an event](#add-an-event)
-    * [Edit an event](#edit-an-event)
-    * [Sort events](#sort-events)
-    * [Find a location](#find-a-location)
-    * [List all locations](#list-all-locations)
-    * [List all events](#list-all-events)
+    * [Add an event](#add-an-event---brendan)
+    * [Edit an event](#edit-an-event---xu-che)
+    * [Sort events](#sort-events---xu-che)
+    * [Find a location](#find-a-location---yang-jiaqi)
+    * [List all locations](#list-all-locations---yang-jiaqi)
+    * [List all events](#list-all-events---brendan)
     * [Clear events](#clear-events)
     * [Mark event as done](#mark-event-as-done)
-    * [Reminder of deadlines](#reminder-of-deadlines)
-    * [Repeat of events](#repeat-of-events)
-    * [Delete an event](#delete-an-event)
-    * [Find a keyword](#find-a-keyword)
-    * [Find a date](#find-a-date)
-    * [Find locations exist in a certain group](#find-locations-exist-in-a-certain-group)
-    * [Keep track on the study time](#keep-track-on-the-study-time)
-    * [Make the app know you](#make-the-app-know-you)
-    * [Exit the app](#exit-the-app)
+    * [Reminder of deadlines](#reminder-of-deadlines---brendan)
+    * [Repeat of events](#repeat-of-events---zhuang-mengjin)
+    * [Delete an event](#delete-an-event---zhuang-mengjin)
+    * [Find a keyword](#find-a-keyword---zhuang-mengjin)
+    * [Find a date](#find-a-date---zhuang-mengjin)
+    * [Find locations exist in a certain group](#find-locations-exist-in-a-certain-group---zhuang-mengjin)
+    * [Keep track on the study time](#keep-track-on-the-study-time---zhuang-mengjin)
+    * [Make the app know you](#make-the-app-know-you---zhuang-mengjin)
+    * [Exit the app](#exit-the-app---zhuang-mengjin)
 * [FAQs](#FAQ)
-* [Command Summary](#command-summary)
+* [Command Summary](#command-summary---brendan)
 
 
 ## Quick Start
@@ -72,7 +72,7 @@ Shows list of commands and provides a link to the user guide for more details.
 Format: `help`
 
 
-### Add an event
+### Add an event - Brendan
 
 Adds events/tasks to the schedule. Can support various types of tasks:  
 
@@ -136,7 +136,7 @@ Adding an event with a timing clash:
 ![add4](diagrams/add4.png)
 
 
-### Edit an event
+### Edit an event - Xu Che
 The `edit` command allows you to edit the event type, description, start/end date and location for an existing 
 event. You can start using this command by entering `edit INDEX`, where INDEX is the number of the task you want to
 edit. 
@@ -166,7 +166,7 @@ Expected Outcome:
 ![edit5](diagrams/edit5.png)
 
 
-### Sort events
+### Sort events - Xu Che
 With this command, you can sort all events by either their end time, location or their description. When sorting by time, events
 will be sorted in a chronological order. Events with an earlier end date will be sorted on top of events with later end
 dates. This way, you can prioritize the events that are due soon.   
@@ -193,7 +193,7 @@ Sort by time:
 Sort by location:  
 ![sort4](diagrams/sort4.png)
 
-### Find a location
+### Find a location - Yang Jiaqi
 With this command, you can find out about locations around NUS. Depending on the type of location, different additional 
 information will be shown together with the location (e.g. nearest building, nearest bus stops). 
 
@@ -210,7 +210,7 @@ Find buildings using location name:
 Find locations using event index: 
 ![locate3](diagrams/locate3.png)
 
-### List all locations
+### List all locations - Yang Jiaqi
 Displays a list of all locations within NUS
 
 Format: `locations`
@@ -218,7 +218,7 @@ Format: `locations`
 Expected output: (list given here is incomplete) 
 ![locations](diagrams/locations.png)
 
-### List all events
+### List all events - Brendan
 Shows you a list of all events.  
 
 Format: `list`  
@@ -259,7 +259,7 @@ Example: `done 2`
 Example Output:  
 ![done](diagrams/done.png)  
 
-### Reminder of deadlines
+### Reminder of deadlines - Brendan
 Shows a list of all events for today's date.
 
 Format: `reminder`
@@ -267,7 +267,8 @@ Format: `reminder`
 Example Output:  
 ![reminder](diagrams/reminder.png)
 
-### Repeat of events
+<!-- @@author Lee-Juntong -->
+### Repeat of events - Zhuang Mengjin
 Repeat the selected event for several weeks, or repeat all classes this week for several weeks.
 
 Format: `repeat INDEX NUMBER_OF_WEEKS` OR `repeat all NUMBER_OF_WEEKS`  
@@ -278,7 +279,7 @@ Example Output:<br>
 ![Repeat1](diagrams/repeat1.png)  
 ![Repeat2](diagrams/repeat2.png)
 
-### Delete an event
+### Delete an event - Zhuang Mengjin
 Delete the selected event from the list.
 
 Format: `delete INDEX`
@@ -288,7 +289,7 @@ Example: `delete 1`
 Example Output:<br>
 ![Delete](diagrams/delete.png)
 
-### Find a keyword
+### Find a keyword - Zhuang Mengjin
 Find the events with given keyword. Note that it's case-sensitive.
 
 Format: `find KEYWORD`  
@@ -298,7 +299,7 @@ Example: `find CS`
 Example Output:<br>
 ![Find](diagrams/find.png)  
 
-### Find a date
+### Find a date - Zhuang Mengjin
 Find the events happen on the given date.  
 
 Format: `date yyyy-MM-dd`  
@@ -308,7 +309,7 @@ Example `date 2020-11-10`
 Example Output:<br>
 ![findDate](diagrams/findDate.png)
 
-### Find locations exist in a certain group
+### Find locations exist in a certain group - Zhuang Mengjin
 Find the locations in NUS that belongs to certain faculty or the hostels.
 
 Format: `FOS` OR `FOE` OR `SOC` OR `BIZ` OR `HOSTEL` OR `SDE` OR `FASS`  
@@ -316,7 +317,7 @@ Format: `FOS` OR `FOE` OR `SOC` OR `BIZ` OR `HOSTEL` OR `SDE` OR `FASS`
 Example Output:<br>
 ![locationsInNUS](diagrams/locationsInNUS.png)  
 
-### Keep track on the study time
+### Keep track on the study time - Zhuang Mengjin
 Find the amount of time you spent on study on a certain date.
 
 Format: `studyTime DATE`  
@@ -324,7 +325,7 @@ Format: `studyTime DATE`
 Example Output:<br>
 ![studyTime](diagrams/studyTime.png)
 
-### Make the app know you
+### Make the app know you - Zhuang Mengjin
 Tell the app your name, and whether you are a professor or a student. Whether you indicate yourself as a professor,
  or a student, will make a difference in another function, which will come in a later version.
 
@@ -334,13 +335,14 @@ Example Output:<br>
 ![userInfo1](diagrams/userInfo1.png)<br>
 ![userInfo2](diagrams/userInfo2.png)
 
-### Exit the app
+### Exit the app - Zhuang Mengjin
 Exit.
 
 Format: `bye`
 
 Example Output:<br>
 ![Exit](diagrams/exit.png)
+<!-- @@author -->
 
 ## FAQ
 
@@ -362,7 +364,7 @@ the error message is not helpful, please refer back to relevant sections in Feat
 instructions provided closely as the current version of NUSchedule has a relatively high requirement in terms of input 
 accuracy. If you really cannot find what is wrong, please report it as an issue to [this link](https://github.com/AY2021S1-CS2113T-F14-4/tp/issues).
 
-## Command Summary
+## Command Summary - Brendan
 
 |Action|Command|Example|
 |------|-------|-------|

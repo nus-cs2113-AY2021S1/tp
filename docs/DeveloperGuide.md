@@ -13,11 +13,9 @@ Wu Nan<br>
 
 Wan Shi Jie Brendan<br>
 
-
 <div style="page-break-after: always;"></div>
 
 ## Table of Contents
-
 * [Introduction](#introduction)
 * [Getting Started](#getting-started)<br>
     * [Prerequisites](#prerequisites)<br>
@@ -69,8 +67,7 @@ to refer to even if you are already a contributor.
   
 This section provides information to help you get NUSchedule up and running on your own computers.
 
-### Prerequisites
-  
+### Prerequisites  
 1. JDK 11
 2. Intellij IDEA
 
@@ -159,7 +156,6 @@ and not edited in any part of the program.
 
 ## Implementation
 
-
 This section describes the implementation of some noteworthy features. 
 
 ### Add events
@@ -181,7 +177,6 @@ whether there are any events that overlap in timing with the newly added event. 
 The sequence diagram below shows the process of adding a new event.
 ![AddCommand Sequence Diagram](diagrams/AddCommand.png)<br>
 *Figure 4.1 Sequence Diagram for add function*
-
 
 ### Clear events
   
@@ -364,7 +359,6 @@ The sequence diagram belows shows what happens when user input any faculty abbre
 This feature allows the user to know the amount of time spent on study for certain date. The command is `studyTime DATE`.  
 
 ### Done
-
 This feature allows users to mark an event as done, provided the event's time has passed. With the exception of event 
 type `Assignment`, all the other event types cannot be marked as done before event occurs. 
 
@@ -398,14 +392,12 @@ Step 2: This calls the UserInfoCommand, which stores his name, Harry, and type, 
 This feature allows users to terminate this app. By inputting `bye`, the isExit flag of the app will be changed to true, and the app will exit with 
 an exit message.  
 
-## Documentation
-  
+## Documentation  
 All documentation can be found in the `docs/` folder.
 * [Jekyll](https://jekyllrb.com/) is used to manage documentation.
 * [Markdown](https://guides.github.com/features/mastering-markdown/) style is used for the documentation.
 * [PlantUML](https://plantuml.com/) is used to create the diagrams.
   
-
 ## Testing
   
 JUnit is used to write tests for the project. Learn more about JUnit [here](https://se-education.org/guides/tutorials/gradle.html).
@@ -445,12 +437,14 @@ NUSchedule aims to assist the target audience with:
 |2.0|student using zoom for lessons|record the virtual locations|store the links and passwords of the meetings
 |2.1|student having periodic lessons|repeat the classes on a weekly basis|spend less time in adding same classes but just different weeks  
 
+<a id="appendixC"></a>
 ## Appendix C: Non-Functional Requirements
   
 1. This application will work on any computers running either Windows, macOS or Unix that has Java 11 or a higher version installed.
 
 2. A user that is proficient in typing will find this application to be faster and more convenient to use than applications that requires mouse clicks.
 
+<a id="appendixD"></a>
 ## Appendix D: Instructions for manual testing
   
 1. Initial launch
