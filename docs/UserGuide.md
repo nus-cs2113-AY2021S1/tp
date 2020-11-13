@@ -136,7 +136,7 @@ The format required for the commands are as follows:
 
 This section details the generic commands that can be used. These commands assist you in finding out **generic information** regarding the application.
 
-### 5.1 Summary of Commands <a name="summary"></a>
+### 5.1 Summary of Commands (Dash) <a name="summary"></a>
 
 This command prints a summary of all commands in the application as shown in [Command Summary](#9-command-summary).
 
@@ -153,7 +153,7 @@ lists all the parameters for the commands. This is as shown with the command `su
 
 <div style="page-break-after: always;"></div>
 
-### 5.2 Interactive Tutorial
+### 5.2 Interactive Tutorial (Praveen)
 
 To aid the user, this command starts the interactive tutorial for either the [Circuit Action Commands](#6-circuit-action-commands) or [Boolean Action Commands](#7-boolean-action-commands) based on the parameter specified. 
 
@@ -192,7 +192,7 @@ for both circuit and boolean tutorials at least once to familiarize yourself wit
 
 <div style="page-break-after: always;"></div>
 
-### 5.3 Exiting the Application
+### 5.3 Exiting the Application (Vishruti)
 
 This command can be used to exit the application.
 
@@ -228,7 +228,7 @@ It may be important to note that the circuit diagrams shown in the expected outp
 
 </div>
 
-### 6.1 Creating a circuit template <a name="template-circ"></a>
+### 6.1 Creating a circuit template (Wira) <a name="template-circ"></a>
 
 This command creates a circuit template. This command must be used to be able to use the `set`, `add`, `calc` commands since those commands must be done on an existing `template`.
 
@@ -250,7 +250,7 @@ The diagram below shows an example when using the `template rc` command.
 
 <div style="page-break-after: always;"></div>
 
-### 6.2 Setting a component value <a name='set-comp'></a>
+### 6.2 Setting a component value (Praveen) <a name='set-comp'></a>
 
 This command sets the value of a component. The component must be part of the current circuit template. Units correspond to the component involved - *resistors* in *ohms*, *capacitors* in *microfarads*, and *inductors* in *microhenries*. The values would need to be set to perform calculations or analysis such as in the [`calc` command](#64-calculating-effective-value-).
 
@@ -279,7 +279,7 @@ The image below shows an example of using the command `set r 500` on the templat
 
 <div style="page-break-after: always;"></div>
 
-### 6.3 Adding a component <a name="add-comp"></a>
+### 6.3 Adding a component (Wira) <a name="add-comp"></a>
 
 This command adds a component in a specific configuration - either *in parallel* or *in series* - to the current circuit template. This allows you to quickly obtain calculations to your chosen configurations. Only *load components* can be added - you cannot add a *voltage source*. You should only add a component after it has already been set.
 
@@ -316,7 +316,7 @@ The image below shows an example of using the command `add parallel r 500` on a 
 
 <div style="page-break-after: always;"></div>
 
-### 6.4 Calculating Effective Value <a name="calc-circ"></a>
+### 6.4 Calculating Effective Value (Vishruti) <a name="calc-circ"></a>
 
 This command calculates the various effective values based on the `template` configuration. While calculating `reff`, `ceff`, or `leff`, the component must be part of the current circuit template. You can quickly obtain the various values detailed below after setting the necessary components.
 
@@ -357,7 +357,7 @@ The image below is an example of when the `calc power` command is entered.
 
 This section details how the commands are used with a **boolean template**. You can use this section to build simple logic circuits which may be made up of various *gates* such as `AND`, `OR`, and `XOR` *gates*.
 
-### 7.1 Creating a boolean template <a name='template-logic'></a>
+### 7.1 Creating a boolean template (Dorian) <a name='template-logic'></a>
 
 This command creates a boolean template. Similar to the [circuit template](#6-circuit-action-commands), this command must be used to be able to use the `set`, `add`, `calc` commands since those commands must be done on an existing `template`.
 
@@ -384,7 +384,7 @@ Here, `OUT` represents the output of the boolean template. The letters `B` and `
 
 <div style="page-break-after: always;"></div>
 
-### 7.2 Setting an input value <a name='set-input'></a>
+### 7.2 Setting an input value (Praveen) <a name='set-input'></a>
 
 This command sets the value of an input. The inputs will then be used in the [`calc` command](#74-calculating-output-) to give the output of the boolean template. The input must not have already been set as a `Gate` and must be part of the diagram.
 
@@ -415,7 +415,7 @@ The image below shows an example of using the command `set B 0` on the template 
 
 <div style="page-break-after: always;"></div>
 
-### 7.3 Adding a Gate <a name="add-gate"></a>
+### 7.3 Adding a Gate (Wira) <a name="add-gate"></a>
 
 The application has the ability to combine multiple `Gate` objects to generate more complicated boolean *logic gate* configurations. This command allows you to set an input to a boolean logic `Gate`. You can also change an existing gate if needed, except for the *root* `Gate`, which would require a new template. However, the depth of the deepest logic `Gate` from the *root* logic `Gate` (at the top) cannot exceed 2.
 
@@ -452,7 +452,7 @@ The image below shows an example of using the command `add C or` on the template
 
 <div style="page-break-after: always;"></div>
 
-### 7.4 Calculating Output <a name="calc-output"></a>
+### 7.4 Calculating Output (Vishruti) <a name="calc-output"></a>
 
 This command calculates the output of the configured logic *gates*, and requires that all inputs of the circuit are set. The output is represented by `OUT` in the printed `template`.
 
@@ -476,7 +476,7 @@ The following image shows an example of using the `calc` command.
 
 <div style="page-break-after: always;"></div>
 
-## 8. FAQ
+## 8. FAQ (Dash)
 
 This section details the **frequently asked questions (FAQ)** regarding the use of the application.
 
@@ -528,7 +528,7 @@ Action | Format, Examples
 
 <div style="page-break-after: always;"></div>
 
-## 10. Glossary
+## 10. Glossary (Wira)
 
 This section explains certain technical terms used in the guide which may require more detail.
 
