@@ -549,7 +549,7 @@ These are the steps to follow:
 <!-- @@author -->
 
 <!-- @@author EthanWong2212 -->
-####3.3.7. Storage of favourite commands - Wong Heng Chin
+#### 3.3.7. Storage of favourite commands - Wong Heng Chin
 >Note: **DO NOT** modify the `FavList.txt` file <br>
 >
 In order to make Nav@NUS a personalized application for you, all data from your list of favourite commands will be stored on your computer. Thus, everytime Nav@NUS launches, you will be able to maintain and update your list of favourite commands.
@@ -645,7 +645,7 @@ Simply copy your `data` folder from the current directory and paste it in the di
 file in the other computer.
 
 **Q:** What do I do if I have accidentally made changes to the `FavList.txt` file? <br>
-Simply run Nav@NUS and the program will automatically delete most corrupted data.
+Simply run Nav@NUS and the program will automatically delete most of the corrupted data.
 
 ## 5. Command Summary
 The following table provides a summary of features and command formats.
@@ -684,4 +684,3 @@ This section defines key technical terms we have used throughout the user guide.
 6. Execute: Run the command to display the output.
 7. Similarity check: Check for possible spelling errors.
 <!-- @@author -->
-
