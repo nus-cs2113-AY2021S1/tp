@@ -197,7 +197,7 @@ The following few sections present 3 scenarios of how the help command is used.
 
 Let us assume that you want to see all the commands that is available. 
 
-You can do this by typing `help`.
+You can do this by typing `help`. The program will print out a summary of all the available commands.
 
 The output from the program should be:
 ```
@@ -227,7 +227,7 @@ _________________________________
 
 ##### Scenario 2: Getting help for `add` command
 
-Let us assume that you want to add an event but you are unsure of the command. 
+Let us assume that you want to add an event but you are unsure of how to use the command. 
 
 You can do this by typing `help add`.
 
@@ -273,7 +273,7 @@ _________________________________
 
 ##### Scenario 3: Getting help to understand `help` command
 
-Let us assume that you want to use the help command but you are unsure of how to read it.
+Let us assume that you are unsure of how to use the help command and you will like to get help on how to use the help command.
 
 You can do this by typing `help help`.
 
@@ -618,11 +618,9 @@ You have successfully updated the deadline for this event!
 <div style="page-break-after: always;"></div>
 
 ### 3.6 Repeat on daily/weekly/monthly basis: `repeat` (Colin Ng)
-Sets a specific event to be repeated either weekly or monthly in the calendar. 
-
 Do you have any events that repeat frequently? For example, a dental appointment every month, or perhaps a math lesson every week? The repeat command in the program allows you to easily schedule such events into your event planner. Just select the event that you want to repeat, type in how often this event repeats and Scheduler-\-; will record down the event for you.  
 
-Format: `repeat EVENT_TYPE EVENT_INDEX [UNIT] [COUNT]` 
+Format: `repeat EVENT_TYPE; EVENT_INDEX; [UNIT]; [COUNT]` 
 
 - `EVENT_TYPE` specify what kind of event you would like to repeat. The accepted arguments for this are “personal”, “timetable” and “zoom” 
 - `EVENT_INDEX` is a number. It contains the index of the event that is to be repeated 
@@ -631,11 +629,11 @@ Format: `repeat EVENT_TYPE EVENT_INDEX [UNIT] [COUNT]`
 
 If you would like to make an event a repeated event, the format for the command is as follows.
 
-Format: `repeat EVENT_TYPE EVENT_INDEX [UNIT] [COUNT]` 
+Format: `repeat EVENT_TYPE; EVENT_INDEX; [UNIT]; [COUNT]` 
 
 If you would like to view the status of a repeated event, the format for the command is as follows.
 
-Format: `repeat EVENT_TYPE EVENT_INDEX`
+Format: `repeat EVENT_TYPE; EVENT_INDEX`
 
 > **Note!**
 >
