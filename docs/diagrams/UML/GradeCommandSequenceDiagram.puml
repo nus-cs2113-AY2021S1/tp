@@ -1,0 +1,29 @@
+@startuml
+
+-> ":GradeCommandParser" ++: prepareGradeCommand()
+    ":GradeCommandParser" -> ":GradeCommand" ** : <<construct>> GradeCommand(module,moduleCredit,grade)
+    activate ":GradeCommand"
+    return GradeCommand
+<-- ":GradeCommandParser" !! : GradeCommand
+
+-> ":GradeCommand" ++ : execute()
+    participant ":ModuleManager" as MM << Class >>
+    ":GradeCommand" -> MM ++ : getModule()
+    ":GradeCommand" <-- MM -- :moduleToBeGraded
+    |||
+    ":GradeCommand" -> ":GradeCommand" ++ : grade(moduleToBeGraded)
+        alt testGrade(grade)
+            ":GradeCommand" -> MM ++ : grade(module,grade,moduleCredit)
+            |||
+            ":GradeCommand" <-- MM --
+        else
+            <-- ":GradeCommand" : InvalidGradeException()
+        end
+    ":GradeCommand" <-- ":GradeCommand" --
+
+    ":GradeCommand" -> ":CommandResult" ** : <<construct>>
+    activate ":CommandResult"
+    ":GradeCommand" <-- ":CommandResult" --: CommandResult
+<-- ":GradeCommand" !! : CommandResult
+
+@enduml
