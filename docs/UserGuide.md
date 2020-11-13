@@ -11,20 +11,21 @@
 
 #### **WatchNext** is a show tracker made for teenagers and young adults.
 <br><br> 
-### 1.a. What is **WatchNext**?
+### 1.a. What is **WatchNext**? [Jazhten]
 
 **WatchNext** is a show tracker designed for users who watch their favourite shows on multiple free streaming platforms and other open source streaming websites.
 **WatchNext** records your progress for the different shows you are currently watching, and even for upcoming shows that you plan to watch.
 <br>It additionally serves as a tracker to limit your daily watch time to help you better manage your time.
 <br>For students, **WatchNext** serves the same purpose of tracking your learning progress for lectures and webcasts.
-<br><br>This motivated our team to create an application that would not only help track all your shows and lectures, 
-but also foster a community where everyone will be able to share their watchlist with like-minded individuals and friends. <br>
 
-### 1.b. Why use **WatchNext**?
+### 1.b. Why use **WatchNext**? [Jazhten]
 It can be difficult and taxing to track your favourite shows through browser bookmarks.
 This is especially pertinent for younger teenagers and adults who make up a large part of video entertainment media consumers.
 
 For students like ourselves, there is also a need to manually track lecture videos and webcast progress as lecturers may use different learning management systems.
+
+<br>This motivated our team to create an application that would not only help track all your shows and lectures, 
+but also foster a community where everyone will be able to share their watchlist with like-minded individuals and friends. <br>
 
 **WatchNext** is optimized for users who prefer to work with the Command Line Interface (CLI).<br> 
 
@@ -81,7 +82,7 @@ If you are unfamiliar with the CLI (Command Line Interface), do give this helpfu
 
 ## 4. Features <br>
 
-#### 4.a. `help` and `example` - Provides a condensed help list
+#### 4.a. `help` and `example` - Provides a condensed help list (Benardo Tang)
 
  The `help` command provides a list which contains information about all the possible accepted commands.
  
@@ -120,7 +121,7 @@ Expected outcome:
 
 <div style="page-break-after: always;"></div>
 
-#### 4.b. `add` - Adds a show
+#### 4.b. `add` - Adds a show [Jazhten]
  The `add` command adds a show into your existing watchlist.
  
   Format:
@@ -133,21 +134,21 @@ Expected outcome:
   Explanation of input: <br>
   For the example input, `add Friends 3 10,20,30 25`, a show named `Friends` is being added.<br> The show has `3` seasons, where season 1 has `10` episodes, season 2 has `20` and season 3 has `30` episodes.
 >**[NOTE]**
->Note how the `10`,`20` and `30` are separated by commas without spaces in between.
+>Note that the `10`,`20` and `30` are separated by commas without spaces in between.
 >
 
   The duration of each episode is `25` minutes.<br>
  <img src = "images/addCommandUG/addInput.PNG" width = "600">
   &nbsp;<br>
   
- After keying in the input as shown in the image above, you should see th eexpected output shown in the next image.<br>
+ After keying in the input as shown in the image above, you should see th expected output shown in the next image.<br>
  
  <img src = "images/addCommandUG/addResponse.PNG" width = "600">
   &nbsp;<br>
   
  If you see the outcome as pictured above, it means that the show has been successfully added to **WatchNext**.
  
- If you already have an entry with the same name in your list, the program will prompt you as follows:
+ If you already have an entry with the same name in your list, the program will display the following prompt:
  
  `This action will overwrite your existing data. Continue? (y/n)`
  
@@ -494,11 +495,11 @@ The `episode` command updates the current episode of an existing show in your wa
   
  &nbsp;
  
-### 4.m. Managing your watch time limit
+### 4.m. Managing your watch time limit 
 
  **WatchNext** allows you to set and track your daily watch time with its two commands , `watch` and `updatetimelimit`. 
  
-### 4.m.a. `watch` - Watch a show in your list
+### 4.m.a. `watch` - Watch a show in your list  (Benardo Tang)
 
 The `watch` command updates the watching progress for your show, and automatically updates your watch time limit.
 
@@ -536,7 +537,7 @@ The `watch` command updates the watching progress for your show, and automatical
  
 
  
-### 4.m.b. `updatetimelimit` - update your watch time limit
+### 4.m.b. `updatetimelimit` - update your watch time limit (Benardo Tang)
 
 The `updatetimelimit` command updates your daily watch time limit.
 
