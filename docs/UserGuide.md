@@ -136,7 +136,7 @@ Adding an event with a timing clash:
 ![add4](diagrams/add4.png)
 
 
-### Edit an event
+### Edit an event - Xu Che
 The `edit` command allows you to edit the event type, description, start/end date and location for an existing 
 event. You can start using this command by entering `edit INDEX`, where INDEX is the number of the task you want to
 edit. 
@@ -166,7 +166,7 @@ Expected Outcome:
 ![edit5](diagrams/edit5.png)
 
 
-### Sort events
+### Sort events - Xu Che
 With this command, you can sort all events by either their end time, location or their description. When sorting by time, events
 will be sorted in a chronological order. Events with an earlier end date will be sorted on top of events with later end
 dates. This way, you can prioritize the events that are due soon.   
