@@ -1,0 +1,32 @@
+@startuml
+
+!include style.puml
+box
+participant ":InputParser" as InputParser LOGIC_COLOR
+participant ":DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":Ui" as Ui LOGIC_COLOR
+participant ":ShowList" as ShowList LOGIC_COLOR
+end box
+
+[-> InputParser : delete("friends")
+activate InputParser
+
+InputParser -> DeleteCommand: deletingShow("friends")
+activate DeleteCommand
+
+DeleteCommand -> DeleteCommand : delete("friends")
+activate DeleteCommand
+
+DeleteCommand -> ShowList: getShowList.remove("friends")
+activate ShowList
+ShowList --> DeleteCommand
+deactivate ShowList
+
+DeleteCommand -> Ui : printDeleteShow()
+activate Ui
+Ui --> DeleteCommand
+deactivate Ui
+
+[<-- DeleteCommand :
+
+@enduml

@@ -1,0 +1,34 @@
+@startuml
+
+start
+
+partition UserInvokesCommand {
+      :edit friends;
+  }
+
+#lightblue:Program Output:
+"Input the detail of the show you want to change";
+
+partition UserInteraction {
+
+   repeat :user input;
+   split
+    :name|
+   split again
+    :episode|
+   split again
+    :season|
+   split again
+    : duration|
+    split again
+    : done|
+   end split
+   #lightblue: Updates show data;
+   repeat while (input != done)
+   :done ;
+  }
+
+#lightblue:Program Output:
+"Show details updated successfully";
+stop
+@enduml

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="29.5" y="-38.0">seedu.duke.utility.SaveState</node>
+    <node x="-15.0" y="466.0">seedu.duke.Duke</node>
+    <node x="328.0" y="-11.0">seedu.duke.classes.WatchTime</node>
+    <node x="-38.5" y="102.0">seedu.duke.classes.Storage</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="seedu.duke.classes.Storage" target="seedu.duke.utility.SaveState">
+      <point x="0.0" y="-138.0" />
+      <point x="0.0" y="38.0" />
+    </edge>
+  </edges>
+  <settings layout="Orthogonal" zoom="0.9" x="518.6666666666666" y="449.22222222222223" />
+  <SelectedNodes>
+    <node>seedu.duke.classes.Storage</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

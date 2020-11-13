@@ -1,0 +1,48 @@
+@startuml
+
+!include style.puml
+box
+participant ":InputParser" as InputParser LOGIC_COLOR
+participant ":EditCommand" as EditCommand LOGIC_COLOR
+participant ":UI" as UI LOGIC_COLOR
+participant ":ShowList" as ShowList LOGIC_COLOR
+end box
+
+[-> InputParser : edit("friends")
+activate InputParser
+
+InputParser -> EditCommand : editCommand("friends")
+activate EditCommand
+
+EditCommand -> EditCommand : processCommand()
+activate EditCommand
+
+loop "until input == "done"
+EditCommand -> UI : editPrompt()
+activate UI
+
+[<- UI : "please edit prompt"
+[--> EditCommand : "season 3"
+EditCommand -> EditCommand : editSeason(3)
+activate EditCommand
+
+EditCommand -> ShowList : setSeason(3)
+activate ShowList
+
+
+ShowList --> EditCommand
+deactivate ShowList
+deactivate EditCommand
+
+
+end
+
+EditCommand -> UI : printEditShow
+[<--UI : "edit show successfully"
+
+deactivate UI
+deactivate EditCommand
+deactivate EditCommand
+deactivate InputParser
+
+@enduml

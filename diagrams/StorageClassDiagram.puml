@@ -1,0 +1,51 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+class Duke
+class Storage
+interface "<<interface>> \n SaveState"
+class WatchTime
+class ShowList
+
+Duke "1" *--> "1" Storage
+Storage ..|> "<<interface>> \n SaveState"
+Duke "1" *--> "1" WatchTime
+Storage --> "0..1" WatchTime
+Duke "1" *--> "1" ShowList
+Storage --> "0..1" ShowList
+
+class ShowList {
++ {static} showList:HashMap<String,Show>
++ ShowList():void
+}
+class WatchTime {
+-recordedDate:LocalDate
+-durationWatchedToday:int
+-dailyWatchLimit:int
++ WatchTime(:LocalDate,:int,:int):void
++ saveStateFormat():String
+}
+
+interface "<<interface>> \n SaveState" {
++saveState():void
++loadState():ShowList
+}
+
+class Storage {
+-filePath:String
+-recordedDate:LocalDate
+-durationWatchedToday:int
+-dailyWatchLimit:int
++Storage(:String):void
++saveState():void
++loadState():void
+-loadWatchTimeDetail(:Scanner):WatchTime
+}
+
+class Duke{
+-shows:ShowList
+-storage:Storage
+-watchTime:watchTime
+}
+@enduml
