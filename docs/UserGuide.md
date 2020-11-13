@@ -1242,7 +1242,23 @@ Fear of forgetting what you have today? Scheduler—is here to show you your eve
 
 Format: `reminder`
 
-Expected Output:
+
+#### Example Usage
+
+The following scenario will be used to explain how the reminder command works.
+
+##### Scenario 1: Remind the event happening today
+
+You want to be reminded of what is happening today.
+
+To do so, you should type in: 
+
+```
+reminder
+```
+
+You should now see that the reminder command has successfully shown the events today:
+
 ```
 You have the following events today:
 [T][X] math, Location: S17 on 2020-10-26, 12:00
