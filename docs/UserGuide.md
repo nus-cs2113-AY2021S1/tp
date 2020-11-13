@@ -37,7 +37,7 @@ For your reference:
 #### [2.15 Viewing the deadline list: `print deadline list`](#215-viewing-the-deadline-list-print-deadline-list-1)
 #### [2.16 Viewing the undone task list: `print undone task list`](#216-viewing-the-undone-task-list-print-undone-task-list-1)
 #### [2.17 Clearing past deadlines: `clear deadlines`](#217-clearing-past-deadlines-clear-deadlines-1)
-#### [2.18 Delete done tasks: `delete done task`](#218-delete-done-tasks-delete-done-task-1)
+#### [2.18 Delete done task: `delete done task`](#218-delete-done-tasks-delete-done-task-1)
 #### [2.19 Viewing today's deadlines: `today deadline`](#219-viewing-todays-deadline-today-deadline)
 #### [2.20 Viewing this week's deadlines: `this week deadline`](#220-viewing-this-weeks-deadline-this-week-deadline)
 #### [2.21 Exiting the Program: `exit`](#221-exiting-the-program-exit-1)
