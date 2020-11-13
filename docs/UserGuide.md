@@ -48,7 +48,7 @@ Scheduler-\-; does the job.
 
 ## 1. About Scheduler-\-;
 
-Hello! Welcome to scheduler-\-;
+Hello! Welcome to Scheduler-\-;!
 
 Scheduler-\-; (S-\-) is a desktop app for managing deadlines from different sources. The user will use a Command Line Interface to control it. It is specially designed for Computing students who are comfortable in using CLI and have Git project deadlines as well as consolidated Zoom session links due which will suit home based learning in this COVID period. 
 
@@ -111,7 +111,7 @@ You can install version 11 of Java from this [link](https://docs.aws.amazon.com/
 
 1. Install Java 11 or above in your computer if you have not done so. 
 1. Download the latest scheduler.jar from [here](https://github.com/AY2021S1-CS2113T-T12-4/tp/releases).
-1. Copy the file to the folder you want to use as the folder for the Scheduler. 
+1. Copy the file to the folder you want to use as the folder for Scheduler-\-;. 
 1. Open the command prompt by entering `cmd` into the search bar and press enter. 
 1. Navigate to the folder where you saved the jar file using the command prompt.
 1. Type `java -jar scheduler.jar` into the command prompt and press enter. 
@@ -121,7 +121,7 @@ You can install version 11 of Java from this [link](https://docs.aws.amazon.com/
 
 1. Install Java 11 or above in your computer if you have not done so. 
 1. Download the latest scheduler.jar from [here](https://github.com/AY2021S1-CS2113T-T12-4/tp/releases).
-1. Copy the file to the folder you want to use as the folder for the Scheduler-\-;. 
+1. Copy the file to the folder you want to use as the folder for Scheduler-\-;. 
 1. Open the terminal by clicking on Launchpad->Utilities->Terminal. 
 1. Navigate to the folder you have stored the jar file in the command prompt. 
 1. Type `java -jar scheduler.jar` into the terminal and press enter. 
@@ -131,7 +131,7 @@ You can install version 11 of Java from this [link](https://docs.aws.amazon.com/
 
 1. Install Java 11 or above in your computer if you have not done so. 
 1. Download the latest scheduler.jar from [here](https://github.com/AY2021S1-CS2113T-T12-4/tp/releases). 
-1. Copy the file to the folder you want to use as the folder for the Scheduler-\-;. 
+1. Copy the file to the folder you want to use as the folder for Scheduler-\-;. 
 1. Open the terminal in your linux distribution.
 1. Navigate to the folder you have stored the jar file in the command prompt. 
 1. Type `java -jar scheduler.jar` into the terminal and press enter. 
@@ -143,7 +143,7 @@ Type the command in the command box and press Enter to execute.
 Refer to the [Features](#3-features) section for details of each command. 
 
 Some examples you can try: 
-- `add personal; run; 12/10/20; 4pm`: Adds a personal event to the scheduler. 
+- `add personal; run; 12/10/20; 4pm`: Adds a personal event to Scheduler-/-;. 
 - `list personal`: Lists all personal events.
 - `bye`: Exits the program. 
     
@@ -191,7 +191,7 @@ Format: `help [COMMAND]`
 
 #### Example usage
 
-The following few sections present 3 scenarios of how the help command is used.
+The following few scenarios present 3 examples of how the help command is used.
 
 ##### Scenario 1: Getting the summary of commands
 
@@ -237,7 +237,7 @@ The output from the program should be:
 help add
 _________________________________
 add - Records a personal, timetable or zoom event into the program
-Format: add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM
+Format: add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; EVENT_DATE; EVENT_TIME
 
 
 EVENT_TYPE specify the type of event you want to add. These include “zoom”,
@@ -246,27 +246,28 @@ EVENT_DESCRIPTION is the description or name of the event.
 LINK/LOCATION is the website link or the location of the event. This is applicable and 
     optional for zoom and timetable events respectively. This field should always be after
     the event description if used.
-DD/MM/YY is the date associated with the event in the format DD/MM/YY.
-HH:MM AM/PM is the time of the event. It can be written in 12 or 24 hour format.
+- `EVENT_DATE` is the date associated with the event in the format DD/MM/YY or DD/MM/YYYY.
+- `EVENT_TIME` is the time of the event. It can be written in 12 hour format (HH:mm am/pm or HH am/pm)
+     or 24 hour format (HHmm or HH:mm). 
 
 Timetable events can contain:
 - Description, date and time
 - Description, location, date and time
 
-Timetable Format: add Timetable; EVENT_DESCRIPTION; [LOCATION]; DD/MM/YY; HH:MM AM/PM
+Timetable Format: add Timetable; EVENT_DESCRIPTION; [LOCATION]; EVENT_DATE; EVENT_TIME
 
 Zoom events can contain:
 - Description and link
 - Description, link, date and time
 
-Zoom Format: add Zoom; EVENT_DESCRIPTION; LINK; [DD/MM/YY]; [HH:MM AM/PM]
+Zoom Format: add Zoom; EVENT_DESCRIPTION; LINK; [EVENT_DATE]; [EVENT_TIME]
 
 Personal events can contain:
 - Description
 - Description and date
 - Description, date and time
 
-Personal Format: add Personal; EVENT_DESCRIPTION; [DD/MM/YY]; [HH:MM AM/PM]
+Personal Format: add Personal; EVENT_DESCRIPTION; [EVENT_DATE]; [EVENT_TIME]
 
 _________________________________
 ```
@@ -309,78 +310,35 @@ The types of events available to be added include:
 - Personal Events: Personal
 Each event can have different combinations of fields.
 
-General Format: `add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM`
+General Format: `add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; EVENT_DATE; EVENT_TIME`
 
 - `EVENT_TYPE` specify the type of event you want to add. These include "zoom", "timetable" and "personal".
 - `EVENT_DESCRIPTION` is the description or name of the event.
 - `LINK/LOCATION` is the website link or the location of the event. This is applicable and optional for zoom and timetable events respectively. This field should always be after the event description if used.
-- `DD/MM/YY` is the date associated with the event in the format `DD/MM/YY`.
-- `HH:MM AM/PM` is the time of the event. It can be written in 12 or 24 hour format. 
+- `EVENT_DATE` is the date associated with the event in the format DD/MM/YY or DD/MM/YYYY.
+- `EVENT_TIME` is the time of the event. It can be written in 12 hour format (HH:mm am/pm or HH am/pm) or 24 hour format (HHmm or HH:mm). 
 
 If you would like to make a Timetable event, the format for the command is as follows: <br>
-`add Timetable; EVENT_DESCRIPTION; [LOCATION]; DD/MM/YY; HH:MM AM/PM`
+`add Timetable; EVENT_DESCRIPTION; [LOCATION]; EVENT_DATE; EVENT_TIME`
 
 Timetable events can contain:
 - Description, date and time 
 - Description, location, date and time
 
 If you would like to make a Zoom event, the format for the command is as follows: <br>
-`add Zoom; EVENT_DESCRIPTION; LINK; [DD/MM/YY]; [HH:MM AM/PM]`
+`add Zoom; EVENT_DESCRIPTION; LINK; [EVENT_DATE]; [EVENT_TIME]`
 
 Zoom events can contain: 
 - Description and link 
 - Description, link, date and time
 
 If you would like to make a Personal event, the format for the command is as follows: <br>
-`add Personal; EVENT_DESCRIPTION; [DD/MM/YY]; [HH:MM AM/PM]`
+`add Personal; EVENT_DESCRIPTION; [EVENT_DATE]; [EVENT_TIMW]`
 
 Personal events can contain: 
 - Description 
 - Description and date 
 - Description, date and time
-
-#### Example usage
-
-The following section presents 3 scenarios of how the add command is used.
-
-##### Scenario 1: Adding a Timetable event
-
-If you want to add a Timetable event for a CS2101 Lecture at NUS Computing on 18/09/20 at 3.30pm,
-you should input: `add Timetable; CS2101 Lecture; NUS Computing; 18/09/20; 3:30 pm`. 
-
-The output from the program should be:
-```
-_________________________________
-You have successfully added this event to your list!
-[T][X] CS2101 Lecture, Location: NUS Computing on 2020-09-18, 15:30
-_________________________________
-```
-
-##### Scenario 2: Adding a Zoom event
-
-If you want to add a Zoom event for a CS2113T meeting on 16/09/20 at 9pm,
-you should input: `add Zoom; CS2113T meeting; zoom.com.sg; 16/09/20; 2100`. 
-
-The output from the program should be:
-```
-_________________________________
-You have successfully added this event to your list!
-[Z][X] CS2113T meeting, Link: zoom.com.sg on 2020-09-16, 21:00
-_________________________________
-```
-
-##### Scenario 3: Adding a Personal event
-
-If you want to add a Personal event for a family meeting on 18/09/20,
-you should input: `add personal; family meeting; 18/09/20`.
-
-The output from the program should be:
-```
-_________________________________
-You have successfully added this event to your list!
-[P][X] family meeting on 2020-09-18
-_________________________________
-```
 
 > **Note!**
 >
@@ -393,6 +351,49 @@ _________________________________
 >
 > * Typing in the wrong format for date or time will cause the event to not be made. 
 > * Events cannot contain an empty description.
+
+#### Example usage
+
+The following scenarios present 3 examples of how the add command is used.
+
+##### Scenario 1: Adding a Timetable event
+
+If you want to add a timetable event for a CS2101 Lecture at NUS Computing on 18/09/20 at 3.30pm,
+you should input: `add Timetable; CS2101 Lecture; NUS Computing; 18/09/20; 3:30 pm`. 
+
+The output from the program should be:
+```
+_________________________________
+You have successfully added this event to your list!
+[T][X] CS2101 Lecture, Location: NUS Computing on 2020-09-18, 15:30
+_________________________________
+```
+
+##### Scenario 2: Adding a Zoom event
+
+If you want to add a zoom event for a CS2113T meeting on 16/09/20 at 9pm,
+you should input: `add Zoom; CS2113T meeting; zoom.com.sg; 16/09/20; 2100`. 
+
+The output from the program should be:
+```
+_________________________________
+You have successfully added this event to your list!
+[Z][X] CS2113T meeting, Link: zoom.com.sg on 2020-09-16, 21:00
+_________________________________
+```
+
+##### Scenario 3: Adding a Personal event
+
+If you want to add a personal event for a family meeting on 18/09/20,
+you should input: `add personal; family meeting; 18/09/20`.
+
+The output from the program should be:
+```
+_________________________________
+You have successfully added this event to your list!
+[P][X] family meeting on 2020-09-18
+_________________________________
+```
 
 <div style="page-break-after: always;"></div>
 
@@ -412,7 +413,7 @@ list will print a list of available event types.
 
 #### Example usage
 
-The following section present an example of how the list command can be used.
+The following few scenarios present examples of how the list command can be used.
 
 ##### Scenario 1: Listing Zoom events
 
@@ -483,7 +484,7 @@ This brings you into calendar printing mode.
 
 #### Example usage
 
-The following section present an example of how the calendar command can be used.
+The following few scenarios present examples of how the calendar command can be used.
 
 ##### Scenario 1: Listing events in calendar
 
@@ -574,7 +575,7 @@ Acceptable time formats:
 
 #### Example Usage
 
-The following section present an example of how the deadline command can be used.
+The following few scenarios present examples of how the deadline command can be used.
 
 ##### Scenario 1: Setting a deadline for a personal event
 
@@ -639,7 +640,7 @@ Format: `repeat EVENT_TYPE; EVENT_INDEX`
 
 #### Example Usage
 
-The following few sections present several examples of how the repeat command can be used.
+The following few scenarios present examples of how the repeat command can be used.
 
 ##### Scenario 1: Setting a personal event to repeat monthly for four months
 
@@ -798,7 +799,7 @@ Acceptable time formats:
 
 #### Example Usage
 
-The following few scenarios present several examples of how the check command can be used.
+The following few scenarios present examples of how the check command can be used
 
 ##### Scenario 1: Checking availability between 9 May 2021 and 1 August 2021
  
@@ -849,7 +850,7 @@ When `[GOAL]` is specified as `delete`, the current goal will be removed.
 
 #### Example usage
 
-The following few sections present several examples of how the goal command can be used.
+The following few scenarios present examples of how the goal command can be used.
 
 ##### Scenario 1: Setting goal
 
@@ -1055,7 +1056,7 @@ The following few scenarios present several examples of how the delete command c
 
 ##### Scenario 1: Deleting a non-repeat event
 
-Let's say you had a doctor's appointment (stored as a Personal event `doctor's appointment`) that you cancelled, and now wish to remove the event from Scheduler. In order to find the index of the event, you may type in the command `list personal` as shown below:
+Let's say you had a doctor's appointment (stored as a Personal event `doctor's appointment`) that you cancelled, and now wish to remove the event from Scheduler-/-;. In order to find the index of the event, you may type in the command `list personal` as shown below:
 
 ```
 list personal
@@ -1067,9 +1068,9 @@ Here is a list of your Personal events:
 _________________________________
 ```
 
-You may also type in `list all` to list all Personal, Timetable and Zoom events.
+You may also type in `list all` to list all personal, timetable and zoom events.
 
-As seen from the list, the index of the Personal event `doctor's appointment` is 3. To delete it, type in the command `delete personal; 3`. This will delete the event from Scheduler, as shown in the following output:
+As seen from the list, the index of the Personal event `doctor's appointment` is 3. To delete it, type in the command `delete personal; 3`. This will delete the event from Scheduler-/-;, as shown in the following output:
 
 ```
 delete personal; 3
@@ -1120,7 +1121,7 @@ Need to take last minutes meeting notes? Need to write some notes but don’t kn
 Format: `note EVENT_TYPE; EVENT_INDEX`
 
 * The `EVENT_TYPE` have to be either personal, zoom or timetable.
-* Scheduler will prompt you to type your notes
+* Scheduler-/-; will prompt you to type your notes.
 
 > **Warning!**
 >
@@ -1129,7 +1130,7 @@ Format: `note EVENT_TYPE; EVENT_INDEX`
 
 #### Example Usage
 
-The following few section present an example of how the note command can be used
+The following scenario presents an example of how the note command can be used.
 
 ##### Scenario 1: Creating a note for a personal event
 
@@ -1152,7 +1153,7 @@ _________________________________
 ```
 In this case, the index number of the event `dental appointment` is 1. 
 
-Next, type in the command `note personal; 1`. Scheduler will prompt you to key in your notes as shown in the code snippet below.
+Next, type in the command `note personal; 1`. Scheduler-/-; will prompt you to key in your notes as shown in the code snippet below.
 
 ```
 Please type in your notes. To stop note taking, ensure that you are in a new line and type 'noteend' and press enter 
@@ -1187,7 +1188,7 @@ Typed your notes but want to view them? Here's how you view them!
 Format: `view EVENT_TYPE; EVENT_INDEX`
 
 * The `EVENT_TYPE` have to be either personal, zoom or timetable.
-* Scheduler will prompt you to type your notes
+* Scheduler-/-; will prompt you to type your notes.
 
 > **Warning!**
 >
@@ -1195,7 +1196,7 @@ Format: `view EVENT_TYPE; EVENT_INDEX`
 
 #### Example Usage
 
-The following few section present an example of how the view command can be used
+The following scenario presents an example of how the view command can be used.
 
 ##### Scenario 1: Viewing a note for a personal event
 
@@ -1234,7 +1235,7 @@ _________________________________
 <div style="page-break-after: always;"></div>
 
 ### 3.14 Reminder: `reminder` (Qing Ning)
-Fear of forgetting what you have today? Scheduler—is here to show you your events and task to be completed for the day.  Cheers to no more missed deadlines and meetings! 
+Fear of forgetting what you have today? Scheduler-/-; is here to show you your events and task to be completed for the day.  Cheers to no more missed deadlines and meetings! 
 
 Format: `reminder`
 
@@ -1261,9 +1262,23 @@ Otherwise, a personal event will be made.
 Format: `extract EVENT_DESCRIPTION;`
 - `EVENT_DESCRIPTION` could be the subject of the email or the name you want your event to be.
 
+> **Note!**
+>
+> * The extract feature can also detect when there are suffixes like st/nd/rd/th for the day portion of the date.
+> * The extract feature has the ability to attach the current year to the date if it is not specified in the text.
+> * The text body can include multiple paragraphs that are copy and pasted from emails.
+> * The month name detected can only be detected if spelled fully or is in its 3 letter short form. For example, `20 sep 2020` will be detected while `20 sept 2020` will not be detected. 
+> * Unlike some other commands, 24 Hour time without "." or ":" will not be detected. 
+> * The full date has to be in the same line to be detected properly. If the date is separated by a paragraph/by a new line it may not be detected properly. This goes for the time and zoom links too.
+
+> **Warning!**
+>
+> * It is not advised to edit the copy and pasted text in the command line. It may result in this feature not working as expected.
+> * It is not advised to copy and paste text containing emojis into the command line because the command line may crash. It is recommended to remove these emojis by editing the text in a text editor first like the Notepad app.
+
 #### Example Usage
 
-One scenario will be used to explain how the extract command works.
+The following scenario presents an example of how the extract command can be used.
 
 ##### Scenario 1:
 
@@ -1275,7 +1290,7 @@ To do so, you should type in:
  ```
 extract CG2271 Quiz 2;
  ```
-Scheduler--; will prompt you to copy and paste or enter the text you want to extract from.
+Scheduler-/-; will prompt you to copy and paste or enter the text you want to extract from.
 ````
 _________________________________
 Copy and paste or enter the body of the text you want to extract from!
@@ -1289,7 +1304,7 @@ Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020
     either 3pm or 3.30pm. 
 The link is at https://nus-sg.zoom.us/j/2226375MG.
 ````
-Then, tell Scheduler--; you are done by typing `extractend` on a new line.
+Then, tell Scheduler-/-; you are done by typing `extractend` on a new line.
 ````
 extractend
 ````
@@ -1313,28 +1328,13 @@ _________________________________
 2. 15:30
 _________________________________
 ````
-Lastly, if you want the second option for your event's time to be 3.30pm, input `2` and your zoom event will be created.
+Lastly, if you want the second option for your event's time to be 15:30, input `2` and your zoom event will be created.
 ````
 2
 You have successfully added this event to your list!
 [Z][X] CG2271 Quiz 2, Link: https://nus-sg.zoom.us/j/2226375MG on 2020-10-15, 15:30
 _________________________________
 ````
-
-
-> **Note!**
-> * The extract feature can also detect when there are suffixes like st/nd/rd/th for the day portion of the date.
-> * The extract feature has the ability to attach the current year to the date if it is not specified in the text.
-> * The text body can include multiple paragraphs that are copy and pasted from emails.
-> * The month name detected can only be detected if spelled fully or is in its 3 letter short form. For example, `20 sep 2020` will be detected while `20 sept 2020` will not be detected. 
-> * Unlike some other commands, 24 Hour time without "." or ":" will not be detected. 
-> * The full date has to be in the same line to be detected properly. If the date is separated by a paragraph/by a new line it may not be detected properly. This goes for the time and zoom links too.
-
-> **Warning!**
-> * It is not advised to edit the copy and pasted text in the command line. It may result in this feature not working as expected.
-> * It is not advised to copy and paste text containing emojis into the command line because the command line may crash. It is recommended to remove these emojis by editing the text in a text editor first like the Notepad app.
-
-
 <div style="page-break-after: always;"></div>
 
 ### 3.16 Save events: `save` (Colin)
@@ -1352,16 +1352,16 @@ Format: `bye`
 
 
 ## 4. FAQ
-In this section, you can find some frequently asked questions(FAQ).
+In this section, you can find some frequently asked questions (FAQ).
 
 **Q**: How do I transfer my data to another computer? <br>
-**A**: Transfer your data by copying the `data` file and `Scheduler.jar`
+**A**: Transfer your data by copying the `data` file and `scheduler.jar`.
 
 **Q**: What if I run into bugs while using Scheduler-\-;? <br>
 **A**: If you run into bugs that cause the program to crash, please contact us at scheduler@gmail.com with the `logging.txt`. 
 
-**Q**: What if I have any suggestions for Scheduler-\-? <br>
-**A**: Feel free to drop us an email at scheduler@gmail.com 
+**Q**: What if I have any suggestions for Scheduler-\-;? <br>
+**A**: Feel free to drop us an email at scheduler@gmail.com.
 
 **Q**: Can I create 2 events on the same date and time? <br>
 **A**: Yes you can. We are allowing this function so that you can add an event that does not require your presence.
@@ -1370,7 +1370,7 @@ In this section, you can find some frequently asked questions(FAQ).
 
 ## 5. Command Summary
 
-Here is a summary of all the commands with the accepted format and short examples for ease of usage.
+In this section is a summary of all the commands with the accepted format and short examples for ease of usage.
 
 ![Command Summary Table](./diagrams/command-summary.jpeg)
 
