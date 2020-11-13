@@ -416,9 +416,7 @@ The following section present an example of how the list command can be used.
 
 ##### Scenario 1: Listing Zoom events
 
-You want to list all your Zoom events.
-
-You should input: ```list Zoom```
+If you want to list all your Zoom events, you should input: ```list Zoom```.
 
 The output from the program should be:
 
@@ -441,9 +439,7 @@ _________________________________
 
 ##### Scenario 2: Listing all events
 
-You want to list all your events.
-
-You should input: ```list all```
+If you want to list all your events, you should input: ```list all```.
 
 The output from the program should be:
 
@@ -491,9 +487,7 @@ The following section present an example of how the calendar command can be used
 
 ##### Scenario 1: Listing events in calendar
 
-You want to list your events in a calendar format.
-
-You should input: ```calendar```
+If you want to list your events in a calendar format, you should input: ```calendar```.
 
 The output from the program should be:
 
@@ -513,9 +507,7 @@ _________________________________
 
 ##### Scenario 2: Listing events in calendar but not all of them
 
-You want end the calendar before all the dates are displayed.
-
-You should input: `q` after inputting `calendar`
+If you want to end the calendar before all the dates are displayed, you should input: `q` after inputting `calendar`.
 
 The output from the program should be:
 
@@ -860,9 +852,7 @@ The following few sections present several examples of how the goal command can 
 
 ##### Scenario 1: Setting goal
 
-You want to set `get cap 5.0` as your goal.
-
-You should input: `goal get cap 5.0`
+If you want to set `get cap 5.0` as your goal, you should input: `goal get cap 5.0`.
 
 The output from the program should be:
 
@@ -875,9 +865,7 @@ _________________________________
 
 ##### Scenario 2: Delete goal
 
-You want to delete your goal.
-
-You should input: `goal delete`
+If you want to delete your goal, you should input: `goal delete`.
 
 The output from the program should:
 
