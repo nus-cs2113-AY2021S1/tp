@@ -32,6 +32,7 @@ The target audience for this document are other developers who want to understan
 The following are the common notations and symbols used in this document:
 
 * `bolded text`  - Class name, folder name in the source code
+* [hyperlinks]() - Redirects you to different part of the document or open the relevant website
 
 
 
