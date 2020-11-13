@@ -1,5 +1,6 @@
 # User Guide
 
+
 ## Introduction
 CEGMods is a software working on desktop, aiming to help NUS CEG (Computer Engineering) students better manage their courses via a Command Line Interface, which is a text-based interface used for entering commands. If you are an NUS CEG student and looking for an app to manage your course and project schedule, CEGMods can help you get all your tasks down in an organized manner.
 
@@ -10,7 +11,6 @@ For your reference:
 * Words in bold are **keywords**;
 * Words in a grey bracket `are code snippets`;
 * Words in blue are [hyperlinks to the respective sections]().
-
 
 ## Content page
 ### [1. Quick Start](#1-quick-start-1)
@@ -43,14 +43,13 @@ For your reference:
 ### [3. FAQ](#3-faq-1)
 ### [4. Command Summary](#4-command-summary-1)
 
-
 ## 1. Quick Start
-1. Ensure you have Java 11 installed on your computer.
+1. Ensure you have Java 11 installed in your Computer.
 2. Download the jar file from [here](https://github.com/AY2021S1-CS2113T-F11-2/tp/releases/tag/v2.1).
 3. Copy the file to the folder you want to use as the home folder for your CEGmods
 4. Ensure you have internet connection.
 5. Open a command window. Run the java -version command to ensure you are using Java 11. 
-6. Launch the jar file using the java -jar command (do not use double-clicking). On a successful launch, you will be greeted with a welcome screen as seen below:
+6. Launch the jar file using the java -jar command (do not use double-clicking). On successful launch, you will be greeted with a welcome screen as seen below:
 
 ```
 _______________________________________________________
@@ -70,15 +69,13 @@ Now is 20:14
 Currently you don't have any event!
 ```
 
-6. Type `help` in the command box as prompted and press Enter to execute it. You will see the commands available.
+6. Type `help` in the command box as prompted and press Enter to execute it. You will see the  commands available.
 
-7. Refer to the feature list below for details of each command.
-
-<div style="page-break-after: always;"></div>
+6. Refer to the feature list below for details of each command.
 
 ## 2. Features
 ### 2.1 Adding a Module: `add mod` (Zhang Shenjia)
-You can add a module to the module list and timetable by typing in the module code and its time slots of lectures and tutorials (the time slot of the lab is optional).
+You can add a module to the module list and timetable by typing in the module code and its time slots of lectures and tutorials (the time slot of lab is optional).
 
 **Step 1:** Type in the module code of the module you want to add following the command format. 
 
@@ -133,7 +130,7 @@ _______________________________________________________
 Please enter the module you wish to keep, and you will see the following:
 ```
 ST2334
-Got it! I have added ST2334 to timetable.
+Got it! I have add ST2334 to timetable.
 ```
 
 **Step 3:** Add the task for the module if necessary.
@@ -143,7 +140,7 @@ For example, if you key in the following:
 ```
 Is there any task you want to add for this module? Y/N
 Y
-Please enter T for a todo, D for a deadline, E for an event, P for project subtask.
+Please enter T for todo, D for deadline, E for event, P for project subtask.
 E
 Add an event: event <DESCRIPTION> /at <YYYY-MM-DD HH:mm>
 event final exam /at 2020-11-23 17:00
@@ -255,7 +252,7 @@ ____________________________________________________________
       2.[E][F]final exam (at:2020-11-23 17:00)
       3.[E][F]team meeting (at:2020-11-14 11:00)
       4.[D][F]project (by:2020-11-10 00:00) [Remaining time: 0 days 5 hours 10 minutes]
-	You have 3 undone task in your list. (3/4)
+	You  have 3 undone task in your list. (3/4)
 ____________________________________________________________
 ```
 ### 2.6 Adding a Task (Yu Geng)
@@ -318,7 +315,7 @@ _______________________________________________________
 
 ```
 ### 2.8 Deleting a Task: `delete` (Yu Geng)
-You can delete a task from the task list.
+You can delete a task from task list.
 
 Format: `delete task/<TASK_INDEX>`
 Example of usage: `delete task/1`
@@ -332,7 +329,7 @@ ____________________________________________________________
     ____________________________________________________________
 ```
 ### 2.9 Finding a Task with Keyword `find` (Yu Geng)
-You can find a task from the task list with the keyword.
+You can find a task from task list with the keyword.
 
 Format: `find <KEYWORD>`
 Example of usage: `find book`
@@ -452,7 +449,7 @@ print undone task list
 
 ```
 ### 2.17 Clearing past deadlines: `clear deadlines` (Zhang Danrui)
-You can clear all the past deadlines
+You can clear all the past dealines
 Format:`clear deadlines`
 
 Expected outcome:
