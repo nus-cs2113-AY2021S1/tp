@@ -131,9 +131,7 @@ There are 18 features available in Nav@NUS. The following are instructions for u
 >4. Location names must be in full for commands that require bus stop location(s).
 >5. Words in [ ] are optional parameters (e.g. [**description**]).
 
->Warning:
->
->You are recommended not to edit the text files manually.
+:exclamation: Warning: You are recommended not to edit the text files manually.
 
 ### 3.1. Bus Features
 This section provides instructions for all features categorised under the main feature of navigation by bus.
