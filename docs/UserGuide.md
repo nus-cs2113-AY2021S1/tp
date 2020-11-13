@@ -37,7 +37,7 @@ around NUS campus via the school's shuttle service.<br>
     + [3.3.5. Change the description for a favourite command: `/descfav` - Wamika](#335-change-the-description-for-a-favourite-command-descfav---wamika)
     + [3.3.6. Clear the list of favourite commands: `/clearfav` - Shuyi](#336-clear-the-list-of-favourite-commands-clearfav---shuyi)
   * [3.4. Common Features](#34-common-features)
-    + [3.4.1. Checking for similar locations - Wamika](#341-checking-for-similar-locations---wamika)
+    + [3.4.1. Check for similar locations - Wamika](#341-check-for-similar-locations---wamika)
     + [3.4.2. Display most searched bus stop on start-up - Johnson Yee](#342-display-most-searched-bus-stop-on-start-up---johnson-yee)
     + [3.4.3. Reset frequent search data: ```/reset``` - Johnson Yee](#343-reset-frequent-search-data-reset---johnson-yee)
     + [3.4.4. List available help: ```/help``` -Yuxin](#344-list-available-help-help---yuxin)
@@ -140,9 +140,12 @@ This command displays all bus routes from one location to another that do not re
 Format: <br>
 <code>/route <strong>location_1</strong> /to <strong>location_2 </strong> </code>
 
+> Note: Short forms of bus stop names cannot be used. For example, **UTown** cannot be used in place of **University Town**.
+> For more information see Example 2 of Common errors and problems
+
 **Examples of Usage**
 
-Let's say you are currently at **PGP** and want to find out the buses you can board from **PGP** bus station to get to **NUS IT**.
+Let's say you are currently at **PGP** and want to find out the buses you can board from **PGP** bus stop to get to **NUS IT**.
 
 To find all such bus routes:
 
@@ -153,8 +156,9 @@ to execute the command as shown in the figure below.<br><br>
 2. The result will be a message displaying the list of buses you can take with their routes as shown in the figure below.<br><br>
 <img src="UG_Figures/routeOutput1.png" alt="output" width=650><br>
 
-**Common errors** 
+**Common errors and problems** 
 
+**<u>Example 1</u>**<br>
 Let's say you are currently at **University Health Centre** and you want to go to **PGPR**. But you accidentally type **"Univerity 
 Health Center"** instead. 
 
@@ -166,12 +170,29 @@ for possible spelling errors you may have made.<br><br>
 <img src="UG_Figures/routeOutput2.png" alt="output" width=550><br>
 
 2. Type <code>/route <strong>University Health Centre</strong> /to <strong>PGPR</strong></code> into the CLI
-following the suggestion given.
+following the suggestion given and press <kbd>Enter</kbd>.
 
 3. The result will be a message displaying the list of buses you can take with their routes as shown in the figure 
 below.<br><br>
 <img src="UG_Figures/routeOutput3.png" alt="FinalOutput" width=650><br>
 <!-- @@author -->
+
+**<u>Example 2</u>**<br>
+Let's say you want to go from **KR MRT** to **YIH**, but you do not know the full names of these locations.
+
+Here's what you can do:
+
+1. Type `/liststops` into the CLI as shown in the figure below and press <kbd>Enter</kbd>. You can find more details about
+`/lisstops` in [this section](#315-list-all-bus-stops-in-nus-liststops---yuxin) of the User Guide.
+<img src="UG_Figures/routeshort1.png" alt="list stops" width = 650><br>
+
+2. The result will be a list of bus stops in NUS. Manually search for the full forms of **KR MRT** and **YIH** as shown in 
+the figure below.
+<img src="UG_Figures/routeshort2.png" alt=" stops to choose" width = 700><br>
+
+3. Type <code>/route <strong>Kent Ridge MRT Station</strong> /to <strong>Yusof Ishak House</strong></code> into the CLI and press
+<kbd>Enter</kbd>. You will see the buses you can take as shown in the figure below.
+<img src="UG_Figures/routeshort3.png" alt="the result" width=650><br>
 
 <div style="page-break-after: always;"></div>
 
@@ -490,12 +511,11 @@ Format:<br>
 
 **Examples of Usage**
 
-**<u>Example 1</u>**<br>
 Let's say you have the following list of commands:<br>
 <img src="UG_Figures/beforedescfav.PNG" alt="original list of commands" width=550>
 
 You want to change the description for `/dineinfo Pines` from "No description" to **"Get dinner @7:30PM every Tuesday"**.
-To do so:
+You can do so by following these steps:
 
 1. Type <code>/descfav <strong>5</strong> /to <strong>Get dinner @7:30PM every Tuesday</strong></code> into the CLI as
 shown in the figure below and press enter. <br>
@@ -531,7 +551,7 @@ This section provides the instruction for all the common features.
 <div style="page-break-after: always;"></div>
 
 <!-- @@author wamikamalik -->
-#### 3.4.1. Checking for similar locations - Wamika
+#### 3.4.1. Check for similar locations - Wamika
 When you enter a location and make a spelling error or a typo in the name, the app performs a similarity check with 
 existing location names and suggests some locations to you. The app executes this command automatically and does not 
 require any explicit input from you.
@@ -640,11 +660,11 @@ Command | Format | Example
 <!-- @@author wamikamalik -->
 ## 6. Glossary - Wamika
 This section defines key technical terms we have used throughout the user guide.
-1. Case-sensitive: Capital and lower case letters are treated differently.
+1. Case-sensitive: Capital and lowercase letters are treated differently.
 2. Command Line Interface(CLI): Processes commands to a computer program in the form of lines of text.
 3. Corrupted file: A file containing invalid data or data it should not have.
 4. Dining options/outlets: Places you can eat at.
-5. Direct bus: Commute between two locations does not require changing buses.
+5. Direct bus: Commuting between two locations does not require changing buses.
 6. Execute: Run the command to display the output.
 7. Similarity check: Check for possible spelling errors.
 <!-- @@author -->
