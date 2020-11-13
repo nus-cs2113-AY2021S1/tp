@@ -1,6 +1,8 @@
 # User Guide
 ![](CCAManager_logo.png) 
 
+<div style="page-break-after: always;"></div>
+
 # Table of contents
 
 - [1. Introduction](#1-introduction)
@@ -39,6 +41,8 @@
 - [6. Command Summary](#6-command-summary)
 - [7. Glossary](#7-glossary)
 
+<div style="page-break-after: always;"></div>
+
 ## 1. Introduction
 
 Welcome to **CCA Manager!**
@@ -69,6 +73,7 @@ Additionally, throughout this user guide, there will be various icons used as de
 
 > : [Hyperlinked]() : Leads you to the appropriate section
 
+<div style="page-break-after: always;"></div>
 
 ## 3. Quick Start
 (By: Varsha)
@@ -93,6 +98,8 @@ The following steps will guide you through the process of running CCA Manager.  
 You will see this welcome message if you have done the above steps correctly. <br/>
 
 ![Welcome Message](userGuidePic/welcomeMessage.PNG)
+
+<div style="page-break-after: always;"></div>
 
 ## 4. Features 
 
