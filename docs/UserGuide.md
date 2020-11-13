@@ -48,12 +48,12 @@ For your reference:
 <div style="page-break-after: always;"></div>
 
 ## 1. Quick Start
-1. Ensure you have Java 11 installed in your Computer.
+1. Ensure you have Java 11 installed on your computer.
 2. Download the jar file from [here](https://github.com/AY2021S1-CS2113T-F11-2/tp/releases/tag/v2.1).
 3. Copy the file to the folder you want to use as the home folder for your CEGmods
 4. Ensure you have internet connection.
 5. Open a command window. Run the java -version command to ensure you are using Java 11. 
-6. Launch the jar file using the java -jar command (do not use double-clicking). On successful launch, you will be greeted with a welcome screen as seen below:
+6. Launch the jar file using the java -jar command (do not use double-clicking). On a successful launch, you will be greeted with a welcome screen as seen below:
 
 ```
 _______________________________________________________
@@ -468,7 +468,7 @@ print undone task list
 <div style="page-break-after: always;"></div>
 
 ### 2.17 Clearing past deadlines: `clear deadlines` (Zhang Danrui)
-You can clear all the past dealines
+You can clear all the past deadlines
 Format:`clear deadlines`
 
 Expected outcome:
