@@ -793,7 +793,7 @@ This command will search through your entries and return entry/entries matching 
 
 Format for find by all descriptions: `find a/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
 
-> IMPORTANT
+> IMPORTANT:
 >* There is no limit to the number of descriptions allowed.
 
 Parameters:
@@ -819,7 +819,7 @@ Do you want to show even more search results? As long as just one of your entry 
 
 Format for find by just one matching description: `find e/ **DESCRIPTION1** / **DESCRIPTION2** / **DESCRIPTION3** ...`
 
-> IMPORTANT
+> IMPORTANT:
 >* There is no limit to the number of keywords allowed.
 
 Parameters:
@@ -1047,7 +1047,7 @@ Example of usage:
 Do you wish to save time from individually typing in the features? Do you want to type out all the commands you want at one go?
 Chaining is the right feature for you! 
 
->IMPORTANT
+>IMPORTANT:
 >* Chaining is only available for 4 features:
 >* [list](#50-list-owen-chew-yang), [add](#40-add-puah-siew-wen), [edit](#60-edit-puah-siew-wen) and [graph](#100-graph-rani-karthigeyan-rajendrakumar).
 >* The respective formats to adhere to for each feature still applies.
