@@ -11,12 +11,9 @@ For your reference:
 * Words in bold are **keywords**;
 * Words in a grey bracket `are code snippets`;
 * Words in blue are [hyperlinks to the respective sections]().
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+
+<div style="page-break-after: always;"></div>
+
 ## Content page
 ### [1. Quick Start](#1-quick-start-1)
 ### [2. Features](#2-features-1)
@@ -47,6 +44,8 @@ For your reference:
 #### [2.22 Viewing Help: `help`](#222-viewing-help-help-1)
 ### [3. FAQ](#3-faq-1)
 ### [4. Command Summary](#4-command-summary-1)
+
+<div style="page-break-after: always;"></div>
 
 ## 1. Quick Start
 1. Ensure you have Java 11 installed in your Computer.
