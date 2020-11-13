@@ -786,7 +786,7 @@ No.        Date                Type                                Description  
 <br>
 <br>
 
-### 7.3.1 Finding entries via keywords - all
+### 7.2.1 Finding entries via keywords - all
 
 You can make use of this advanced find command to perform more complex find operations.
 This command will search through your entries and return entry/entries matching ALL the description keywords you have entered. 
@@ -813,7 +813,7 @@ No.        Date                Type                                Description  
 <br>
 <br>
 
-### 7.3.2 Finding entries via keywords - either
+### 7.2.2 Finding entries via keywords - either
 
 Do you want to show even more search results? As long as just one of your entry has a description containing the keyword(s), that entry will be listed. 
 
@@ -958,7 +958,7 @@ No.        Type                        Description                        Calori
 <br>
 <br>
 
-### 9.2.1 Deleting all entries in list
+### 9.2 Deleting all entries in list
 
 You can delete all your entries from today's list at once with this feature!
 
@@ -1010,7 +1010,7 @@ List is empty!
 
 ### 10.1 Showing past net calories
 
-Want to see your calorie progress all at once? You can view a graphical representation of your recent net calories relative to your target calories for up to 7 days using this feature.
+Do you want to see your calorie progress all at once? You can view a graphical representation of your recent net calories relative to your target calories for up to 7 days using this feature.
 
 Format: `graph`
 
@@ -1035,8 +1035,7 @@ Example of usage:
 
 > Things to take note of:
 >* `***` shows the target calories.
->* If less than 7 days are stored in storage file, all the days will be displayed.
-
+>* Displays up to latest 7 days of entries.
 
 <br>
 <br>
@@ -1045,16 +1044,16 @@ Example of usage:
 
 ### 11.1 Chaining of features
 
-Do you wish to save time individually typing in the features? Or do you want to type out all the commands you want at one go?
-Chaining is the right feature for your needs! 
+Do you wish to save time from individually typing in the features? Do you want to type out all the commands you want at one go?
+Chaining is the right feature for you! 
 
 >IMPORTANT
->* Chaining is only available to 4 features:
+>* Chaining is only available for 4 features:
 >* [list](#50-list-owen-chew-yang), [add](#40-add-puah-siew-wen), [edit](#60-edit-puah-siew-wen) and [graph](#100-graph-rani-karthigeyan-rajendrakumar).
 >* The respective formats to adhere to for each feature still applies.
 
-Format: *not extensive, there is a lot of combinations available*
-        *your commands just need to be separated by `&&`*
+Format: *Not extensive, there is a lot of combinations available.* <br> 
+        *Your commands just need to be separated by `&&`.*
         
 Examples of formats accepted:
 >* `add f/**FOOD_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**> && add e/**EXERCISE_DESCRIPTION** c/**CALORIE_COUNT** <d/**DATE**>`
@@ -1176,34 +1175,11 @@ No.        Type                        Description                        Calori
 ```
 
 <br>
-
-### 11.1.1 Possible errors when chaining
-
-An error will occur if any of the conditions below are met. <br> 
-The respective error message will also be shown to you.
-> Any text in this format is an example of a command that will produce the respective error.
-
-```
-Any text in this format is the error message that you will be shown.
-```
-
-#### Chaining a feature that is not accepted
-* When your input contains features that are not accepted such as
-> `bye && graph`
-
-```
-====================================================================================
-'bye' cannot be chained!
-====================================================================================
-```
-
-
-<br>
 <br>
 
 ## 12.0 Exiting the program
 
-Finish using the application? Do you want to exit application?
+Do you want to exit **traKCAL**? Use this command to do so.
 
 Format: `bye`
 
@@ -1226,30 +1202,30 @@ This section contains frequently asked questions.
 
 **A1**: Install the application in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **traKCAL** folder.
 
-**Q2**: How do I know if the data you have input is saved?
+**Q2**: How do I know if the data I have input is saved?
 
 **A2**: **traKCAL** autosaves data. Unless an error message is printed out, the data entered is saved.
 
 **Q3**: I keep getting errors with the storage files when using **traKCAL**, how do I solve them?
 
-**A3**: Do take a look at the error sections above of the User Guide for solutions. When all else fails, you can delete the tpdata file to reset your data. 
-        Alternatively, make sure your csv file is not open when **traKCAL** is running to prevent write conflicts.
+**A3**: Make sure your csv file is not open when **traKCAL** is running to prevent write conflicts.
+        Alternatively, you can delete the tpdata file to reset your data. 
 
 **Q4**: Is **traKCAL** optimized for all operating systems?
 
 **A4**: **traKCAL** is available for the download on all major Operating Systems(OS) such as Windows, Mac and Linux.
 
-**Q5**: How do I contact us if I have doubts or have issues to raise?
+**Q5**: How do I contact the developers if I have doubts or issues to raise?
 
-**A5**: You can reach us via email(e0425705@u.nus.edu) or by raising a github issue [here](https://github.com/AY2021S1-CS2113T-T09-4/tp/issues).
+**A5**: We have tried to make **traKCAL** as bug-free as possible, but if you still encounter issues, you can reach us via email(e0425705@u.nus.edu) or by raising a github issue [here](https://github.com/AY2021S1-CS2113T-T09-4/tp/issues) and we will attempt to fix it as soon as possible.
 
 <br>
 
 # Command Summary
 
 This section gives you a cheat sheet of commands available. 
-The following are only examples of what the input command can look like! 
-For more information please go to the respective section for the feature details!
+The following are only examples of what the input command can look like.
+For more information, please look at the respective section for the feature details.
 
 >Things you should take note of:
 >* Words that look like THIS are parameters to be supplied by you.
@@ -1257,24 +1233,24 @@ For more information please go to the respective section for the feature details
 
 Action         | Format | Example
 -------------- | ---------- | --------
-Help | `help` | `help`
-Create User Profile | `user c/` |  `user c/`
-Edit User Profile | `user e/ <n/ NAME>, <g/ GENDER>, <w/ WEIGHT>, <h/ HEIGHT>, <age/ AGE>, <al/ ACTIVITY_FACTOR>, <goal/ WEIGHT_GOALS>` | `user e/ n/ Sammy`
-List User Profile | `user l/` | `user l/`
-Create Shortcut | `createSet SHORTCUT f/ FOOD_DESCRIPTION c/ CALORIE COUNT + e/ EXERCISE_DESCRIPTION c/ CALORIE COUNT` | `createSet morning routine f/ oatmeal c/ 200 + e/ yoga c/ 200`
-Add Shortcut | `addSet SHORTCUT` | `addSet morning routine`
-Add Food | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT <d/ DATE>` | `add e/ ice cream c/ 78 d/ 2020-10-19`
-Add Exercise | `add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT <d/ DATE>` | `add e/ jumping c/ 65`
-List | `list <DATE>` | `list 2020-10-24` 
-Edit Activity to Food | `edit LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT` | `edit 1 f/ ice kacang c/ 150`
-Edit Activity to Exercise | `edit LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT` | `edit 1 e/ running c/ 100`
-Find Description | `find d/ DESCRIPTION` | `find d/ apple`
-Find Calorie | `find c/ CALORIE` | `find c/ 55`
-Find Either | `find e/ DESCRIPTION1 / DESCRIPTION2 / DESCRIPTION3` | `find e/ apple / orange / grape`
-Find All | `find a/ DESCRIPTION1 / DESCRIPTION2 / DESCRIPTION3` | `find a/ running / jumping / cake`
-Move Activity | `move from/ INDEX1 below/ INDEX2` | `move from/ 5 below/ 2`
-Delete Entry | `delete INDEX` | `delete 2`
-Delete All for Today| `delete all/` | `delete all/`
-Graph | `graph` | `graph` 
-Chain | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT <d/ DATE> && list && graph` | `add e/ ice cream c/ 78 && list && graph`
-Exit | `bye` | `bye`
+[Help](#10-viewing-help-puah-siew-wen)| `help` | `help`
+[Create User Profile](#21-creating-a-new-user-profile) | `user c/` |  `user c/`
+[Edit User Profile](#22-editing-user-profile) | `user e/ <n/ NAME>, <g/ GENDER>, <w/ WEIGHT>, <h/ HEIGHT>, <age/ AGE>, <al/ ACTIVITY_FACTOR>, <goal/ WEIGHT_GOALS>` | `user e/ n/ Sammy`
+[List User Profile](#23-viewing-your-profile) | `user l/` | `user l/`
+[Create Shortcut](#31-creating-a-shortcut-for-a-set-of-entries) | `createSet SHORTCUT f/ FOOD_DESCRIPTION c/ CALORIE COUNT + e/ EXERCISE_DESCRIPTION c/ CALORIE COUNT` | `createSet morning routine f/ oatmeal c/ 200 + e/ yoga c/ 200`
+[Add Shortcut](#32-adding-a-shortcut-of-repeated-task-to-todays-list) | `addSet SHORTCUT` | `addSet morning routine`
+[Add Food](#41-adding-a-food-entry) | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT <d/ DATE>` | `add e/ ice cream c/ 78 d/ 2020-10-19`
+[Add Exercise](#42-adding-an-exercise-entry) | `add e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT <d/ DATE>` | `add e/ jumping c/ 65`
+[List](#50-list-owen-chew-yang) | `list <DATE>` | `list 2020-10-24` 
+[Edit Activity to Food](#61-editing-an-entry-in-list) | `edit LIST_INDEX f/ FOOD_DESCRIPTION c/ CALORIE_COUNT` | `edit 1 f/ ice kacang c/ 150`
+[Edit Activity to Exercise](#61-editing-an-entry-in-list) | `edit LIST_INDEX e/ EXERCISE_DESCRIPTION c/ CALORIE_COUNT` | `edit 1 e/ running c/ 100`
+[Find Description](#711-finding-entries-via-description) | `find d/ DESCRIPTION` | `find d/ apple`
+[Find Calorie](#712-finding-entries-via-calories) | `find c/ CALORIE` | `find c/ 55`
+[Find Either](#722-finding-entries-via-keywords---either) | `find e/ DESCRIPTION1 / DESCRIPTION2 / DESCRIPTION3` | `find e/ apple / orange / grape`
+[Find All](#721-finding-entries-via-keywords---all) | `find a/ DESCRIPTION1 / DESCRIPTION2 / DESCRIPTION3` | `find a/ running / jumping / cake`
+[Move Activity](#80-move-owen-chew-yang) | `move from/ INDEX1 below/ INDEX2` | `move from/ 5 below/ 2`
+[Delete Entry](#91-deleting-an-entry-in-list) | `delete INDEX` | `delete 2`
+[Delete All for Today](#92-deleting-all-entries-in-list)| `delete all/` | `delete all/`
+[Graph](#100-graph-rani-karthigeyan-rajendrakumar) | `graph` | `graph` 
+[Chain](#110-chaining-puah-siew-wen) | `add e/ FOOD_DESCRIPTION c/ CALORIE_COUNT <d/ DATE> && list && graph` | `add e/ ice cream c/ 78 && list && graph`
+[Exit](#120-exiting-the-program) | `bye` | `bye`
