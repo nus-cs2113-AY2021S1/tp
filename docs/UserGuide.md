@@ -33,11 +33,12 @@ around NUS campus via the school's shuttle service.<br>
     + [3.3.1. Add a favourite command: `/addfav` - Yuxin](#331-add-a-favourite-command-addfav---yuxin)
     + [3.3.2. List all favourite commands: `/listfav` - Shuyi](#332-list-all-favourite-commands-listfav---shuyi)
     + [3.3.3. Delete a favourite command: `/deletefav` - Johnson Yee](#333-delete-a-favourite-command-deletefav---johnson-yee)
-    + [3.3.4. Execute a favourite command: `/execfav` - - Wong Heng Chin](#334-execute-a-favourite-command-execfav---wong-heng-chin)
+    + [3.3.4. Execute a favourite command: `/execfav` - Wong Heng Chin](#334-execute-a-favourite-command-execfav---wong-heng-chin)
     + [3.3.5. Change the description for a favourite command: `/descfav` - Wamika](#335-change-the-description-for-a-favourite-command-descfav---wamika)
     + [3.3.6. Clear the list of favourite commands: `/clearfav` - Shuyi](#336-clear-the-list-of-favourite-commands-clearfav---shuyi)
+    + [3.3.7. Storage of favourite commands](#337-storage-of-favourite-commands---wong-heng-chin)
   * [3.4. Common Features](#34-common-features)
-    + [3.4.1. Checking for similar locations - Wamika](#341-checking-for-similar-locations---wamika)
+    + [3.4.1. Check for similar locations - Wamika](#341-check-for-similar-locations---wamika)
     + [3.4.2. Display most searched bus stop on start-up - Johnson Yee](#342-display-most-searched-bus-stop-on-start-up---johnson-yee)
     + [3.4.3. Reset frequent search data: ```/reset``` - Johnson Yee](#343-reset-frequent-search-data-reset---johnson-yee)
     + [3.4.4. List available help: ```/help``` -Yuxin](#344-list-available-help-help---yuxin)
@@ -64,7 +65,7 @@ information that you require.
 Nav@NUS consists of 3 main features:
 
 * **Route**: Searches for bus routes from your location to your intended destination.
-* **Dine**: Seeks dining options for you to explore culinary world of NUS.
+* **Dine**: Seeks dining options for you to explore the culinary world of NUS.
 * **Favourites**: Saves your commands to text files for you to have a personalised user experience catered to your needs.
 
 Skip the tight squeeze near information boards and use Nav@NUS today!
@@ -90,9 +91,11 @@ Orientate yourself to the CLI. As seen in each figure below, the red arrow point
 where you have to type in commands.<br>
 
 For computers running the Windows OS, the red arrow points to where you have to type in commands. 
+
 ![Windows CLI](UG_Figures/windowsCLI.png)
 
 For computers running the macOS, the red arrow points to where you have to type in commands. 
+
 ![MacOS CLI](UG_Figures/appleCLI.png)
 
 <div style="page-break-after: always;"></div>
@@ -111,9 +114,9 @@ shown in the figure, the home folder is found in the address path of "C:\Users..
 5. Navigate back to the command prompt, type `cd` and the directory of the _home folder_. Press <kbd>Enter</kbd> to continue.
 ![cd Command](UG_Figures/cd_command.png)
 6. Run the .jar file in the command prompt as follows by typing `java -jar Nav@NUS.jar` and press <kbd>Enter</kbd>.
-7. Your screen should show the start screen of Nav@NUS as seen in the figure below.<br>
+7. Your screen should show the start screen of Nav@NUS as seen in the figure below.<br><br>
 ![Start Screen](UG_Figures/Nav@NUSstartScreen.png)<br>
-8. Try keying in `/help` and press <kbd>Enter</kbd>!
+8. Try typing `/help` and press <kbd>Enter</kbd>!
 <!-- @@author -->
 
 <div style="page-break-after: always;"></div>
@@ -142,9 +145,12 @@ This command displays all bus routes from one location to another that do not re
 Format: <br>
 <code>/route <strong>location_1</strong> /to <strong>location_2 </strong> </code>
 
+> Note: Short forms of bus stop names cannot be used. For example, **UTown** cannot be used in place of **University Town**.
+> For more information see Example 2 of Common errors and problems
+
 **Examples of Usage**
 
-Let's say you are currently at **PGP** and want to find out the buses you can board from **PGP** bus station to get to **NUS IT**.
+Let's say you are currently at **PGP** and want to find out the buses you can board from **PGP** bus stop to get to **NUS IT**.
 
 To find all such bus routes:
 
@@ -155,25 +161,43 @@ to execute the command as shown in the figure below.<br><br>
 2. The result will be a message displaying the list of buses you can take with their routes as shown in the figure below.<br><br>
 <img src="UG_Figures/routeOutput1.png" alt="output" width=650><br>
 
-**Common errors** 
+**Common errors and problems** 
 
+**<u>Example 1</u>**<br>
 Let's say you are currently at **University Health Centre** and you want to go to **PGPR**. But you accidentally type **"Univerity 
 Health Center"** instead. 
 
 Here's what you can do: 
 
 1. When you type <code>/route <strong>Univerity Health Center</strong> /to <strong>PGPR</strong></code> into the CLI and 
-press <kbd>Enter</kbd> to execute the command as done in example 1, the result will be a message displaying suggestions 
+press <kbd>Enter</kbd> to execute the command, the result will be a message displaying suggestions 
 for possible spelling errors you may have made.<br><br>
 <img src="UG_Figures/routeOutput2.png" alt="output" width=550><br>
 
 2. Type <code>/route <strong>University Health Centre</strong> /to <strong>PGPR</strong></code> into the CLI
-following the suggestion given.
+following the suggestion given and press <kbd>Enter</kbd>.
 
 3. The result will be a message displaying the list of buses you can take with their routes as shown in the figure 
 below.<br><br>
 <img src="UG_Figures/routeOutput3.png" alt="FinalOutput" width=650><br>
 <!-- @@author -->
+
+**<u>Example 2</u>**<br>
+Let's say you want to go from **KR MRT** to **YIH**, but you do not know the full names of these locations.
+
+Here's what you can do:
+
+1. Type `/liststops` into the CLI as shown in the figure below and press <kbd>Enter</kbd>. You can find more details about
+`/lisstops` in [section 3.1.5.](#315-list-all-bus-stops-in-nus-liststops---yuxin) of the User Guide.<br><br>
+<img src="UG_Figures/routeshort1.png" alt="list stops" width = 700><br>
+
+2. The result will be a list of bus stops in NUS. Manually search for the full forms of **KR MRT** and **YIH** as shown in 
+the figure below.<br><br>
+<img src="UG_Figures/routeshort2.png" alt=" stops to choose" width = 700><br>
+
+3. Type <code>/route <strong>Kent Ridge MRT Station</strong> /to <strong>Yusof Ishak House</strong></code> into the CLI and press
+<kbd>Enter</kbd>. You will see the buses you can take as shown in the figure below.<br><br>
+<img src="UG_Figures/routeshort3.png" alt="the result" width=600><br>
 
 <div style="page-break-after: always;"></div>
 
@@ -303,7 +327,6 @@ Format:<br>
 
 **Examples of Usage**
 
-**<u>Example 1</u>**<br>
 Let's say you want to know the names of all faculties in NUS.
 
 These are the steps to follow:
@@ -344,7 +367,7 @@ You can simply use <strong>Sci</strong> instead of <strong>Science</strong>:
 > *  For example, `/dine school` will yield results from both School of Business and School of Computing.
 
 #### 3.2.2. Search for specific dining outlet: ```/dineinfo``` - Shuyi
-This command finds all dining outlets that contains the keyword, and display their location and operating hours.
+This command finds all dining outlets that contain the keyword, and displays their location and operating hours.
 
 Format:<br>
 <code>/dineinfo <strong>outlet</strong></code>
@@ -352,7 +375,7 @@ Format:<br>
 **Examples of Usage**
 
 **<u>Example 1</u>**<br>
-Let's say you want to find information of the dining outlet <strong>Arise & Shine</strong>.
+Let's say you want to find information about the dining outlet <strong>Arise & Shine</strong>.
 
 These are the steps to follow:
 
@@ -377,7 +400,7 @@ to your needs.
 <!-- @@author Lezn0 -->
 ### 3.3.1. Add a favourite command: `/addfav` - Yuxin
 This command adds a valid command with an optional description to your list of favourites.
->Note: A valid command is command that does not return an error message and not associated 
+>Note: A valid command is a command that does not return an error message and is not associated 
 >with any commands related to favourites.
 
 Format:<br>
@@ -390,12 +413,12 @@ Let's say you want to add the command to list dining options in business.
 
 These are the steps to follow:
 
-1. Type <code>/dine <strong>business</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below<br>
+1. Type <code>/dine <strong>business</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below<br><br>
 <img src="UG_Figures/dine1.png" alt="output" width=600><br>
 
 2. Type <code>/addfav <strong>dining options in business</strong></code> and press <kbd>Enter</kbd> to execute the command 
-to store the command in to your list of favourites with the description
-"dining options in business"  as shown in the figure below.<br>
+to store the command in your list of favourites with the description
+"dining options in business"  as shown in the figure below.<br><br>
 <img src="UG_Figures/addfav1.png" alt="output" width=600><br>
 
 <div style="page-break-after: always;"></div>
@@ -405,11 +428,11 @@ Let's say you want to add the command that guided you from PGP to NUS IT to your
 
 These are the steps to follow:
 
-1. Type <code>/route <strong>pgp /to nus it</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below. <br>
+1. Type <code>/route <strong>pgp /to nus it</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below. <br><br>
 <img src="UG_Figures/routeOutput1.png" alt="output" width=600><br>
 
 2. Type <code>/addfav</code> into the CLI and press <kbd>Enter</kbd> to execute the command 
-to store the command in to your list of favourites with no description  as shown in the figure below .<br>
+to store the command in your list of favourites with no description  as shown in the figure below .<br><br>
 <img src="UG_Figures/addfav2.png" alt="output" width=600><br>
 <!-- @@author -->
 
@@ -424,8 +447,7 @@ Format:<br>
 
 **Examples of Usage**
 
-**<u>Example 1</u>**<br>
-Let's say you want to take a look at all the commands that was previously added to your list of favourite commands.
+Let's say you want to take a look at all the commands that were previously added to your list of favourite commands.
 
 These are the steps to follow:
 
@@ -443,7 +465,6 @@ Format: <br>
 
 **Examples of Usage**
 
-**<u>Example 1</u>**<br>
 Let's say that you have stored the command <code>/routemap <strong>AA1</strong></code> in your list of favourite commands.
 After reviewing your list of favourite commands, you do not want to have this command in it.
 
@@ -463,7 +484,7 @@ Format: <br>
 
 Let's say that you have stored the command <code>/route <strong>Opp University Health Centre</strong> /to <strong>Opp Kent Ridge MRT station</strong></code> in your list of favourite commands. Instead of typing the long command using `/route`, you can now conveniently use the `/execfav` command.
 
-Given you have the list of favourite commands:<br>
+Given you have the list of favourite commands:<br><br>
 <img src="UG_Figures/execfav1.png"><br>
 
 
@@ -477,10 +498,10 @@ Type <code>/execfav <strong>2</strong></code> into the CLI and press enter to ex
 Let's say your data has been corrupted and thus your list of favourite commands contains an invalid command.<br>
 If you attempt to execute the command, Nav@NUS will automatically delete the corrupted data from your list.
 
-Given you have the list of favourite commands:<br>
+Given you have the list of favourite commands:<br><br>
 <img src="UG_Figures/execfav3.png"><br>
 
-If you attempt to execute the invalid command <code>/bus random place</code> in your favourites list. Nav@NUS will automatically delete the corrupted data from your list as seen below:<br>
+If you attempt to execute the invalid command <code>/bus random place</code> in your favourites list. Nav@NUS will automatically delete the corrupted data from your list as seen below:<br><br>
 <img src="UG_Figures/execfav4.png"><br>
 
 <!-- @@author wamikamalik -->
@@ -492,18 +513,17 @@ Format:<br>
 
 **Examples of Usage**
 
-**<u>Example 1</u>**<br>
-Let's say you have the following list of commands:<br>
+Let's say you have the following list of commands:<br><br>
 <img src="UG_Figures/beforedescfav.PNG" alt="original list of commands" width=550>
 
 You want to change the description for `/dineinfo Pines` from "No description" to **"Get dinner @7:30PM every Tuesday"**.
-To do so:
+You can do so by following these steps:
 
 1. Type <code>/descfav <strong>5</strong> /to <strong>Get dinner @7:30PM every Tuesday</strong></code> into the CLI as
-shown in the figure below and press enter. <br>
+shown in the figure below and press enter. <br><br>
 <img src="UG_Figures/descfavinput.PNG" alt="descfav input" width=600>
 
-2. Type <code>/listfav</code> to see the changed description.<br>
+2. Type <code>/listfav</code> to see the changed description.<br><br>
 <img src="UG_Figures/afterdescfav.png" alt="list after changing" width=600>
 <!-- @@author -->
 
@@ -516,7 +536,6 @@ Format:<br>
 
 **Examples of Usage**
 
-**<u>Example 1</u>**<br>
 Let's say you no longer need any of the commands in your list of favourite commands. Instead of using 
 <code>/deletefav</code> to remove the commands one by one, you can use the <code>/clearfav</code> feature to clear 
 your favourites list at one go.
@@ -527,16 +546,26 @@ These are the steps to follow:
 <img src="UG_Figures/clearfav1.png" alt="output" width=600><br>
 <!-- @@author -->
 
+<!-- @@author EthanWong2212 -->
+#### 3.3.7. Storage of favourite commands - Wong Heng Chin
+>Note: **DO NOT** modify the `FavList.txt` file <br>
+>
+In order to make Nav@NUS a personalized application for you, all data from your list of favourite commands will be stored on your computer. Thus, everytime Nav@NUS launches, you will be able to maintain and update your list of favourite commands.
+
+The data is stored in the `FavList.txt` file in the `data` folder located in the same location as the Nav@NUS jar file.
+
+<!-- @@author -->
+
 ### 3.4. Common Features
 This section provides the instruction for all the common features.
 
 <div style="page-break-after: always;"></div>
 
 <!-- @@author wamikamalik -->
-#### 3.4.1. Checking for similar locations - Wamika
+#### 3.4.1. Check for similar locations - Wamika
 When you enter a location and make a spelling error or a typo in the name, the app performs a similarity check with 
-existing location names and suggests some locations to you. The app executes this command automatically and does not 
-require any explicit input from you.
+existing location names and suggests some locations to you. _The app executes this command automatically and does not 
+require any explicit input from you._
 
 **Examples of Usage**
 
@@ -565,19 +594,19 @@ the navigation functions.
 **Examples of usage**
 
 On start-up, you will receive a prompt of your most searched bus stop. This personalises your application and gives you
-the memory jolt of what to key in. <br>
+the memory jolt of what to key in. <br><br>
 <img src="UG_Figures/displayfreq.png" alt="Search Freq Prompt" width=400><br>
 <!-- @@author -->
 
 <!-- @@author Johnson-Yee -->
 #### 3.4.3. Reset frequent search data: ```/reset``` - Johnson Yee
-This command resets the data set used to display most frequently searched bus stop on application start-up.
+
+This command resets the data set used to display the most frequently searched bus stop on application start-up.
 
 Format:<br> <code>/reset</code>
 
 **Examples of usage**
 
-**<u>Example 1</u>**<br>
 Let us suppose that you are transitioning to a new academic semester, and the locations that you will key in to the
 application changes. To create a new data set that will cater to your needs in this new semester, you will key in the
 command <code>/reset</code> to reset the data set and start the application on a clean slate.<br><br>
@@ -600,18 +629,21 @@ This command helps you exit the application.
 Format:<br>
 <code>/exit</code>
 
-The application exits after displaying the following message.<br>
+The application exits after displaying the following message.<br><br>
 <img src="UG_Figures/exit.png" alt="Correct input message" width=600><br>
 
 ## 4. FAQ
 This section addresses some common questions to aid in possible issues faced.
 
 **Q:** Where can I find the release? <br>
-It can be found at [here](https://github.com/AY2021S1-CS2113T-F14-3/tp/releases).
+It can be found [here](https://github.com/AY2021S1-CS2113T-F14-3/tp/releases).
 
 **Q:** How do I transfer my data to another computer? <br>
 Simply copy your `data` folder from the current directory and paste it in the directory containing the `Nav@NUS.jar` 
 file in the other computer.
+
+**Q:** What do I do if I have accidentally made changes to the `FavList.txt` file? <br>
+Simply run Nav@NUS and the program will automatically delete most of the corrupted data.
 
 ## 5. Command Summary
 The following table provides a summary of features and command formats.
@@ -642,12 +674,11 @@ Command | Format | Example
 <!-- @@author wamikamalik -->
 ## 6. Glossary - Wamika
 This section defines key technical terms we have used throughout the user guide.
-1. Case-sensitive: Capital and lower case letters are treated differently.
+1. Case-sensitive: Capital and lowercase letters are treated differently.
 2. Command Line Interface(CLI): Processes commands to a computer program in the form of lines of text.
 3. Corrupted file: A file containing invalid data or data it should not have.
 4. Dining options/outlets: Places you can eat at.
-5. Direct bus: Commute between two locations does not require changing buses.
+5. Direct bus: Commuting between two locations does not require changing buses.
 6. Execute: Run the command to display the output.
 7. Similarity check: Check for possible spelling errors.
 <!-- @@author -->
-
