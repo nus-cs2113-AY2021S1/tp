@@ -1,0 +1,87 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class TimeTableAddCommand
+class TimeTableDeleteCommand
+class TimeTableViewCommand
+class Lesson {
+    - moduleCode: String
+    - lessonType: LessonType
+    - day: DayOfWeek
+    - startTime: LocalTime
+    - endTime: LocalTime
+    - hiddenId: String
+}
+
+class "TimeTableCommandParser" {
+    + {static} parseTimeTableCommand()
+    - {static} parseTimeTableAddCommand()
+    - {static} parseTimeTableDeleteCommand()
+    - {static} parseTimeTableViewCommand()
+}
+
+abstract class "{abstract} \n TimeTableCommand" {
+    + execute()
+}
+
+abstract class "{abstract} \n Command" {
+    + execute()
+}
+
+class TimeTable {
+}
+
+class TimeTableAddCommand {
+    + execute()
+}
+
+class TimeTableViewCommand {
+    + execute()
+}
+
+class TimeTableDeleteCommand {
+    + execute()
+}
+
+class TimeTableResetCommand {
+    + execute()
+}
+
+class IncorrectCommand {
+    + execute()
+}
+
+class LessonManager {
+    + addLesson()
+    + deleteLessonById()
+    + getDayLessonList(): ArrayList<Lesson>
+}
+
+class TimeTableManager {
+    + {static} initialise()
+    + {static} addLesson()
+    + {static} deleteLesson()
+    + {static} getSpecificDayLessons(): ArrayList<Lesson>
+    + {static} getSpecifiedWeekLessons(): ArrayList<ArrayList<Lesson>>
+}
+
+"{abstract} \n TimeTableCommand" --|> "{abstract} \n Command"
+IncorrectCommand --|> "{abstract} \n Command"
+
+"TimeTableCommandParser" ..> "{abstract} \n TimeTableCommand"
+"TimeTableCommandParser" ..> IncorrectCommand
+
+TimeTableAddCommand -|> "{abstract} \n TimeTableCommand"
+"{abstract} \n TimeTableCommand" <|-- TimeTableDeleteCommand
+TimeTableViewCommand --|> "{abstract} \n TimeTableCommand"
+"{abstract} \n TimeTableCommand" <|-- TimeTableResetCommand
+
+TimeTableManager *-- "1" TimeTable
+TimeTable o-- "1..13" LessonManager
+LessonManager o-- "*" Lesson
+
+TimeTableManager <... "{abstract} \n TimeTableCommand"
+
+@enduml

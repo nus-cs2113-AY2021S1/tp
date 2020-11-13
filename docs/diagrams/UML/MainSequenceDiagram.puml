@@ -1,0 +1,42 @@
+@startuml
+
+participant ":Ravi" as Ravi << Class >>
+participant ":Executor" as Ex << Class >>
+
+create Ravi
+activate Ravi
+-> Ravi: main()
+Ravi -> Ravi ++ : Add shutdown hook
+return
+|||
+Ravi -> Ravi  ++ : run()
+    |||
+        Ravi -> Ex ++ : Initialise Executor
+            ref over Ex: initialise()
+        Ravi <-- Ex --
+        opt Could not load NUSMods
+            |||
+            <- Ravi : Terminate program here
+        end opt
+        |||
+        Ravi -> Ex ++ : Start command loop
+            ref over Ex: startCommandLoop()
+        Ravi <-- Ex --
+    |||
+return
+
+<- Ravi -- : exit main()
+
+-> Ravi ++ : Shutdown hook
+Ravi -> Ravi ++ : Print "saving" message
+note right
+    Saving is actually done in Executor.
+    This is just to assure the user that
+    ra.VI has shut down properly (if they
+    used Ctrl-C to shut down ra.VI)
+end note
+return
+return Completed shutdown
+destroy Ravi
+
+@enduml

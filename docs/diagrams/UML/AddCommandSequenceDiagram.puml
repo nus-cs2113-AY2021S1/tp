@@ -1,0 +1,25 @@
+@startuml
+-> ":AddCommandParser": prepareAddCommand()
+activate ":AddCommandParser"
+alt MODULE_PREFIX
+    create ":AddModuleCommand"
+    ":AddCommandParser" -> ":AddModuleCommand": <<construct>> getAddCommand()
+    activate ":AddModuleCommand"
+    ":AddCommandParser" <-- ":AddModuleCommand": AddModuleCommand
+    deactivate ":AddModuleCommand"
+else TASK_PREFIX
+    create ":AddTaskCommand"
+    ":AddCommandParser" -> ":AddTaskCommand": <<construct>> getAddCommand()
+    activate ":AddTaskCommand"
+    ":AddCommandParser" <-- ":AddTaskCommand": AddTaskCommand
+    deactivate ":AddTaskCommand"
+else UNKNOWN_PREFIX
+    create ":IncorrectCommand"
+    ":AddCommandParser" -> ":IncorrectCommand": <<construct>>
+    activate ":IncorrectCommand"
+    ":AddCommandParser" <-- ":IncorrectCommand"
+    deactivate ":IncorrectCommand"
+end
+<-- ":AddCommandParser": Command
+destroy ":AddCommandParser"
+@enduml
