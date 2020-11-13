@@ -232,7 +232,7 @@ Example of usage: <br/>
 `hr changeInfo /n john sterling /p 12345678` <br/>
 `hr c /n Harry Potter /p 12345678 /e 123@gmail.com /r President` <br/>
 
-Example Scenario: 
+Example Scenario:   
 Let's say you have added a member called `John Sterling` via `hr addMember /n John Sterling /p 88888888 /e js@gmail.com /r president`. 
 To change the phone number of `John Sterling` from `88888888` to `12345678`, type `hr changeInfo /n john sterling /p 12345678` into the terminal and press enter.
 
