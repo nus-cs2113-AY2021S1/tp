@@ -474,7 +474,7 @@ Expected output:
 >* You can view your starred links in the highlight function in the main mode. (Refer to [General Command 4](#4-prints-starred-items-highlight))
 >* You can also omit the space between `star` and `NUMBER`
 >* The user input is not case-sensitive.
->
+
 If you encounter any errors, take note of the following warnings.  
 
 >**Warning:**
