@@ -553,19 +553,19 @@ _________________________________
 ### 3.5 Deadlines: `deadline` (Qing Ning)
 Want to set a deadline after you have created your personal event? Afraid that you forget your deadlines? Deadline is here to help! You can set the date and time of the task to be completed and on the day itself, we will remind you.  
 
-Format: `deadline EVENT_INDEX; DD/MM/YY; [HH:MM AM/PM]`
+Format: `deadline EVENT_INDEX; EVENT_DATE; [EVENT_TIME]`
 
 - `EVENT_INDEX` is a number. It contains the index of the personal event that will have its deadline set or changed. 
 
-* `DD/MM/YY` contains a date string in the format `[DD/MM/YY]`. This is the date of the deadline for the personal event. 
+* `EVENT_DATE` contains a date string. This is the date of the deadline for the personal event. 
 
-* `[HH:MM AM/PM]` is an optional argument containing the time of the deadline for the personal event. It can be written in either 12-hour or 24-hour format. 
+* `EVENT_TIME` is an optional argument containing the time of the deadline for the personal event. It can be written in either 12-hour or 24-hour format. 
 
-`deadline 2; 23/07/20` sets the deadline of event number 2 to be on 23 July 2020.
+Acceptable date formats: DD/MM/YYYY or DD/MM/YY
 
-`deadline 7; 29/08/20; 14:25` sets the deadline of event number 7 to be on the 29 August 2020 at 2:25PM. 
-
-`deadline 7; 29/08/20; 11:20 PM` sets the deadline of event number 7 to be on the 29 August 2020 at 11:20PM. 
+Acceptable time formats: 
+- 24 Hour format – HHmm or HH:mm (e.g. 14:00)
+- 12 Hour format – hh:mm am/pm or hhmm am/pm (e.g. 2:00 pm)
 
 > **Note!**
 >
@@ -1190,13 +1190,10 @@ Format: `view EVENT_TYPE; EVENT_INDEX`
 
 * The `EVENT_TYPE` have to be either personal, zoom or timetable.
 * Scheduler will prompt you to type your notes
+
 > **Warning!**
 >
 > The event index keyed in have to be valid so that note can be viewed for the specified event index.
-
-Example of usage: 
-
-`view personal; 1 `
 
 #### Example Usage
 
