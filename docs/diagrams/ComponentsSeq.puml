@@ -1,0 +1,40 @@
+@startuml
+
+actor User
+participant ":Ui" as Ui
+participant ":Logic" as Logic
+participant ":TaskMap" as TaskMap
+
+
+User -> Ui: "add meeting"
+activate Ui
+
+Ui -> Logic: processRaw("add meeting")
+activate Logic
+
+Logic -> TaskMap: addTasks(task)
+activate TaskMap
+
+TaskMap --> Logic
+deactivate TaskMap
+
+Logic --> Ui
+deactivate Logic
+
+Ui --> User
+deactivate Ui
+
+User -> Ui: "bye"
+activate Ui
+
+Ui -> Logic: processRaw("bye")
+activate Logic
+
+Logic --> Ui
+deactivate Logic
+
+Ui --> User
+deactivate Ui
+
+
+@enduml
