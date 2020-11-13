@@ -27,8 +27,8 @@ This gives the application both simplicity and speed, setting it apart from othe
     * [Add an event](#add-an-event---brendan)
     * [Edit an event](#edit-an-event---xu-che)
     * [Sort events](#sort-events---xu-che)
-    * [Find a location](#find-a-location)
-    * [List all locations](#list-all-locations)
+    * [Find a location](#find-a-location---yang-jiaqi)
+    * [List all locations](#list-all-locations---yang-jiaqi)
     * [List all events](#list-all-events---brendan)
     * [Clear events](#clear-events)
     * [Mark event as done](#mark-event-as-done)
@@ -193,7 +193,7 @@ Sort by time:
 Sort by location:  
 ![sort4](diagrams/sort4.png)
 
-### Find a location
+### Find a location - Yang Jiaqi
 With this command, you can find out about locations around NUS. Depending on the type of location, different additional 
 information will be shown together with the location (e.g. nearest building, nearest bus stops). 
 
@@ -210,7 +210,7 @@ Find buildings using location name:
 Find locations using event index: 
 ![locate3](diagrams/locate3.png)
 
-### List all locations
+### List all locations - Yang Jiaqi
 Displays a list of all locations within NUS
 
 Format: `locations`
