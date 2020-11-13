@@ -1,1 +1,19 @@
-James Gosling
+create new user
+test
+female
+63
+167
+30
+1
+maintain
+add f/ apple c/ 50
+add f/ banana c/ 100
+list
+delete 1
+add e/ pushup c/ 10
+add e/ jogging c/ 60
+delete 2
+list
+delete /all
+list
+bye
