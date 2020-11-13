@@ -172,6 +172,9 @@ Format: filter name NAME
 ```
 
 #### Changing line divider in Fluffle: `divider`
+
+(Amelia Tan)
+
 Allows the user to change the line divider used in Fluffle.
 Format: `divider DIVIDER_OPTION`  
 The `DIVIDER_OPTION` is a parameter indicating your preferred type of line divider, and can take values from 1 to 3. The list of dividers is:
@@ -409,9 +412,13 @@ reset words
 
 ### Bunnies List Commands
 
+(Amelia Tan)
+
 Bunnies List commands allows you to collate your list of ideas in one place, making it easy for you to find specific ideas. It can randomly pick one for you to work on so you don’t have to waste time deciding on one on your own.
 
 #### Adding a bunny idea: `bunny`
+
+(Amelia Tan)
 
 Adds a bunny idea to the list of bunny ideas in the current run of the program.
 This list is not automatically saved.  
@@ -419,7 +426,7 @@ This list is not automatically saved.
 Format: `bunny i\IDEA g\[GENRE]`  
 
 Note:
-* If the genre is not indicated, it is set as "none" by default.
+* If the `GENRE` is not indicated, it is set as "none" by default.
 * The program allows duplicate bunnies as some users may have more than 1 idea for the same writing prompt.
 
 Example usages:
@@ -437,6 +444,8 @@ bunny i\test idea 2 g\ fantasy
 ```
 
 #### Listing bunny ideas: `list bunny`
+
+(Amelia Tan)
 
 If you want to view the list of plot bunnies you have collected, you can use the `list bunny` command to print the full list of bunnies.
 
@@ -464,6 +473,9 @@ Here are the bunnies stored in the program:
 ```
 
 #### Filtering bunny ideas: `filter bunny`
+
+(Amelia Tan)
+
 Filters specific bunny ideas from the list by searching the idea or the genre for specific key terms.  
 
 Format: `filter bunny i\[IDEA] g\[GENRE]`  
@@ -493,6 +505,9 @@ number bunny filter: 2
 ```
 
 #### Saving bunny ideas: `save bunny`
+
+(Amelia Tan)
+
 Saves the current list of bunnies in the program into the designated text file. The existing text file is automatically read at the start of the program, and is overwritten when the save function is called.
 
 Format: `save bunny`  
@@ -509,6 +524,9 @@ Bunny list saved!
 ```
 
 #### Deleting a bunny idea: `delete bunny`
+
+(Amelia Tan)
+
 You can delete a selected plot bunny from the list of bunny ideas when you have written it or are no longer interested in writing it.
 
 Format: `delete bunny BUNNY_INDEX`
@@ -528,6 +546,9 @@ Bunny deleted:
 ```
 
 #### Generating a random bunny idea: `random bunny`
+
+(Amelia Tan)
+
 The app can pick a random bunny from your list of plot bunnies for you to work on.
 
 Format: `random bunny`
@@ -546,6 +567,9 @@ Random Bunny:
 ```
 
 #### Resetting the entire list of Bunny ideas: `reset bunny`
+
+(Amelia Tan)
+
 The app can help you clear the entire list of Bunny ideas if you decide that you want a fresh start with your ideas.
 
 Note:
@@ -806,6 +830,8 @@ still some features that will require you to type in the command in the exact or
 [Jump to top](#fluffle-user-guide)
 
 ## Glossary
+
+(Amelia Tan)
 
 **Bunny** is a short form for the slang term plot bunny, often used in creative writing, which refers to short writing ideas that have yet to be written.
 
