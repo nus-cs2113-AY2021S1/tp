@@ -120,7 +120,7 @@ You can install version 11 of Java from this [link](https://docs.aws.amazon.com/
 #### 2.2.2 Mac OS X
 
 1. Install Java 11 or above in your computer if you have not done so. 
-1. Download the latest scheduler.jar from here.
+1. Download the latest scheduler.jar from [here](https://github.com/AY2021S1-CS2113T-T12-4/tp/releases).
 1. Copy the file to the folder you want to use as the folder for the Scheduler-\-;. 
 1. Open the terminal by clicking on Launchpad->Utilities->Terminal. 
 1. Navigate to the folder you have stored the jar file in the command prompt. 
@@ -130,7 +130,7 @@ You can install version 11 of Java from this [link](https://docs.aws.amazon.com/
 #### 2.2.3 Linux
 
 1. Install Java 11 or above in your computer if you have not done so. 
-1. Download the latest scheduler.jar from here. 
+1. Download the latest scheduler.jar from [here](https://github.com/AY2021S1-CS2113T-T12-4/tp/releases). 
 1. Copy the file to the folder you want to use as the folder for the Scheduler-\-;. 
 1. Open the terminal in your linux distribution.
 1. Navigate to the folder you have stored the jar file in the command prompt. 
@@ -772,6 +772,7 @@ From this, we know that the event `math class` is a repeated event that repeats 
 <div style="page-break-after: always;"></div>
 
 ### 3.7 Check availability on a specific date and time: `check` (Marcus Tan)
+
 Would you like to check if you happen to be free at a certain time? The check command allows you to scan through your events to check for any events you might have within a given time period.
 
 Format: `check [START_DATE]; [START_TIME]; [END_DATE]; [END_TIME]`
@@ -779,14 +780,14 @@ Format: `check [START_DATE]; [START_TIME]; [END_DATE]; [END_TIME]`
 Acceptable date formats: DD/MM/YYYY or DD/MM/YY
 
 Acceptable time formats: 
-- 24 Hour format – HHmm or HH:mm (e.g. 14:00)
-- 12 Hour format – hh:mm am/pm or hhmm am/pm (e.g. 2:00 pm)
+- 24 Hour format – HHmm, HH:mm or HH (e.g. 2359, 14:00, 14)
+- 12 Hour format – HH:mm am/pm or HH am/pm (e.g. 2:00 pm, 10 am)
 
 > **Note!**
 >
 > *	You may omit the DD or DD/MM in a date. If you do not fill in these fields for the date, the command takes the current date for that field by default (e.g.  input 2021 on 11 Oct 2020 would be taken as 11/10/2021)
 > *	The date can also be omitted entirely. If you leave a date field as blank, the command takes the current date for that field by default.
-> *	You may also omit the minutes in a time. If the minutes(MM) field of any time is empty, the time is read as when the hour begins (e.g. 4 pm would be taken as 4:00 pm)
+> *	You may also omit the minutes in a time. If the minutes(mm) field of any time is empty, the time is read as when the hour begins (e.g. 4 pm would be taken as 4:00 pm)
 > *	The time can also be omitted entirely. If you leave a time field as blank, the command takes the current time by default.
 
 
@@ -797,7 +798,7 @@ Acceptable time formats:
 
 #### Example Usage
 
-The following few sections present several examples of how the check command can be used.
+The following few scenarios present several examples of how the check command can be used.
 
 ##### Scenario 1: Checking availability between 9 May 2021 and 1 August 2021
  
@@ -898,6 +899,8 @@ If you wish to mark a specific event in a repeated task as done, you may enter t
 
 #### Example Usage
 
+The following few scenarios present several examples of how the done command can be used.
+
 ##### Scenario 1: Marking a non-repeat event as done
 
 Let's say you wish to mark a Personal event `buy groceries` as done. In order to find the index of the event, you may type in the command `list personal` as shown below:
@@ -969,6 +972,10 @@ If you wish to mark a specific event in a repeated task as undone, you may enter
 > **Note!**
 >
 > *	If you want to mark an original repeat event as undone rather than one of the subsequent repeated events, you can omit the date in the command. 
+
+#### Example Usage
+
+The following few scenarios present several examples of how the undone command can be used.
 
 ##### Scenario 1: Marking a non-repeat event as undone
 
@@ -1042,6 +1049,9 @@ Format: `delete EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`
 > * If you delete the original repeat event, all the subsequent repeated events will be deleted along with it.
 > * Deleting an event on the original event's date will delete the main event, along with all the subsequent repeated events.
 
+#### Example Usage
+
+The following few scenarios present several examples of how the delete command can be used.
 
 ##### Scenario 1: Deleting a non-repeat event
 
@@ -1115,7 +1125,7 @@ Format: `note EVENT_TYPE; EVENT_INDEX`
 > **Warning!**
 >
 > * The event index keyed in have to be valid so that note can be created for the specified event index.
-> * The grave accent symbol \` is an illegal character. If you use this symbol, the notes program will intepret it as a new line.
+> * The grave accent symbol \` is an illegal character. If you use this symbol, the notes program will interpret it as a new line.
 
 #### Example Usage
 
@@ -1362,6 +1372,6 @@ In this section, you can find some frequently asked questions(FAQ).
 
 Here is a summary of all the commands with the accepted format and short examples for ease of usage.
 
-![Command Summary Table](./diagrams/command-summary.jpg)
+![Command Summary Table](./diagrams/command-summary.jpeg)
 
 
