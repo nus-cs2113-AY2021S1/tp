@@ -379,11 +379,11 @@ These are the steps to follow:
 <img src="UG_Figures/dineinfo1.png" alt="output" width=600><br>
 
 **<u>Example 2</u>**<br>
-Let's say you cannot remember the full name of the outlet that you are searching for. You can simply enter a keyword instead.
+Let's say you cannot remember the full name of the outlet that you are searching for. You can simply type in a keyword instead.
 
 To find the information of a dining outlet with the name containing <strong>Jewel</strong>:
 
-1. Type <code>/dineinfo <strong>jewel</strong></code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
+1. Type <code>/dineinfo <strong>jewel</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/dineinfo3.png" alt="output" width=600><br>
 <!-- @@author -->
 
@@ -447,7 +447,7 @@ Let's say you want to take a look at all the commands that were previously added
 
 These are the steps to follow:
 
-1. Type <code>/listfav</code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
+1. Type <code>/listfav</code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/listfav1.png" alt="output" width=600><br>
 <!-- @@author -->
 
@@ -486,7 +486,7 @@ Given you have the list of favourite commands:<br><br>
 
 To execute the command with the 2nd index in your list of favourite commands:
 
-Type <code>/execfav <strong>2</strong></code> into the CLI and press enter to execute the command as shown in the figure below. <br><br>
+Type <code>/execfav <strong>2</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below. <br><br>
 <img src="UG_Figures/execfav2.png" width=600><br>
 
 **Common errors and problems**
@@ -516,7 +516,7 @@ You want to change the description for `/dineinfo Pines` from "No description" t
 You can do so by following these steps:
 
 1. Type <code>/descfav <strong>5</strong> /to <strong>Get dinner @7:30PM every Tuesday</strong></code> into the CLI as
-shown in the figure below and press enter. <br><br>
+shown in the figure below and press <kbd>Enter</kbd>. <br><br>
 <img src="UG_Figures/descfavinput.PNG" alt="descfav input" width=600>
 
 2. Type <code>/listfav</code> to see the changed description.<br><br>
@@ -538,7 +538,7 @@ your favourites list at one go.
 
 These are the steps to follow:
 
-1. Type <code>/clearfav</code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
+1. Type <code>/clearfav</code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/clearfav1.png" alt="output" width=600><br>
 <!-- @@author -->
 
