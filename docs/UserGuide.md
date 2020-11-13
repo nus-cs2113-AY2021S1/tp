@@ -1,6 +1,8 @@
 # User Guide
 ![](CCAManager_logo.png) 
 
+<div style="page-break-after: always;"></div>
+
 # Table of contents
 
 - [1. Introduction](#1-introduction)
@@ -39,6 +41,8 @@
 - [6. Command Summary](#6-command-summary)
 - [7. Glossary](#7-glossary)
 
+<div style="page-break-after: always;"></div>
+
 ## 1. Introduction
 *(By: John)*
 
@@ -71,6 +75,7 @@ Additionally, throughout this user guide, there will be various icons used as de
 
 > : [Hyperlinked]() : Leads you to the appropriate section
 
+<div style="page-break-after: always;"></div>
 
 ## 3. Quick Start
 (By: Varsha)
@@ -92,9 +97,13 @@ The following steps will guide you through the process of running CCA Manager.  
  
  ![](userGuidePic/terminal.PNG)
 
+<div style="page-break-after: always;"></div>
+
 You will see this welcome message if you have done the above steps correctly. <br/>
 
 ![Welcome Message](userGuidePic/welcomeMessage.PNG)
+
+<div style="page-break-after: always;"></div>
 
 ## 4. Features 
 
@@ -110,6 +119,7 @@ For example, as shown in the picture below, instead of typing `event`, you can t
 
 ![](userGuidePic/shorthandexample.PNG)
 
+<div style="page-break-after: always;"></div>
 
 ### 4.1 Help `help`
 *(By: John)*
@@ -125,6 +135,8 @@ Expected Outcome:
 
 [Return to the top](#user-guide)
 
+<div style="page-break-after: always;"></div>
+
 ### 4.2 Exit the program: `bye` 
 *(By: John)*
 
@@ -134,6 +146,8 @@ With this command you can gracefully exit the program directly, without having t
 Format: `bye`
 
 [Return to the top](#user-guide)
+
+<div style="page-break-after: always;"></div>
 
 ### 4.3 HR features `HR` 
 #### Add members: `addMember`
@@ -158,11 +172,15 @@ Example of usage: <br/>
  
  ![HrAddMemberCommand](userGuidePic/hrAddMemberCommand.PNG)
  
+ <div style="page-break-after: always;"></div>
+ 
  Example Outcome:  
   
  ![HrAddMemberCommand](userGuidePic/hrAddMemberCommand2.PNG)
  
  [Return to the top](#user-guide)
+ 
+ <div style="page-break-after: always;"></div>
  
 #### Delete members: `delMember`
 (By:Ye Yutong)  
@@ -195,6 +213,8 @@ Example Outcome:
   
 [Return to the top](#user-guide)
 
+<div style="page-break-after: always;"></div>
+
 #### List members: `listMember`
 (By:Ye Yutong)  
 
@@ -215,6 +235,8 @@ Expected Outcome:
 ![HrListMemberCommand](userGuidePic/hrListMemberCommand.PNG)
  
 [Return to the top](#user-guide)
+
+<div style="page-break-after: always;"></div>
 
 #### Change member information: `changeInfo`
 (By:Ye Yutong)  
@@ -242,6 +264,8 @@ Expected Outcome:
  
 [Return to the top](#user-guide)
 
+<div style="page-break-after: always;"></div>
+
 #### Search members: `search`  
 (by: Wang Zixin)  
 You can use this command to search for a particular member.  
@@ -267,6 +291,7 @@ Expected outcomes:
 
 [Return to the top](#user-guide)  
 
+<div style="page-break-after: always;"></div>
 
 #### View contacts of prof/admin: `list prof&admin`  
 (by: Wang Zixin)  
@@ -287,6 +312,7 @@ Expected outcome:
 
 [Return to the top](#user-guide)  
 
+<div style="page-break-after: always;"></div>
 
 #### View contacts of connections: `list connections`  
 (by: Wang Zixin)  
@@ -307,6 +333,7 @@ Expected outcome:
 
 [Return to the top](#user-guide)  
 
+<div style="page-break-after: always;"></div>
 
 ### 4.4 Event features`event` 
 (By: Varsha)
@@ -342,11 +369,15 @@ Type `event addEvent /n arduino course /d 2020-12-30 /t 08-00` into the terminal
 
 ![](userGuidePic/eventAdd1.png)
 
+<div style="page-break-after: always;"></div>
+
 The result will be a message that the event has been successfully added as shown in the figure below.
 
 ![EventAddCommand](userGuidePic/eventAddCommand.PNG)
 
 [Return to the top](#user-guide)
+
+<div style="page-break-after: always;"></div>
  
 #### Delete an event: `delEvent`
 (By: Varsha)
@@ -374,13 +405,17 @@ Let's say you want to remove the event that you have entered above. i.e. `event 
 To delete, type `event delEvent 1` into the terminal and press enter as shown in the figure below.
 
 
-![](userGuidePic/eventdel1.PNG) 
+![](userGuidePic/eventdel1.PNG)
+
+<div style="page-break-after: always;"></div> 
 
 The result will be a message that the event has been removed successfully as shown in the figure below.
  
 ![EventDeleteAtIndex](userGuidePic/eventDelEvent.PNG)
  
  [Return to the top](#user-guide)
+ 
+ <div style="page-break-after: always;"></div>
 
 #### Clear all events: `delEvent all`
 (By: Varsha)
@@ -403,6 +438,8 @@ Type in `Y` to clear the list as shown below.
 
 [Return to the top](#user-guide)
 
+<div style="page-break-after: always;"></div>
+
 #### List events: `listEvent`
 (By: Varsha)
 
@@ -423,6 +460,8 @@ Expected Outcome:
 ![EventListEvent](userGuidePic/eventListEvent.PNG)
 
 [Return to the top](#user-guide)
+
+<div style="page-break-after: always;"></div>
 
 #### Countdown events `countdown`
 (By: Varsha)
@@ -445,12 +484,13 @@ Expected Outcome:
 
 [Return to the top](#user-guide)
 
+<div style="page-break-after: always;"></div>
+
 #### Mark an event as completed `done`
 (By: Varsha)
 
 Allows you to mark an event as done. <br/>
 Format: `event done EVENT_INDEX` <br/>
-
 > :information_source: The EVENT_INDEX refers to the index number of the event that is to be marked as completed.<br/>
 > :information_source: The EVENT_INDEX must be an integer greater than 0. <br/>
 
@@ -470,6 +510,8 @@ Expected Outcome: <br/>
 ![](userGuidePic/eventMarkAsDone.PNG)
 
 [Return to the top](#user-guide)
+
+<div style="page-break-after: always;"></div>
 
 #### Search for an Event `search`
 (By: Varsha)
@@ -492,6 +534,8 @@ Expected Outcome:
 The output when you search by name is as follows: <br/>
 ![EventSearchByName](userGuidePic/eventSearchBydate.PNG) 
 
+<div style="page-break-after: always;"></div>
+
 The output when you search by date is as follows:  <br/>
 ![EventSearchByDate](userGuidePic/eventSearch1.PNG)
 
@@ -499,6 +543,8 @@ The output when you search by date is as follows:  <br/>
 > :information_source: Notice that both return the same output.
 >
 [Return to the top](#user-guide)
+
+<div style="page-break-after: always;"></div>
 
 #### Add a participant to an event: `addAttendance`
 (By:Ye Yutong)  
@@ -527,6 +573,8 @@ Expected Outcome:
 
 [Return to the top](#user-guide)
  
+ <div style="page-break-after: always;"></div>
+ 
 #### Delete a participant from an event: `delAttendance`
 (By:Ye Yutong)  
 
@@ -546,11 +594,15 @@ Shorthand Format: <br/>
  Let's say you have added the attendance of the member `John Sterling` to the event `arduino course` in the above section. 
  To delete this attendance, type `event delAttendance /n arduino course /m john sterling` into the terminal and press enter. 
  
+ <div style="page-break-after: always;"></div>
+ 
  Expected Outcome:   
  
  ![EventDeleteAttendanceCommand](userGuidePic/eventDeleteAttendanceCommand.PNG)
  
  [Return to the top](#user-guide)
+ 
+ <div style="page-break-after: always;"></div>
 
 #### List participants in an event: `listAttendance`
 (By:Ye Yutong)  
@@ -573,6 +625,8 @@ Expected Outcome:
 
 [Return to the top](#user-guide)
 
+<div style="page-break-after: always;"></div>
+
 ### 4.5 Finance features `finance`  
 (by: Wang Zixin)  
 #### 4.5.1 Add finance log entry: `addLog`  
@@ -594,6 +648,7 @@ Expected outcomes:
 
 [Return to the top](#user-guide)  
 
+<div style="page-break-after: always;"></div>
 
 #### 4.5.2 Delete finance log entry: `delLog`  
 Allows you to remove an entry from finance log.  
@@ -615,6 +670,8 @@ Expected outcomes:
 [Return to the top](#user-guide)  
 
 
+<div style="page-break-after: always;"></div>
+
 #### 4.5.3 View financial summary: `summary`  
 This command allows you to view a summary of the financial log and shows the total amount of money expended.  
 Format: `finance summary`  
@@ -631,6 +688,7 @@ Expected Outcome:
 
 [Return to the top](#user-guide)  
 
+<div style="page-break-after: always;"></div>
 
 #### 4.5.4 Change finance log entry information: `changeLog`  
 Allows you to change the finance log entry's name and budget amount.  
@@ -648,6 +706,7 @@ Expected Outcome:
 
 [Return to the top](#user-guide)
 
+<div style="page-break-after: always;"></div>
 
 ### 4.6 Import
 
@@ -664,6 +723,8 @@ In our example, the CSV file we are importing is in the same directory as CCA Ma
 ![Location of File](userGuidePic/import2.png)  
 You can use the command `import sample.csv /c hr /name Member /phone Contact /email Email /role Role` to import the document.  
 
+<div style="page-break-after: always;"></div>
+
 The expected outcome is as follows:  
 
 ![Outcome](userGuidePic/import3.png)  
@@ -672,6 +733,8 @@ If you would like to try out importing a file with a sample, we provide a sample
 You can download the sample [here](https://raw.githubusercontent.com/AY2021S1-CS2113T-F14-1/tp/master/docs/sample.csv).
 
 [Return to the top](#user-guide)
+
+<div style="page-break-after: always;"></div>
 
 ### 4.7 Saving the data
 (By: Varsha)
@@ -699,6 +762,8 @@ You can find the data files in the "data" folder inside the folder that CCA Mana
 
 [Return to the top](#user-guide)
 
+<div style="page-break-after: always;"></div>
+
 ## 6. Command Summary
 
 The following table provides a summary of all features and command formats.
@@ -718,6 +783,11 @@ delMember  | `hr delMember MEMBER_INDEX` | `hr delMember 1`
 delEvent | `event delEvent EVENT_INDEX`  | `event delEvent 1`
 delEvent all | `event delEvent all` | -
 delLog | `finance delLog ITEM_INDEX` | `finance delLog 3`
+
+<div style="page-break-after: always;"></div>
+
+Command | Format | Example
+------- | ---------- | ------------
 event done   | `event done EVENT_INDEX`| `event done 2`
 event search | `event search /s <KEYWORD>` | `event search /s arduino` 
 event countdown | `event countdown` | -
@@ -735,6 +805,8 @@ summary | `finance summary` |   -
 
 [Return to the top](#user-guide)
 
+<div style="page-break-after: always;"></div>
+
 ## 7. Glossary
 *(By: John)*
 
@@ -749,3 +821,4 @@ This section explains certain technical terms used in the guide which may requir
 **Index** - An index (of a list) refers to which position the item is in the list. In the list (apple,pear,banana) the index of "pear" is 2 because it's the 2nd element.  
 **HR** - Human Resource <br/>
 **OS** - Operating Systems <br/>
+
