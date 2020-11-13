@@ -1342,6 +1342,25 @@ Unsure if your files have been saved successfully? Use this function to save it!
 
 Format: `save`
 
+#### Example Usage
+
+The following scenario presents an example of how the save command can be used.
+
+##### Scenario 1: Saving your work after making some changes
+
+Let us assume that you would like to ensure that your latest changes to the program have been saved
+
+Simply type `save`
+
+The program will now save your current changes and a save confirmation message should be printed. The output should look like this:
+
+```
+save
+_________________________________
+The file has successfully been saved!
+_________________________________
+```
+
 
 <div style="page-break-after: always;"></div>
 
@@ -1350,6 +1369,24 @@ Time to have a rest? See you later! Do not worry, we will keep your events in Sc
 
 Format: `bye`
 
+##### Scenario 1: Exiting the program
+
+Let us assume that you would like to exit the program.
+
+Simply type `bye`
+
+The program will now save your current changes and exit the program. The output should look like this:
+
+```
+bye
+_________________________________
+Thank you for using scheduler--;!
+We hope to see you soon!
+_________________________________
+
+```
+
+Once the exit message have been printed, you may leave the terminal. 
 
 ## 4. FAQ
 In this section, you can find some frequently asked questions (FAQ).
