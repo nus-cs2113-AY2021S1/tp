@@ -48,7 +48,7 @@ Note: I wrote the function description and explanations for the all the bunny re
 ### Contributions to documentation
 * In the UG, my contributions are all the bunny related commands, the divider command and the help command.
        * this included the formatting and expected out puts under those segments
-* I also did up the QNA, Glossary, and the bunny segments of the command summary table.
+* I also did the Glossary, and the bunny segments of the command summary table.
 
 ### Contributions to the DG
 * For the DG, I did the explanations for all the bunny related commands, the divider command explanation and some miscellaneous components (miscellaneous components refer to sections in the intro where we did it together and one person pasted it into the markdown from google docs so I do not take full credit for those). 
@@ -68,7 +68,7 @@ Note: I wrote the function description and explanations for the all the bunny re
 
 ## Contributions beyond the project team
 * I made sure to review as many of the iP as listed during the peer review earlier in the semester. 
-* \(I dont have the screenshots but they're in ms teams\)
+* I also left comments on [this teams pull request](https://github.com/nus-cs2113-AY2021S1/tp/pull/36) and the iP pull requests: [1](https://github.com/nus-cs2113-AY2021S1/ip/pull/5) [2](https://github.com/nus-cs2113-AY2021S1/ip/pull/10) [3](https://github.com/nus-cs2113-AY2021S1/ip/pull/20) [4](https://github.com/nus-cs2113-AY2021S1/ip/pull/171)
 
 ### Evidence of helping others e.g. responses you posted in our forum, bugs you reported in other team's products
 * I gave comprehensive reviews during the UG DG peer reviews.
