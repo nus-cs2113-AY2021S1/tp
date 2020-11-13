@@ -86,11 +86,11 @@ Words that are highlighted in grey, for instance, `list`, indicate that the word
 
 >**Note!**
 >
->This is a note section. Additional information about the command will be written in sections such as this one. 
+> * This is a note section. Additional information about the command will be written in sections such as this one. 
 
 >**Warning!**
 >
->This is a warning section. Any user interaction with the program that may result in issues or unintended results will be written in sections such as this one. 
+> * This is a warning section. Any user interaction with the program that may result in issues or unintended results will be written in sections such as this one. 
 
 <div style="page-break-after: always;"></div>
 
@@ -171,7 +171,7 @@ _________________________________
 
 > **Warning!**
 >
-> When writing multiple commands at once, keep in mind that the program processes each command entry from left to right. If you make a mistake for one command, the subsequent commands towards the right of the mistake will not be processed by the program.
+> * When writing multiple commands at once, keep in mind that the program processes each command entry from left to right. If you make a mistake for one command, the subsequent commands towards the right of the mistake will not be processed by the program.
 >
 
 <div style="page-break-after: always;"></div>
@@ -179,6 +179,7 @@ _________________________________
 ## 3. Features
 
 This section introduces and explains the features of Scheduler-\-;!
+
 >**Note!**
 >
 > * Do note that some of the expected output for longer code snippets may not be exactly the same. This is because this User Guide was edited due to the code snippets being too long and not translating well when converted to PDF. 
@@ -571,7 +572,7 @@ Acceptable time formats:
 
 > **Warning!**
 >
-> The event index keyed in have to be valid so that deadline can be created for the specified event index.
+> * The event index keyed in have to be valid so that deadline can be created for the specified event index.
 
 #### Example Usage
 
@@ -630,11 +631,11 @@ Format: `repeat EVENT_TYPE; EVENT_INDEX`
 
 > **Note!**
 >
-> When you repeat an event monthly, the date does not always increment up by 30 days. Incrementing monthly mainly changes the month without changing the day of the date being incremented.
-> In the case of incrementing monthly from 31 Jan, the code will increment to 28 or 29 Feb followed by 31 Mar and 30 April and so on.
-> In the case of incrementing monthly from 30 Jan, the code will increment to 28 or 29 Feb followed by 30 Mar and 30 April and so on.
+> * When you repeat an event monthly, the date does not always increment up by 30 days. Incrementing monthly mainly changes the month without changing the day of the date being incremented.
+>   * In the case of incrementing monthly from 31 Jan, the code will increment to 28 or 29 Feb followed by 31 Mar and 30 April and so on.
+>   * In the case of incrementing monthly from 30 Jan, the code will increment to 28 or 29 Feb followed by 30 Mar and 30 April and so on.
 >
-> Setting the `EVENT_INDEX` argument to zero will cause the event to revert to a standard non-repeating event.
+> * Setting the `EVENT_INDEX` argument to zero will cause the event to revert to a standard non-repeating event.
 
 <div style="page-break-after: always;"></div>
 
@@ -1193,7 +1194,7 @@ Format: `view EVENT_TYPE; EVENT_INDEX`
 
 > **Warning!**
 >
-> The event index keyed in have to be valid so that note can be viewed for the specified event index.
+> * The event index keyed in have to be valid so that note can be viewed for the specified event index.
 
 #### Example Usage
 
@@ -1385,6 +1386,10 @@ _________________________________
 Time to have a rest? See you later! Do not worry, we will keep your events in Scheduler-\-.
 
 Format: `bye`
+
+#### Example Usage
+
+The following scenario presents an example of how the bye command can be used.
 
 ##### Scenario 1: Exiting the program
 
