@@ -91,12 +91,10 @@ Orientate yourself to the CLI. As seen in each figure below, the red arrow point
 where you have to type in commands.<br>
 
 For computers running the Windows OS, the red arrow points to where you have to type in commands. 
-
-![Windows CLI](UG_Figures/windowsCLI.png)
+<img src="UG_Figures/windowsCLI.png" alt="Windows CLI" width=550><br>
 
 For computers running the macOS, the red arrow points to where you have to type in commands. 
-
-![MacOS CLI](UG_Figures/appleCLI.png)
+<img src="UG_Figures/appleCLI.png" alt="Apple CLI" width=550><br>
 
 <div style="page-break-after: always;"></div>
 
@@ -110,12 +108,12 @@ follow the guide [here](https://docs.oracle.com/en/java/javase/11/install/instal
 3. Open command prompt on your computer.
 4. Copy the jar file to the folder you want to use as the _home folder_ for Nav@NUS.jar application. In the example
 shown in the figure, the home folder is found in the address path of "C:\Users...\CS2113T Empty folder".<br>
-![Windows CLI](UG_Figures/windowsPath.png)
+<img src="UG_Figures/windowsPath.png" alt="Windows Path" width=550><br>
 5. Navigate back to the command prompt, type `cd` and the directory of the _home folder_. Press <kbd>Enter</kbd> to continue.
-<img src="UG_Figures/cd_command.png" alt="cd_Command" width=450><br>
+<img src="UG_Figures/cd_command.png" alt="cd_Command" width=550><br>
 6. Run the .jar file in the command prompt as follows by typing `java -jar Nav@NUS.jar` and press <kbd>Enter</kbd>.
 7. Your screen should show the start screen of Nav@NUS as seen in the figure below.<br><br>
-<img src="UG_Figures/Nav@NUSstartScreen.png" alt="Start Screen" width=450><br>
+<img src="UG_Figures/Nav@NUSstartScreen.png" alt="Start Screen" width=550><br>
 8. Try typing `/help` and press <kbd>Enter</kbd>!
 <!-- @@author -->
 
