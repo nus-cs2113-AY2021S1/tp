@@ -354,7 +354,7 @@ The `deletereview` command allows you to delete a review for a show that is alre
 
 <div style="page-break-after: always;"></div>
 
-### 4.h. `delete` - Deletes your show
+### 4.h. `delete` - Deletes your show [Chen Jiqing]
 
  The `delete` command removes a specified show from the watchlist.
  
@@ -421,7 +421,7 @@ The `changerating` command changes the rating for an existing show which already
  <img src = "images/changeratinglist.png" width = "700">
  
 
-### 4.k. `season` - Changes the season of the show you are currently watching
+### 4.k. `season` - Changes the season of the show you are currently watching [Chen Jiqing]
 
 The `season` command updates the current season of an existing show in your watchlist.
 
@@ -458,7 +458,7 @@ If you would like to change both the current season and current episode:
  Format:
   `season <SHOWNAME> <SEASON> <EPISODE>`
   
-### 4.l. `episode` - Changes the episode of the show you are currently watching
+### 4.l. `episode` - Changes the episode of the show you are currently watching [Chen Jiqing]
 
 The `episode` command updates the current episode of an existing show in your watchlist.
 
@@ -578,7 +578,7 @@ The underlined portion shows the prompt to the user, and the circled portion det
  > **[NOTE]**
  > * To allocate more time for yourself, simply use the `updatetimelimit` command again with a longer duration limit.
 
-### 4.n. `search` - search a show in the watchlist  
+### 4.n. `search` - search a show in the watchlist [Chen Jiqing]
 
 The `search` command helps you search for a specific show in the watchlist and prints out the show information.  
 
@@ -626,7 +626,7 @@ Expected outcome:
 
  <div style="page-break-after: always;"></div>
  
-## 5. FAQ 
+## 5. FAQ [Chen Jiqing]
 <br>
 
 **Q**: Is my watchlist saved after I exit the program?  
