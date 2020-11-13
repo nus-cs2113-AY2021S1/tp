@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-![Logo](UG_Figures/Nav@NUSLogo.jpg)
+![Logo](UG_Figures/Nav@NUS_UG_Cover.png)
 ## Opening words
 Welcome to Nav@NUS application's user guide! <br><br>
 The purpose of this user guide is to provide you with all the necessary information to use this application to navigate
@@ -17,12 +17,12 @@ around NUS campus via the school's shuttle service.<br>
   * [1.1 What is Nav@NUS?](#11-what-is-navnus)
   * [1.2 About the User Guide](#12-about-the-user-guide)
   * [1.3 Introduction to Command Line Interface (CLI)](#13-introduction-to-command-line-interface-cli)
-- [2. Quick Start - Johnson Yee](#2-quick-start---johnson-yee)
+- [2. Quick Start - Johnson](#2-quick-start---johnson)
 - [3. Features](#3-features)
   * [3.1. Bus Features](#31-bus-features)
     + [3.1.1. Check for direct bus: ```/route``` - Wamika](#311-check-for-direct-bus-route---wamika)
-    + [3.1.2. Check bus route: ```/routemap``` - Johnson Yee](#312-check-bus-route-routemap---johnson-yee)
-    + [3.1.3. Check for buses at a bus stop: ```/bus``` - Wong Heng Chin](#313-check-for-buses-at-a-bus-stop-bus---wong-heng-chin)
+    + [3.1.2. Check bus route: ```/routemap``` - Johnson](#312-check-bus-route-routemap---johnson)
+    + [3.1.3. Check for buses at a bus stop: ```/bus``` - Heng Chin](#313-check-for-buses-at-a-bus-stop-bus---heng-chin)
     + [3.1.4. List all buses available in NUS ```/allbus``` - Shuyi](#314-list-all-buses-available-in-nus-allbus---shuyi)
     + [3.1.5. List all bus stops in NUS: ```/liststops``` - Yuxin](#315-list-all-bus-stops-in-nus-liststops---yuxin)
     + [3.1.6. List all faculties in NUS: ```/faculty``` - Shuyi](#316-list-all-faculties-in-nus-faculty---shuyi)
@@ -32,15 +32,15 @@ around NUS campus via the school's shuttle service.<br>
   * [3.3. Favourite Features](#33-favourite-features)
     + [3.3.1. Add a favourite command: `/addfav` - Yuxin](#331-add-a-favourite-command-addfav---yuxin)
     + [3.3.2. List all favourite commands: `/listfav` - Shuyi](#332-list-all-favourite-commands-listfav---shuyi)
-    + [3.3.3. Delete a favourite command: `/deletefav` - Johnson Yee](#333-delete-a-favourite-command-deletefav---johnson-yee)
-    + [3.3.4. Execute a favourite command: `/execfav` - Wong Heng Chin](#334-execute-a-favourite-command-execfav---wong-heng-chin)
+    + [3.3.3. Delete a favourite command: `/deletefav` - Johnson](#333-delete-a-favourite-command-deletefav---johnson)
+    + [3.3.4. Execute a favourite command: `/execfav` - Heng Chin](#334-execute-a-favourite-command-execfav---heng-chin)
     + [3.3.5. Change the description for a favourite command: `/descfav` - Wamika](#335-change-the-description-for-a-favourite-command-descfav---wamika)
     + [3.3.6. Clear the list of favourite commands: `/clearfav` - Shuyi](#336-clear-the-list-of-favourite-commands-clearfav---shuyi)
-    + [3.3.7. Storage of favourite commands](#337-storage-of-favourite-commands---wong-heng-chin)
+    + [3.3.7. Store favourite commands](#337-store-favourite-commands---heng-chin)
   * [3.4. Common Features](#34-common-features)
     + [3.4.1. Check for similar locations - Wamika](#341-check-for-similar-locations---wamika)
-    + [3.4.2. Display most searched bus stop on start-up - Johnson Yee](#342-display-most-searched-bus-stop-on-start-up---johnson-yee)
-    + [3.4.3. Reset frequent search data: ```/reset``` - Johnson Yee](#343-reset-frequent-search-data-reset---johnson-yee)
+    + [3.4.2. Display most searched bus stop on start-up - Johnson](#342-display-most-searched-bus-stop-on-start-up---johnson)
+    + [3.4.3. Reset frequent search data: ```/reset``` - Johnson](#343-reset-frequent-search-data-reset---johnson)
     + [3.4.4. List available help: ```/help``` -Yuxin](#344-list-available-help-help---yuxin)
     + [3.4.5. Exit the program: ```/exit```](#345-exit-the-program-exit)
 - [4. FAQ](#4-faq)
@@ -52,14 +52,14 @@ around NUS campus via the school's shuttle service.<br>
 ## 1. Overview
 ### 1.1 What is Nav@NUS?
 Are you new to NUS? <br>
-Are you searching for ways to get around NUS all squeezed up in front of a tiny information board?<br>
+Are you searching for ways to get around NUS, all squeezed up in front of a tiny information board?<br>
 We have just the right solution for you!<br><br>
 Introducing **Nav@NUS**, your new navigation assistant!
 Nav@NUS is a useful command line interface **(CLI)** application to guide you in navigating around the NUS campus
 via the school's shuttle services. This application enables you to retrieve key bus information easily, skipping the 
-hassle of physically checking the bus stop's notice board. Nav@NUS is a tool tailor made for anyone unfamiliar to 
-NUS campus, students, professors and visitors included. Nav@NUS brings convenience to you and wishes your 
-commute in NUS to be as effortless as possible. Nav@NUS uses a CLI to facilitate quick typing and retrieval of 
+hassle of physically checking the bus stop's notice board. Nav@NUS is a tool tailor-made for anyone unfamiliar with 
+NUS campus, students, professors and visitors included. Nav@NUS brings convenience to you and wishes that your 
+commute in NUS is as effortless as possible. Nav@NUS uses a CLI to facilitate quick typing and retrieval of 
 information that you require.
 
 Nav@NUS consists of 3 main features:
@@ -87,7 +87,7 @@ This user guide covers the following:
 Nav@NUS sets up and runs on the CLI. As the CLI is not commonly used, it can seem daunting to users. 
 To give you a better experience, this section will introduce you to the CLI.
 
-Orientate yourself to the command line interface. As seen in each figure below, the red arrow points to
+Orientate yourself to the CLI. As seen in each figure below, the red arrow points to
 where you have to type in commands.<br>
 
 For computers running the Windows OS, the red arrow points to where you have to type in commands. 
@@ -101,7 +101,7 @@ For computers running the macOS, the red arrow points to where you have to type 
 <div style="page-break-after: always;"></div>
 
 <!-- @@author Johnson-Yee -->
-## 2. Quick Start - Johnson Yee
+## 2. Quick Start - Johnson
 The following steps will guide you through the process of running **Nav@NUS**.
 
 1. Ensure that you have Java `11` or above installed in your computer. If you do not have it installed,
@@ -109,9 +109,10 @@ follow the guide [here](https://docs.oracle.com/en/java/javase/11/install/instal
 2. Download the latest `Nav@NUS.jar` from [here](https://github.com/AY2021S1-CS2113T-F14-3/tp/releases).
 3. Open command prompt on your computer.
 4. Copy the jar file to the folder you want to use as the _home folder_ for Nav@NUS.jar application. In the example
-shown in the figure, the home folder is found in the address path of "C:\Users...\CS2113T Empty folder".<br><br>
-![Windows CLI](UG_Figures/windowsPath.png)<br>
-5. In the command prompt, type `cd` and the directory of the _home folder_. Press <kbd>Enter</kbd> to continue.
+shown in the figure, the home folder is found in the address path of "C:\Users...\CS2113T Empty folder".<br>
+![Windows CLI](UG_Figures/windowsPath.png)
+5. Navigate back to the command prompt, type `cd` and the directory of the _home folder_. Press <kbd>Enter</kbd> to continue.
+![cd Command](UG_Figures/cd_command.png)
 6. Run the .jar file in the command prompt as follows by typing `java -jar Nav@NUS.jar` and press <kbd>Enter</kbd>.
 7. Your screen should show the start screen of Nav@NUS as seen in the figure below.<br><br>
 ![Start Screen](UG_Figures/Nav@NUSstartScreen.png)<br>
@@ -128,13 +129,12 @@ There are 18 features available in Nav@NUS. The following are instructions for u
 >2. Parameters and commands to be entered by the user are not case-sensitive.
 >3. `/to` is case sensitive.
 >4. Location names must be in full for commands that require bus stop location(s).
+>5. Words in [ ] are optional parameters (e.g. [**description**]).
 
->Warning:
->
->You are recommended not to edit the text files manually.
+:exclamation: Warning: You are recommended not to edit the text files manually.
 
 ### 3.1. Bus Features
-This section provides the instruction for all features categorised under the main feature of navigation by bus.
+This section provides instructions for all features categorised under the main feature of navigation by bus.
 
 <!-- @@author wamikamalik -->
 #### 3.1.1. Check for direct bus: ```/route``` - Wamika
@@ -200,7 +200,7 @@ the figure below.<br><br>
 <div style="page-break-after: always;"></div>
 
 <!-- @@author Johnson-Yee -->
-#### 3.1.2. Check bus route: ```/routemap``` - Johnson Yee
+#### 3.1.2. Check bus route: ```/routemap``` - Johnson
 This command displays the full route of the bus that you have specified.
 
 Format: <br><code>/routemap <strong>bus code</strong></code> <br>
@@ -221,14 +221,14 @@ To find indirect bus routes:
 2. The result will display the whole bus route of bus AA2.<br><br>
 <img src="UG_Figures/routemap1.png" alt="RouteMapCommand" width=650><br>
 
-3. With the information that bus AA2 could bring you to bus stops after **Raffles Hall** e.g. **Kent Vale**, you can now check 
+3. With the information that bus AA2 could bring you to bus stops after **Raffles Hall** (e.g. **Kent Vale**), you can now check 
 if there is a direct bus route from these bus stops.<br><br>
 <img src="UG_Figures/routemap3.png" alt="inputRouteMapCommand" width=650><br>
 
 <div style="page-break-after: always;"></div>
 
 **<u>Example 2</u>**<br>
-This command is also useful in showing you the previous bus stops of your intended bus. You could use this information
+This command is also useful for showing you the previous bus stops of your intended bus. You could use this information
 to gauge how crowded the bus would be.<br><br>
 Let us suppose that you are at **Raffles Hall** intending to board AA2. 
 
@@ -241,12 +241,12 @@ These are the steps to follow:
 which is relatively more crowded than other bus stops.<br><br>
 <img src="UG_Figures/routemap1.png" alt="RouteMapCommand" width=650><br>
 
-3. With this information, you could explore other bus routes to your destination.
+3. With this information, you could explore other bus routes to get to your destination.
 <!-- @@author -->
 
 <div style="page-break-after: always;"></div>
 
-#### 3.1.3. Check for buses at a bus stop: ```/bus``` - Wong Heng Chin
+#### 3.1.3. Check for buses at a bus stop: ```/bus``` - Heng Chin
 This command displays all buses available at a specific bus stop.
 
 Format: <br>
@@ -454,10 +454,10 @@ These are the steps to follow:
 <!-- @@author -->
 
 <!-- @@author Johnson-Yee -->
-#### 3.3.3. Delete a favourite command: `/deletefav` - Johnson Yee
+#### 3.3.3. Delete a favourite command: `/deletefav` - Johnson
 This command deletes the command that you have specified from the list of favourite commands.
 >Note: Index keyed in must be within the range of 1 - n, where n is the number of favourite commands. <br>
->
+
 Format: <br>
 <code>/deletefav<strong> index in list</strong></code> <br>
 
@@ -472,7 +472,7 @@ press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><
 <img src="UG_Figures/deleteFavExample.png" alt="output of deletefav" width=600><br>
 <!-- @@author -->
 
-#### 3.3.4. Execute a favourite command: `/execfav` - Wong Heng Chin
+#### 3.3.4. Execute a favourite command: `/execfav` - Heng Chin
 This command executes the specific command in your list of favourite commands.
 
 Format: <br>
@@ -545,9 +545,9 @@ These are the steps to follow:
 <!-- @@author -->
 
 <!-- @@author EthanWong2212 -->
-#### 3.3.7. Storage of favourite commands - Wong Heng Chin
+#### 3.3.7. Store favourite commands - Heng Chin
 >Note: **DO NOT** modify the `FavList.txt` file <br>
->
+
 In order to make Nav@NUS a personalized application for you, all data from your list of favourite commands will be stored on your computer. Thus, everytime Nav@NUS launches, you will be able to maintain and update your list of favourite commands.
 
 The data is stored in the `FavList.txt` file in the `data` folder located in the same location as the Nav@NUS jar file.
@@ -581,8 +581,8 @@ as shown in the figure below.<br><br>
 <!-- @@author -->
 
 <!-- @@author Johnson-Yee -->
-#### 3.4.2. Display most searched bus stop on start-up - Johnson Yee
-This feature displays the most searched bus stop to remind you of what to type in when using 
+#### 3.4.2. Display most searched bus stop on start-up - Johnson
+This feature displays your most commonly searched bus stop to remind you of what to type in when using 
 the navigation functions. 
 
 >The application executes this command on start-up and does not require any explicit command to use this feature.
@@ -597,7 +597,8 @@ the memory jolt of what to key in. <br><br>
 <!-- @@author -->
 
 <!-- @@author Johnson-Yee -->
-#### 3.4.3. Reset frequent search data: ```/reset``` - Johnson Yee
+#### 3.4.3. Reset frequent search data: ```/reset``` - Johnson
+
 This command resets the data set used to display the most frequently searched bus stop on application start-up.
 
 Format:<br> <code>/reset</code>
