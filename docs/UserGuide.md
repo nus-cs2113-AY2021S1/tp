@@ -135,6 +135,8 @@ Expected Outcome:
 
 [Return to the top](#user-guide)
 
+<div style="page-break-after: always;"></div>
+
 ### 4.2 Exit the program: `bye` 
 *(By: John)*
 
@@ -169,6 +171,8 @@ Example of usage: <br/>
  Type `hr addMember /n John Sterling /p 88888888 /e js@gmail.com /r president` into the terminal and press enter as shown in the figure below.  
  
  ![HrAddMemberCommand](userGuidePic/hrAddMemberCommand.PNG)
+ 
+ <div style="page-break-after: always;"></div>
  
  Example Outcome:  
   
@@ -365,6 +369,8 @@ Type `event addEvent /n arduino course /d 2020-12-30 /t 08-00` into the terminal
 
 ![](userGuidePic/eventAdd1.png)
 
+<div style="page-break-after: always;"></div>
+
 The result will be a message that the event has been successfully added as shown in the figure below.
 
 ![EventAddCommand](userGuidePic/eventAddCommand.PNG)
@@ -483,7 +489,6 @@ Expected Outcome:
 
 Allows you to mark an event as done. <br/>
 Format: `event done EVENT_INDEX` <br/>
-
 > :information_source: The EVENT_INDEX refers to the index number of the event that is to be marked as completed.<br/>
 > :information_source: The EVENT_INDEX must be an integer greater than 0. <br/>
 
@@ -526,6 +531,8 @@ Expected Outcome:
 
 The output when you search by name is as follows: <br/>
 ![EventSearchByName](userGuidePic/eventSearchBydate.PNG) 
+
+<div style="page-break-after: always;"></div>
 
 The output when you search by date is as follows:  <br/>
 ![EventSearchByDate](userGuidePic/eventSearch1.PNG)
@@ -584,6 +591,8 @@ Shorthand Format: <br/>
  Example Scenario:  
  Let's say you have added the attendance of the member `John Sterling` to the event `arduino course` in the above section. 
  To delete this attendance, type `event delAttendance /n arduino course /m john sterling` into the terminal and press enter. 
+ 
+ <div style="page-break-after: always;"></div>
  
  Expected Outcome:   
  
@@ -712,6 +721,8 @@ In our example, the CSV file we are importing is in the same directory as CCA Ma
 ![Location of File](userGuidePic/import2.png)  
 You can use the command `import sample.csv /c hr /name Member /phone Contact /email Email /role Role` to import the document.  
 
+<div style="page-break-after: always;"></div>
+
 The expected outcome is as follows:  
 
 ![Outcome](userGuidePic/import3.png)  
@@ -729,8 +740,6 @@ You can download the sample [here](https://raw.githubusercontent.com/AY2021S1-CS
 CCA Manager saves all your data after every command. There is no need to save manually.
 
 [Return to the top](#user-guide)
-
-<div style="page-break-after: always;"></div>
 
 ## 5. FAQ
 
