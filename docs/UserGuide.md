@@ -405,7 +405,9 @@ Let's say you want to remove the event that you have entered above. i.e. `event 
 To delete, type `event delEvent 1` into the terminal and press enter as shown in the figure below.
 
 
-![](userGuidePic/eventdel1.PNG) 
+![](userGuidePic/eventdel1.PNG)
+
+<div style="page-break-after: always;"></div> 
 
 The result will be a message that the event has been removed successfully as shown in the figure below.
  
@@ -782,6 +784,9 @@ delEvent | `event delEvent EVENT_INDEX`  | `event delEvent 1`
 delEvent all | `event delEvent all` | -
 delLog | `finance delLog ITEM_INDEX` | `finance delLog 3`
 event done   | `event done EVENT_INDEX`| `event done 2`
+
+<div style="page-break-after: always;"></div>
+
 event search | `event search /s <KEYWORD>` | `event search /s arduino` 
 event countdown | `event countdown` | -
 help | `help` | -
