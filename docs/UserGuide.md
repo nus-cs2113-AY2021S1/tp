@@ -113,7 +113,7 @@ shown in the figure, the home folder is found in the address path of "C:\Users..
 <img src="UG_Figures/cd_command.png" alt="cd_Command" width=650><br>
 6. Run the .jar file in the command prompt as follows by typing `java -jar Nav@NUS.jar` and press <kbd>Enter</kbd>.
 7. Your screen should show the start screen of Nav@NUS as seen in the figure below.<br><br>
-<img src="UG_Figures/Nav@NUSstartScreen.png" alt="Start Screen" width=6S50><br>
+<img src="UG_Figures/Nav@NUSstartScreen.png" alt="Start Screen" width=650><br>
 8. Try typing `/help` and press <kbd>Enter</kbd>!
 <!-- @@author -->
 
