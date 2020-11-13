@@ -1,0 +1,56 @@
+@startuml
+package locationlist {
+    Class LocationList {
+        +checkLocation(String)
+        +findLocation(String)
+        +getLocationList()
+    }
+    Class BusStopList {
+        +checkExistence(String)
+        +getBusStopList()
+    }
+}
+
+package location {
+    enum LocationType {
+        BUILDING,
+        BUSSTOP,
+        HOSTEL,
+        LT,
+        OUT_OF_NUS
+    }
+    LocationList --> "0..1"Location:locationList
+    Class Location {
+        #name:String
+        #type:LocationType
+        +getName()
+        -printType()
+        +fileString()
+        +toString()
+    }
+    BusStopList --> "0..1"BusStop:busStopList
+    Class BusStop {
+        -name:String
+        -buses:String[]
+        +getName()
+        +fileString()
+        +toString()
+    }
+    Location <|-- Building
+    Class Building {
+        -nearestBusStops:String[]
+        -printNearestBusStops()
+    }
+    Location <|-- Hostel
+    Class Hostel {
+        -nearestBusStops:String[]
+        -printNearestBusStops()
+    }
+    Location <|-- LectureTheatre
+    Class LectureTheatre {
+        -nearestBuilding:String
+    }
+    Location <|-- OutOfNUS
+}
+
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+
+package parser{
+    Class parser{
+    +parse()
+    +parseLocation()
+
+}
+
+package command{
+    Abstract Class command
+    Class XYZCommand
+    note bottom: e.g AddCommand, DeleteCommand, etc.
+}
+
+package eventlist{}
+
+parser ..> XYZCommand : creates >
+parser --> eventlist
+XYZCommand ..> eventlist
+
+XYZCommand -u|> command
+
+@enduml

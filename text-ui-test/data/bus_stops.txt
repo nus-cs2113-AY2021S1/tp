@@ -1,0 +1,7 @@
+EA:B2,C,BTC2
+Raffles Hall:B2,C
+Information Technology:A2,B1,B2,D1
+Opp YIH:A2,B1,B2,D1
+NUS Museum:A2,BTC1,BTC2,C,D1,D2
+YIH:A1,B1,BTC1,D1
+CLB:A1,B1,BTC1,D1
