@@ -1,5 +1,17 @@
 # User Guide
-CEGMods is a desktop to manage NUS CEG's courses via a Command Line Interface (CLI). If you are an NUS CEG student and looking for an app to manage your course and project schedule, CEGMods can help you get all your tasks down in an organized manner.
+
+
+## Introduction
+CEGMods is a software working on desktop, aiming to help NUS CEG (Computer Engineering) students better manage their courses via a Command Line Interface, which is a text-based interface used for entering commands. If you are an NUS CEG student and looking for an app to manage your course and project schedule, CEGMods can help you get all your tasks down in an organized manner.
+
+## How to use this User Guide
+This User Guide aims to help you get familiarised with the commands used in this Command Line Interface (CLI) application. You may also find a [summary of commands](#4-command-summary-1) used in the application at the end of the User Guide.
+
+For your reference:
+* Words in bold are **keywords**;
+* Words in a grey bracket `are code snippets`;
+* Words in blue are [hyperlinks to the respective sections]().
+
 ## Content page
 ### [1. Quick Start](#1-quick-start-1)
 ### [2. Features](#2-features-1)
@@ -33,7 +45,7 @@ CEGMods is a desktop to manage NUS CEG's courses via a Command Line Interface (C
 
 ## 1. Quick Start
 1. Ensure you have Java 11 installed in your Computer.
-2. Download the jar file from (link).
+2. Download the jar file from [here](https://github.com/AY2021S1-CS2113T-F11-2/tp/releases/tag/v2.1).
 3. Copy the file to the folder you want to use as the home folder for your CEGmods
 4. Ensure you have internet connection.
 5. Open a command window. Run the java -version command to ensure you are using Java 11. 
@@ -59,11 +71,10 @@ Currently you don't have any event!
 
 6. Type `help` in the command box as prompted and press Enter to execute it. You will see the  commands available.
 
-6. Refer to the Features below for details of each command.
+6. Refer to the feature list below for details of each command.
 
 ## 2. Features
-<!-- @@author JinYixuan-Au -->
-### 2.1 Adding a Module: `add mod`
+### 2.1 Adding a Module: `add mod` (Zhang Shenjia)
 You can add a module to the module list and timetable by typing in the module code and its time slots of lectures and tutorials (the time slot of lab is optional).
 
 **Step 1:** Type in the module code of the module you want to add following the command format. 
@@ -83,7 +94,7 @@ The format of the time slots is: Day HH:mm-HH:mm (Eg. Thur 12:00-13:00)
 Lecture slot:
 ```
 
-**Step 2:** Type in the lecture slot and tutorial slot of this module, and indicate whether there is lab for this module as prompted.
+**Step 2:** Key in the day and time of the lecture(s), tutorial and lab (if applicable), according to the format given.
 
 Format: `Day HH:mm-HH:mm`
 Example of usage: `Tue 12:00-14:00`
@@ -143,8 +154,8 @@ Please type the duration of the event in hours:(e.g. 1, 0.5)
 
 ```
 
-### 2.2 Deleting a Module: `delete mod`
-This will delete a module from the module list.
+### 2.2 Deleting a Module: `delete mod` (Zhang Shenjia)
+You can delete a module from the module list.
 
 Format: `delete mod/<MODULE_CODE>`
 Example of usage: `delete mod/CG1111`
@@ -154,8 +165,8 @@ Expected outcome:
 Noted. I've removed this module.
 ```
 
-### 2.3 Checking modules: `check modules`
-This will check all the modules existing in the module list.
+### 2.3 Checking modules: `check modules` (Zhang Shenjia)
+You can check all the modules existing in the module list.
 
 Format: `check modules`
 Expected outcome:
@@ -176,8 +187,8 @@ _______________________________________________________
 _______________________________________________________
 ```
 
-### 2.4 Viewing Timetable: `timetable`
-This will view the whole timetable.
+### 2.4 Viewing Timetable: `timetable` (Zhong Ningmou)
+You can view the whole timetable.
 
 Format: 
 1.`today timetable`: viewing today's timetable
@@ -226,8 +237,8 @@ _______________________________________________________
 
 ```
 
-### 2.5 Viewing Task List: `task list`
-This will view the to-do list.
+### 2.5 Viewing Task List: `task list` (Jin Yixuan)
+You can view the to-do list.
 
 Format: `task list`
 
@@ -244,9 +255,9 @@ ____________________________________________________________
 	You  have 3 undone task in your list. (3/4)
 ____________________________________________________________
 ```
-### 2.6 Adding a Task
+### 2.6 Adding a Task (Yu Geng)
 #### 2.6.1 Adding a Todo Task: `todo`
-This will add a task todo to the task list.
+You can add a task todo to the task list.
 
 Format: `todo <DESCRIPTION> `
 Example of usage: `todo read book`
@@ -260,7 +271,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 #### 2.6.2 Adding a Deadline: `deadline`
-This will add a deadline to the task list.
+You can add a deadline to the task list.
 Format: `deadline <DESCRIPTION> /by <YYYY-MM-DD HH:mm>`
 Example of usage: `deadline lab report /by 2020-11-26 00:00`
 
@@ -274,7 +285,7 @@ deadline CS2113T project submission /by 2020-11-09 23:59
     ____________________________________________________________
 ```
 #### 2.6.3 Adding an Event: `event`
-This will add an event to the task list.
+You can add an event to the task list.
 Format: `event <DESCRIPTION> /at <YYYY-MM-DD HH:mm>`
 Example of usage: 
 `event team meeting /at 2020-09-10 10:00`
@@ -289,8 +300,8 @@ ____________________________________________________________
      Now you have 5 tasks in the list.
     ____________________________________________________________
 ```
-### 2.7 Marking a Task as Done: `done`
-This will mark a task as done.
+### 2.7 Marking a Task as Done: `done` (Yu Geng)
+You can mark a task as done.
 
 Format: `done task/<TASK_INDEX>`
 Example of usage: `done task/2`
@@ -303,8 +314,8 @@ _______________________________________________________
 _______________________________________________________
 
 ```
-### 2.8 Deleting a Task: `delete`
-This will delete a task from task list.
+### 2.8 Deleting a Task: `delete` (Yu Geng)
+You can delete a task from task list.
 
 Format: `delete task/<TASK_INDEX>`
 Example of usage: `delete task/1`
@@ -317,8 +328,8 @@ ____________________________________________________________
     Now you have 1 task in the list.
     ____________________________________________________________
 ```
-### 2.9 Finding a Task with Keyword `find`
-This will find a task from task list with the keyword.
+### 2.9 Finding a Task with Keyword `find` (Yu Geng)
+You can find a task from task list with the keyword.
 
 Format: `find <KEYWORD>`
 Example of usage: `find book`
@@ -331,8 +342,8 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 <!-- @@author -->
-### 2.10 Adding a Project Task: `project task`
-This will add a subtask of a specific project to the task list.
+### 2.10 Adding a Project Task: `project task` (Jin Yixuan)
+You can add a subtask of a specific project to the task list.
 
 Format: `mod/<MODULE_CODE> ptask/<DESCRIPTION> by/<DEADLINE>`
 Example of usage: `mod/CG2271 ptask/write report by/Fri 23:59`
@@ -355,8 +366,8 @@ _______________________________________________________
     ____________________________________________________________
 
 ```
-### 2.11 Viewing project task list: `project task list`
-This will view the project task list.
+### 2.11 Viewing project task list: `project task list` (Jin Yixuan)
+You can view the project task list.
 
 Format: `mod/<MODULE_CODE> project task list`
 Example of usage: `mod/CG2271 project task list`
@@ -367,8 +378,8 @@ CG2271
 
 1. [P][F]write report (by:Fri 23:59) material: NA
 ```
-### 2.12 Viewing project progress: `project progress`
-This will view the progress of a specific project.
+### 2.12 Viewing project progress: `project progress` (Jin Yixuan)
+You can view the progress of a specific project.
 
 Format: `mod/<MODULE_CODE> progress`
 Example of usage: `mod/CG2271 progress`
@@ -378,8 +389,8 @@ Expected outcome:
 CG2271
 You have done 0/1 (0.00%).
 ```
-### 2.13 Viewing to do list: `print todo list`
-This will view the list of all the todo tasks
+### 2.13 Viewing to do list: `print todo list` (Zhang Danrui)
+You can view the list of all the todo tasks
 Format: `print todo list`
 Expected outcome:
 ```
@@ -392,8 +403,8 @@ print todo list
     ____________________________________________________________
 
 ```
-### 2.14 Viewing event list: `print event list`
-This will view the list of all the events
+### 2.14 Viewing event list: `print event list` (Zhang Danrui)
+You can view the list of all the events
 Format:`print event list`
 Expected outcome:
 ```
@@ -405,8 +416,8 @@ print event list
     ____________________________________________________________
 
 ```
-### 2.15 Viewing the deadline list: `print deadline list`
-This will view the list of all the deadlines
+### 2.15 Viewing the deadline list: `print deadline list` (Zhang Danrui)
+You can view the list of all the deadlines
 Format:`print deadline list`
 
 Expected outcome:
@@ -420,8 +431,8 @@ print deadline list
 
 
 ```
-### 2.16 Viewing the undone task list: `print undone task list`
-This will view the list of all the undone tasks
+### 2.16 Viewing the undone task list: `print undone task list` (Zhang Danrui)
+You can view the list of all the undone tasks
 Format: `print undone task list`
 
 Expected outcome:
@@ -437,8 +448,8 @@ print undone task list
     ____________________________________________________________
 
 ```
-### 2.17 Clearing past deadlines: `clear deadlines`
-This will clear all the past dealines
+### 2.17 Clearing past deadlines: `clear deadlines` (Zhang Danrui)
+You can clear all the past dealines
 Format:`clear deadlines`
 
 Expected outcome:
@@ -452,8 +463,8 @@ You have removed all the past deadlines!
     ____________________________________________________________
 
 ```
-### 2.18 Delete done tasks: `delete done task`
-This will delete all the tasks that have been marked as done
+### 2.18 Delete done tasks: `delete done task` (Zhang Danrui)
+You can delete all the tasks that have been marked as done
 
 Format:`delete done task`
 
@@ -465,8 +476,8 @@ You have deleted all the done tasks from task list.
     ____________________________________________________________
 
 ```
-### 2.19 Viewing today's deadline: `today deadline`
-This will print out today's deadline that is not done and the remaining time left to complete.
+### 2.19 Viewing today's deadline: `today deadline` (Zhong Ningmou)
+You can print out today's deadline that is not done and the remaining time left to complete.
 
 Format: `today deadline`
 
@@ -477,8 +488,8 @@ _______________________________________________________
 _______________________________________________________
 [D][F]Homework (by:2020-11-09 23:59) [Remaining time: 0 days 2 hours 29 minutes]
 ```
-### 2.20 Viewing this week's deadline `this week deadline`
-This will print out this week's deadline that is not done and the remaining time left to complete.
+### 2.20 Viewing this week's deadline `this week deadline` (Zhong Ningmou)
+You can print out this week's deadline that is not done and the remaining time left to complete.
 
 Format: `this week deadline`
 
@@ -509,8 +520,8 @@ _______________________________________________________
 _______________________________________________________
 ```
 
-### 2.21 Exiting the Program: `exit`
-This will exit the program.
+### 2.21 Exiting the Program: `exit` (Zhong Ningmou)
+You can exit the program.
 
 Format: `exit`
 
@@ -520,8 +531,8 @@ _______________________________________________________
 Bye! Have a nice day with CEG!
 _______________________________________________________
 ```
-### 2.22 Viewing Help: `help`
-This will view help message.
+### 2.22 Viewing Help: `help` (Zhang Shenjia)
+You can view help message.
 
 Format: `help`
 

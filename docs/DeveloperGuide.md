@@ -152,10 +152,11 @@ The user enters the command: `event <DESCRIPTION> /at <YYYY-MM-DD HH:mm>` to add
 The user enters the command: `mod/<MODULE_CODE> ptask/<DESCRIPTION> by/<TIME_DESCRIPTION>` to add a project subtask in the tasklist.
     
 The `Parser` class will take the user command and pass it to the `Command` class to enable the `addToDo`/`addDeadline`/`addEvent`/`addProjectTask`/ method, and then call both `addTask` method in `TaskList` class and `appendToFile` method in `Storage` class to update the task list.
-    
+
 ### Feature: Delete a task
 The user enters the command: `delete task/<TASK_INDEX>` to delete a task from the `tasklist`. The `Parser` class will take the user command and pass it to the `Command` class to enable the `deleteTask` method, and then call both the `deleteTask` method in `TaskList` class and `deleteTaskFromFile` method in `Storage` class to update the task list.
     
+>>>>>>> 07e49575c71a4dca7fd8f90387972a09b5b874cc
 ### Feature: Print task list
 The user enters the command: `task list` to view the task list. The `Parser` class will take the user command and pass it to the `TaskList` class to enable the `printList` method.
 
@@ -273,3 +274,7 @@ Types of tests
 -
 This project has 1 type of tests: 
 1. Unit testing：targeting the lowest level methods/classes.
+<<<<<<< HEAD
+
+=======
+>>>>>>> 07e49575c71a4dca7fd8f90387972a09b5b874cc
