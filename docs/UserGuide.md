@@ -143,7 +143,7 @@ Type the command in the command box and press Enter to execute.
 Refer to the [Features](#3-features) section for details of each command. 
 
 Some examples you can try: 
-- `add personal; run; 12/10/20; 4pm`: Adds a personal event to Scheduler-/-;. 
+- `add personal; run; 12/10/20; 4pm`: Adds a personal event to Scheduler-\-;. 
 - `list personal`: Lists all personal events.
 - `bye`: Exits the program. 
     
@@ -333,7 +333,7 @@ Zoom events can contain:
 - Description, link, date and time
 
 If you would like to make a Personal event, the format for the command is as follows: <br>
-`add Personal; EVENT_DESCRIPTION; [EVENT_DATE]; [EVENT_TIMW]`
+`add Personal; EVENT_DESCRIPTION; [EVENT_DATE]; [EVENT_TIME]`
 
 Personal events can contain: 
 - Description 
@@ -613,7 +613,7 @@ You have successfully updated the deadline for this event!
 ### 3.6 Repeat on daily/weekly/monthly basis: `repeat` (Colin Ng)
 Do you have any events that repeat frequently? For example, a dental appointment every month, or perhaps a math lesson every week? The repeat command in the program allows you to easily schedule such events into your event planner. Just select the event that you want to repeat, type in how often this event repeats and Scheduler-\-; will record down the event for you.  
 
-Format: `repeat EVENT_TYPE; EVENT_INDEX; [UNIT]; [COUNT]` 
+General Format: `repeat EVENT_TYPE; EVENT_INDEX; [UNIT]; [COUNT]` 
 
 - `EVENT_TYPE` specify what kind of event you would like to repeat. The accepted arguments for this are “personal”, “timetable” and “zoom” 
 - `EVENT_INDEX` is a number. It contains the index of the event that is to be repeated 
@@ -1056,7 +1056,7 @@ The following few scenarios present several examples of how the delete command c
 
 ##### Scenario 1: Deleting a non-repeat event
 
-Let's say you had a doctor's appointment (stored as a Personal event `doctor's appointment`) that you cancelled, and now wish to remove the event from Scheduler-/-;. In order to find the index of the event, you may type in the command `list personal` as shown below:
+Let's say you had a doctor's appointment (stored as a Personal event `doctor's appointment`) that you cancelled, and now wish to remove the event from Scheduler-\-;. In order to find the index of the event, you may type in the command `list personal` as shown below:
 
 ```
 list personal
@@ -1070,7 +1070,8 @@ _________________________________
 
 You may also type in `list all` to list all personal, timetable and zoom events.
 
-As seen from the list, the index of the Personal event `doctor's appointment` is 3. To delete it, type in the command `delete personal; 3`. This will delete the event from Scheduler-/-;, as shown in the following output:
+As seen from the list, the index of the Personal event `doctor's appointment` is 3. To delete it, type in the command `delete personal; 3`. This will delete the event from Scheduler-\
+-;, as shown in the following output:
 
 ```
 delete personal; 3
@@ -1121,7 +1122,7 @@ Need to take last minutes meeting notes? Need to write some notes but don’t kn
 Format: `note EVENT_TYPE; EVENT_INDEX`
 
 * The `EVENT_TYPE` have to be either personal, zoom or timetable.
-* Scheduler-/-; will prompt you to type your notes.
+* Scheduler-\-; will prompt you to type your notes.
 
 > **Warning!**
 >
@@ -1153,7 +1154,7 @@ _________________________________
 ```
 In this case, the index number of the event `dental appointment` is 1. 
 
-Next, type in the command `note personal; 1`. Scheduler-/-; will prompt you to key in your notes as shown in the code snippet below.
+Next, type in the command `note personal; 1`. Scheduler-\-; will prompt you to key in your notes as shown in the code snippet below.
 
 ```
 Please type in your notes. To stop note taking, ensure that you are in a new line and type 'noteend' and press enter 
@@ -1188,7 +1189,7 @@ Typed your notes but want to view them? Here's how you view them!
 Format: `view EVENT_TYPE; EVENT_INDEX`
 
 * The `EVENT_TYPE` have to be either personal, zoom or timetable.
-* Scheduler-/-; will prompt you to type your notes.
+* Scheduler-\-; will prompt you to type your notes.
 
 > **Warning!**
 >
@@ -1235,7 +1236,7 @@ _________________________________
 <div style="page-break-after: always;"></div>
 
 ### 3.14 Reminder: `reminder` (Qing Ning)
-Fear of forgetting what you have today? Scheduler-/-; is here to show you your events and task to be completed for the day.  Cheers to no more missed deadlines and meetings! 
+Fear of forgetting what you have today? Scheduler-\-; is here to show you your events and task to be completed for the day.  Cheers to no more missed deadlines and meetings! 
 
 Format: `reminder`
 
@@ -1290,7 +1291,7 @@ To do so, you should type in:
  ```
 extract CG2271 Quiz 2;
  ```
-Scheduler-/-; will prompt you to copy and paste or enter the text you want to extract from.
+Scheduler-\-; will prompt you to copy and paste or enter the text you want to extract from.
 ````
 _________________________________
 Copy and paste or enter the body of the text you want to extract from!
@@ -1304,7 +1305,7 @@ Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020
     either 3pm or 3.30pm. 
 The link is at https://nus-sg.zoom.us/j/2226375MG.
 ````
-Then, tell Scheduler-/-; you are done by typing `extractend` on a new line.
+Then, tell Scheduler-\-; you are done by typing `extractend` on a new line.
 ````
 extractend
 ````
