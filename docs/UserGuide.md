@@ -25,22 +25,22 @@ This gives the application both simplicity and speed, setting it apart from othe
 * [Features](#features)
     * [View available commands](#view-available-commands)
     * [Add an event](#add-an-event)
-    * [Edit an event](#edit-an-event)
-    * [Sort events](#sort-events)
+    * [Edit an event](#edit-an-event---xu-che)
+    * [Sort events](#sort-events---xu-che)
     * [Find a location](#find-a-location)
     * [List all locations](#list-all-locations)
     * [List all events](#list-all-events)
     * [Clear events](#clear-events)
     * [Mark event as done](#mark-event-as-done)
     * [Reminder of deadlines](#reminder-of-deadlines)
-    * [Repeat of events](#repeat-of-events)
-    * [Delete an event](#delete-an-event)
-    * [Find a keyword](#find-a-keyword)
-    * [Find a date](#find-a-date)
-    * [Find locations exist in a certain group](#find-locations-exist-in-a-certain-group)
-    * [Keep track on the study time](#keep-track-on-the-study-time)
-    * [Make the app know you](#make-the-app-know-you)
-    * [Exit the app](#exit-the-app)
+    * [Repeat of events](#repeat-of-events---zhuang-mengjin)
+    * [Delete an event](#delete-an-event---zhuang-mengjin)
+    * [Find a keyword](#find-a-keyword---zhuang-mengjin)
+    * [Find a date](#find-a-date---zhuang-mengjin)
+    * [Find locations exist in a certain group](#find-locations-exist-in-a-certain-group---zhuang-mengjin)
+    * [Keep track on the study time](#keep-track-on-the-study-time---zhuang-mengjin)
+    * [Make the app know you](#make-the-app-know-you---zhuang-mengjin)
+    * [Exit the app](#exit-the-app---zhuang-mengjin)
 * [FAQs](#FAQ)
 * [Command Summary](#command-summary)
 
@@ -267,7 +267,8 @@ Format: `reminder`
 Example Output:  
 ![reminder](diagrams/reminder.png)
 
-### Repeat of events
+<!-- @@author Lee-Juntong -->
+### Repeat of events - Zhuang Mengjin
 Repeat the selected event for several weeks, or repeat all classes this week for several weeks.
 
 Format: `repeat INDEX NUMBER_OF_WEEKS` OR `repeat all NUMBER_OF_WEEKS`  
@@ -278,7 +279,7 @@ Example Output:<br>
 ![Repeat1](diagrams/repeat1.png)  
 ![Repeat2](diagrams/repeat2.png)
 
-### Delete an event
+### Delete an event - Zhuang Mengjin
 Delete the selected event from the list.
 
 Format: `delete INDEX`
@@ -288,7 +289,7 @@ Example: `delete 1`
 Example Output:<br>
 ![Delete](diagrams/delete.png)
 
-### Find a keyword
+### Find a keyword - Zhuang Mengjin
 Find the events with given keyword. Note that it's case-sensitive.
 
 Format: `find KEYWORD`  
@@ -298,7 +299,7 @@ Example: `find CS`
 Example Output:<br>
 ![Find](diagrams/find.png)  
 
-### Find a date
+### Find a date - Zhuang Mengjin
 Find the events happen on the given date.  
 
 Format: `date yyyy-MM-dd`  
@@ -308,7 +309,7 @@ Example `date 2020-11-10`
 Example Output:<br>
 ![findDate](diagrams/findDate.png)
 
-### Find locations exist in a certain group
+### Find locations exist in a certain group - Zhuang Mengjin
 Find the locations in NUS that belongs to certain faculty or the hostels.
 
 Format: `FOS` OR `FOE` OR `SOC` OR `BIZ` OR `HOSTEL` OR `SDE` OR `FASS`  
@@ -316,7 +317,7 @@ Format: `FOS` OR `FOE` OR `SOC` OR `BIZ` OR `HOSTEL` OR `SDE` OR `FASS`
 Example Output:<br>
 ![locationsInNUS](diagrams/locationsInNUS.png)  
 
-### Keep track on the study time
+### Keep track on the study time - Zhuang Mengjin
 Find the amount of time you spent on study on a certain date.
 
 Format: `studyTime DATE`  
@@ -324,7 +325,7 @@ Format: `studyTime DATE`
 Example Output:<br>
 ![studyTime](diagrams/studyTime.png)
 
-### Make the app know you
+### Make the app know you - Zhuang Mengjin
 Tell the app your name, and whether you are a professor or a student. Whether you indicate yourself as a professor,
  or a student, will make a difference in another function, which will come in a later version.
 
@@ -334,13 +335,14 @@ Example Output:<br>
 ![userInfo1](diagrams/userInfo1.png)<br>
 ![userInfo2](diagrams/userInfo2.png)
 
-### Exit the app
+### Exit the app - Zhuang Mengjin
 Exit.
 
 Format: `bye`
 
 Example Output:<br>
 ![Exit](diagrams/exit.png)
+<!-- @@author -->
 
 ## FAQ
 
