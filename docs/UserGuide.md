@@ -378,6 +378,8 @@ _______________________________________________________
     ____________________________________________________________
 
 ```
+<div style="page-break-after: always;"></div>
+
 ### 2.11 Viewing project task list: `project task list` (Jin Yixuan)
 You can view the project task list.
 
@@ -390,7 +392,6 @@ CG2271
 
 1. [P][F]write report (by:Fri 23:59) material: NA
 ```
-<div style="page-break-after: always;"></div>
 
 ### 2.12 Viewing project progress: `project progress` (Jin Yixuan)
 You can view the progress of a specific project.
@@ -417,6 +418,8 @@ print todo list
     ____________________________________________________________
 
 ```
+<div style="page-break-after: always;"></div>
+
 ### 2.14 Viewing event list: `print event list` (Zhang Danrui)
 You can view the list of all the events
 Format:`print event list`
