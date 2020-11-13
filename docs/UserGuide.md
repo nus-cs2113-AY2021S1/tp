@@ -9,7 +9,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;[Basic CLI commands](#basic-cli-commands) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Viewing help: `help`](#viewing-help-help) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Changing line divider in Fluffle: `divider`](#changing-line-divider-in-fluffle-divider) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Clearing certain object in database: `clear`](#clearing-certain-object-in-the-database-clear) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Clearing certain object in the database: `clear`](#clearing-a-certain-object-in-the-database-clear) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Closing the program: `exit`](#closing-the-program-exit) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Words list commands](#words-list-commands) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Adding a noun: `noun`](#adding-a-noun-noun) <br>
@@ -26,7 +26,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Saving bunny ideas: `save bunny`](#saving-bunny-ideas-save-bunny) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Deleting a bunny idea: `delete bunny`](#deleting-a-bunny-idea-delete-bunny) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Generating a random bunny idea: `random bunny`](#generating-a-random-bunny-idea-random-bunny) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Resetting the entire list of Bunny ideas: `reset bunny`](#resetting-the-entire-list-of-bunny-ideas) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Resetting the entire list of Bunny ideas: `reset bunny`](#resetting-the-entire-list-of-bunny-ideas-reset-bunny) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Names list commands](#names-list-commands) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Generating names from name database: `name`](#generating-names-from-name-database-name) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Listing names from name database: `list name`](#listing-names-from-name-database-list-name) <br>
@@ -38,8 +38,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Choosing the “type” of your writing: `type`](#choosing-the-type-of-your-writing-type) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Choosing the “topic” of your writing: `topic`](#choosing-the-topic-of-your-writing-topic) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Tracking your past writings: `stats`](#tracking-your-past-writings-stats) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Getting reminders for your writings scheduled for a specific day: `remind`](#getting-reminders-for-your-writings-scheduled-for-a-specific-day-remind) <br>
-[FAQ](#FAQ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Getting reminders for your writings scheduled for a specific day: `remind`](#getting-reminders-for-your-writings-scheduled-for-a-specific-date-remind) <br>
+[FAQ](#faq) <br>
 [Glossary](#glossary) <br>
 [Command summary](#command-summary) <br>
 
@@ -93,6 +93,8 @@ What is your name?
 [Jump to top](#fluffle-user-guide)
 
 ## Features 
+
+(Quang Hung)
 
 This section includes five subsections which will guide you through all the commands in the five main components of Fluffle: 
 [`Basic CLI`](#basic-cli-commands), [`Words list`](#words-list-commands), [`Bunnies list`](#bunnies-list-commands), [`Names list`](#names-list-commands) and [`Writings list`](#writings-list-commands).
@@ -273,16 +275,11 @@ Generates three random words from the Fluffle word bank. You may use this functi
 Format: `three words`
 
 #### Filtering words in word list: `filter words`
+
+(Quang Hung)
+
 Suppose you need to list out all the nouns in your word bank, or you want to find out the words starting with the 
 strings “st” and “cg”. In such cases, you can use the `filter words` command to achieve your goal.
-
-#### Clear all of words stored in the database: `reset words`
-Remove all of your added words automatically
-```
-reset words
---------------------------------------------------------------
---------------------------------------------------------------
-```
 
 **Note**: You must key in the parameters in order for the application to work properly.
 
@@ -301,50 +298,69 @@ you want to print out all the words in the list, or you only want to print out t
 
 **Step-by-step example usages and example outputs:**
 * Suppose you have a word list of ten words:
+
 ```
-house: a building for people to live in, usually for one family
-grass: a common wild plant with narrow green leaves and stems 
-eat: to put food in your mouth, bite it and swallow it.
-computer: an electronic machine that can store, organize and find information
-class: a group of students who are taught together
-study: the activity of learning or gaining knowledge
-beautiful: having beauty; giving pleasure to the senses or to the mind
-nice: pleasant or attractive
-meaningful : important and serious
+  1. house: a building for people to live in, usually for one family
+  2. grass: a common wild plant with narrow green leaves and stems 
+  3. eat: to put food in your mouth, bite it and swallow it.
+  4. computer: an electronic machine that can store, organize and find information
+  5. class: a group of students who are taught together
+  6. study: the activity of learning or gaining knowledge
+  7. beautiful: having beauty; giving pleasure to the senses or to the mind
+  8. nice: pleasant or attractive
+  9. meaningful : important and serious
+  10. attack: to use violence to try to hurt or kill somebody
 ```
+
 * Now you want to get all nouns and adjectives in your word list. You use the command `filter words by\type -noun -adjective`
+
 ```
+There are cases that
+- You didn't specify the print limit
+- Your limit is not an integer
+
+The program will print out all the words in your filter list.
+
 Printing all 7 word(s) from your filter list:
-- house: a building for people to live in, usually for one family
-- grass: a common wild plant with narrow green leaves and stems
-- computer: an electronic machine that can store, organize and find information
-- class: a group of students who are taught together
-- beautiful: having beauty; giving pleasure to the senses or to the mind
-- nice: pleasant or attractive
-- meaningful : important and serious
+  1. house: a building for people to live in, usually for one family
+  2. grass: a common wild plant with narrow green leaves and stems
+  3. computer: an electronic machine that can store, organize and find information
+  4. class: a group of students who are taught together
+  5. beautiful: having beauty; giving pleasure to the senses or to the mind
+  6. nice: pleasant or attractive
+  7. meaningful : important and serious
 ```
+
 * Next, you want to get 3 words starting with “h”, “gr”, “co”, “ni”. You can use the command `filter words -continue limit\3 by\start -h -gr -co -ni`. 
 After filtering, you get a total of 4 words, but your limit is 3. The program will ask again whether you would like to print all 4 words:
+
 ```
 Your filter list has more than 3 word(s)
 Do you want to print all the words in the filter list? y/n
 ```
+
 * You want to print all the words, so you key in `y` or `yes`. The expected output is:
+
 ```
 Printing all 4 word(s) from your filter list:
-- house: a building for people to live in, usually for one family
-- grass: a common wild plant with narrow green leaves and stems
-- computer: an electronic machine that can store, organize and find information
-- nice: pleasant or attractive
+  1. house: a building for people to live in, usually for one family
+  2. grass: a common wild plant with narrow green leaves and stems
+  3. computer: an electronic machine that can store, organize and find information
+  4. nice: pleasant or attractive
 ```
+
 * Now you want to get all the words that include the letter “a”. You use the command `filter words -continue limit\1 by\include -a`. 
 Since there is only one word, the program will just print it out:
+
 ```
 Printing all 1 word(s) from your filter list:
-- grass: a common wild plant with narrow green leaves and stems
+  1. grass: a common wild plant with narrow green leaves and stems
 ```
 
 #### Listing your filter list: `list filter words`
+
+(Quang Hung)
+
 Suppose you want to refer back to the words that have just been filtered recently. 
 In this scenario, you can use the command `list filter words` to print out the filtered list.
 
@@ -359,16 +375,28 @@ Format: `list filter words [limit\PRINT_LIMIT]`
 **Example of usage and example outputs:**
 * In this example, suppose you have a filtered list of 5 words. If you want to print the first three words from your 
 filtered list, you can use the command `list filter words limit\3`. Since the list has 5 words, the program will ask for your confirmation.
+
+
 ```
 Your filter list has more than 3 words
 Do you want to print all the words in the filter list? y/n
 ```
+
 * Now that you don’t want to see the whole list, your input is `n` or `no`.
+
 ```
 Printing 3 out of 5 word(s) from your filter list:
-- house: a building for people to live in, usually for one family
-- grass: a common wild plant with narrow green leaves and stems 
-- computer: an electronic machine that can store, organize and find information
+  1. house: a building for people to live in, usually for one family
+  2. grass: a common wild plant with narrow green leaves and stems 
+  3. computer: an electronic machine that can store, organize and find information
+```
+
+#### Clear all of words stored in the database: `reset words`
+Remove all of your added words automatically
+```
+reset words
+--------------------------------------------------------------
+--------------------------------------------------------------
 ```
 
 [Jump to top](#fluffle-user-guide)
@@ -707,16 +735,10 @@ You want to continue on this writing on 01/12/2020
 ```
 
 #### Getting reminders for your writings scheduled for a specific date: `remind`
-Let’s say you are an absent-minded person, and you would like the program to remind you which writings you are about to continue on a specific day. In this scenario, you can use the `remind` command.
 
-#### Reset the entire writing list: `reset writings`
-Clear the whole writings stored in the database
-```
-reset writings
---------------------------------------------------------------
-We have clear all data in the writings list
---------------------------------------------------------------
-```
+(Quang Hung)
+
+Let’s say you are an absent-minded person, and you would like the program to remind you which writings you are about to continue on a specific day. In this scenario, you can use the `remind` command.
 
 **Format**: `remind DATE`
 * `DATE` is the date that you want to continue on some of your writings. `DATE` should be in the form of 
@@ -730,6 +752,15 @@ On 01/11/2020, you should continue on the following writing(s):
 1.
   Id: 5
   Title: DER ERLKÖNIG
+```
+
+#### Reset the entire writing list: `reset writings`
+Clear the whole writings stored in the database
+```
+reset writings
+--------------------------------------------------------------
+We have clear all data in the writings list
+--------------------------------------------------------------
 ```
 
 [Jump to top](#fluffle-user-guide)
