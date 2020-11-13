@@ -36,7 +36,7 @@ around NUS campus via the school's shuttle service.<br>
     + [3.3.4. Execute a favourite command: `/execfav` - Wong Heng Chin](#334-execute-a-favourite-command-execfav---wong-heng-chin)
     + [3.3.5. Change the description for a favourite command: `/descfav` - Wamika](#335-change-the-description-for-a-favourite-command-descfav---wamika)
     + [3.3.6. Clear the list of favourite commands: `/clearfav` - Shuyi](#336-clear-the-list-of-favourite-commands-clearfav---shuyi)
-    + [3.3.7. Storage of favourite commands](#337-storage-of-favourite-commands)
+    + [3.3.7. Storage of favourite commands](#337-storage-of-favourite-commands---wong-heng-chin)
   * [3.4. Common Features](#34-common-features)
     + [3.4.1. Check for similar locations - Wamika](#341-check-for-similar-locations---wamika)
     + [3.4.2. Display most searched bus stop on start-up - Johnson Yee](#342-display-most-searched-bus-stop-on-start-up---johnson-yee)
