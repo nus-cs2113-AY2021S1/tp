@@ -470,3 +470,4 @@ NUSchedule aims to assist the target audience with:
    * Test case: `edit NUMBER` where `NUMBER` is the index of the event to be editted.
    * Expected: Confirmation message asking for the desired changes.
    
+
