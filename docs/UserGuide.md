@@ -51,14 +51,14 @@ around NUS campus via the school's shuttle service.<br>
 ## 1. Overview
 ### 1.1 What is Nav@NUS?
 Are you new to NUS? <br>
-Are you searching for ways to get around NUS all squeezed up in front of a tiny information board?<br>
+Are you searching for ways to get around NUS, all squeezed up in front of a tiny information board?<br>
 We have just the right solution for you!<br><br>
 Introducing **Nav@NUS**, your new navigation assistant!
 Nav@NUS is a useful command line interface **(CLI)** application to guide you in navigating around the NUS campus
 via the school's shuttle services. This application enables you to retrieve key bus information easily, skipping the 
-hassle of physically checking the bus stop's notice board. Nav@NUS is a tool tailor made for anyone unfamiliar to 
-NUS campus, students, professors and visitors included. Nav@NUS brings convenience to you and wishes your 
-commute in NUS to be as effortless as possible. Nav@NUS uses a CLI to facilitate quick typing and retrieval of 
+hassle of physically checking the bus stop's notice board. Nav@NUS is a tool tailor-made for anyone unfamiliar with 
+NUS campus, students, professors and visitors included. Nav@NUS brings convenience to you and wishes that your 
+commute in NUS is as effortless as possible. Nav@NUS uses a CLI to facilitate quick typing and retrieval of 
 information that you require.
 
 Nav@NUS consists of 3 main features:
@@ -86,7 +86,7 @@ This user guide covers the following:
 Nav@NUS sets up and runs on the CLI. As the CLI is not commonly used, it can seem daunting to users. 
 To give you a better experience, this section will introduce you to the CLI.
 
-Orientate yourself to the command line interface. As seen in each figure below, the red arrow points to
+Orientate yourself to the CLI. As seen in each figure below, the red arrow points to
 where you have to type in commands.<br>
 
 For computers running the Windows OS, the red arrow points to where you have to type in commands. 
@@ -126,13 +126,14 @@ There are 18 features available in Nav@NUS. The following are instructions for u
 >2. Parameters and commands to be entered by the user are not case-sensitive.
 >3. `/to` is case sensitive.
 >4. Location names must be in full for commands that require bus stop location(s).
+>5. Words in [] are optional parameters (e.g. [**description**]).
 
 >Warning:
 >
 >You are recommended not to edit the text files manually.
 
 ### 3.1. Bus Features
-This section provides the instruction for all features categorised under the main feature of navigation by bus.
+This section provides instructions for all features categorised under the main feature of navigation by bus.
 
 <!-- @@author wamikamalik -->
 #### 3.1.1. Check for direct bus: ```/route``` - Wamika
@@ -198,14 +199,14 @@ To find indirect bus routes:
 2. The result will display the whole bus route of bus AA2.<br><br>
 <img src="UG_Figures/routemap1.png" alt="RouteMapCommand" width=650><br>
 
-3. With the information that bus AA2 could bring you to bus stops after **Raffles Hall** e.g. **Kent Vale**, you can now check 
+3. With the information that bus AA2 could bring you to bus stops after **Raffles Hall** (e.g. **Kent Vale**), you can now check 
 if there is a direct bus route from these bus stops.<br><br>
 <img src="UG_Figures/routemap3.png" alt="inputRouteMapCommand" width=650><br>
 
 <div style="page-break-after: always;"></div>
 
 **<u>Example 2</u>**<br>
-This command is also useful in showing you the previous bus stops of your intended bus. You could use this information
+This command is also useful for showing you the previous bus stops of your intended bus. You could use this information
 to gauge how crowded the bus would be.<br><br>
 Let us suppose that you are at **Raffles Hall** intending to board AA2. 
 
@@ -218,7 +219,7 @@ These are the steps to follow:
 which is relatively more crowded than other bus stops.<br><br>
 <img src="UG_Figures/routemap1.png" alt="RouteMapCommand" width=650><br>
 
-3. With this information, you could explore other bus routes to your destination.
+3. With this information, you could explore other bus routes to get to your destination.
 <!-- @@author -->
 
 <div style="page-break-after: always;"></div>
@@ -554,7 +555,7 @@ as shown in the figure below.<br><br>
 
 <!-- @@author Johnson-Yee -->
 #### 3.4.2. Display most searched bus stop on start-up - Johnson Yee
-This feature displays the most searched bus stop to remind you of what to type in when using 
+This feature displays your most commonly searched bus stop to remind you of what to type in when using 
 the navigation functions. 
 
 >The application executes this command on start-up and does not require any explicit command to use this feature.
@@ -570,7 +571,7 @@ the memory jolt of what to key in. <br>
 
 <!-- @@author Johnson-Yee -->
 #### 3.4.3. Reset frequent search data: ```/reset``` - Johnson Yee
-This command resets the data set used to display most frequently search bus stop on application start-up.
+This command resets the data set used to display most frequently searched bus stop on application start-up.
 
 Format:<br> <code>/reset</code>
 
