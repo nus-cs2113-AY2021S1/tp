@@ -42,7 +42,7 @@
 - [9. Troubleshooting](#troubleshooting)
 - [10. Command Summary](#command-summary)
 
-## Introduction
+## Introduction (Chan Wan Ting Elizabeth)
 
 Plan&Score is an application consisting of 2 key components:
 
@@ -62,10 +62,10 @@ This application uses a command line interface, meaning that you operate the app
 
 Figure 1. The graphical user interface for Plan&Score
 
-## About this User Guide
+## About this User Guide (Chan Xu Hui)
 This User Guide serves to provide an in-depth explanation of Plan&Score’s usage and functionalities, as well as troubleshooting steps you can take if problems are encountered.
 
-## How to use this User Guide
+## How to use this User Guide (Andre Wong Zhi Hua)
 To navigate to the contents of your desired feature, simply click on the hyperlinks provided in the contents page above.
 
 The highlights and symbols used in this document are as follows:
@@ -78,7 +78,7 @@ The highlights and symbols used in this document are as follows:
            command line.
 
 
-## Quick Start
+## Quick Start (Chan Xu Hui)
 
 1. Ensure that you have Java `11` or above installed.
 2. Download the latest version of `Plan&Score` from [here](https://github.com/AY2021S1-CS2113T-W12-4/tp/releases).
@@ -86,7 +86,7 @@ The highlights and symbols used in this document are as follows:
 4. You can exit the program by running `bye`.
 
 <!-- @@author Aliciaho -->
-## Initialisation
+## Initialisation (Alicia)
 
 When you first open Plan&Score, you will be greeted by a welcome message as well as 
 a prompt asking for your name. This is as shown below.
@@ -112,7 +112,7 @@ amazing features!
 
 ## Commands
 
-#### Command Format
+#### Command Format 
 * A command can contain multiple parameters.
     * A `test` contains a `description`, `start` and `end`, where `description`, `start` and `end` are parameters that make up a `test`.
 * Command parameters cannot be swapped.
@@ -125,7 +125,7 @@ amazing features!
     * `delete class 1 2 3 abc` will be give an error.
 
 
-#### Category Types
+#### Category Types (Chan Wan Ting Elizabeth)
 * Plan&Score has the following categories types: 
 
   1. `event`
@@ -139,7 +139,7 @@ amazing features!
 
 * The category type often follows after the command word (E.g `class` follows after `add` to form `add class`).
 
-### Viewing help: `help`
+### Viewing help: `help` (Chan Wan Ting Elizabeth)
 Shows all available commands that you can use
 
 Firstly, type `help` in the command line as seen below, and press 'Enter' to execute it.
@@ -161,7 +161,7 @@ It allows you to plan and track the following category types:
 ![indexinfo](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/indexinfo.png)
 
 <!-- @@author Aliciaho-->
-#### Set Recommended Hours: `set hours`
+#### Set Recommended Hours: `set hours` (Alicia)
 Allows you to change the number of recommended hours you would want to have per day.
 
 Firstly, type `set hours` in the command line as seen below. Press 'Enter' to execute it.
@@ -189,8 +189,8 @@ WARNING:
 ![sethourserror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/set_hours_error.png)
 <!-- @@author Aliciaho-->
 
-#### Category: Class
-##### Adding a class: `add class`
+#### Category: Class (Chan Wan Ting Elizabeth)
+##### Adding a class: `add class` 
 Allows you to add a new class with a name, date and time.
 
 Firstly, type `add` in the command line as seen below, followed by the category type which is the class. Afterwards, key in the description of the class as well as its start and end date and time. Press 'Enter' to execute it.
@@ -241,7 +241,7 @@ WARNING:
 
 <br>
 
-#### Category: Cca
+#### Category: Cca (Chen Jinran)
 ##### Adding a cca: `add cca`
 Allow you to add a new cca with a name, date and time.
 
@@ -294,7 +294,7 @@ WARNING:
 <br />
 
 <!-- @@author Aliciaho-->
-#### Category: Test
+#### Category: Test (Alicia Ho Shimin)
 ##### Adding a test: `add test`
 Allows you to add a new test with a name, date and time.
 
@@ -348,7 +348,7 @@ WARNING:
 <!-- @@author Aliciaho-->
 
 <!-- @@author durianpancakes -->
-#### Category: Tuition
+#### Category: Tuition (Chan Xu Hui)
 ##### Adding a tuition: `add tuition`
 Allows you to add a new test with a name, date, time, location.
 
@@ -402,7 +402,7 @@ WARNING:
 <!-- @@author -->
 
 <!-- @@author AndreWongZH -->
-#### Listing out schedule: `list event <today/[date]/week/nextweek>`
+#### Listing out schedule: `list event <today/[date]/week/nextweek>` (Andre Wong Zhi Hua)
 
 Allows you to list out the entire schedule for classes, ccas and tests.
 You can also choose to list today's schedule, the schedule
@@ -421,7 +421,7 @@ The output is seen in the console. The list is arranged by their respective cate
 <br />
 
 <!-- @@author Aliciaho-->
-##### List event today: `list event today`
+##### List event today: `list event today` (Alicia Ho Shimin)
 
 Secondly, to list out all events today, type `list event today` in the command line, as seen below. Press 'Enter' to execute it.
 
@@ -435,7 +435,7 @@ The output is seen in the console. The list is arranged by their respective cate
 <!-- @@author Aliciaho-->
 
 <!-- @@author durianpancakes -->
-##### List event week: `list event week`
+##### List event week: `list event week` (Chan Xu Hui)
 
 Thirdly, to list out all events in the current week, type `list event week` in the command line, as seen below. Press 'Enter' to execute it.
 
@@ -447,7 +447,7 @@ The output is seen in the console. It is displayed in a calendar format for easi
 
 <br />
 
-##### List event next week: `list event nextweek`
+##### List event next week: `list event nextweek` (Chan Xu Hui)
 
 Fourthly, to list out all events in the next week, type `list event nextweek` in the command line, as seen below. Press 'Enter' to execute it.
 
@@ -461,7 +461,7 @@ The output is seen in the console. It is displayed in a calendar format for easi
 <!-- @@author -->
 
 <!-- @@author Aliciaho-->
-##### List event date: `list event [desired date]`
+##### List event date: `list event [desired date]` (Alicia Ho Shimin)
 
 Lastly, to list out all events on a particular date, type `list event [desired date]` in the command line, as seen below. Press 'Enter' to execute it.
 
@@ -475,7 +475,7 @@ The output is seen in the console. The list is arranged by their respective cate
 <!-- @@author Aliciaho-->
 
 <!-- @@author AndreWongZH -->
-#### Finding events: `find event`
+#### Finding events: `find event` (Andre Wong Zhi Hua)
 Allows you to look for classes, ccas and tests and tuitions that match your given keyphrase.
 
 In the case when you have many events in your schedule and you need to find a specific event to check the date. You can use the `find event` command to look for the event you want by entering keywords related to it.
@@ -504,7 +504,7 @@ quiz
 
 The quiz feature enables you to spend the extra time resulting from your productive scheduling to hone your Mathematics for your upcoming PSLE.
 
-#### Taking a Quiz: `quiz`
+#### Taking a Quiz: `quiz` (Chan Wan Ting Elizabeth)
 Taking a Mathematics quiz with any number of questions you want, ranging from just 1 question to the total number of questions in the quiz list.
 
 First, enter `quiz`, followed by the number of questions you would like to take in your quiz. For example, you could enter `quiz 1` to attempt a quiz with 1 question.
@@ -515,7 +515,7 @@ The following output would then be displayed.
 <br>
 
 <!-- @@author AndreWongZH -->
-#### Adding a Quiz Question: `add quiz`
+#### Adding a Quiz Question: `add quiz` (Andre Wong Zhi Hua)
 Allows you to add a Mathematics multiple-choice quiz question to the quiz list.
 
 Note that the `/e (explanation)` is an optional parameter. You can add a quiz question with or without an explanation.
@@ -538,7 +538,7 @@ The corresponding output would then be displayed as shown below.
 <br />
 <!-- @@author -->
 
-#### Deleting a Quiz Question: `delete quiz`
+#### Deleting a Quiz Question: `delete quiz` (Chen Jinran)
 Allows you to delete a quiz question from the quiz list.
 
 Simply enter `delete quiz`, followed by the index number corresponding to the quiz question you would like to delete in your quiz list.
@@ -550,7 +550,7 @@ You would expect to see this output.
 ![deletequiz1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/deletequiz1.png)
 <br />
 
-#### Listing out All Quiz Questions: `list quiz`
+#### Listing out All Quiz Questions: `list quiz` (Andre Wong Zhi Hua)
 Allows you to list out all the questions in the quiz list.
 
 All you have to enter is `list quiz` for this command.
@@ -560,7 +560,7 @@ This output should then be seen.
 ![listquiz](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/listquiz.png)
 
 
-#### Finding a quiz: `find quiz`
+#### Finding a quiz: `find quiz` (Chen Jinran)
 Look for quizzes that match the given keyword(s) that you want.
 
 Note that searches are case-insensitive and user can provide multiple words to compare with
@@ -573,7 +573,7 @@ Then, you would expect to see this in your output.
 <br>
 ![findquiz](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/findquiz.png)
 
-#### Searching for former incorrect quiz questions: `quiz record`
+#### Searching for former incorrect quiz questions: `quiz record` (Chen Jinran)
 Allows you to list out the incorrect quizzes in your last quiz attempt.
 
 Simply enter `quiz record`.
@@ -585,7 +585,7 @@ You should see the full list of questions you have answered wrongly in your prev
 <!-- @@author untitle4 -->
 ### Contact component of Plan&Score
 
-#### Adding a contact `add contact`
+#### Adding a contact `add contact` (Chen Jinran)
 Allows you to add a teacher's contact details to the contact list.
 
 Firstly, type `add` in the command line as seen below, followed by the category type which is the contact. 
@@ -606,7 +606,7 @@ WARNING:
 
 ![add_contact_wrongly](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_contact_wrongly.png)
 
-#### Deleting a contact `delete contact`
+#### Deleting a contact `delete contact` (Chen Jinran)
 Allows you to delete a contact from the contact list.
 
 Firstly, type `delete` in the command line as seen below, followed by the category type which is the contact. 
@@ -638,7 +638,7 @@ The output is seen in the console.
 ![list_contact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_contact.png)
 
 <!-- @@author AndreWongZH -->
-#### Finding a contact `find contact`
+#### Finding a contact `find contact` (Andre Wong Zhi Hua)
 Look for contacts that match the given keywords you want.
 
 In the case when you have many contacts in your list and you need to find a specific contact, you can use the 
@@ -657,7 +657,7 @@ The output can then be seen in the console.
 <!-- @@author -->
 
 <!-- @@author Aliciaho-->
-### Exits Program: `bye`
+### Exits Program: `bye` (Alicia Ho Shimin)
 Exits the program once you have finished using it.
 
 Type the command and press 'Enter' to execute it.
@@ -670,7 +670,7 @@ The output is shown in the console. It contains a simple goodbye message.
 <!-- @@author Aliciaho-->
 
 <!-- @@author durianpancakes -->
-## Saving Data
+## Saving Data (Chan Xu Hui)
 Plan&Score saves all your data automatically after every command. There is no need to save manually.
 However, if your storage file is detected to be unreadable, Plan&Score will offer to reset itself to its default settings,
 wiping all data stored in the text file.
@@ -685,7 +685,7 @@ wiping all data stored in the text file.
 
 **A**: We recommend you to transfer the entire folder containing `[CS2113T-W12-4][ Plan&Score].jar` and the `data` directory. Then, follow instructions given in our `Quick Start` section to set up Plan&Score.
 
-## Troubleshooting
+## Troubleshooting (Chan Xu Hui)
 
 **Q**: Plan&Score is unable to start, and I do not want to lose my data through factory resetting. How can I fix this?
 
@@ -713,7 +713,7 @@ We recommend keeping a duplicate of the contents in `events.txt` to assist with 
 1. Re-add affected events through the command line interface
 <!--@@author -->
 
-## Command Summary
+## Command Summary (Team)
 
 
 Action | Format | Examples
