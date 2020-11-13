@@ -549,7 +549,7 @@ These are the steps to follow:
 <!-- @@author -->
 
 <!-- @@author EthanWong2212 -->
-####3.3.7. Storage of favourite commands - Wong Heng Chin
+#### 3.3.7. Storage of favourite commands - Wong Heng Chin
 >Note: **DO NOT** modify the `FavList.txt` file <br>
 >
 In order to make Nav@NUS a personalized application for you, all data from your list of favourite commands will be stored on your computer. Thus, everytime Nav@NUS launches, you will be able to maintain and update your list of favourite commands.
