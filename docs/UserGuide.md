@@ -779,14 +779,14 @@ Format: `check [START_DATE]; [START_TIME]; [END_DATE]; [END_TIME]`
 Acceptable date formats: DD/MM/YYYY or DD/MM/YY
 
 Acceptable time formats: 
-- 24 Hour format – HHmm or HH:mm (e.g. 14:00)
-- 12 Hour format – hh:mm am/pm or hhmm am/pm (e.g. 2:00 pm)
+- 24 Hour format – HHmm, HH:mm or HH (e.g. 2359, 14:00, 14)
+- 12 Hour format – HH:mm am/pm or HH am/pm (e.g. 2:00 pm, 10 am)
 
 > **Note!**
 >
 > *	You may omit the DD or DD/MM in a date. If you do not fill in these fields for the date, the command takes the current date for that field by default (e.g.  input 2021 on 11 Oct 2020 would be taken as 11/10/2021)
 > *	The date can also be omitted entirely. If you leave a date field as blank, the command takes the current date for that field by default.
-> *	You may also omit the minutes in a time. If the minutes(MM) field of any time is empty, the time is read as when the hour begins (e.g. 4 pm would be taken as 4:00 pm)
+> *	You may also omit the minutes in a time. If the minutes(mm) field of any time is empty, the time is read as when the hour begins (e.g. 4 pm would be taken as 4:00 pm)
 > *	The time can also be omitted entirely. If you leave a time field as blank, the command takes the current time by default.
 
 
@@ -1115,7 +1115,7 @@ Format: `note EVENT_TYPE; EVENT_INDEX`
 > **Warning!**
 >
 > * The event index keyed in have to be valid so that note can be created for the specified event index.
-> * The grave accent symbol \` is an illegal character. If you use this symbol, the notes program will intepret it as a new line.
+> * The grave accent symbol \` is an illegal character. If you use this symbol, the notes program will interpret it as a new line.
 
 #### Example Usage
 
@@ -1362,6 +1362,6 @@ In this section, you can find some frequently asked questions(FAQ).
 
 Here is a summary of all the commands with the accepted format and short examples for ease of usage.
 
-![Command Summary Table](./diagrams/command-summary.jpg)
+![Command Summary Table](./diagrams/command-summary.jpeg)
 
 
