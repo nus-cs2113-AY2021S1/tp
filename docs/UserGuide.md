@@ -783,12 +783,12 @@ delMember  | `hr delMember MEMBER_INDEX` | `hr delMember 1`
 delEvent | `event delEvent EVENT_INDEX`  | `event delEvent 1`
 delEvent all | `event delEvent all` | -
 delLog | `finance delLog ITEM_INDEX` | `finance delLog 3`
-event done   | `event done EVENT_INDEX`| `event done 2`
 
 <div style="page-break-after: always;"></div>
 
 Command | Format | Example
 ------- | ---------- | ------------
+event done   | `event done EVENT_INDEX`| `event done 2`
 event search | `event search /s <KEYWORD>` | `event search /s arduino` 
 event countdown | `event countdown` | -
 help | `help` | -
