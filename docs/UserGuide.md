@@ -1,46 +1,46 @@
 # User Guide
-- [1. Introduction](#introduction)
-- [2. About this User Guide](#about-this-user-guide)
-- [3. How to user this User Guide](#how-to-use-this-user-guide)
-- [4. Quick Start](#quick-start)
-- [5. Initialisation](#initialisation)
+- [1. Introduction](#introduction-chan-wan-ting-elizabeth)
+- [2. About this User Guide](#about-this-user-guide-chan-xu-hui)
+- [3. How to user this User Guide](#how-to-use-this-user-guide-andre-wong-zhi-hua)
+- [4. Quick Start](#quick-start-chan-xu-hui)
+- [5. Initialisation](#initialisation-alicia-ho-shimin)
 - [6. Commands](#commands)
     - [Command Format](#command-format)
-    - [Category Types](#category-types)
-  - [Help:](#viewing-help-help) `help`
+    - [Category Types](#category-types-chan-wan-ting-elizabeth)
+  - [Help:](#viewing-help-help-chan-wan-ting-elizabeth) `help`
   - [PLAN component of Plan&Score](#plan-component-of-planscore)
-    - [Set Recommended Hours](#set-recommended-hours-set-hours) `set hours`
-    - [Class Category](#category-class)
+    - [Set Recommended Hours](#set-recommended-hours-set-hours-alicia-ho-shimin) `set hours`
+    - [Class Category](#category-class-chan-wan-ting-elizabeth)
       - [Add a class:](#adding-a-class-add-class) `add class`
       - [Delete a class:](#deleting-a-class-delete-class) `delete class`
-    - [Cca Category](#category-cca)
+    - [Cca Category](#category-cca-chen-jinran)
       - [Add a cca:](#adding-a-cca-add-cca) `add cca`
       - [Delete a cca:](#deleting-a-cca-delete-cca) `delete cca`
-    - [Test Category](#category-test)
+    - [Test Category](#category-test-alicia-ho-shimin)
       - [Add a test:](#adding-a-test-add-test) `add test`
       - [Delete a test:](#deleting-a-test-delete-test) `delete test`
-    - [Tuition Category](#category-tuition)
+    - [Tuition Category](#category-tuition-chan-xu-hui)
       - [Add a tuition:](#adding-a-tuition-add-tuition) `add tuition`
       - [Delete a tuition:](#deleting-a-tuition-delete-tuition) `delete tuition`
-    - [List schedule:](#listing-out-schedule-list-event-todaydateweeknextweek) `list event <today/[date]/week/nextweek>`
-    - [Find event:](#finding-events-find-event) `find event`
+    - [List schedule:](#listing-out-schedule-list-event-todaydateweeknextweek-andre-wong-zhi-hua) `list event <today/[date]/week/nextweek>`
+    - [Find event:](#finding-events-find-event-andre-wong-zhi-hua) `find event`
   - [SCORE component of Plan&Score:](#score-component-of-planscore)
-    - [Take a quiz:](#taking-a-quiz-quiz)`quiz`
-    - [Add a quiz question:](#adding-a-quiz-question-add-quiz) `add quiz`
-    - [Delete a quiz question:](#deleting-a-quiz-question-delete-quiz) `delete quiz`
-    - [List quiz questions:](#listing-out-all-quiz-questions-list-quiz) `list quiz`
-    - [Find a quiz by keyword:](#finding-a-quiz-find-quiz) `find quiz`
-    - [Search for former incorrect quiz questions:](#searching-for-former-incorrect-quiz-questions-quiz-record) `quiz record`
+    - [Take a quiz:](#taking-a-quiz-quiz-chan-wan-ting-elizabeth)`quiz`
+    - [Add a quiz question:](#adding-a-quiz-question-add-quiz-andre-wong-zhi-hua) `add quiz`
+    - [Delete a quiz question:](#deleting-a-quiz-question-delete-quiz-chen-jinran) `delete quiz`
+    - [List quiz questions:](#listing-out-all-quiz-questions-list-quiz-andre-wong-zhi-hua) `list quiz`
+    - [Find a quiz by keyword:](#finding-a-quiz-find-quiz-chen-jinran) `find quiz`
+    - [Search for former incorrect quiz questions:](#searching-for-former-incorrect-quiz-questions-quiz-record-chen-jinran) `quiz record`
   - [Contact component of Plan&Score:](#contact-component-of-planscore)
-    - [Add a contact:](#adding-a-contact-add-contact) `add contact`
-    - [Delete a contact:](#deleting-a-contact-delete-contact) `delete contact`
-    - [List a contact:](#listing-out-contacts-list-contact) `list contact`
-    - [Find a contact:](#finding-a-contact-find-contact) `find contact`
-  - [Exit the program:](#exits-program-bye) `bye`
-- [7. Saving Data](#saving-data)
+    - [Add a contact:](#adding-a-contact-add-contact-chen-jinran) `add contact`
+    - [Delete a contact:](#deleting-a-contact-delete-contact-chen-jinran) `delete contact`
+    - [List a contact:](#listing-out-contacts-list-contact-chen-jinran) `list contact`
+    - [Find a contact:](#finding-a-contact-find-contact-andre-wong-zhi-hua) `find contact`
+  - [Exit the program:](#exits-program-bye-alicia-ho-shimin) `bye`
+- [7. Saving Data](#saving-data-chan-xu-hui)
 - [8. FAQ](#faq)
-- [9. Troubleshooting](#troubleshooting)
-- [10. Command Summary](#command-summary)
+- [9. Troubleshooting](#troubleshooting-chan-xu-hui)
+- [10. Command Summary](#command-summary-team)
 
 ## Introduction (Chan Wan Ting Elizabeth)
 
@@ -86,7 +86,7 @@ The highlights and symbols used in this document are as follows:
 4. You can exit the program by running `bye`.
 
 <!-- @@author Aliciaho -->
-## Initialisation (Alicia)
+## Initialisation (Alicia Ho Shimin)
 
 When you first open Plan&Score, you will be greeted by a welcome message as well as 
 a prompt asking for your name. This is as shown below.
@@ -161,7 +161,7 @@ It allows you to plan and track the following category types:
 ![indexinfo](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/indexinfo.png)
 
 <!-- @@author Aliciaho-->
-#### Set Recommended Hours: `set hours` (Alicia)
+#### Set Recommended Hours: `set hours` (Alicia Ho Shimin)
 Allows you to change the number of recommended hours you would want to have per day.
 
 Firstly, type `set hours` in the command line as seen below. Press 'Enter' to execute it.
@@ -625,7 +625,7 @@ WARNING:
 
 ![delete_contact_wrongly](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_contact_wrongly.png)
 
-#### Listing out contacts `list contact`
+#### Listing out contacts `list contact` (Chen Jinran)
 Allows you to list out all the contacts in the contact list
 
 To list out all contacts, type `list contact` in the command line, as seen below. 
