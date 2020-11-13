@@ -255,7 +255,7 @@ This section contains 8 commands:
 
 Are you trying to find your links by entering into each category to view your links?
 You might want to have an easy way to view the overview of your links. 
-You can now either view the entire list of links in the category you are in, 
+You can now view the entire list of links in the category you are in, 
 the starred links, the list of categories available, 
 or the entire list of links in every category using the following commands. 
 
@@ -387,8 +387,8 @@ Expected output:
 ![Bookmark_back command](Images/BookmarkUG/Figure7.png)
 
 >**Useful Information:**
->* When you input back in any bookmark category, you are brought back to the bookmark main. 
->* When you input back in the bookmark main, you will be prompted to type “exit” to exit bookmark mode. 
+>* When you input `back` in any bookmark category, you are brought back to the bookmark main. 
+>* When you input `back` in the bookmark main, you will be prompted to type “`exit`” to exit bookmark mode. 
 >* The user input is not case-sensitive.
 
 >**Warning:**
@@ -405,7 +405,7 @@ and ensure that you do not add an invalid link or an empty link to your bookmark
 If you are afraid you will forget what the bookmark link is for, you can 
 add a title to your bookmark link just by including a ` t-> TITLE` after you enter your link. 
 In addition, if you forget what links you have already bookmarked, you can always 
-add the same link, and the program will tell you whether you the link in your list.
+add the same link, and the program will tell you whether you have the link in your list.
 
 Instruction: 
 1. `add LINK` e.g. `add google.com`
@@ -420,6 +420,7 @@ Expected output:
 >* You can only use this command after choosing your category. (Refer to [1.2](#12-going-into-each-category-bm-number))
 >* You can only bookmark unique links within your category. Refer to the following figure.  
 >![Bookmark_not unique link](Images/BookmarkUG/Figure9.png)
+>* The user input is not case-sensitive.
 
 If you encounter any errors, take note of the following warnings. 
 
@@ -431,7 +432,7 @@ If you encounter any errors, take note of the following warnings.
 
 ### 1.7 Deleting a link: `rm LINK_NUMBER `
 
-If you have a link that you no longer want to bookmark, or if you have a link that you accidentally bookmarked it, you can remove the bookmark easily just by following these few commands. Make sure that you have chosen your category (Refer to [1.2](#12-going-into-each-category-bm-number))  and ensure that you do not remove an empty, or an invalid link number.
+If you have a link that you no longer want to bookmark, or if you have a link that you accidentally bookmarked, you can remove the bookmark easily just by following these few commands. Make sure that you have chosen your category (Refer to [1.2](#12-going-into-each-category-bm-number))  and ensure that you do not remove an empty, or an invalid link number.
 
 Instruction: 
 1. `rm LINK_NUMBER`
@@ -444,6 +445,8 @@ Expected output:
 
 >**Useful Information:**
 >* You can only use this command after choosing your category. (Refer to [1.2](#12-going-into-each-category-bm-number))
+>* You can also omit the space between `rm` and `NUMBER`
+>* The user input is not case-sensitive.
 
 If you encounter any errors, take note of the following warnings. 
 
@@ -469,7 +472,9 @@ Expected output:
 >**Useful Information:** 
 >* It is the same command for marking and unmarking any links. For example, if link 1 is not starred, star 1  will mark the link as starred. And if link 1 is starred, star 1 will unmark link 1. 
 >* You can view your starred links in the highlight function in the main mode. (Refer to [General Command 4](#4-prints-starred-items-highlight))
-
+>* You can also omit the space between `star` and `NUMBER`
+>* The user input is not case-sensitive.
+>
 If you encounter any errors, take note of the following warnings.  
 
 >**Warning:**
