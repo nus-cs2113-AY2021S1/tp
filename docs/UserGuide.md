@@ -36,6 +36,7 @@ around NUS campus via the school's shuttle service.<br>
     + [3.3.4. Execute a favourite command: `/execfav` - Wong Heng Chin](#334-execute-a-favourite-command-execfav---wong-heng-chin)
     + [3.3.5. Change the description for a favourite command: `/descfav` - Wamika](#335-change-the-description-for-a-favourite-command-descfav---wamika)
     + [3.3.6. Clear the list of favourite commands: `/clearfav` - Shuyi](#336-clear-the-list-of-favourite-commands-clearfav---shuyi)
+    + [3.3.7. Storage of favourite commands](#337-storage-of-favourite-commands---wong-heng-chin)
   * [3.4. Common Features](#34-common-features)
     + [3.4.1. Check for similar locations - Wamika](#341-check-for-similar-locations---wamika)
     + [3.4.2. Display most searched bus stop on start-up - Johnson Yee](#342-display-most-searched-bus-stop-on-start-up---johnson-yee)
@@ -547,6 +548,16 @@ These are the steps to follow:
 <img src="UG_Figures/clearfav1.png" alt="output" width=600><br>
 <!-- @@author -->
 
+<!-- @@author EthanWong2212 -->
+#### 3.3.7. Storage of favourite commands - Wong Heng Chin
+>Note: **DO NOT** modify the `FavList.txt` file <br>
+>
+In order to make Nav@NUS a personalized application for you, all data from your list of favourite commands will be stored on your computer. Thus, everytime Nav@NUS launches, you will be able to maintain and update your list of favourite commands.
+
+The data is stored in the `FavList.txt` file in the `data` folder located in the same location as the Nav@NUS jar file.
+
+<!-- @@author -->
+
 ### 3.4. Common Features
 This section provides the instruction for all the common features.
 
@@ -633,6 +644,9 @@ It can be found [here](https://github.com/AY2021S1-CS2113T-F14-3/tp/releases).
 Simply copy your `data` folder from the current directory and paste it in the directory containing the `Nav@NUS.jar` 
 file in the other computer.
 
+**Q:** What do I do if I have accidentally made changes to the `FavList.txt` file? <br>
+Simply run Nav@NUS and the program will automatically delete most of the corrupted data.
+
 ## 5. Command Summary
 The following table provides a summary of features and command formats.
 
@@ -670,4 +684,3 @@ This section defines key technical terms we have used throughout the user guide.
 6. Execute: Run the command to display the output.
 7. Similarity check: Check for possible spelling errors.
 <!-- @@author -->
-
