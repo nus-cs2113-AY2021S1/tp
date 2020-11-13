@@ -624,7 +624,7 @@ You have successfully updated the deadline for this event!
 ### 3.6 Repeat on daily/weekly/monthly basis: `repeat` (Colin Ng)
 Do you have any events that repeat frequently? For example, a dental appointment every month, or perhaps a math lesson every week? The repeat command in the program allows you to easily schedule such events into your event planner. Just select the event that you want to repeat, type in how often this event repeats and Scheduler-\-; will record down the event for you.  
 
-Format: `repeat EVENT_TYPE EVENT_INDEX [UNIT] [COUNT]` 
+Format: `repeat EVENT_TYPE; EVENT_INDEX; [UNIT]; [COUNT]` 
 
 - `EVENT_TYPE` specify what kind of event you would like to repeat. The accepted arguments for this are “personal”, “timetable” and “zoom” 
 - `EVENT_INDEX` is a number. It contains the index of the event that is to be repeated 
@@ -633,11 +633,11 @@ Format: `repeat EVENT_TYPE EVENT_INDEX [UNIT] [COUNT]`
 
 If you would like to make an event a repeated event, the format for the command is as follows.
 
-Format: `repeat EVENT_TYPE EVENT_INDEX [UNIT] [COUNT]` 
+Format: `repeat EVENT_TYPE; EVENT_INDEX; [UNIT]; [COUNT]` 
 
 If you would like to view the status of a repeated event, the format for the command is as follows.
 
-Format: `repeat EVENT_TYPE EVENT_INDEX`
+Format: `repeat EVENT_TYPE; EVENT_INDEX`
 
 > **Note!**
 >
