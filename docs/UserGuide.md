@@ -65,7 +65,7 @@ information that you require.
 Nav@NUS consists of 3 main features:
 
 * **Route**: Searches for bus routes from your location to your intended destination.
-* **Dine**: Seeks dining options for you to explore culinary world of NUS.
+* **Dine**: Seeks dining options for you to explore the culinary world of NUS.
 * **Favourites**: Saves your commands to text files for you to have a personalised user experience catered to your needs.
 
 Skip the tight squeeze near information boards and use Nav@NUS today!
@@ -168,7 +168,7 @@ Health Center"** instead.
 Here's what you can do: 
 
 1. When you type <code>/route <strong>Univerity Health Center</strong> /to <strong>PGPR</strong></code> into the CLI and 
-press <kbd>Enter</kbd> to execute the command as done in example 1, the result will be a message displaying suggestions 
+press <kbd>Enter</kbd> to execute the command, the result will be a message displaying suggestions 
 for possible spelling errors you may have made.<br><br>
 <img src="UG_Figures/routeOutput2.png" alt="output" width=550><br>
 
@@ -325,7 +325,6 @@ Format:<br>
 
 **Examples of Usage**
 
-**<u>Example 1</u>**<br>
 Let's say you want to know the names of all faculties in NUS.
 
 These are the steps to follow:
@@ -366,7 +365,7 @@ You can simply use <strong>Sci</strong> instead of <strong>Science</strong>:
 > *  For example, `/dine school` will yield results from both School of Business and School of Computing.
 
 #### 3.2.2. Search for specific dining outlet: ```/dineinfo``` - Shuyi
-This command finds all dining outlets that contains the keyword, and display their location and operating hours.
+This command finds all dining outlets that contain the keyword, and displays their location and operating hours.
 
 Format:<br>
 <code>/dineinfo <strong>outlet</strong></code>
@@ -374,7 +373,7 @@ Format:<br>
 **Examples of Usage**
 
 **<u>Example 1</u>**<br>
-Let's say you want to find information of the dining outlet <strong>Arise & Shine</strong>.
+Let's say you want to find information about the dining outlet <strong>Arise & Shine</strong>.
 
 These are the steps to follow:
 
@@ -399,7 +398,7 @@ to your needs.
 <!-- @@author Lezn0 -->
 ### 3.3.1. Add a favourite command: `/addfav` - Yuxin
 This command adds a valid command with an optional description to your list of favourites.
->Note: A valid command is command that does not return an error message and not associated 
+>Note: A valid command is a command that does not return an error message and is not associated 
 >with any commands related to favourites.
 
 Format:<br>
@@ -416,7 +415,7 @@ These are the steps to follow:
 <img src="UG_Figures/dine1.png" alt="output" width=600><br>
 
 2. Type <code>/addfav <strong>dining options in business</strong></code> and press <kbd>Enter</kbd> to execute the command 
-to store the command in to your list of favourites with the description
+to store the command in your list of favourites with the description
 "dining options in business"  as shown in the figure below.<br><br>
 <img src="UG_Figures/addfav1.png" alt="output" width=600><br>
 
@@ -431,7 +430,7 @@ These are the steps to follow:
 <img src="UG_Figures/routeOutput1.png" alt="output" width=600><br>
 
 2. Type <code>/addfav</code> into the CLI and press <kbd>Enter</kbd> to execute the command 
-to store the command in to your list of favourites with no description  as shown in the figure below .<br><br>
+to store the command in your list of favourites with no description  as shown in the figure below .<br><br>
 <img src="UG_Figures/addfav2.png" alt="output" width=600><br>
 <!-- @@author -->
 
@@ -446,8 +445,7 @@ Format:<br>
 
 **Examples of Usage**
 
-**<u>Example 1</u>**<br>
-Let's say you want to take a look at all the commands that was previously added to your list of favourite commands.
+Let's say you want to take a look at all the commands that were previously added to your list of favourite commands.
 
 These are the steps to follow:
 
@@ -465,7 +463,6 @@ Format: <br>
 
 **Examples of Usage**
 
-**<u>Example 1</u>**<br>
 Let's say that you have stored the command <code>/routemap <strong>AA1</strong></code> in your list of favourite commands.
 After reviewing your list of favourite commands, you do not want to have this command in it.
 
@@ -537,7 +534,6 @@ Format:<br>
 
 **Examples of Usage**
 
-**<u>Example 1</u>**<br>
 Let's say you no longer need any of the commands in your list of favourite commands. Instead of using 
 <code>/deletefav</code> to remove the commands one by one, you can use the <code>/clearfav</code> feature to clear 
 your favourites list at one go.
@@ -566,8 +562,8 @@ This section provides the instruction for all the common features.
 <!-- @@author wamikamalik -->
 #### 3.4.1. Check for similar locations - Wamika
 When you enter a location and make a spelling error or a typo in the name, the app performs a similarity check with 
-existing location names and suggests some locations to you. The app executes this command automatically and does not 
-require any explicit input from you.
+existing location names and suggests some locations to you. _The app executes this command automatically and does not 
+require any explicit input from you._
 
 **Examples of Usage**
 
@@ -602,13 +598,12 @@ the memory jolt of what to key in. <br><br>
 
 <!-- @@author Johnson-Yee -->
 #### 3.4.3. Reset frequent search data: ```/reset``` - Johnson Yee
-This command resets the data set used to display most frequently search bus stop on application start-up.
+This command resets the data set used to display the most frequently searched bus stop on application start-up.
 
 Format:<br> <code>/reset</code>
 
 **Examples of usage**
 
-**<u>Example 1</u>**<br>
 Let us suppose that you are transitioning to a new academic semester, and the locations that you will key in to the
 application changes. To create a new data set that will cater to your needs in this new semester, you will key in the
 command <code>/reset</code> to reset the data set and start the application on a clean slate.<br><br>
