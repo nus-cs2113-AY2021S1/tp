@@ -1,9 +1,11 @@
 ---
 layout: page
-title: User Guide
 ---
 
-![Logo](UG_Figures/Nav@NUSLogo.jpg)
+![Logo](UG_Figures/Nav@NUS_UG_Cover.png)
+
+<div style="page-break-after: always;"></div>
+
 ## Opening words
 Welcome to Nav@NUS application's user guide! <br><br>
 The purpose of this user guide is to provide you with all the necessary information to use this application to navigate
@@ -17,12 +19,12 @@ around NUS campus via the school's shuttle service.<br>
   * [1.1 What is Nav@NUS?](#11-what-is-navnus)
   * [1.2 About the User Guide](#12-about-the-user-guide)
   * [1.3 Introduction to Command Line Interface (CLI)](#13-introduction-to-command-line-interface-cli)
-- [2. Quick Start - Johnson Yee](#2-quick-start---johnson-yee)
+- [2. Quick Start ](#2-quick-start---johnson)
 - [3. Features](#3-features)
   * [3.1. Bus Features](#31-bus-features)
     + [3.1.1. Check for direct bus: ```/route``` - Wamika](#311-check-for-direct-bus-route---wamika)
-    + [3.1.2. Check bus route: ```/routemap``` - Johnson Yee](#312-check-bus-route-routemap---johnson-yee)
-    + [3.1.3. Check for buses at a bus stop: ```/bus``` - Wong Heng Chin](#313-check-for-buses-at-a-bus-stop-bus---wong-heng-chin)
+    + [3.1.2. Check bus route: ```/routemap``` - Johnson](#312-check-bus-route-routemap---johnson)
+    + [3.1.3. Check for buses at a bus stop: ```/bus``` - Heng Chin](#313-check-for-buses-at-a-bus-stop-bus---heng-chin)
     + [3.1.4. List all buses available in NUS ```/allbus``` - Shuyi](#314-list-all-buses-available-in-nus-allbus---shuyi)
     + [3.1.5. List all bus stops in NUS: ```/liststops``` - Yuxin](#315-list-all-bus-stops-in-nus-liststops---yuxin)
     + [3.1.6. List all faculties in NUS: ```/faculty``` - Shuyi](#316-list-all-faculties-in-nus-faculty---shuyi)
@@ -32,33 +34,34 @@ around NUS campus via the school's shuttle service.<br>
   * [3.3. Favourite Features](#33-favourite-features)
     + [3.3.1. Add a favourite command: `/addfav` - Yuxin](#331-add-a-favourite-command-addfav---yuxin)
     + [3.3.2. List all favourite commands: `/listfav` - Shuyi](#332-list-all-favourite-commands-listfav---shuyi)
-    + [3.3.3. Delete a favourite command: `/deletefav` - Johnson Yee](#333-delete-a-favourite-command-deletefav---johnson-yee)
-    + [3.3.4. Execute a favourite command: `/execfav` - Wong Heng Chin](#334-execute-a-favourite-command-execfav---wong-heng-chin)
+    + [3.3.3. Delete a favourite command: `/deletefav` - Johnson](#333-delete-a-favourite-command-deletefav---johnson)
+    + [3.3.4. Execute a favourite command: `/execfav` - Heng Chin](#334-execute-a-favourite-command-execfav---heng-chin)
     + [3.3.5. Change the description for a favourite command: `/descfav` - Wamika](#335-change-the-description-for-a-favourite-command-descfav---wamika)
     + [3.3.6. Clear the list of favourite commands: `/clearfav` - Shuyi](#336-clear-the-list-of-favourite-commands-clearfav---shuyi)
+    + [3.3.7. Store favourite commands - Heng Chin](#337-store-favourite-commands---heng-chin)
   * [3.4. Common Features](#34-common-features)
     + [3.4.1. Check for similar locations - Wamika](#341-check-for-similar-locations---wamika)
-    + [3.4.2. Display most searched bus stop on start-up - Johnson Yee](#342-display-most-searched-bus-stop-on-start-up---johnson-yee)
-    + [3.4.3. Reset frequent search data: ```/reset``` - Johnson Yee](#343-reset-frequent-search-data-reset---johnson-yee)
+    + [3.4.2. Display most searched bus stop on start-up - Johnson](#342-display-most-searched-bus-stop-on-start-up---johnson)
+    + [3.4.3. Reset frequent search data: ```/reset``` - Johnson](#343-reset-frequent-search-data-reset---johnson)
     + [3.4.4. List available help: ```/help``` -Yuxin](#344-list-available-help-help---yuxin)
     + [3.4.5. Exit the program: ```/exit```](#345-exit-the-program-exit)
 - [4. FAQ](#4-faq)
 - [5. Command Summary](#5-command-summary)
-- [6. Glossary - Wamika](#6-glossary---wamika)
+- [6. Glossary](#6-glossary---wamika)
 
 <div style="page-break-after: always;"></div>
 
 ## 1. Overview
 ### 1.1 What is Nav@NUS?
 Are you new to NUS? <br>
-Are you searching for ways to get around NUS all squeezed up in front of a tiny information board?<br>
+Are you searching for ways to get around NUS, all squeezed up in front of a tiny information board?<br>
 We have just the right solution for you!<br><br>
 Introducing **Nav@NUS**, your new navigation assistant!
 Nav@NUS is a useful command line interface **(CLI)** application to guide you in navigating around the NUS campus
 via the school's shuttle services. This application enables you to retrieve key bus information easily, skipping the 
-hassle of physically checking the bus stop's notice board. Nav@NUS is a tool tailor made for anyone unfamiliar to 
-NUS campus, students, professors and visitors included. Nav@NUS brings convenience to you and wishes your 
-commute in NUS to be as effortless as possible. Nav@NUS uses a CLI to facilitate quick typing and retrieval of 
+hassle of physically checking the bus stop's notice board. Nav@NUS is a tool tailor-made for anyone unfamiliar with 
+NUS campus, students, professors and visitors included. Nav@NUS brings convenience to you and wishes that your 
+commute in NUS is as effortless as possible. Nav@NUS uses a CLI to facilitate quick typing and retrieval of 
 information that you require.
 
 Nav@NUS consists of 3 main features:
@@ -86,21 +89,17 @@ This user guide covers the following:
 Nav@NUS sets up and runs on the CLI. As the CLI is not commonly used, it can seem daunting to users. 
 To give you a better experience, this section will introduce you to the CLI.
 
-Orientate yourself to the command line interface. As seen in each figure below, the red arrow points to
+Orientate yourself to the CLI. As seen in each figure below, the red arrow points to
 where you have to type in commands.<br>
 
-For computers running the Windows OS, the red arrow points to where you have to type in commands. 
+For computers running the Windows OS, the red arrow points to where you have to type in commands. <br>
+<img src="UG_Figures/windowsCLI.png" alt="Windows CLI" width=650><br>
 
-![Windows CLI](UG_Figures/windowsCLI.png)
-
-For computers running the macOS, the red arrow points to where you have to type in commands. 
-
-![MacOS CLI](UG_Figures/appleCLI.png)
-
-<div style="page-break-after: always;"></div>
+For computers running the macOS, the red arrow points to where you have to type in commands. <br>
+<img src="UG_Figures/appleCLI.png" alt="Apple CLI" width=650><br>
 
 <!-- @@author Johnson-Yee -->
-## 2. Quick Start - Johnson Yee
+## 2. Quick Start - Johnson
 The following steps will guide you through the process of running **Nav@NUS**.
 
 1. Ensure that you have Java `11` or above installed in your computer. If you do not have it installed,
@@ -108,32 +107,32 @@ follow the guide [here](https://docs.oracle.com/en/java/javase/11/install/instal
 2. Download the latest `Nav@NUS.jar` from [here](https://github.com/AY2021S1-CS2113T-F14-3/tp/releases).
 3. Open command prompt on your computer.
 4. Copy the jar file to the folder you want to use as the _home folder_ for Nav@NUS.jar application. In the example
-shown in the figure, the home folder is found in the address path of "C:\Users...\CS2113T Empty folder".<br><br>
-![Windows CLI](UG_Figures/windowsPath.png)<br>
-5. In the command prompt, type `cd` and the directory of the _home folder_. Press <kbd>Enter</kbd> to continue.
+shown in the figure, the home folder is found in the address path of "C:\Users\Johnson Yee\Desktop\CS2113T Empty folder".<br><br>
+<img src="UG_Figures/windowsPath.png" alt="Windows Path" width=650><br>
+5. Navigate back to the command prompt, type `cd` and the directory of the _home folder_. Press <kbd>Enter</kbd> to continue.<br><br>
+<img src="UG_Figures/cd_command.png" alt="cd_Command" width=650><br>
 6. Run the .jar file in the command prompt as follows by typing `java -jar Nav@NUS.jar` and press <kbd>Enter</kbd>.
 7. Your screen should show the start screen of Nav@NUS as seen in the figure below.<br><br>
-![Start Screen](UG_Figures/Nav@NUSstartScreen.png)<br>
+<img src="UG_Figures/Nav@NUSstartScreen.png" alt="Start Screen" width=650><br>
 8. Try typing `/help` and press <kbd>Enter</kbd>!
 <!-- @@author -->
 
 <div style="page-break-after: always;"></div>
 
 ## 3. Features 
-There are 18 features available in Nav@NUS. The following are instructions for using the features.
+There are 17 commands available in Nav@NUS. The following are instructions for using the features.
 >Notes about command format:  
 >
 >1. Words in **bold** are parameters to be provided by the user. (e.g. **location_1**)
 >2. Parameters and commands to be entered by the user are not case-sensitive.
 >3. `/to` is case sensitive.
 >4. Location names must be in full for commands that require bus stop location(s).
+>5. Words in [ ] are optional parameters (e.g. [**description**]).
 
->Warning:
->
->You are recommended not to edit the text files manually.
+:exclamation: WARNING: You are recommended not to edit the text files manually.
 
 ### 3.1. Bus Features
-This section provides the instruction for all features categorised under the main feature of navigation by bus.
+This section provides instructions for all features categorised under the main feature of navigation by bus.
 
 <!-- @@author wamikamalik -->
 #### 3.1.1. Check for direct bus: ```/route``` - Wamika
@@ -199,7 +198,7 @@ the figure below.<br><br>
 <div style="page-break-after: always;"></div>
 
 <!-- @@author Johnson-Yee -->
-#### 3.1.2. Check bus route: ```/routemap``` - Johnson Yee
+#### 3.1.2. Check bus route: ```/routemap``` - Johnson
 This command displays the full route of the bus that you have specified.
 
 Format: <br><code>/routemap <strong>bus code</strong></code> <br>
@@ -220,14 +219,14 @@ To find indirect bus routes:
 2. The result will display the whole bus route of bus AA2.<br><br>
 <img src="UG_Figures/routemap1.png" alt="RouteMapCommand" width=650><br>
 
-3. With the information that bus AA2 could bring you to bus stops after **Raffles Hall** e.g. **Kent Vale**, you can now check 
+3. With the information that bus AA2 could bring you to bus stops after **Raffles Hall** (e.g. **Kent Vale**), you can now check 
 if there is a direct bus route from these bus stops.<br><br>
 <img src="UG_Figures/routemap3.png" alt="inputRouteMapCommand" width=650><br>
 
 <div style="page-break-after: always;"></div>
 
 **<u>Example 2</u>**<br>
-This command is also useful in showing you the previous bus stops of your intended bus. You could use this information
+This command is also useful for showing you the previous bus stops of your intended bus. You could use this information
 to gauge how crowded the bus would be.<br><br>
 Let us suppose that you are at **Raffles Hall** intending to board AA2. 
 
@@ -240,12 +239,12 @@ These are the steps to follow:
 which is relatively more crowded than other bus stops.<br><br>
 <img src="UG_Figures/routemap1.png" alt="RouteMapCommand" width=650><br>
 
-3. With this information, you could explore other bus routes to your destination.
+3. With this information, you could explore other bus routes to get to your destination.
 <!-- @@author -->
 
 <div style="page-break-after: always;"></div>
 
-#### 3.1.3. Check for buses at a bus stop: ```/bus``` - Wong Heng Chin
+#### 3.1.3. Check for buses at a bus stop: ```/bus``` - Heng Chin
 This command displays all buses available at a specific bus stop.
 
 Format: <br>
@@ -332,13 +331,15 @@ These are the steps to follow:
 <img src="UG_Figures/faculty1.png" alt="output" width=600><br>
 
 ### 3.2. Dine Features
-This section provides the instruction for all features categorised under the main feature of locating dining options.
+This section provides instructions for all features categorised under the main feature of locating dining options.
 
 #### 3.2.1. Search for dining options within a faculty: ```/dine``` - Shuyi
 This command lists out all dining outlets available within a chosen faculty.
 
 Format:<br> 
 <code>/dine <strong>faculty</strong></code> <br>
+
+<div style="page-break-after: always;"></div>
 
 **Examples of Usage**
 
@@ -380,16 +381,16 @@ These are the steps to follow:
 <img src="UG_Figures/dineinfo1.png" alt="output" width=600><br>
 
 **<u>Example 2</u>**<br>
-Let's say you cannot remember the full name of the outlet that you are searching for. You can simply enter a keyword instead.
+Let's say you cannot remember the full name of the outlet that you are searching for. You can simply type in a keyword instead.
 
 To find the information of a dining outlet with the name containing <strong>Jewel</strong>:
 
-1. Type <code>/dineinfo <strong>jewel</strong></code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
+1. Type <code>/dineinfo <strong>jewel</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/dineinfo3.png" alt="output" width=600><br>
 <!-- @@author -->
 
 ### 3.3. Favourite Features
-This section provides the instruction for all features categorised under the main feature of personalisation of application
+This section provides instructions for all features categorised under the main feature of personalisation of application
 to your needs.
 
 <div style="page-break-after: always;"></div>
@@ -448,15 +449,15 @@ Let's say you want to take a look at all the commands that were previously added
 
 These are the steps to follow:
 
-1. Type <code>/listfav</code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
+1. Type <code>/listfav</code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/listfav1.png" alt="output" width=600><br>
 <!-- @@author -->
 
 <!-- @@author Johnson-Yee -->
-#### 3.3.3. Delete a favourite command: `/deletefav` - Johnson Yee
+#### 3.3.3. Delete a favourite command: `/deletefav` - Johnson
 This command deletes the command that you have specified from the list of favourite commands.
 >Note: Index keyed in must be within the range of 1 - n, where n is the number of favourite commands. <br>
->
+
 Format: <br>
 <code>/deletefav<strong> index in list</strong></code> <br>
 
@@ -471,7 +472,7 @@ press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><
 <img src="UG_Figures/deleteFavExample.png" alt="output of deletefav" width=600><br>
 <!-- @@author -->
 
-#### 3.3.4. Execute a favourite command: `/execfav` - Wong Heng Chin
+#### 3.3.4. Execute a favourite command: `/execfav` - Heng Chin
 This command executes the specific command in your list of favourite commands.
 
 Format: <br>
@@ -487,7 +488,7 @@ Given you have the list of favourite commands:<br><br>
 
 To execute the command with the 2nd index in your list of favourite commands:
 
-Type <code>/execfav <strong>2</strong></code> into the CLI and press enter to execute the command as shown in the figure below. <br><br>
+Type <code>/execfav <strong>2</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below. <br><br>
 <img src="UG_Figures/execfav2.png" width=600><br>
 
 **Common errors and problems**
@@ -517,7 +518,7 @@ You want to change the description for `/dineinfo Pines` from "No description" t
 You can do so by following these steps:
 
 1. Type <code>/descfav <strong>5</strong> /to <strong>Get dinner @7:30PM every Tuesday</strong></code> into the CLI as
-shown in the figure below and press enter. <br><br>
+shown in the figure below and press <kbd>Enter</kbd>. <br><br>
 <img src="UG_Figures/descfavinput.PNG" alt="descfav input" width=600>
 
 2. Type <code>/listfav</code> to see the changed description.<br><br>
@@ -539,12 +540,22 @@ your favourites list at one go.
 
 These are the steps to follow:
 
-1. Type <code>/clearfav</code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
+1. Type <code>/clearfav</code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/clearfav1.png" alt="output" width=600><br>
 <!-- @@author -->
 
+<!-- @@author EthanWong2212 -->
+#### 3.3.7. Store favourite commands - Heng Chin
+:exclamation:  WARNING: **DO NOT** modify the `FavList.txt` file <br>
+
+In order to make Nav@NUS a personalized application for you, all data from your list of favourite commands will be stored on your computer. Thus, everytime Nav@NUS launches, you will be able to maintain and update your list of favourite commands.
+
+The data is stored in the `FavList.txt` file in the `data` folder located in the same location as the Nav@NUS jar file.
+
+<!-- @@author -->
+
 ### 3.4. Common Features
-This section provides the instruction for all the common features.
+This section provides instructions for all the common features.
 
 <div style="page-break-after: always;"></div>
 
@@ -570,8 +581,8 @@ as shown in the figure below.<br><br>
 <!-- @@author -->
 
 <!-- @@author Johnson-Yee -->
-#### 3.4.2. Display most searched bus stop on start-up - Johnson Yee
-This feature displays the most searched bus stop to remind you of what to type in when using 
+#### 3.4.2. Display most searched bus stop on start-up - Johnson
+This feature displays your most commonly searched bus stop to remind you of what to type in when using 
 the navigation functions. 
 
 >The application executes this command on start-up and does not require any explicit command to use this feature.
@@ -586,7 +597,8 @@ the memory jolt of what to key in. <br><br>
 <!-- @@author -->
 
 <!-- @@author Johnson-Yee -->
-#### 3.4.3. Reset frequent search data: ```/reset``` - Johnson Yee
+#### 3.4.3. Reset frequent search data: ```/reset``` - Johnson
+
 This command resets the data set used to display the most frequently searched bus stop on application start-up.
 
 Format:<br> <code>/reset</code>
@@ -617,7 +629,7 @@ Format:<br>
 
 The application exits after displaying the following message.<br><br>
 <img src="UG_Figures/exit.png" alt="Correct input message" width=600><br>
-
+<div style="page-break-after: always;"></div>
 ## 4. FAQ
 This section addresses some common questions to aid in possible issues faced.
 
@@ -628,29 +640,37 @@ It can be found [here](https://github.com/AY2021S1-CS2113T-F14-3/tp/releases).
 Simply copy your `data` folder from the current directory and paste it in the directory containing the `Nav@NUS.jar` 
 file in the other computer.
 
+**Q:** What do I do if I have accidentally made changes to the `FavList.txt` file? <br>
+Simply run Nav@NUS and the program will automatically delete most of the corrupted data.
+
 ## 5. Command Summary
 The following table provides a summary of features and command formats.
 
->Note: No additional parameter is needed if it is not mentioned. eg help <br>
+>Note:<br>
+> 1. No additional parameter is needed if it is not mentioned (e.g. help). <br>
+> 2. The table below is arranged in alphabetical order. <br>
+
+<div style="page-break-after: always;"></div>
 
 Command | Format | Example
 --- | --- | ---
-/route | `/route` **location1** `/to` **location2** | `/route` **PGP** `/to` **Raffles Hall**
-/routemap | `/routemap` **bus code** | `/routemap` **AA1** 
-/bus | `/bus` **location** | `/bus` **PGP**
+/addfav | `/addfav` **[description]** | 1. `/addfav` <br> 2.`/addfav` **dining options in business**
 /allbus | `/allbus` | `/allbus`
-/liststops | `/liststops`| `/liststops`
+/bus | `/bus` **location** | `/bus` **PGP**
+/clearfav | `/clearfav` | `/clearfav`
+/deletefav | `/deletefav` **index**| `/deletefav` **1**
+/descfav | `/descfav` **index** `/to` **new description** | `/descfav` **5** `/to` **Get dinner @7:30PM every Tuesday**
 /dine | `/dine` **faculty** | `/dine` **business**
 /dineinfo | `/dineinfo` **outlet** | `/dineinfo` **arise & shine**
-/addfav | `/addfav` **[description]** | 1. `/addfav` <br> 2.`/addfav` **dining options in business**  
-/deletefav | `/deletefav` **index**| `/deletefav` **1**
 /execfav | `/execfav` **index** | `/execfav` **5**
-/descfav | `/descfav` **index** `/to` **new description** | `/descfav` **5** `/to` **Get dinner @7:30PM every Tuesday**
-/listfav | `/listfav` | `/listfav`
-/clearfav | `/clearfav` | `/clearfav`
 /exit | `/exit` | `/exit`
+/faculty | `/faculty` | `/faculty`
 /help | `/help` | `/help`
+/liststops | `/liststops`| `/liststops` 
+/listfav | `/listfav` | `/listfav`
 /reset | `/reset` | `/reset`
+/route | `/route` **location1** `/to` **location2** | `/route` **PGP** `/to` **Raffles Hall**
+/routemap | `/routemap` **bus code** | `/routemap` **AA1** 
 
 <div style="page-break-after: always;"></div>
 
@@ -665,4 +685,3 @@ This section defines key technical terms we have used throughout the user guide.
 6. Execute: Run the command to display the output.
 7. Similarity check: Check for possible spelling errors.
 <!-- @@author -->
-
