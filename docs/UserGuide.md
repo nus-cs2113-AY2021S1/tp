@@ -19,6 +19,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Generating three random words: `three words`](#generating-three-random-words-three-words) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Filtering words in word list: `filter words`](#filtering-words-in-word-list-filter-words) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Listing your filter list: `list filter words`](#listing-your-filter-list-list-filter-words) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Clear all of words stored in the database: `reset words`](#clear-all-of-words-stored-in-the-datebase-reset-words) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Bunnies list commands](#bunnies-list-commands) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Adding bunny idea: `bunny`](#adding-a-bunny-idea-bunny) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Listing bunny ideas: `list bunny`](#listing-bunny-ideas-list-bunny) <br>
@@ -39,6 +40,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Choosing the “topic” of your writing: `topic`](#choosing-the-topic-of-your-writing-topic) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Tracking your past writings: `stats`](#tracking-your-past-writings-stats) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Getting reminders for your writings scheduled for a specific day: `remind`](#getting-reminders-for-your-writings-scheduled-for-a-specific-date-remind) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Reset the entire writing list: `reset writings`](#reset-the-entire-writing-list-reset-writings) <br>
 [FAQ](#faq) <br>
 [Glossary](#glossary) <br>
 [Command summary](#command-summary) <br>
@@ -201,6 +203,9 @@ Changing line divider...
 ```
 
 #### Clearing a certain object in the database: `clear`
+
+(Minh Thong)
+
 Deletes an item of choice from a list in Fluffle. A warning prompt will be generated before deletion.  
 
 Format: 
@@ -401,6 +406,9 @@ Printing 3 out of 5 word(s) from your filter list:
 ```
 
 #### Clear all of words stored in the database: `reset words`
+
+(Minh Thong)
+
 Remove all of your added words automatically
 ```
 reset words
@@ -714,6 +722,9 @@ name 3 has been deleted from the Names list!
 Writings List allows you to keep a collection of short pieces within the program, and can help you track your writing statistics as motivation to consistently practice writing.
 
 #### Beginning your writing session: `start`
+
+(Minh Thong) 
+
 Requires you to type the following commands for your writings’ configurations:
 - `type`
 - `topic`  
@@ -721,9 +732,15 @@ Requires you to type the following commands for your writings’ configurations:
 After choosing the “type” and the “topic” configurations, we can start writing our poems and essays.
 
 #### Choosing the “type” of your writing: `type`
+
+(Minh Thong)
+
 Currently, our application offers you with 2 options of “type”, which are “poem” or “essay”.
 
 #### Choosing the “topic” of your writing: `topic` 
+
+(Minh Thong)
+
 #### (Reserved for v2.1, currently you are only able to choose any arbitrary topic for your writing)
 Lists the available topics in the list and pop out the relevant keywords for your writing.
 ```
@@ -756,6 +773,9 @@ Done! We have added your writing to our storage! You can type "stats" for future
 ```
 
 #### Tracking your past writings: `stats`
+
+(Minh Thong)
+
 Informs the user detailed specifications like IDs, authors, contents, and other attributes of the writings stored in the database. 
  
 ```
@@ -802,6 +822,9 @@ On 01/11/2020, you should continue on the following writing(s):
 ```
 
 #### Reset the entire writing list: `reset writings`
+
+(Minh Thong)
+
 Clear the whole writings stored in the database
 ```
 reset writings
