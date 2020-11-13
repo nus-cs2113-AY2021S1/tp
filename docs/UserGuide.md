@@ -619,7 +619,7 @@ _______________________________________________________
 | Viewing to do list | `print todo list` |
 | Viewing event list | `print event list` |
 | Viewing deadline list | `print deadline list` |
-| Viewing the undone task list | `print undone task list` |\
+| Viewing the undone task list | `print undone task list` |
 | Clearing past deadlines | `clear deadlines` |
 | Delete done tasks | `delete done task` |
 | Viewing today's deadlines | `today deadline` |
