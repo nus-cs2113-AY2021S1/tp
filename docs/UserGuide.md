@@ -11,14 +11,14 @@
 
 #### **WatchNext** is a show tracker made for teenagers and young adults.
 <br><br> 
-### 1.a. What is **WatchNext**?
+### 1.a. What is **WatchNext**? [Jazhten]
 
 **WatchNext** is a show tracker designed for users who watch their favourite shows on multiple free streaming platforms and other open source streaming websites.
 **WatchNext** records your progress for the different shows you are currently watching, and even for upcoming shows that you plan to watch.
 <br>It additionally serves as a tracker to limit your daily watch time to help you better manage your time.
 <br>For students, **WatchNext** serves the same purpose of tracking your learning progress for lectures and webcasts.
 
-### 1.b. Why use **WatchNext**?
+### 1.b. Why use **WatchNext**? [Jazhten]
 It can be difficult and taxing to track your favourite shows through browser bookmarks.
 This is especially pertinent for younger teenagers and adults who make up a large part of video entertainment media consumers.
 
@@ -121,7 +121,7 @@ Expected outcome:
 
 <div style="page-break-after: always;"></div>
 
-#### 4.b. `add` - Adds a show
+#### 4.b. `add` - Adds a show [Jazhten]
  The `add` command adds a show into your existing watchlist.
  
   Format:
