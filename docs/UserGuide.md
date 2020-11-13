@@ -566,9 +566,14 @@ Bunny list saved!
 
 ### Names List Commands
 
+(Yong Wee)
+
 Names List commands allow you to look through a pre-built list of character names offline. You may also compile your own list, and the program can help you pick one out at random so you can start writing right away.
 
 #### Generating names from name database: `name`
+
+(Yong Wee)
+
 You can generate a name randomly from the stored database of names.
 
 Format: `name`
@@ -582,6 +587,9 @@ name 2
 ```
 
 #### Listing names from name database: `list name`
+
+(Yong Wee)
+
 You can display all the names currently stored in the names database. 
 
 Format: `list name`
@@ -600,6 +608,9 @@ list name
 ```
 
 #### Finding names from name database: `filter name`
+
+(Yong Wee)
+
 You can get the list of names after filtering from the stored list of names. 
 
 Format: `filter name NAME`
@@ -629,6 +640,9 @@ filter name name
 ```
 
 #### Adding names from name database: `add name`
+
+(Yong Wee)
+
 You can add a name to the list of names currently stored in the names database.
 
 Format: `add name NAME`
@@ -645,6 +659,9 @@ name 3 has been added to the Names list!
 ```
 
 #### Removing names from name database: `delete name`
+
+(Yong Wee)
+
 You can remove a name from the list of names currently stored in the names database.
 
 Format: `delete name INDEX`
