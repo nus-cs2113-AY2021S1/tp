@@ -65,7 +65,7 @@ In the following description, `DATE` refers to the date in the format yyyy-MM-dd
 `/t` refers to the starting time for PersonalEvent and Class, and deadline for Assignment  
 `/e` refers to the ending time for PersonalEvent and Class  
 
-### View available commands
+### View available commands - Wu Nan
 
 Shows list of commands and provides a link to the user guide for more details. 
 
@@ -226,7 +226,7 @@ Format: `list`
 Example Output:  
 ![list](diagrams/list.png)
 
-### Clear events
+### Clear events - Wu Nan
 
 Delete events existing in the list, you can choose to delete all, auto delete or delete events before a certain date:
 
@@ -248,7 +248,7 @@ Delete events existing in the list, you can choose to delete all, auto delete or
 Example Output:  
 ![clear](diagrams/clear.png)
 
-### Mark event as done
+### Mark event as done - Wu Nan
 Mark an event that has been completed with `DONE`.  
 Note that the events which are not assignments, cannot be done before its ending time.
 
