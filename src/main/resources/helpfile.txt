@@ -1,0 +1,228 @@
+summary | help | add | deadline | repeat | goal | done | undone | delete | note | reminder | extract | list | save | view | check | calendar | bye
+begin summary
+Here is a summary of all the commands that the program can run
+help - Provides more information on how to use the commands available in the program
+add - Records a personal, timetable or zoom event into the program
+deadline - Sets or change a deadline for a personal event
+repeat - repeat an event for a specified amount of times every day, week or month
+goal - Sets up a goal for the user
+done - mark the event as completed
+undone - mark the event as not completed
+delete - remove a personal, timetable or zoom event permanently from the program
+note - Add in additional notes associated to the personal, timetable or zoom event
+reminder - prints out events that will be occurring on the present day
+extract - extracts out important event information from text to be recorded as events in the program
+list - list down all events by category or list out events belonging to only one category
+save - save current changes made to the program
+view - view notes that have been written for the event
+check - checks between a start period and end period if your schedule is available or not
+calendar - displays your events in chronological order
+bye - exits the program 
+
+To find out more about each of these functions, type in "help [COMMAND]" into the terminal where COMMAND is the name of the command you would like more information about
+Format information:
+Text in lowercase indicates that you should type it exactly like this when you type the command in the terminal
+Text in uppercase indicates compulsory arguments that you will need to provide and type into the terminal to operate the command
+Text in uppercase surrounded by square brackets [] indicates optional arguments that you can choose to provide and type into the terminal to operate the command
+end summary
+
+begin help
+help - Provides more information on how to use the commands available in the program
+Format: help [COMMAND]
+
+[COMMAND] - command which you would like to find out more information about. 
+
+text in lowercase indicates that you should type it exactly like this when you type the command in the terminal
+text in uppercase indicates compulsory arguments that you will need to provide and type into the terminal to operate the command
+text in uppercase surrounded by square brackets [] indicates optional arguments that you can choose to provide and type into the terminal to operate the command
+end help
+
+begin add
+add - Records a personal, timetable or zoom event into the program
+Format: add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM
+
+
+EVENT_TYPE specify the type of event you want to add. These include zoom, timetable and personal.
+EVENT_DESCRIPTION is the description or name of the event.
+LINK/LOCATION is the website link or the location of the event. This is applicable and optional for zoom and timetable events respectively. This field should always be after the event description if used.
+DD/MM/YY is the date associated with the event in the format DD/MM/YY.
+HH:MM AM/PM is the time of the event. It can be written in 12 or 24 hour format.
+
+Timetable events can contain:
+- Description, date and time
+- Description, location, date and time
+
+Timetable Format: add Timetable; EVENT_DESCRIPTION; [LOCATION]; DD/MM/YY; HH:MM AM/PM
+
+Zoom events can contain:
+- Description and link
+- Description, link, date and time
+
+Zoom Format: add Zoom; EVENT_DESCRIPTION; LINK; [DD/MM/YY]; [HH:MM AM/PM]
+
+Personal events can contain:
+- Description
+- Description and date
+- Description, date and time
+
+Personal Format: add Personal; EVENT_DESCRIPTION; [DD/MM/YY]; [HH:MM AM/PM]
+
+end add
+
+begin deadline
+deadline - Sets or change a deadline for a personal event
+
+Format: deadline EVENT_INDEX; DD/MM/YY; [HH:MM] AM/PM
+
+EVENT_INDEX is a number. It contains the index of the personal event that will have its deadline set or changed.
+DD/MM/YY contains a date string in the format [DD/MM/YY]. This is the date of the deadline for the personal event.
+[HH:MM] is an optional argument containing the time of the deadline for the personal event. It can be written in either 12-hour or 24-hour format. 
+
+end deadline
+
+begin repeat
+repeat - repeat an event for a specified amount of times every day, week or month
+
+Format: repeat EVENT_TYPE; EVENT_INDEX; [UNIT]; [COUNT]
+
+EVENT_TYPE specify what kind of event you would like to repeat. The accepted arguments for this are "personal", "timetable" and "zoom"
+EVENT_INDEX is an number. It contains the index of the event that is to be repeated
+[UNIT] can either take the word "Daily", "Weekly" or "Monthly". It tells the program to repeat the event either every day, every week or every month.
+[COUNT] takes an integer which indicates how many units of time will this event repeat itself. For instance, if the unit input is Weekly, placing a number 5 will repeat the event for 5 weeks.
+
+When the optional arguments of [UNIT] and [COUNT] are omitted in the code, repeat will instead display the repeat status of the event.
+
+end repeat
+
+begin goal
+goal - Sets up a goal for the user
+
+Format: goal [NEW_GOAL]
+
+[NEW_GOAL] is the goal that you will want to set for yourself. For example, "goal get cap 5.0" will set your current goal as "get cap 5.0".
+
+end goal
+
+begin done
+done - mark the event as completed
+
+Format: done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]
+
+EVENT_TYPE specify what kind of event you would like to mark as done. The accepted arguments for this are "personal", "timetable" and "zoom"
+EVENT_INDEX is a number. It contains the index of the event that is to be marked as done
+[EVENT_DATE] is an optional argument. When a date is provided for marking a repeated command as done, the done command will mark the repetition with the date matching EVENT_DATE as done
+
+If you would like to mark a non repeating event as done, the format to use is : done EVENT_TYPE; EVENT_INDEX;
+If you would like to mark the repetitions of a repeated event as done, the format to use is : done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]
+
+end done
+
+begin undone
+undone - mark the event as not completed
+
+Format: undone EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]
+
+EVENT_TYPE specify what kind of event you would like to mark as not done. The accepted arguments for this are "personal", "timetable" and "zoom"
+EVENT_INDEX is a number. It contains the index of the event that is to be marked as not done
+[EVENT_DATE] is an optional argument. When a date is provided for marking a repeated command as not done, the undone command will mark the repetition with the date matching EVENT_DATE as undone
+
+If you would like to mark a non repeating event as not done, the format to use is : undone EVENT_TYPE; EVENT_INDEX;
+If you would like to mark the repetitions of a repeated event as not done, the format to use is : undone EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]
+
+end undone
+
+begin delete
+delete - remove a personal, timetable or zoom event permanently from the program
+
+Format: delete EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]
+
+EVENT_TYPE specify what kind of event you would like to delete. The accepted arguments for this are "personal", "timetable" and "zoom"
+EVENT_INDEX is a number. It contains the index of the event that is to be deleted
+[EVENT_DATE] is an optional argument. When a date is provided for deleting a repeated command, the delete command will delete the repetition with the date matching EVENT_DATE
+
+end delete
+
+begin note
+note - Add in additional notes associated to the personal, timetable or zoom event
+
+Format: note EVENT_TYPE; EVENT_INDEX
+EVENT_TYPE specify what kind of event you would like to add notes to. The accepted arguments for this are "personal", "timetable" and "zoom"
+EVENT_INDEX is a number. It contains the index of the event that notes are to be written to
+
+Scheduler will prompt you to type your notes
+To stop typing notes, enter "noteend" and press enter
+
+end note
+
+begin reminder
+reminder - prints out events that will occur on the present day
+
+Format: reminder
+
+end reminder
+
+begin extract
+extract - extracts out important event information from text to be recorded as events in the program
+
+Format: extract TEXT_SUBJECT;
+
+TEXT_SUBJECT is the subject of the email or the name you want your event to be.
+
+Once you have pressed enter, the program now prompts you to input the text you would like scheduler to extract out the scheduling information from
+When you have transferred all your text to the terminal, press enter to go to a new line, enter "extractend" and press enter again.
+
+end extract
+
+begin list
+list - list down all events by category or list out events belonging to only one category
+
+Format: list EVENT_TYPE
+
+EVENT_TYPE specify what kind of event you would like to list out. The accepted arguments for this are "personal", "timetable" and "zoom"
+
+Typing "list all" will print out all events of all categories
+end list
+
+begin save
+save - save current changes made to the program
+
+Format: save
+
+end save
+
+begin view
+view - view notes that have been written for the event
+
+Format: view EVENT_TYPE; EVENT_INDEX
+EVENT_TYPE specify what kind of event you would like to view your notes from. The accepted arguments for this are "personal", "timetable" and "zoom"
+EVENT_INDEX is a number. It contains the index of the event that the notes are to be printed out for viewing
+
+end view
+
+begin check
+check - checks between a start period and end period if your schedule is available or not
+Format: check [START_DATE]; [START_TIME]; [END_DATE]; [END_TIME]
+
+[START_DATE] is a date which you would like the program to start checking from
+[START_TIME] is a time during the start date which you would like the program to start checking from
+[END_DATE] is a date which you would like the program to check up to
+[END_TIME] is a time during the start date which you would like the program to start checking from
+
+end check
+
+begin calendar
+calendar - displays your events in chronological order
+Format: calendar
+
+Enter calendar into the terminal. Your events will be displayed in chronological order, day by day
+To advance to the next day, press the enter key
+To terminate the function early, press the 'q' key
+
+end calendar
+
+begin bye
+bye - exits the program 
+
+Format: bye
+
+end bye
