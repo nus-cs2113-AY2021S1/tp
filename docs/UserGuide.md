@@ -98,8 +98,6 @@ For computers running the Windows OS, the red arrow points to where you have to 
 For computers running the macOS, the red arrow points to where you have to type in commands. <br>
 <img src="UG_Figures/appleCLI.png" alt="Apple CLI" width=650><br>
 
-<div style="page-break-after: always;"></div>
-
 <!-- @@author Johnson-Yee -->
 ## 2. Quick Start - Johnson
 The following steps will guide you through the process of running **Nav@NUS**.
@@ -109,7 +107,7 @@ follow the guide [here](https://docs.oracle.com/en/java/javase/11/install/instal
 2. Download the latest `Nav@NUS.jar` from [here](https://github.com/AY2021S1-CS2113T-F14-3/tp/releases).
 3. Open command prompt on your computer.
 4. Copy the jar file to the folder you want to use as the _home folder_ for Nav@NUS.jar application. In the example
-shown in the figure, the home folder is found in the address path of "C:\Users...\CS2113T Empty folder".<br><br>
+shown in the figure, the home folder is found in the address path of "C:\Users\Johnson Yee\Desktop\CS2113T Empty folder".<br><br>
 <img src="UG_Figures/windowsPath.png" alt="Windows Path" width=650><br>
 5. Navigate back to the command prompt, type `cd` and the directory of the _home folder_. Press <kbd>Enter</kbd> to continue.<br><br>
 <img src="UG_Figures/cd_command.png" alt="cd_Command" width=650><br>
@@ -648,8 +646,9 @@ Simply run Nav@NUS and the program will automatically delete most of the corrupt
 ## 5. Command Summary
 The following table provides a summary of features and command formats.
 
->Note: No additional parameter is needed if it is not mentioned (e.g. help). <br>
->>Note: The table below is arranged in alphabetical order. <br>
+>Note:<br>
+> 1. No additional parameter is needed if it is not mentioned (e.g. help). <br>
+> 2. The table below is arranged in alphabetical order. <br>
 
 Command | Format | Example
 --- | --- | ---
