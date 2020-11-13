@@ -645,7 +645,7 @@ Simply copy your `data` folder from the current directory and paste it in the di
 file in the other computer.
 
 **Q:** What do I do if I have accidentally made changes to the `FavList.txt` file? <br>
-Simply run Nav@NUS and the program will automatically delete most corrupted data.
+Simply run Nav@NUS and the program will automatically delete most of the corrupted data.
 
 ## 5. Command Summary
 The following table provides a summary of features and command formats.
@@ -684,4 +684,3 @@ This section defines key technical terms we have used throughout the user guide.
 6. Execute: Run the command to display the output.
 7. Similarity check: Check for possible spelling errors.
 <!-- @@author -->
-
