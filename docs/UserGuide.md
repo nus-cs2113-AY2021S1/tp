@@ -120,7 +120,7 @@ You can install version 11 of Java from this [link](https://docs.aws.amazon.com/
 #### 2.2.2 Mac OS X
 
 1. Install Java 11 or above in your computer if you have not done so. 
-1. Download the latest scheduler.jar from here.
+1. Download the latest scheduler.jar from [here](https://github.com/AY2021S1-CS2113T-T12-4/tp/releases).
 1. Copy the file to the folder you want to use as the folder for Scheduler-\-;. 
 1. Open the terminal by clicking on Launchpad->Utilities->Terminal. 
 1. Navigate to the folder you have stored the jar file in the command prompt. 
@@ -130,7 +130,7 @@ You can install version 11 of Java from this [link](https://docs.aws.amazon.com/
 #### 2.2.3 Linux
 
 1. Install Java 11 or above in your computer if you have not done so. 
-1. Download the latest scheduler.jar from here. 
+1. Download the latest scheduler.jar from [here](https://github.com/AY2021S1-CS2113T-T12-4/tp/releases). 
 1. Copy the file to the folder you want to use as the folder for Scheduler-\-;. 
 1. Open the terminal in your linux distribution.
 1. Navigate to the folder you have stored the jar file in the command prompt. 
@@ -197,7 +197,7 @@ The following few scenarios present 3 examples of how the help command is used.
 
 Let us assume that you want to see all the commands that is available. 
 
-You can do this by typing `help`.
+You can do this by typing `help`. The program will print out a summary of all the available commands.
 
 The output from the program should be:
 ```
@@ -227,7 +227,7 @@ _________________________________
 
 ##### Scenario 2: Getting help for `add` command
 
-Let us assume that you want to add an event but you are unsure of the command. 
+Let us assume that you want to add an event but you are unsure of how to use the command. 
 
 You can do this by typing `help add`.
 
@@ -274,7 +274,7 @@ _________________________________
 
 ##### Scenario 3: Getting help to understand `help` command
 
-Let us assume that you want to use the help command but you are unsure of how to read it.
+Let us assume that you are unsure of how to use the help command and you will like to get help on how to use the help command.
 
 You can do this by typing `help help`.
 
@@ -417,9 +417,7 @@ The following few scenarios present examples of how the list command can be used
 
 ##### Scenario 1: Listing Zoom events
 
-You want to list all your Zoom events.
-
-You should input: ```list Zoom```
+If you want to list all your Zoom events, you should input: ```list Zoom```.
 
 The output from the program should be:
 
@@ -442,9 +440,7 @@ _________________________________
 
 ##### Scenario 2: Listing all events
 
-You want to list all your events.
-
-You should input: ```list all```
+If you want to list all your events, you should input: ```list all```.
 
 The output from the program should be:
 
@@ -492,9 +488,7 @@ The following few scenarios present examples of how the calendar command can be 
 
 ##### Scenario 1: Listing events in calendar
 
-You want to list your events in a calendar format.
-
-You should input: ```calendar```
+If you want to list your events in a calendar format, you should input: ```calendar```.
 
 The output from the program should be:
 
@@ -514,9 +508,7 @@ _________________________________
 
 ##### Scenario 2: Listing events in calendar but not all of them
 
-You want end the calendar before all the dates are displayed.
-
-You should input: `q` after inputting `calendar`
+If you want to end the calendar before all the dates are displayed, you should input: `q` after inputting `calendar`.
 
 The output from the program should be:
 
@@ -554,19 +546,19 @@ _________________________________
 ### 3.5 Deadlines: `deadline` (Qing Ning)
 Want to set a deadline after you have created your personal event? Afraid that you forget your deadlines? Deadline is here to help! You can set the date and time of the task to be completed and on the day itself, we will remind you.  
 
-Format: `deadline EVENT_INDEX; DD/MM/YY; [HH:MM AM/PM]`
+Format: `deadline EVENT_INDEX; EVENT_DATE; [EVENT_TIME]`
 
 - `EVENT_INDEX` is a number. It contains the index of the personal event that will have its deadline set or changed. 
 
-* `DD/MM/YY` contains a date string in the format `[DD/MM/YY]`. This is the date of the deadline for the personal event. 
+* `EVENT_DATE` contains a date string. This is the date of the deadline for the personal event. 
 
-* `[HH:MM AM/PM]` is an optional argument containing the time of the deadline for the personal event. It can be written in either 12-hour or 24-hour format. 
+* `EVENT_TIME` is an optional argument containing the time of the deadline for the personal event. It can be written in either 12-hour or 24-hour format. 
 
-`deadline 2; 23/07/20` sets the deadline of event number 2 to be on 23 July 2020.
+Acceptable date formats: DD/MM/YYYY or DD/MM/YY
 
-`deadline 7; 29/08/20; 14:25` sets the deadline of event number 7 to be on the 29 August 2020 at 2:25PM. 
-
-`deadline 7; 29/08/20; 11:20 PM` sets the deadline of event number 7 to be on the 29 August 2020 at 11:20PM. 
+Acceptable time formats: 
+- 24 Hour format – HHmm or HH:mm (e.g. 14:00)
+- 12 Hour format – hh:mm am/pm or hhmm am/pm (e.g. 2:00 pm)
 
 > **Note!**
 >
@@ -619,11 +611,9 @@ You have successfully updated the deadline for this event!
 <div style="page-break-after: always;"></div>
 
 ### 3.6 Repeat on daily/weekly/monthly basis: `repeat` (Colin Ng)
-Sets a specific event to be repeated either weekly or monthly in the calendar. 
-
 Do you have any events that repeat frequently? For example, a dental appointment every month, or perhaps a math lesson every week? The repeat command in the program allows you to easily schedule such events into your event planner. Just select the event that you want to repeat, type in how often this event repeats and Scheduler-\-; will record down the event for you.  
 
-Format: `repeat EVENT_TYPE EVENT_INDEX [UNIT] [COUNT]` 
+Format: `repeat EVENT_TYPE; EVENT_INDEX; [UNIT]; [COUNT]` 
 
 - `EVENT_TYPE` specify what kind of event you would like to repeat. The accepted arguments for this are “personal”, “timetable” and “zoom” 
 - `EVENT_INDEX` is a number. It contains the index of the event that is to be repeated 
@@ -632,11 +622,11 @@ Format: `repeat EVENT_TYPE EVENT_INDEX [UNIT] [COUNT]`
 
 If you would like to make an event a repeated event, the format for the command is as follows.
 
-Format: `repeat EVENT_TYPE EVENT_INDEX [UNIT] [COUNT]` 
+Format: `repeat EVENT_TYPE; EVENT_INDEX; [UNIT]; [COUNT]` 
 
 If you would like to view the status of a repeated event, the format for the command is as follows.
 
-Format: `repeat EVENT_TYPE EVENT_INDEX`
+Format: `repeat EVENT_TYPE; EVENT_INDEX`
 
 > **Note!**
 >
@@ -783,6 +773,7 @@ From this, we know that the event `math class` is a repeated event that repeats 
 <div style="page-break-after: always;"></div>
 
 ### 3.7 Check availability on a specific date and time: `check` (Marcus Tan)
+
 Would you like to check if you happen to be free at a certain time? The check command allows you to scan through your events to check for any events you might have within a given time period.
 
 Format: `check [START_DATE]; [START_TIME]; [END_DATE]; [END_TIME]`
@@ -790,14 +781,14 @@ Format: `check [START_DATE]; [START_TIME]; [END_DATE]; [END_TIME]`
 Acceptable date formats: DD/MM/YYYY or DD/MM/YY
 
 Acceptable time formats: 
-- 24 Hour format – HHmm or HH:mm (e.g. 14:00)
-- 12 Hour format – hh:mm am/pm or hhmm am/pm (e.g. 2:00 pm)
+- 24 Hour format – HHmm, HH:mm or HH (e.g. 2359, 14:00, 14)
+- 12 Hour format – HH:mm am/pm or HH am/pm (e.g. 2:00 pm, 10 am)
 
 > **Note!**
 >
 > *	You may omit the DD or DD/MM in a date. If you do not fill in these fields for the date, the command takes the current date for that field by default (e.g.  input 2021 on 11 Oct 2020 would be taken as 11/10/2021)
 > *	The date can also be omitted entirely. If you leave a date field as blank, the command takes the current date for that field by default.
-> *	You may also omit the minutes in a time. If the minutes(MM) field of any time is empty, the time is read as when the hour begins (e.g. 4 pm would be taken as 4:00 pm)
+> *	You may also omit the minutes in a time. If the minutes(mm) field of any time is empty, the time is read as when the hour begins (e.g. 4 pm would be taken as 4:00 pm)
 > *	The time can also be omitted entirely. If you leave a time field as blank, the command takes the current time by default.
 
 
@@ -808,7 +799,7 @@ Acceptable time formats:
 
 #### Example Usage
 
-The following few scenarios present examples of how the check command can be used.
+The following few scenarios present examples of how the check command can be used
 
 ##### Scenario 1: Checking availability between 9 May 2021 and 1 August 2021
  
@@ -863,9 +854,7 @@ The following few scenarios present examples of how the goal command can be used
 
 ##### Scenario 1: Setting goal
 
-You want to set `get cap 5.0` as your goal.
-
-You should input: `goal get cap 5.0`
+If you want to set `get cap 5.0` as your goal, you should input: `goal get cap 5.0`.
 
 The output from the program should be:
 
@@ -878,9 +867,7 @@ _________________________________
 
 ##### Scenario 2: Delete goal
 
-You want to delete your goal.
-
-You should input: `goal delete`
+If you want to delete your goal, you should input: `goal delete`.
 
 The output from the program should:
 
@@ -912,6 +899,8 @@ If you wish to mark a specific event in a repeated task as done, you may enter t
 > *	If you want to mark an original repeat event as done rather than one of the subsequent repeated events, you can omit the date in the command. 
 
 #### Example Usage
+
+The following few scenarios present several examples of how the done command can be used.
 
 ##### Scenario 1: Marking a non-repeat event as done
 
@@ -985,6 +974,10 @@ If you wish to mark a specific event in a repeated task as undone, you may enter
 >
 > *	If you want to mark an original repeat event as undone rather than one of the subsequent repeated events, you can omit the date in the command. 
 
+#### Example Usage
+
+The following few scenarios present several examples of how the undone command can be used.
+
 ##### Scenario 1: Marking a non-repeat event as undone
 
 Let's say you marked a Personal event `buy groceries` as done by accident, and want to mark it as undone again. In order to find the index of the event, you may type in the command `list personal` as shown below:
@@ -1057,6 +1050,9 @@ Format: `delete EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`
 > * If you delete the original repeat event, all the subsequent repeated events will be deleted along with it.
 > * Deleting an event on the original event's date will delete the main event, along with all the subsequent repeated events.
 
+#### Example Usage
+
+The following few scenarios present several examples of how the delete command can be used.
 
 ##### Scenario 1: Deleting a non-repeat event
 
@@ -1130,7 +1126,7 @@ Format: `note EVENT_TYPE; EVENT_INDEX`
 > **Warning!**
 >
 > * The event index keyed in have to be valid so that note can be created for the specified event index.
-> * The grave accent symbol \` is an illegal character. If you use this symbol, the notes program will intepret it as a new line.
+> * The grave accent symbol \` is an illegal character. If you use this symbol, the notes program will interpret it as a new line.
 
 #### Example Usage
 
@@ -1193,13 +1189,10 @@ Format: `view EVENT_TYPE; EVENT_INDEX`
 
 * The `EVENT_TYPE` have to be either personal, zoom or timetable.
 * Scheduler-/-; will prompt you to type your notes.
+
 > **Warning!**
 >
 > The event index keyed in have to be valid so that note can be viewed for the specified event index.
-
-Example of usage: 
-
-`view personal; 1 `
 
 #### Example Usage
 
@@ -1379,6 +1372,6 @@ In this section, you can find some frequently asked questions (FAQ).
 
 In this section is a summary of all the commands with the accepted format and short examples for ease of usage.
 
-![Command Summary Table](./diagrams/command-summary.jpg)
+![Command Summary Table](./diagrams/command-summary.jpeg)
 
 
