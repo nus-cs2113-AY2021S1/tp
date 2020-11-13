@@ -19,7 +19,7 @@ around NUS campus via the school's shuttle service.<br>
   * [1.1 What is Nav@NUS?](#11-what-is-navnus)
   * [1.2 About the User Guide](#12-about-the-user-guide)
   * [1.3 Introduction to Command Line Interface (CLI)](#13-introduction-to-command-line-interface-cli)
-- [2. Quick Start - Johnson](#2-quick-start---johnson)
+- [2. Quick Start ](#2-quick-start---johnson)
 - [3. Features](#3-features)
   * [3.1. Bus Features](#31-bus-features)
     + [3.1.1. Check for direct bus: ```/route``` - Wamika](#311-check-for-direct-bus-route---wamika)
@@ -38,7 +38,7 @@ around NUS campus via the school's shuttle service.<br>
     + [3.3.4. Execute a favourite command: `/execfav` - Heng Chin](#334-execute-a-favourite-command-execfav---heng-chin)
     + [3.3.5. Change the description for a favourite command: `/descfav` - Wamika](#335-change-the-description-for-a-favourite-command-descfav---wamika)
     + [3.3.6. Clear the list of favourite commands: `/clearfav` - Shuyi](#336-clear-the-list-of-favourite-commands-clearfav---shuyi)
-    + [3.3.7. Store favourite commands](#337-store-favourite-commands---heng-chin)
+    + [3.3.7. Store favourite commands - Heng Chin](#337-store-favourite-commands---heng-chin)
   * [3.4. Common Features](#34-common-features)
     + [3.4.1. Check for similar locations - Wamika](#341-check-for-similar-locations---wamika)
     + [3.4.2. Display most searched bus stop on start-up - Johnson](#342-display-most-searched-bus-stop-on-start-up---johnson)
@@ -47,7 +47,7 @@ around NUS campus via the school's shuttle service.<br>
     + [3.4.5. Exit the program: ```/exit```](#345-exit-the-program-exit)
 - [4. FAQ](#4-faq)
 - [5. Command Summary](#5-command-summary)
-- [6. Glossary - Wamika](#6-glossary---wamika)
+- [6. Glossary](#6-glossary---wamika)
 
 <div style="page-break-after: always;"></div>
 
@@ -331,7 +331,7 @@ These are the steps to follow:
 <img src="UG_Figures/faculty1.png" alt="output" width=600><br>
 
 ### 3.2. Dine Features
-This section provides the instruction for all features categorised under the main feature of locating dining options.
+This section provides instructions for all features categorised under the main feature of locating dining options.
 
 #### 3.2.1. Search for dining options within a faculty: ```/dine``` - Shuyi
 This command lists out all dining outlets available within a chosen faculty.
@@ -390,7 +390,7 @@ To find the information of a dining outlet with the name containing <strong>Jewe
 <!-- @@author -->
 
 ### 3.3. Favourite Features
-This section provides the instruction for all features categorised under the main feature of personalisation of application
+This section provides instructions for all features categorised under the main feature of personalisation of application
 to your needs.
 
 <div style="page-break-after: always;"></div>
@@ -555,7 +555,7 @@ The data is stored in the `FavList.txt` file in the `data` folder located in the
 <!-- @@author -->
 
 ### 3.4. Common Features
-This section provides the instruction for all the common features.
+This section provides instructions for all the common features.
 
 <div style="page-break-after: always;"></div>
 
