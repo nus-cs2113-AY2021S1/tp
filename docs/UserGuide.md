@@ -120,7 +120,7 @@ You can install version 11 of Java from this [link](https://docs.aws.amazon.com/
 #### 2.2.2 Mac OS X
 
 1. Install Java 11 or above in your computer if you have not done so. 
-1. Download the latest scheduler.jar from here.
+1. Download the latest scheduler.jar from [here](https://github.com/AY2021S1-CS2113T-T12-4/tp/releases).
 1. Copy the file to the folder you want to use as the folder for the Scheduler-\-;. 
 1. Open the terminal by clicking on Launchpad->Utilities->Terminal. 
 1. Navigate to the folder you have stored the jar file in the command prompt. 
@@ -130,7 +130,7 @@ You can install version 11 of Java from this [link](https://docs.aws.amazon.com/
 #### 2.2.3 Linux
 
 1. Install Java 11 or above in your computer if you have not done so. 
-1. Download the latest scheduler.jar from here. 
+1. Download the latest scheduler.jar from [here](https://github.com/AY2021S1-CS2113T-T12-4/tp/releases). 
 1. Copy the file to the folder you want to use as the folder for the Scheduler-\-;. 
 1. Open the terminal in your linux distribution.
 1. Navigate to the folder you have stored the jar file in the command prompt. 
