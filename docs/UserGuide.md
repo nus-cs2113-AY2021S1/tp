@@ -287,8 +287,8 @@ The rating of your show will also be shown if you have added it using the [addre
 
 
  
-### 4.e. `addreview` - Adding a review
-
+### 4.e. `addreview` - Adding a review [Bryan Beh]
+ 
 The `addreview` command allows you to add a review for a show, including adding a rating.
 
  Format:
@@ -314,7 +314,7 @@ The `addreview` command allows you to add a review for a show, including adding 
    
    <div style="page-break-after: always;"></div>
    
-### 4.f. `changereview` - Changing a review
+### 4.f. `changereview` - Changing a review [Bryan Beh]
 
 The `changereview` command allows you to change a review for a show that is already in the show list.
 
@@ -338,7 +338,7 @@ The `changereview` command allows you to change a review for a show that is alre
   <img src = "images/changereviewlist.png" width = "700">
   
 
-### 4.g. `deletereview` - Deletes a review
+### 4.g. `deletereview` - Deletes a review [Bryan Beh]
 
 The `deletereview` command allows you to delete a review for a show that is already in the show list.
 
@@ -379,7 +379,7 @@ The `deletereview` command allows you to delete a review for a show that is alre
 
  &nbsp;
  
-### 4.i. `deleterating` - Deletes rating of your show
+### 4.i. `deleterating` - Deletes rating of your show [Bryan Beh]
 
 The `deleterating` command deletes the rating for an existing show in the watchlist.
 
@@ -396,7 +396,7 @@ The `deleterating` command deletes the rating for an existing show in the watchl
 <br>
  <div style="page-break-after: always;"></div>
 
-### 4.j. `changerating` - Changes rating of your show
+### 4.j. `changerating` - Changes rating of your show [Bryan Beh]
 
 The `changerating` command changes the rating for an existing show which already has a rating in the watchlist.
 
