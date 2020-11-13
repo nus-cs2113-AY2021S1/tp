@@ -314,6 +314,7 @@ Expected outcome:
 
 [Return to the top](#user-guide)  
 
+<div style="page-break-after: always;"></div>
 
 ### 4.4 Event features`event` 
 (By: Varsha)
@@ -580,6 +581,8 @@ Expected Outcome:
 
 [Return to the top](#user-guide)
 
+<div style="page-break-after: always;"></div>
+
 ### 4.5 Finance features `finance`  
 (by: Wang Zixin)  
 #### 4.5.1 Add finance log entry: `addLog`  
@@ -655,6 +658,7 @@ Expected Outcome:
 
 [Return to the top](#user-guide)
 
+<div style="page-break-after: always;"></div>
 
 ### 4.6 Import
 
@@ -706,6 +710,8 @@ You can find the data files in the "data" folder inside the folder that CCA Mana
 
 [Return to the top](#user-guide)
 
+<div style="page-break-after: always;"></div>
+
 ## 6. Command Summary
 
 The following table provides a summary of all features and command formats.
@@ -742,6 +748,8 @@ summary | `finance summary` |   -
 
 [Return to the top](#user-guide)
 
+<div style="page-break-after: always;"></div>
+
 ## 7. Glossary
 *(By: John)*
 
@@ -756,3 +764,4 @@ This section explains certain technical terms used in the guide which may requir
 **Index** - An index (of a list) refers to which position the item is in the list. In the list (apple,pear,banana) the index of "pear" is 2 because it's the 2nd element.  
 **HR** - Human Resource <br/>
 **OS** - Operating Systems <br/>
+
