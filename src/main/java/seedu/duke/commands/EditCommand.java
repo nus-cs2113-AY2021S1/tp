@@ -49,7 +49,7 @@ public class EditCommand {
                 throw new NumberFormatException();
             }
             episodes = new int[numSeasons];
-            //Started from 1 to reference the correct season number
+
             for (int i = 0; i < numSeasons; i++) {
                 episodes[i] = show.getRawEpisodesForSeason(i);
             }
@@ -98,7 +98,7 @@ public class EditCommand {
             }
             i++;
         }
-        //I put this below for now in case we need to add checks to ensure numOfEpisodes is not empty
+
         if (i == 0 || numOfEpisodes.length != show.getNumSeasons()) {
             throw new NullPointerException();
         }
