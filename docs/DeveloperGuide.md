@@ -151,6 +151,7 @@ and these classes are stored in the seedu.commons package.
 
 
 ## Product scope
+(ZHI LIN)
 
 ### Target user profile
 
