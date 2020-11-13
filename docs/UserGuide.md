@@ -17,14 +17,15 @@
 **WatchNext** records your progress for the different shows you are currently watching, and even for upcoming shows that you plan to watch.
 <br>It additionally serves as a tracker to limit your daily watch time to help you better manage your time.
 <br>For students, **WatchNext** serves the same purpose of tracking your learning progress for lectures and webcasts.
-<br><br>This motivated our team to create an application that would not only help track all your shows and lectures, 
-but also foster a community where everyone will be able to share their watchlist with like-minded individuals and friends. <br>
 
 ### 1.b. Why use **WatchNext**?
 It can be difficult and taxing to track your favourite shows through browser bookmarks.
 This is especially pertinent for younger teenagers and adults who make up a large part of video entertainment media consumers.
 
 For students like ourselves, there is also a need to manually track lecture videos and webcast progress as lecturers may use different learning management systems.
+
+<br>This motivated our team to create an application that would not only help track all your shows and lectures, 
+but also foster a community where everyone will be able to share their watchlist with like-minded individuals and friends. <br>
 
 **WatchNext** is optimized for users who prefer to work with the Command Line Interface (CLI).<br> 
 
@@ -133,21 +134,21 @@ Expected outcome:
   Explanation of input: <br>
   For the example input, `add Friends 3 10,20,30 25`, a show named `Friends` is being added.<br> The show has `3` seasons, where season 1 has `10` episodes, season 2 has `20` and season 3 has `30` episodes.
 >**[NOTE]**
->Note how the `10`,`20` and `30` are separated by commas without spaces in between.
+>Note that the `10`,`20` and `30` are separated by commas without spaces in between.
 >
 
   The duration of each episode is `25` minutes.<br>
  <img src = "images/addCommandUG/addInput.PNG" width = "600">
   &nbsp;<br>
   
- After keying in the input as shown in the image above, you should see th eexpected output shown in the next image.<br>
+ After keying in the input as shown in the image above, you should see th expected output shown in the next image.<br>
  
  <img src = "images/addCommandUG/addResponse.PNG" width = "600">
   &nbsp;<br>
   
  If you see the outcome as pictured above, it means that the show has been successfully added to **WatchNext**.
  
- If you already have an entry with the same name in your list, the program will prompt you as follows:
+ If you already have an entry with the same name in your list, the program will display the following prompt:
  
  `This action will overwrite your existing data. Continue? (y/n)`
  
