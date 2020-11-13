@@ -252,25 +252,31 @@ Format: `exit`
 [Jump to top](#fluffle-user-guide)
 
 ### Words List Commands
+(Yu Xuan)  
 Fluffle has a word list which stores the words that you wish to store. It can be used to store words that you wish to research more on, or words that you find interesting and may add value to your stories. The more words you add to it, the more useful it becomes.
 
 #### Adding a noun: `noun`
+(Yu Xuan)  
 Adds a noun, together with its meaning, into the word bank in the program.  
 Format: `noun WORD d\DESCRIPTION`
 
 #### Adding a verb: `verb`
+(Yu Xuan)  
 Adds a verb, together with its meaning, into the word bank in the program.  
 Format: `verb WORD d\DESCRIPTION`
 
 #### Adding an adjective: `adj`
+(Yu Xuan)  
 Adds an adjective, together with its meaning, into the word bank in the program.  
 Format: `adj WORD d\DESCRIPTION`
 
 #### Listing words: `list words`
+(Yu Xuan)  
 Lists all words stored in the program.  
 Format: `list words`
 
 #### Generating three random words: `three words`
+(Yu Xuan)  
 Generates three random words from the Fluffle word bank. You may use this function when you need inspiration for story ideas.  
 Format: `three words`
 
