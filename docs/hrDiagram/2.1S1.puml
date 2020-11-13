@@ -1,0 +1,27 @@
+@startuml
+!include styleHR.puml
+
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title After Step 1
+
+package MemberList0 {
+    class State1 as " "
+}
+package MemberList1 {
+    class State2 as "Member\n__John Sterling:Member__"
+}
+
+package MemberList2 {
+    class State3 as " "
+}
+
+MemberList0 -left->MemberList1
+hide MemberList1
+hide MemberList2
+
+class Pointer as "Current State" #FFFFF
+Pointer -up-> MemberList0
+
+@enduml

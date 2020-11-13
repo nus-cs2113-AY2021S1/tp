@@ -1,0 +1,14 @@
+@startuml
+!include styleHR.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title Initial state
+
+package MemberList {
+    class State1 as "Member\nHarry Potter\n88888888\nqaz@gmail.com\npresident"
+    class State2 as "Member\nJohn Sterling\n12345678\n123@gmail.com\nmember"
+}
+
+
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+participant ":CommandFinanceDel" as CommandFinanceDel
+participant ":FinanceList" as FinanceList
+participant ":FinanceLog" as FinanceLog
+->CommandFinanceDel:execute()
+activate CommandFinanceDel
+CommandFinanceDel -> FinanceList:delLog(index)
+activate FinanceList
+FinanceList -> FinanceLog !!
+return output
+return output
+@enduml

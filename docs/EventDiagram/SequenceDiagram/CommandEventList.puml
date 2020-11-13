@@ -1,0 +1,24 @@
+@startuml
+ -> ":CommandEventList" : execute()
+
+activate ":CommandEventList"
+
+":CommandEventList"  -> ":EventList":printEventList()
+activate ":EventList"
+alt empty ArrayList
+    ":EventList" --> ":CommandEventList"
+    activate ":CommandEventList"
+else else
+    loop until end of ArrayList
+        ":EventList" -> ":Event" : printEvent()
+        activate ":Event"
+        ":Event" --> ":EventList"
+        deactivate ":Event"
+        ":EventList" --> ":CommandEventList" : output
+        deactivate ":EventList"
+          <-- ":CommandEventList" : output
+    end
+   deactivate ":CommandEventList"
+end
+deactivate ":CommandEventList"
+@enduml

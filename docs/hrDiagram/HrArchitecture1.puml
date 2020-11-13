@@ -1,0 +1,22 @@
+
+@startuml
+scale max 1024 width
+hide circle
+
+class "{abstract} \n Command" {
+}
+
+
+
+"{abstract} \n Command" <|-down- HrCommands
+
+HrCommands -down> Member
+MemberList -up> Member
+MemberList -> HrCommands
+HrCommands -> MemberList
+
+
+Duke -> Ui
+Ui -> "{abstract} \n Command"
+
+@enduml

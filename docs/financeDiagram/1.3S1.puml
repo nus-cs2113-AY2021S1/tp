@@ -1,0 +1,25 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title Initial state
+
+package FinanceList0 {
+    class State2 as "FinanceLog\nrent room $40"
+    class State1 as "FinanceLog\niphone12 $1299"
+}
+package FinanceList1 {
+    class State3 as "FinanceLog\niphone12 $1299"
+    class State4 as "FinanceLog\nrent field $50"
+}
+hide FinanceList1
+
+FinanceList0 -left->FinanceList1
+
+
+class Pointer as "Current State" #FFFFF
+Pointer -up-> FinanceList0
+
+
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+
+ -> ":CommandEventDel": execute()
+activate ":CommandEventDel"
+
+alt isInteger
+   ":CommandEventDel" -> ":EventList" : deleteEvent()
+    activate ":EventList"
+    ":EventList" -> ":Event": remove()
+    activate ":Event"
+    activate ":EventList"
+    return
+    ":EventList" -> ":Event" : printEvent()
+   activate ":Event"
+   return output
+   deactivate
+   return output
+   <-- ":CommandEventDel" : output
+else else
+
+":CommandEventDel" -> ":EventList" : clearEvents()
+  activate ":EventList"
+ ":EventList" -> ":Event"
+ destroy ":Event"
+ return output
+  <-- ":CommandEventDel" : output
+  deactivate ":EventList"
+  end
+ deactivate ":CommandEventDel"
+@enduml

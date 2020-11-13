@@ -1,0 +1,38 @@
+@startuml
+hide circle
+class "{abstract}\n Command"
+class CommandFinanceAdd{
+}
+class CommandFinanceDel{
+}
+class CommandFinanceSummary {
+}
+class FinanceList{
+}
+class FinanceLog {
+}
+"{abstract}\n Command" <|-right-CommandFinanceAdd
+"{abstract}\n Command" <|-up-CommandFinanceDel
+"{abstract}\n Command" <|-down-CommandFinanceSummary
+"{abstract}\n Command" <|-down-CommandFinanceChange
+FinanceList <-left-FinanceLog
+FinanceLog <--FinanceList
+FinanceList <-right-CommandFinanceAdd
+CommandFinanceAdd <-- FinanceList
+FinanceList <-right- CommandFinanceDel
+CommandFinanceDel <-- FinanceList
+FinanceList <--CommandFinanceSummary
+CommandFinanceSummary <-- FinanceList
+FinanceLog <-right- CommandFinanceAdd
+FinanceList <--CommandFinanceChange
+CommandFinanceChange <-- FinanceList
+class Ui
+class FileMananger
+FinanceList <-- FileMananger
+"{abstract}\n Command" <-- Ui
+class Duke
+Ui <-left- Duke
+class DukeException
+"{abstract}\n Command" <-down- DukeException
+
+@enduml

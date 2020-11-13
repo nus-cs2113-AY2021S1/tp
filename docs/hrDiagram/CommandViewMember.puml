@@ -1,0 +1,28 @@
+@startuml
+ -> ":CommandViewMember" : execute()
+
+activate ":CommandViewMember"
+
+":CommandViewMember"  -> ":MemberList":listMembers()
+activate ":MemberList"
+alt memberSize == 0
+    ":MemberList" --> ":CommandViewMember"
+    <-- ":CommandViewMember" : output
+else else
+    loop memberSize
+        ":MemberList" -> ":Member" : toString()
+        activate ":Member"
+        ref over ":Member", ":MemberList"
+            updateEventAttendance
+        end ref
+        return output
+        deactivate ":Member"
+        ":MemberList" --> ":CommandViewMember" : output
+        deactivate ":MemberList"
+    end
+    deactivate ":MemberList"
+end
+<-- ":CommandViewMember" : output
+deactivate ":CommandViewMember"
+
+@enduml

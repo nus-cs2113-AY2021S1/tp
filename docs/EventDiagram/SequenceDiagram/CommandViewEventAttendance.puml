@@ -1,0 +1,24 @@
+@startuml
+ -> ":CommandViewEventAttendance": execute()
+
+activate ":CommandViewEventAttendance"
+":CommandViewEventAttendance" -> ":EventList" : listAttendance(eventName)
+activate ":EventList"
+":EventList" -> ":EventList" : checkEventExistence(eventName)
+opt isEventExists
+    ":EventList" -> ":Event" : findEventByName(eventName)
+    activate ":Event"
+    return
+    ":EventList" -> ":Event" : printEventParticipant()
+    activate ":Event"
+    return output
+    ":EventList" -> ":Event" : size()
+    activate ":Event"
+    return output
+end
+
+return output
+deactivate ":EventList"
+<-- ":CommandViewEventAttendance" : output
+deactivate ":CommandViewEventAttendance"
+@enduml

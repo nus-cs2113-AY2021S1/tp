@@ -1,0 +1,14 @@
+@startuml
+hide circle
+class "{abstract} \n Command" {
+}
+
+Rectangle HrCommands {
+"{abstract} \n Command" <|-down- CommandAddMember
+"{abstract} \n Command" <|-down CommandDelMember
+"{abstract} \n Command" <|-down CommandViewMember
+"{abstract} \n Command" <|-down CommandSearchMember
+"{abstract} \n Command" <|-down CommandListConnection
+"{abstract} \n Command" <|-down CommandListProfAdmin
+"{abstract} \n Command" <|-down CommandChangeMemberInfo
+@enduml

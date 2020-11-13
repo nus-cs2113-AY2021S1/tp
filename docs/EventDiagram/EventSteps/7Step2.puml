@@ -1,0 +1,21 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title Step 2
+
+package EventList0 {
+    class State1 as "Event \narduino course 30 Dec 2020 18-00 []"
+}
+
+package MemberList0 {
+    class State2 as "Member \nJohn Sterling 12345678 123@gmail.com member"
+    class State3 as "Member \nHarry Potter 88888888 qaz@gmail.com president"
+}
+
+class Pointer as "Current State" #FFFFF
+Pointer -up-> EventList0
+
+
+@enduml

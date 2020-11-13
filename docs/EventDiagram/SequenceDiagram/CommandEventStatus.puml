@@ -1,0 +1,21 @@
+@startuml
+ -> ":CommandEventStatus": execute()
+
+
+activate ":CommandEventStatus"
+":CommandEventStatus" -> ":EventList" : isCompleted()
+activate ":EventList"
+":EventList" -> ":Event": getStatusIcon()
+activate ":Event"
+return
+":EventList" -> ":Event" : printEvent()
+activate ":Event"
+return
+return output
+return output
+deactivate ":CommandEventStatus"
+
+
+
+
+@enduml

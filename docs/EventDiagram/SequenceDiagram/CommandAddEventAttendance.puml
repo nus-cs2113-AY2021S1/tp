@@ -1,0 +1,59 @@
+@startuml
+ -> ":CommandAddEventAttendance": execute()
+
+activate ":CommandAddEventAttendance"
+":CommandAddEventAttendance" -> ":EventList" : addAttendance(eventName, memberName)
+activate ":EventList"
+":EventList" -> ":EventList" : checkEventExistence(eventName)
+opt event does not exist
+":EventList" --> ":CommandAddEventAttendance" : output
+<-- ":CommandAddEventAttendance" : output
+end
+":EventList" -> ":MemberList" : checkMemberExistence(memberName)
+activate ":MemberList"
+":MemberList" -> ":EventList"
+deactivate ":MemberList"
+opt member does not exist
+":EventList" --> ":CommandAddEventAttendance" : output
+<-- ":CommandAddEventAttendance" : output
+end
+
+activate ":EventList"
+":EventList" -> ":Event" : findEventByName(eventName)
+activate ":Event"
+return
+
+":EventList" -> ":MemberList" : checkEventExistence(eventName)
+activate ":MemberList"
+":MemberList" --> ":EventList"
+deactivate ":MemberList"
+":EventList" -> ":Event" : getEventParticipants()
+activate ":Event"
+return
+opt participant exists in event
+
+":EventList" --> ":CommandAddEventAttendance" : output
+<-- ":CommandAddEventAttendance" : output
+end
+
+activate ":MemberList"
+":EventList" -> ":MemberList" :findMemberByName(memberName)
+activate ":MemberList"
+":MemberList" -> ":Member" : findEventByName(eventName)
+activate ":Member"
+return
+return
+
+":EventList" -> ":Event" : setEventParticipants(m)
+activate ":Event"
+return
+
+":EventList" -> ":Event" : eventParticipants.size();
+activate ":Event"
+return output
+":EventList" --> ":CommandAddEventAttendance" : output
+deactivate ":EventList"
+
+<-- ":CommandAddEventAttendance" : output
+deactivate ":CommandAddEventAttendance"
+@enduml

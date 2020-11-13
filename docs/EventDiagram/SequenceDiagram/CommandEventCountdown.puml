@@ -1,0 +1,28 @@
+@startuml
+ -> ":CommandEventCountdown" : execute()
+
+activate  ":CommandEventCountdown"
+
+":CommandEventCountdown" -> ":EventList":countdownView()
+activate ":EventList"
+alt empty ArrayList
+    ":EventList" -->  ":CommandEventCountdown"
+else else
+    loop until end of ArrayList
+        ":EventList" -> ":Event": printEvent()
+        activate ":Event"
+        ":Event" -->":EventList"
+        deactivate ":Event"
+        ":EventList" -> ":Event": numberOfDaysLeft()
+        activate ":Event"
+        ":Event" --> ":EventList"
+        deactivate ":Event"
+        return output
+
+        deactivate ":EventList"
+    end
+     <-- ":CommandEventCountdown" : output
+end
+
+deactivate ":CommandEventCountdown"
+@enduml

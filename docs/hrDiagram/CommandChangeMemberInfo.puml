@@ -1,0 +1,21 @@
+@startuml
+
+ -> ":CommandChangeMemberInfo": execute()
+activate ":CommandChangeMemberInfo"
+
+":CommandChangeMemberInfo" -> ":MemberList" : findMemberByName(memberName)
+activate ":MemberList"
+":MemberList" --> ":CommandChangeMemberInfo"
+deactivate ":MemberList"
+":CommandChangeMemberInfo" -> ":MemberList" : changeMemberInfo(m, newPhone, newEmail, newRole)
+activate ":MemberList"
+":MemberList" -> ":Member" : toString()
+activate ":Member"
+ref over ":Member", ":MemberList"
+    updateEventAttendance
+end ref
+return output
+return output
+return output
+
+@enduml

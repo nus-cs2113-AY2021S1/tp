@@ -1,0 +1,13 @@
+@startuml
+participant ":CommandListProfAdmin" as CommandFinanceSummary
+participant ":MemberList" as FinanceList
+->CommandFinanceSummary:execute()
+activate CommandFinanceSummary
+CommandFinanceSummary -> FinanceList : searchProfAdmin()
+activate FinanceList
+loop numOfMembers
+FinanceList -> FinanceList: searcheRole()
+end
+return output
+return output
+@enduml
