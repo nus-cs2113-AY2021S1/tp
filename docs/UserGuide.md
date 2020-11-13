@@ -787,6 +787,8 @@ event done   | `event done EVENT_INDEX`| `event done 2`
 
 <div style="page-break-after: always;"></div>
 
+Command | Format | Example
+------- | ---------- | ------------
 event search | `event search /s <KEYWORD>` | `event search /s arduino` 
 event countdown | `event countdown` | -
 help | `help` | -
