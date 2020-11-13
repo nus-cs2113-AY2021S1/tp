@@ -1,0 +1,26 @@
+There is/are currently 2 writing(s) in our database
+----------------------------
+*id: 38
+*Author: kdjfklasdj
+*Type: Poem
+*Title: kjdfkdsjaf
+*Topic: sdjafkdsjf
+*Date: 10/11/2020
+*Reminder: 20/12/2030
+*Content: 
+dskfjkdlsafj
+kdajfkldsajflk
+jfkadjfa
+----------------------------
+*id: 583
+*Author: dklsjfdksjf
+*Type: Essay
+*Title: dfkadjfk
+*Topic: djkfajds
+*Date: 10/11/2020
+*Reminder: 21/12/2112
+*Content: 
+djfkladjsf
+sdlkfjsdaklfj
+asdlkfjsadklf
+----------------------------
