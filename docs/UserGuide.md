@@ -1281,7 +1281,7 @@ Format: `extract EVENT_DESCRIPTION;`
 
 The following scenario presents an example of how the extract command can be used.
 
-##### Scenario 1:
+##### Scenario 1: Extracting a zoom event from an email
 
 You receive an email for CG2271 Quiz 2 where the email body is "Hi all, we will be having the quiz on either
  4th October 2020 or October 15 2020 at either 3pm or 3.30pm. 
