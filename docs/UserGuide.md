@@ -184,7 +184,7 @@ Let's say you want to go from **KR MRT** to **YIH**, but you do not know the ful
 Here's what you can do:
 
 1. Type `/liststops` into the CLI as shown in the figure below and press <kbd>Enter</kbd>. You can find more details about
-`/lisstops` in [section 3.1.5.](#315-list-all-bus-stops-in-nus-liststops---yuxin) of the User Guide.<br><br>
+`/lisstops` in [section 3.1.5.](#315-list-all-bus-stops-in-nus-liststops-yuxin) of the User Guide.<br><br>
 <img src="UG_Figures/routeshort1.png" alt="list stops" width = 700><br>
 
 2. The result will be a list of bus stops in NUS. Manually search for the full forms of **KR MRT** and **YIH** as shown in 
