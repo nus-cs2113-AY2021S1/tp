@@ -97,6 +97,8 @@ The following steps will guide you through the process of running CCA Manager.  
  
  ![](userGuidePic/terminal.PNG)
 
+<div style="page-break-after: always;"></div>
+
 You will see this welcome message if you have done the above steps correctly. <br/>
 
 ![Welcome Message](userGuidePic/welcomeMessage.PNG)
@@ -117,6 +119,7 @@ For example, as shown in the picture below, instead of typing `event`, you can t
 
 ![](userGuidePic/shorthandexample.PNG)
 
+<div style="page-break-after: always;"></div>
 
 ### 4.1 Help `help`
 *(By: John)*
@@ -141,6 +144,8 @@ With this command you can gracefully exit the program directly, without having t
 Format: `bye`
 
 [Return to the top](#user-guide)
+
+<div style="page-break-after: always;"></div>
 
 ### 4.3 HR features `HR` 
 #### Add members: `addMember`
@@ -170,6 +175,8 @@ Example of usage: <br/>
  ![HrAddMemberCommand](userGuidePic/hrAddMemberCommand2.PNG)
  
  [Return to the top](#user-guide)
+ 
+ <div style="page-break-after: always;"></div>
  
 #### Delete members: `delMember`
 (By:Ye Yutong)  
@@ -202,6 +209,8 @@ Example Outcome:
   
 [Return to the top](#user-guide)
 
+<div style="page-break-after: always;"></div>
+
 #### List members: `listMember`
 (By:Ye Yutong)  
 
@@ -222,6 +231,8 @@ Expected Outcome:
 ![HrListMemberCommand](userGuidePic/hrListMemberCommand.PNG)
  
 [Return to the top](#user-guide)
+
+<div style="page-break-after: always;"></div>
 
 #### Change member information: `changeInfo`
 (By:Ye Yutong)  
@@ -249,6 +260,8 @@ Expected Outcome:
  
 [Return to the top](#user-guide)
 
+<div style="page-break-after: always;"></div>
+
 #### Search members: `search`  
 (by: Wang Zixin)  
 You can use this command to search for a particular member.  
@@ -274,6 +287,7 @@ Expected outcomes:
 
 [Return to the top](#user-guide)  
 
+<div style="page-break-after: always;"></div>
 
 #### View contacts of prof/admin: `list prof&admin`  
 (by: Wang Zixin)  
@@ -294,6 +308,7 @@ Expected outcome:
 
 [Return to the top](#user-guide)  
 
+<div style="page-break-after: always;"></div>
 
 #### View contacts of connections: `list connections`  
 (by: Wang Zixin)  
@@ -355,6 +370,8 @@ The result will be a message that the event has been successfully added as shown
 ![EventAddCommand](userGuidePic/eventAddCommand.PNG)
 
 [Return to the top](#user-guide)
+
+<div style="page-break-after: always;"></div>
  
 #### Delete an event: `delEvent`
 (By: Varsha)
@@ -389,6 +406,8 @@ The result will be a message that the event has been removed successfully as sho
 ![EventDeleteAtIndex](userGuidePic/eventDelEvent.PNG)
  
  [Return to the top](#user-guide)
+ 
+ <div style="page-break-after: always;"></div>
 
 #### Clear all events: `delEvent all`
 (By: Varsha)
@@ -411,6 +430,8 @@ Type in `Y` to clear the list as shown below.
 
 [Return to the top](#user-guide)
 
+<div style="page-break-after: always;"></div>
+
 #### List events: `listEvent`
 (By: Varsha)
 
@@ -432,6 +453,8 @@ Expected Outcome:
 
 [Return to the top](#user-guide)
 
+<div style="page-break-after: always;"></div>
+
 #### Countdown events `countdown`
 (By: Varsha)
 
@@ -452,6 +475,8 @@ Expected Outcome:
 ![eventCountdown](userGuidePic/eventCountdown.PNG)
 
 [Return to the top](#user-guide)
+
+<div style="page-break-after: always;"></div>
 
 #### Mark an event as completed `done`
 (By: Varsha)
@@ -478,6 +503,8 @@ Expected Outcome: <br/>
 ![](userGuidePic/eventMarkAsDone.PNG)
 
 [Return to the top](#user-guide)
+
+<div style="page-break-after: always;"></div>
 
 #### Search for an Event `search`
 (By: Varsha)
@@ -508,6 +535,8 @@ The output when you search by date is as follows:  <br/>
 >
 [Return to the top](#user-guide)
 
+<div style="page-break-after: always;"></div>
+
 #### Add a participant to an event: `addAttendance`
 (By:Ye Yutong)  
 
@@ -535,6 +564,8 @@ Expected Outcome:
 
 [Return to the top](#user-guide)
  
+ <div style="page-break-after: always;"></div>
+ 
 #### Delete a participant from an event: `delAttendance`
 (By:Ye Yutong)  
 
@@ -559,6 +590,8 @@ Shorthand Format: <br/>
  ![EventDeleteAttendanceCommand](userGuidePic/eventDeleteAttendanceCommand.PNG)
  
  [Return to the top](#user-guide)
+ 
+ <div style="page-break-after: always;"></div>
 
 #### List participants in an event: `listAttendance`
 (By:Ye Yutong)  
@@ -604,6 +637,7 @@ Expected outcomes:
 
 [Return to the top](#user-guide)  
 
+<div style="page-break-after: always;"></div>
 
 #### 4.5.2 Delete finance log entry: `delLog`  
 Allows you to remove an entry from finance log.  
@@ -625,6 +659,8 @@ Expected outcomes:
 [Return to the top](#user-guide)  
 
 
+<div style="page-break-after: always;"></div>
+
 #### 4.5.3 View financial summary: `summary`  
 This command allows you to view a summary of the financial log and shows the total amount of money expended.  
 Format: `finance summary`  
@@ -641,6 +677,7 @@ Expected Outcome:
 
 [Return to the top](#user-guide)  
 
+<div style="page-break-after: always;"></div>
 
 #### 4.5.4 Change finance log entry information: `changeLog`  
 Allows you to change the finance log entry's name and budget amount.  
@@ -684,12 +721,16 @@ You can download the sample [here](https://raw.githubusercontent.com/AY2021S1-CS
 
 [Return to the top](#user-guide)
 
+<div style="page-break-after: always;"></div>
+
 ### 4.7 Saving the data
 (By: Varsha)
 
 CCA Manager saves all your data after every command. There is no need to save manually.
 
 [Return to the top](#user-guide)
+
+<div style="page-break-after: always;"></div>
 
 ## 5. FAQ
 
