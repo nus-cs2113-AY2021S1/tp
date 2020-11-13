@@ -122,9 +122,13 @@ Example of usage: <br/>
  `hr add /n Harry Potter /p 12345678 /e H_P@gmail.com /r member`<br/>
  `hr a /n sakata Gintoki /p 999999999 /e Ginsan@gmail.com /r member`<br/>
  
- Expected Outcome:
- 
+ Example scenario:  
+ Let's say you want to add a member called `John Sterling`, with phone number `88888888`, email `js@gmail.com`, and role `president`.  
+ Type `hr addMember /n John Sterling /p 88888888 /e js@gmail.com /r president` into the terminal and press enter as shown in the figure below.  
  ![HrAddMemberCommand](userGuidePic/hrAddMemberCommand.PNG)
+ 
+ The result will be a message that the member has been successfully added as shown in the figure below.  
+ ![HrAddMemberCommand](userGuidePic/hrAddMemberCommand2.PNG)
  
  [Return to the top](#user-guide)
  
@@ -143,9 +147,13 @@ Example of usage: <br/>
  `hr delete 19` <br/>
  `hr d 5` <br/>
  
-  Expected Outcome:
-  
+  Example scenario:  
+  Let's say you want to remove the member that you have entered above. i.e. `hr addMember /n John Sterling /p 88888888 /e js@gmail.com /r president`.
+  To delete, type `hr delMember 1` into the terminal and press enter as shown in the figure below.  
   ![HrDelMemberCommand](userGuidePic/hrDelMemberCommand.PNG)
+  
+  The result will be a message that the member has been removed successfully as shown in the figure below.  
+  ![HrDelMemberCommand](userGuidePic/hrDelMemberCommand2.PNG)
   
   [Return to the top](#user-guide)
 
