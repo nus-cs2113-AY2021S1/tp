@@ -129,7 +129,7 @@ There are 18 features available in Nav@NUS. The following are instructions for u
 >4. Location names must be in full for commands that require bus stop location(s).
 >5. Words in [ ] are optional parameters (e.g. [**description**]).
 
-:exclamation: Warning: You are recommended not to edit the text files manually.
+:exclamation: WARNING: You are recommended not to edit the text files manually.
 
 ### 3.1. Bus Features
 This section provides instructions for all features categorised under the main feature of navigation by bus.
@@ -546,7 +546,7 @@ These are the steps to follow:
 
 <!-- @@author EthanWong2212 -->
 #### 3.3.7. Store favourite commands - Heng Chin
->Note: **DO NOT** modify the `FavList.txt` file <br>
+:exclamation:  WARNING: **DO NOT** modify the `FavList.txt` file <br>
 
 In order to make Nav@NUS a personalized application for you, all data from your list of favourite commands will be stored on your computer. Thus, everytime Nav@NUS launches, you will be able to maintain and update your list of favourite commands.
 
@@ -629,7 +629,7 @@ Format:<br>
 
 The application exits after displaying the following message.<br><br>
 <img src="UG_Figures/exit.png" alt="Correct input message" width=600><br>
-
+<div style="page-break-after: always;"></div>
 ## 4. FAQ
 This section addresses some common questions to aid in possible issues faced.
 
@@ -649,6 +649,8 @@ The following table provides a summary of features and command formats.
 >Note:<br>
 > 1. No additional parameter is needed if it is not mentioned (e.g. help). <br>
 > 2. The table below is arranged in alphabetical order. <br>
+
+<div style="page-break-after: always;"></div>
 
 Command | Format | Example
 --- | --- | ---
