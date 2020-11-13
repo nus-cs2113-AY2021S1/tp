@@ -255,25 +255,31 @@ Format: `exit`
 [Jump to top](#fluffle-user-guide)
 
 ### Words List Commands
+(Yu Xuan)  
 Fluffle has a word list which stores the words that you wish to store. It can be used to store words that you wish to research more on, or words that you find interesting and may add value to your stories. The more words you add to it, the more useful it becomes.
 
 #### Adding a noun: `noun`
+(Yu Xuan)  
 Adds a noun, together with its meaning, into the word bank in the program.  
 Format: `noun WORD d\DESCRIPTION`
 
 #### Adding a verb: `verb`
+(Yu Xuan)  
 Adds a verb, together with its meaning, into the word bank in the program.  
 Format: `verb WORD d\DESCRIPTION`
 
 #### Adding an adjective: `adj`
+(Yu Xuan)  
 Adds an adjective, together with its meaning, into the word bank in the program.  
 Format: `adj WORD d\DESCRIPTION`
 
 #### Listing words: `list words`
+(Yu Xuan)  
 Lists all words stored in the program.  
 Format: `list words`
 
 #### Generating three random words: `three words`
+(Yu Xuan)  
 Generates three random words from the Fluffle word bank. You may use this function when you need inspiration for story ideas.  
 Format: `three words`
 
@@ -590,9 +596,14 @@ Bunny list saved!
 
 ### Names List Commands
 
+(Yong Wee)
+
 Names List commands allow you to look through a pre-built list of character names offline. You may also compile your own list, and the program can help you pick one out at random so you can start writing right away.
 
 #### Generating names from name database: `name`
+
+(Yong Wee)
+
 You can generate a name randomly from the stored database of names.
 
 Format: `name`
@@ -606,6 +617,9 @@ name 2
 ```
 
 #### Listing names from name database: `list name`
+
+(Yong Wee)
+
 You can display all the names currently stored in the names database. 
 
 Format: `list name`
@@ -624,6 +638,9 @@ list name
 ```
 
 #### Finding names from name database: `filter name`
+
+(Yong Wee)
+
 You can get the list of names after filtering from the stored list of names. 
 
 Format: `filter name NAME`
@@ -653,6 +670,9 @@ filter name name
 ```
 
 #### Adding names from name database: `add name`
+
+(Yong Wee)
+
 You can add a name to the list of names currently stored in the names database.
 
 Format: `add name NAME`
@@ -669,6 +689,9 @@ name 3 has been added to the Names list!
 ```
 
 #### Removing names from name database: `delete name`
+
+(Yong Wee)
+
 You can remove a name from the list of names currently stored in the names database.
 
 Format: `delete name INDEX`
