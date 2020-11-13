@@ -772,6 +772,7 @@ From this, we know that the event `math class` is a repeated event that repeats 
 <div style="page-break-after: always;"></div>
 
 ### 3.7 Check availability on a specific date and time: `check` (Marcus Tan)
+
 Would you like to check if you happen to be free at a certain time? The check command allows you to scan through your events to check for any events you might have within a given time period.
 
 Format: `check [START_DATE]; [START_TIME]; [END_DATE]; [END_TIME]`
@@ -797,7 +798,7 @@ Acceptable time formats:
 
 #### Example Usage
 
-The following few sections present several examples of how the check command can be used.
+The following few scenarios present several examples of how the check command can be used.
 
 ##### Scenario 1: Checking availability between 9 May 2021 and 1 August 2021
  
@@ -898,6 +899,8 @@ If you wish to mark a specific event in a repeated task as done, you may enter t
 
 #### Example Usage
 
+The following few scenarios present several examples of how the done command can be used.
+
 ##### Scenario 1: Marking a non-repeat event as done
 
 Let's say you wish to mark a Personal event `buy groceries` as done. In order to find the index of the event, you may type in the command `list personal` as shown below:
@@ -969,6 +972,10 @@ If you wish to mark a specific event in a repeated task as undone, you may enter
 > **Note!**
 >
 > *	If you want to mark an original repeat event as undone rather than one of the subsequent repeated events, you can omit the date in the command. 
+
+#### Example Usage
+
+The following few scenarios present several examples of how the undone command can be used.
 
 ##### Scenario 1: Marking a non-repeat event as undone
 
@@ -1042,6 +1049,9 @@ Format: `delete EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`
 > * If you delete the original repeat event, all the subsequent repeated events will be deleted along with it.
 > * Deleting an event on the original event's date will delete the main event, along with all the subsequent repeated events.
 
+#### Example Usage
+
+The following few scenarios present several examples of how the delete command can be used.
 
 ##### Scenario 1: Deleting a non-repeat event
 
