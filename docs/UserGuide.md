@@ -24,15 +24,15 @@ This gives the application both simplicity and speed, setting it apart from othe
 * [Quick Start](#quick-start)
 * [Features](#features)
     * [View available commands](#view-available-commands)
-    * [Add an event](#add-an-event)
+    * [Add an event](#add-an-event---brendan)
     * [Edit an event](#edit-an-event---xu-che)
     * [Sort events](#sort-events---xu-che)
     * [Find a location](#find-a-location)
     * [List all locations](#list-all-locations)
-    * [List all events](#list-all-events)
+    * [List all events](#list-all-events---brendan)
     * [Clear events](#clear-events)
     * [Mark event as done](#mark-event-as-done)
-    * [Reminder of deadlines](#reminder-of-deadlines)
+    * [Reminder of deadlines](#reminder-of-deadlines---brendan)
     * [Repeat of events](#repeat-of-events---zhuang-mengjin)
     * [Delete an event](#delete-an-event---zhuang-mengjin)
     * [Find a keyword](#find-a-keyword---zhuang-mengjin)
@@ -42,7 +42,7 @@ This gives the application both simplicity and speed, setting it apart from othe
     * [Make the app know you](#make-the-app-know-you---zhuang-mengjin)
     * [Exit the app](#exit-the-app---zhuang-mengjin)
 * [FAQs](#FAQ)
-* [Command Summary](#command-summary)
+* [Command Summary](#command-summary---brendan)
 
 
 ## Quick Start
