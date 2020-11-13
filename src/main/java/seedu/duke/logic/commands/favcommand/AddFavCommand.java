@@ -9,7 +9,6 @@ import seedu.duke.model.favorite.Fav;
 
 import static seedu.duke.ui.Ui.addFavMessage;
 
-
 public class AddFavCommand extends Command {
 
     /** Command to be saved by the user in the FavList.*/
@@ -20,6 +19,9 @@ public class AddFavCommand extends Command {
     private Fav item;
 
     public AddFavCommand(String inputCommand, String description) {
+        if (inputCommand != null) {
+            inputCommand = inputCommand.replaceAll("\\s+", " ");
+        }
         this.command = inputCommand;
         this.description = description;
         super.isValid = false;

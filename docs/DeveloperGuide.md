@@ -47,11 +47,16 @@ enhancements.
   * [E.5 Search for dining options within a faculty - Shuyi](#e5-search-for-dining-options-within-a-faculty---shuyi)
   * [E.6 Search for specific dining outlet - Shuyi](#e6-search-for-specific-dining-outlet---shuyi)
   * [E.7 Add a favourite command - Yuxin](#e7-add-a-favourite-command---yuxin)
+  
+  <div style="page-break-after: always;"></div>
+
   * [E.8 Delete favourite command from favourite list - Johnson](#e8-delete-favourite-command-from-favourite-list---johnson)
   * [E.9 Execute a favourite command from favourite list - Wong Heng Chin](#e9-execute-a-favourite-command-from-favourite-list---wong-heng-chin)
   * [E.10 Change description of favourite command in favourite list - Wamika](#e10-change-description-of-favourite-command-in-favourite-list---wamika)
   * [E.11 Saving of favourite list - Wong Heng Chin](#e11-saving-of-favourite-list---wong-heng-chin)
   * [E.12 Saving of search frequncies of each bus stop - Johnson](#e12-saving-of-search-frequncies-of-each-bus-stop---johnson)
+  
+  <div style="page-break-after: always;"></div>
 
 ## 1. Setting up, getting started
 
@@ -78,6 +83,9 @@ Given below is a quick overview of each component.
 The rest of the App consists of 4 main components:
 
 - `Ui` : The Ui component handles all interactions with the user.
+
+<div style="page-break-after: always;"></div>
+
 - `Logic` : The Logic component makes sense of the command and executes it.
 - `Model` : The Model component is responsible for all data held in the memory.
 - `Storage` : The Storage component handles data by reading from and writing to files in the hard disk. 
@@ -99,12 +107,14 @@ delimiters if any.
 
 The following class diagram briefly explains how different classes in the Logic component interact with each other.
 
+<div style="page-break-after: always;"></div>
+
 > Note: ABCFavCommand represents the different fav command classes.
 > PQRCommand represents the different dine command classes.
 > XYZCommand represents the different route command classes.
 > The actual class names are written in the notes beside the classes.
 
-<img src="DG_Diagrams/Components/LogicComponent.png" alt="logiccomponent" width=1200>
+<img src="DG_Diagrams/Components/LogicComponent.png" alt="logiccomponent" width=1400>
 
 #### 2.1.3. Model Component
 The Model component is responsible for the following tasks:
@@ -133,8 +143,9 @@ The following class diagram briefly explains how different classes in the Storag
 This section provides details of how the main features of Nav@NUS have been implemented.
 
 ### 3.1. Finding a direct route (`/route` Feature) - Wamika
-`/route <location1> /to <location2>` is the command that has to entered by the user to see all direct bus routes 
-available from **location1** to **location2**.
+`/route <location1> /to <location2>` is the command that has to entered by the user to 
+<div style="page-break-after: always;"></div>
+see all direct bus routes available from **location1** to **location2**.
 
 The class diagram in the figure below shows how different classes used for implementation of the `/route` command 
 are linked to each other. <br>
@@ -154,6 +165,9 @@ are similar.
     else it calls the static method, `Ui#printPossibleLocsMessage()`, to print the list of similar locations. 
 4. Calls static `BusData#possibleBuses()` to get a list of buses with their routes from the starting location to 
 the destination.
+
+<div style="page-break-after: always;"></div>
+
    - `BusData#possibleBuses()` calls `Bus#getPossibleRoute()` to check for a possible route for the given bus number.
    - `BusData#possibleBuses()` repeats this call for all bus numbers.
 
@@ -185,6 +199,8 @@ bus object contains the list of remaining stops in the route of that bus.
     + _Cons:_ A lot of duplicate data is stored since each bus stop will have a list of the remaining route for every bus 
     that stops there. 
     
+<div style="page-break-after: always;"></div>
+
 Given the above alternatives, alternative 1 was used considering the implementation of other features of the 
 application.
 <!-- @@author -->
@@ -203,13 +219,17 @@ are linked to each other.
 The `RouteMapCommand#executeCommand()` method of RouteMapCommand Class executes the command in the following steps:
 1. Calls `RouteMapCommand#selectAndPrintBusRoute()`to attempt to retrieve user-specified bus code. (Bus code is stored
 as a string variable in the command)
+
 2. Calls `RouteMapCommand#checkBusCode()` to make sure bus code entered by the user is not empty or a white-space.
+
 3. Calls static `BusData#selectBus()` to find the user-specified bus in the bus data list. If found, the Bus object will be 
 returned. Else, null is returned.
-4. Calls `Ui#printFullRoute()` to display full route of the specified bus.
+
+4. Calls `Ui#printFullRoute()` to display full route of the specified bus.<br>
 
 The following sequence diagram explains the above steps when the user enters `/routemap busCode`.<br>
 ![Overview](DG_Diagrams/RouteMapCommand/RouteMapCommandOverallSeq.png)<br>
+<div style="page-break-after: always;"></div>
 The following sequence diagrams explain the interactions for bus route retrieval.<br>
 ![Internal](DG_Diagrams/RouteMapCommand/RouteMapCommandSeq.png)
 
@@ -222,6 +242,8 @@ of busStops objects.
     + _Pros:_ It is easy to maintain and updating of bus stops and bus codes are easier to implement.
     + _Cons:_ Has to loop through the array of bus stops and obtain their individual bus description.
      
+<div style="page-break-after: always;"></div>
+
 * **Alternative 2:** The full route of each bus is stored in a string format and is directly accessed.
     + _Pros:_ It is easier and quicker to print out the full route of a user-specified bus.
     + _Cons:_ Alot of manual work is needed if the bus route/ bus stop is updated. It is not scalable for large-scale 
@@ -246,8 +268,12 @@ The command is executed in the following steps:
 6. `BusData#getBusAtStop()` is called and returns an array list of buses.
 7. `BusData#printBusAtBusStop()` is called to print array list of buses.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/bus` command.
 ![ExecFav_Sequence_Diagram](DG_Diagrams/BusCommand/BusCommand.png)
+
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram explains the interactions omitted in the main diagram.
 ![getBusStop_Sequence_Diagram](DG_Diagrams/BusCommand/getBusStop.png)
@@ -312,11 +338,12 @@ The following sequence diagram illustrates the steps taken by the program when t
 <img src="DG_Diagrams/DineInfoSequence.png" alt="dine info" width=450>
 <!-- @@author -->
 
-
 ### 3.7. Favourite command adder (`/addfav` Feature) - Yuxin
 
 `/addfav <description>` is the command that has to be entered by the user to add a previous valid command in to the user's 
 list of favourites.
+
+<div style="page-break-after: always;"></div>
 
 The `AddFavCommand#executeCommand()` method of AddFavCommand Class executes the command in the following steps:
 1. The `AddFavCommand#executeCommand` method throws an exception if the command to be saved in FavList is missing.
@@ -327,6 +354,8 @@ The `AddFavCommand#executeCommand()` method of AddFavCommand Class executes the 
     - The `AddFavCommand#createFav()` method calls the contains method within Favlist to check for any duplicate
     Fav objects within the list that contains the same command.
     - If the there are no duplicate Fav objects, Fav object created will be added to the FavList.
+
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/addfav` command. <br>
 <img src="DG_Diagrams/AddFavSequence.png" alt="add fav" width=650>
@@ -395,6 +424,8 @@ are linked to each other.
 
 <img src="DG_Diagrams/DescFavCommand/descFavClass.png" alt="DescFav class diagram" width = 700>
 
+<div style="page-break-after: always;"></div>
+
 The `DescFavCommand#executeCommand()` method of DescFavCommand Class executes the command in the following steps:
 1. Calls `DescFavParser#parseInput()` to check if the command message input by the user is valid.
     - Throws an exception if 
@@ -417,6 +448,8 @@ The following sequence diagram explains the above steps when the user enters `/d
 The following sequence diagram explains the interactions omitted in the main diagram.
 
 <img src="DG_Diagrams/DescFavCommand/descFavInternal.png" alt="executing command" width=700>
+
+<div style="page-break-after: always;"></div>
 
 **Design Considerations**
 
@@ -452,13 +485,14 @@ location.
 * `SimilarityCheck#similarLoc()` adds the bus stop name to the list of possible locations if this similarity is greater 
 than a certain threshold (taken as 0.60).
 
-Refer to [`/route` feature implementation](#31-finding-a-direct-route-route-feature) and 
-[`/bus` feature implementation](#39-bus-at-bus-stop-finder-bus-feature) for examples of where this feature is used.
+<div style="page-break-after: always;"></div>
+
+Refer to [`/route` feature implementation](#31-finding-a-direct-route-route-feature---wamika) and 
+[`/bus` feature implementation](#33-bus-at-bus-stop-finder-bus-feature---wong-heng-chin) for examples of where this feature is used.
 
 _Credits: The Levenshtein distance algorithm was adapted from 
 [this site.](http://rosettacode.org/wiki/Levenshtein_distance#Java)_
 <!-- @@author -->
-
 
 <!-- @@author Johnson-Yee -->
 ### 3.12 Displaying most searched bus stop on start-up - Johnson
@@ -473,9 +507,9 @@ called to locate the specified bus stop.
 
 The following steps explain how the most searched bus stop is displayed.
 
-1.On start-up, `Ui#printWelcomeMessage()` is called. <br>
-2.`Ui#printMostSearchedBusStop()` is called to retrieve the most searched bus stop and display it.
-3.`BusData#mostSearchedBusStop()`is called to identify the first instance of the bus stop with the highest search frequency.
+1. On start-up, `Ui#printWelcomeMessage()` is called. <br>
+2. `Ui#printMostSearchedBusStop()` is called to retrieve the most searched bus stop and display it.
+3. `BusData#mostSearchedBusStop()`is called to identify the first instance of the bus stop with the highest search frequency.
 
 The following sequence diagram illustrates the steps taken by the program on start-up.
 ![Display_Search_Freq_Sequence_Diagram](DG_Diagrams/ResetSearchFreqCommand/DisplaySearchFreq.png)
@@ -490,11 +524,15 @@ variable called searchCount.
     used for locations with many bus stops.
     + _Cons:_ Has to loop through the array of bus stops and obtain their respective search counts.
      
+<div style="page-break-after: always;"></div>
+
 * **Alternative 2:** The search frequency of each bus stop is stored in an array of tuple and is directly accessed.
     + _Pros:_ It is easier and quicker to obtain the most searched bus stop.
     + _Cons:_ It does not blend in well with other features that accesses the BusStops class.
     
 Given the above alternatives, alternative 1 was used considering the integration of other commands.
+
+<div style="page-break-after: always;"></div>
 
 ### 3.13 Resetting search frequencies of bus stops (`/reset` Feature) - Johnson
 This feature allows the user to reset the search frequencies of all bus stops.
@@ -506,6 +544,9 @@ The `ResetSearchFreqCommand#executeCommand()` method of ResetSearchFreqCommand C
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/reset` command.
 ![Sequence ](DG_Diagrams/ResetSearchFreqCommand/ResetSearchFreqSeq.png)
 <!-- @@author -->
+
+<div style="page-break-after: always;"></div>
+
 ## 4. Appendix A: Product Scope
 
 <!-- @@author Johnson-Yee -->
@@ -535,6 +576,9 @@ Nav@NUS seeks to help the intended audience to achieve the following:
 |v1.0|someone that is unfamiliar with the NUS campus|know the full routes of the buses|I could plan my route to my desired destination|
 |v1.0|someone new to NUS|know all the available bus stops in the school|I can check the possible bus stops I can board/alight at to reach my destination|
 |v1.0|curious person|know the full routes of all the buses in NUS|I can see where each bus is heading to|
+
+<div style="page-break-after: always;"></div>
+
 |v1.0|freshman/ anyone new to NUS|know the buses available at specific bus stops|I can better plan my trip around the campus in advance|
 |v2.0|frequent user|have a list of favourite commands|I can access my favourite commands quickly|
 |v2.0|frequent user|be able to customise my list of favourite commands|I can change the list according to my needs|
@@ -542,6 +586,8 @@ Nav@NUS seeks to help the intended audience to achieve the following:
 |v2.0|frequent user|be able to change how I describe my favorite commands|I know when and why I usually use that command and so that I can use it accordingly later.|
 |v2.0|food connoisseur|know what dining options are available in my faculty|I can find food that suits my taste|
 |v2.0|freshman|know the locations and opening hours of the cafes in my faculty|I do not waste time looking for them|
+
+<div style="page-break-after: always;"></div>
 
 ## 6. Appendix C: Non-Functional Requirements - Wamika
 
@@ -568,6 +614,8 @@ This portion contains instructions on how to perform manual testing.
 2. Shutdown
     - Type `/exit` followed by enter key to exit<br>
     Expected: The CLI application closes with an exit message. List of favourite commands and search frequency will be saved
+    
+<div style="page-break-after: always;"></div>
 
 <!-- @@author wamikamalik -->
 ### E.2 Check for direct bus - Wamika
@@ -609,6 +657,8 @@ Expected: No bus routes will be displayed. Error details will be shown to remind
 the needed parameter.<br>
 <!-- @@author -->
 
+<div style="page-break-after: always;"></div>
+
 <!-- @@author EthanWong22 -->
 ### E.4 Check for buses at a bus stop - Wong Heng Chin
 1. Checking for the buses available at a bus stop
@@ -647,6 +697,8 @@ the needed parameter.<br>
     - Other incorrect commands to test: `/dine schooool` (keyword has been misspelled)<br>
     Expected: Similar to previous.<br>
 
+<div style="page-break-after: always;"></div>
+
 ### E.6 Search for specific dining outlet - Shuyi
 1. Searching for specific dining outlet.
     - Test case: `/dineinfo arise & shine`<br>
@@ -683,7 +735,7 @@ Expected: Message of the command `/liststops` already exists in your favourites 
     Step 1.`/listfav`<br>
     Step 2.`/addfav`<br>
     Expected: Message of command not being detected will be shown as `listfav` is not a valid command.
-- Other incorrect data to test: `/execfav 1`, `/help 3`, `/bus musseeuum`.
+- Other incorrect data to test: `/execfav 1`, `/help 3`, `/bus musseeuum`.<br>
 Expected: Similar to previous.
 <!-- @@author -->
 
@@ -698,8 +750,8 @@ the favourite list.
 Expected: The favourite command at index 1 will be deleted.<br>
 
 - Test case 2: `/deletefav 0`<br>
-    -Other incorrect test cases includes all numbers out of range (0 or more than size of favourite list),
-     any string or empty input. 
+    - Other incorrect test cases includes all numbers out of range (0 or more than size of favourite list),
+     any string or empty input.<br> 
 Expected: No command executed.Error details will be shown to remind users to type in the needed parameter.<br>
 
 - Test case 3: `/deletefav`<br>
@@ -717,6 +769,8 @@ Expected: No command executed.Error details will be shown to remind users to typ
     - Other incorrect data to test: `/execfav`, `/execfav words`, `/execfav x`(where x is larger than list).<br>
     Expected: Similar to previous.
 <!-- @@author -->
+
+<div style="page-break-after: always;"></div>
 
 <!-- @@author wamikamalik -->
 ### E.10 Change description of favourite command in favourite list - Wamika
@@ -752,6 +806,8 @@ Expected: No command executed.Error details will be shown to remind users to typ
         Expected output: Message detailing corrupted data detailed at start and corrupted data removed from FavList.
 <!-- @@author -->
 
+<div style="page-break-after: always;"></div>
+
 <!-- @@author Johnson-Yee -->
 ### E.12 Saving of search frequncies of each bus stop - Johnson
 1. Data is automatically saved in the `/data/FreqList.txt` directory of the jar file's home directory.
@@ -766,15 +822,15 @@ Expected: No command executed.Error details will be shown to remind users to typ
 3. Dealing with corrupted data
     - Prerequisite: `FreqList.txt` exists
     - Test case 1: Missing entries in FreqList.txt"<br>
-        Step 1. Remove a few entries off the `FreqList.txt` file.<br>
-        Step 2. Run the jar file<br>
-        Expected output: Error details will be shown to inform users that corrupted data has been detected
+        - Step 1. Remove a few entries off the `FreqList.txt` file.<br>
+        - Step 2. Run the jar file<br>
+        - Expected output: Error details will be shown to inform users that corrupted data has been detected
         and that all search frequencies will be initialised to zero.<br>
         
     - Test case 3: Senseless data in FreqList.txt <br>
-        Step 1. Add random letters into `FreqList.txt` file. <br>
-        Step 2. Run the jar file <br>
-        Expected output: Error details will be shown to inform users that corrupted data has been detected 
+        - Step 1. Add random letters into `FreqList.txt` file. <br>
+        - Step 2. Run the jar file <br>
+        - Expected output: Error details will be shown to inform users that corrupted data has been detected 
         and that all search frequencies will be initialised to zero.<br>
         
 <!-- @@author -->

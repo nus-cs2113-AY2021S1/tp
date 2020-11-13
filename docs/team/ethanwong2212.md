@@ -47,4 +47,5 @@ reflects my code contribution.
 [\#218](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/218))
 
 #### Contributions beyond the project team
-Reported bugs and suggested improvements to product and user guide for other teams [here](https://github.com/EthanWong2212/ped/issues)
+* Reported bugs and suggested improvements to product and user guide for other teams [here](https://github.com/EthanWong2212/ped/issues)
+* Reviewed developer guide for other teams [here](https://github.com/nus-cs2113-AY2021S1/tp/pull/27)

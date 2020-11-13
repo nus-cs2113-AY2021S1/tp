@@ -9,6 +9,8 @@ Welcome to Nav@NUS application's user guide! <br><br>
 The purpose of this user guide is to provide you with all the necessary information to use this application to navigate
 around NUS campus via the school's shuttle service.<br>
 
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 
 - [1. Overview](#1-overview)
@@ -28,7 +30,7 @@ around NUS campus via the school's shuttle service.<br>
     + [3.2.1. Search for dining options within a faculty: ```/dine``` - Shuyi](#321-search-for-dining-options-within-a-faculty-dine---shuyi)
     + [3.2.2. Search for specific dining outlet: ```/dineinfo``` - Shuyi](#322-search-for-specific-dining-outlet-dineinfo---shuyi)
   * [3.3. Favourite Features](#33-favourite-features)
-    + [3.3.1. Add a favourite command: `/addfav` -Yuxin](#331-add-a-favourite-command-addfav---yuxin)
+    + [3.3.1. Add a favourite command: `/addfav` - Yuxin](#331-add-a-favourite-command-addfav---yuxin)
     + [3.3.2. List all favourite commands: `/listfav` - Shuyi](#332-list-all-favourite-commands-listfav---shuyi)
     + [3.3.3. Delete a favourite command: `/deletefav` - Johnson Yee](#333-delete-a-favourite-command-deletefav---johnson-yee)
     + [3.3.4. Execute a favourite command: `/execfav` - - Wong Heng Chin](#334-execute-a-favourite-command-execfav---wong-heng-chin)
@@ -43,6 +45,8 @@ around NUS campus via the school's shuttle service.<br>
 - [4. FAQ](#4-faq)
 - [5. Command Summary](#5-command-summary)
 - [6. Glossary - Wamika](#6-glossary---wamika)
+
+<div style="page-break-after: always;"></div>
 
 ## 1. Overview
 ### 1.1 What is Nav@NUS?
@@ -76,6 +80,8 @@ This user guide covers the following:
  * Common errors or problems faced when using features
  * Frequently asked questions
 
+<div style="page-break-after: always;"></div>
+
 ### 1.3 Introduction to Command Line Interface (CLI)
 Nav@NUS sets up and runs on the CLI. As the CLI is not commonly used, it can seem daunting to users. 
 To give you a better experience, this section will introduce you to the CLI.
@@ -88,6 +94,8 @@ For computers running the Windows OS, the red arrow points to where you have to 
 
 For computers running the macOS, the red arrow points to where you have to type in commands. 
 ![MacOS CLI](UG_Figures/appleCLI.png)
+
+<div style="page-break-after: always;"></div>
 
 <!-- @@author Johnson-Yee -->
 ## 2. Quick Start - Johnson Yee
@@ -108,13 +116,16 @@ shown in the figure, the home folder is found in the address path of "C:\Users..
 8. Try keying in `/help` and press <kbd>Enter</kbd>!
 <!-- @@author -->
 
+<div style="page-break-after: always;"></div>
+
 ## 3. Features 
 There are 18 features available in Nav@NUS. The following are instructions for using the features.
 >Notes about command format:  
 >
 >1. Words in **bold** are parameters to be provided by the user. (e.g. **location_1**)
 >2. Parameters and commands to be entered by the user are not case-sensitive.
->3. Location names must be in full for commands that require bus stop location(s).
+>3. `/to` is case sensitive.
+>4. Location names must be in full for commands that require bus stop location(s).
 
 >Warning:
 >
@@ -163,6 +174,8 @@ below.<br><br>
 <img src="UG_Figures/routeOutput3.png" alt="FinalOutput" width=650><br>
 <!-- @@author -->
 
+<div style="page-break-after: always;"></div>
+
 <!-- @@author Johnson-Yee -->
 #### 3.1.2. Check bus route: ```/routemap``` - Johnson Yee
 This command displays the full route of the bus that you have specified.
@@ -189,6 +202,8 @@ To find indirect bus routes:
 if there is a direct bus route from these bus stops.<br><br>
 <img src="UG_Figures/routemap3.png" alt="inputRouteMapCommand" width=650><br>
 
+<div style="page-break-after: always;"></div>
+
 **<u>Example 2</u>**<br>
 This command is also useful in showing you the previous bus stops of your intended bus. You could use this information
 to gauge how crowded the bus would be.<br><br>
@@ -205,6 +220,8 @@ which is relatively more crowded than other bus stops.<br><br>
 
 3. With this information, you could explore other bus routes to your destination.
 <!-- @@author -->
+
+<div style="page-break-after: always;"></div>
 
 #### 3.1.3. Check for buses at a bus stop: ```/bus``` - Wong Heng Chin
 This command displays all buses available at a specific bus stop.
@@ -223,6 +240,8 @@ To search for available buses at **University Town**:
 
 2. The result will be a message displaying the buses available at University Town. <br><br>
 <img src="UG_Figures/bus3.png" width=650><br>
+
+<div style="page-break-after: always;"></div>
 
 **Common errors**
 
@@ -272,9 +291,12 @@ To see the description of each location:
 <img src="UG_Figures/listOutput.png" alt="inputCommand" width=800><br>
 <!-- @@author -->
 
+<div style="page-break-after: always;"></div>
+
 <!-- @@author mrwsy1 -->
 #### 3.1.6. List all faculties in NUS: ```/faculty``` - Shuyi
 This command lists out all faculties in NUS.
+
 Format:<br> 
 <code>/faculty</code> <br>
 
@@ -349,9 +371,13 @@ To find the information of a dining outlet with the name containing <strong>Jewe
 This section provides the instruction for all features categorised under the main feature of personalisation of application
 to your needs.
 
+<div style="page-break-after: always;"></div>
+
 <!-- @@author Lezn0 -->
-#### 3.3.1. Add a favourite command: `/addfav` - Yuxin
-This command adds a valid command with an optional description to your list of favourites
+### 3.3.1. Add a favourite command: `/addfav` - Yuxin
+This command adds a valid command with an optional description to your list of favourites.
+>Note: A valid command is command that does not return an error message and not associated 
+>with any commands related to favourites.
 
 Format:<br>
 <code>/addfav <strong> [description] </strong> </code>
@@ -363,30 +389,30 @@ Let's say you want to add the command to list dining options in business.
 
 These are the steps to follow:
 
-1. Type <code>/dine <strong>business</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below 
-
+1. Type <code>/dine <strong>business</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below<br>
 <img src="UG_Figures/dine1.png" alt="output" width=600><br>
 
 2. Type <code>/addfav <strong>dining options in business</strong></code> and press <kbd>Enter</kbd> to execute the command 
 to store the command in to your list of favourites with the description
-"dining options in business"  as shown in the figure below.
-
+"dining options in business"  as shown in the figure below.<br>
 <img src="UG_Figures/addfav1.png" alt="output" width=600><br>
+
+<div style="page-break-after: always;"></div>
 
 **<u>Example 2</u>**<br>
 Let's say you want to add the command that guided you from PGP to NUS IT to your list of favourites.
 
 These are the steps to follow:
 
-1. Type <code>/route <strong>pgp /to nus it</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below. 
-
+1. Type <code>/route <strong>pgp /to nus it</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below. <br>
 <img src="UG_Figures/routeOutput1.png" alt="output" width=600><br>
 
 2. Type <code>/addfav</code> into the CLI and press <kbd>Enter</kbd> to execute the command 
-to store the command in to your list of favourites with no description  as shown in the figure below .
-
+to store the command in to your list of favourites with no description  as shown in the figure below .<br>
 <img src="UG_Figures/addfav2.png" alt="output" width=600><br>
 <!-- @@author -->
+
+<div style="page-break-after: always;"></div>
 
 <!-- @@author mrwsy1 -->
 #### 3.3.2. List all favourite commands: `/listfav` - Shuyi
@@ -503,6 +529,8 @@ These are the steps to follow:
 ### 3.4. Common Features
 This section provides the instruction for all the common features.
 
+<div style="page-break-after: always;"></div>
+
 <!-- @@author wamikamalik -->
 #### 3.4.1. Checking for similar locations - Wamika
 When you enter a location and make a spelling error or a typo in the name, the app performs a similarity check with 
@@ -530,6 +558,8 @@ This feature displays the most searched bus stop to remind you of what to type i
 the navigation functions. 
 
 >The application executes this command on start-up and does not require any explicit command to use this feature.
+
+<div style="page-break-after: always;"></div>
 
 **Examples of usage**
 
@@ -570,9 +600,7 @@ Format:<br>
 <code>/exit</code>
 
 The application exits after displaying the following message.<br>
-```
-So long buddy!
-```
+<img src="UG_Figures/exit.png" alt="Correct input message" width=600><br>
 
 ## 4. FAQ
 This section addresses some common questions to aid in possible issues faced.
@@ -607,6 +635,8 @@ Command | Format | Example
 /exit | `/exit` | `/exit`
 /help | `/help` | `/help`
 /reset | `/reset` | `/reset`
+
+<div style="page-break-after: always;"></div>
 
 <!-- @@author wamikamalik -->
 ## 6. Glossary - Wamika
