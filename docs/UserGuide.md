@@ -113,7 +113,7 @@ shown in the figure, the home folder is found in the address path of "C:\Users..
 <img src="UG_Figures/cd_command.png" alt="cd_Command" width=650><br>
 6. Run the .jar file in the command prompt as follows by typing `java -jar Nav@NUS.jar` and press <kbd>Enter</kbd>.
 7. Your screen should show the start screen of Nav@NUS as seen in the figure below.<br><br>
-<img src="UG_Figures/Nav@NUSstartScreen.png" alt="Start Screen" width=650><br>
+<img src="UG_Figures/Nav@NUSstartScreen.png" alt="Start Screen" width=6S50><br>
 8. Try typing `/help` and press <kbd>Enter</kbd>!
 <!-- @@author -->
 
@@ -644,26 +644,28 @@ Simply run Nav@NUS and the program will automatically delete most of the corrupt
 ## 5. Command Summary
 The following table provides a summary of features and command formats.
 
->Note: No additional parameter is needed if it is not mentioned. eg help <br>
+>Note: No additional parameter is needed if it is not mentioned (e.g. help). <br>
+>>Note: The table below is arranged in alphabetical order. <br>
 
 Command | Format | Example
 --- | --- | ---
-/route | `/route` **location1** `/to` **location2** | `/route` **PGP** `/to` **Raffles Hall**
-/routemap | `/routemap` **bus code** | `/routemap` **AA1** 
-/bus | `/bus` **location** | `/bus` **PGP**
+/addfav | `/addfav` **[description]** | 1. `/addfav` <br> 2.`/addfav` **dining options in business**
 /allbus | `/allbus` | `/allbus`
-/liststops | `/liststops`| `/liststops`
+/bus | `/bus` **location** | `/bus` **PGP**
+/clearfav | `/clearfav` | `/clearfav`
+/deletefav | `/deletefav` **index**| `/deletefav` **1**
+/descfav | `/descfav` **index** `/to` **new description** | `/descfav` **5** `/to` **Get dinner @7:30PM every Tuesday**
 /dine | `/dine` **faculty** | `/dine` **business**
 /dineinfo | `/dineinfo` **outlet** | `/dineinfo` **arise & shine**
-/addfav | `/addfav` **[description]** | 1. `/addfav` <br> 2.`/addfav` **dining options in business**  
-/deletefav | `/deletefav` **index**| `/deletefav` **1**
 /execfav | `/execfav` **index** | `/execfav` **5**
-/descfav | `/descfav` **index** `/to` **new description** | `/descfav` **5** `/to` **Get dinner @7:30PM every Tuesday**
-/listfav | `/listfav` | `/listfav`
-/clearfav | `/clearfav` | `/clearfav`
 /exit | `/exit` | `/exit`
+/faculty | `/faculty` | `/faculty`
 /help | `/help` | `/help`
+/liststops | `/liststops`| `/liststops` 
+/listfav | `/listfav` | `/listfav`
 /reset | `/reset` | `/reset`
+/route | `/route` **location1** `/to` **location2** | `/route` **PGP** `/to` **Raffles Hall**
+/routemap | `/routemap` **bus code** | `/routemap` **AA1** 
 
 <div style="page-break-after: always;"></div>
 
