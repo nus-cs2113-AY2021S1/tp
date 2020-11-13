@@ -1,9 +1,11 @@
 ---
 layout: page
-title: User Guide
 ---
 
 ![Logo](UG_Figures/Nav@NUS_UG_Cover.png)
+
+<div style="page-break-after: always;"></div>
+
 ## Opening words
 Welcome to Nav@NUS application's user guide! <br><br>
 The purpose of this user guide is to provide you with all the necessary information to use this application to navigate
@@ -340,6 +342,8 @@ This command lists out all dining outlets available within a chosen faculty.
 
 Format:<br> 
 <code>/dine <strong>faculty</strong></code> <br>
+
+<div style="page-break-after: always;"></div>
 
 **Examples of Usage**
 
