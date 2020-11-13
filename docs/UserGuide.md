@@ -9,7 +9,7 @@ This User Guide aims to help you get familiarised with the commands used in this
 
 For your reference:
 * Words in bold are **keywords**;
-* Words in a grey bracket `are code snippets`;
+* Words in special text `are code snippets`;
 * Words in blue are [hyperlinks to the respective sections]().
 
 <div style="page-break-after: always;"></div>
@@ -17,33 +17,33 @@ For your reference:
 ## Content page
 #### [1. Quick Start](#1-quick-start-1)
 #### [2. Features](#2-features-1)
-#### [2.1 Adding a Module: `add mod`](#21-adding-a-module-add-mod-1)
-#### [2.2 Deleting a Module: `delete mod`](#22-deleting-a-module-delete-mod-1)
-#### [2.3 Checking Modules: `check modules`](#23-checking-modules-check-mod-1)
-#### [2.4 Viewing Timetable: `timetable`](#24-viewing-timetable-timetable-1)
-#### [2.5 Viewing Task List: `task list`](#25-viewing-task-list-task-list-1)
-#### [2.6 Adding a Task:](#26-adding-a-task-1)
+#### [2.1 Adding a Module: `add mod`](#21-adding-a-module-add-mod-zhang-shenjia)
+#### [2.2 Deleting a Module: `delete mod`](#22-deleting-a-module-delete-mod-zhang-shenjia)
+#### [2.3 Checking Modules: `check modules`](#23-checking-modules-check-modules-zhang-shenjia)
+#### [2.4 Viewing Timetable: `timetable`](#24-viewing-timetable-timetable-zhong-ningmou)
+#### [2.5 Viewing Task List: `task list`](#25-viewing-task-list-task-list-jin-yixuan)
+#### [2.6 Adding a Task:](#26-adding-a-task-yu-geng)
 #### [2.6.1 Adding a Todo Task: `todo`](#261-adding-a-todo-task-todo-1) 
 #### [2.6.2 Adding a Deadline Task: `deadline`](#262-adding-a-deadline-deadline)
 #### [2.6.3 Adding a Event Task: `event`](#263-adding-an-event-event)
-#### [2.7 Marking a Task as Done: `done`](#27-marking-a-task-as-done-done-1)
-#### [2.8 Deleting a Task: `delete`](#28-deleting-a-task-delete-1)
-#### [2.9 Finding a Task with Keyword: `find`](#29-finding-a-task-with-keyword-find-1)
-#### [2.10 Adding a Project Task: `project task`](#210-adding-a-project-task-project-task-1)
-#### [2.11 Viewing project task list: `project task list`](#211-viewing-project-task-list-project-task-list-1)
-#### [2.12 Viewing project progress: `project progress`](#212-viewing-project-progress-project-progress-1)
-#### [2.13 Viewing to do list: `print todo list`](#213-viewing-to-do-list-print-todo-list-1)
-#### [2.14 Viewing event list: `print event list`](#214-viewing-event-list-print-event-list-1)
-#### [2.15 Viewing the deadline list: `print deadline list`](#215-viewing-the-deadline-list-print-deadline-list-1)
-#### [2.16 Viewing the undone task list: `print undone task list`](#216-viewing-the-undone-task-list-print-undone-task-list-1)
-#### [2.17 Clearing past deadlines: `clear deadlines`](#217-clearing-past-deadlines-clear-deadlines-1)
-#### [2.18 Delete done task: `delete done task`](#218-delete-done-tasks-delete-done-task-1)
-#### [2.19 Viewing today's deadlines: `today deadline`](#219-viewing-todays-deadline-today-deadline)
-#### [2.20 Viewing this week's deadlines: `this week deadline`](#220-viewing-this-weeks-deadline-this-week-deadline)
-#### [2.21 Exiting the Program: `exit`](#221-exiting-the-program-exit-1)
-#### [2.22 Viewing Help: `help`](#222-viewing-help-help-1)
-#### [3. FAQ](#3-faq-1)
-#### [4. Command Summary](#4-command-summary-1)
+#### [2.7 Marking a Task as Done: `done`](#27-marking-a-task-as-done-done-yu-geng)
+#### [2.8 Deleting a Task: `delete`](#28-deleting-a-task-delete-yu-geng)
+#### [2.9 Finding a Task with Keyword: `find`](#29-finding-a-task-with-keyword-find-yu-geng)
+#### [2.10 Adding a Project Task: `project task`](#210-adding-a-project-task-project-task-jin-yixuan)
+#### [2.11 Viewing project task list: `project task list`](#211-viewing-project-task-list-project-task-list-jin-yixuan)
+#### [2.12 Viewing project progress: `project progress`](#212-viewing-project-progress-project-progress-jin-yixuan)
+#### [2.13 Viewing to do list: `print todo list`](#213-viewing-to-do-list-print-todo-list-zhang-danrui)
+#### [2.14 Viewing event list: `print event list`](#214-viewing-event-list-print-event-list-zhang-danrui)
+#### [2.15 Viewing the deadline list: `print deadline list`](#215-viewing-the-deadline-list-print-deadline-list-zhang-danrui)
+#### [2.16 Viewing the undone task list: `print undone task list`](#216-viewing-the-undone-task-list-print-undone-task-list-zhang-danrui)
+#### [2.17 Clearing past deadlines: `clear deadlines`](#217-clearing-past-deadlines-clear-deadlines-zhang-danrui)
+#### [2.18 Delete done task: `delete done task`](#218-delete-done-tasks-delete-done-task-zhang-danrui)
+#### [2.19 Viewing today's deadlines: `today deadline`](#219-viewing-todays-deadline-today-deadline-zhong-ningmou)
+#### [2.20 Viewing this week's deadlines: `this week deadline`](#220-viewing-this-weeks-deadline-this-week-deadline-zhong-ningmou)
+#### [2.21 Exiting the Program: `exit`](#221-exiting-the-program-exit-zhong-ningmou)
+#### [2.22 Viewing Help: `help`](#222-viewing-help-help-zhang-shenjia)
+#### [3. FAQ](#3-faq-jin-yixuan)
+#### [4. Command Summary](#4-command-summary-zhang-shenjia)
 
 <div style="page-break-after: always;"></div>
 
@@ -553,7 +553,7 @@ _______________________________________________________
 <div style="page-break-after: always;"></div>
 
 ### 2.22 Viewing Help: `help` (Zhang Shenjia)
-You can view help message.
+You can view help message, which contains a list of all the commands, fully colored in the code.
 
 Format: `help`
 
@@ -589,7 +589,7 @@ Please enter using the format as stated strictly!
 _______________________________________________________
 ```
 <!-- @@author JinYixuan-Au -->
-## 3. FAQ
+## 3. FAQ (Jin Yixuan)
 **Q:** How can I save my data?
 **A:** **CEGMods** automatically saves your data on every action you take. You can find them in /data folder in the same directory you run **CEGMods** in.
 
@@ -598,7 +598,7 @@ _______________________________________________________
 
 <div style="page-break-after: always;"></div>
 
-## 4. Command Summary
+## 4. Command Summary (Zhang Shenjia)
 
 |Feature                              |Command                                               |
 |---                                   |---                                                   |
