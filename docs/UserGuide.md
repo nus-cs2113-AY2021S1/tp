@@ -120,7 +120,7 @@ shown in the figure, the home folder is found in the address path of "C:\Users\J
 <div style="page-break-after: always;"></div>
 
 ## 3. Features 
-There are 18 features available in Nav@NUS. The following are instructions for using the features.
+There are 17 commands available in Nav@NUS. The following are instructions for using the features.
 >Notes about command format:  
 >
 >1. Words in **bold** are parameters to be provided by the user. (e.g. **location_1**)
