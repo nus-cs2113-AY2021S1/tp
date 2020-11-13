@@ -21,6 +21,20 @@ study life. It will also provide various functionalities to help with their stud
 The 4 main functionalities available now are bookmark, timetable, academic tracker and flashcard. 
 Each of this will be discussed in detail under the “Design & Implementation” section later in the document.
 
+## About
+
+The target audience for this document are other developers who want to understand the system architecture and design of Study It. The following groups might be the particular intended audience of this developer guide:
+
+* Study It developers - to understand the entire system architecture and follow the design to build increments to the system
+* CS2113 lecturer/teaching assistants - to evaluate the system architecture and design of Study It
+* CS2113 peers - to understand the architecture and provide feedback
+
+The following are the common notations and symbols used in this document:
+
+* `bolded text`  - Class name, folder name in the source code
+
+
+
 <div style="page-break-after: always;"></div>
 
 ## Setting up & getting started
