@@ -6,8 +6,7 @@
 - [1. Introduction](#1-introduction)
 - [2. About this User Guide](#2-about-this-user-guide)
 - [3. Quick Start](#3-quick-start)
-- [4.Features](#4features)
-  - [Command Format](#command-format)
+- [4. Features](#4features)
   - [4.1 Help `help`](#41-help-help)
   - [4.2 Exit the program: `bye`](#42-exit-the-program-bye)
   - [4.3 HR features `HR`](#43-hr-features-hr)
@@ -41,18 +40,29 @@
 - [7. Glossary](#7-glossary)
 
 ## 1. Introduction
+*(By: John)*
+
 
 Welcome to **CCA Manager!**
 CCA Manager is a revolutionary tool that changes the way you can manage interest groups with unrivaled efficiency and simplicity. Its lightweight Command Line Interface (CLI) allows administrators to breeze through tasks quickly and easily while offering powerful features to advanced users.
 
+**Feature Overview**
+
+* Allows you to manage an HR list of members and contacts
+* Allows you to create events and record member attendance for events
+* Allows you to track the financial spending and budgeting of your interest group
+* You can import data from other programs
+* Shorthand Commands allows you to quickly enter commands by reducing the amount of typing required
+* Relative Time allows you to quickly specify the day of the event without having to type in the full date format
+
 ### 2. About this User Guide 
 (By: Varsha)
 
-This user guide provides a quick start guide for you to easily setup install CCA manager, 
-documentation of all the features that CCA manager offers, frequently asked questions and a summary of the available commands.
+This user guide provides a quick start guide for you to easily setup install CCA Manager, 
+documentation of all the features that CCA Manager offers, frequently asked questions and a summary of the available commands.
 To navigate between the different sections, you could use the table of contents above.
 
-Additionally, throughout this user guide, there will be various icons used as described below:
+Additionally, throughout this user guide, there will be various icons used as described in the legend below to provide you useful information on using the app:
 > :bulb: This symbol denotes a tip which you might find useful when using the application.
 
 > :information_source: This symbol denotes some information that you will need to take note of when using the application.
@@ -74,15 +84,19 @@ The following steps will guide you through the process of running CCA Manager.  
  
  :three: Navigate to the folder where you downloaded CCA Manager. Run the program by entering `java -jar CCAManager.jar` in a terminal. As seen in the figure below, the red arrow points to where you have to type in commands.
  
- ![](userGuidePic/terminal.PNG)
+ > :information_source: To launch a terminal on Windows, open the start menu, type "Command Prompt" to search for the terminal and run it.   
+> On MacOS, you can find the Terminal in the `/Applications/Utilities` folder. Double click Terminal to launch it.  
+> On linux operating systems, the most common shortcut to opening the Terminal is CTRL+ALT+T.  
+> To navigate to the folder with CCA Manager, use the command `cd <FOLDER NAME/PATH>` to go in to the folder. You can use `cd ..` to go back one level if you made a mistake.
+
  
-  > :information_source: Please resize the terminal to full screen mode 
+ ![](userGuidePic/terminal.PNG)
 
 You will see this welcome message if you have done the above steps correctly. <br/>
 
 ![Welcome Message](userGuidePic/welcomeMessage.PNG)
 
-## 4.Features 
+## 4. Features 
 
 This section will show the features of our program in detail.
 You can follow along as we go through each of the features if you are starting out, or skip ahead to the Command Summary
@@ -98,24 +112,40 @@ For example, as shown in the picture below, instead of typing `event`, you can t
 
 
 ### 4.1 Help `help`
-Shows a list of available commands<br/>
-Format: help
+*(By: John)*
+
+Shows a list of available commands.<br/>
+
+This command allows you to view a summary of all the available commands at a glance and gives you information how to use them.  
+Format: `help`
 
 Expected Outcome: 
 
 ![helpCommand](userGuidePic/helpCommand.PNG)
 
+[Return to the top](#user-guide)
+
 ### 4.2 Exit the program: `bye` 
-Exits the program. <br/>
+*(By: John)*
+
+Exits the program.
+
+With this command you can gracefully exit the program directly, without having to close the terminal window. <br/>
 Format: `bye`
+
+[Return to the top](#user-guide)
 
 ### 4.3 HR features `HR` 
 #### Add members: `addMember`
 (By:Ye Yutong)  
 
-Adds a member to the list of members.<br/>
+Allows you to add a member to the list of members.<br/>
 
 Format: `hr addMember /n NAME /p PHONE_NUMBER /e EMAIL /r ROLE`<br/>
+
+Shorthand Format:  
+`hr` -> `h`  
+`addMember` -> `a`/`add`  
 
 Example of usage: <br/>
  `hr addMember /n John Sterling /p 88888888 /e js@gmail.com /r president`<br/>
@@ -135,33 +165,45 @@ Example of usage: <br/>
 #### Delete members: `delMember`
 (By:Ye Yutong)  
 
- Deletes a member from the list of members. <br/>
- Format: `hr delMember MEMBER_INDEX` <br/>
- Deletes the member at the specified MEMBER_INDEX.<br/>
+Allows you to delete a member from the list of members. <br/>
+Format: `hr delMember MEMBER_INDEX` <br/>
+Deletes the member at the specified MEMBER_INDEX.<br/>
+
+The MEMBER_INDEX refers to the index number shown in the list of members.<br/>
+The MEMBER_INDEX must be an integer greater than 0. <br/>
+
+Shorthand Format:  
+`hr` -> `h`  
+`delMember` -> `d`/`delete`  
+
+Example of usage: <br/>
+`hr delMember 1` <br/>
+`hr delete 19` <br/>
+`hr d 5` <br/>
+
+Expected Outcome:
  
- The MEMBER_INDEX refers to the index number shown in the list of members.<br/>
- The MEMBER_INDEX must be an integer greater than 0. <br/>
+![HrDelMemberCommand](userGuidePic/hrDelMemberCommand.PNG)
  
- Example of usage: <br/>
- `hr delMember 1` <br/>
- `hr delete 19` <br/>
- `hr d 5` <br/>
- 
-  Example scenario:  
-  Let's say you want to remove the member that you have entered above. i.e. `hr addMember /n John Sterling /p 88888888 /e js@gmail.com /r president`.
-  To delete, type `hr delMember 1` into the terminal and press enter as shown in the figure below.  
-  ![HrDelMemberCommand](userGuidePic/hrDelMemberCommand.PNG)
+Example scenario:  
+Let's say you want to remove the member that you have entered above. i.e. `hr addMember /n John Sterling /p 88888888 /e js@gmail.com /r president`.
+To delete, type `hr delMember 1` into the terminal and press enter as shown in the figure below.  
+![HrDelMemberCommand](userGuidePic/hrDelMemberCommand.PNG)
   
-  The result will be a message that the member has been removed successfully as shown in the figure below.  
-  ![HrDelMemberCommand](userGuidePic/hrDelMemberCommand2.PNG)
+The result will be a message that the member has been removed successfully as shown in the figure below.  
+![HrDelMemberCommand](userGuidePic/hrDelMemberCommand2.PNG)
   
-  [Return to the top](#user-guide)
+[Return to the top](#user-guide)
 
 #### List members: `listMember`
 (By:Ye Yutong)  
 
-Prints the list of members, based on the order in which they are added into the list. 
+You can use this command to view the list of members, based on the order in which they are added into the list. 
 Format: `hr listMember` <br/>
+
+Shorthand Format:  
+`hr` -> `h`  
+`listMember` -> `l` / `list`  
 
 Example of usage: <br/>
 `hr listMember`<br/>
@@ -177,10 +219,14 @@ Example of usage: <br/>
 #### Change member information: `changeInfo`
 (By:Ye Yutong)  
 
-Changes contacts and role of member in the list, based on the given member name. 
+You can use this command to change contact information and role of member in the list, based on the given member name. 
 Format: `hr changeInfo /n MEMBER_NAME (/p PHONE_NUMBER) (/e EMAIL) (/r MEMBER_ROLE)` <br/>
 
 MEMBER_NAME and at least one of PHONE_NUMBER, EMAIL and MEMBER_ROLE must be provided. 
+
+Shorthand Format:  
+`hr` -> `h`  
+`changeInfo` -> `c`  
 
 Example of usage: <br/>
 `hr changeInfo /n john sterling /p 12345678` <br/>
@@ -194,14 +240,15 @@ Example of usage: <br/>
 
 #### Search members: `search`  
 (by: Wang Zixin)  
-Search the members whose information matches user input.  
+You can use this command to search for a particular member.  
+The search command will return the member that matches the criteria you specify.  
 :bulb: If a member's information matches any of the conditions that the user inputs, 
 it will return this member.  
 Format: `hr search ITEM /n ITEM /p ITEM /e ITEM /r ITEM`  
 :bulb: User can choose any parts of conditions above to search.  
 :bulb: The ITEM without any symbol in front means searching the key from any parts of `Member`'s information.  
 
-Shorthand format:  
+Shorthand Format:  
 `hr` -> `h`  
 `search` -> `s`  
 
@@ -219,11 +266,11 @@ Expected outcomes:
 
 #### View contacts of prof/admin: `list prof&admin`  
 (by: Wang Zixin)  
-List the contacts of the professors and administrators.  
+You can use this command as a shortcut to view the contacts of the professors and administrators.  
 :bulb: Professor/prof and administrator/admin are roles of members.  
 Format: `hr list prof&admin`  
 
-Shorthand format:  
+Shorthand Format:  
 `hr` -> `h`  
 `list` -> `l`  
 `prof&admin` -> `pa`  
@@ -239,11 +286,11 @@ Expected outcome:
 
 #### View contacts of connections: `list connections`  
 (by: Wang Zixin)  
-List the contacts of connections(alumni, speakers).  
+You can use this command as a shortcut to list the contacts of connections(alumni, speakers).  
 :bulb: Alumni and speaker are roles of members.  
 Format: `hr list connections`  
 
-Shorthand format:  
+Shorthand Format:  
 `hr` -> `h`  
 `list` -> `l`  
 `connections` -> `c`  
@@ -269,9 +316,13 @@ Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
 > :information_source: The EVENT_DATE entered should be in the format YYYY-MM-DD. <br/>
 > :information_source: The EVENT_TIME entered should be in the 24-hour clock format (HH-mm). <br/>
 
-Shorthand Format : <br/>
-event --> e <br/>
-addEvent --> add/a <br/>
+
+> :bulb: You can use Relative Time by specifying date of week for convenience. For example `/d next friday` will schedule the event on the next friday from current day.
+
+
+Shorthand Format: <br/>
+`event` -> `e` <br/>
+`addEvent` -> `add`/`a` <br/>
 
 Example of usage: <br/>
  `event addEvent /n arduino course /d 2020-12-30 /t 08-00`<br/>
@@ -280,7 +331,14 @@ Example of usage: <br/>
  `e a /n arduino course /d 2020-12-30 /t 23-59`<br/>
  `e a /n arduino course /d next friday /t 00-00`<br/>
  
-Expected Outcome:
+Example scenario: <br/>
+
+Let's say you want to add an event called `arduino course` on `2000-12-30` at time `08-00`. 
+Type `event addEvent /n arduino course /d 2020-12-30 /t 08-00` into the terminal and press enter to execute the command as shown below.
+
+![](userGuidePic/eventAdd1.png)
+
+The result will be a message that the event has been successfully added as shown in the figure below.
 
 ![EventAddCommand](userGuidePic/eventAddCommand.PNG)
 
@@ -289,45 +347,53 @@ Expected Outcome:
 #### Delete an event: `delEvent`
 (By: Varsha)
 
- Allows you to delete an event from the list of events  <br/>
+ Allows you to delete an event from the list of events.  <br/>
  Format: `event delEvent EVENT_INDEX` <br/>
  It Deletes the event at the specified EVENT_INDEX.<br/>
  
 > :information_source: The EVENT_INDEX refers to the index number shown in the list of events.<br/>
 > :information_source: The EVENT_INDEX must be an integer greater than 0. <br/>
 
- Shorthand Format : <br/>
- event --> e <br/>
- addEvent --> del/d <br/>
+Shorthand Format: <br/>
+`event` -> `e` <br/>
+`addEvent` -> `del`/`d` <br/>
+
+Example of usage:     
+`event delEvent 1` <br/>
+`event del 1` <br/>
+`event d 19` <br/>
+`e d 1` <br/>
  
- Example of usage: 
- `event delEvent 1` <br/>
- `event del 1` <br/>
- `event d 19` <br/>
- `e d 1` <br/>
+Example scenario: <br/> 
+
+Let's say you want to remove the event that you have entered above. i.e. `event addEvent /n arduino course /d 2020-12-30 /t 08-00`
+To delete, type `event delEvent 1` into the terminal and press enter as shown in the figure below.
+
+
+![](userGuidePic/eventdel1.PNG) 
+
+The result will be a message that the event has been removed successfully as shown in the figure below.
  
- Expected Outcome: 
- 
- ![EventDeleteAtIndex](userGuidePic/eventDelEvent.PNG)
+![EventDeleteAtIndex](userGuidePic/eventDelEvent.PNG)
  
  [Return to the top](#user-guide)
 
 #### Clear all events: `delEvent all`
 (By: Varsha)
 
-Allows you to clear all events from the list of events <br/>
+Allows you to clear all events from the list of events. <br/>
 Format: `event delEvent all`
 
-Example of usage:
+Shorthand Format: <br/>
+`event` -> `e` <br/>
+`delEvent` -> `del`/`d` <br/>
+
+Example of usage:   
 `event delEvent all` <br/>
 
-Shorthand Format : <br/>
-event --> e <br/>
-delEvent --> del/d <br/>
-
-> :information_source: A confirmation message will be prompted. To clear, type `Y` in terminal.
-
-Expected Outcome:
+Example scenario: <br/> 
+You may want to clear all the events in your list. To do so, type in `event delEvent all` into the terminal and press enter. It will prompt you with a confirmation message.
+Type in `Y` to clear the list as shown below.
 
 ![EventDeleteAll](userGuidePic/eventDeleteAll.PNG)
 
@@ -336,14 +402,14 @@ Expected Outcome:
 #### List events: `listEvent`
 (By: Varsha)
 
-This command prints the list of events, based on the order in which they are added into the list. <br/>
+You can use this command to view the list of events, based on the order in which they are added into the list. <br/>
 Format: `event listEvent` <br/>
 
-Shorthand Format : <br/>
-event --> e <br/>
-listEvent --> l <br/>
+Shorthand Format: <br/>
+`event` -> `e` <br/>
+`listEvent` -> `l` <br/>
 
-Example of usage: 
+Example of usage: <br/>
 `event listEvent` <br/>
 `event l` <br/>
 `e l` <br/>
@@ -357,12 +423,12 @@ Expected Outcome:
 #### Countdown events `countdown`
 (By: Varsha)
 
-This command lists the events with the number of days left. It also sorts them so that the event due first will be displayed first.<br/>
+You can use this command to show the number of days remaining until an event. It also sorts them so that the event due first will be displayed first.<br/>
 Format: `event countdown` <br/>
 
-Shorthand Format : <br/>
-event --> e <br/>
-countdown --> c <br/>
+Shorthand Format: <br/>
+`event` -> `e` <br/>
+`countdown` -> `c` <br/>
 
 Example of usage: <br/>
 `event countdown` <br/>
@@ -384,15 +450,15 @@ Format: `event done EVENT_INDEX` <br/>
 > :information_source: The EVENT_INDEX refers to the index number of the event that is to be marked as completed.<br/>
 > :information_source: The EVENT_INDEX must be an integer greater than 0. <br/>
 
-Shorthand Format : <br/>
-event --> e <br/>
+Shorthand Format: <br/>
+`event` -> `e` <br/>
 
 Example of usage: <br/>
 `event done 1` <br/>
 `e done 1` <br/>
 
-Example scenario : <br/>
-Let's say you have added one event and the event is over. You can mark it as complete by entering `event done 1`. The status will change 
+Example scenario: <br/>
+Let's say you have added one event to your list and the event is over. You can mark it as complete by entering `event done 1`in the terminal. The status will change 
 from `Up-coming` to `Done` as shown below.
 
 Expected Outcome: <br/>
@@ -407,11 +473,11 @@ Expected Outcome: <br/>
 Allows you to search for a particular event by name or date. <br/>
 Format: 'event search /s KEYWORD' <br/>
 
-Shorthand Format : <br/>
-event --> e <br/>
-search --> s <br/>
+Shorthand Format: <br/>
+`event` -> `e` <br/>
+`search` -> `s` <br/>
 
-Example of usage:
+Example of usage: <br/>
 `event search /s arduino course` <br/>
 `event search /s 2000-12-16` <br/>
 `e search /s 2000-12-16` <br/>
@@ -420,20 +486,27 @@ Example of usage:
 Expected Outcome:
 
 The output when you search by name is as follows: <br/>
-![EventSearchByName](userGuidePic/eventSearch1.PNG) 
+![EventSearchByName](userGuidePic/eventSearchBydate.PNG) 
 
 The output when you search by date is as follows:  <br/>
-![EventSearchByDate](userGuidePic/eventSearchBydate.PNG)
+![EventSearchByDate](userGuidePic/eventSearch1.PNG)
 
+
+> :information_source: Notice that both return the same output.
+>
 [Return to the top](#user-guide)
 
 #### Add a participant to an event: `addAttendance`
 (By:Ye Yutong)  
 
-Adds a participant to an event in the list of events.<br/>
+Allows you to add a participant to an event in the list of events.<br/>
 Format: `event addAttendance /n EVENT_NAME /m MEMBER_NAME`<br/>
  
 > :information_source: Both the `EVENT_NAME` and the `MEMBER_NAME` need to be added into the list of events and members prior to using this feature. <br/>
+
+Shorthand Format: <br/>
+`event` -> `e` <br/>
+`addAttendance` -> `aa`/`addAttend` <br/>
 
 Example of usage: <br/>
  `event addAttendance /n arduino course /m peter`<br/>
@@ -449,10 +522,14 @@ Expected Outcome:
 #### Delete a participant from an event: `delAttendance`
 (By:Ye Yutong)  
 
- Deletes a participant from an event in the list of events. <br/>
+Allows you to delete a participant from an event in the list of events. <br/>
  Format: `event delAttendance /n EVENT_NAME /m MEMBER_NAME` <br/>
- 
- Example of usage: 
+
+Shorthand Format: <br/>
+`event` -> `e` <br/>
+`delAttendance` -> `da`/`delAttend` <br/>
+
+ Example of usage:    
  `event delAttendance /n arduino course /m peter`<br/>
  `event delAttend /n Autodesk course /m John`<br/>
  `event da /n Machine Learning course /m John`<br/>
@@ -466,10 +543,14 @@ Expected Outcome:
 #### List participants in an event: `listAttendance`
 (By:Ye Yutong)  
 
-Prints the list of participants in an event, based on the order in which they are added into the list. 
+Allows you to view the list of participants in an event, based on the order in which they are added into the list.   
 Format: `event listAttendance /n EVENT_NAME` <br/>
 
-Example of usage: 
+Shorthand Format: <br/>
+`event` -> `e` <br/>
+`listAttendance` -> `la`/`listAttend` <br/>
+
+Example of usage:   
 `event listAttendance /n arduino course`
 `event listAttend /n Autodesk course`
 `event la /n Machine Learning course`
@@ -483,12 +564,12 @@ Expected Outcome:
 ### 4.5 Finance features `finance`  
 (by: Wang Zixin)  
 #### 4.5.1 Add finance log entry: `addLog`  
-Adds an entry into the finance log.  
+Allows you to add an entry into the finance log.  
 Format: `finance addLog ITEM_NAME ITEM_VALUE`  
 
 Shorthand Format:  
 `finance` -> `f`  
-`addLog` -> `add` or `a`  
+`addLog` -> `add`/`a`  
 
 Example of usage:  
 `finance addLog have lunch 4.5`  
@@ -503,12 +584,12 @@ Expected outcomes:
 
 
 #### 4.5.2 Delete finance log entry: `delLog`  
-Removes an entry from finance log.  
+Allows you to remove an entry from finance log.  
 Format: `finance delLog ITEM_INDEX`  
 
 Shorthand Format:  
 `finance` -> `f`  
-`delLog` -> `del` or `d`
+`delLog` -> `del`/`d`
 
 Example of usage:  
 `finance dellog 3`  
@@ -523,12 +604,12 @@ Expected outcomes:
 
 
 #### 4.5.3 View financial summary: `summary`  
-Brings up a summary of the financial log and shows the total amount of money expended.  
+This command allows you to view a summary of the financial log and shows the total amount of money expended.  
 Format: `finance summary`  
 
 Shorthand Format:  
 `finance` -> `f`  
-`summary` -> `s`
+`summary` -> `s`/`l`
 
 Example of usage:  
 `finance summary`  
@@ -540,7 +621,7 @@ Expected Outcome:
 
 
 #### 4.5.4 Change finance log entry information: `changeLog`  
-Change the finance log entry's name and budget amount.  
+Allows you to change the finance log entry's name and budget amount.  
 Format: `finance changeLog /i INDEX /n ITEM_NAME ITEM_VALUE`  
 
 Shorthand Format:  
@@ -558,7 +639,7 @@ Expected Outcome:
 
 ### 4.6 Import
 
-You can import data from other existing CSVs quickly with the import command  
+You can import data from other existing CSVs quickly with the import command.  
 Format: `import FILENAME /c finance /name HEADER_NAME /value HEADER_NAME`  
 OR `import FILENAME /c hr /name HEADER_NAME /phone HEADER_NAME /email HEADER_NAME /role HEADER_NAME`  
 OR `import FILENAME /c event /name HEADER_NAME /date HEADER_NAME /time HEADER_NAME`
@@ -575,6 +656,8 @@ The expected outcome is as follows:
 
 ![Outcome](userGuidePic/import3.png)  
 
+If you would like to try out importing a file with a sample, we provide a sample file similar to the one shown in the above example.  
+You can download the sample [here](https://raw.githubusercontent.com/AY2021S1-CS2113T-F14-1/tp/master/docs/sample.csv).
 
 [Return to the top](#user-guide)
 
@@ -591,12 +674,13 @@ This section details the frequently asked questions (FAQ) regarding the use of t
 
 **Q** How do I transfer my data to another computer? <br/>
 **A** Install CCA Manager in the other computer and overwrite the empty data files it creates with the file that contains the data from your previous computer. <br/>
+You can find the data files in the "data" folder inside the folder that CCA Manager is running in.  
 
 **Q** Is CCA Manager optimized for all Operating Systems(OS)? <br/>
 **A** CCA Manager is available for download on all major Operating Systems such as Windows, Mac and Linux.
 
-**Q** Where can I find the release?
-**A** You can find it here [add v2.1 here]().
+**Q** Where can I find the release?  
+**A** You can find it here [Download V2.1](https://github.com/AY2021S1-CS2113T-F14-1/tp/releases/tag/v2.1).
 
 
 
@@ -640,11 +724,16 @@ summary | `finance summary` |   -
 [Return to the top](#user-guide)
 
 ## 7. Glossary
+*(By: John)*
 
 This section explains certain technical terms used in the guide which may require more detail.
 
-CCA - Co-curricular Activity <br/>
-CSV - Comma-separated values <br/>
-Command Line Interface(CLI): Processes commands to a computer program in the form of lines of text. <br/>
-HR - Human Resource <br/>
-OS - Operating Systems <br/>
+**CCA** - Co-curricular Activity <br/>
+**CSV** - Comma-separated values. This typically refers to the file type with extension .csv  <br/>
+**Command Line Interface(CLI)** - Processes commands to a computer program in the form of lines of text. <br/>
+**Terminal/Command Prompt** - An interface where you can type and execute text based commands. It is a basic feature of most Operating Systems.  
+**Directory** - Folder. A directory is a more technical name for referring to folders. 
+**Command** - A command is an instruction that will cause a program to perform a series of actions based on what was supplied to it.  
+**Index** - An index (of a list) refers to which position the item is in the list. In the list (apple,pear,banana) the index of "pear" is 2 because it's the 2nd element.  
+**HR** - Human Resource <br/>
+**OS** - Operating Systems <br/>

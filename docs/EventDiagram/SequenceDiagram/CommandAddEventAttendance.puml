@@ -26,6 +26,7 @@ return
 ":EventList" -> ":MemberList" : checkEventExistence(eventName)
 activate ":MemberList"
 ":MemberList" --> ":EventList"
+deactivate ":MemberList"
 ":EventList" -> ":Event" : getEventParticipants()
 activate ":Event"
 return
@@ -52,7 +53,7 @@ activate ":Event"
 return output
 ":EventList" --> ":CommandAddEventAttendance" : output
 deactivate ":EventList"
-deactivate ":MemberList"
+
 <-- ":CommandAddEventAttendance" : output
 deactivate ":CommandAddEventAttendance"
 @enduml
