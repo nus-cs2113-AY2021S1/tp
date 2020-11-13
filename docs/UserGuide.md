@@ -74,8 +74,8 @@ The following section will explain the steps taken to get **CLIrcuit Assistant**
         java -jar CS2113T-W13-3.CLIRCUIT_ASSISTANT.jar
         ```
 1. Once the app starts, type a command in the command line and press enter to execute it.
-1. Use the command `tutorial circuit` or `tutorial boolean` to go through an [interactive tutorial](#52-interactive-tutorial) before using the application.
-1. Alternatively, you can use the command [`summary`](#51-summary-of-commands-) to get a list of all commands used in the application.
+1. Use the command `tutorial circuit` or `tutorial boolean` to go through an [interactive tutorial](#52-interactive-tutorial-praveen) before using the application.
+1. Alternatively, you can use the command [`summary`](#51-summary-of-commands-dash-) to get a list of all commands used in the application.
 1. Note that a *logging* file `appLog.txt` will be created in the same directory that `CS2113T-W13-3.CLIRCUIT_ASSISTANT.jar` is run from. For further information regarding *logging*, you can refer to the [**Developer Guide**](DeveloperGuide.md#logging).
 
 --------------------------------------------------------------------------------------------------------------------
@@ -202,7 +202,7 @@ This command can be used to exit the application.
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Warning:** You **cannot** use this command to exit from the app when in interactive tutorial mode. For notes on how to exit tutorial mode, please refer to [5.2 Interactive Tutorial](#52-interactive-tutorial).
+:exclamation: **Warning:** You **cannot** use this command to exit from the app when in interactive tutorial mode. For notes on how to exit tutorial mode, please refer to [5.2 Interactive Tutorial](#52-interactive-tutorial-praveen).
 
 </div>
 
@@ -220,7 +220,7 @@ The following diagram shows the expected behaviour when using the `bye` command.
 
 This section details how the commands are used with a **circuit template**. You can use this section to build simple template circuits which may have a *voltage source* with *load components* such as *resistors*, *capacitors*, or *inductors*. 
 
-It may be important to note that the circuit diagrams shown in the expected outputs are simplified circuits, even when [adding components](#63-adding-a-component-). For example, adding a resistor in parallel to a template that contains a resistor will change the effective resistance in the circuit, but it will not dynamically update the visualised diagram to show a second resistor. This can be seen more clearly once you [create a circuit template](#61-creating-a-circuit-template-).
+It may be important to note that the circuit diagrams shown in the expected outputs are simplified circuits, even when [adding components](#63-adding-a-component-wira-). For example, adding a resistor in parallel to a template that contains a resistor will change the effective resistance in the circuit, but it will not dynamically update the visualised diagram to show a second resistor. This can be seen more clearly once you [create a circuit template](#61-creating-a-circuit-template-wira-).
 
 <div markdown="span" class="alert alert-primary">
 
@@ -252,7 +252,7 @@ The diagram below shows an example when using the `template rc` command.
 
 ### 6.2 Setting a component value (Praveen) <a name='set-comp'></a>
 
-This command sets the value of a component. The component must be part of the current circuit template. Units correspond to the component involved - *resistors* in *ohms*, *capacitors* in *microfarads*, and *inductors* in *microhenries*. The values would need to be set to perform calculations or analysis such as in the [`calc` command](#64-calculating-effective-value-).
+This command sets the value of a component. The component must be part of the current circuit template. Units correspond to the component involved - *resistors* in *ohms*, *capacitors* in *microfarads*, and *inductors* in *microhenries*. The values would need to be set to perform calculations or analysis such as in the [`calc` command](#64-calculating-effective-value-vishruti-).
 
 <div markdown="span" class="alert alert-warning">
 
@@ -285,7 +285,7 @@ This command adds a component in a specific configuration - either *in parallel*
 
 <div markdown="span" class="alert alert-tip">
 
-:bulb: **Tip:**  You can add components as long as there is already a value set using the [`set` command](#62-setting-a-component-value-).
+:bulb: **Tip:**  You can add components as long as there is already a value set using the [`set` command](#62-setting-a-component-value-praveen-).
 
 </div>
 
@@ -306,7 +306,7 @@ This command adds a component in a specific configuration - either *in parallel*
 |`add CONFIG COMPONENT VALUE`|
 
 * The `CONFIG` can be chosen from the 2 - `series` and `parallel`.
-* The `COMPONENT` and `VALUE` are as explained above under [Set component value](#62-setting-a-component-value-), except that `COMPONENT` cannot be the voltage source `v`.
+* The `COMPONENT` and `VALUE` are as explained above under [Set component value](#62-setting-a-component-value-wira-), except that `COMPONENT` cannot be the voltage source `v`.
 
 The image below shows an example of using the command `add parallel r 500` on a template.
 
@@ -386,7 +386,7 @@ Here, `OUT` represents the output of the boolean template. The letters `B` and `
 
 ### 7.2 Setting an input value (Praveen) <a name='set-input'></a>
 
-This command sets the value of an input. The inputs will then be used in the [`calc` command](#74-calculating-output-) to give the output of the boolean template. The input must not have already been set as a `Gate` and must be part of the diagram.
+This command sets the value of an input. The inputs will then be used in the [`calc` command](#74-calculating-output-vishruti-) to give the output of the boolean template. The input must not have already been set as a `Gate` and must be part of the diagram.
 
 <div markdown="span" class="alert alert-tip">
 
@@ -441,8 +441,8 @@ The application has the ability to combine multiple `Gate` objects to generate m
 |:-:|
 |`add INPUT GATE`|
 
-* The `INPUT` is as explained above in [Set](#72-setting-an-input-value-).
-* The `GATE` is as explained above in [Template](#71-creating-a-boolean-template-).
+* The `INPUT` is as explained above in [Set](#72-setting-an-input-value-wira-).
+* The `GATE` is as explained above in [Template](#71-creating-a-boolean-template-dorian-).
 
 The image below shows an example of using the command `add C or` on the template shown.
 
@@ -500,7 +500,7 @@ functionality of this application.
 
 **Q**: Why does using the `add` command for the circuit template give me a "Component not yet set" error?
 
-**A**: You have to first set the component involved using the [`set` command](#62-setting-a-component-value-).
+**A**: You have to first set the component involved using the [`set` command](#62-setting-a-component-value-wira-).
 
 **Q**: Why can't I calculate the output from the logic circuit I created?
 

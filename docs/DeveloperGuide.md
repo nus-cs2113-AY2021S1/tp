@@ -600,7 +600,7 @@ Term | Explanation
 1. Download the jar file and copy it into an empty folder
 2. Open a new terminal window and navigate to the same directory where your `CS2113T-W13-3.CLIRCUIT_ASSISTANT.jar` is located
 3. Enter the command `java -jar CS2113T-W13-3.CLIRCUIT_ASSISTANT.jar` into the terminal window to launch the application
-4. Enter `tutorial circuit` or `tutorial boolean` to go through an [interactive tutorial](UserGuide.md/#52-interactive-tutorial) or `summary` to generate a summary of all the commands
+4. Enter `tutorial circuit` or `tutorial boolean` to go through an [interactive tutorial](UserGuide.md#52-interactive-tutorial-praveen) or `summary` to generate a summary of all the commands
 
 ### Creating a digital circuit  
 1. Enter `template` followed by the template type, e.g.: `template rc`
@@ -619,9 +619,9 @@ For calculation of values, the `calc` command is used.
 
 The following links provide detailed steps for calculations for the respective section:
 
-* [Circuits](https://ay2021s1-cs2113t-w13-3.github.io/tp/UserGuide.html#64-calculating-effective-value-)
+* [Circuits](https://ay2021s1-cs2113t-w13-3.github.io/tp/UserGuide.html#64-calculating-effective-value-vishruti-)
 
-* [Boolean](https://ay2021s1-cs2113t-w13-3.github.io/tp/UserGuide.html#74-calculating-output-) 
+* [Boolean](https://ay2021s1-cs2113t-w13-3.github.io/tp/UserGuide.html#74-calculating-output-vishruti-) 
 
 ### Exiting the program
 Simply enter `bye` to exit the program and bid farewell to your loyal **CLIrcuit Assistant**.
