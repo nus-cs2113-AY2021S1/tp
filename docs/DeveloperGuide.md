@@ -590,7 +590,7 @@ Below is a sequence diagram of the extended HelpCommand.
 "details is empty" Block </center> <br/></br>*
 <br></br>
 
-![](https://raw.githubusercontent.com/AY2021S1-CS2113T-W11-1/tp/master/docs/diagrams/loadModuleList/helpCommandDetailsIsEmpty.png)  
+![](https://raw.githubusercontent.com/AY2021S1-CS2113T-W11-1/tp/master/docs/diagrams/loadModuleList/helpCommandDetailsNotEmpty.png)  
 *<center/> Figure 2.22 Sequence diagram for 
 "details not empty" Block </center> <br/></br>*
 <br></br>
