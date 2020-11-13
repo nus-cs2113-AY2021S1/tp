@@ -210,11 +210,11 @@ Example of usage: <br/>
 `hr list`<br/>
 `hr l`<br/>
 
- Expected Outcome:
+Expected Outcome:
+
+![HrListMemberCommand](userGuidePic/hrListMemberCommand.PNG)
  
- ![HrListMemberCommand](userGuidePic/hrListMemberCommand.PNG)
- 
- [Return to the top](#user-guide)
+[Return to the top](#user-guide)
 
 #### Change member information: `changeInfo`
 (By:Ye Yutong)  
@@ -232,11 +232,15 @@ Example of usage: <br/>
 `hr changeInfo /n john sterling /p 12345678` <br/>
 `hr c /n Harry Potter /p 12345678 /e 123@gmail.com /r President` <br/>
 
- Expected Outcome:
+Expected scenario:  
+Let's say you have added a member called `John Sterling` via `hr addMember /n John Sterling /p 88888888 /e js@gmail.com /r president`. 
+To change the phone number of `John Sterling` from `88888888` to `12345678`, type `hr changeInfo /n john sterling /p 12345678` into the terminal and press enter.
+
+
+Expected Outcome:  
+![HrChangeInfoCommand](userGuidePic/hrChangeInfoCommand.PNG)
  
- ![HrChangeInfoCommand](userGuidePic/hrChangeInfoCommand.PNG)
- 
- [Return to the top](#user-guide)
+[Return to the top](#user-guide)
 
 #### Search members: `search`  
 (by: Wang Zixin)  
