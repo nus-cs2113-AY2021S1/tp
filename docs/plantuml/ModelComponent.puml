@@ -1,0 +1,51 @@
+@startuml
+
+skinparam Shadowing false
+skinparam MinClassWidth 100
+skinparam classBackgroundColor YellowGreen
+skinparam packageStyle rectangle
+skinparam ArrowColor Salmon
+hide circle
+hide members
+
+package Model {
+    class Model
+
+    Package Quiz {
+        class QuizManager
+        class "<<interface>>\nQuizInteractable"
+    }
+
+    Package Event {
+        class EventManager
+        class IndividualManager
+        class "<<interface>>\nEventManagerInteractable"
+        class "<<interface>>\nEventInteractable"
+    }
+
+    Package Contact {
+        class ContactManager
+        class "<<interface>>\nContactInteractable"
+    }
+
+    Package Config {
+        class ConfigManager
+        class "<<interface>>\nConfigInteractable"
+    }
+}
+
+
+QuizManager ..|> "<<interface>>\nQuizInteractable"
+ContactManager ..|> "<<interface>>\nContactInteractable"
+
+Model ---> ContactManager
+Model ---> EventManager
+Model ---> QuizManager
+Model ---> ConfigManager
+EventManager --> IndividualManager
+EventManager ..|> "<<interface>>\nEventManagerInteractable"
+IndividualManager ..|> "<<interface>>\nEventInteractable"
+ConfigManager ..|> "<<interface>>\nConfigInteractable"
+note bottom of IndividualManager : IndividualManager can be either\nClass, CCA, Test or Tuition
+
+@enduml

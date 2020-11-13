@@ -1,0 +1,78 @@
+@startuml
+skinparam Shadowing false
+skinparam classBackgroundColor Tan
+skinparam MinClassWidth 120
+
+package storage <<rectangle>> {
+    abstract class StorageManager {
+        + StorageManager(:String)
+        - createDataFile():boolean
+    }
+
+    class EventStorageManager extends StorageManager {
+        + EventStorageManager(fileName)
+        + EventStorageManager(directory, fileName)
+        + saveData(eventList)
+        + loadData():eventList
+        - separateEventsIntoList(:ArrayList<Event>):EventParameter
+    }
+
+    class EventListDecoder {
+        + EventListDecoder()
+        + decodeEventList(encodedEventList):decodedEvents
+        - decodeEventFromString(encodedEvent):decodedEvent
+        - parseCca(data):eventCca
+        - parseClass(data):eventClass
+        - parseTest(data):eventTest
+        - parseTuition(data):eventTuition
+    }
+
+    class EventListEncoder {
+        + EventListEncoder()
+        + encodeEventList(eventList):encodedEvents
+        - encodeEventToString(event):encodedEvent
+    }
+
+    EventStorageManager --> EventListDecoder
+    EventStorageManager --> EventListEncoder
+
+
+    class QuizStorageManager extends StorageManager {
+        + QuizStorageManager(fileName)
+        + saveData(quizList, filePath)
+        + loadData():data
+    }
+
+    class QuizListDecoder {
+        + decodeQuizList(data):quizList
+        - decodeQuizFromString(data):quiz
+    }
+
+    class QuizListEncoder {
+        + encodeQuizList(:ArrayList<Quiz>):ArrayList<String>
+    }
+
+    QuizStorageManager --> QuizListDecoder
+    QuizStorageManager --> QuizListEncoder
+
+
+    class ConfigStorageManager extends StorageManager {
+
+    }
+
+    class ConfigDecoder {
+
+    }
+
+    class ConfigEncoder {
+
+    }
+
+    ConfigStorageManager --> ConfigDecoder
+    ConfigStorageManager --> ConfigEncoder
+}
+
+hide circle
+hide members
+
+@enduml

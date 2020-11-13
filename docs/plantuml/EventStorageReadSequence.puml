@@ -1,0 +1,40 @@
+@startuml
+hide footbox
+
+-> ":EventStorageManager" : loadData()
+activate ":EventStorageManager"
+":EventStorageManager" -> ":EventListDecoder" : decodeEventList(encodedEventList)
+activate ":EventListDecoder"
+
+loop number of strings
+":EventListDecoder" -> ":EventListDecoder" : decodeEventFromString(encodedEvent)
+activate ":EventListDecoder" #salmon
+alt cca
+":EventListDecoder" -> ":EventListDecoder" : parseCca(splitData)
+activate ":EventListDecoder"
+":EventListDecoder" --> ":EventListDecoder" : eventCca
+deactivate ":EventListDecoder"
+else tuition
+":EventListDecoder" -> ":EventListDecoder" : parseTuition(splitData)
+activate ":EventListDecoder"
+":EventListDecoder" --> ":EventListDecoder" : eventTuition
+deactivate ":EventListDecoder"
+else class
+":EventListDecoder" -> ":EventListDecoder" : parseClass(splitData)
+activate ":EventListDecoder"
+":EventListDecoder" --> ":EventListDecoder" : eventClass
+deactivate ":EventListDecoder"
+else test
+":EventListDecoder" -> ":EventListDecoder" : parseTest(splitData)
+activate ":EventListDecoder"
+":EventListDecoder" --> ":EventListDecoder" : eventTest
+deactivate ":EventListDecoder"
+end alt
+":EventListDecoder" --> ":EventListDecoder"
+deactivate ":EventListDecoder"
+":EventListDecoder" --> ":EventStorageManager" : decodedEventList
+deactivate ":EventListDecoder"
+end loop
+<-- ":EventStorageManager" : eventParameter
+deactivate ":EventStorageManager"
+@enduml

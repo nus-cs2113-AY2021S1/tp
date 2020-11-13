@@ -1,9 +1,19 @@
 Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+ ------   -                          -----
+|   _  | | |                        | ____|
+|  | | | | |                        | |___
+|  |_| | | |  -----     -----    &  |____ |  ------   -----   -----   -----
+|      | | | /  -  \   |  _  |          | | | _____| /  -  \ /  ___\ /  -- \
+|  ----  | | | | | |   | | | |       ___| | | |      | | | | | /     |  ___|
+| |      | | | |_|  \  | | | |      |     | | |____  | |_| | | |     | |____
+|_|      |_| \____/\_\ |_| |_|      |_____| |______| \_____/ |_|     \_____/
 
 What is your name?
-Hello James Gosling
+
+Key in the number of hours you would like to study each day (not more than 12)?
+
+Hello James Arthur
+This is your recommended hours per day: 10
+What can we do for you? (Enter 'help' for the list of available commands!)
+
+BYE BYE! SEE YOU NEXT TIME! :3
