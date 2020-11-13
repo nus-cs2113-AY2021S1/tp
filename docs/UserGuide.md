@@ -15,35 +15,35 @@ For your reference:
 <div style="page-break-after: always;"></div>
 
 ## Content page
-[1. Quick Start](#1-quick-start-1)
-[2. Features](#2-features-1)
-[2.1 Adding a Module: `add mod`](#21-adding-a-module-add-mod-1)
-[2.2 Deleting a Module: `delete mod`](#22-deleting-a-module-delete-mod-1)
-[2.3 Checking Modules: `check modules`](#23-checking-modules-check-mod-1)
-[2.4 Viewing Timetable: `timetable`](#24-viewing-timetable-timetable-1)
-[2.5 Viewing Task List: `task list`](#25-viewing-task-list-task-list-1)
-[2.6 Adding a Task:](#26-adding-a-task-1)
-[2.6.1 Adding a Todo Task: `todo`](#261-adding-a-todo-task-todo-1) 
-[2.6.2 Adding a Deadline Task: `deadline`](#262-adding-a-deadline-deadline)
-[2.6.3 Adding a Event Task: `event`](#263-adding-an-event-event)
-[2.7 Marking a Task as Done: `done`](#27-marking-a-task-as-done-done-1)
-[2.8 Deleting a Task: `delete`](#28-deleting-a-task-delete-1)
-[2.9 Finding a Task with Keyword: `find`](#29-finding-a-task-with-keyword-find-1)
-[2.10 Adding a Project Task: `project task`](#210-adding-a-project-task-project-task-1)
-[2.11 Viewing project task list: `project task list`](#211-viewing-project-task-list-project-task-list-1)
-[2.12 Viewing project progress: `project progress`](#212-viewing-project-progress-project-progress-1)
-[2.13 Viewing to do list: `print todo list`](#213-viewing-to-do-list-print-todo-list-1)
-[2.14 Viewing event list: `print event list`](#214-viewing-event-list-print-event-list-1)
-[2.15 Viewing the deadline list: `print deadline list`](#215-viewing-the-deadline-list-print-deadline-list-1)
-[2.16 Viewing the undone task list: `print undone task list`](#216-viewing-the-undone-task-list-print-undone-task-list-1)
-[2.17 Clearing past deadlines: `clear deadlines`](#217-clearing-past-deadlines-clear-deadlines-1)
-[2.18 Delete done tasks: `delete done task`](#218-delete-done-tasks-delete-done-task-1)
-[2.19 Viewing today's deadlines: `today deadline`](#219-viewing-todays-deadline-today-deadline)
-[2.20 Viewing this week's deadlines: `this week deadline`](#220-viewing-this-weeks-deadline-this-week-deadline)
-[2.21 Exiting the Program: `exit`](#221-exiting-the-program-exit-1)
-[2.22 Viewing Help: `help`](#222-viewing-help-help-1)
-[3. FAQ](#3-faq-1)
-[4. Command Summary](#4-command-summary-1)
+#### [1. Quick Start](#1-quick-start-1)
+#### [2. Features](#2-features-1)
+#### [2.1 Adding a Module: `add mod`](#21-adding-a-module-add-mod-1)
+#### [2.2 Deleting a Module: `delete mod`](#22-deleting-a-module-delete-mod-1)
+#### [2.3 Checking Modules: `check modules`](#23-checking-modules-check-mod-1)
+#### [2.4 Viewing Timetable: `timetable`](#24-viewing-timetable-timetable-1)
+#### [2.5 Viewing Task List: `task list`](#25-viewing-task-list-task-list-1)
+#### [2.6 Adding a Task:](#26-adding-a-task-1)
+#### [2.6.1 Adding a Todo Task: `todo`](#261-adding-a-todo-task-todo-1) 
+#### [2.6.2 Adding a Deadline Task: `deadline`](#262-adding-a-deadline-deadline)
+#### [2.6.3 Adding a Event Task: `event`](#263-adding-an-event-event)
+#### [2.7 Marking a Task as Done: `done`](#27-marking-a-task-as-done-done-1)
+#### [2.8 Deleting a Task: `delete`](#28-deleting-a-task-delete-1)
+#### [2.9 Finding a Task with Keyword: `find`](#29-finding-a-task-with-keyword-find-1)
+#### [2.10 Adding a Project Task: `project task`](#210-adding-a-project-task-project-task-1)
+#### [2.11 Viewing project task list: `project task list`](#211-viewing-project-task-list-project-task-list-1)
+#### [2.12 Viewing project progress: `project progress`](#212-viewing-project-progress-project-progress-1)
+#### [2.13 Viewing to do list: `print todo list`](#213-viewing-to-do-list-print-todo-list-1)
+#### [2.14 Viewing event list: `print event list`](#214-viewing-event-list-print-event-list-1)
+#### [2.15 Viewing the deadline list: `print deadline list`](#215-viewing-the-deadline-list-print-deadline-list-1)
+#### [2.16 Viewing the undone task list: `print undone task list`](#216-viewing-the-undone-task-list-print-undone-task-list-1)
+#### [2.17 Clearing past deadlines: `clear deadlines`](#217-clearing-past-deadlines-clear-deadlines-1)
+#### [2.18 Delete done tasks: `delete done task`](#218-delete-done-tasks-delete-done-task-1)
+#### [2.19 Viewing today's deadlines: `today deadline`](#219-viewing-todays-deadline-today-deadline)
+#### [2.20 Viewing this week's deadlines: `this week deadline`](#220-viewing-this-weeks-deadline-this-week-deadline)
+#### [2.21 Exiting the Program: `exit`](#221-exiting-the-program-exit-1)
+#### [2.22 Viewing Help: `help`](#222-viewing-help-help-1)
+#### [3. FAQ](#3-faq-1)
+#### [4. Command Summary](#4-command-summary-1)
 
 <div style="page-break-after: always;"></div>
 
@@ -193,6 +193,7 @@ Lab Slot: null
 _______________________________________________________
 _______________________________________________________
 ```
+<div style="page-break-after: always;"></div>
 
 ### 2.4 Viewing Timetable: `timetable` (Zhong Ningmou)
 You can view the whole timetable.
@@ -262,6 +263,8 @@ ____________________________________________________________
 	You  have 3 undone task in your list. (3/4)
 ____________________________________________________________
 ```
+<div style="page-break-after: always;"></div>
+
 ### 2.6 Adding a Task (Yu Geng)
 #### 2.6.1 Adding a Todo Task: `todo`
 You can add a task todo to the task list.
@@ -335,6 +338,8 @@ ____________________________________________________________
     Now you have 1 task in the list.
     ____________________________________________________________
 ```
+<div style="page-break-after: always;"></div>
+
 ### 2.9 Finding a Task with Keyword `find` (Yu Geng)
 You can find a task from task list with the keyword.
 
@@ -385,6 +390,8 @@ CG2271
 
 1. [P][F]write report (by:Fri 23:59) material: NA
 ```
+<div style="page-break-after: always;"></div>
+
 ### 2.12 Viewing project progress: `project progress` (Jin Yixuan)
 You can view the progress of a specific project.
 
@@ -455,6 +462,8 @@ print undone task list
     ____________________________________________________________
 
 ```
+<div style="page-break-after: always;"></div>
+
 ### 2.17 Clearing past deadlines: `clear deadlines` (Zhang Danrui)
 You can clear all the past dealines
 Format:`clear deadlines`
@@ -538,6 +547,8 @@ _______________________________________________________
 Bye! Have a nice day with CEG!
 _______________________________________________________
 ```
+<div style="page-break-after: always;"></div>
+
 ### 2.22 Viewing Help: `help` (Zhang Shenjia)
 You can view help message.
 
@@ -582,6 +593,7 @@ _______________________________________________________
 **Q:** Can I edit the information in data directory?
 **A:** Yes! As **CEGMods** saves and loads your information from the data directory, editing the files in data folder works. However, we would highly recommend you not to as you may cause data corruption. Use the command line instead if you wish to edit your information!
 
+<div style="page-break-after: always;"></div>
 
 ## 4. Command Summary
 
