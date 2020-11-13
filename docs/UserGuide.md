@@ -19,7 +19,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Generating three random words: `three words`](#generating-three-random-words-three-words) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Filtering words in word list: `filter words`](#filtering-words-in-word-list-filter-words) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Listing your filter list: `list filter words`](#listing-your-filter-list-list-filter-words) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Clear all of words stored in the database: `reset words`](#clear-all-of-words-stored-in-the-datebase-reset-words) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Clear all of words stored in the database: `reset words`](#clear-all-of-words-stored-in-the-database-reset-words) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Bunnies list commands](#bunnies-list-commands) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Adding bunny idea: `bunny`](#adding-a-bunny-idea-bunny) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Listing bunny ideas: `list bunny`](#listing-bunny-ideas-list-bunny) <br>
