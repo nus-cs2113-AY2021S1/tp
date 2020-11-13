@@ -1,0 +1,24 @@
+@startuml
+object Parser
+object projects
+object teamMembers
+object tasks
+object TaskCommand
+object ProjectCommand
+object TeamMemberCommand
+object otherCommands
+
+TaskCommand <|-- Parser
+ProjectCommand <|-- Parser
+TeamMemberCommand <|-- Parser
+otherCommands <|-- Parser
+projects <|- TaskCommand
+projects <|- ProjectCommand
+projects <|- TeamMemberCommand
+projects <|- otherCommands
+teamMembers <|--- TaskCommand
+teamMembers <|--- ProjectCommand
+teamMembers <|--- TeamMemberCommand
+teamMembers <|--- otherCommands
+tasks *-- projects
+@enduml

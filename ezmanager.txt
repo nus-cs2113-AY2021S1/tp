@@ -1,0 +1,61 @@
+Members 
+asd
+
+Project two
+status false
+projectDescription <project description empty>
+projectDeadline 2020-10-10
+startTasks 
+endTasks
+pMS
+pME
+
+Project one
+status false
+projectDescription <project description empty>
+projectDeadline 2020-11-11
+startTasks 
+endTasks
+pMS
+pME
+
+Project p1
+status false
+projectDescription <project description empty>
+projectDeadline null
+startTasks 
+task1 | tS 0 tE | dS 2020-12-03dE | pS 0 pE
+tsk2 | tS 0 tE | pS 1 pE
+task3 | tS 0 tE | pS 0 pE
+endTasks
+pMS
+pME
+
+Project p2
+status false
+projectDescription <project description empty>
+projectDeadline null
+startTasks 
+endTasks
+pMS
+pME
+
+Project p3
+status false
+projectDescription <project description empty>
+projectDeadline 2020-12-12
+startTasks 
+das | tS 0 tE | dS 2020-12-12dE | pS 0 pE
+endTasks
+pMS
+pME
+
+Project Web Development
+status false
+projectDescription <project description empty>
+projectDeadline null
+startTasks 
+endTasks
+pMS
+pME
+

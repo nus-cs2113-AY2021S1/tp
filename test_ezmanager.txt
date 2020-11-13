@@ -1,0 +1,28 @@
+Members 
+one person
+another person
+
+Project one
+status false
+projectDescription <project description empty>
+projectDeadline 2020-10-20
+startTasks
+one task | tS 0 tE | pS 0 pE
+another task | tS 0 tE | pS 0 pE
+tMS
+one person
+tME
+endTasks
+pMS
+one person
+pME
+
+Project two
+status false
+projectDescription <project description empty>
+projectDeadline null
+startTasks 
+endTasks
+pMS
+pME
+
