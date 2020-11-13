@@ -55,17 +55,16 @@ Scheduler-\-; (S-\-) is a desktop app for managing deadlines from different sour
 ### 1.1 What can it do?
 
 Scheduler-\-; comes with the following list of features to help you keep organised of your schedule.  
-- Check if your schedule is free between a certain date and time period
-- Prioritize important task on your schedule
+- Check if your schedule is free between a certain date and time period.
 - Categorise your events into personal events, zoom meetings or school timetable events. 
-- Be reminded on the important tasks and expected deadlines 
-- Set certain events to occur repeatedly throughout your schedule 
-- Set personal daily goals for yourself 
+- Be reminded on the important tasks and expected deadlines. 
+- Set certain events to occur repeatedly throughout your schedule. 
+- Set a goal for yourself.
 - And many more... 
 
 ### 1.2 About this guide
 
-This user guide is for your reference on how to set up the Scheduler-\-; program on your computer. It provides you with information on how to get things done with scheduler-\-; and how to use the commands in the program. 
+This user guide is for your reference on how to set up the Scheduler-\-; program on your computer. It provides you with information on how to get things done with Scheduler-\-; and how to use the commands in the program. 
 
 ### 1.3 How to use this document?
 
@@ -318,25 +317,22 @@ General Format: `add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; H
 - `DD/MM/YY` is the date associated with the event in the format `DD/MM/YY`.
 - `HH:MM AM/PM` is the time of the event. It can be written in 12 or 24 hour format. 
 
-If you would like to make a Timetable event, the format for the command is as follows.
-
-Timetable Format: `add Timetable; EVENT_DESCRIPTION; [LOCATION]; DD/MM/YY; HH:MM AM/PM`
+If you would like to make a Timetable event, the format for the command is as follows: <br>
+`add Timetable; EVENT_DESCRIPTION; [LOCATION]; DD/MM/YY; HH:MM AM/PM`
 
 Timetable events can contain:
 - Description, date and time 
 - Description, location, date and time
 
-If you would like to make a Zoom event, the format for the command is as follows.
-
-Zoom Format: `add Zoom; EVENT_DESCRIPTION; LINK; [DD/MM/YY]; [HH:MM AM/PM]`
+If you would like to make a Zoom event, the format for the command is as follows: <br>
+`add Zoom; EVENT_DESCRIPTION; LINK; [DD/MM/YY]; [HH:MM AM/PM]`
 
 Zoom events can contain: 
 - Description and link 
 - Description, link, date and time
 
-If you would like to make a Personal event, the format for the command is as follows.
-
-Personal Format: `add Personal; EVENT_DESCRIPTION; [DD/MM/YY]; [HH:MM AM/PM]`
+If you would like to make a Personal event, the format for the command is as follows: <br>
+`add Personal; EVENT_DESCRIPTION; [DD/MM/YY]; [HH:MM AM/PM]`
 
 Personal events can contain: 
 - Description 
@@ -345,7 +341,7 @@ Personal events can contain:
 
 #### Example usage
 
-The following few sections present 3 scenarios of how the add command is used.
+The following section presents 3 scenarios of how the add command is used.
 
 ##### Scenario 1: Adding a Timetable event
 
@@ -376,7 +372,7 @@ _________________________________
 ##### Scenario 3: Adding a Personal event
 
 If you want to add a Personal event for a family meeting on 18/09/20,
-you should input: `add personal; family meeting; 18/09/20` .
+you should input: `add personal; family meeting; 18/09/20`.
 
 The output from the program should be:
 ```
@@ -1266,8 +1262,8 @@ You’ll be able to choose the dates and times detected and create a Personal or
 
 The extract feature detects dates in the DD/Month Name/YYYY format or the Month Name/DD/YYYY format which is used the most in emails. <br>
 It will detect time in 12 and 24 Hour formats, with ":" or "." in between the time. It can detect time in the format of HH AM/PM too. <br>
-If a valid zoom link is detected (links containing '.zoom.' and start with 'https://' or 'http://'), it will try to create a Zoom event for you.
-Otherwise, a Personal event will be made.
+If a valid zoom link is detected (links containing '.zoom.' and start with 'https://' or 'http://'), it will try to create a zoom event for you.
+Otherwise, a personal event will be made.
 
 Format: `extract EVENT_DESCRIPTION;`
 - `EVENT_DESCRIPTION` could be the subject of the email or the name you want your event to be.
@@ -1280,15 +1276,13 @@ One scenario will be used to explain how the extract command works.
 
 You receive an email for CG2271 Quiz 2 where the email body is "Hi all, we will be having the quiz on either
  4th October 2020 or October 15 2020 at either 3pm or 3.30pm. 
- The link is at https://nus-sg.zoom.us/j/2226375MG.".
+ The link is at https://nus-sg.zoom.us/j/2226375MG." and you want to use the extract command to quickly sieve out dates, times and zoom links for you.
  
- You want to use the extract command to quickly sieve out dates, times and zoom links for you.
- 
- Firstly, you should type in 
+To do so, you should type in: 
  ```
 extract CG2271 Quiz 2;
  ```
-Secondly, Scheduler--; will prompt you to copy and paste or enter the text you want to extract from.
+Scheduler--; will prompt you to copy and paste or enter the text you want to extract from.
 ````
 _________________________________
 Copy and paste or enter the body of the text you want to extract from!
@@ -1296,19 +1290,17 @@ At the end of your text, press enter to go to the next line, enter 'extractend' 
      no quotation marks and press enter once more.
 _________________________________
 ````
-Thirdly, copy and paste or type in the text you want to extract from.
+Next, copy and paste or type in the text you want to extract from.
 ````
 Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020 at 
     either 3pm or 3.30pm. 
 The link is at https://nus-sg.zoom.us/j/2226375MG.
 ````
-Fourthly, tell Scheduler--; you are done by typing `extractend` on a new line.
+Then, tell Scheduler--; you are done by typing `extractend` on a new line.
 ````
 extractend
 ````
-Lastly, you can choose from the multiple zoom link/date/time detected.
-As shown below, if you want the event to be on 15th October 2020 and at 3.30pm, you should select the second option both times for date and time
-which can be seen circled when '2' is selected twice. Since a zoom link was detected, the event created will be a Zoom event.
+The output should look like this:
 ````
 One zoom link detected and chosen: https://nus-sg.zoom.us/j/2226375MG
 We have detected 2 dates in this text body!
@@ -1317,6 +1309,9 @@ _________________________________
 1. 2020-10-04
 2. 2020-10-15
 _________________________________
+````
+If you want choose the second option for your event's date to be 2020-10-15, input `2` and you should see something like this:
+````
 2
 We have detected 2 timings in this text body!
 Please select the time you want for this event from the list below!
@@ -1324,11 +1319,15 @@ _________________________________
 1. 15:00
 2. 15:30
 _________________________________
+````
+Lastly, if you want the second option for your event's time to be 3.30pm, input `2` and your zoom event will be created.
+````
 2
 You have successfully added this event to your list!
 [Z][X] CG2271 Quiz 2, Link: https://nus-sg.zoom.us/j/2226375MG on 2020-10-15, 15:30
 _________________________________
 ````
+
 
 > **Note!**
 > * The extract feature can also detect when there are suffixes like st/nd/rd/th for the day portion of the date.
