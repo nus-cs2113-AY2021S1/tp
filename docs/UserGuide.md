@@ -72,7 +72,7 @@ Shows list of commands and provides a link to the user guide for more details.
 Format: `help`
 
 
-### Add an event
+### Add an event - Brendan
 
 Adds events/tasks to the schedule. Can support various types of tasks:  
 
@@ -218,7 +218,7 @@ Format: `locations`
 Expected output: (list given here is incomplete) 
 ![locations](diagrams/locations.png)
 
-### List all events
+### List all events - Brendan
 Shows you a list of all events.  
 
 Format: `list`  
@@ -259,7 +259,7 @@ Example: `done 2`
 Example Output:  
 ![done](diagrams/done.png)  
 
-### Reminder of deadlines
+### Reminder of deadlines - Brendan
 Shows a list of all events for today's date.
 
 Format: `reminder`
@@ -362,7 +362,7 @@ the error message is not helpful, please refer back to relevant sections in Feat
 instructions provided closely as the current version of NUSchedule has a relatively high requirement in terms of input 
 accuracy. If you really cannot find what is wrong, please report it as an issue to [this link](https://github.com/AY2021S1-CS2113T-F14-4/tp/issues).
 
-## Command Summary
+## Command Summary - Brendan
 
 |Action|Command|Example|
 |------|-------|-------|
