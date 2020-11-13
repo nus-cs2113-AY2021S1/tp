@@ -23,15 +23,15 @@ This gives the application both simplicity and speed, setting it apart from othe
 
 * [Quick Start](#quick-start)
 * [Features](#features)
-    * [View available commands](#view-available-commands)
+    * [View available commands](#view-available-commands---wu-nan)
     * [Add an event](#add-an-event---brendan)
     * [Edit an event](#edit-an-event---xu-che)
     * [Sort events](#sort-events---xu-che)
     * [Find a location](#find-a-location---yang-jiaqi)
     * [List all locations](#list-all-locations---yang-jiaqi)
     * [List all events](#list-all-events---brendan)
-    * [Clear events](#clear-events)
-    * [Mark event as done](#mark-event-as-done)
+    * [Clear events](#clear-events---wu-nan)
+    * [Mark event as done](#mark-event-as-done---wu-nan)
     * [Reminder of deadlines](#reminder-of-deadlines---brendan)
     * [Repeat of events](#repeat-of-events---zhuang-mengjin)
     * [Delete an event](#delete-an-event---zhuang-mengjin)
@@ -41,7 +41,7 @@ This gives the application both simplicity and speed, setting it apart from othe
     * [Keep track on the study time](#keep-track-on-the-study-time---zhuang-mengjin)
     * [Make the app know you](#make-the-app-know-you---zhuang-mengjin)
     * [Exit the app](#exit-the-app---zhuang-mengjin)
-* [FAQs](#FAQ)
+* [FAQs](#faq)
 * [Command Summary](#command-summary---brendan)
 
 
