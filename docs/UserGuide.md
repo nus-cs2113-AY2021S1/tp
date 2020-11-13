@@ -183,16 +183,16 @@ Let's say you want to go from **KR MRT** to **YIH**, but you do not know the ful
 Here's what you can do:
 
 1. Type `/liststops` into the CLI as shown in the figure below and press <kbd>Enter</kbd>. You can find more details about
-`/lisstops` in [this section](#315-list-all-bus-stops-in-nus-liststops---yuxin) of the User Guide.
-<img src="UG_Figures/routeshort1.png" alt="list stops" width = 650><br>
+`/lisstops` in [this section](#315-list-all-bus-stops-in-nus-liststops---yuxin) of the User Guide.<br>
+<img src="UG_Figures/routeshort1.png" alt="list stops" width = 700><br>
 
 2. The result will be a list of bus stops in NUS. Manually search for the full forms of **KR MRT** and **YIH** as shown in 
-the figure below.
+the figure below.<br>
 <img src="UG_Figures/routeshort2.png" alt=" stops to choose" width = 700><br>
 
 3. Type <code>/route <strong>Kent Ridge MRT Station</strong> /to <strong>Yusof Ishak House</strong></code> into the CLI and press
-<kbd>Enter</kbd>. You will see the buses you can take as shown in the figure below.
-<img src="UG_Figures/routeshort3.png" alt="the result" width=650><br>
+<kbd>Enter</kbd>. You will see the buses you can take as shown in the figure below.<br>
+<img src="UG_Figures/routeshort3.png" alt="the result" width=600><br>
 
 <div style="page-break-after: always;"></div>
 
