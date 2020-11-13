@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-![Logo](UG_Figures/Nav@NUSLogo.jpg)
+![Logo](UG_Figures/Nav@NUS_UG_Cover.png)
 ## Opening words
 Welcome to Nav@NUS application's user guide! <br><br>
 The purpose of this user guide is to provide you with all the necessary information to use this application to navigate
@@ -17,12 +17,12 @@ around NUS campus via the school's shuttle service.<br>
   * [1.1 What is Nav@NUS?](#11-what-is-navnus)
   * [1.2 About the User Guide](#12-about-the-user-guide)
   * [1.3 Introduction to Command Line Interface (CLI)](#13-introduction-to-command-line-interface-cli)
-- [2. Quick Start - Johnson Yee](#2-quick-start---johnson-yee)
+- [2. Quick Start - Johnson](#2-quick-start---johnson)
 - [3. Features](#3-features)
   * [3.1. Bus Features](#31-bus-features)
     + [3.1.1. Check for direct bus: ```/route``` - Wamika](#311-check-for-direct-bus-route---wamika)
-    + [3.1.2. Check bus route: ```/routemap``` - Johnson Yee](#312-check-bus-route-routemap---johnson-yee)
-    + [3.1.3. Check for buses at a bus stop: ```/bus``` - Wong Heng Chin](#313-check-for-buses-at-a-bus-stop-bus---wong-heng-chin)
+    + [3.1.2. Check bus route: ```/routemap``` - Johnson](#312-check-bus-route-routemap---johnson)
+    + [3.1.3. Check for buses at a bus stop: ```/bus``` - Heng Chin](#313-check-for-buses-at-a-bus-stop-bus---heng-chin)
     + [3.1.4. List all buses available in NUS ```/allbus``` - Shuyi](#314-list-all-buses-available-in-nus-allbus---shuyi)
     + [3.1.5. List all bus stops in NUS: ```/liststops``` - Yuxin](#315-list-all-bus-stops-in-nus-liststops---yuxin)
     + [3.1.6. List all faculties in NUS: ```/faculty``` - Shuyi](#316-list-all-faculties-in-nus-faculty---shuyi)
@@ -32,15 +32,15 @@ around NUS campus via the school's shuttle service.<br>
   * [3.3. Favourite Features](#33-favourite-features)
     + [3.3.1. Add a favourite command: `/addfav` - Yuxin](#331-add-a-favourite-command-addfav---yuxin)
     + [3.3.2. List all favourite commands: `/listfav` - Shuyi](#332-list-all-favourite-commands-listfav---shuyi)
-    + [3.3.3. Delete a favourite command: `/deletefav` - Johnson Yee](#333-delete-a-favourite-command-deletefav---johnson-yee)
-    + [3.3.4. Execute a favourite command: `/execfav` - Wong Heng Chin](#334-execute-a-favourite-command-execfav---wong-heng-chin)
+    + [3.3.3. Delete a favourite command: `/deletefav` - Johnson](#333-delete-a-favourite-command-deletefav---johnson)
+    + [3.3.4. Execute a favourite command: `/execfav` - Heng Chin](#334-execute-a-favourite-command-execfav---heng-chin)
     + [3.3.5. Change the description for a favourite command: `/descfav` - Wamika](#335-change-the-description-for-a-favourite-command-descfav---wamika)
     + [3.3.6. Clear the list of favourite commands: `/clearfav` - Shuyi](#336-clear-the-list-of-favourite-commands-clearfav---shuyi)
-    + [3.3.7. Storage of favourite commands](#337-storage-of-favourite-commands---wong-heng-chin)
+    + [3.3.7. Store favourite commands](#337-store-favourite-commands---heng-chin)
   * [3.4. Common Features](#34-common-features)
     + [3.4.1. Check for similar locations - Wamika](#341-check-for-similar-locations---wamika)
-    + [3.4.2. Display most searched bus stop on start-up - Johnson Yee](#342-display-most-searched-bus-stop-on-start-up---johnson-yee)
-    + [3.4.3. Reset frequent search data: ```/reset``` - Johnson Yee](#343-reset-frequent-search-data-reset---johnson-yee)
+    + [3.4.2. Display most searched bus stop on start-up - Johnson](#342-display-most-searched-bus-stop-on-start-up---johnson)
+    + [3.4.3. Reset frequent search data: ```/reset``` - Johnson](#343-reset-frequent-search-data-reset---johnson)
     + [3.4.4. List available help: ```/help``` -Yuxin](#344-list-available-help-help---yuxin)
     + [3.4.5. Exit the program: ```/exit```](#345-exit-the-program-exit)
 - [4. FAQ](#4-faq)
@@ -101,7 +101,7 @@ For computers running the macOS, the red arrow points to where you have to type 
 <div style="page-break-after: always;"></div>
 
 <!-- @@author Johnson-Yee -->
-## 2. Quick Start - Johnson Yee
+## 2. Quick Start - Johnson
 The following steps will guide you through the process of running **Nav@NUS**.
 
 1. Ensure that you have Java `11` or above installed in your computer. If you do not have it installed,
@@ -129,7 +129,7 @@ There are 18 features available in Nav@NUS. The following are instructions for u
 >2. Parameters and commands to be entered by the user are not case-sensitive.
 >3. `/to` is case sensitive.
 >4. Location names must be in full for commands that require bus stop location(s).
->5. Words in [] are optional parameters (e.g. [**description**]).
+>5. Words in [ ] are optional parameters (e.g. [**description**]).
 
 >Warning:
 >
@@ -202,7 +202,7 @@ the figure below.<br><br>
 <div style="page-break-after: always;"></div>
 
 <!-- @@author Johnson-Yee -->
-#### 3.1.2. Check bus route: ```/routemap``` - Johnson Yee
+#### 3.1.2. Check bus route: ```/routemap``` - Johnson
 This command displays the full route of the bus that you have specified.
 
 Format: <br><code>/routemap <strong>bus code</strong></code> <br>
@@ -248,7 +248,7 @@ which is relatively more crowded than other bus stops.<br><br>
 
 <div style="page-break-after: always;"></div>
 
-#### 3.1.3. Check for buses at a bus stop: ```/bus``` - Wong Heng Chin
+#### 3.1.3. Check for buses at a bus stop: ```/bus``` - Heng Chin
 This command displays all buses available at a specific bus stop.
 
 Format: <br>
@@ -456,10 +456,10 @@ These are the steps to follow:
 <!-- @@author -->
 
 <!-- @@author Johnson-Yee -->
-#### 3.3.3. Delete a favourite command: `/deletefav` - Johnson Yee
+#### 3.3.3. Delete a favourite command: `/deletefav` - Johnson
 This command deletes the command that you have specified from the list of favourite commands.
 >Note: Index keyed in must be within the range of 1 - n, where n is the number of favourite commands. <br>
->
+
 Format: <br>
 <code>/deletefav<strong> index in list</strong></code> <br>
 
@@ -474,7 +474,7 @@ press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><
 <img src="UG_Figures/deleteFavExample.png" alt="output of deletefav" width=600><br>
 <!-- @@author -->
 
-#### 3.3.4. Execute a favourite command: `/execfav` - Wong Heng Chin
+#### 3.3.4. Execute a favourite command: `/execfav` - Heng Chin
 This command executes the specific command in your list of favourite commands.
 
 Format: <br>
@@ -547,9 +547,9 @@ These are the steps to follow:
 <!-- @@author -->
 
 <!-- @@author EthanWong2212 -->
-#### 3.3.7. Storage of favourite commands - Wong Heng Chin
+#### 3.3.7. Store favourite commands - Heng Chin
 >Note: **DO NOT** modify the `FavList.txt` file <br>
->
+
 In order to make Nav@NUS a personalized application for you, all data from your list of favourite commands will be stored on your computer. Thus, everytime Nav@NUS launches, you will be able to maintain and update your list of favourite commands.
 
 The data is stored in the `FavList.txt` file in the `data` folder located in the same location as the Nav@NUS jar file.
@@ -583,7 +583,7 @@ as shown in the figure below.<br><br>
 <!-- @@author -->
 
 <!-- @@author Johnson-Yee -->
-#### 3.4.2. Display most searched bus stop on start-up - Johnson Yee
+#### 3.4.2. Display most searched bus stop on start-up - Johnson
 This feature displays your most commonly searched bus stop to remind you of what to type in when using 
 the navigation functions. 
 
@@ -599,7 +599,7 @@ the memory jolt of what to key in. <br><br>
 <!-- @@author -->
 
 <!-- @@author Johnson-Yee -->
-#### 3.4.3. Reset frequent search data: ```/reset``` - Johnson Yee
+#### 3.4.3. Reset frequent search data: ```/reset``` - Johnson
 
 This command resets the data set used to display the most frequently searched bus stop on application start-up.
 
