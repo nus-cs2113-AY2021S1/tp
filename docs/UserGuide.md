@@ -100,7 +100,8 @@ follow the guide [here](https://docs.oracle.com/en/java/javase/11/install/instal
 4. Copy the jar file to the folder you want to use as the _home folder_ for Nav@NUS.jar application. In the example
 shown in the figure, the home folder is found in the address path of "C:\Users...\CS2113T Empty folder".<br>
 ![Windows CLI](UG_Figures/windowsPath.png)
-5. In the command prompt, type `cd` and the directory of the _home folder_. Press <kbd>Enter</kbd> to continue.
+5. Navigate back to the command prompt, type `cd` and the directory of the _home folder_. Press <kbd>Enter</kbd> to continue.
+![cd Command](UG_Figures/cd_command.png)
 6. Run the .jar file in the command prompt as follows by typing `java -jar Nav@NUS.jar` and press <kbd>Enter</kbd>.
 7. Your screen should show the start screen of Nav@NUS as seen in the figure below.<br>
 ![Start Screen](UG_Figures/Nav@NUSstartScreen.png)<br>
