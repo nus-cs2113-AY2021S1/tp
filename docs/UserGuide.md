@@ -152,12 +152,14 @@ Example of usage: <br/>
  `hr add /n Harry Potter /p 12345678 /e H_P@gmail.com /r member`<br/>
  `hr a /n sakata Gintoki /p 999999999 /e Ginsan@gmail.com /r member`<br/>
  
- Example scenario:  
+ Example Scenario:  
  Let's say you want to add a member called `John Sterling`, with phone number `88888888`, email `js@gmail.com`, and role `president`.  
  Type `hr addMember /n John Sterling /p 88888888 /e js@gmail.com /r president` into the terminal and press enter as shown in the figure below.  
+ 
  ![HrAddMemberCommand](userGuidePic/hrAddMemberCommand.PNG)
  
- The result will be a message that the member has been successfully added as shown in the figure below.  
+ Example Outcome:  
+  
  ![HrAddMemberCommand](userGuidePic/hrAddMemberCommand2.PNG)
  
  [Return to the top](#user-guide)
@@ -180,17 +182,15 @@ Example of usage: <br/>
 `hr delMember 1` <br/>
 `hr delete 19` <br/>
 `hr d 5` <br/>
-
-Expected Outcome:
  
-![HrDelMemberCommand](userGuidePic/hrDelMemberCommand.PNG)
- 
-Example scenario:  
+Example Scenario:   
 Let's say you want to remove the member that you have entered above. i.e. `hr addMember /n John Sterling /p 88888888 /e js@gmail.com /r president`.
 To delete, type `hr delMember 1` into the terminal and press enter as shown in the figure below.  
+
 ![HrDelMemberCommand](userGuidePic/hrDelMemberCommand.PNG)
-  
-The result will be a message that the member has been removed successfully as shown in the figure below.  
+
+Example Outcome:  
+
 ![HrDelMemberCommand](userGuidePic/hrDelMemberCommand2.PNG)
   
 [Return to the top](#user-guide)
@@ -232,12 +232,12 @@ Example of usage: <br/>
 `hr changeInfo /n john sterling /p 12345678` <br/>
 `hr c /n Harry Potter /p 12345678 /e 123@gmail.com /r President` <br/>
 
-Expected scenario:  
+Example Scenario: 
 Let's say you have added a member called `John Sterling` via `hr addMember /n John Sterling /p 88888888 /e js@gmail.com /r president`. 
 To change the phone number of `John Sterling` from `88888888` to `12345678`, type `hr changeInfo /n john sterling /p 12345678` into the terminal and press enter.
 
-
 Expected Outcome:  
+
 ![HrChangeInfoCommand](userGuidePic/hrChangeInfoCommand.PNG)
  
 [Return to the top](#user-guide)
@@ -513,11 +513,15 @@ Shorthand Format: <br/>
 `addAttendance` -> `aa`/`addAttend` <br/>
 
 Example of usage: <br/>
- `event addAttendance /n arduino course /m peter`<br/>
+ `event addAttendance /n arduino course /m john sterling`<br/>
  `event addAttend /n Autodesk course /m John`<br/>
  `event aa /n Machine Learning course /m John`<br/>
  
-Expected Outcome:
+Example Scenario:  
+Let's say you have added a member called `John Sterling` via `hr addMember /n John Sterling /p 88888888 /e js@gamil.com /r president` and an event called `arduino course` via `event addEvent /n arduino course /d 2020-12-30 /t 08-00`.
+To add the attendance of the member `John Sterling` to the event `arduino course`, type `event addAttendance /n arduino course /m john sterling` into the terminal and press enter. 
+
+Expected Outcome:  
 
 ![EventAddAttendanceCommand](userGuidePic/eventAddAttendanceCommand.PNG)
 
@@ -534,11 +538,15 @@ Shorthand Format: <br/>
 `delAttendance` -> `da`/`delAttend` <br/>
 
  Example of usage:    
- `event delAttendance /n arduino course /m peter`<br/>
- `event delAttend /n Autodesk course /m John`<br/>
+ `event delAttendance /n arduino course /m john sterling`<br/>
+ `event delAttend /n Autodesk course /m Peter`<br/>
  `event da /n Machine Learning course /m John`<br/>
  
- Expected Outcome: 
+ Example Scenario:  
+ Let's say you have added the attendance of the member `John Sterling` to the event `arduino course` in the above section. 
+ To delete this attendance, type `event delAttendance /n arduino course /m john sterling` into the terminal and press enter. 
+ 
+ Expected Outcome:   
  
  ![EventDeleteAttendanceCommand](userGuidePic/eventDeleteAttendanceCommand.PNG)
  
