@@ -1255,8 +1255,8 @@ Ever feel tired of reading long emails everyday? Copy and paste your email into 
 You can use our extract command which will help you read any text and extract out possible dates and times. 
 You’ll be able to choose the dates and times detected and create a Personal or Zoom event. 
 
-The extract feature detects dates in the DD/Month Name/YYYY format or the Month Name/DD/YYYY format which is used the most in emails. <br>
-It will detect time in 12 and 24 Hour formats, with ":" or "." in between the time. It can detect time in the format of HH AM/PM too. <br>
+The extract feature detects dates in the "DD MONTH_NAME YYYY" format or the "MONTH_NAME DD YYYY" format which is used the most in emails. <br>
+It will detect time in 12 hour format (HH:mm am/pm, HH.mm am/pm or HH am/pm) and 24 hour (HH:mm or HH.mm) format. <br>
 If a valid zoom link is detected (links containing '.zoom.' and start with 'https://' or 'http://'), it will try to create a zoom event for you.
 Otherwise, a personal event will be made.
 
@@ -1269,7 +1269,7 @@ Format: `extract EVENT_DESCRIPTION;`
 > * The extract feature has the ability to attach the current year to the date if it is not specified in the text.
 > * The text body can include multiple paragraphs that are copy and pasted from emails.
 > * The month name detected can only be detected if spelled fully or is in its 3 letter short form. For example, `20 sep 2020` will be detected while `20 sept 2020` will not be detected. 
-> * Unlike some other commands, 24 Hour time without "." or ":" will not be detected. 
+> * Unlike some other commands, 24 hour time without "." or ":" will not be detected. 
 > * The full date has to be in the same line to be detected properly. If the date is separated by a paragraph/by a new line it may not be detected properly. This goes for the time and zoom links too.
 
 > **Warning!**
