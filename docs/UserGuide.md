@@ -90,10 +90,10 @@ To give you a better experience, this section will introduce you to the CLI.
 Orientate yourself to the CLI. As seen in each figure below, the red arrow points to
 where you have to type in commands.<br>
 
-For computers running the Windows OS, the red arrow points to where you have to type in commands. <br><br>
+For computers running the Windows OS, the red arrow points to where you have to type in commands. <br>
 <img src="UG_Figures/windowsCLI.png" alt="Windows CLI" width=650><br>
 
-For computers running the macOS, the red arrow points to where you have to type in commands. <br><br>
+For computers running the macOS, the red arrow points to where you have to type in commands. <br>
 <img src="UG_Figures/appleCLI.png" alt="Apple CLI" width=650><br>
 
 <div style="page-break-after: always;"></div>
