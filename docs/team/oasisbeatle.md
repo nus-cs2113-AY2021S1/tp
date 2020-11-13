@@ -10,8 +10,6 @@
 
 [The RepoSense report of the code contributed to this project can be found here.](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=oasisbeatle&tabRepo=AY2021S1-CS2113T-W13-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
-<div style="page-break-after: always;"></div>
-
 ### Project Contributions
 
 #### Code Contributions
@@ -33,6 +31,8 @@ The list of contributions for testing, assertions and logging include the follow
 * Assertions and exception for the component class functions including the setValue() and getValue() functions [#48](https://github.com/AY2021S1-CS2113T-W13-3/tp/pull/48)
 * Logging in the Boolean Tutorial Command [#103](https://github.com/AY2021S1-CS2113T-W13-3/tp/pull/103)
 
+<div style="page-break-after: always;"></div>
+
 #### Developer Guide
 
 The list of the contributions to the developer guide include:
@@ -47,3 +47,4 @@ The list of contributions to user guide include:
 * FAQs [#180](https://github.com/AY2021S1-CS2113T-W13-3/tp/pull/180) 
 * Editing command information [#180](https://github.com/AY2021S1-CS2113T-W13-3/tp/pull/180) 
 * Formattting [#180](https://github.com/AY2021S1-CS2113T-W13-3/tp/pull/180) 
+
