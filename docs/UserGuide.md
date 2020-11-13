@@ -521,10 +521,10 @@ You want to change the description for `/dineinfo Pines` from "No description" t
 You can do so by following these steps:
 
 1. Type <code>/descfav <strong>5</strong> /to <strong>Get dinner @7:30PM every Tuesday</strong></code> into the CLI as
-shown in the figure below and press enter. <br>
+shown in the figure below and press enter. <br><br>
 <img src="UG_Figures/descfavinput.PNG" alt="descfav input" width=600>
 
-2. Type <code>/listfav</code> to see the changed description.<br>
+2. Type <code>/listfav</code> to see the changed description.<br><br>
 <img src="UG_Figures/afterdescfav.png" alt="list after changing" width=600>
 <!-- @@author -->
 
