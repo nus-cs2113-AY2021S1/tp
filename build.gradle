@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'jacoco'
     id 'application'
     id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
@@ -10,8 +11,20 @@ repositories {
 }
 
 dependencies {
+    compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+        resources {
+            srcDirs = ['src/main/resources']
+        }
+    }
 }
 
 test {
@@ -29,18 +42,26 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "anichan.Main"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "main"
     archiveClassifier = null
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
 }
 
 checkstyle {
     toolVersion = '8.23'
 }
 
-run{
+run {
+    enableAssertions = true
     standardInput = System.in
 }
