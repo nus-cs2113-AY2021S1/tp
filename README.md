@@ -85,3 +85,6 @@ Click [here](https://ay2021s1-cs2113t-t09-3.github.io/tp/) to access the documen
 ## CI using GitHub Actions
 
 The project uses [GitHub actions](https://github.com/features/actions) for CI. When you push a commit to this repo or PR against it, GitHub actions will run automatically to build and verify the code as updated by the commit/PR.
+
+## Acknowledgements
+* [JSON.simple](https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple) was used for the parsing of JSON formatted strings for data storage.
