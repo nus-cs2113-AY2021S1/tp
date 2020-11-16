@@ -1,9 +1,375 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+true
 
-What is your name?
-Hello James Gosling
+
+
+
+Status: 
+=====================================================================================================
+= Welcome to Main Menu                                                                              =
+=====================================================================================================
+| No.            |  Feature                                           |  Commands                    |
+-----------------------------------------------------------------------------------------------------
+| [1]            |  Manual Income/Expense Tracker                     |  manual                      |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+| [2]            |  Auto Income/Expense Tracker                       |  auto                        |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+| [3]            |  Account Summary                                   |  acc                         |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+| [4]            |  Goals Tracker                                     |  goal                        |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+| [5]            |  Financial Calculator                              |  financial                   |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+| [6]            |  Quit The Program                                  |  exit                        |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+____________________________________________________________
+>>> manual
+
+
+
+
+[ SYSTEM MESSAGE ]: Welcome to Manual Tracker!
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
+[ TODO           ]: Enter a command! 
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> commands
+
+
+
+
+======================================================================
+= List of Commands                                                   =
+======================================================================
+| No.            | Command            | Input Format                  |
+----------------------------------------------------------------------
+| 1.             | Open ledger        | ledger open /date <YYMMDD     |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+| 2.             | New ledger         | ledger new /date <YYMMDD      |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+| 3.             | list ledgers       | ledger list                   |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+| 4.             | delete ledgers     | ledger delete /date <YYMMDD   |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+| 5.             | exit to main menu  | exit                          |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
+[ TODO           ]: Enter a command! 
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> ledger open /date 201212
+
+
+
+
+[ ERROR          ]: The object cannot be found!
+[ SYSTEM MESSAGE ]: Generating new ledger...
+[ SYSTEM MESSAGE ]: Ledger 1 : [ Dec 12 2020 ] created!
+[ SYSTEM MESSAGE ]: Ledger 1 : [ Dec 12 2020 ] opened!
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
+                    Enter command!
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> ledger list
+
+
+
+
+Command not recognised. Try again.
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
+                    Enter command!
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> ledger new /date 200404
+
+
+
+
+Command not recognised. Try again.
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
+                    Enter command!
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> ledger new /date 200504
+
+
+
+
+Command not recognised. Try again.
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
+                    Enter command!
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> ledger open /date 202020
+
+
+
+
+Command not recognised. Try again.
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
+                    Enter command!
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> ledger list
+
+
+
+
+Command not recognised. Try again.
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
+                    Enter command!
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> ledger open /date 200404
+
+
+
+
+Command not recognised. Try again.
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
+                    Enter command!
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> entry new /time /desc /cat /amt 1500
+
+
+
+
+[ ERROR          ]: No params supplied to /time
+                    Enter "commands" to check format!
+[ ERROR          ]: The param type cannot be parsed: "/time"
+[ ERROR          ]: "" is not a valid category input!
+                    Input "exp cat" to show valid categories!
+[ ERROR          ]: The param type cannot be parsed: "/cat"
+[ ERROR          ]: The following params require input: /time, /cat, -i, -e, /id
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
+                    Enter command!
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> entry new /time 1500 /desc Go to the poll -i /cat tpt /amt 1500
+
+
+
+
+[ SYSTEM MESSAGE ]: Entry 1 : [ 15:00 ] [ go to the poll ] created!
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
+                    Enter command!
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> entry new /time 1500 /desc Go to the poll -i /cat tpt /amt 1501
+
+
+
+
+[ SYSTEM MESSAGE ]: Entry 2 : [ 15:00 ] [ go to the poll ] created!
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
+                    Enter command!
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> entry new /time 1500 /desc Go to the poll where>1.the rainbow used to be nice>2. and colorful, haha -i /cat tpt /amt 1503
+
+
+
+
+[ SYSTEM MESSAGE ]: Entry 3 : [ 15:00 ] [ go to the poll where>1.the rainbow used to be nice>2. and colorful, haha ] created!
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
+                    Enter command!
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> entry new /time 1500 /desc Go to the pole -i /cat tpt /amt 1501
+
+
+
+
+[ SYSTEM MESSAGE ]: Entry 4 : [ 15:00 ] [ go to the pole ] created!
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
+                    Enter command!
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> entry new /time 1500 /desc Go to the pole -i /cat tpt /amt 1501 /slowbro ddffsfs
+
+
+
+
+[ ERROR          ]: The param type is not recognized: "/slowbro"
+[ ERROR          ]: Entry specified already exists in the list!
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
+                    Enter command!
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> entry edit /id 1 /time 1600
+
+
+
+
+[ SYSTEM MESSAGE ]: Entry 1 : [ 16:00 ] [ go to the poll ] edited!
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
+                    Enter command!
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> entry list
+
+
+
+
+======================================================================================================================
+= List of Entries for Ledger [Dec 12 2020]                                                                           =
+======================================================================================================================
+| Entry Number   | Entry Type     | Category       | Amount         | Time           | Description                    |
+----------------------------------------------------------------------------------------------------------------------
+| 1              | Income         | TRANSPORT      | 1500.0         | 16:00          | go to the poll                 |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+| 2              | Income         | TRANSPORT      | 1501.0         | 15:00          | go to the poll                 |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+| 3              | Income         | TRANSPORT      | 1503.0         | 15:00          | go to the poll where           |
+|                |                |                |                |                | 1.the rainbow used to be nice  |
+|                |                |                |                |                | 2. and colorful, haha          |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+| 4              | Income         | TRANSPORT      | 1501.0         | 15:00          | go to the pole                 |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
+                    Enter command!
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> exit
+
+
+
+
+Exiting subroutine...
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
+[ TODO           ]: Enter a command! 
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> ledger open /date 200404
+
+
+
+
+[ ERROR          ]: The object cannot be found!
+[ SYSTEM MESSAGE ]: Generating new ledger...
+[ SYSTEM MESSAGE ]: Ledger 2 : [ Apr 4 2020 ] created!
+[ SYSTEM MESSAGE ]: Ledger 2 : [ Apr 4 2020 ] opened!
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Apr 4 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Apr 4 2020]!
+                    Enter command!
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> entry list
+
+
+
+
+======================================================================================================================
+= List of Entries for Ledger [Apr 4 2020]                                                                            =
+======================================================================================================================
+| Entry Number   | Entry Type     | Category       | Amount         | Time           | Description                    |
+----------------------------------------------------------------------------------------------------------------------
+| No entries     |
+| created        |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Apr 4 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Apr 4 2020]!
+                    Enter command!
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> exit
+
+
+
+
+Exiting subroutine...
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
+[ TODO           ]: Enter a command! 
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> exit
+
+
+
+
+[ SYSTEM MESSAGE ]: Exiting from ManualTracker
+
+
+
+
+Status: 
+=====================================================================================================
+= Welcome to Main Menu                                                                              =
+=====================================================================================================
+| No.            |  Feature                                           |  Commands                    |
+-----------------------------------------------------------------------------------------------------
+| [1]            |  Manual Income/Expense Tracker                     |  manual                      |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+| [2]            |  Auto Income/Expense Tracker                       |  auto                        |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+| [3]            |  Account Summary                                   |  acc                         |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+| [4]            |  Goals Tracker                                     |  goal                        |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+| [5]            |  Financial Calculator                              |  financial                   |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+| [6]            |  Quit The Program                                  |  exit                        |
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+____________________________________________________________
+>>> exit
+
+
+
+

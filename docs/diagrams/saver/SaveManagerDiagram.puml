@@ -1,0 +1,60 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+
+class "saveManager" {
++fullPath: String
++dirPath: String
+-prompt: String
+-menu: Boolean
++main()
++addSave()
++loadSave()
++clear()
++deleteSave()
+-checkValidity(): Boolean
+-helpmenu()
+-status()
+-helpMsg()
+-resetSave()
+-listSaves()
+}
+
+class "{abstract} \n saveHandler" {
+fullPath: String
+dirPath: String
++buildFile()
++putString()
++takeString()
++getSaveString()
+}
+
+class "<<Singleton>> \n manualTrackerSaver" {
+-saver: manualTrackerSaver
++getInstance(): manualTrackerSaver
++clear()
++save()
++load()
+}
+class "<<Singleton>> \n goalTrackerSaver" {
+-saver: goalTrackerSaver
++getInstance(): goalTrackerSaver
++clear()
++save()
++load()
+}
+class "<<Singleton>> \n autoTrackerSaver" {
+-saver: autoTrackerSaver
++getInstance(): autoTrackerSaver
++clear()
++save()
++load()
+}
+
+"{abstract} \n saveHandler" <|-- "<<Singleton>> \n manualTrackerSaver"
+"{abstract} \n saveHandler" <|-- "<<Singleton>> \n goalTrackerSaver"
+"{abstract} \n saveHandler" <|-- "<<Singleton>> \n autoTrackerSaver"
+"saveManager" --> "0..1" "<<Singleton>> \n manualTrackerSaver" : File Operations
+"saveManager" --> "0..1" "<<Singleton>> \n goalTrackerSaver" : File Operations
+"saveManager" --> "0..1" "<<Singleton>> \n autoTrackerSaver" : File Operations
+@enduml

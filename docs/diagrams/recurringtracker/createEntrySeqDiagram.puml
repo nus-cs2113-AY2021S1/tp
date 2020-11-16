@@ -1,0 +1,65 @@
+@startuml
+autoactivate on
+actor User
+skinparam shadowing false
+skinparam sequence {
+ActorBorderColor white
+
+ActorBackgroundColor white
+ActorFontColor white
+ActorFontSize 17
+ActorFontName ""
+}
+User-> "<<class>>\n:RecurringTracker": Create recurring entry
+
+"<<class>>\n:RecurringTracker" ->"<<class>>\n:RecurringTracker": handleCreateEntry()
+
+   "<<class>>\n:RecurringTracker"-> " createEntryHandler:CreateEntryCommand" : handlePacket(packet)
+
+        == Handling of Params in packet ==
+        " createEntryHandler:CreateEntryCommand" -> " createEntryHandler:CreateEntryCommand" : handleParams(packet)
+            " createEntryHandler:CreateEntryCommand" -> " :ParamChecker" : setPacket(packet)
+            return
+
+            create "entry:RecurringEntry"
+            " createEntryHandler:CreateEntryCommand" -> "entry:RecurringEntry": RecurringEntry()
+            return
+
+            loop For all paramType in the command packet
+                " createEntryHandler:CreateEntryCommand" -> " createEntryHandler:CreateEntryCommand" : handleSingleParam(packet)
+                ref over " createEntryHandler:CreateEntryCommand", " :ParamChecker", "entry:RecurringEntry"
+                    Each param is checked by ParamChecker, and set in the newly created
+                    RecurringEntry if it is valid.
+
+                    For example, "/day" require an integer between 1 and 31. If user inputs "/day 32",
+                    ParamChecker will reject, print an error message and throw an Exception.
+
+                    All compulsory params must be successfully checked and set, otherwise an Exception
+                    will be thrown and subroutine will prematurely return to RecurringTracker
+                end ref
+            end
+        return
+   return
+   == Storing of entry into RecurringEntryList ==
+   return entry
+   "<<class>>\n:RecurringTracker"-> "entries:RecurringEntryList" : addItem(entry)
+    return
+
+return
+
+return
+
+box "Data Tracker" #LightYellow
+participant "<<class>>\n:RecurringTracker"
+endBox
+
+box "Logic" #LightBlue
+participant " createEntryHandler:CreateEntryCommand"
+participant " :ParamChecker"
+endBox
+
+box "Data" #LightGreen
+participant "entry:RecurringEntry"
+participant "entries:RecurringEntryList"
+endBox
+@enduml

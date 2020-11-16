@@ -1,0 +1,61 @@
+@startuml
+left to right direction
+hide circle
+skinparam classAttributeIconSize 0
+skinparam BoxPadding 20
+skinparam shadowing false
+skinparam linetype ortho
+skinparam package<<Layout>> {
+  borderColor Transparent
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+rectangle Logic {
+
+
+
+    package p2 <<Layout>> {
+    }
+
+    class ParamChecker <<Singleton>>{
+        + checkAndReturnDate(paramType : String) : LocalDate
+        + checkAndReturnTime(paramType : String) : LocalTime
+        + checkAndReturnIndex(paramType : String, list : ArrayList) : Integer
+        + checkAndReturnDouble(paramType : String) : Double
+        + checkAndReturnInt(paramType : String) : Integer
+        + checkAndReturnCategory(paramType : String) : String
+    }
+
+
+rectangle CommandHandlers {
+    abstract class "{abstract}\nParamHandler" {
+        # paramChecker : ParamChecker
+        # hasParsedAllParams : boolean
+        + handleParams(packet : CommandPacket) : void
+        + getHasParsedAllRequiredParams() : boolean
+        + setRequiredParams(paramTypes : String...) : void
+        # checkParamRequirementSatisfied(param : String) : boolean
+        + {abstract} handleSingleParam(packet : CommandPacket, paramType : String)
+    }
+
+    class XYZCommandHandler <<SingleTon>>{
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+    }
+
+    ParamChecker "1" <.. XYZCommandHandler #line:blue;text:black : Checks param validity with
+    "{abstract}\nParamHandler" <|-[norank]- XYZCommandHandler #line:purple;line.bold;text:red
+
+    note bottom of XYZCommandHandler: Includes: \n1. FinanceTools Calculator functions\n2. DataTracker Commands\n     eg. RetrieveEntryHandler()\n          CreateLedgerHandler()
+}
+
+note right of ParamChecker: Contains methods that check validity of params supplied
+
+
+
+
+
+@enduml

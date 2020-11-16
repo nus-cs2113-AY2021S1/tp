@@ -1,0 +1,101 @@
+@startuml
+left to right direction
+hide circle
+scale 1500 width
+skinparam classAttributeIconSize 0
+skinparam BoxPadding 20
+skinparam shadowing false
+skinparam package<<Layout>> {
+  borderColor Transparent
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+rectangle Logic {
+
+    package p1 <<Layout>> {
+    }
+
+    package p2 <<Layout>> {
+    }
+
+    package p3 <<Layout>> {
+    }
+
+
+    class ParamChecker <<Singleton>>{
+        + checkAndReturnDate(paramType : String) : LocalDate
+        + checkAndReturnTime(paramType : String) : LocalTime
+        + checkAndReturnIndex(paramType : String, list : ArrayList) : Integer
+        + checkAndReturnDouble(paramType : String) : Double
+        + checkAndReturnInt(paramType : String) : Integer
+        + checkAndReturnCategory(paramType : String) : String
+    }
+
+
+    p1 -[hidden] p2
+    p2 -[hidden] p3
+    p2 -[hidden] ParamChecker
+
+
+rectangle "CommandHandlers"    {
+    abstract class ParamHandler {
+
+        + handleParams(packet : CommandPacket) : void
+        + {abstract} handleSingleParam(packet : CommandPacket, paramType : String)
+    }
+
+    rectangle "Ledger CommandHandlers"    {
+        class createLedgerHandler <<Singleton>>{
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+        class retrieveLedgerHandler <<Singleton>>{
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+    }
+
+    package p4 <<Layout>> {
+    }
+
+    rectangle "Entry CommandHandlers"    {
+        class createEntryHandler <<Singleton>>{
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+        class editEntryHandler <<Singleton>>{
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+        class retrieveEntryHandler <<Singleton>>{
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+    }
+
+    "Entry CommandHandlers"    -[hidden]- p4
+    ParamChecker -[hidden]- ParamHandler
+}
+
+
+
+ParamChecker "1" <... createLedgerHandler #line:blue;text:black : < Verifies params using 
+ParamChecker "1" <... retrieveLedgerHandler #line:blue;text:black : < Verifies params using 
+ParamChecker "1" <... createEntryHandler #line:blue;text:black : < Verifies params using 
+ParamChecker "1" <... editEntryHandler #line:blue;text:black : < Verifies params using 
+ParamChecker "1" <... retrieveEntryHandler #line:blue;text:black : < Verifies params using 
+ParamHandler <|--- createLedgerHandler #line:purple;line.bold;text:red
+ParamHandler <|--- retrieveLedgerHandler #line:purple;line.bold;text:red
+ParamHandler <|--- createEntryHandler #line:purple;line.bold;text:red
+ParamHandler <|----- retrieveEntryHandler #line:purple;line.bold;text:red
+ParamHandler <|--- editEntryHandler #line:purple;line.bold;text:red
+}
+
+@enduml

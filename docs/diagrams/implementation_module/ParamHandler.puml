@@ -1,0 +1,17 @@
+@startuml
+class ParamHandler <<abstract>> {
+    requiredParams: HashSet<String>
+    paramsSuccessfullyParsed: hashSet<String>
+    missingRequiredParams: hashSet<String>
+    hasParsedAllRequiredParams: boolean
+    handleParams()
+    checkParseFailedParams()
+}
+
+class XYZCommandHandler <<singleton>> {
+    setRequiredParams()
+    handlePacket()
+    handleSingleParam()
+}
+ParamHandler <|-- XYZCommandHandler
+@enduml

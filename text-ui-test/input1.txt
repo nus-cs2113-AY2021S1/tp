@@ -1,0 +1,6 @@
+manual
+open /id 1
+new /time 1600 /desc assadad /cat tpt /amt -23243432432432434324324 -i
+exit
+exit
+exit

@@ -1,0 +1,14 @@
+@startuml
+hide circle
+title Monthly Compound Interest Calculator
+skinparam classAttributeIconSize 0
+class "{abstract} \nHandler" {
+ +handleMonthlyCompoundInterest(:CommandPacket)
+}
+
+class MonthlyCompoundInterest {
+ +calculateCompoundInterest()
+}
+
+"{abstract} \nHandler" --> MonthlyCompoundInterest : Calculates interest
+@enduml

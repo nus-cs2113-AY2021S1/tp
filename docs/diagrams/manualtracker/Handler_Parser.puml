@@ -1,0 +1,43 @@
+@startuml
+scale 1094 width
+hide circle
+skinparam classAttributeIconSize 0
+skinparam BoxPadding 20
+skinparam shadowing false
+
+
+skinparam package<<Layout>> {
+  borderColor Transparent
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+rectangle LogicManagers {
+    class ManualTracker {
+        ~ {static} handleCreateLedger() : State
+        ~ {static} handleOpenLedger() : State
+        ~ {static} handleDeleteLedger() : State
+    }
+
+    class EntryTracker {
+        ~ {static} handleCreateEntry() : State
+        ~ {static} handleEditEntry() : State
+        ~ {static} handleDeleteEntry() : State
+    }
+}
+
+rectangle Parser{
+    class InputParser <<Singleton>> {
+        + parseInput(inputString:String):CommandPacket
+    }
+
+    class ParamParser <<Singleton>> {
+        + parseParams(inputString:String):HashMap
+    }
+    InputParser *-> ParamParser : Parse param substring with >
+    InputParser "1" <-[#red]- ManualTracker #line:red;line.dashed;text:red : Parse input string with <
+
+    InputParser "1" <-[#red]- EntryTracker  #line:red;line.dashed;text:red : Parse input string with <
+}
+@enduml

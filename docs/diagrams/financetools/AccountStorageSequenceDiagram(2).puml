@@ -1,0 +1,22 @@
+@startuml
+title When User Stores Information
+
+activate ":FinanceTools"
+":FinanceTools" -> ":Handler" : handleAccountStorage(packet, filePath, infoText)
+activate ":Handler"
+
+":Handler" -> ":AccountStorage" : handleInfoStorage(filePath, infoText)
+activate ":AccountStorage"
+
+":AccountStorage" -> ":AccountSaver" : updateFile(infoText, filePath)
+activate ":AccountSaver"
+
+":AccountSaver" --> ":AccountStorage" : File Updated
+deactivate ":AccountSaver"
+
+":AccountStorage" --> ":Handler" : Storage Updated
+deactivate ":AccountStorage"
+
+":Handler" --> ":FinanceTools" : Information Updated
+deactivate ":Handler"
+@enduml

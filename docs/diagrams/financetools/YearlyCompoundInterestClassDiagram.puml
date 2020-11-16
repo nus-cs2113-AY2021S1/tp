@@ -1,0 +1,14 @@
+@startuml
+hide circle
+title Yearly Compound Interest Calculator
+skinparam classAttributeIconSize 0
+class "{abstract} \nHandler" {
+ +handleYearlyCompoundInterest(:CommandPacket)
+}
+
+class YearlyCompoundInterest {
+ +calculateCompoundInterest()
+}
+
+"{abstract} \nHandler" --> YearlyCompoundInterest : Calculates interest
+@enduml
