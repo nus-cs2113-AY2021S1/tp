@@ -1,0 +1,11 @@
+@startuml
+!include style.puml
+
+object "__:BinaryTree__" as BinaryTree
+
+object "__:Gate__" as Gate
+Gate : - input
+Gate : - secondInput
+
+BinaryTree *--> "0..15" Gate
+@enduml

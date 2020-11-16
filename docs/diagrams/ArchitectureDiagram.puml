@@ -1,0 +1,19 @@
+@startuml
+!include style.puml
+
+hide members
+
+Package " "<<Rectangle>>{
+    Class Ui
+    Class Logic
+    Class Model
+    Class Duke 
+}
+
+Duke --> Ui
+Duke --> Logic
+Duke --> Model
+Logic -r-> Model
+
+
+@enduml

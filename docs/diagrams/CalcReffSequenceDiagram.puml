@@ -1,0 +1,39 @@
+@startuml
+box logic
+participant ":Parser" as Parser
+participant ":CalculateCommand" as CalculateCommand
+end box
+
+box template
+participant ":Template" as Template
+participant ":Resistor" as Resistor
+end box
+
+[-> Parser : parse("calc reff")
+activate Parser
+
+ref over Parser, CalculateCommand : getCommand
+
+[<-- Parser : calc
+deactivate Parser
+
+[->CalculateCommand : execute()
+activate CalculateCommand
+
+CalculateCommand -> CalculateCommand : getValue()
+activate CalculateCommand
+
+ref over CalculateCommand, Template : getComponent
+
+CalculateCommand -> Resistor : getValue()
+activate Resistor
+
+CalculateCommand <-- Resistor : value
+deactivate Resistor
+
+CalculateCommand <-- CalculateCommand : value
+deactivate CalculateCommand
+
+[<-- CalculateCommand
+deactivate CalculateCommand
+@enduml

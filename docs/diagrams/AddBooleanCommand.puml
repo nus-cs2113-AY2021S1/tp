@@ -1,0 +1,35 @@
+@startuml
+
+box logic
+participant ":AddBooleanCommand" as Add
+end box
+
+box model
+participant ":BooleanTemplate" as Bool
+participant ":BinaryTree" as BT
+end box
+
+[-> Add : execute()
+activate Add
+
+Add -> Bool: addGate(template, idx, and)
+activate Bool
+
+Bool -> BT : insert(idx, and)
+activate BT
+
+BT --> Bool
+deactivate BT
+
+Bool -> Bool : buildTopDown()
+activate Bool
+
+Bool --> Bool
+deactivate Bool
+
+Bool --> Add
+deactivate Bool
+
+[<-- Add
+deactivate Add
+@enduml

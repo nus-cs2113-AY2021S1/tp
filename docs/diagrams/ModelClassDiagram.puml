@@ -1,0 +1,45 @@
+@startuml
+!include style.puml
+
+hide member
+
+package Model {
+package Template {
+    Class XYZCircuitTemplate
+    Class "{abstract}\nCircuitTemplate" as CircuitTemplate
+    Class BooleanTemplate
+}
+
+package Component {
+
+    Class XYZComponent
+    Class XYZLoadComponent
+    Class "{abstract}\nComponent" as Component
+    Class "{abstract}\nLoadComponent" as LoadComponent
+
+}
+
+package Gate {
+    Class XYZGate
+    Class "{abstract}\nGate" as Gate
+}
+
+package BinaryTree {
+    Class BinaryTree<Gate>
+}
+}
+
+XYZCircuitTemplate --|> CircuitTemplate
+
+CircuitTemplate --> "2..3" Component
+LoadComponent --|> Component
+XYZComponent --|> Component
+XYZLoadComponent --|> LoadComponent
+
+BooleanTemplate --> "1" BinaryTree
+BooleanTemplate --> "1..7"Gate
+BinaryTree --> "1..7" Gate
+
+XYZGate --|> Gate
+
+@enduml

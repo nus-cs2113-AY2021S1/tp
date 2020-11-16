@@ -1,0 +1,12 @@
+@startuml
+!include style.puml
+
+package UI {
+    Class Ui {
+        + readline() : String
+        + printMessage() : void
+        + showError() : void
+    }
+}
+
+@enduml

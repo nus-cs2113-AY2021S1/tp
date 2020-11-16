@@ -1,0 +1,48 @@
+@startuml
+!include style.puml
+
+hide member
+
+package Logic {
+
+package Parser {
+    Class Parser
+    Class BooleanParser
+    Class CircuitParser
+    Interface LogicParser <<Interface>>
+}
+
+package Command {
+    package Circuit {
+        Class "{abstract}\nCircuitCommand" as Circuit
+        Class XYZCircuitCommand
+    }
+    package Gates {
+        Class "{abstract}\nBooleanCommand" as Boolean
+        Class XYZBooleanCommand
+    }
+    Class "{abstract}\nCommand" as Command
+    Class XYZGeneralCommand
+}
+
+}
+
+package Model {
+}
+
+Parser --> Model
+Command --> Model
+
+Circuit -u-|> Command
+Boolean -u-|> Command
+XYZGeneralCommand -u-|> Command
+XYZCircuitCommand -u-|> Circuit
+XYZBooleanCommand -u-|> Boolean
+
+Parser ..> Command : creates >
+BooleanParser .u.|> LogicParser
+CircuitParser .u.|> LogicParser
+Parser -> "1" BooleanParser
+Parser -> "1" CircuitParser
+
+@enduml

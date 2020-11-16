@@ -1,0 +1,47 @@
+@startuml
+
+box logic
+participant ":Parser" as Parser
+participant ":AddCommand" as AddCommand
+end box
+
+box model
+participant ":RcTemplate" as RcTemplate
+participant ":Capacitor" as Capacitor
+end box
+
+[-> Parser : parse("add parallel c 20")
+activate Parser
+
+ref over Parser, AddCommand : getCommand
+
+[<-- Parser : command
+deactivate Parser
+
+[-> AddCommand: execute()
+activate AddCommand
+
+ref over AddCommand, RcTemplate : getComponent
+
+AddCommand -> AddCommand : getNewValue()
+activate AddCommand
+
+AddCommand -> Capacitor : addParallel(20)
+activate Capacitor
+
+AddCommand <-- Capacitor : value
+deactivate Capacitor
+
+AddCommand <-- AddCommand : value
+deactivate AddCommand
+
+AddCommand -> Capacitor: setValue(value)
+activate Capacitor
+
+AddCommand <-- Capacitor
+deactivate Capacitor
+
+[<-- AddCommand
+deactivate AddCommand
+
+@enduml

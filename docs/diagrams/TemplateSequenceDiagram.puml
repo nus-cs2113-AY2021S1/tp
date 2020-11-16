@@ -1,0 +1,50 @@
+@startuml
+box logic
+participant ":Parser" as Parser
+participant ":CircuitParser" as Circuit
+participant ":TemplateCircuitCommand" as Template
+end box
+
+box template
+participant ":LrTemplate" as LrTemplate
+end box
+
+[-> Parser : parse("template rl")
+activate Parser
+
+Parser -> Circuit : prepareTemplate("template rl")
+activate Circuit
+
+Circuit -> Circuit : getCircuitTemplate("rl")
+activate Circuit
+
+create LrTemplate
+Circuit -> LrTemplate : LrTemplate()
+activate LrTemplate
+
+Circuit <-- LrTemplate : lr
+deactivate LrTemplate
+
+Circuit <-- Circuit : lr
+deactivate Circuit
+
+create Template
+Circuit -> Template : TemplateCommand(lr)
+activate Template
+
+Circuit <-- Template : command
+deactivate Template
+
+Parser <-- Circuit : command
+deactivate Circuit
+
+[<-- Parser : command
+deactivate Parser
+
+[-> Template : execute()
+activate Template
+
+[<-- Template
+deactivate Template
+
+@enduml

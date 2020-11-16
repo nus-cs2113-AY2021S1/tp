@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+
+hide member
+
+package Command {
+
+class "{abstract}\nCommand" as Command
+class "SummaryCommand" as Summary
+class "TutorialBooleanCommand" as Tutorial
+
+package Gates {
+    class "{abstract}\nBooleanCommand" as Bool
+    class "AddBooleanCommand" as Add
+    class "CalculateBooleanCommand" as Calc
+    class "SetBooleanCommand" as Set
+    class "TemplateBooleanCommand" as Template
+}
+}
+
+Bool -u-|> Command
+Add -u-|> Bool
+Set -u-|> Bool
+Template -u-|> Bool
+Calc -u-|> Bool
+Summary -u-|> Command
+Tutorial -u-|> Summary
+
+@enduml

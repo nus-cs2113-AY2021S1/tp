@@ -1,0 +1,42 @@
+@startuml
+
+box logic
+participant ":SetBooleanCommand" as Set
+end box
+
+box model
+participant ":BooleanTemplate" as Bool
+participant ":BinaryTree" as BT
+participant ":Gate" as Gate
+end box
+
+[-> Set : execute()
+activate Set
+
+Set -> Bool : setInput(template, 2, 0)
+activate Bool
+
+Bool -> BT : getT(2)
+activate BT
+
+BT --> Bool : gate
+deactivate BT
+
+Bool -> Gate : setSecondInput(0)
+activate Gate
+
+Gate --> Bool
+deactivate Gate
+
+Bool -> Bool : buildTopDown()
+activate Bool
+
+Bool --> Bool
+deactivate Bool
+
+Bool --> Set
+deactivate Bool
+
+[<-- Set
+deactivate Set
+@enduml

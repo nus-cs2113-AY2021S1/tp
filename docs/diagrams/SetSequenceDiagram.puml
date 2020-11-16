@@ -1,0 +1,38 @@
+@startuml
+
+box Logic
+participant ":Parser" as Parser
+participant ":SetCommand" as SetCommand
+end box
+
+box Model 
+participant ":Template" as Template
+participant ":Component" as Component 
+end box
+
+
+[-> Parser : parse("set r 500")
+activate Parser
+
+ref over Parser, SetCommand : getCommand
+
+[<-- Parser : command
+deactivate Parser
+
+
+[-> SetCommand : execute()
+activate SetCommand
+
+ref over SetCommand, Template : getComponent
+
+SetCommand -> Component : setValue(500)
+activate Component
+
+Component --> SetCommand
+deactivate Component
+
+[<-- SetCommand 
+deactivate SetCommand
+
+
+@enduml

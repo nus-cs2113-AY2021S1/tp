@@ -1,0 +1,8 @@
+@startuml
+!include style.puml
+
+object "__:OrGate__" as Or {
+    input = 1
+    secondInput = 0
+}
+@enduml
