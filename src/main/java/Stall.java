@@ -6,11 +6,16 @@ import java.util.List;
  *
  */
 public class Stall {
+
+
     public String stall_name;
     private int stallID;
     private String stallLocation;
     private int openTime;
     private int closeTime;
+
+
+
     private List<Integer> openDayOfWeek;
     private List<Dish>  dishes;
     public int queue;
@@ -61,6 +66,12 @@ public class Stall {
      */
     public List<Dish> getDish(){
         return this.dishes;
+    }
+    public List<Integer> getOpenDayOfWeek() {
+        return openDayOfWeek;
+    }
+    public String getStall_name() {
+        return stall_name;
     }
     public void setQueue(int queue) {
         this.queue = queue;

@@ -517,4 +517,61 @@ public class UI {
         }
         System.out.println("____________________________________________________________\n");
     }
+    public static void searchKeyword(String input,List<Canteen> canteens) {
+        boolean canteenFound = false;
+        boolean stallFound = false;
+        boolean dishFound = false;
+        List<String> days = new ArrayList<>();
+        days.add("Monday");
+        days.add("Tuesday");
+        days.add("Wednesday");
+        days.add("Thursday");
+        days.add("Friday");
+        days.add("Saturday");
+        days.add("Sunday");
+        System.out.println("____________________________________________________________\n");
+        System.out.println("Here are the matching items:\n");
+        String keyword = input.substring(7);
+        System.out.println("Related canteens:\n");
+        for(int i=0;i<canteens.size();i++){
+            if(canteens.get(i).getCanteenName().contains(input)){
+                canteenFound = true;
+                System.out.println("Canteen:" + canteens.get(i).getCanteenName() + "\n");
+                System.out.println("Operating time:\n");
+                for(int j = 0; j<7;j++){
+                    System.out.println(days.get(j)+": " + canteens.get(i).getOpenTime(j) + " - " + canteens.get(i).getCloseTime(j) + "\n");
+                }
+                System.out.println("Stalls inside this canteen: ");
+                for(int k = 0; k<canteens.get(i).getStallList().size();k++){
+                    System.out.println(canteens.get(i).getStallList().get(k).getStall_name());
+                }
+
+            }
+        }
+        if(!canteenFound){
+            System.out.println("No canteen containing the keyword is found!\n");
+        }
+
+
+        System.out.println("Related stalls:\n");
+        for(int i=0;i<canteens.size();i++) {
+            for (int t=0;t<canteens.get(i).getStallList().size();t++){
+                Stall temporaryStall = canteens.get(i).getStallList().get(t);
+                if (temporaryStall.getStall_name().contains(input)) {
+                    stallFound = true;
+                    System.out.println("Stall:" + temporaryStall.getStall_name() + "\n");
+                    System.out.println("Operating time:\n");
+                    System.out.println( temporaryStall.getOpenTime() + " - " + temporaryStall.getCloseTime() + "\n");
+                    System.out.println("Open days:\n");
+                    for(int j = 0; j<temporaryStall.getOpenDayOfWeek().size();j++){
+                        System.out.println(days.get(temporaryStall.getOpenDayOfWeek().get(j)-1) + "\n");
+                    }
+                    System.out.println("It belongs to " + canteens.get(i).getCanteenName());
+                }
+        }
+        }
+        if(!stallFound){
+            System.out.println("No stall containing the keyword is found!\n");
+        }
+    }
 }
