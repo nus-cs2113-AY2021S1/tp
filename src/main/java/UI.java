@@ -517,6 +517,13 @@ public class UI {
         }
         System.out.println("____________________________________________________________\n");
     }
+
+    /**
+     * a method for user to search if a keyword can be found
+     * in canteens/stalls/dishes
+     * @param input
+     * @param canteens
+     */
     public static void searchKeyword(String input,List<Canteen> canteens) {
         boolean canteenFound = false;
         boolean stallFound = false;
@@ -534,7 +541,7 @@ public class UI {
         String keyword = input.substring(7);
         System.out.println("Related canteens:\n");
         for(int i=0;i<canteens.size();i++){
-            if(canteens.get(i).getCanteenName().contains(input)){
+            if(canteens.get(i).getCanteenName().contains(keyword)){
                 canteenFound = true;
                 System.out.println("Canteen:" + canteens.get(i).getCanteenName() + "\n");
                 System.out.println("Operating time:\n");
@@ -557,7 +564,7 @@ public class UI {
         for(int i=0;i<canteens.size();i++) {
             for (int t=0;t<canteens.get(i).getStallList().size();t++){
                 Stall temporaryStall = canteens.get(i).getStallList().get(t);
-                if (temporaryStall.getStall_name().contains(input)) {
+                if (temporaryStall.getStall_name().contains(keyword)) {
                     stallFound = true;
                     System.out.println("Stall:" + temporaryStall.getStall_name() + "\n");
                     System.out.println("Operating time:\n");
@@ -572,6 +579,33 @@ public class UI {
         }
         if(!stallFound){
             System.out.println("No stall containing the keyword is found!\n");
+        }
+
+        System.out.println("Related dishes:\n");
+        for(int i=0;i<canteens.size();i++) {
+            for (int t=0;t<canteens.get(i).getStallList().size();t++){
+                Stall temporaryStall = canteens.get(i).getStallList().get(t);
+                for(int z=0;z<temporaryStall.getDish().size();z++) {
+                        List<Dish> temporaryDishes = temporaryStall.getDish();
+                        for(int x = 0 ; x<temporaryDishes.size();x++) {
+                            if (temporaryDishes.get(x).getDishName().contains(keyword)) {
+                                dishFound = true;
+                                System.out.println("Dish:" + temporaryDishes.get(x).getDishName() + "\n");
+                                System.out.println("It belongs to " + canteens.get(i).getCanteenName() + "  " + temporaryStall.getStall_name() + " \n");
+                                System.out.println("The stall operating time:\n");
+                                System.out.println(temporaryStall.getOpenTime() + " - " + temporaryStall.getCloseTime() + "\n");
+                                System.out.println("Open days:\n");
+                                for (int j = 0; j < temporaryStall.getOpenDayOfWeek().size(); j++) {
+                                    System.out.println(days.get(temporaryStall.getOpenDayOfWeek().get(j) - 1) + "\n");
+                                }
+
+                            }
+                        }
+                }
+            }
+        }
+        if(!dishFound){
+            System.out.println("No dish containing the keyword is found!\n");
         }
     }
 }

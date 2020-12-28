@@ -75,6 +75,10 @@ public class Logic {
                 {
                     UI.changeOrder(customer,input,Order);
                 }
+                else if (input.startsWith("search"))
+                {
+                    UI.searchKeyword(input,canteens);
+                }
 
                 else{
                     //dealing with undefined type of input
