@@ -1,3 +1,8 @@
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -151,6 +156,57 @@ public class Initializer {
         canteens.add(canteen2);
         canteens.add(canteen3);
         canteens.add(canteen4);
+        try
+        {
+//declare file name to be create
+            String filename = "Canteen Dataset.xls";
+//creating an instance of HSSFWorkbook class
+            HSSFWorkbook workbook = new HSSFWorkbook();
+//invoking creatSheet() method and passing the name of the sheet to be created
+            HSSFSheet sheet = workbook.createSheet("Dish");
+//creating the 0th row using the createRow() method
+            HSSFRow rowhead = sheet.createRow((short)0);
+//creating cell by using the createCell() method and setting the values to the cell by using the setCellValue() method
+            rowhead.createCell(0).setCellValue("Dish.No.");
+            rowhead.createCell(1).setCellValue("Dish Name");
+            rowhead.createCell(2).setCellValue("Stall Name");
+            rowhead.createCell(3).setCellValue("Canteen Name");
+            rowhead.createCell(4).setCellValue("Type of Stall");
+            rowhead.createCell(5).setCellValue("Comment");
+            rowhead.createCell(6).setCellValue("Open Time");
+            rowhead.createCell(7).setCellValue("Close Time");
+            rowhead.createCell(8).setCellValue("Open day of week");
+            int count = 1;
+            for(Canteen canteen:canteens){
+                for(Stall stall:canteen.stallList){
+                    for(Dish dish:stall.getDish()){
+                        HSSFRow row = sheet.createRow((short)count);
+                        row.createCell(0).setCellValue(count);
+                        row.createCell(1).setCellValue(dish.getDishName());
+                        row.createCell(2).setCellValue(stall.getStall_name());
+                        row.createCell(3).setCellValue(canteen.getCanteenName());
+                        row.createCell(4).setCellValue("Unknown");
+                        row.createCell(5).setCellValue(dish.getComment());
+                        row.createCell(6).setCellValue(stall.getOpenTime());
+                        row.createCell(7).setCellValue(stall.getCloseTime());
+                        row.createCell(8).setCellValue(stall.getOpenDayOfWeek().toString());
+                        count++;
+                    }
+                }
+            }
+            FileOutputStream fileOut = new FileOutputStream(filename);
+            workbook.write(fileOut);
+//closing the Stream
+            fileOut.close();
+//closing the workbook
+            workbook.close();
+//prints the message on the console
+            System.out.println("Excel file has been generated successfully.");
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         return canteens;
     }
 }
