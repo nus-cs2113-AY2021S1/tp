@@ -1,17 +1,13 @@
 //import necessary libraries
 import exception.NoCanteenException;
 import exception.NoStallException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.FileWriter;
-import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * Main logic of the whole program
@@ -29,7 +25,7 @@ public class Logic {
      * main method
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, InvalidFormatException {
         Initializer initializer = new Initializer();
         List<Canteen> canteens = initializer.initialize();
         main(canteens);

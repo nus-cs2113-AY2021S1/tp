@@ -1,4 +1,9 @@
-import exception.*;
+import exception.ArriveTimeException;
+import exception.DayOfWeekException;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * class Parser
  * to parse user's input
@@ -26,5 +31,14 @@ public class Parser {//name week time
             throw new ArriveTimeException();
         }
         return new Customer(customerName,1,arriveTime,dayOfWeek);
+    }
+    public static List<Integer> parseList(String inputMessage){
+        String s = inputMessage.substring(1,inputMessage.indexOf("]"));
+        String sList[] = s.split(", ");
+        ArrayList<Integer> nList = new ArrayList<>();
+        for(String ss:sList){
+            nList.add(Integer.parseInt(ss));
+        }
+        return nList;
     }
 }

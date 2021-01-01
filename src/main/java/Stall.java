@@ -20,6 +20,7 @@ public class Stall {
     private List<Dish>  dishes;
     public int queue;
     public int servingTimePerPersom;
+    private String canteenName;
     /**
      * a method to get the open time of this stall
      * @return int
@@ -47,7 +48,7 @@ public class Stall {
      * @param dishes
      * @param servingTimePerPersom
      */
-    public Stall(String stall_name, int stallID, String stallLocation, int openTime, int closeTime, List<Integer> openDayOfWeek, List<Dish> dishes, int servingTimePerPersom) {
+    public Stall(String stall_name, int stallID, String stallLocation, int openTime, int closeTime, List<Integer> openDayOfWeek, List<Dish> dishes, int servingTimePerPersom, String canteenName) {
         this.stall_name = stall_name;
         this.stallID = stallID;
         this.stallLocation = stallLocation;
@@ -57,6 +58,19 @@ public class Stall {
         this.dishes = dishes;
         this.servingTimePerPersom = servingTimePerPersom;
         this.queue = 0;
+        this.canteenName = canteenName;
+    }
+
+    public int getStallID() {
+        return stallID;
+    }
+
+    public String getStallLocation() {
+        return stallLocation;
+    }
+
+    public int getServingTimePerPersom() {
+        return servingTimePerPersom;
     }
 
     /**
@@ -107,6 +121,10 @@ public class Stall {
         for(int i=0;i<dishes.size();i++){
             System.out.println(dishes.get(i));
         }
+    }
+
+    public String getCanteenName() {
+        return canteenName;
     }
 
     @Override
