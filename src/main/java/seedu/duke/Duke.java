@@ -1,10 +1,10 @@
-package seedu.duke;
+package seedu.duke;//for pull request
 
 import java.util.Scanner;
 
 public class Duke {
     /**
-     * Main entry-point for the java.duke.Duke application.
+     * Main entry-point for the java.duke.seedu.duke.Duke application.
      */
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -17,5 +17,6 @@ public class Duke {
 
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
+        in.close();
     }
 }
