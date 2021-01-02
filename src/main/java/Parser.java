@@ -41,4 +41,20 @@ public class Parser {//name week time
         }
         return nList;
     }
+    public static List<Dish> parseDish(String inputMessage, List<Canteen> canteens){
+        String sList[] = inputMessage.split(",");
+        ArrayList<Dish> dishList = new ArrayList<>();
+        for(String s : sList){
+            for(Canteen canteen: canteens){
+                for(Stall stall:canteen.getStallList()){
+                    for(Dish dish:stall.getDish()){
+                        if(dish.getDishName().equals(s)){
+                            dishList.add(dish);
+                        }
+                    }
+                }
+            }
+        }
+        return dishList;
+    }
 }

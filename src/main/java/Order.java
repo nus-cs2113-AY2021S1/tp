@@ -11,6 +11,18 @@ public class Order {
     private List<Dish> dishes;
     private Customer customer;
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public String getDishes() {
+        String s = "";
+        for(Dish dish:dishes){
+            s = s + dish.getDishName() + ",";
+        }
+        return s.substring(0,s.length()-1);
+    }
+
     /**
      * Constructor of the Order class
      * @param canteen canteen name of the order
