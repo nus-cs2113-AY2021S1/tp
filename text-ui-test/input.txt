@@ -1,1 +1,57 @@
-James Gosling
+new trip
+Wonderful Singapore
+01-01-2023
+1.409
+USD
+999
+list /p
+new trip
+Amazing Bali
+03-04-2021
+0.00123
+IDR
+1000029
+load trip
+1
+list /p
+load trip
+1
+add /n Apple MBS /d 3 /t 1200 to 1400
+list /p
+add /n nus and ntu /d 3 /t 1200 to 1400
+add /n clementi mall /d 1 /t 0200 to 0400
+list /p
+delete /p 1
+list /p
+add /n clementi /d 2 /t 1000 to 1200
+add /n ntu /d 2 /t 0700 to 0800
+list /p
+add /n nus Soc /d 5 /t 1200 to 1400
+list /p
+load trip
+2
+buy /n ice cream /d 1 /c 8.21
+list /e
+help
+buy /n coconut /d 2 /c 5.00
+buy /n bag /d 3 /c 50.30
+load trip
+2
+budget 300
+edit trip
+1
+changed trip
+
+
+
+
+load trip
+1
+list /p
+delete trip
+1
+y
+load trip
+1
+list /e
+exit

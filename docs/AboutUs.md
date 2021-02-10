@@ -2,8 +2,8 @@
 
 Display | Name | Github Profile | Portfolio 
 --------|:----:|:--------------:|:---------:
-![](https://via.placeholder.com/100.png?text=Photo) | John Doe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Don Joe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Ron John | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | John Roe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Don Roe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
+![](https://raw.githubusercontent.com/AY2021S1-CS2113T-W11-2/tp/master/docs/team/images/felix.jpg) | Felix Halim | [Github](https://github.com/felixhalim) | [Portfolio](team/felixhalim.md)
+![](https://raw.githubusercontent.com/AY2021S1-CS2113T-W11-2/tp/master/docs/team/images/weishuang.jpg) | Tan Wei Shuang | [Github](https://github.com/weishuangtan/) | [Portfolio](team/weishuangtan.md)
+![](https://raw.githubusercontent.com/AY2021S1-CS2113T-W11-2/tp/master/docs/team/images/ivander.jpg) | Ivander Jonathan | [Github](https://github.com/ivanderjmw) | [Portfolio](team/ivanderjmw.md)
+![](https://raw.githubusercontent.com/AY2021S1-CS2113T-W11-2/tp/master/docs/team/images/kianen.jpg) | Teng Kian En| [Github](https://github.com/tengkianen) | [Portfolio](team/tengkianen.md)
+![](https://raw.githubusercontent.com/AY2021S1-CS2113T-W11-2/tp/master/docs/team/images/shawn.jpg) | Tan Zheng Chong, Shawn | [Github](https://github.com/ShawnTanzc) | [Portfolio](team/shawntanzc.md)

@@ -1,0 +1,33 @@
+This file shows your saved trips under Trippie!
+
+Here is your itinerary! Enjoy your trip :)
+Day | Start Time | End Time | Place
+1 | 0300 | 0700 | Flight to Hong Kong Airport
+1 | 0900 | 1100 | Dim Sum Brunch
+1 | 1200 | 1400 | Shop
+1 | 1500 | 1900 | Victoria Peak
+1 | 2000 | 2200 | Check-in at Continental Hotel
+2 | 0900 | 1100 | Breakfast at Victoria
+2 | 1200 | 1400 | Victoria Harbour
+2 | 1430 | 1530 | Dim Sum again!
+2 | 1600 | 1800 | Shop at Victoria
+2 | 1830 | 1930 | Dinner at Roast Duck Zai
+2 | 2000 | 2300 | Temple Street Night Market
+3 | 0800 | 1800 | Hong Kong Disneyland
+4 | 0800 | 1700 | Ocean Park
+4 | 1900 | 2300 | Flight Home :--(
+
+These are your expenses!
+Day | Item | Cost
+1 | Dim Sum | $60.0
+1 | Portable Wifi | $120.0
+2 | Branded Goods | $7500.0
+2 | Counterfeit goods | $850.0
+3 | Disneyland ticket | $360.0
+4 | Ocean Park ticket | $300.0
+
+Total budget: $2500.00
+
+Forex Abbreviation: HKD
+
+Forex Rate: 5.75

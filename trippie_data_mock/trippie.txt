@@ -1,0 +1,4 @@
+DEFAULT 2
+0,Hong Kong,29-12-2020,4
+1,Tokyo,19-06-2021,4
+2,United Kingdom,03-11-2022,4

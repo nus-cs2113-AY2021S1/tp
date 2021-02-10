@@ -1,0 +1,26 @@
+@startuml
+group sd : parse command
+activate ":Trippie"
+
+    ":Trippie" -> ":Ui":read command
+    activate ":Ui"
+
+    ":Ui" --> ":Trippie": fullCommand
+    deactivate ":Ui"
+
+
+    ":Trippie" -> ":Parser": parse
+    activate ":Parser"
+
+    create ":HelpCommand"
+    ":Parser" -> ":HelpCommand": new
+    activate ":HelpCommand"
+    ":HelpCommand" --> ":Parser": c
+    deactivate ":HelpCommand"
+
+    ":Parser" --> ":Trippie": c
+    deactivate ":Parser"
+
+end
+deactivate ":Trippie"
+@enduml

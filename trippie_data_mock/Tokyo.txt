@@ -1,0 +1,32 @@
+This file shows your saved trips under Trippie!
+
+Here is your itinerary! Enjoy your trip :)
+Day | Start Time | End Time | Place
+1 | 0400 | 1100 | Flight to Tokyo Haneda Airport
+1 | 1200 | 1400 | Favourite Ramen Shop @ Ueno
+1 | 1400 | 1700 | Shop at Akihabara
+1 | 1730 | 1900 | Sunset at Ueno Park
+1 | 2000 | 2200 | Check-in at Continental Hotel
+2 | 0900 | 1100 | Breakfast at Toyosu Fish Market
+2 | 1200 | 1400 | Explore Asakusa
+2 | 1430 | 1530 | Udon Lunch!
+2 | 1600 | 1800 | Shop at Harajuku
+2 | 1830 | 1930 | Dinner at Shibuya
+2 | 2000 | 2300 | Cocktails at Shibuya
+3 | 0800 | 1400 | Baseball Game at Tokyo Dome
+3 | 1500 | 2000 | Find an Onsen!
+4 | 0700 | 1400 | Flight Home :--(
+
+These are your expenses!
+Day | Item | Cost
+1 | Ramen | $800.0
+1 | Portable Wifi | $1600.0
+2 | Branded Goods | $75000.0
+2 | Counterfeit goods | $9000.0
+2 | Cocktails | $12000.0
+
+Total budget: $1500.00
+
+Forex Abbreviation: JPY
+
+Forex Rate: 76.65

@@ -1,0 +1,29 @@
+This file shows your saved trips under Trippie!
+
+Here is your itinerary! Enjoy your trip :)
+Day | Start Time | End Time | Place
+1 | 0200 | 1600 | Flight to Manchester Airport
+1 | 1730 | 1900 | Best Fish 'n Chips in Town
+1 | 2000 | 2200 | Check-in at Continental Hotel
+2 | 0900 | 1100 | Traditional Breakfast at Manchester
+2 | 1200 | 1400 | Enjoy the scenary along Manchester Park
+2 | 1430 | 1730 | Football game!
+2 | 1830 | 2330 | Dinner and Drinks at the Best Pub Ever
+3 | 0800 | 1400 | Visit Manchester Museum and have some coffee at Takk
+3 | 1500 | 1800 | Make your own bottle of Gin!
+3 | 1900 | 2300 | Head to YES for some music!
+4 | 0700 | 2100 | Flight Home :--(
+
+These are your expenses!
+Day | Item | Cost
+1 | Fish 'n Chips | $10.0
+1 | Portable Wifi | $25.0
+2 | Football Game Tickets | $90.0
+3 | My own bottle of Gin | $40.0
+3 | Coffee | $7.0
+
+Total budget: $3000.00
+
+Forex Abbreviation: GBP
+
+Forex Rate: 0.56

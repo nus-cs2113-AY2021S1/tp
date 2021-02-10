@@ -1,0 +1,74 @@
+@startuml
+activate ":Trippie"
+
+":Trippie" -> ":Ui" : greetUser()
+activate ":Ui"
+":Ui" --> ":Trippie"
+deactivate ":Ui"
+
+":Trippie" -> ":Storage" : setupMasterFile(trippieData)
+activate ":Storage"
+":Storage" --> ":Trippie"
+deactivate ":Storage"
+
+loop !isExit
+
+    |||
+    ref over ":Trippie", ":TrippieData", ":Parser", ":Ui" : parse and check command
+
+    |||
+    ":Trippie" -> ":Trippie":executeCommand(c)
+    activate ":Trippie"
+
+    opt c is not null
+
+        ":Trippie" -> ":HelpCommand": execute
+        activate ":HelpCommand"
+
+        ":HelpCommand" -> ":System.out":print
+        activate ":System.out"
+        ":System.out" --> ":HelpCommand"
+        deactivate ":System.out"
+
+        ":HelpCommand" --> ":Trippie"
+        deactivate ":HelpCommand"
+
+        ":Trippie" -> ":HelpCommand": isExit()
+        activate ":HelpCommand"
+        ":HelpCommand" --> ":Trippie": boolean isExit
+        deactivate ":HelpCommand"
+
+    end
+
+    ":Trippie" --> ":Trippie": isExit
+    deactivate ":Trippie"
+
+
+    ":Trippie" -> ":TrippieData" : getCurrentTrip()
+    activate ":TrippieData"
+    ":TrippieData" --> ":Trippie" : currentTrip
+    deactivate ":TrippieData"
+
+    opt currentTrip != null
+
+
+
+    deactivate ":TrippieData"
+    ":Trippie" -> ":Storage":saveTrip(currentTrip)
+    activate ":Storage"
+
+    ":Storage" --> ":Trippie"
+    deactivate ":Storage"
+    end
+
+    deactivate ":TrippieData"
+    ":Trippie" -> ":Storage":saveMasterFile(trippieData)
+    activate ":Storage"
+
+    ":Storage" --> ":Trippie"
+    deactivate ":Storage"
+
+end
+deactivate ":Trippie"
+
+@enduml

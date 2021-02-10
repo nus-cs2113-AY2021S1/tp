@@ -1,9 +1,270 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Welcome to
+  _            _   ____   ____   _            __T___T__   
+ _| |_   ____ |_| | __ \ | __ \ |_|   ____   /         \ 
+|_   _| /  __\ _  | |_| || |_| | _   / __ \ | |_|   |_| |  
+  | | _ | |   | | |  __/ |  __/ | | | |__|_||    ___    |
+  | |/ || |   | | | |    | |    | | | \____  \  \WWW/  /
+   \__/ |_|   |_| |_|    |_|    |_|  \____/   \_______/
 
-What is your name?
-Hello James Gosling
+							Travel made easy
+_________________________________________________________________________
+I can't find a file in your directory :(
+I created a new trippie.txt file for you!
+Please create a new trip first by entering the command 'new trip'!
+>> _________________________________________________________________________
+Enter your new trip's name:Enter your new trip's start date (dd-mm-yyyy):Enter the foreign exchange rate:Enter the foreign currency abbreviation (eg. MYR):Enter your budget for the trip (in SGD):Added the trip 1 Wonderful Singapore 01-01-2023
+Current trip is set to 'Wonderful Singapore'.
+_________________________________________________________________________
+>> _________________________________________________________________________
+There is currently nothing in your place list. Why not add one?
+_________________________________________________________________________
+>> _________________________________________________________________________
+Enter your new trip's name:Enter your new trip's start date (dd-mm-yyyy):Enter the foreign exchange rate:Enter the foreign currency abbreviation (eg. MYR):Enter your budget for the trip (in SGD):Added the trip 2 Amazing Bali 03-04-2021
+Current trip is set to 'Amazing Bali'.
+_________________________________________________________________________
+>> _________________________________________________________________________
+Here are your existing trips.
+1. Wonderful Singapore [No places or expenses added yet]
+2. Amazing Bali [No places or expenses added yet]
+
+Which one do you want to load? Enter the index:Current trip is set to 'Wonderful Singapore'.
+Reading the Trippie files now...
+_________________________________________________________________________
+>> _________________________________________________________________________
+There is currently nothing in your place list. Why not add one?
+_________________________________________________________________________
+>> _________________________________________________________________________
+Here are your existing trips.
+1. Wonderful Singapore [No places or expenses added yet]
+2. Amazing Bali [No places or expenses added yet]
+
+Which one do you want to load? Enter the index:Current trip is set to 'Wonderful Singapore'.
+Reading the Trippie files now...
+_________________________________________________________________________
+>> _________________________________________________________________________
+Got it. I've added this place:
+1200 - 1400 Apple MBS
+Now you have 1 place in the list.
+_________________________________________________________________________
+>> _________________________________________________________________________
+DAY 3: (2023-01-03)
+[1] 1200 - 1400 Apple MBS
+_________________________________________________________________________
+>> _________________________________________________________________________
+Got it. I've added this place:
+1200 - 1400 nus and ntu
+Now you have 2 places in the list.
+_________________________________________________________________________
+>> _________________________________________________________________________
+Got it. I've added this place:
+0200 - 0400 clementi mall
+Now you have 3 places in the list.
+_________________________________________________________________________
+>> _________________________________________________________________________
+DAY 1: (2023-01-01)
+[1] 0200 - 0400 clementi mall
+DAY 3: (2023-01-03)
+[2] 1200 - 1400 Apple MBS
+[3] 1200 - 1400 nus and ntu
+_________________________________________________________________________
+>> _________________________________________________________________________
+Noted. I've removed this place from the place list.
+0200 - 0400 clementi mall
+Now you have 2 places in the list.
+_________________________________________________________________________
+>> _________________________________________________________________________
+DAY 3: (2023-01-03)
+[1] 1200 - 1400 Apple MBS
+[2] 1200 - 1400 nus and ntu
+_________________________________________________________________________
+>> _________________________________________________________________________
+Got it. I've added this place:
+1000 - 1200 clementi
+Now you have 3 places in the list.
+_________________________________________________________________________
+>> _________________________________________________________________________
+Got it. I've added this place:
+0700 - 0800 ntu
+Now you have 4 places in the list.
+_________________________________________________________________________
+>> _________________________________________________________________________
+DAY 2: (2023-01-02)
+[1] 0700 - 0800 ntu
+[2] 1000 - 1200 clementi
+DAY 3: (2023-01-03)
+[3] 1200 - 1400 Apple MBS
+[4] 1200 - 1400 nus and ntu
+_________________________________________________________________________
+>> _________________________________________________________________________
+Got it. I've added this place:
+1200 - 1400 nus Soc
+Now you have 5 places in the list.
+_________________________________________________________________________
+>> _________________________________________________________________________
+DAY 2: (2023-01-02)
+[1] 0700 - 0800 ntu
+[2] 1000 - 1200 clementi
+DAY 3: (2023-01-03)
+[3] 1200 - 1400 Apple MBS
+[4] 1200 - 1400 nus and ntu
+DAY 5: (2023-01-05)
+[5] 1200 - 1400 nus Soc
+_________________________________________________________________________
+>> _________________________________________________________________________
+Here are your existing trips.
+1. Wonderful Singapore [5 Days]
+2. Amazing Bali [No places or expenses added yet]
+
+Which one do you want to load? Enter the index:Current trip is set to 'Amazing Bali'.
+Reading the Trippie files now...
+_________________________________________________________________________
+>> _________________________________________________________________________
+Got it! I've added the following item: Day 1: ice cream - 8.21 IDR
+Now you have 1 item in the list.
+_________________________________________________________________________
+>> _________________________________________________________________________
+Total budget: 1230.04 IDR (1000029.06 SGD)
+Expense List:
+[1] Day 1: ice cream - 8.21 IDR
+Your current total spending is 8.21 IDR (6674.80 SGD)
+Your current remaining budget is 1221.83 IDR (993354.25 SGD)
+You are still spending within your budget.
+[----------] 0.7%
+_________________________________________________________________________
+>> _________________________________________________________________________
+Welcome to Trippie! A one-stop app to plan any of your upcoming trips!
+Here is a list of commands which you can use to navigate your way
+through Trippie!
+
+[new trip] |   Creates a new trip. You will be prompted to enter some details
+           |   Format: new trip
+___________|______________________________________________________________
+[load trip]|   Loads a specific trip from the saved list
+           |   Format: load trip
+___________|______________________________________________________________
+[edit trip]|   Edits a specific trip from the saved list
+           |   Format: edit trip
+___________|______________________________________________________________
+[delete    |   Deletes a specific trip from the saved list
+trip]      |   Format: delete trip
+___________|______________________________________________________________
+[help]     |   Shows a concise list of commands available
+           |   Format: help
+___________|______________________________________________________________
+[add]      |   Adds a place to your trip
+           |   Format: add /n PLACE_NAME /d DAY /t TIME
+           |   Example: add /n Dinner at Marina Bay Sands /d 2 /t 1800 to 2000
+___________|______________________________________________________________
+[list]     |   Displays all places in a timetable format
+(places)   |   Format: list /p [/d DAY]
+           |   list /p /d 2
+___________|______________________________________________________________
+[search]   |   Displays all places that includes the search keyword
+(places)   |   Format: search KEYWORD
+           |   search Dinner
+___________|______________________________________________________________
+[delete]   |   Deletes the specified place from the list
+(place)    |   Format: delete /p PLACE_INDEX
+           |   Example: delete /p 1
+___________|______________________________________________________________
+[budget]   |   Edits a budget to keep track of in expenditure list
+           |   Format: budget AMOUNT
+           |   Example: budget 100
+___________|______________________________________________________________
+[buy]      |   Adds an item with its final cost into an expenditure list
+           |   Format: buy /n ITEM_NAME /d DAY_NUMBER /c FINAL_COST
+           |   Example: buy /n R&B Brown Sugar /d 2 /c 3.00
+___________|______________________________________________________________
+[list]     |   Displays all the items bought in the expenditure list
+(expenses) |   Format: list /e
+___________|______________________________________________________________
+[delete]   |   Deletes the specified place from the list
+(expense)  |   Format: delete /e EXPENSE_INDEX
+           |   Example: delete /e 1
+___________|______________________________________________________________
+[convert   |   Converts an amount to the requested currency
+/to]       |   Format: convert /toSGD AMOUNT
+           |   Format: convert /toSGD 500
+           |   Format: convert /toFOR AMOUNT
+           |   Format: convert /toFOR 500
+___________|______________________________________________________________
+[exit]     |   Exit the program and auto-saves
+           |   Format: exit
+_________________________________________________________________________
+>> _________________________________________________________________________
+Got it! I've added the following item: Day 2: coconut - 5.00 IDR
+Now you have 2 items in the list.
+_________________________________________________________________________
+>> _________________________________________________________________________
+Got it! I've added the following item: Day 3: bag - 50.30 IDR
+Now you have 3 items in the list.
+_________________________________________________________________________
+>> _________________________________________________________________________
+Here are your existing trips.
+1. Wonderful Singapore [5 Days]
+2. Amazing Bali [3 Days]
+
+Which one do you want to load? Enter the index:Current trip is set to 'Amazing Bali'.
+Reading the Trippie files now...
+_________________________________________________________________________
+>> _________________________________________________________________________
+Successfully set your total budget to 300.00
+_________________________________________________________________________
+>> _________________________________________________________________________
+Here are your existing trips.
+1. Wonderful Singapore [5 Days]
+2. Amazing Bali [3 Days]
+
+Which one do you want to edit? Enter the index:Current trip is set to 'Wonderful Singapore'.
+Reading the Trippie files now...
+Leave the field empty if you do not want to change the specified detail.
+Enter edited name, [old: Wonderful Singapore]:Enter your new trip's start date (dd-mm-yyyy) [old:01-01-2023]:Enter the foreign exchange rate [old:1.409]:Enter the foreign currency abbreviation (eg. MYR) [old: USD]:Enter your budget for the trip (in SGD) [old:999.0]:Edited the trip 1 changed trip 01-01-2023
+_________________________________________________________________________
+>> _________________________________________________________________________
+Here are your existing trips.
+1. changed trip [5 Days]
+2. Amazing Bali [3 Days]
+
+Which one do you want to load? Enter the index:Current trip is set to 'changed trip'.
+Reading the Trippie files now...
+_________________________________________________________________________
+>> _________________________________________________________________________
+DAY 2: (2023-01-02)
+[1] 0700 - 0800 ntu
+[2] 1000 - 1200 clementi
+DAY 3: (2023-01-03)
+[3] 1200 - 1400 Apple MBS
+[4] 1200 - 1400 nus and ntu
+DAY 5: (2023-01-05)
+[5] 1200 - 1400 nus Soc
+_________________________________________________________________________
+>> _________________________________________________________________________
+Here are your existing trips.
+1. changed trip [5 Days]
+2. Amazing Bali [3 Days]
+
+Which one do you want to edit? Enter the index:Current trip is set to 'changed trip'.
+Reading the Trippie files now...
+Are you sure you want to permanently delete 'changed trip'? [Y/N]:Current trip is set to 'Amazing Bali'.
+Deleted trip 'changed trip'.
+_________________________________________________________________________
+>> _________________________________________________________________________
+Here are your existing trips.
+1. Amazing Bali [3 Days]
+
+Which one do you want to load? Enter the index:Current trip is set to 'Amazing Bali'.
+Reading the Trippie files now...
+_________________________________________________________________________
+>> _________________________________________________________________________
+Total budget: 0.37 IDR (300.00 SGD)
+Expense List:
+[1] Day 1: ice cream - 8.21 IDR
+[2] Day 2: coconut - 5.00 IDR
+[3] Day 3: bag - 50.30 IDR
+Your current total spending is 63.51 IDR (51634.14 SGD)
+WARNING! You have exceeded your initial budget.
+Recommended action: Increase budget limit.
+_________________________________________________________________________
+>> _________________________________________________________________________
+Bye. Hope to see you again soon!
+_________________________________________________________________________

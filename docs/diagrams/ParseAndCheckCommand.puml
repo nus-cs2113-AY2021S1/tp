@@ -1,0 +1,39 @@
+@startuml
+activate ":Trippie"
+group sd: parse and check command
+
+    ":Trippie" -> ":TrippieData" : isTripListEmpty()
+    activate ":TrippieData"
+    ":TrippieData" --> ":Trippie" : isEmpty
+    deactivate ":TrippieData"
+
+    alt isEmpty
+
+        ":Trippie" -> ":Trippie":promptNewTripCommand
+        activate ":Trippie"
+
+        loop c not instanceof NewTripCommand
+            |||
+            ":Trippie" -> ":Trippie": parseCommand
+            activate ":Trippie"
+            ref over ":Trippie", ":Parser", ":Ui" : parse command
+            ":Trippie" --> ":Trippie":c
+            deactivate ":Trippie"
+            |||
+        end
+
+        ":Trippie" --> ":Trippie": c
+        deactivate ":Trippie"
+    |||
+    else
+    |||
+    ":Trippie" -> ":Trippie": parseCommand
+    activate ":Trippie"
+    ref over ":Trippie", ":Parser", ":Ui" : parse command
+    ":Trippie" --> ":Trippie":c
+    deactivate ":Trippie"
+    |||
+    end
+end
+deactivate ":Trippie"
+@enduml

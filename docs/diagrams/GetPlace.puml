@@ -1,0 +1,23 @@
+@startuml
+
+activate ":Trippie"
+":Trippie" -> ":TrippieData": get:TripList().get(5)
+activate ":TrippieData"
+":TrippieData" -> ":Trip": .getPlaceListObject()
+activate ":Trip"
+":Trip" -> ":PlaceList": .getPlaceList().get(4)
+activate ":PlaceList"
+":PlaceList" -> ":Place": .getName()
+activate ":Place"
+":Place" --> ":PlaceList": name
+
+deactivate ":Place"
+":PlaceList" --> ":Trip": placeList
+deactivate ":PlaceList"
+":Trip" --> ":TrippieData": trip
+deactivate ":Trip"
+":TrippieData" --> ":Trippie": trippieData
+deactivate  ":TrippieData"
+
+
+@enduml
