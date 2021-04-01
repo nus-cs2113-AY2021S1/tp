@@ -6,7 +6,11 @@
 * At app launch: Loads previously shortlisted resale flats, if any, and starts receiving user commands.
 * At shut down: Clears search history and saves shortlisted resale flats to local file.
 
-The rest of the App consists of:
+### Architecture
+![ApplicationArchitecture](diagrams/Architecture.jpg)
+
+The Architecture Diagram given above explains the high-level design of the App.
+The App consists of:
 
 * [**`Api`**](#api-component): Retrieves data on resale flats from server.
 * [**`Command`**](#command-component): The command executor.
@@ -15,6 +19,7 @@ The rest of the App consists of:
 * [**`Data`**](#data-component): Contains shortlist, user input history and temporarily tracks search history.
 * [**`Storage`**](#storage-component): Reads shortlisted units from, and writes shortlisted units to, the text file.
 * [**`Common`**](#common-component): Models of objects used internally.
+
 
 ### Api component
 
