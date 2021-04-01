@@ -1,8 +1,8 @@
 package seedu.hdbuy.data;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
+import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.Unit;
 
 public class SearchedUnits {
@@ -18,13 +18,13 @@ public class SearchedUnits {
 
     public static Unit getUnit(int index) {
         if (units == null) {
-            Logger.getLogger("SearchedUnits").severe("Did not perform search before");
+            HdBuyLogger.error("Did not perform search before");
             return null;
         }
         try {
             return units.get(index - 1);
         } catch (IndexOutOfBoundsException e) {
-            Logger.getLogger("SearchedUnits").severe("Invalid index");
+            HdBuyLogger.error("Invalid index");
             return null;
         }
     }
@@ -45,7 +45,7 @@ public class SearchedUnits {
 
     public static void sortMapByPrice(boolean isAscending) {
         if (units == null) {
-            Logger.getLogger("SearchedUnits").severe("Did not perform search before");
+            HdBuyLogger.error("Did not perform search before");
             return;
         }
         units.sort((unit1, unit2) -> {

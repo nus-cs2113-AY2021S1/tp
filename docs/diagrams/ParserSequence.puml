@@ -1,0 +1,133 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+[-> Parser: parse(fullCommand)
+activate Parser
+    alt keyCommand = "exit"
+        Parser -> CloseCommand: <<create>>
+        activate CloseCommand
+        CloseCommand -> TextUi: showExit()
+        activate TextUi
+        deactivate TextUi
+        destroy CloseCommand
+    else keyCommand = "clear"
+        Parser -> ClearCommand: <<create>>
+        activate ClearCommand
+        ClearCommand -> UserInput: clear user inputs
+        activate UserInput
+        deactivate UserInput
+        ClearCommand -> TextUi: showClearedFilterConditions()
+        activate TextUi
+        deactivate TextUi
+        destroy ClearCommand
+    else keyCommand = "filter"
+        Parser -> FilterCommand: <<create>>
+        activate FilterCommand
+        alt criteria = "location"
+            FilterCommand -> UserInput: appends LOCATION query with value
+            activate UserInput
+            deactivate UserInput
+        else criteria = "type"
+            FilterCommand -> UserInput: appends TYPE query with value
+            activate UserInput
+            deactivate UserInput
+        else criteria = "lease_remaining"
+            FilterCommand -> UserInput: appends LEASE_REMAINING query with value
+            activate UserInput
+            deactivate UserInput
+        end
+        FilterCommand -> TextUi: showParameters(inputs)
+        activate TextUi
+        deactivate TextUi
+        destroy FilterCommand
+    else keyCommand = "help"
+        Parser -> HelpCommand: <<create>>
+        activate HelpCommand
+        HelpCommand -> TextUi: showHelp()
+        activate TextUi
+        deactivate TextUi
+        destroy HelpCommand
+    else keyCommand = "find"
+        Parser -> FindCommand: <<create>>
+        activate FindCommand
+        opt user inputs not empty
+            FindCommand -> TextUi: showParameters(inputs)
+            activate TextUi
+            deactivate TextUi
+            FindCommand -> SearchedUnits: clearSearchedUnits()
+            activate SearchedUnits
+            deactivate SearchedUnits
+            FindCommand -> ApiRepository: fetchedUnits(inputs)
+            activate ApiRepository
+            deactivate ApiRepository
+            FindCommand -> SearchedUnits: getSearchedUnits()
+            activate SearchedUnits
+            FindCommand <-- SearchedUnits: units
+            deactivate SearchedUnits
+            FindCommand -> TextUi: showUnits(units)
+            activate TextUi
+            deactivate TextUi
+            FindCommand -> UserInput: clear user inputs
+        end
+        destroy FindCommand
+    else keyCommand = "list"
+        Parser -> ListCommand: <<create>>
+        activate ListCommand
+        ListCommand -> TextUi: showParameters(inputs)
+        activate TextUi
+        deactivate TextUi
+        destroy ListCommand
+    else keyCommand = "remove"
+        Parser -> RemoveCommand: <<create>>
+        activate RemoveCommand
+        RemoveCommand -> ShortList: removeFromShortList(index)
+        activate ShortList
+        ShortList --> RemoveCommand: removedUnit
+        deactivate ShortList
+        alt removedUnit is not null
+            RemoveCommand -> TextUi: showRemovedShortlistUnit(removedUnit);
+        else removedUnit is null
+            RemoveCommand -> TextUi: showInvalidIndex()
+        end
+        destroy RemoveCommand
+    else keyCommand = "save":
+        Parser -> SaveCommand: <<create>>
+        activate SaveCommand
+        SaveCommand -> SearchedUnits: getUnit(index)
+        activate SearchedUnits
+        SearchedUnits --> SaveCommand: targetUnit
+        deactivate SearchedUnits
+        opt targetUnit is not null
+            SaveCommand -> ShortList: addToShortList(targetUnit)
+            activate ShortList
+            deactivate ShortList
+            SaveCommand -> TextUi: showSavedShortlistUnit(targetUnit)
+            activate TextUi
+            deactivate TextUi
+        end
+        destroy SaveCommand
+    else keyCommand = "shortlist":
+        Parser -> ShortlistCommand: <<create>>
+        activate ShortlistCommand
+        ShortlistCommand -> ShortList: getShortListedUnits()
+        activate ShortList
+        ShortList --> ShortlistCommand: units
+        deactivate ShortList
+        opt units is not empty
+            ShortlistCommand -> TextUi: showShortListUnits(units)
+            activate TextUi
+            deactivate TextUi
+        end
+        destroy ShortlistCommand
+    else keyCommand = "sortCommand":
+        Parser -> SortCommand: <<create>>
+        activate SortCommand
+        destroy SortCommand
+    else
+        Parser -> TextUi: showInvalidInput(input)
+        activate TextUi
+        deactivate TextUi
+    end
+[<-- Parser: command
+deactivate Parser
+@enduml

@@ -1,8 +1,8 @@
 package seedu.hdbuy.api;
 
 import java.util.HashMap;
-import java.util.logging.Logger;
 
+import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.QueryKey;
 import seedu.hdbuy.common.exception.EmptyResponseException;
 
@@ -21,7 +21,7 @@ public class ApiRepository {
         try {
             GetRequest.getResponse(query);
         } catch (EmptyResponseException emptyResponseException) {
-            Logger.getLogger("ApiRepository").warning(emptyResponseException.getMessage());
+            HdBuyLogger.warning(emptyResponseException.getMessage());
         }
     }
 }

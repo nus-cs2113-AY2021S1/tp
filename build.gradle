@@ -42,6 +42,19 @@ checkstyle {
     toolVersion = '8.23'
 }
 
+task deleteJar(type: Delete) {
+    delete 'libs/jars/hdbuy.jar'
+}
+
+task createJar(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    into('libs/jars/')
+    include('classes.jar')
+    rename('classes.jar', 'hdbuy.jar')
+}
+
+createJar.dependsOn(deleteJar, build)
+
 run{
     standardInput = System.in
     enableAssertions = true

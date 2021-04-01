@@ -49,8 +49,8 @@ public class Unit {
     }
 
     public String encodeToText() {
-        return String.format("%d:%s:%s:%d:%s:%d:%s", getId(), getAddress(), getType(), getLeaseValue(),
-                getLease(), getPrice(), getLocation());
+        return String.format("%d:%s:%s:%d:%s:%d:%s", getId(), getAddress(), getType(), getLeaseValue(), getLease(),
+                getPrice(), getLocation());
     }
 
     @Override public String toString() {

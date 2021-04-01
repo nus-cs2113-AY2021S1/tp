@@ -1,7 +1,6 @@
 package seedu.hdbuy.command;
 
-import java.util.logging.Logger;
-
+import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.Unit;
 import seedu.hdbuy.data.SearchedUnits;
 import seedu.hdbuy.data.ShortList;
@@ -16,14 +15,13 @@ public class SaveCommand extends Command {
         this.index = index;
     }
 
-    @Override
-    public void execute(UserInput userInput) {
+    @Override public void execute(UserInput userInput) {
         Unit targetUnit = SearchedUnits.getUnit(index);
         if (targetUnit == null) {
             return;
         }
         ShortList.addToShortList(targetUnit);
-        Logger.getLogger("SaveCommand").info("Saved unit to shortlist: " + targetUnit.toString());
+        HdBuyLogger.info("Saved unit to shortlist: " + targetUnit.toString());
         TextUi.showSavedShortlistUnit(targetUnit.toString());
     }
 }

@@ -1,10 +1,9 @@
 package seedu.hdbuy.data;
 
 import org.junit.jupiter.api.Test;
+import seedu.hdbuy.common.Unit;
 
 import java.util.Objects;
-
-import seedu.hdbuy.common.Unit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -12,15 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SearchedUnitsTest {
 
-    @Test
-    void sortMapByPrice() {
+    @Test void sortMapByPrice() {
         SearchedUnits.clearSearchedUnits();
-        Unit textUnit1 = new Unit("JURONG WEST","4 ROOM",429000,990,
-            " 82 years 06 months","664A JURONG WEST ST 64",1026083864);
-        Unit textUnit2 = new Unit("JURONG WEST","4 ROOM",429001,990,
-            " 82 years 06 months","664A JURONG WEST ST 64",1026083864);
-        Unit textUnit3 = new Unit("JURONG WEST","4 ROOM",429002,990,
-            " 82 years 06 months","664A JURONG WEST ST 64",1026083864);
+        Unit textUnit1 = new Unit("JURONG WEST", "4 ROOM", 429000, 990, " 82 years 06 months", "664A JURONG WEST ST 64",
+                1026083864);
+        Unit textUnit2 = new Unit("JURONG WEST", "4 ROOM", 429001, 990, " 82 years 06 months", "664A JURONG WEST ST 64",
+                1026083864);
+        Unit textUnit3 = new Unit("JURONG WEST", "4 ROOM", 429002, 990, " 82 years 06 months", "664A JURONG WEST ST 64",
+                1026083864);
 
         SearchedUnits.addToResult(textUnit2);
         SearchedUnits.addToResult(textUnit1);

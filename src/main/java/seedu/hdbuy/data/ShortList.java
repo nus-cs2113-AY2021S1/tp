@@ -1,8 +1,8 @@
 package seedu.hdbuy.data;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
+import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.Unit;
 import seedu.hdbuy.storage.StorageManager;
 
@@ -29,7 +29,7 @@ public class ShortList {
             StorageManager.write();
             return removedUnit;
         } catch (IndexOutOfBoundsException e) {
-            Logger.getLogger("ShortList").severe("Unable to remove unit from shortlist, invalid index");
+            HdBuyLogger.error("Unable to remove unit from shortlist, invalid index");
             return null;
         }
     }

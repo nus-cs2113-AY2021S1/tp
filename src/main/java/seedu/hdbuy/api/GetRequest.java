@@ -3,8 +3,8 @@ package seedu.hdbuy.api;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.logging.Logger;
 
+import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.exception.EmptyResponseException;
 import seedu.hdbuy.common.exception.GatewayException;
 
@@ -27,7 +27,7 @@ public class GetRequest {
     public static void getResponse(String query) throws EmptyResponseException {
         try {
             URL url = new URL(URL + query);
-            Logger.getLogger("GetRequest").info(url.toString());
+            HdBuyLogger.info(url.toString());
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty(REQUEST_PROPERTY_HEADER, REQUEST_PROPERTY);
             connection.setRequestMethod(REQUEST_METHOD);
@@ -35,7 +35,7 @@ public class GetRequest {
             ResponseDecoder.decodeResponse(connection.getInputStream());
             connection.disconnect();
         } catch (GatewayException | IOException exception) {
-            Logger.getLogger("GetRequest").warning(exception.getMessage());
+            HdBuyLogger.warning(exception.getMessage());
         }
     }
 }

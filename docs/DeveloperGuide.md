@@ -53,6 +53,15 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="diagrams/StorageSequence.png" />
 
+### Parser component
+
+* Receives the full command line from receiveCommand().
+* Depends on the key command, Parser will activate specific commands.
+
+The diagram below shows how parser determines which command to activate based on the key command.
+
+![Structure of the Parser Component](diagrams/ParserSequence.png)
+
 ## Product scope
 ### Target user profile
 
@@ -169,6 +178,34 @@ testers are expected to do more *exploratory* testing.
    
    2. Incorrect inputs to try: `shortlist x` (where x is any string input)<br>
       Expected: Similar to previous.
+
+## Error Handling
+
+The app will return error data that the user can use to identify and resolve incorrect formats in the command line. The
+app also handles errors occur during the invocation of API calls. In general, the app provides the following types of 
+error handling.
+
+   * For errors resulting from incorrectly formatted command lines, the app returns an error message with suggestions on
+improving the command line.
+     
+   * For errors caused by faulty API calls, the app will return an error message and will ask the user to restart the
+app to attempt reconnection.
+
+### Error Handling for Commands without Sufficient Parameters
+
+When user initiates a `find` command without already setting a parameter to search, the app will not accept the input and
+will return an exception `EmptyParameterException` and asks the user to input a valid filter parameter first.
+
+### Error Handling for Commands with Invalid Parameters
+
+When user enters a command to be parsed through `Parser()` with the wrong number of parameters, the app will not 
+continue the process and will return an exception `InvalidParameterException` and showcase user the correct parameters 
+to use.
+
+### Error Handling for Commands with Invalid Filters
+
+When user initiates a `filter` command with an invalid filter, the app will return an exception `InvalidFilterException`
+and will list out all the possible filters.
 
 ### Sorting results by price in ascending or descending order
 10. Sorting results in ascending order 

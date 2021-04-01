@@ -1,11 +1,10 @@
 package seedu.hdbuy.api;
 
 import org.junit.jupiter.api.Test;
-
-import java.util.LinkedHashMap;
-
 import seedu.hdbuy.common.QueryKey;
 import seedu.hdbuy.data.SearchedUnits;
+
+import java.util.LinkedHashMap;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;

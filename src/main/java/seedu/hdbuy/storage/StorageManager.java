@@ -5,8 +5,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Logger;
 
+import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.Unit;
 import seedu.hdbuy.data.ShortList;
 
@@ -18,7 +18,7 @@ public class StorageManager {
         try {
             File f = new File(filePath);
             if (f.createNewFile()) {
-                Logger.getLogger("StorageManager").info("Shortlist can be found at: \" + f.getPath()");
+                HdBuyLogger.info("Shortlist can be found at: \" + f.getPath()");
             }
             Scanner s = new Scanner(f);
             while (s.hasNext()) {
@@ -31,7 +31,7 @@ public class StorageManager {
                 }
             }
         } catch (IOException | NullPointerException exception) {
-            Logger.getLogger("StorageManager").severe("Unable to locate text file at: \" + f.getPath()");
+            HdBuyLogger.error("Unable to locate text file at: \" + f.getPath()");
         }
     }
 
@@ -47,7 +47,7 @@ public class StorageManager {
             }
             fw.close();
         } catch (IOException | NullPointerException exception) {
-            Logger.getLogger("StorageManager").severe("Unable to locate text file at: \" + f.getPath()");
+            HdBuyLogger.error("Unable to locate text file at: \" + f.getPath()");
         }
     }
 }
