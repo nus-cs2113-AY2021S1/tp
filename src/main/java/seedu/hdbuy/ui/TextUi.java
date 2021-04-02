@@ -143,6 +143,7 @@ public class TextUi {
         case "clear":
             System.out.println("CLEAR command does not need any parameters.");
             System.out.println("The purpose is to clear the filters inside the query!");
+            break;
         default:
             break;
         }
