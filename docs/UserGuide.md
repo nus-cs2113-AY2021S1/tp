@@ -13,6 +13,32 @@ HdBuy allows you to easily find and bookmark resale flats available matching you
 
 ![Your first launch](images/landing.png)
 
+
+## How to Use
+
+1. Decide on the filter parameters on resale units matching your preferences. There are 3 possible attributes to filter by:
+    1. `location` : The area your preferred unit will be situated in.
+    2. `type`: The type of unit, such as it being an executive flat or 4-room flat. Note that X-room flat is written as 'X room'.
+    3. `lease_remaining`: Number of years left on the unit's lease.
+
+2. Set the filters
+    1. You can filters on a set any combination of the 3 attributes listed above
+    2. Note that if you set the same attribute twice (filter by location at 'jurong' then at 'bishan'), the latter value will overwrite.
+    3. ![An example](images/filter_example.png) 
+
+3. Find your units
+    1. Execute `find`, you will then see up to 100 units matching your preferences.
+    2. Every time you search for units, the filters set will automatically be cleared.
+    
+4. Shortlisting of unit
+    1. From the latest search results, you can choose to shortlist units (For example: `save 10`, to shortlist the 10th unit from results.
+    2. You can also choose view your shortlist using `shortlist`.
+    3. Note that even after closing the app, your previous shortlist will be kept.
+    
+5. Closing the app
+    1. Execute `exit` at any time to quit the app.
+
+
 ## Features 
 
 <div markdown="block" class="alert alert-info">
