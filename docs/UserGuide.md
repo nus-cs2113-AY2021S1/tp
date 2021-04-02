@@ -18,7 +18,7 @@ HdBuy allows you to easily find and bookmark resale flats available matching you
 
 1. Decide on the filter parameters on resale units matching your preferences. There are 3 possible attributes to filter by:
     1. `location` : The area your preferred unit will be situated in.
-    2. `type`: The type of unit, such as it being an executive flat or 4-room flat. Note that X-room flat is written as 'X room'.
+    2. `type`: The type of unit, such as it being an executive flat or 4-room flat. Valid inputs here are: 'executive', '1 room' ... '5 room'.
     3. `lease_remaining`: Number of years left on the unit's lease.
 
 2. Set the filters
