@@ -26,7 +26,7 @@ HdBuy allows you to easily find and bookmark resale flats available matching you
     2. Note that if you set the same attribute twice (filter by location at 'jurong' then at 'bishan'), the latter value will overwrite.
     3. An example is shown below:
 
- <img src="images/filter_example.png" width="400" height="300"/>
+    <img src="images/filter_example.png" width="400" height="300"/>
 
 3. Find your units
     1. Execute `find`, you will then see up to 100 units matching your preferences.
