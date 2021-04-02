@@ -23,8 +23,9 @@ HdBuy allows you to easily find and bookmark resale flats available matching you
 
 2. Set the filters
     1. You can filters on a set any combination of the 3 attributes listed above
-    2. Note that if you set the same attribute twice (filter by location at 'jurong' then at 'bishan'), the latter value will overwrite.
+    2. Note that if you set the same attribute twice (filter by location at 'jurong' then at 'bishan'), the latter value will overwrite the former.
     3. An example is shown below:
+
 
     <img src="images/filter_example.png" width="400" height="300"/>
 
@@ -33,7 +34,7 @@ HdBuy allows you to easily find and bookmark resale flats available matching you
     2. Every time you search for units, the filters set will automatically be cleared.
     
 4. Shortlisting of unit
-    1. From the latest search results, you can choose to shortlist units (For example: `save 10`, to shortlist the 10th unit from results.
+    1. From the latest search results, you can choose to shortlist units. For example: `save 10`, to shortlist the 10th unit from results.
     2. You can also choose view your shortlist using `shortlist`.
     3. Note that even after closing the app, your previous shortlist will be kept.
     
