@@ -62,7 +62,7 @@ Add a filter condition.
 Format: `filter ATTRIBUTE VALUE`
 
 
-### Add a Filter : `find`
+### Search for units : `find`
 
 Search for units with the current filter conditions.
 
