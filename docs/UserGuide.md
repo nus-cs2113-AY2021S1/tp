@@ -78,10 +78,9 @@ Adds a unit to the shortlist.
 
 Format: `save INDEX​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+**Note:**
 You have to complete a search before saving a unit to shortlist.
 Only indexes shown in search results are valid.
-</div>
 
 Example:
 * `save 1` to save the first unit in search result.
@@ -92,10 +91,9 @@ Removes a unit from the shortlist.
 
 Format: `remove INDEX​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+**Note:**
 You have to have at least 1 unit in shortlist.
 Only indexes shown in shortlist are valid.
-</div>
 
 Example:
 * `remove 1` to remove the first unit in shortlist.
