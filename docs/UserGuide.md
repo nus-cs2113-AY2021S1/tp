@@ -141,8 +141,7 @@ Listed in the table below are the possible errors, how they can occur and how to
 |`filter quality good`|"quality" is not a valid filter.|`filter` command only allows for predetermined attributes.<br>Please use these filters: [LOCATION, TYPE, LEASE_REMAINING].
 |`filter location`|You must enter the correct number of parameters.|`filter` command needs an attribute and a value to work.<br>Example: "filter location clementi".
 |`filter lease_remaining 100`<br>`find`|There are no flats to be shown.|`clear` the filters before setting a new valid one.
-|Prerequisites: Bad internet connection or server down.|Server seems to be down, or was it your Internet connection?|Troubleshoot internet connection. If it is the server issue, please report it to our email.
-|
+|Prerequisites: Bad internet connection or server down.|Server seems to be down, or was it your Internet connection?|Troubleshoot internet connection. If it is the server issue, please report it to our email.|
 
 
 
