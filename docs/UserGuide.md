@@ -22,7 +22,7 @@ HdBuy allows you to easily find and bookmark resale flats available matching you
     3. `lease_remaining`: Number of years left on the unit's lease. Of course, the maximum lease is 99.
 
 2. Set the filters
-    1. You can filters on a set any combination of the 3 attributes listed above
+    1. You can any combination of the 3 attributes listed above as filters
     2. Note that if you set the same attribute twice (filter by location at 'jurong' then at 'bishan'), the latter value will overwrite the former.
     3. An example is shown below:
 
