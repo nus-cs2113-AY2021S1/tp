@@ -8,7 +8,7 @@ HdBuy allows you to easily find and bookmark resale flats available matching you
 
 1. Ensure that you have Java 11 or above installed.
 2. Down the latest version of `HdBuy` from [here](https://github.com/AY2021S2-CS2113-F10-1/tp/releases/tag/v2.0).
-3. Execute the jar file by going to the directory and running 'java -jar hdbuy.jar' in command line.
+3. Execute the jar file by going to the directory and running `java -jar hdbuy.jar` in command line.
 4. Execute your first command, 'help', to view all other available commands.
 
 ![Your first launch](images/landing.png)
@@ -54,11 +54,13 @@ HdBuy allows you to easily find and bookmark resale flats available matching you
 
 </div>
 
+
 ### Add a Filter : `filter`
 
 Add a filter condition. 
 
 Format: `filter ATTRIBUTE VALUE`
+
 
 ### Add a Filter : `find`
 
@@ -66,11 +68,13 @@ Search for units with the current filter conditions.
 
 Format: `find`
 
+
 ### View Shortlist : `shortlist`
 
 Shows all units in the shortlist.
 
 Format: `shortlist`
+
 
 ### Append to shortlist: `save`
 
@@ -85,6 +89,7 @@ Only indexes shown in search results are valid.
 Example:
 * `save 1` to save the first unit in search result.
 
+
 ### Remove from shortlist: `remove`
 
 Removes a unit from the shortlist.
@@ -98,21 +103,25 @@ Only indexes shown in shortlist are valid.
 Example:
 * `remove 1` to remove the first unit in shortlist.
 
+
 ### List filter conditions: `list`
 
 Shows all currently set filter condition to filter units matching preferences.
 
 Format: `list`
 
+
 ### Clear filter conditions: `clear`
 
 Removes all currently set filter conditions.
+
 
 ### Display help guide: `help`
 
 Shows the available commands and directs the user to the appropriate links.
 
 Format: `help`
+
 
 ### Sort: `sort`
 
@@ -122,6 +131,9 @@ Format: `sort TYPE`
 
 Example:
 * `sort asc` to sort listings in ascending order with respect to price.
+
+
+
 
 ## Error Handling
 
@@ -138,7 +150,9 @@ Listed in the table below are all possible errors.
 
 **Q**: How do I transfer my data (shortlisted units) to another computer? 
 
-**A**: Install the app in the other computer and copy the current 'shortlist.txt' file into the same directory as the app.
+**A**: Install the app in the other computer and copy the current `shortlist.txt` file into the same directory as the app.
+
+
 
 ## Command Summary
 
