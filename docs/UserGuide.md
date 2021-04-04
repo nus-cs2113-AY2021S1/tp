@@ -44,15 +44,11 @@ HdBuy allows you to easily find and bookmark resale flats available matching you
 
 ## Features 
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
+**Notes about the command format:**
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `remove INDEX`, `INDEX` is a parameter which can be used as `remove 1`.
   e.g. in `filter ATTRIBUTE VALUE`, `ATTRIBUTE` is the attribute of a unit to filter. `VALUE` is the value of the attribute.
-
-</div>
 
 
 ### Add a Filter : `filter`
