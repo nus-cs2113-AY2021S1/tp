@@ -35,10 +35,13 @@ class CommandEvaluatorTest {
                 "   filter   type   7    room",
                 "    filter    type   4_room",
                 "filter type 4_room",
+                "filter type $*^#*&%@%",
                 "   filter    type    ",
                 "   filter   type    10room",
                 "   filter    lease_remaining    woodlands",
+                "filter lease_remaining $*^#*&%@%",
                 "   filter    lease_remaining    100",
+                "   filter    lease_remaining    60   50   ",
                 "   filter     lease_remaining    99.0",
                 "   filter   lease_remaining     -1",
                 "     filter     lease_remaining"
@@ -75,7 +78,8 @@ class CommandEvaluatorTest {
                 "sort gg",
                 "  sort   gg  ",
                 "sort asc desc",
-                "  sort    asc   desc"
+                "  sort    asc   desc",
+                "  sort    )$(#)(*@  "
         ));
         negativeTest(testInputs);
     }
@@ -113,7 +117,9 @@ class CommandEvaluatorTest {
                 "save 1.0",
                 "   save  1.0  ",
                 "remove 1.0",
-                "  remove   1.0  "
+                "  remove   1.0  ",
+                "  remove   #(#()&@(@&  ",
+                "  save   #(#()&@(@&  "
         ));
         negativeTest(testInputs);
     }
