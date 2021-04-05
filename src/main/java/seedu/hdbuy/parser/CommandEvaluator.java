@@ -7,6 +7,7 @@ import java.util.List;
 
 import seedu.hdbuy.common.CommandKey;
 import seedu.hdbuy.common.HdBuyLogger;
+import seedu.hdbuy.common.QueryKey;
 import seedu.hdbuy.common.exception.InvalidIndexException;
 import seedu.hdbuy.common.exception.InvalidParameterException;
 
@@ -25,7 +26,10 @@ public class CommandEvaluator {
             String filterCriteria = lineParts[1];
             String filterValue = String.join(" ", Arrays.asList(lineParts).subList(2, lineParts.length));
             HdBuyLogger.info(String.format("%s : %s - %s", keyCommand, filterCriteria, filterValue));
-            return new CommandKey(filterCriteria, filterValue, keyCommand);
+            if (isValidFilterParameter(filterCriteria, filterValue)) {
+                return new CommandKey(filterCriteria, filterValue, keyCommand);
+            }
+            throw new InvalidParameterException(keyCommand);
         case CommandType.SORT:
             if (lineParts.length < 2) {
                 throw new InvalidParameterException(keyCommand);
@@ -65,6 +69,25 @@ public class CommandEvaluator {
             int index = Integer.parseInt(input);
             return index <= 100 && index >= 1;
         } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private static boolean isValidFilterParameter(String criteria, String input) {
+        final String LEASE_REMAINING = "lease_remaining";
+        final String TYPE = "type";
+        String[] types = new String[]{"executive", "5 room", "4 room", "3 room", "2 room", "1 room"};
+        switch (criteria) {
+        case LEASE_REMAINING:
+            try {
+                int index = Integer.parseInt(input);
+                return index <= 99 && index >= 0;
+            } catch (NumberFormatException e) {
+                return false;
+            }
+        case TYPE:
+            return Arrays.asList(types).contains(input);
+        default:
             return false;
         }
     }

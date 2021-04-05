@@ -6,15 +6,40 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.hdbuy.common.CommandKey;
 import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.Unit;
 import seedu.hdbuy.common.exception.InvalidIndexException;
 import seedu.hdbuy.common.exception.InvalidParameterException;
 import seedu.hdbuy.storage.UnitDecoder;
 
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 class CommandEvaluatorTest {
+
+    @Test void filterTest() {
+        List<String> testInputs = new ArrayList<String>(Arrays.asList(
+                "filter location",
+                "filter",
+                "filter type 7 room",
+                "filter type",
+                "filter type 10room",
+                "filter lease_remaining woodlands",
+                "filter lease_remaining 100",
+                "filter lease_remaining 99.0",
+                "filter lease_remaining -1",
+                "filter lease_remaining"
+        ));
+        for (String input : testInputs) {
+            try {
+                CommandKey output = CommandEvaluator.extractInfo(input);
+                assertNull(output);
+            } catch (InvalidParameterException | InvalidIndexException e) {
+                // continue
+            }
+        }
+    }
 
     @Test void trimTest() {
         List<String> testInputs = new ArrayList<String>(Arrays.asList(
