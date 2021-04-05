@@ -26,26 +26,31 @@ public class CommandEvaluator {
             HdBuyLogger.info(String.format("%s : %s - %s", keyCommand, filterCriteria, filterValue));
             return new CommandKey(filterCriteria, filterValue, keyCommand);
         case CommandType.SORT:
-            List<String> sortRawValue = new ArrayList<String>(Arrays.asList(lineParts).subList(2, lineParts.length));
-            sortRawValue.removeAll(Collections.singleton(""));
-            if (sortRawValue.size() == 1) {
-                String sortValue = sortRawValue.get(0);
-                HdBuyLogger.info(String.format("%s : %s", keyCommand, sortValue));
-                if (sortValue.equals(CommandType.SORT_ASC) || sortValue.equals(CommandType.SORT_DESC)) {
-                    return new CommandKey(keyCommand, sortValue);
-                }
+            if (lineParts.length < 2) {
+                throw new InvalidParameterException(keyCommand);
+            }
+            List<String> rawSortValue = new ArrayList<String>(Arrays.asList(lineParts).subList(1, lineParts.length));
+            rawSortValue.removeAll(Collections.singleton(""));
+            HdBuyLogger.info(String.format("%s : %s", keyCommand, rawSortValue.toString()));
+            String sortValue = rawSortValue.get(0);
+            if (sortValue.equals(CommandType.SORT_ASC) || sortValue.equals(CommandType.SORT_DESC)) {
+                return new CommandKey(keyCommand, sortValue);
             }
             throw new InvalidParameterException(keyCommand);
         case CommandType.REMOVE:
         case CommandType.SAVE:
-            List<String> editRawValue = new ArrayList<String>(Arrays.asList(lineParts).subList(2, lineParts.length));
-            editRawValue.removeAll(Collections.singleton(""));
-            if (editRawValue.size() == 1) {
-                String saveValue = editRawValue.get(0);
-                HdBuyLogger.info(String.format("%s : %s", keyCommand, saveValue));
-                return new CommandKey(keyCommand, saveValue);
+            if (lineParts.length < 2) {
+                throw new InvalidParameterException(keyCommand);
             }
-            throw new InvalidParameterException(keyCommand);
+            List<String> editRawValue = new ArrayList<String>(Arrays.asList(lineParts).subList(1, lineParts.length));
+            editRawValue.removeAll(Collections.singleton(""));
+            HdBuyLogger.info(String.format("%s : %s", keyCommand, editRawValue.toString()));
+            String editValue = editRawValue.get(0);
+            // TODO: if index is valid, need to throw more exceptions
+            if (true) {
+                return new CommandKey(keyCommand, editValue);
+            }
+//            throw new InvalidParameterException(keyCommand);
         default:
             // any other commands
             if (lineParts.length != 1) {
