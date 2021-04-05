@@ -16,6 +16,7 @@ import seedu.hdbuy.common.exception.InvalidSortException;
 import seedu.hdbuy.common.exception.MissingFileException;
 import seedu.hdbuy.common.exception.NoFlatsException;
 import seedu.hdbuy.common.exception.NoSearchException;
+import seedu.hdbuy.parser.CommandType;
 
 public class TextUi {
 
@@ -44,7 +45,10 @@ public class TextUi {
     }
 
     public static String readCommand() {
-        return in.nextLine();
+        if (in.hasNext()) {
+            return in.nextLine();
+        }
+        return CommandType.EXIT;
     }
 
     public static void showInvalidInput(String input) {
