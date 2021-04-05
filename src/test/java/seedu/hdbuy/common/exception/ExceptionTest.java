@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.hdbuy.ui.TextUi;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class ExceptionTest {
 
     @Test void exceptionTest() {

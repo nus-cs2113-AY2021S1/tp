@@ -15,7 +15,6 @@ import seedu.hdbuy.command.SortCommand;
 import seedu.hdbuy.common.CommandKey;
 import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.exception.EmptyInputException;
-import seedu.hdbuy.common.exception.InvalidIndexException;
 import seedu.hdbuy.common.exception.InvalidParameterException;
 import seedu.hdbuy.ui.TextUi;
 
@@ -53,6 +52,8 @@ public class Parser {
             case CommandType.SORT:
                 String sortCriteria = keyCommand.getValue();
                 return new SortCommand(sortCriteria);
+            default:
+                break;
             }
         } catch (InvalidParameterException e) {
             HdBuyLogger.error(e.getMessage());

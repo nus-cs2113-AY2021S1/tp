@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import seedu.hdbuy.common.CommandKey;
 import seedu.hdbuy.common.HdBuyLogger;
-import seedu.hdbuy.common.exception.InvalidIndexException;
 import seedu.hdbuy.common.exception.InvalidParameterException;
 
 public class CommandEvaluator {

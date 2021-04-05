@@ -1,7 +1,6 @@
 package seedu.hdbuy;
 
 import seedu.hdbuy.command.Command;
-import seedu.hdbuy.command.DefaultCommand;
 import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.exception.EmptyInputException;
 import seedu.hdbuy.data.UserInput;

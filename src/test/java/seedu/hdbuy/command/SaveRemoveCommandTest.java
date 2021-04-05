@@ -3,11 +3,7 @@ package seedu.hdbuy.command;
 import org.junit.jupiter.api.Test;
 
 import seedu.hdbuy.common.Unit;
-import seedu.hdbuy.common.exception.DuplicateUnitException;
 import seedu.hdbuy.data.SearchedUnits;
-import seedu.hdbuy.data.ShortList;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class SaveRemoveCommandTest {
 
