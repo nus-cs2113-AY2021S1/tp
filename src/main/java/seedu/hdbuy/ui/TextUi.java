@@ -9,6 +9,7 @@ import seedu.hdbuy.common.QueryKey;
 import seedu.hdbuy.common.Unit;
 import seedu.hdbuy.common.exception.EmptyParameterException;
 import seedu.hdbuy.common.exception.InvalidFilterException;
+import seedu.hdbuy.common.exception.InvalidIndexException;
 import seedu.hdbuy.common.exception.InvalidParameterException;
 import seedu.hdbuy.common.exception.InvalidSortException;
 import seedu.hdbuy.common.exception.NoFlatsException;
@@ -87,8 +88,8 @@ public class TextUi {
         System.out.println("Please use these filters: " + Arrays.asList(QueryKey.values()));
     }
 
-    public static void showInvalidIndex() {
-        System.out.println("Index is invalid");
+    public static void showInvalidIndex(InvalidIndexException e) {
+        System.out.println(e.getMessage());
     }
 
     public static void showRemovedShortlistUnit(String unitDescription) {

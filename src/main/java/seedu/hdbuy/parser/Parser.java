@@ -16,6 +16,7 @@ import seedu.hdbuy.command.ShortlistCommand;
 import seedu.hdbuy.command.SortCommand;
 import seedu.hdbuy.common.CommandKey;
 import seedu.hdbuy.common.HdBuyLogger;
+import seedu.hdbuy.common.exception.InvalidIndexException;
 import seedu.hdbuy.common.exception.InvalidParameterException;
 import seedu.hdbuy.ui.TextUi;
 
@@ -69,9 +70,9 @@ public class Parser {
         } catch (InvalidParameterException e) {
             HdBuyLogger.error(e.getMessage());
             TextUi.showInvalidParameter(e.getKeyCommand(), e);
-        } catch (NumberFormatException e) {
+        } catch (InvalidIndexException e) {
             HdBuyLogger.error(e.getMessage());
-            TextUi.showInvalidIndex();
+            TextUi.showInvalidIndex(e);
         }
         return command;
     }

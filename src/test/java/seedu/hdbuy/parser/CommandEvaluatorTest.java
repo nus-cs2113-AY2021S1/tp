@@ -8,6 +8,7 @@ import java.util.List;
 
 import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.Unit;
+import seedu.hdbuy.common.exception.InvalidIndexException;
 import seedu.hdbuy.common.exception.InvalidParameterException;
 import seedu.hdbuy.storage.UnitDecoder;
 
@@ -31,13 +32,23 @@ class CommandEvaluatorTest {
                 "remove 1",
                 "remove   1   ",
                 "remove 1    ",
-                "remove   1"
+                "remove   1",
+                "save 0",
+                "save -1",
+                "save 101",
+                "save 50.5"
         ));
 
         for (String input : testInputs) {
             try {
                 CommandEvaluator.extractInfo(input);
             } catch (InvalidParameterException e) {
+                fail();
+            } catch (InvalidIndexException e) {
+                String index = e.getIndex();
+                if (index.equals("-1") || index.equals("0") || index.equals("101") || index.equals("50.5")) {
+                    continue;
+                }
                 fail();
             }
         }

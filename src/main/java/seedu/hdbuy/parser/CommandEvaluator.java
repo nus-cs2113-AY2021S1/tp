@@ -7,11 +7,12 @@ import java.util.List;
 
 import seedu.hdbuy.common.CommandKey;
 import seedu.hdbuy.common.HdBuyLogger;
+import seedu.hdbuy.common.exception.InvalidIndexException;
 import seedu.hdbuy.common.exception.InvalidParameterException;
 
 public class CommandEvaluator {
 
-    public static CommandKey extractInfo(String fullCommand) throws InvalidParameterException {
+    public static CommandKey extractInfo(String fullCommand) throws InvalidParameterException, InvalidIndexException {
         String[] lineParts;
         lineParts = fullCommand.split(" ");
         String keyCommand = lineParts[0];
@@ -46,11 +47,10 @@ public class CommandEvaluator {
             editRawValue.removeAll(Collections.singleton(""));
             HdBuyLogger.info(String.format("%s : %s", keyCommand, editRawValue.toString()));
             String editValue = editRawValue.get(0);
-            // TODO: if index is valid, need to throw more exceptions
-            if (true) {
+            if (isValidIndex(editValue)) {
                 return new CommandKey(keyCommand, editValue);
             }
-//            throw new InvalidParameterException(keyCommand);
+            throw new InvalidIndexException(editValue);
         default:
             // any other commands
             if (lineParts.length != 1) {
@@ -58,5 +58,17 @@ public class CommandEvaluator {
             }
         }
         return new CommandKey(keyCommand);
+    }
+
+    private static boolean isValidIndex(String input) {
+        try {
+            int index = Integer.parseInt(input);
+            if (index <= 99 && index >= 1) {
+                return true;
+            }
+            return false;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }
