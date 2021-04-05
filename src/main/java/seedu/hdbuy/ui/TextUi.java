@@ -14,6 +14,7 @@ import seedu.hdbuy.common.exception.InvalidIndexException;
 import seedu.hdbuy.common.exception.InvalidParameterException;
 import seedu.hdbuy.common.exception.InvalidSortException;
 import seedu.hdbuy.common.exception.NoFlatsException;
+import seedu.hdbuy.common.exception.NoSearchException;
 
 public class TextUi {
 
@@ -108,6 +109,8 @@ public class TextUi {
             System.out.println("FILTER command needs a type and a parameter to work.");
             System.out.println("Filter types: " + Arrays.asList(QueryKey.values()));
             System.out.println("Example: \"filter location clementi\"");
+            System.out.println("Example: \"filter type 4 room\", can be any of X room (X = 1 - 5) or executive");
+            System.out.println("Example: \"filter lease_remaining 90\", can be any whole number from 0 - 99");
             break;
         case "find":
             System.out.println("FIND command does not need any parameters.");
@@ -200,6 +203,10 @@ public class TextUi {
     }
 
     public static void showDuplicateUnit(DuplicateUnitException e) {
+        System.out.println(e.getMessage());
+    }
+
+    public static void showDoSearchPrompt(NoSearchException e) {
         System.out.println(e.getMessage());
     }
 }
