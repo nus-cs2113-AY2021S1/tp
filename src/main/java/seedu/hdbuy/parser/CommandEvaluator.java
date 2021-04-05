@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.hdbuy.common.CommandKey;
 import seedu.hdbuy.common.HdBuyLogger;
@@ -14,81 +15,89 @@ import seedu.hdbuy.common.exception.InvalidParameterException;
 public class CommandEvaluator {
 
     public static CommandKey extractInfo(String fullCommand) throws InvalidParameterException, InvalidIndexException {
-        String[] lineParts;
-        lineParts = fullCommand.split(" ");
-        String keyCommand = lineParts[0];
-        HdBuyLogger.info(Arrays.toString(lineParts));
+        List<String> lineParts = Arrays.asList(fullCommand.split("\\s"));
+        // Finds first non-empty input, else throws exception
+        String keyCommand = lineParts.stream().filter(text -> !text.isEmpty())
+                .findFirst()
+                .orElseThrow(() -> new InvalidParameterException(fullCommand));
+        int indexOfKeyCommand = lineParts.indexOf(keyCommand);
+        List<String> commandBody = lineParts.subList(indexOfKeyCommand + 1, lineParts.size());
         switch (keyCommand) {
         case CommandType.FILTER:
-            if (lineParts.length < 3) {
-                throw new InvalidParameterException(keyCommand);
-            }
-            String filterCriteria = lineParts[1];
-            String filterValue = String.join(" ", Arrays.asList(lineParts).subList(2, lineParts.length));
-            HdBuyLogger.info(String.format("%s : %s - %s", keyCommand, filterCriteria, filterValue));
-            if (isValidFilterParameter(filterCriteria, filterValue)) {
-                return new CommandKey(filterCriteria, filterValue, keyCommand);
-            }
-            throw new InvalidParameterException(keyCommand);
+            return evaluateFilter(lineParts, commandBody, keyCommand);
         case CommandType.SORT:
-            if (lineParts.length < 2) {
-                throw new InvalidParameterException(keyCommand);
-            }
-            List<String> rawSortValue = new ArrayList<>(Arrays.asList(lineParts).subList(1, lineParts.length));
-            rawSortValue.removeAll(Collections.singleton(""));
-            HdBuyLogger.info(String.format("%s : %s", keyCommand, rawSortValue.toString()));
-            String sortValue = rawSortValue.get(0);
-            if (sortValue.equals(CommandType.SORT_ASC) || sortValue.equals(CommandType.SORT_DESC)) {
-                return new CommandKey(keyCommand, sortValue);
-            }
-            throw new InvalidParameterException(keyCommand);
+            return evaluateSort(lineParts, keyCommand);
         case CommandType.REMOVE:
         case CommandType.SAVE:
-            if (lineParts.length < 2) {
-                throw new InvalidParameterException(keyCommand);
-            }
-            List<String> editRawValue = new ArrayList<>(Arrays.asList(lineParts).subList(1, lineParts.length));
-            editRawValue.removeAll(Collections.singleton(""));
-            HdBuyLogger.info(String.format("%s : %s", keyCommand, editRawValue.toString()));
-            String editValue = editRawValue.get(0);
-            if (isValidIndex(editValue)) {
-                return new CommandKey(keyCommand, editValue);
-            }
-            throw new InvalidIndexException(editValue);
+            return evaluateEditShortlist(commandBody, keyCommand);
         default:
-            // any other commands
-            if (lineParts.length != 1) {
-                throw new InvalidParameterException(keyCommand);
-            }
+            return new CommandKey(keyCommand);
         }
-        return new CommandKey(keyCommand);
     }
 
-    private static boolean isValidIndex(String input) {
+    private static CommandKey evaluateFilter(List<String> lineParts, List<String> commandBody, String keyCommand) throws
+            InvalidParameterException {
+        String filterCriteria = commandBody.stream().filter(text -> !text.isEmpty())
+                .findFirst()
+                .orElseThrow(() -> new InvalidParameterException(keyCommand));
+        int indexOfFilterCriteria = lineParts.indexOf(filterCriteria);
+        List<String> filterValueBody = lineParts.subList(indexOfFilterCriteria + 1, lineParts.size());
+        String filterValue = filterValueBody.stream().filter(text -> !text.isEmpty())
+                .collect(Collectors.joining(" "));
+        HdBuyLogger.info(String.format("%s : %s - %s", keyCommand, filterCriteria, filterValue));
+        if (!isValidFilterParameter(filterCriteria, filterValue)) {
+            throw new InvalidParameterException(keyCommand);
+        }
+        return new CommandKey(filterCriteria, filterValue, keyCommand);
+    }
+
+    private static CommandKey evaluateSort(List<String> lineParts, String keyCommand) throws InvalidParameterException{
+        String sortCommand = lineParts.stream().filter(text -> !text.isEmpty())
+                .collect(Collectors.joining(" "));
+        if (!sortCommand.equals(String.format("%s %s", CommandType.SORT, CommandType.SORT_ASC)) &&
+                !sortCommand.equals(String.format("%s %s", CommandType.SORT, CommandType.SORT_DESC))) {
+            throw new InvalidParameterException(keyCommand);
+        }
+        String sortValue = sortCommand.split("\\s")[1];
+        HdBuyLogger.info(String.format("%s : %s", keyCommand, sortValue));
+        return new CommandKey(keyCommand, sortValue);
+    }
+
+    private static CommandKey evaluateEditShortlist(List<String> commandBody, String keyCommand) throws
+            InvalidIndexException {
+        String targetIndex = commandBody.stream().filter(text -> !text.isEmpty())
+                .collect(Collectors.joining(" "));
         try {
-            int index = Integer.parseInt(input);
-            return index <= 100 && index >= 1;
+            Integer.parseInt(targetIndex);
+            HdBuyLogger.info(String.format("%s : %s", keyCommand, targetIndex));
+            return new CommandKey(keyCommand, targetIndex);
         } catch (NumberFormatException e) {
-            return false;
+            throw new InvalidIndexException(targetIndex);
         }
     }
 
     private static boolean isValidFilterParameter(String criteria, String input) {
         final String LEASE_REMAINING = "lease_remaining";
         final String TYPE = "type";
+        final String LOCATION = "location";
         String[] types = new String[]{"executive", "5 room", "4 room", "3 room", "2 room", "1 room"};
-        switch (criteria) {
-        case LEASE_REMAINING:
-            try {
-                int index = Integer.parseInt(input);
-                return index <= 99 && index >= 0;
-            } catch (NumberFormatException e) {
-                return false;
-            }
-        case TYPE:
-            return Arrays.asList(types).contains(input);
-        default:
+        if (input.isEmpty()) {
             return false;
+        }
+        switch (criteria) {
+            case LEASE_REMAINING:
+                try {
+                    int index = Integer.parseInt(input);
+                    return index <= 99 && index >= 0;
+                } catch (NumberFormatException e) {
+                    return false;
+                }
+            case TYPE:
+                return Arrays.asList(types).contains(input);
+            case LOCATION:
+                return true;
+            default:
+                return false;
         }
     }
 }

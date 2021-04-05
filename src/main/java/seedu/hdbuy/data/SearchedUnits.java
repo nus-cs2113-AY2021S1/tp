@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.Unit;
+import seedu.hdbuy.common.exception.InvalidIndexException;
+import seedu.hdbuy.common.exception.NoSearchException;
 
 public class SearchedUnits {
 
@@ -16,16 +18,16 @@ public class SearchedUnits {
         units.add(unit);
     }
 
-    public static Unit getUnit(int index) {
+    public static Unit getUnit(int index) throws InvalidIndexException, NoSearchException {
         if (units == null) {
             HdBuyLogger.error("Did not perform search before");
-            return null;
+            throw new NoSearchException();
         }
         try {
             return units.get(index - 1);
         } catch (IndexOutOfBoundsException e) {
             HdBuyLogger.error("Invalid index");
-            return null;
+            throw new InvalidIndexException(Integer.toString(index));
         }
     }
 

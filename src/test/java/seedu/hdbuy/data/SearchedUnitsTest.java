@@ -2,12 +2,15 @@ package seedu.hdbuy.data;
 
 import org.junit.jupiter.api.Test;
 import seedu.hdbuy.common.Unit;
+import seedu.hdbuy.common.exception.InvalidIndexException;
+import seedu.hdbuy.common.exception.NoSearchException;
 
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class SearchedUnitsTest {
 
@@ -26,15 +29,19 @@ class SearchedUnitsTest {
 
         assertFalse(SearchedUnits.getSearchedUnits().isEmpty());
 
-        SearchedUnits.sortMapByPrice(true);
-        assertEquals(textUnit1.toString(), Objects.requireNonNull(SearchedUnits.getUnit(1)).toString());
-        assertEquals(textUnit3.toString(), Objects.requireNonNull(SearchedUnits.getUnit(3)).toString());
+        try {
+            SearchedUnits.sortMapByPrice(true);
+            assertEquals(textUnit1.toString(), Objects.requireNonNull(SearchedUnits.getUnit(1)).toString());
+            assertEquals(textUnit3.toString(), Objects.requireNonNull(SearchedUnits.getUnit(3)).toString());
 
-        SearchedUnits.sortMapByPrice(false);
-        assertEquals(textUnit3.toString(), Objects.requireNonNull(SearchedUnits.getUnit(1)).toString());
-        assertEquals(textUnit1.toString(), Objects.requireNonNull(SearchedUnits.getUnit(3)).toString());
+            SearchedUnits.sortMapByPrice(false);
+            assertEquals(textUnit3.toString(), Objects.requireNonNull(SearchedUnits.getUnit(1)).toString());
+            assertEquals(textUnit1.toString(), Objects.requireNonNull(SearchedUnits.getUnit(3)).toString());
 
-        SearchedUnits.clearSearchedUnits();
-        assertTrue(SearchedUnits.getSearchedUnits().isEmpty());
+            SearchedUnits.clearSearchedUnits();
+            assertTrue(SearchedUnits.getSearchedUnits().isEmpty());
+        } catch (NoSearchException | InvalidIndexException e) {
+            fail();
+        }
     }
 }

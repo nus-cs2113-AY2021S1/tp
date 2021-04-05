@@ -3,6 +3,7 @@ package seedu.hdbuy.data;
 import org.junit.jupiter.api.Test;
 import seedu.hdbuy.common.Unit;
 import seedu.hdbuy.common.exception.DuplicateUnitException;
+import seedu.hdbuy.common.exception.InvalidIndexException;
 
 import java.util.ArrayList;
 
@@ -20,10 +21,14 @@ class ShortListTest {
         int max = ShortList.getShortListedUnits().size();
         assertEquals(unit.toString(), ShortList.getShortListedUnits().get(max - 1).toString());
 
-        Unit removedUnit = ShortList.removeFromShortList(max);
-        assertNotNull(removedUnit);
-        assertEquals(unit.toString(), removedUnit.toString());
-        assertEquals(max - 1, ShortList.getShortListedUnits().size());
+        try {
+            Unit removedUnit = ShortList.removeFromShortList(max);
+            assertNotNull(removedUnit);
+            assertEquals(unit.toString(), removedUnit.toString());
+            assertEquals(max - 1, ShortList.getShortListedUnits().size());
+        } catch (InvalidIndexException e) {
+            fail();
+        }
     }
 
     @Test void addToShortListTest() {

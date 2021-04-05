@@ -43,10 +43,11 @@ class CommandEvaluatorTest {
 
     @Test void trimTest() {
         List<String> testInputs = new ArrayList<String>(Arrays.asList(
+                "filter location ang mo kio",
+                "filter    location   ang    mo    kio",
+                "filter location   ang    mo    kio",
                 "filter location woodlands",
                 "filter     location    woodlands",
-                "filter location ang mo kio",
-                "filter location   ang    mo    kio",
                 "sort asc",
                 "sort   asc   ",
                 "sort desc     ",
@@ -61,17 +62,40 @@ class CommandEvaluatorTest {
                 "save 0",
                 "save -1",
                 "save 101",
-                "save 50.5"
+                "save 50.5",
+                "save -50.5",
+                "   filter location ang mo kio",
+                "   filter    location   ang    mo    kio",
+                "  filter location   ang    mo    kio",
+                "  filter location woodlands",
+                "  filter     location    woodlands",
+                " sort asc",
+                "    sort   asc   ",
+                " sort desc     ",
+                "   save 1",
+                "  save   1   ",
+                "  save 1    ",
+                "  save   1",
+                " remove 1",
+                "    remove   1   ",
+                "   remove 1    ",
+                "   remove   1",
+                "  save 0",
+                "  save -1",
+                "  save 101",
+                " save 50.5",
+                "  save -50.5"
         ));
 
         for (String input : testInputs) {
             try {
                 CommandEvaluator.extractInfo(input);
+                HdBuyLogger.info(input + " - passed");
             } catch (InvalidParameterException e) {
                 fail();
             } catch (InvalidIndexException e) {
                 String index = e.getIndex();
-                if (index.equals("-1") || index.equals("0") || index.equals("101") || index.equals("50.5")) {
+                if (index.equals("-1") || index.equals("0") || index.equals("101") || index.equals("50.5") || index.equals("-50.5")) {
                     continue;
                 }
                 fail();

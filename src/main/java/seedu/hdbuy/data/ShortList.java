@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.Unit;
 import seedu.hdbuy.common.exception.DuplicateUnitException;
+import seedu.hdbuy.common.exception.InvalidIndexException;
 import seedu.hdbuy.storage.StorageManager;
 
 public class ShortList {
@@ -29,14 +30,14 @@ public class ShortList {
         StorageManager.write();
     }
 
-    public static Unit removeFromShortList(int index) {
+    public static Unit removeFromShortList(int index) throws InvalidIndexException {
         try {
             Unit removedUnit = getShortListedUnits().remove(index - 1);
             StorageManager.write();
             return removedUnit;
         } catch (IndexOutOfBoundsException e) {
             HdBuyLogger.error("Unable to remove unit from shortlist, invalid index");
-            return null;
+            throw new InvalidIndexException(Integer.toString(index));
         }
     }
 }
