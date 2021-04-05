@@ -49,7 +49,7 @@ public class TextUi {
         if (in.hasNextLine()) {
             return in.nextLine();
         }
-        return "";
+        return CommandType.EXIT;
     }
 
     public static void showHelp() {
