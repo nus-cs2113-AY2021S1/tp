@@ -61,7 +61,7 @@ public class Parser {
             TextUi.showInvalidParameter(e.getKeyCommand(), e);
         } catch (InvalidInputException e) {
             HdBuyLogger.error(e.getMessage());
-            TextUi.showInvalidInputError(e);
+            TextUi.showExceptionMessage(e);
         }
         return new DefaultCommand();
     }

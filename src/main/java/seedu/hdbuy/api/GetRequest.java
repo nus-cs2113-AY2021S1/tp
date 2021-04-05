@@ -37,7 +37,7 @@ public class GetRequest {
             connection.disconnect();
         } catch (GatewayException | IOException exception) {
             HdBuyLogger.warning(exception.getMessage());
-            TextUi.showGateWayError(new GatewayException());
+            TextUi.showExceptionMessage(new GatewayException());
         }
     }
 }

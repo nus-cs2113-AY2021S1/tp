@@ -27,6 +27,13 @@ public class TextUi {
     private static final int SEPARATOR_LENGTH = 80;
     private static final Scanner in = new Scanner(System.in);
 
+    public static String readCommand() {
+        if (in.hasNextLine()) {
+            return in.nextLine();
+        }
+        return CommandType.EXIT;
+    }
+
     public static void showSeparator() {
         for (int i = 0; i < SEPARATOR_LENGTH; i++) {
             System.out.print('-');
@@ -43,13 +50,6 @@ public class TextUi {
     public static void showExit() {
         System.out.print("HDBuy Bye Bye!\n");
         in.close();
-    }
-
-    public static String readCommand() {
-        if (in.hasNextLine()) {
-            return in.nextLine();
-        }
-        return CommandType.EXIT;
     }
 
     public static void showHelp() {
@@ -84,18 +84,6 @@ public class TextUi {
             return;
         }
         System.out.print("Filter conditions:\n" + inputs + "\n");
-    }
-
-    public static void showInvalidIndex(InvalidIndexException e) {
-        System.out.println(e.getMessage());
-    }
-
-    public static void showRemovedShortlistUnit(String unitDescription) {
-        System.out.println("You have removed unit from shortlist: " + unitDescription);
-    }
-
-    public static void showSavedShortlistUnit(String unitDescription) {
-        System.out.println("You have saved unit to shortlist: " + unitDescription);
     }
 
     public static void showInvalidParameter(String key, InvalidParameterException e) {
@@ -170,10 +158,6 @@ public class TextUi {
         }
     }
 
-    public static void showNoFlats(NoFlatsException e) {
-        System.out.println(e.getMessage());
-    }
-
     public static void showEmptyParameter(EmptyParameterException e) {
         System.out.println("\"FIND\"" + e.getMessage());
         System.out.println("Please specify a filter to use before executing this command.");
@@ -185,27 +169,15 @@ public class TextUi {
         System.out.print("Cleared filter conditions.\n");
     }
 
-    public static void showDuplicateUnit(DuplicateUnitException e) {
-        System.out.println(e.getMessage());
+    public static void showRemovedShortlistUnit(String unitDescription) {
+        System.out.println("You have removed unit from shortlist: " + unitDescription);
     }
 
-    public static void showDoSearchPrompt(NoSearchException e) {
-        System.out.println(e.getMessage());
+    public static void showSavedShortlistUnit(String unitDescription) {
+        System.out.println("You have saved unit to shortlist: " + unitDescription);
     }
 
-    public static void showMissingFileError(MissingFileException e) {
-        System.out.println(e.getMessage());
-    }
-
-    public static void showEmptyInputError(EmptyInputException e) {
-        System.out.println(e.getMessage());
-    }
-
-    public static void showInvalidInputError(InvalidInputException e) {
-        System.out.println(e.getMessage());
-    }
-
-    public static void showGateWayError(GatewayException e) {
+    public static void showExceptionMessage(Exception e) {
         System.out.println(e.getMessage());
     }
 }

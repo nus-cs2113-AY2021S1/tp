@@ -30,10 +30,8 @@ public class SortCommand extends Command {
             }
             ArrayList<Unit> sortedUnits = SearchedUnits.getSearchedUnits();
             TextUi.showUnits(sortedUnits);
-        } catch (NoFlatsException e) {
-            TextUi.showNoFlats(e);
-        } catch (NoSearchException e) {
-            TextUi.showDoSearchPrompt(e);
+        } catch (NoFlatsException | NoSearchException e) {
+            TextUi.showExceptionMessage(e);
         }
     }
 }

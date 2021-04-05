@@ -31,7 +31,7 @@ public class HdBuy {
                 TextUi.showSeparator();
                 receiveCommand(command.isExit());
             } catch (EmptyInputException e) {
-                TextUi.showEmptyInputError(e);
+                TextUi.showExceptionMessage(e);
                 TextUi.showSeparator();
                 receiveCommand(false);
             }

@@ -10,13 +10,13 @@ class ExceptionTest {
         try {
             throw new GatewayException();
         } catch (GatewayException e) {
-            TextUi.showGateWayError(e);
+            TextUi.showExceptionMessage(e);
         }
 
         try {
-            throw new MissingFileException();
+            throw new MissingFileException("test");
         } catch (MissingFileException e) {
-            TextUi.showMissingFileError(e);
+            TextUi.showExceptionMessage(e);
         }
     }
 }
