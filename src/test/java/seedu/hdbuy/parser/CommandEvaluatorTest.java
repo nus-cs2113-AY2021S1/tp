@@ -12,7 +12,7 @@ import seedu.hdbuy.common.exception.InvalidIndexException;
 import seedu.hdbuy.common.exception.InvalidParameterException;
 import seedu.hdbuy.storage.UnitDecoder;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class CommandEvaluatorTest {
 
