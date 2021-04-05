@@ -44,5 +44,16 @@ class SearchedUnitsTest {
         } catch (NoSearchException | InvalidIndexException e) {
             fail();
         }
+
+        boolean catchInvalidIndex = false;
+        try {
+            SearchedUnits.getUnit(1000);
+        } catch (NoSearchException | InvalidIndexException e) {
+            catchInvalidIndex = true;
+        }
+
+        if (!catchInvalidIndex) {
+            fail();
+        }
     }
 }
