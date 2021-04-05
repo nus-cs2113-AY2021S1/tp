@@ -28,7 +28,7 @@ class StorageManagerTest {
             Files.delete(Paths.get(filePath));
         } catch (DuplicateUnitException e) {
             // fallthrough
-        } catch (IOException | MissingFileException e) {
+        } catch (IOException e) {
             fail(); // file not created
         }
     }

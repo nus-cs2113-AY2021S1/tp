@@ -17,14 +17,10 @@ public class RemoveCommand extends Command {
     @Override public void execute() {
         try {
             Unit removedUnit = ShortList.removeFromShortList(index);
-            if (removedUnit != null) {
-                HdBuyLogger.info("Removed: " + removedUnit.toString());
-                TextUi.showRemovedShortlistUnit(removedUnit.toString());
-            } else {
-                HdBuyLogger.error("Unable to remove at index");
-                TextUi.showInvalidIndex(new InvalidIndexException(Integer.toString(index)));
-            }
+            HdBuyLogger.info("Removed: " + removedUnit.toString());
+            TextUi.showRemovedShortlistUnit(removedUnit.toString());
         } catch (InvalidIndexException e) {
+            HdBuyLogger.error("Unable to remove at index");
             TextUi.showInvalidIndex(e);
         }
     }

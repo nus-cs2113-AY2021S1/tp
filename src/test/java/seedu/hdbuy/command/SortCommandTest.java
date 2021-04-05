@@ -1,4 +1,4 @@
-package seedu.hdbuy.data;
+package seedu.hdbuy.command;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,22 +8,20 @@ import seedu.hdbuy.common.Unit;
 import seedu.hdbuy.common.exception.InvalidIndexException;
 import seedu.hdbuy.common.exception.NoFlatsException;
 import seedu.hdbuy.common.exception.NoSearchException;
+import seedu.hdbuy.data.SearchedUnits;
+import seedu.hdbuy.parser.CommandType;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
-class SearchedUnitsTest {
+class SortCommandTest {
 
-    @Test void sortMapByPrice() {
-
-        Unit textUnit1 = new Unit("JURONG WEST", "4 ROOM", 429000, 990, " 82 years 06 months", "664A JURONG WEST ST 64",
-                1026083864);
-        Unit textUnit2 = new Unit("JURONG WEST", "4 ROOM", 429001, 990, " 82 years 06 months", "664A JURONG WEST ST 64",
-                1026083864);
-        Unit textUnit3 = new Unit("JURONG WEST", "4 ROOM", 429002, 990, " 82 years 06 months", "664A JURONG WEST ST 64",
-                1026083864);
+    @Test void sortExecuteTest() {
+        Unit textUnit1 = new Unit("JURONG WEST", "4 ROOM", 429000, 990,
+                " 82 years 06 months", "664A JURONG WEST ST 64", 1026083864);
+        Unit textUnit2 = new Unit("JURONG WEST", "4 ROOM", 429001, 990,
+                " 82 years 06 months", "664A JURONG WEST ST 64", 1026083864);
+        Unit textUnit3 = new Unit("JURONG WEST", "4 ROOM", 429002, 990,
+                " 82 years 06 months", "664A JURONG WEST ST 64", 1026083864);
 
         try {
             SearchedUnits.clearSearchedUnits();
@@ -37,28 +35,20 @@ class SearchedUnitsTest {
         }
 
         try {
-            SearchedUnits.sortMapByPrice(true);
+            SortCommand sortCommandAsc = new SortCommand(CommandType.SORT_ASC);
+            sortCommandAsc.execute();
             assertEquals(textUnit1.toString(), Objects.requireNonNull(SearchedUnits.getUnit(1)).toString());
             assertEquals(textUnit3.toString(), Objects.requireNonNull(SearchedUnits.getUnit(3)).toString());
 
-            SearchedUnits.sortMapByPrice(false);
+            SortCommand sortCommandDesc = new SortCommand(CommandType.SORT_DESC);
+            sortCommandDesc.execute();
             assertEquals(textUnit3.toString(), Objects.requireNonNull(SearchedUnits.getUnit(1)).toString());
             assertEquals(textUnit1.toString(), Objects.requireNonNull(SearchedUnits.getUnit(3)).toString());
 
             SearchedUnits.clearSearchedUnits();
             assertTrue(SearchedUnits.getSearchedUnits().isEmpty());
-        } catch (NoSearchException | InvalidIndexException | NoFlatsException e) {
-            fail();
-        }
-
-        boolean catchInvalidIndex = false;
-        try {
-            SearchedUnits.getUnit(1000);
+            sortCommandAsc.execute();
         } catch (NoSearchException | InvalidIndexException e) {
-            catchInvalidIndex = true;
-        }
-
-        if (!catchInvalidIndex) {
             fail();
         }
     }

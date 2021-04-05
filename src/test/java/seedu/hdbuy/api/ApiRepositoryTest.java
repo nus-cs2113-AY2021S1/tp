@@ -5,10 +5,12 @@ import org.junit.jupiter.api.Test;
 import java.util.LinkedHashMap;
 
 import seedu.hdbuy.common.QueryKey;
+import seedu.hdbuy.common.exception.NoSearchException;
 import seedu.hdbuy.data.SearchedUnits;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class ApiRepositoryTest {
 
@@ -18,14 +20,22 @@ class ApiRepositoryTest {
         inputs.put(QueryKey.TYPE, "4 room");
         inputs.put(QueryKey.LEASE_REMAINING, "80");
         ApiRepository.fetchUnits(inputs);
-        assertNotNull(SearchedUnits.getSearchedUnits());
+        try {
+            assertNotNull(SearchedUnits.getSearchedUnits());
+        } catch (NoSearchException e) {
+            fail();
+        }
     }
 
     @Test public void testEmptyResponseException() {
         LinkedHashMap<QueryKey, String> inputs = new LinkedHashMap<>();
         inputs.put(QueryKey.LEASE_REMAINING, "101");
-        SearchedUnits.clearSearchedUnits();
-        ApiRepository.fetchUnits(inputs);
-        assertTrue(SearchedUnits.getSearchedUnits().isEmpty());
+        try {
+            SearchedUnits.clearSearchedUnits();
+            ApiRepository.fetchUnits(inputs);
+            assertTrue(SearchedUnits.getSearchedUnits().isEmpty());
+        } catch (NoSearchException e) {
+            fail();
+        }
     }
 }

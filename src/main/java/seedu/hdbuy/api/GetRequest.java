@@ -7,6 +7,7 @@ import java.net.URL;
 import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.exception.EmptyResponseException;
 import seedu.hdbuy.common.exception.GatewayException;
+import seedu.hdbuy.ui.TextUi;
 
 public class GetRequest {
 
@@ -36,6 +37,7 @@ public class GetRequest {
             connection.disconnect();
         } catch (GatewayException | IOException exception) {
             HdBuyLogger.warning(exception.getMessage());
+            TextUi.showGateWayError(new GatewayException());
         }
     }
 }

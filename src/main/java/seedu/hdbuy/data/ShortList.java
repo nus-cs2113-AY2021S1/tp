@@ -17,11 +17,7 @@ public class ShortList {
     public static ArrayList<Unit> getShortListedUnits() {
         if (units == null) {
             units = new ArrayList<>();
-            try {
-                StorageManager.read();
-            } catch (MissingFileException e) {
-                TextUi.showMissingFileError(e);
-            }
+            StorageManager.read();
         }
         return units;
     }
@@ -33,11 +29,7 @@ public class ShortList {
             }
         }
         getShortListedUnits().add(unit);
-        try {
-            StorageManager.write();
-        } catch (MissingFileException e) {
-            TextUi.showMissingFileError(e);
-        }
+        StorageManager.write();
     }
 
     public static Unit removeFromShortList(int index) throws InvalidIndexException {
@@ -47,9 +39,6 @@ public class ShortList {
             return removedUnit;
         } catch (IndexOutOfBoundsException e) {
             HdBuyLogger.error("Unable to remove unit from shortlist, invalid index");
-            throw new InvalidIndexException(Integer.toString(index));
-        } catch (MissingFileException e) {
-            TextUi.showMissingFileError(e);
             throw new InvalidIndexException(Integer.toString(index));
         }
     }

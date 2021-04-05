@@ -8,11 +8,11 @@ import java.util.Scanner;
 import seedu.hdbuy.common.QueryKey;
 import seedu.hdbuy.common.Unit;
 import seedu.hdbuy.common.exception.DuplicateUnitException;
+import seedu.hdbuy.common.exception.EmptyInputException;
 import seedu.hdbuy.common.exception.EmptyParameterException;
-import seedu.hdbuy.common.exception.InvalidFilterException;
+import seedu.hdbuy.common.exception.GatewayException;
 import seedu.hdbuy.common.exception.InvalidIndexException;
 import seedu.hdbuy.common.exception.InvalidParameterException;
-import seedu.hdbuy.common.exception.InvalidSortException;
 import seedu.hdbuy.common.exception.MissingFileException;
 import seedu.hdbuy.common.exception.NoFlatsException;
 import seedu.hdbuy.common.exception.NoSearchException;
@@ -45,15 +45,7 @@ public class TextUi {
     }
 
     public static String readCommand() {
-        if (in.hasNext()) {
-            return in.nextLine();
-        }
-        return CommandType.EXIT;
-    }
-
-    public static void showInvalidInput(String input) {
-        System.out.print("I'm sorry. \"" + input + "\" is not a valid command.\n");
-        System.out.println("Type \"help\" for more information.");
+        return in.nextLine();
     }
 
     public static void showHelp() {
@@ -90,11 +82,6 @@ public class TextUi {
         System.out.print("Filter conditions:\n" + inputs + "\n");
     }
 
-    public static void showInvalidFilter(String criteria, InvalidFilterException e) {
-        System.out.println("\"" + criteria + "\" " + e.getMessage());
-        System.out.println("Please use these filters: " + Arrays.asList(QueryKey.values()));
-    }
-
     public static void showInvalidIndex(InvalidIndexException e) {
         System.out.println(e.getMessage());
     }
@@ -110,47 +97,47 @@ public class TextUi {
     public static void showInvalidParameter(String key, InvalidParameterException e) {
         System.out.println(e.getMessage());
         switch (key) {
-        case "filter":
+        case CommandType.FILTER:
             System.out.println("FILTER command needs a type and a parameter to work.");
             System.out.println("Filter types: " + Arrays.asList(QueryKey.values()));
             System.out.println("Example: \"filter location clementi\"");
             System.out.println("Example: \"filter type 4 room\", can be any of X room (X = 1 - 5) or executive");
             System.out.println("Example: \"filter lease_remaining 90\", can be any whole number from 0 - 99");
             break;
-        case "find":
+        case CommandType.FIND:
             System.out.println("FIND command does not need any parameters.");
             System.out.println("However, you need to provide filter before you execute the FIND command.");
             break;
-        case "exit":
+        case CommandType.EXIT:
             System.out.println("EXIT command does not need any parameters.");
             System.out.println("You are closing the app after all.");
             break;
-        case "help":
+        case CommandType.HELP:
             System.out.println("HELP command does not need any parameters.");
             System.out.println("It's to help you understand all of our commands.");
             break;
-        case "list":
+        case CommandType.LIST:
             System.out.println("LIST command does not need any parameters.");
             System.out.println("The app will list out the parameters you have set.");
             break;
-        case "remove":
+        case CommandType.REMOVE:
             System.out.println("REMOVE command needs a parameter to work.");
             System.out.println("Example: \"remove 1\"");
             break;
-        case "save":
+        case CommandType.SAVE:
             System.out.println("SAVE command needs a parameter to work.");
             System.out.println("Example: \"save 1\"");
             break;
-        case "shortlist":
+        case CommandType.SHORTLIST:
             System.out.println("SHORTLIST command does not need any parameters.");
             System.out.println("If you want to modify the short list, use SAVE command or REMOVE command instead.");
             break;
-        case "sort":
+        case CommandType.SORT:
             System.out.println("SORT command needs a parameter to work.");
             System.out.println("Sort types: {asc, desc}");
             System.out.println("Example: \"sort asc\"");
             break;
-        case "clear":
+        case CommandType.CLEAR:
             System.out.println("CLEAR command does not need any parameters.");
             System.out.println("The purpose is to clear the filters inside the query!");
             break;
@@ -183,28 +170,15 @@ public class TextUi {
         System.out.println(e.getMessage());
     }
 
-    public static void showEmptyParameter(String key, EmptyParameterException e) {
-        System.out.println("\"" + key + "\"" + e.getMessage());
-        switch (key) {
-        case "FIND":
-            System.out.println("Please specify a filter to use before executing this command.");
-            System.out.println("Filters available: " + Arrays.asList(QueryKey.values()));
-            System.out.println("An example will be \"filter location clementi\"");
-            break;
-        case "CLEAR":
-            System.out.println("There is no data to clear!");
-            break;
-        default:
-            break;
-        }
+    public static void showEmptyParameter(EmptyParameterException e) {
+        System.out.println("\"FIND\"" + e.getMessage());
+        System.out.println("Please specify a filter to use before executing this command.");
+        System.out.println("Filters available: " + Arrays.asList(QueryKey.values()));
+        System.out.println("An example will be \"filter location clementi\"");
     }
 
     public static void showClearedFilterConditions() {
         System.out.print("Cleared filter conditions.\n");
-    }
-
-    public static void showInvalidSort(String criteria, InvalidSortException e) {
-        System.out.println(criteria + e.getMessage());
     }
 
     public static void showDuplicateUnit(DuplicateUnitException e) {
@@ -216,6 +190,14 @@ public class TextUi {
     }
 
     public static void showMissingFileError(MissingFileException e) {
+        System.out.println(e.getMessage());
+    }
+
+    public static void showEmptyInputError(EmptyInputException e) {
+        System.out.println(e.getMessage());
+    }
+
+    public static void showGateWayError(GatewayException e) {
         System.out.println(e.getMessage());
     }
 }

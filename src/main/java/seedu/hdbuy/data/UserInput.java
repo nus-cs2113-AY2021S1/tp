@@ -6,20 +6,7 @@ import seedu.hdbuy.common.QueryKey;
 
 public class UserInput {
 
-    private static LinkedHashMap<QueryKey, String> inputs = null;
-
-    private static UserInput instance = null;
-
-    private UserInput() {
-        inputs = new LinkedHashMap<>();
-    }
-
-    public static UserInput getInstance() {
-        if (instance == null) {
-            instance = new UserInput();
-        }
-        return instance;
-    }
+    private static final LinkedHashMap<QueryKey, String> inputs = new LinkedHashMap<>();
 
     public static LinkedHashMap<QueryKey, String> getInputs() {
         return inputs;
