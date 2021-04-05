@@ -1,48 +1,55 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-[-> ApiRepository: fetchUnits(inputs)
-activate ApiRepository
-ApiRepository -> QueryFormatter: formQuery(inputs)
-activate QueryFormatter
+hide footbox
+
+[-> ":ApiRepository": fetchUnits(inputs)
+activate ":ApiRepository"
+":ApiRepository" -> ":QueryFormatter": formQuery(inputs)
+activate ":QueryFormatter"
 loop parameters
     opt query has whitespace
-    QueryFormatter -> QueryFormatter: remove whitespaces
-    activate QueryFormatter
-    deactivate QueryFormatter
+    ":QueryFormatter" -> ":QueryFormatter": remove whitespaces
+    activate ":QueryFormatter"
+    deactivate ":QueryFormatter"
     end
     alt TYPE query
-    QueryFormatter -> QueryFormatter: append TYPE format
-    activate QueryFormatter
-    deactivate QueryFormatter
+    ":QueryFormatter" -> ":QueryFormatter": append TYPE format
+    activate ":QueryFormatter"
+    deactivate ":QueryFormatter"
     else LOCATION query
-    QueryFormatter -> QueryFormatter: append LOCATION format
-    activate QueryFormatter
-    deactivate QueryFormatter
+    ":QueryFormatter" -> ":QueryFormatter": append LOCATION format
+    activate ":QueryFormatter"
+    deactivate ":QueryFormatter"
     else LEASE_REMAINING query
-    QueryFormatter -> QueryFormatter: append LEASE_REMAINING format
-    activate QueryFormatter
-    deactivate QueryFormatter
+    ":QueryFormatter" -> ":QueryFormatter": append LEASE_REMAINING format
+    activate ":QueryFormatter"
+    deactivate ":QueryFormatter"
     end
 end
-ApiRepository <-- QueryFormatter: formatted query
-deactivate QueryFormatter
-ApiRepository -> GetRequest: getResponse(query)
-activate GetRequest
-GetRequest -> ResponseDecoder: decodeResponse(inputStream)
-activate ResponseDecoder
-ResponseDecoder -> UnitsGenerator: getUnits(response)
-activate UnitsGenerator
+":ApiRepository" <-- ":QueryFormatter": formatted query
+deactivate ":QueryFormatter"
+":ApiRepository" -> ":GetRequest": getResponse(query)
+activate ":GetRequest"
+":GetRequest" -> ":ResponseDecoder": decodeResponse(inputStream)
+activate  ":ResponseDecoder"
+ ":ResponseDecoder" -> ":UnitsGenerator": getUnits(response)
+activate ":UnitsGenerator"
 loop unitContents
-    UnitsGenerator -> UnitsGenerator: getUnit(details)
-    activate UnitsGenerator
-    UnitsGenerator -> SearchedUnits: addToResult(unit)
-    activate SearchedUnits
-    deactivate SearchedUnits
-    deactivate UnitsGenerator
+    ":UnitsGenerator" -> ":UnitsGenerator": getUnit(details)
+    activate ":UnitsGenerator"
+    ":UnitsGenerator" -> ":SearchedUnits": addToResult(unit)
+    activate ":SearchedUnits"
+    ":UnitsGenerator" <-- ":SearchedUnits"
+    deactivate ":SearchedUnits"
+    deactivate ":UnitsGenerator"
 end
-deactivate UnitsGenerator
-deactivate ResponseDecoder
-deactivate GetRequest
-deactivate ApiRepository
+ ":ResponseDecoder" <-- ":UnitsGenerator"
+deactivate ":UnitsGenerator"
+":GetRequest" <--  ":ResponseDecoder"
+deactivate  ":ResponseDecoder"
+":ApiRepository" <-- ":GetRequest"
+deactivate ":GetRequest"
+[<-- ":ApiRepository"
+deactivate ":ApiRepository"
 @enduml

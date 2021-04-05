@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
+activate ":HdBuy"
+        ":HdBuy" -> ":RemoveCommand": execute()
+        activate ":RemoveCommand"
+        ":RemoveCommand" -> ":ShortList": removeFrom":ShortList"(index)
+        activate ":ShortList"
+        ":ShortList" --> ":RemoveCommand": removedUnit
+        deactivate ":ShortList"
+        alt removedUnit is not null
+            ":RemoveCommand" -> ":TextUi": showRemoved":ShortList"Unit(removedUnit)
+            activate ":TextUi"
+            ":RemoveCommand" <-- ":TextUi"
+            deactivate ":TextUi"
+        else removedUnit is null
+            ":RemoveCommand" -> ":TextUi": showInvalidIndex()
+            activate ":TextUi"
+            ":RemoveCommand" <-- ":TextUi"
+            deactivate ":TextUi"
+        end
+        ":HdBuy" <-- ":RemoveCommand"
+        destroy ":RemoveCommand"
+
+@enduml

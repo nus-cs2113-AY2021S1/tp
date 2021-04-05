@@ -2,28 +2,22 @@
 
 ## Design & implementation
 
-**`HdBuy`** has [`HdBuy`](https://https://github.com/AY2021S2-CS2113-F10-1/tp/blob/master/src/main/java/seedu/hdbuy/HdBuy.java). It is responsible for,
-* At app launch: Loads previously shortlisted resale flats, if any, and starts receiving user commands.
-* At shut down: Clears search history and saves shortlisted resale flats to local file.
-
 ### Architecture
 ![ApplicationArchitecture](diagrams/Architecture.jpg)
 
 The Architecture Diagram given above explains the high-level design of the App.
+
 The App consists of:
 
 * [**`Api`**](#api-component): Retrieves data on resale flats from server.
 * [**`Command`**](#command-component): The command executor.
 * [**`Parser`**](#parser-component): Translate user input to valid commands to be executed.
-* [**`Ui`**](#ui-component): Communicates with user via messages.
-* [**`Data`**](#data-component): Contains shortlist, user input history and temporarily tracks search history.
+* [**`Ui`**](#ui-component): Communicates with user via messages. Contains a sole TextUi class.
+* [**`Data`**](#data-component): Contains shortlist, user input history and temporarily tracks search history. Contains SearchedUnits, ShortList, and UserInput. All of which do not interact with each other.
 * [**`Storage`**](#storage-component): Reads shortlisted units from, and writes shortlisted units to, the text file.
-* [**`Common`**](#common-component): Models of objects used internally.
-
+* [**`Common`**](#common-component): Models of objects used internally. Includes keys, exceptions, logger and the Unit class.
 
 ### Api component
-
-![Structure of the Api Component](diagrams/ApiClass.png)
 
 The `Api`,
 
@@ -31,6 +25,10 @@ The `Api`,
 * creates a connection to remote server containing data on resale flats.
 * formats raw query into valid query to be sent as a GET request.
 * updates all flats matching filter conditions in SearchedUnits class of Data component.
+
+The *Class Diagram* below shows the different classes within Api. The entry point will be ApiRepository, accessed by Command.
+
+<img src="diagrams/ApiClass.png" />
 
 **How classes within Api component interact with each other**
 
@@ -40,12 +38,14 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 ### Storage component
 
-![Structure of the Storage Component](diagrams/StorageClass.png)
-
 The `Storage`,
 
 * handles read and write of units into a local text file.
 * manages data in ShortList.
+
+The *Class Diagram* below shows the different classes within Storage. The entry point will be StorageManager, accessed by Data.
+
+<img src="diagrams/StorageClass.png" />
 
 **How classes within Storage component interact with each other**
 
@@ -53,14 +53,97 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="diagrams/StorageSequence.png" />
 
+### Ui component
+
+The `Ui`,
+
+* Retrieves user input from CLI.
+* Display results to user in CLI.
+
+### Data component
+
+The `Data`,
+
+* Static classes that can be referred by other components to retrieve/modify/store data.
+
 ### Parser component
 
-* Receives the full command line from receiveCommand().
-* Depends on the key command, Parser will activate specific commands.
+The `Parser`,
 
-The diagram below shows how parser determines which command to activate based on the key command.
+* Receives the full user input from receiveCommand().
+* Calls for creation of a Command type object and returns to HdBuy.
 
-![Structure of the Parser Component](diagrams/ParserSequence.png)
+**How other classes interact with Parser component**
+
+The *Sequence Diagram* below shows how the components interact with each other when user enters a command from CLI.
+
+<img src="diagrams/ParserSequence.png" />
+
+The CommandEvaluator class extracts the information from the input and thereafter passes a keyCommand to the Parser class for it to map and retrieve the appropriate Command to the HdBuy.
+
+### Command component
+
+The `Command`,
+
+* Can be executed to carry out tasks.
+
+The *Class Diagram* below shows the different Commands that can be mapped and retrieved by Parser.
+
+<img src="diagrams/CommandClass.png" />
+
+**How classes interact with a Command object during execution**
+
+The *Sequence Diagram* below shows how the components interact with each other when:
+
+1. `FilterCommand` is executed.
+
+<img src="diagrams/FilterCommand.png" />
+
+2. `FindCommand` is executed.
+
+<img src="diagrams/FindCommand.png" />
+
+3. `RemoveCommand` is executed.
+
+<img src="diagrams/RemoveCommand.png" />
+
+4. `SaveCommand` is executed.
+
+<img src="diagrams/SaveCommand.png" />
+
+5. `ShortlistCommand` is executed.
+
+<img src="diagrams/ShortlistCommand.png" />
+ 
+6. `SortCommand` is executed.
+
+<img src="diagrams/SortCommand.png" />
+
+7. `ClearCommand` is executed.
+
+<img src="diagrams/ClearCommand.png" />
+
+8. `CloseCommand` is executed.
+
+<img src="diagrams/CloseCommand.png" />
+
+9. `HelpCommand` is executed.
+
+<img src="diagrams/HelpCommand.png" />
+
+10. `ListCommand` is executed.
+
+<img src="diagrams/ListCommand.png" />
+
+11. `DefaultCommand` is a placeholder command, it will not be executed.
+
+### Common component
+
+The `Common`,
+
+* Utility classes such as keys and exceptions.
+
+
 
 ## Product scope
 ### Target user profile
@@ -75,10 +158,12 @@ Easily find and bookmark resale flats available matching user's preference.
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|user|find units by location, flat type and lease remaining|search for resale flats matching my preferences|
+|v1.0|user|find units by location|search for resale flats near workplace|
+|v1.0|user|find units by flat type|search for resale flats large enough for family|
+|v1.0|user|find units by remaining lease|search for resale flats to be sold again in future|
 |v2.0|new user|see usage instructions|understand all the available commands|
-|v2.0|returning user|bookmark potential flats|refer to them in the future|
-|v2.0|user|sort flats by price, in either ascending or descending order|view flats matching my budget|
+|v2.0|returning user|bookmark potential flats|keep track of potential flats|
+|v2.0|user|sort flats by price, in either ascending or descending order|view flats matching budget|
 
 ## Non-Functional Requirements
 
@@ -86,18 +171,11 @@ Easily find and bookmark resale flats available matching user's preference.
 2.  Requires internet connection.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-## Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 ## Instructions for manual testing
 
 Given below are instructions to test the app manually.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
-</div>
 
 ### Launch and shutdown
 
@@ -178,6 +256,16 @@ testers are expected to do more *exploratory* testing.
    
    2. Incorrect inputs to try: `shortlist x` (where x is any string input)<br>
       Expected: Similar to previous.
+      
+### Sorting results by price in ascending or descending order
+
+10. Sorting results in ascending order 
+
+    1. Test case: `sort asc` to display unit(s) in ascending order of price.
+       
+11. Sorting results in descending order 
+
+    1. Test case: `sort desc` to display unit(s) in descending order of price.
 
 ## Error Handling
 
@@ -207,13 +295,7 @@ to use.
 When user initiates a `filter` command with an invalid filter, the app will return an exception `InvalidFilterException`
 and will list out all the possible filters.
 
-### Sorting results by price in ascending or descending order
-10. Sorting results in ascending order 
-    1. Test case: `sort asc` to display unit(s) in ascending order of price.
-       
-11. Sorting results in descending order 
-      1. Test case: `sort desc` to display unit(s) in descending order of price.
 
-### sortCommand Sequence Diagram
+## Glossary
 
-![Structure of the Storage Component](diagrams/sortCommand_Sequence_Diagram.jpg)
+* **Mainstream OS**: Windows, Linux, Unix, OS-X

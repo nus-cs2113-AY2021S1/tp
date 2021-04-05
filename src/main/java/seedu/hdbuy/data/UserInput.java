@@ -6,17 +6,13 @@ import seedu.hdbuy.common.QueryKey;
 
 public class UserInput {
 
-    private final LinkedHashMap<QueryKey, String> inputs;
+    private static final LinkedHashMap<QueryKey, String> inputs = new LinkedHashMap<>();
 
-    public UserInput() {
-        this.inputs = new LinkedHashMap<>();
-    }
-
-    public LinkedHashMap<QueryKey, String> getInputs() {
+    public static LinkedHashMap<QueryKey, String> getInputs() {
         return inputs;
     }
 
-    public void clearInputs() {
+    public static void clearInputs() {
         inputs.clear();
     }
 }

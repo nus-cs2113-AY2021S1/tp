@@ -1,23 +1,23 @@
 package seedu.hdbuy;
 
 import org.junit.jupiter.api.Test;
-import seedu.hdbuy.common.exception.InvalidParameterException;
-import seedu.hdbuy.parser.CommandEvaluator;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 class HdBuyTest {
 
-    @Test public void parserTest() {
+    @Test public void testMain() {
+        final FileInputStream testInput;
         try {
-            assertEquals(0, CommandEvaluator.extractInfo("filter"));
-        } catch (InvalidParameterException e) {
-            assertEquals("You must enter the correct number of parameters.", e.getMessage());
-        }
-        try {
-            assertEquals(0, CommandEvaluator.extractInfo("filter location"));
-        } catch (InvalidParameterException e) {
-            assertEquals("You must enter the correct number of parameters.", e.getMessage());
+            testInput = new FileInputStream(new File("./text-ui-test/input.txt"));
+            System.setIn(testInput);
+            HdBuy.main(null);
+        } catch (FileNotFoundException e) {
+            fail();
         }
     }
 }

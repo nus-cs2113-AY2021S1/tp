@@ -5,7 +5,7 @@ import seedu.hdbuy.ui.TextUi;
 
 public class ListCommand extends Command {
 
-    @Override public void execute(UserInput userInput) {
-        TextUi.showParameters(userInput.getInputs());
+    @Override public void execute() {
+        TextUi.showParameters(UserInput.getInputs());
     }
 }

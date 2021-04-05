@@ -1,22 +1,31 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-
-[-> ShortList: getShortListedUnits(inputs)
-activate ShortList
+hide footbox
+[-> ":ShortList": getShortListedUnits(inputs)
+activate ":ShortList"
 opt shortlist not initiated
-    ShortList -> StorageManager: read()
-    activate StorageManager
+    ":ShortList" -> ":StorageManager": read()
+    activate ":StorageManager"
     loop text input lines in text file
-        StorageManager -> UnitDecoder: textToUnit(input)
-        activate UnitDecoder
-        StorageManager <-- UnitDecoder: unit
-        deactivate UnitDecoder
+        ":StorageManager" -> ":UnitDecoder": textToUnit(input)
+        activate ":UnitDecoder"
+        ":StorageManager" <-- ":UnitDecoder": unit
+        deactivate ":UnitDecoder"
         opt unit is not null
-            StorageManager -> ShortList: addToShortList(unit)
+            ":StorageManager" -> ":ShortList": addToShortList(unit)
+            activate ":ShortList"
+            loop shortlistedUnits
+            opt unit in shortlist
+            ":ShortList" --> ":StorageManager": do not add unit
+            end
+            end
+            ":ShortList" --> ":StorageManager": add unit
+            deactivate ":ShortList"
         end
     end
-    deactivate StorageManager
+    ":ShortList" <-- ":StorageManager"
+    deactivate ":StorageManager"
 end
-[<-- ShortList: units
-deactivate ShortList
+[<-- ":ShortList": units
+deactivate ":ShortList"
 @enduml

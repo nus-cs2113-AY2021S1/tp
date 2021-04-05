@@ -3,10 +3,9 @@ package seedu.hdbuy.command;
 import java.util.ArrayList;
 
 import seedu.hdbuy.common.Unit;
-import seedu.hdbuy.common.exception.InvalidSortException;
 import seedu.hdbuy.common.exception.NoFlatsException;
+import seedu.hdbuy.common.exception.NoSearchException;
 import seedu.hdbuy.data.SearchedUnits;
-import seedu.hdbuy.data.UserInput;
 import seedu.hdbuy.parser.CommandType;
 import seedu.hdbuy.ui.TextUi;
 
@@ -17,7 +16,7 @@ public class SortCommand extends Command {
         this.criteria = criteria;
     }
 
-    @Override public void execute(UserInput userInput) {
+    @Override public void execute() {
         try {
             switch (criteria) {
             case CommandType.SORT_ASC:
@@ -27,17 +26,14 @@ public class SortCommand extends Command {
                 SearchedUnits.sortMapByPrice(false);
                 break;
             default:
-                throw new InvalidSortException();
+                return;
             }
             ArrayList<Unit> sortedUnits = SearchedUnits.getSearchedUnits();
-            if (sortedUnits.isEmpty()) {
-                throw new NoFlatsException();
-            }
             TextUi.showUnits(sortedUnits);
-        } catch (InvalidSortException e) {
-            TextUi.showInvalidSort(criteria, e);
         } catch (NoFlatsException e) {
             TextUi.showNoFlats(e);
+        } catch (NoSearchException e) {
+            TextUi.showDoSearchPrompt(e);
         }
     }
 }

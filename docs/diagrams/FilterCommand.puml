@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
+activate ":HdBuy"
+        ":HdBuy" -> ":FilterCommand":execute()
+        activate ":FilterCommand"
+        alt criteria = "location"
+            ":FilterCommand" -> ":UserInput": appends LOCATION query with value
+            activate ":UserInput"
+            ":FilterCommand" <-- ":UserInput"
+            deactivate ":UserInput"
+        else criteria = "type"
+            ":FilterCommand" -> ":UserInput": appends TYPE query with value
+            activate ":UserInput"
+            ":FilterCommand" <-- ":UserInput"
+            deactivate ":UserInput"
+        else criteria = "lease_remaining"
+            ":FilterCommand" -> ":UserInput": appends LEASE_REMAINING query with value
+            activate ":UserInput"
+            ":FilterCommand" <-- ":UserInput"
+            deactivate ":UserInput"
+        end
+        ":FilterCommand" -> ":TextUi": showParameters(inputs)
+        activate ":TextUi"
+        ":FilterCommand" <-- ":TextUi"
+        deactivate ":TextUi"
+        ":HdBuy" <-- ":FilterCommand"
+        destroy ":FilterCommand"
+@enduml

@@ -1,0 +1,63 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide circle
+skinparam classAttributeIconSize 0
+!define ABSTRACT &#123;abstract&#125;
+
+abstract "{abstract} \n Command" {
++ execute() : void \t\t ABSTRACT
++ isExit() : boolean
+}
+class ClearCommand {
++ execute() : void
+}
+class CloseCommand {
++ execute() : void
+}
+class DefaultCommand {
+# input : String
++ execute() : void
+}
+class FilterCommand {
+# criteria : String
+# value : String
++ execute() : void
+}
+class FindCommand {
++ execute() : void
+}
+class HelpCommand {
++ execute() : void
+}
+class ListCommand {
++ execute() : void
+}
+class RemoveCommand {
+# index : int
++ execute() : void
+}
+class SaveCommand {
+# index : int
++ execute() : void
+}
+class ShortlistCommand {
++ execute() : void
+}
+class SortCommand {
+# criteria : String
++ execute() : void
+}
+
+"{abstract} \n Command" <|-- ClearCommand
+"{abstract} \n Command" <|-- CloseCommand
+"{abstract} \n Command" <|-- DefaultCommand
+"{abstract} \n Command" <|-- FilterCommand
+"{abstract} \n Command" <|-- FindCommand
+"{abstract} \n Command" <|-- HelpCommand
+"{abstract} \n Command" <|-- ListCommand
+"{abstract} \n Command" <|-- RemoveCommand
+"{abstract} \n Command" <|-- SaveCommand
+"{abstract} \n Command" <|-- ShortlistCommand
+"{abstract} \n Command" <|-- SortCommand
+@enduml

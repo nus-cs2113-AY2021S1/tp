@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
+activate ":HdBuy"
+        ":HdBuy" -> ":ShortListCommand": execute()
+        activate  ":ShortListCommand"
+         ":ShortListCommand" -> ":ShortList": getShortListedUnits()
+        activate ":ShortList"
+        ":ShortList" -->  ":ShortListCommand": units
+        deactivate ":ShortList"
+        opt units is not empty
+             ":ShortListCommand" -> ":TextUi": showShortListUnits(units)
+            activate ":TextUi"
+             ":ShortListCommand" <-- ":TextUi"
+            deactivate ":TextUi"
+        end
+        ":HdBuy" <--  ":ShortListCommand"
+        destroy  ":ShortListCommand"
+@enduml

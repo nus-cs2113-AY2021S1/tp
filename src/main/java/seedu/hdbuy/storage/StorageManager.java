@@ -8,7 +8,10 @@ import java.util.Scanner;
 
 import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.Unit;
+import seedu.hdbuy.common.exception.DuplicateUnitException;
+import seedu.hdbuy.common.exception.MissingFileException;
 import seedu.hdbuy.data.ShortList;
+import seedu.hdbuy.ui.TextUi;
 
 public class StorageManager {
 
@@ -30,8 +33,11 @@ public class StorageManager {
                     }
                 }
             }
-        } catch (IOException | NullPointerException exception) {
+        } catch (IOException e) {
             HdBuyLogger.error("Unable to locate text file at: \" + f.getPath()");
+            TextUi.showMissingFileError(new MissingFileException());
+        } catch (DuplicateUnitException e) {
+            TextUi.showDuplicateUnit(e);
         }
     }
 
@@ -46,8 +52,9 @@ public class StorageManager {
                 }
             }
             fw.close();
-        } catch (IOException | NullPointerException exception) {
+        } catch (IOException e) {
             HdBuyLogger.error("Unable to locate text file at: \" + f.getPath()");
+            TextUi.showMissingFileError(new MissingFileException());
         }
     }
 }
