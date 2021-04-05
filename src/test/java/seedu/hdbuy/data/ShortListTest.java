@@ -36,5 +36,16 @@ class ShortListTest {
         } catch (InvalidIndexException e) {
             fail();
         }
+
+        boolean caughtInvalidIndex = false;
+        try {
+            Unit removedUnit = ShortList.removeFromShortList(1000);
+        } catch (InvalidIndexException e) {
+            caughtInvalidIndex = true;
+        }
+
+        if (!caughtInvalidIndex) {
+            fail();
+        }
     }
 }

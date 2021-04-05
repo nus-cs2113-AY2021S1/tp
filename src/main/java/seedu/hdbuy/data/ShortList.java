@@ -6,7 +6,9 @@ import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.Unit;
 import seedu.hdbuy.common.exception.DuplicateUnitException;
 import seedu.hdbuy.common.exception.InvalidIndexException;
+import seedu.hdbuy.common.exception.MissingFileException;
 import seedu.hdbuy.storage.StorageManager;
+import seedu.hdbuy.ui.TextUi;
 
 public class ShortList {
 
@@ -15,7 +17,11 @@ public class ShortList {
     public static ArrayList<Unit> getShortListedUnits() {
         if (units == null) {
             units = new ArrayList<>();
-            StorageManager.read();
+            try {
+                StorageManager.read();
+            } catch (MissingFileException e) {
+                TextUi.showMissingFileError(e);
+            }
         }
         return units;
     }
@@ -27,7 +33,11 @@ public class ShortList {
             }
         }
         getShortListedUnits().add(unit);
-        StorageManager.write();
+        try {
+            StorageManager.write();
+        } catch (MissingFileException e) {
+            TextUi.showMissingFileError(e);
+        }
     }
 
     public static Unit removeFromShortList(int index) throws InvalidIndexException {
@@ -37,6 +47,9 @@ public class ShortList {
             return removedUnit;
         } catch (IndexOutOfBoundsException e) {
             HdBuyLogger.error("Unable to remove unit from shortlist, invalid index");
+            throw new InvalidIndexException(Integer.toString(index));
+        } catch (MissingFileException e) {
+            TextUi.showMissingFileError(e);
             throw new InvalidIndexException(Integer.toString(index));
         }
     }

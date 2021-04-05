@@ -13,6 +13,7 @@ import seedu.hdbuy.common.exception.InvalidFilterException;
 import seedu.hdbuy.common.exception.InvalidIndexException;
 import seedu.hdbuy.common.exception.InvalidParameterException;
 import seedu.hdbuy.common.exception.InvalidSortException;
+import seedu.hdbuy.common.exception.MissingFileException;
 import seedu.hdbuy.common.exception.NoFlatsException;
 import seedu.hdbuy.common.exception.NoSearchException;
 
@@ -207,6 +208,10 @@ public class TextUi {
     }
 
     public static void showDoSearchPrompt(NoSearchException e) {
+        System.out.println(e.getMessage());
+    }
+
+    public static void showMissingFileError(MissingFileException e) {
         System.out.println(e.getMessage());
     }
 }
