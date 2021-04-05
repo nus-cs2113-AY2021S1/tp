@@ -2,14 +2,12 @@ package seedu.hdbuy.storage;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import seedu.hdbuy.common.Unit;
 import seedu.hdbuy.common.exception.DuplicateUnitException;
-import seedu.hdbuy.common.exception.MissingFileException;
 import seedu.hdbuy.data.ShortList;
 
 import static org.junit.jupiter.api.Assertions.fail;
@@ -28,7 +26,7 @@ class StorageManagerTest {
             Files.delete(Paths.get(filePath));
         } catch (DuplicateUnitException e) {
             // fallthrough
-        } catch (IOException | MissingFileException e) {
+        } catch (IOException e) {
             fail(); // file not created
         }
     }

@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import seedu.hdbuy.common.CommandKey;
 import seedu.hdbuy.common.HdBuyLogger;
-import seedu.hdbuy.common.exception.InvalidIndexException;
+import seedu.hdbuy.common.exception.InvalidInputException;
 import seedu.hdbuy.common.exception.InvalidParameterException;
 
 public class CommandEvaluator {
@@ -15,7 +15,7 @@ public class CommandEvaluator {
     private static final String LOCATION = "location";
     private static final String[] types = new String[]{"executive", "5 room", "4 room", "3 room", "2 room", "1 room"};
 
-    public static CommandKey extractInfo(String fullCommand) throws InvalidParameterException, InvalidIndexException {
+    public static CommandKey extractInfo(String fullCommand) throws InvalidParameterException, InvalidInputException {
         List<String> lineParts = Arrays.asList(fullCommand.split("\\s"));
         // Finds first non-empty input, else throws exception
         String keyCommand = lineParts.stream().filter(text -> !text.isEmpty())
@@ -31,9 +31,24 @@ public class CommandEvaluator {
         case CommandType.REMOVE:
         case CommandType.SAVE:
             return evaluateEditShortlist(commandBody, keyCommand);
+        case CommandType.HELP:
+        case CommandType.FIND:
+        case CommandType.LIST:
+        case CommandType.SHORTLIST:
+        case CommandType.CLEAR:
+        case CommandType.EXIT:
+            return evaluateNonParameterCommands(commandBody, keyCommand);
         default:
-            return new CommandKey(keyCommand);
+            throw new InvalidInputException(fullCommand);
         }
+    }
+
+    private static CommandKey evaluateNonParameterCommands(List<String> commandBody, String keyCommand) throws
+            InvalidParameterException {
+        if (!commandBody.isEmpty()) {
+            throw new InvalidParameterException(keyCommand);
+        }
+        return new CommandKey(keyCommand);
     }
 
     private static CommandKey evaluateFilter(List<String> lineParts, List<String> commandBody, String keyCommand) throws
@@ -65,7 +80,10 @@ public class CommandEvaluator {
     }
 
     private static CommandKey evaluateEditShortlist(List<String> commandBody, String keyCommand) throws
-            InvalidIndexException {
+            InvalidParameterException {
+        if (commandBody.isEmpty()) {
+            throw new InvalidParameterException(keyCommand);
+        }
         String targetIndex = commandBody.stream().filter(text -> !text.isEmpty())
                 .collect(Collectors.joining(" "));
         try {
@@ -73,7 +91,7 @@ public class CommandEvaluator {
             HdBuyLogger.info(String.format("%s : %s", keyCommand, targetIndex));
             return new CommandKey(keyCommand, targetIndex);
         } catch (NumberFormatException e) {
-            throw new InvalidIndexException(targetIndex);
+            throw new InvalidParameterException(keyCommand);
         }
     }
 

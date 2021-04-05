@@ -17,7 +17,7 @@ public class StorageManager {
 
     private static final String filePath = "./shortlist.txt";
 
-    public static void read() throws MissingFileException {
+    public static void read() {
         try {
             File f = new File(filePath);
             if (f.createNewFile()) {
@@ -35,13 +35,13 @@ public class StorageManager {
             }
         } catch (IOException e) {
             HdBuyLogger.error("Unable to locate text file at: \" + f.getPath()");
-            throw new MissingFileException();
+            TextUi.showMissingFileError(new MissingFileException());
         } catch (DuplicateUnitException e) {
             TextUi.showDuplicateUnit(e);
         }
     }
 
-    public static void write() throws MissingFileException {
+    public static void write() {
         ArrayList<Unit> units = ShortList.getShortListedUnits();
         try {
             FileWriter fw = new FileWriter(filePath);
@@ -54,7 +54,7 @@ public class StorageManager {
             fw.close();
         } catch (IOException e) {
             HdBuyLogger.error("Unable to locate text file at: \" + f.getPath()");
-            throw new MissingFileException();
+            TextUi.showMissingFileError(new MissingFileException());
         }
     }
 }

@@ -1,7 +1,5 @@
 package seedu.hdbuy.parser;
 
-import org.junit.Assert;
-
 import seedu.hdbuy.command.ClearCommand;
 import seedu.hdbuy.command.CloseCommand;
 import seedu.hdbuy.command.Command;
@@ -16,64 +14,55 @@ import seedu.hdbuy.command.ShortlistCommand;
 import seedu.hdbuy.command.SortCommand;
 import seedu.hdbuy.common.CommandKey;
 import seedu.hdbuy.common.HdBuyLogger;
-import seedu.hdbuy.common.exception.InvalidIndexException;
+import seedu.hdbuy.common.exception.EmptyInputException;
+import seedu.hdbuy.common.exception.InvalidInputException;
 import seedu.hdbuy.common.exception.InvalidParameterException;
 import seedu.hdbuy.ui.TextUi;
 
 public class Parser {
 
-    public static Command parse(String fullLine) {
-        Command command = new DefaultCommand(fullLine);
-        Assert.assertNotNull(command);
+    public static Command parse(String fullLine) throws EmptyInputException {
+        if (fullLine.trim().isEmpty()) {
+            throw new EmptyInputException();
+        }
         try {
             CommandKey keyCommand = CommandEvaluator.extractInfo(fullLine);
             switch (keyCommand.getCommand()) {
             case CommandType.HELP:
-                command = new HelpCommand();
-                break;
+                return new HelpCommand();
             case CommandType.FILTER:
                 String criteria = keyCommand.getCriteria();
                 String value = keyCommand.getValue();
-                command = new FilterCommand(criteria, value);
-                break;
+                return new FilterCommand(criteria, value);
             case CommandType.FIND:
-                command = new FindCommand();
-                break;
+                return new FindCommand();
             case CommandType.EXIT:
-                command = new CloseCommand();
-                break;
+                return new CloseCommand();
             case CommandType.CLEAR:
-                command = new ClearCommand();
-                break;
+                return new ClearCommand();
             case CommandType.LIST:
-                command = new ListCommand();
-                break;
+                return new ListCommand();
             case CommandType.SHORTLIST:
-                command = new ShortlistCommand();
-                break;
+                return new ShortlistCommand();
             case CommandType.SAVE:
                 int addIndex = Integer.parseInt(keyCommand.getValue());
-                command = new SaveCommand(addIndex);
-                break;
+                return new SaveCommand(addIndex);
             case CommandType.REMOVE:
                 int removeIndex = Integer.parseInt(keyCommand.getValue());
-                command = new RemoveCommand(removeIndex);
-                break;
+                return new RemoveCommand(removeIndex);
             case CommandType.SORT:
                 String sortCriteria = keyCommand.getValue();
-                command = new SortCommand(sortCriteria);
-                break;
+                return new SortCommand(sortCriteria);
             default:
-                TextUi.showInvalidInput(keyCommand.getCommand());
                 break;
             }
         } catch (InvalidParameterException e) {
             HdBuyLogger.error(e.getMessage());
             TextUi.showInvalidParameter(e.getKeyCommand(), e);
-        } catch (InvalidIndexException e) {
+        } catch (InvalidInputException e) {
             HdBuyLogger.error(e.getMessage());
-            TextUi.showInvalidIndex(e);
+            TextUi.showInvalidInputError(e);
         }
-        return command;
+        return new DefaultCommand();
     }
 }
