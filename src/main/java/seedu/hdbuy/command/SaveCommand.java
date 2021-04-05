@@ -2,6 +2,7 @@ package seedu.hdbuy.command;
 
 import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.Unit;
+import seedu.hdbuy.common.exception.DuplicateUnitException;
 import seedu.hdbuy.data.SearchedUnits;
 import seedu.hdbuy.data.ShortList;
 import seedu.hdbuy.data.UserInput;
@@ -20,8 +21,12 @@ public class SaveCommand extends Command {
         if (targetUnit == null) {
             return;
         }
-        ShortList.addToShortList(targetUnit);
-        HdBuyLogger.info("Saved unit to shortlist: " + targetUnit.toString());
-        TextUi.showSavedShortlistUnit(targetUnit.toString());
+        try {
+            ShortList.addToShortList(targetUnit);
+            HdBuyLogger.info("Saved unit to shortlist: " + targetUnit.toString());
+            TextUi.showSavedShortlistUnit(targetUnit.toString());
+        } catch (DuplicateUnitException e) {
+            TextUi.showDuplicateUnit(e);
+        }
     }
 }

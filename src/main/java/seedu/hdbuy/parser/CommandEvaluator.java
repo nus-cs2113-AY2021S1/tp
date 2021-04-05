@@ -30,7 +30,7 @@ public class CommandEvaluator {
             if (lineParts.length < 2) {
                 throw new InvalidParameterException(keyCommand);
             }
-            List<String> rawSortValue = new ArrayList<String>(Arrays.asList(lineParts).subList(1, lineParts.length));
+            List<String> rawSortValue = new ArrayList<>(Arrays.asList(lineParts).subList(1, lineParts.length));
             rawSortValue.removeAll(Collections.singleton(""));
             HdBuyLogger.info(String.format("%s : %s", keyCommand, rawSortValue.toString()));
             String sortValue = rawSortValue.get(0);
@@ -43,7 +43,7 @@ public class CommandEvaluator {
             if (lineParts.length < 2) {
                 throw new InvalidParameterException(keyCommand);
             }
-            List<String> editRawValue = new ArrayList<String>(Arrays.asList(lineParts).subList(1, lineParts.length));
+            List<String> editRawValue = new ArrayList<>(Arrays.asList(lineParts).subList(1, lineParts.length));
             editRawValue.removeAll(Collections.singleton(""));
             HdBuyLogger.info(String.format("%s : %s", keyCommand, editRawValue.toString()));
             String editValue = editRawValue.get(0);
@@ -63,10 +63,7 @@ public class CommandEvaluator {
     private static boolean isValidIndex(String input) {
         try {
             int index = Integer.parseInt(input);
-            if (index <= 99 && index >= 1) {
-                return true;
-            }
-            return false;
+            return index <= 100 && index >= 1;
         } catch (NumberFormatException e) {
             return false;
         }

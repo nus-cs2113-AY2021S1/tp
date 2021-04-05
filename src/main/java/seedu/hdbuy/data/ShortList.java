@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.Unit;
+import seedu.hdbuy.common.exception.DuplicateUnitException;
 import seedu.hdbuy.storage.StorageManager;
 
 public class ShortList {
@@ -18,7 +19,12 @@ public class ShortList {
         return units;
     }
 
-    public static void addToShortList(Unit unit) {
+    public static void addToShortList(Unit unit) throws DuplicateUnitException {
+        for (Unit shortlisted : getShortListedUnits()) {
+            if (shortlisted.getId() == unit.getId()) {
+                throw new DuplicateUnitException();
+            }
+        }
         getShortListedUnits().add(unit);
         StorageManager.write();
     }
