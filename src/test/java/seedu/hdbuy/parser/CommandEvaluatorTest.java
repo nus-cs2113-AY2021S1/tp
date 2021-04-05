@@ -19,7 +19,6 @@ class CommandEvaluatorTest {
         List<String> testInputs = new ArrayList<String>(Arrays.asList(
                 "filter location woodlands",
                 "filter     location    woodlands",
-                "filter     location    woodlands"   ,
                 "filter location ang mo kio",
                 "filter location   ang    mo    kio",
                 "sort asc",
