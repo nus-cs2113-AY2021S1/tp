@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import seedu.hdbuy.common.QueryKey;
 import seedu.hdbuy.common.Unit;
+import seedu.hdbuy.common.exception.DuplicateUnitException;
 import seedu.hdbuy.common.exception.EmptyParameterException;
 import seedu.hdbuy.common.exception.InvalidFilterException;
 import seedu.hdbuy.common.exception.InvalidIndexException;
@@ -196,5 +197,9 @@ public class TextUi {
 
     public static void showInvalidSort(String criteria, InvalidSortException e) {
         System.out.println(criteria + e.getMessage());
+    }
+
+    public static void showDuplicateUnit(DuplicateUnitException e) {
+        System.out.println(e.getMessage());
     }
 }

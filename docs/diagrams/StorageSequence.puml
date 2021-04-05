@@ -14,7 +14,12 @@ opt shortlist not initiated
         opt unit is not null
             ":StorageManager" -> ":ShortList": addToShortList(unit)
             activate ":ShortList"
-            ":ShortList" --> ":StorageManager"
+            loop shortlistedUnits
+            opt unit in shortlist
+            ":ShortList" --> ":StorageManager": do not add unit
+            end
+            end
+            ":ShortList" --> ":StorageManager": add unit
             deactivate ":ShortList"
         end
     end
