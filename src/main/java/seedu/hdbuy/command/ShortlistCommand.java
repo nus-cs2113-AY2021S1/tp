@@ -18,7 +18,7 @@ public class ShortlistCommand extends Command {
                 TextUi.showShortListUnits(units);
             }
         } catch (NoFlatsException e) {
-            TextUi.showNoFlats(e);
+            TextUi.showExceptionMessage(e);
         }
     }
 }

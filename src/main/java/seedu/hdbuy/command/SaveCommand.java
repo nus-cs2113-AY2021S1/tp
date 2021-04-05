@@ -23,12 +23,8 @@ public class SaveCommand extends Command {
             ShortList.addToShortList(targetUnit);
             HdBuyLogger.info("Saved unit to shortlist: " + targetUnit.toString());
             TextUi.showSavedShortlistUnit(targetUnit.toString());
-        } catch (DuplicateUnitException e) {
-            TextUi.showDuplicateUnit(e);
-        } catch (NoSearchException e) {
-            TextUi.showDoSearchPrompt(e);
-        } catch (InvalidIndexException e) {
-            TextUi.showInvalidIndex(e);
+        } catch (DuplicateUnitException | NoSearchException | InvalidIndexException e) {
+            TextUi.showExceptionMessage(e);
         }
     }
 }

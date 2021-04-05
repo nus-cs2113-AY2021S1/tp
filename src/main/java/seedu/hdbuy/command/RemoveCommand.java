@@ -21,7 +21,7 @@ public class RemoveCommand extends Command {
             TextUi.showRemovedShortlistUnit(removedUnit.toString());
         } catch (InvalidIndexException e) {
             HdBuyLogger.error("Unable to remove at index");
-            TextUi.showInvalidIndex(e);
+            TextUi.showExceptionMessage(e);
         }
     }
 }

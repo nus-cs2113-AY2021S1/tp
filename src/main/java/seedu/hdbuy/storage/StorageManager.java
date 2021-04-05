@@ -34,10 +34,9 @@ public class StorageManager {
                 }
             }
         } catch (IOException e) {
-            HdBuyLogger.error("Unable to locate text file at: \" + f.getPath()");
-            TextUi.showMissingFileError(new MissingFileException());
+            TextUi.showExceptionMessage(new MissingFileException(filePath));
         } catch (DuplicateUnitException e) {
-            TextUi.showDuplicateUnit(e);
+            TextUi.showExceptionMessage(e);
         }
     }
 
@@ -53,8 +52,7 @@ public class StorageManager {
             }
             fw.close();
         } catch (IOException e) {
-            HdBuyLogger.error("Unable to locate text file at: \" + f.getPath()");
-            TextUi.showMissingFileError(new MissingFileException());
+            TextUi.showExceptionMessage(new MissingFileException(filePath));
         }
     }
 }

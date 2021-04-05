@@ -35,10 +35,8 @@ public class FindCommand extends Command {
             }
         } catch (EmptyParameterException e) {
             TextUi.showEmptyParameter(e);
-        } catch (NoFlatsException e) {
-            TextUi.showNoFlats(e);
-        } catch (NoSearchException e) {
-            TextUi.showDoSearchPrompt(e);
+        } catch (NoFlatsException | NoSearchException e) {
+            TextUi.showExceptionMessage(e);
         }
     }
 }
