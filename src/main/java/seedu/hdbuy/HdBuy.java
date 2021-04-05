@@ -13,7 +13,7 @@ public class HdBuy {
      */
 
     public static void main(String[] args) {
-        HdBuyLogger.enableLogger(false);
+        HdBuyLogger.enableLogger(true);
         HdBuyLogger.info("Starting process");
         UserInput userInput = UserInput.getInstance();
         TextUi.showWelcome();
