@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class HdBuyTest {
 
-    @Test public void testMain(){
+    @Test public void testMain() {
         final FileInputStream testInput;
         try {
             testInput = new FileInputStream(new File("./text-ui-test/input.txt"));
