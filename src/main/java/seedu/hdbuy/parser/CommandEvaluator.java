@@ -55,7 +55,7 @@ public class CommandEvaluator {
         return new CommandKey(filterCriteria, filterValue, keyCommand);
     }
 
-    private static CommandKey evaluateSort(List<String> lineParts, String keyCommand) throws InvalidParameterException{
+    private static CommandKey evaluateSort(List<String> lineParts, String keyCommand) throws InvalidParameterException {
         String sortCommand = lineParts.stream().filter(text -> !text.isEmpty())
                 .collect(Collectors.joining(" "));
         if (!sortCommand.equals(String.format("%s %s", CommandType.SORT, CommandType.SORT_ASC))
