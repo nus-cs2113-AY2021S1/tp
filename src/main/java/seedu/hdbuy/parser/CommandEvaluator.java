@@ -13,6 +13,10 @@ import seedu.hdbuy.common.exception.InvalidIndexException;
 import seedu.hdbuy.common.exception.InvalidParameterException;
 
 public class CommandEvaluator {
+    private static final String LEASE_REMAINING = "lease_remaining";
+    private static final String TYPE = "type";
+    private static final String LOCATION = "location";
+    private static final String[] types = new String[]{"executive", "5 room", "4 room", "3 room", "2 room", "1 room"};
 
     public static CommandKey extractInfo(String fullCommand) throws InvalidParameterException, InvalidIndexException {
         List<String> lineParts = Arrays.asList(fullCommand.split("\\s"));
@@ -54,8 +58,8 @@ public class CommandEvaluator {
     private static CommandKey evaluateSort(List<String> lineParts, String keyCommand) throws InvalidParameterException{
         String sortCommand = lineParts.stream().filter(text -> !text.isEmpty())
                 .collect(Collectors.joining(" "));
-        if (!sortCommand.equals(String.format("%s %s", CommandType.SORT, CommandType.SORT_ASC)) &&
-                !sortCommand.equals(String.format("%s %s", CommandType.SORT, CommandType.SORT_DESC))) {
+        if (!sortCommand.equals(String.format("%s %s", CommandType.SORT, CommandType.SORT_ASC))
+                && !sortCommand.equals(String.format("%s %s", CommandType.SORT, CommandType.SORT_DESC))) {
             throw new InvalidParameterException(keyCommand);
         }
         String sortValue = sortCommand.split("\\s")[1];
@@ -77,27 +81,23 @@ public class CommandEvaluator {
     }
 
     private static boolean isValidFilterParameter(String criteria, String input) {
-        final String LEASE_REMAINING = "lease_remaining";
-        final String TYPE = "type";
-        final String LOCATION = "location";
-        String[] types = new String[]{"executive", "5 room", "4 room", "3 room", "2 room", "1 room"};
         if (input.isEmpty()) {
             return false;
         }
         switch (criteria) {
-            case LEASE_REMAINING:
-                try {
-                    int index = Integer.parseInt(input);
-                    return index <= 99 && index >= 0;
-                } catch (NumberFormatException e) {
-                    return false;
-                }
-            case TYPE:
-                return Arrays.asList(types).contains(input);
-            case LOCATION:
-                return true;
-            default:
+        case LEASE_REMAINING:
+            try {
+                int index = Integer.parseInt(input);
+                return index <= 99 && index >= 0;
+            } catch (NumberFormatException e) {
                 return false;
+            }
+        case TYPE:
+            return Arrays.asList(types).contains(input);
+        case LOCATION:
+            return true;
+        default:
+            return false;
         }
     }
 }
