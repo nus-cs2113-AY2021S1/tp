@@ -7,11 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.hdbuy.common.CommandKey;
-import seedu.hdbuy.common.HdBuyLogger;
-import seedu.hdbuy.common.Unit;
-import seedu.hdbuy.common.exception.InvalidIndexException;
-import seedu.hdbuy.common.exception.InvalidParameterException;
-import seedu.hdbuy.storage.UnitDecoder;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -19,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 class CommandEvaluatorTest {
 
     @Test void filterNegativeTest() {
-        List<String> testInputs = new ArrayList<String>(Arrays.asList(
+        List<String> testInputs = new ArrayList<>(Arrays.asList(
                 "filter location",
                 "filter",
                 "filter type 7 room",
@@ -50,7 +45,7 @@ class CommandEvaluatorTest {
     }
 
     @Test void filterPositiveTest() {
-        List<String> testInputs = new ArrayList<String>(Arrays.asList(
+        List<String> testInputs = new ArrayList<>(Arrays.asList(
                 "filter location ang mo kio",
                 "  filter    location   ang   mo   kio   ",
                 "filter location bishan",
@@ -72,7 +67,7 @@ class CommandEvaluatorTest {
     }
 
     @Test void sortNegativeTest() {
-        List<String> testInputs = new ArrayList<String>(Arrays.asList(
+        List<String> testInputs = new ArrayList<>(Arrays.asList(
                 "sort",
                 "   sort   ",
                 "sort gg",
@@ -85,7 +80,7 @@ class CommandEvaluatorTest {
     }
 
     @Test void sortPositiveTest() {
-        List<String> testInputs = new ArrayList<String>(Arrays.asList(
+        List<String> testInputs = new ArrayList<>(Arrays.asList(
                 "sort asc",
                 "   sort  asc   ",
                 "sort desc",
@@ -95,7 +90,7 @@ class CommandEvaluatorTest {
     }
 
     @Test void editPositiveTest() {
-        List<String> testInputs = new ArrayList<String>(Arrays.asList(
+        List<String> testInputs = new ArrayList<>(Arrays.asList(
                 "save 1",
                 "   save  1   ",
                 "remove 1",
@@ -105,7 +100,7 @@ class CommandEvaluatorTest {
     }
 
     @Test void editNegativeTest() {
-        List<String> testInputs = new ArrayList<String>(Arrays.asList(
+        List<String> testInputs = new ArrayList<>(Arrays.asList(
                 "save qowidno",
                 "   save  kqwdbqk  ",
                 "remove qwdionwq",
@@ -138,7 +133,7 @@ class CommandEvaluatorTest {
     private void positiveTest(List<String> testInputs) {
         for (String input : testInputs) {
             try {
-                CommandKey output = CommandEvaluator.extractInfo(input);
+                CommandEvaluator.extractInfo(input);
             } catch (Exception e) {
                 fail();
             }
