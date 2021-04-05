@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import seedu.hdbuy.common.CommandKey;
 import seedu.hdbuy.common.HdBuyLogger;
+import seedu.hdbuy.common.exception.InvalidInputException;
 import seedu.hdbuy.common.exception.InvalidParameterException;
 
 public class CommandEvaluator {
@@ -14,7 +15,7 @@ public class CommandEvaluator {
     private static final String LOCATION = "location";
     private static final String[] types = new String[]{"executive", "5 room", "4 room", "3 room", "2 room", "1 room"};
 
-    public static CommandKey extractInfo(String fullCommand) throws InvalidParameterException {
+    public static CommandKey extractInfo(String fullCommand) throws InvalidParameterException, InvalidInputException {
         List<String> lineParts = Arrays.asList(fullCommand.split("\\s"));
         // Finds first non-empty input, else throws exception
         String keyCommand = lineParts.stream().filter(text -> !text.isEmpty())
@@ -38,7 +39,7 @@ public class CommandEvaluator {
         case CommandType.EXIT:
             return evaluateNonParameterCommands(commandBody, keyCommand);
         default:
-            throw new InvalidParameterException(fullCommand);
+            throw new InvalidInputException(fullCommand);
         }
     }
 

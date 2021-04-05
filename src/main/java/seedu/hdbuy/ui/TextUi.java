@@ -12,6 +12,7 @@ import seedu.hdbuy.common.exception.EmptyInputException;
 import seedu.hdbuy.common.exception.EmptyParameterException;
 import seedu.hdbuy.common.exception.GatewayException;
 import seedu.hdbuy.common.exception.InvalidIndexException;
+import seedu.hdbuy.common.exception.InvalidInputException;
 import seedu.hdbuy.common.exception.InvalidParameterException;
 import seedu.hdbuy.common.exception.MissingFileException;
 import seedu.hdbuy.common.exception.NoFlatsException;
@@ -45,6 +46,9 @@ public class TextUi {
     }
 
     public static String readCommand() {
+        if (!in.hasNextLine()) {
+            return "";
+        }
         return in.nextLine();
     }
 
@@ -194,6 +198,10 @@ public class TextUi {
     }
 
     public static void showEmptyInputError(EmptyInputException e) {
+        System.out.println(e.getMessage());
+    }
+
+    public static void showInvalidInputError(InvalidInputException e) {
         System.out.println(e.getMessage());
     }
 

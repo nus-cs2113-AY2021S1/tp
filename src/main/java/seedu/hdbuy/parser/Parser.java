@@ -15,6 +15,7 @@ import seedu.hdbuy.command.SortCommand;
 import seedu.hdbuy.common.CommandKey;
 import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.exception.EmptyInputException;
+import seedu.hdbuy.common.exception.InvalidInputException;
 import seedu.hdbuy.common.exception.InvalidParameterException;
 import seedu.hdbuy.ui.TextUi;
 
@@ -58,6 +59,9 @@ public class Parser {
         } catch (InvalidParameterException e) {
             HdBuyLogger.error(e.getMessage());
             TextUi.showInvalidParameter(e.getKeyCommand(), e);
+        } catch (InvalidInputException e) {
+            HdBuyLogger.error(e.getMessage());
+            TextUi.showInvalidInputError(e);
         }
         return new DefaultCommand();
     }
