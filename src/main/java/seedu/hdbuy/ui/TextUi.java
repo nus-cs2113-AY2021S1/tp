@@ -46,10 +46,10 @@ public class TextUi {
     }
 
     public static String readCommand() {
-        if (!in.hasNextLine()) {
-            return "";
+        if (in.hasNextLine()) {
+            return in.nextLine();
         }
-        return in.nextLine();
+        return "";
     }
 
     public static void showHelp() {
