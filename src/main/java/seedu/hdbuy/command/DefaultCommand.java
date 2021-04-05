@@ -1,7 +1,5 @@
 package seedu.hdbuy.command;
 
-import seedu.hdbuy.data.UserInput;
-
 /**
  * This command is used when the user inputs an invalid command.
  * The user will be notified of their wrong input.]

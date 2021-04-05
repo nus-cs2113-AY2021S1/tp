@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import seedu.hdbuy.common.Unit;
 import seedu.hdbuy.common.exception.NoFlatsException;
 import seedu.hdbuy.data.ShortList;
-import seedu.hdbuy.data.UserInput;
 import seedu.hdbuy.ui.TextUi;
 
 public class ShortlistCommand extends Command {
