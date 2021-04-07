@@ -3,7 +3,7 @@
 ## Design & implementation
 
 ### Architecture
-![ApplicationArchitecture](diagrams/Architecture.jpg)
+![ApplicationArchitecture](diagrams/Architecture.png)
 
 The Architecture Diagram given above explains the high-level design of the App.
 
@@ -19,9 +19,9 @@ The App consists of:
 
 ### Api component
 
-The `Api`,
+The `Api`
 
-* receives a raw query from Find Command, query will contain filter conditions.
+* receives a raw query from Find Command, which will contain filter conditions.
 * creates a connection to remote server containing data on resale flats.
 * formats raw query into valid query to be sent as a GET request.
 * updates all flats matching filter conditions in SearchedUnits class of Data component.
@@ -38,7 +38,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 ### Storage component
 
-The `Storage`,
+The `Storage`
 
 * handles read and write of units into a local text file.
 * manages data in ShortList.
@@ -55,20 +55,20 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 ### Ui component
 
-The `Ui`,
+The `Ui`
 
 * Retrieves user input from CLI.
 * Display results to user in CLI.
 
 ### Data component
 
-The `Data`,
+The `Data`
 
 * Static classes that can be referred by other components to retrieve/modify/store data.
 
 ### Parser component
 
-The `Parser`,
+The `Parser`
 
 * Receives the full user input from receiveCommand().
 * Calls for creation of a Command type object and returns to HdBuy.
@@ -83,7 +83,7 @@ The CommandEvaluator class extracts the information from the input and thereafte
 
 ### Command component
 
-The `Command`,
+The `Command`
 
 * Can be executed to carry out tasks.
 
@@ -139,7 +139,7 @@ The *Sequence Diagram* below shows how the components interact with each other w
 
 ### Common component
 
-The `Common`,
+The `Common`
 
 * Utility classes such as keys and exceptions.
 
