@@ -87,9 +87,10 @@ The `Command`
 
 * Can be executed to carry out tasks.
 
-The *Class Diagram* below shows the different Commands that can be mapped and retrieved by Parser.
+The *Class Diagrams (broken into 2 diagrams for easy viewing)* below shows the different Commands that can be mapped and retrieved by Parser.
 
 <img src="diagrams/CommandClass.png" />
+<img src="diagrams/CommandClass2.png" />
 
 **How classes interact with a Command object during execution**
 

@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide circle
+skinparam classAttributeIconSize 0
+!define ABSTRACT &#123;abstract&#125;
+
+abstract "{abstract} \n Command" {
++ execute() : void \t\t ABSTRACT
++ isExit() : boolean
+}
+class HelpCommand {
++ execute() : void
+}
+class ListCommand {
++ execute() : void
+}
+class RemoveCommand {
+# index : int
++ execute() : void
+}
+class SaveCommand {
+# index : int
++ execute() : void
+}
+class ShortlistCommand {
++ execute() : void
+}
+class SortCommand {
+# criteria : String
++ execute() : void
+}
+
+"{abstract} \n Command" <|-- HelpCommand
+"{abstract} \n Command" <|-- ListCommand
+"{abstract} \n Command" <|-- RemoveCommand
+"{abstract} \n Command" <|-- SaveCommand
+"{abstract} \n Command" <|-- ShortlistCommand
+"{abstract} \n Command" <|-- SortCommand
+@enduml
