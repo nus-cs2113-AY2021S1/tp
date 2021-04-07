@@ -157,14 +157,14 @@ Easily find and bookmark resale flats available matching user's preference.
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|user|find units by location|search for resale flats near workplace|
-|v1.0|user|find units by flat type|search for resale flats large enough for family|
-|v1.0|user|find units by remaining lease|search for resale flats to be sold again in future|
-|v2.0|new user|see usage instructions|understand all the available commands|
-|v2.0|returning user|bookmark potential flats|keep track of potential flats|
-|v2.0|user|sort flats by price, in either ascending or descending order|view flats matching budget|
+|Version| As a ... | I want to ... | So that I can ...| Priority|
+|--------|----------|---------------|------------------|------------------|
+|v1.0|user|find units by location|search for resale flats near workplace| Must have|
+|v1.0|user|find units by flat type|search for resale flats large enough for family| Must have|
+|v1.0|user|find units by remaining lease|search for resale flats to be sold again in future| Must have|
+|v2.0|new user|see usage instructions|understand all the available commands| Nice to have|
+|v2.0|returning user|bookmark potential flats|keep track of potential flats| Nice to have|
+|v2.0|user|sort flats by price, in either ascending or descending order|view flats matching budget| Nice to have|
 
 ## Non-Functional Requirements
 
