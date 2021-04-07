@@ -93,45 +93,45 @@ The *Class Diagram* below shows the different Commands that can be mapped and re
 
 **How classes interact with a Command object during execution**
 
-The *Sequence Diagram* below shows how the components interact with each other when:
+The *Sequence Diagram* below shows how the components interact with each other when the respective commands are executed:
 
-1. `FilterCommand` is executed.
+1. `FilterCommand`
 
 <img src="diagrams/FilterCommand.png" />
 
-2. `FindCommand` is executed.
+2. `FindCommand`
 
 <img src="diagrams/FindCommand.png" />
 
-3. `RemoveCommand` is executed.
+3. `RemoveCommand`
 
 <img src="diagrams/RemoveCommand.png" />
 
-4. `SaveCommand` is executed.
+4. `SaveCommand`
 
 <img src="diagrams/SaveCommand.png" />
 
-5. `ShortlistCommand` is executed.
+5. `ShortlistCommand`
 
 <img src="diagrams/ShortlistCommand.png" />
  
-6. `SortCommand` is executed.
+6. `SortCommand`
 
 <img src="diagrams/SortCommand.png" />
 
-7. `ClearCommand` is executed.
+7. `ClearCommand`
 
 <img src="diagrams/ClearCommand.png" />
 
-8. `CloseCommand` is executed.
+8. `CloseCommand`
 
 <img src="diagrams/CloseCommand.png" />
 
-9. `HelpCommand` is executed.
+9. `HelpCommand`
 
 <img src="diagrams/HelpCommand.png" />
 
-10. `ListCommand` is executed.
+10. `ListCommand`
 
 <img src="diagrams/ListCommand.png" />
 

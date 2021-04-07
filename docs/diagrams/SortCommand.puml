@@ -2,12 +2,18 @@
 'https://plantuml.com/sequence-diagram
 hide footbox
 activate ":HdBuy"
-":HdBuy" -> ":ListCommand": execute()
-        activate ":ListCommand"
-        ":ListCommand" -> ":TextUi": showParameters(userInputs)
-        activate ":TextUi"
-        ":ListCommand" <-- ":TextUi"
-        deactivate ":TextUi"
-        ":HdBuy" <-- ":ListCommand"
-        destroy ":ListCommand"
+":HdBuy" -> ":SortCommand": execute()
+activate ":SortCommand"
+        alt asc
+            ":SortCommand" -> ":SearchedUnits": sortMapByPrice(true)
+            activate ":SearchedUnits"
+            ":SortCommand" <-- ":SearchedUnits": returns sorted listings in ascending order wrt price
+            deactivate ":SearchedUnits"
+        else desc
+            ":SortCommand" -> ":SearchedUnits": sortMapByPrice(false)
+            activate ":SearchedUnits"
+            ":SortCommand" <-- ":SearchedUnits": returns sorted listings in descending order wrt price
+            deactivate ":SearchedUnits"
+
+        end
 @enduml

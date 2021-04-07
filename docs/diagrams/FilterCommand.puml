@@ -26,4 +26,5 @@ activate ":HdBuy"
         deactivate ":TextUi"
         ":HdBuy" <-- ":FilterCommand"
         destroy ":FilterCommand"
+
 @enduml
