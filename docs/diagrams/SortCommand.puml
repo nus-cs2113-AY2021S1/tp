@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
+activate ":HdBuy"
+":HdBuy" -> ":SortCommand": execute()
+activate ":SortCommand"
+        alt asc
+            ":SortCommand" -> ":SearchedUnits": sortMapByPrice(true)
+            activate ":SearchedUnits"
+            ":SortCommand" <-- ":SearchedUnits": returns sorted listings in ascending order wrt price
+            deactivate ":SearchedUnits"
+        else desc
+            ":SortCommand" -> ":SearchedUnits": sortMapByPrice(false)
+            activate ":SearchedUnits"
+            ":SortCommand" <-- ":SearchedUnits": returns sorted listings in descending order wrt price
+        end
+        deactivate ":SearchedUnits"
+        destroy ":SortCommand"
+@enduml

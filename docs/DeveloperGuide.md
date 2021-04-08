@@ -3,7 +3,7 @@
 ## Design & implementation
 
 ### Architecture
-![ApplicationArchitecture](diagrams/Architecture.jpg)
+![ApplicationArchitecture](diagrams/Architecture.png)
 
 The Architecture Diagram given above explains the high-level design of the App.
 
@@ -19,9 +19,9 @@ The App consists of:
 
 ### Api component
 
-The `Api`,
+The `Api`
 
-* receives a raw query from Find Command, query will contain filter conditions.
+* receives a raw query from Find Command, which will contain filter conditions.
 * creates a connection to remote server containing data on resale flats.
 * formats raw query into valid query to be sent as a GET request.
 * updates all flats matching filter conditions in SearchedUnits class of Data component.
@@ -38,7 +38,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 ### Storage component
 
-The `Storage`,
+The `Storage`
 
 * handles read and write of units into a local text file.
 * manages data in ShortList.
@@ -55,20 +55,20 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 ### Ui component
 
-The `Ui`,
+The `Ui`
 
 * Retrieves user input from CLI.
 * Display results to user in CLI.
 
 ### Data component
 
-The `Data`,
+The `Data`
 
 * Static classes that can be referred by other components to retrieve/modify/store data.
 
 ### Parser component
 
-The `Parser`,
+The `Parser`
 
 * Receives the full user input from receiveCommand().
 * Calls for creation of a Command type object and returns to HdBuy.
@@ -83,55 +83,56 @@ The CommandEvaluator class extracts the information from the input and thereafte
 
 ### Command component
 
-The `Command`,
+The `Command`
 
 * Can be executed to carry out tasks.
 
-The *Class Diagram* below shows the different Commands that can be mapped and retrieved by Parser.
+The *Class Diagrams (broken into 2 diagrams for easy viewing)* below shows the different Commands that can be mapped and retrieved by Parser.
 
 <img src="diagrams/CommandClass.png" />
+<img src="diagrams/CommandClass2.png" />
 
 **How classes interact with a Command object during execution**
 
-The *Sequence Diagram* below shows how the components interact with each other when:
+The *Sequence Diagram* below shows how the components interact with each other when the respective commands are executed:
 
-1. `FilterCommand` is executed.
+1. `FilterCommand`
 
 <img src="diagrams/FilterCommand.png" />
 
-2. `FindCommand` is executed.
+2. `FindCommand`
 
 <img src="diagrams/FindCommand.png" />
 
-3. `RemoveCommand` is executed.
+3. `RemoveCommand`
 
 <img src="diagrams/RemoveCommand.png" />
 
-4. `SaveCommand` is executed.
+4. `SaveCommand`
 
 <img src="diagrams/SaveCommand.png" />
 
-5. `ShortlistCommand` is executed.
+5. `ShortlistCommand`
 
 <img src="diagrams/ShortlistCommand.png" />
  
-6. `SortCommand` is executed.
+6. `SortCommand`
 
 <img src="diagrams/SortCommand.png" />
 
-7. `ClearCommand` is executed.
+7. `ClearCommand`
 
 <img src="diagrams/ClearCommand.png" />
 
-8. `CloseCommand` is executed.
+8. `CloseCommand`
 
 <img src="diagrams/CloseCommand.png" />
 
-9. `HelpCommand` is executed.
+9. `HelpCommand`
 
 <img src="diagrams/HelpCommand.png" />
 
-10. `ListCommand` is executed.
+10. `ListCommand`
 
 <img src="diagrams/ListCommand.png" />
 
@@ -139,7 +140,7 @@ The *Sequence Diagram* below shows how the components interact with each other w
 
 ### Common component
 
-The `Common`,
+The `Common`
 
 * Utility classes such as keys and exceptions.
 
@@ -156,14 +157,14 @@ Easily find and bookmark resale flats available matching user's preference.
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|user|find units by location|search for resale flats near workplace|
-|v1.0|user|find units by flat type|search for resale flats large enough for family|
-|v1.0|user|find units by remaining lease|search for resale flats to be sold again in future|
-|v2.0|new user|see usage instructions|understand all the available commands|
-|v2.0|returning user|bookmark potential flats|keep track of potential flats|
-|v2.0|user|sort flats by price, in either ascending or descending order|view flats matching budget|
+|Version| As a ... | I want to ... | So that I can ...| Priority|
+|--------|----------|---------------|------------------|------------------|
+|v1.0|user|find units by location|search for resale flats near workplace| Must have|
+|v1.0|user|find units by flat type|search for resale flats large enough for family| Must have|
+|v1.0|user|find units by remaining lease|search for resale flats to be sold again in future| Must have|
+|v2.0|new user|see usage instructions|understand all the available commands| Nice to have|
+|v2.0|returning user|bookmark potential flats|keep track of potential flats| Nice to have|
+|v2.0|user|sort flats by price, in either ascending or descending order|view flats matching budget| Nice to have|
 
 ## Non-Functional Requirements
 
