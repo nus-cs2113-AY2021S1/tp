@@ -1,9 +1,5 @@
 package seedu.hdbuy.ui;
 
-import seedu.hdbuy.common.QueryKey;
-
-import java.util.Arrays;
-
 public class TermDefinition {
     public static String getDefinition(String key) {
         String definition = "";
@@ -18,6 +14,8 @@ public class TermDefinition {
             definition = "Search for units with the current filter conditions";
             break;
         case "filter":
+            // Fallthrough
+        case "filter <attribute> <value>":
             definition = "Add a filter condition. eg: filter location woodlands";
             break;
         case "help":
@@ -27,15 +25,21 @@ public class TermDefinition {
             definition = "Show all currently set filter condition to filter units matching preferences";
             break;
         case "remove":
+            // Fallthrough
+        case "remove <index>":
             definition = "Remove the unit at the inputted index from the shortlist";
             break;
         case "save":
+            // Fallthrough
+        case "save <index>":
             definition = "Add the unit at the inputted index to the shortlist";
             break;
         case "shortlist":
             definition = "Show all units in the shortlist";
             break;
         case "sort":
+            // Fallthrough
+        case "sort <direction>":
             definition = "Sort search results in ascending(asc) or descending(desc) order";
             break;
         default:
@@ -58,7 +62,8 @@ public class TermDefinition {
             example = "FIND command does not need any parameters.";
             break;
         case "filter":
-            example = "Example: \"filter location clementi\"\n" + "Example: \"filter type 4 room\", can be any of X "
+            example = "\"Filter types: \" + Arrays.asList(QueryKey.values())\n" + "Example: \"filter location "
+                    + "clementi\"\n" + "Example: \"filter type 4 room\", can be any of X "
                     + "room (X = 1 - 5) or executive"
                     + "Example: \"filter lease_remaining 90\", can be any whole number from 0 - 99";
             break;
