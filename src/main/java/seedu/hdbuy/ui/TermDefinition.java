@@ -1,8 +1,12 @@
 package seedu.hdbuy.ui;
 
+import seedu.hdbuy.common.QueryKey;
+
+import java.util.Arrays;
+
 public class TermDefinition {
     public static String getDefinition(String key) {
-        String definition = "";
+        String definition;
         switch (key) {
         case "clear":
             definition = "Remove all currently set filter conditions";
@@ -50,7 +54,7 @@ public class TermDefinition {
     }
 
     public static String getExample(String key) {
-        String example = "";
+        String example;
         switch (key) {
         case "clear":
             example = "CLEAR command does not need any parameters.";
@@ -62,10 +66,9 @@ public class TermDefinition {
             example = "FIND command does not need any parameters.";
             break;
         case "filter":
-            example = "\"Filter types: \" + Arrays.asList(QueryKey.values())\n" + "Example: \"filter location "
-                    + "clementi\"\n" + "Example: \"filter type 4 room\", can be any of X "
-                    + "room (X = 1 - 5) or executive"
-                    + "Example: \"filter lease_remaining 90\", can be any whole number from 0 - 99";
+            example = "Filter types: " + Arrays.asList(QueryKey.values()) + "\nExample: \"filter location clementi\"\n"
+                + "Example: \"filter type 4 room\", can be any of X room (X = 1 - 5) or executive\nExample: \"filter "
+                + "lease_remaining 90\", can be any whole number from 0 - 99";
             break;
         case "help":
             example = "HELP command does not need any parameters.";
