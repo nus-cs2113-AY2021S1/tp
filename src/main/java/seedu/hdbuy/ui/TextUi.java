@@ -49,23 +49,23 @@ public class TextUi {
                 + "Report bugs to: hdbuy@gmail.com\n" + "GitHub page: <https://github.com/AY2021S2-CS2113-F10-1/tp>\n"
                 + "User Guide: <https://github.com/AY2021S2-CS2113-F10-1/tp/blob/master/docs/UserGuide.md>\n\n"
                 + "Available commands:\n===============================================\n");
-        Object[] summary = {"filter <attribute> <value>", "Add a filter condition. eg: filter location woodlands"};
+        Object[] summary = {"filter <attribute> <value>", TermDefinition.getDefinition("filter")};
         System.out.format("%30s%80s\n", summary);
-        summary = new Object[]{"list", "Show all currently set filter condition to filter units matching preferences"};
+        summary = new Object[]{"list", TermDefinition.getDefinition("list")};
         System.out.format("%30s%80s\n", summary);
-        summary = new Object[]{"clear", "Remove all currently set filter conditions"};
+        summary = new Object[]{"clear", TermDefinition.getDefinition("clear")};
         System.out.format("%30s%80s\n", summary);
-        summary = new Object[]{"find", "Search for units with the current filter conditions"};
+        summary = new Object[]{"find", TermDefinition.getDefinition("find")};
         System.out.format("%30s%80s\n", summary);
-        summary = new Object[]{"sort <direction>", "Sort search results in ascending(asc) or descending(desc) order"};
+        summary = new Object[]{"sort <direction>", TermDefinition.getDefinition("sort")};
         System.out.format("%30s%80s\n", summary);
-        summary = new Object[]{"save <index>", "Add the unit at the inputted index to the shortlist"};
+        summary = new Object[]{"save <index>", TermDefinition.getDefinition("save")};
         System.out.format("%30s%80s\n", summary);
-        summary = new Object[]{"remove <index>", "Remove the unit at the inputted index from the shortlist"};
+        summary = new Object[]{"remove <index>", TermDefinition.getDefinition("remove")};
         System.out.format("%30s%80s\n", summary);
-        summary = new Object[]{"shortlist", "Show all units in the shortlist"};
+        summary = new Object[]{"shortlist", TermDefinition.getDefinition("shortlist")};
         System.out.format("%30s%80s\n", summary);
-        summary = new Object[]{"exit", "Exit the application"};
+        summary = new Object[]{"exit", TermDefinition.getDefinition("exit")};
         System.out.format("%30s%80s\n", summary);
     }
 

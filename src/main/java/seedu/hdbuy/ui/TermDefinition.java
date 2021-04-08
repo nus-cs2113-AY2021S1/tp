@@ -9,38 +9,37 @@ public class TermDefinition {
         String definition = "";
         switch (key) {
         case "clear":
-            definition = "Remove all currently set filter conditions.";
+            definition = "Remove all currently set filter conditions";
             break;
         case "exit":
-            definition = "Exit the application.";
+            definition = "Exit the application";
             break;
         case "find":
-            definition = "Search for units with the current filter conditions.";
+            definition = "Search for units with the current filter conditions";
             break;
         case "filter":
-            definition = "\"Add a filter condition. eg: filter location woodlands\"\nFilter types: " + Arrays
-                    .asList(QueryKey.values());
+            definition = "Add a filter condition. eg: filter location woodlands";
             break;
         case "help":
-            definition = "It's to help you understand all of our commands.";
+            definition = "It's to help you understand all of our commands";
             break;
         case "list":
-            definition = "Show all currently set filter condition to filter units matching preferences.";
+            definition = "Show all currently set filter condition to filter units matching preferences";
             break;
         case "remove":
-            definition = "Remove the unit at the inputted index from the shortlist.";
+            definition = "Remove the unit at the inputted index from the shortlist";
             break;
         case "save":
-            definition = "Add the unit at the inputted index to the shortlist.";
+            definition = "Add the unit at the inputted index to the shortlist";
             break;
         case "shortlist":
-            definition = "Show all units in the shortlist.";
+            definition = "Show all units in the shortlist";
             break;
         case "sort":
-            definition = "Sort search results in ascending(asc) or descending(desc) order.";
+            definition = "Sort search results in ascending(asc) or descending(desc) order";
             break;
         default:
-            definition = "Invalid definition.";
+            definition = "Invalid definition";
             break;
         }
         return definition;
