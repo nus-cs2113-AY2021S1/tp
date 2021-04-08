@@ -1,9 +1,4 @@
----
-layout: page
-title: Wong Jun Hong Jaden's Project Portfolio Page
----
-
-## Project: HdBuy
+## Project: HdBuy (Wong Jun Hong Jaden's Project Portfolio Page)
 
 HdBuy allow users to easily find and bookmark resale flats available matching their preferences. The user interacts with it using a CLI. It is written in Java.
 
