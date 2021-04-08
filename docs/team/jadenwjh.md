@@ -10,8 +10,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability for HdBuy to pull data from external server.
   * What it does: allows the user to view the most updated resale flats in Singapore. Every search is a GET request to the server. Search parameters can also be set in the query.
-  * Justification: This feature is the core function of this product, which is to search for resale flats. Users can only narrow their search by the different attributes of a resale flat: `location`, `type`, `lease_remaining`.
-  * Highlights: The `find` command fetches resale flats via this gateway.
+  * Highlights: The `find` command fetches resale flats via this gateway. The `filter`command gets the user's input and QueryFormatter formats it into query form.
   * Contribution: Implemented the code and carried out unit testing for each class in this feature.
   * Code: 
     - [ApiRepository](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/api/ApiRepository.java)
@@ -24,7 +23,6 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability for users to shortlist units from search results.
   * What it does: allows the user to save a resale flat of interest into a shortlist for viewing at any time, even after the current instance of HdBuy is terminated. Users can also edit the shortlist by removing and adding flats to it.
-  * Justification: This feature improves the product significantly because users can now access their preferred resale flats at any time.
   * Highlights: First, the ability for HdBuy to store search results was implemented. Then, the ability for HdBuy to read and write from a text file was implemented. This also requires the implementation of converting objects into text.
   * Contribution: Implemented the code and carried out unit testing for each class in this feature.
   * Code:
@@ -38,7 +36,6 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability for user to undo and list search parameters.
   * What it does: allows the user to view and undo previously set parameters.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
   * Highlights: The `clear` command removes all set parameters. The `list` command shows the currently set parameters before the user performs a search.
   * Contribution: Implemented the code and carried out unit testing for the feature.
   * Code:
@@ -48,7 +45,6 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability for user to sort resale flats from search results by price, in ascending or descending order.
   * What it does: allows the user to view resale flats by low / high price.
-  * Justification: This feature improves the product significantly because a user can look for units matching his budget while making comparison to other flats.
   * Highlights: Sorting is conducted on the search result via the execution of `sort` command.
   * Contribution: Redesigned the initial implementation to abide to OOP, while making it a lot more defensive. Carried out unit testing for the feature.
   * Code:
