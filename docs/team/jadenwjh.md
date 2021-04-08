@@ -7,7 +7,6 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
 
 * **New Feature**: Added the ability for users to make search queries from resale flat database.
   * What it does: allows the user to search and view the most updated resale flats in Singapore.
-  * Contribution: Implemented the code and carried out unit testing for each class in this feature.
     - [ApiRepository](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/api/ApiRepository.java)
     - [UnitsGenerator](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/api/UnitsGenerator.java)
     - [ResponseDecoder](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/api/ResponseDecoder.java)
@@ -17,8 +16,7 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
     - [FilterCommand](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/command/FilterCommand.java)
 
 * **New Feature**: Added the ability for users to shortlist units from search results.
-  * What it does: allows the user to save a resale flat of interest into a shortlist for viewing at any time, even after the current instance of HdBuy is terminated. Users can also edit the shortlist by removing and adding flats to it.
-  * Contribution: Implemented the code and carried out unit testing for each class in this feature.
+  * What it does: allows the user to save / add / remove a resale flat of interest in a shortlist.
     - [StorageManager](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/storage/StorageManager.java)
     - [UnitDecoder](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/storage/UnitDecoder.java)
     - [ShortList](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/data/ShortList.java)
@@ -29,20 +27,17 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
 
 * **New Feature**: Added the ability for user to undo and list search parameters.
   * What it does: allows the user to view and undo previously set parameters.
-  * Contribution: Implemented the code and carried out unit testing for the feature.
     - [UserInput](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/data/UserInput.java)
     - [ListCommand](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/command/ListCommand.java)
     - [ClearCommand](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/command/ClearCommand.java)
 
-* **New Feature**: Added the ability for user to sort resale flats from search results by price, in ascending or descending order.
+* **New Feature**: Added the ability for user to sort resale flats from search results by price.
   * What it does: allows the user to view resale flats by low / high price.
-  * Contribution: Redesigned the initial implementation to abide to OOP, while making it a lot more defensive. Carried out unit testing for the feature.
     - [SortCommand](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/command/SortCommand.java)
     - [SearchUnits](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/data/SearchedUnits.java)
 
 * **Enhancement**: JUnit tests to hit minimum 90% coverage.
-  * Highlights: Conducted unit and integration tests on every class to confirm old bugs and identify more bugs.
-  * Contribution:
+  * Highlights: Conducted unit and integration tests to confirm old bugs and identify more bugs.
     - [CommandEvaluatorTest](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/test/java/seedu/hdbuy/parser/CommandEvaluatorTest.java)
     - [ParserTest](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/test/java/seedu/hdbuy/parser/ParserTest.java)
     - [SortCommandTest](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/test/java/seedu/hdbuy/command/SortCommandTest.java)
@@ -61,18 +56,15 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
     
 * **Enhancement**: Ensure user inputs are correctly processed and invalid inputs are detected.
   * Highlights: Redesigned Parser package to make it more defensive.
-  * Contribution:
     - [Parser](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/parser/Parser.java)
     - [CommandEvaluator](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/parser/CommandEvaluator.java)
     
 * **Enhancement**: Refactored TextUi class and removed unnecessary exception classes.
   * Highlights: Deleted some exception classes. Simplified the methods for calling exceptions.
-  * Contribution:
     - [TextUi](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/ui/TextUi.java)
     
 * **Enhancement**: Refactored source code to follow OOP as closely as possible.
   * Highlights: Reduce coupling to make it easier for unit testing. Improve readability.
-  * Contribution:
     - All other mentions above have been subjected to review
     - [HelpCommand](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/command/HelpCommand.java)
     - [HdBuy](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/HdBuy.java)
