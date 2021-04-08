@@ -1,12 +1,12 @@
 package seedu.hdbuy.data;
 
-import java.util.ArrayList;
-
 import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.Unit;
 import seedu.hdbuy.common.exception.DuplicateUnitException;
 import seedu.hdbuy.common.exception.InvalidIndexException;
 import seedu.hdbuy.storage.StorageManager;
+
+import java.util.ArrayList;
 
 public class ShortList {
 

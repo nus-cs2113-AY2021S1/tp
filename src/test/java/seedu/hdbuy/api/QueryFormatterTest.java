@@ -1,11 +1,10 @@
 package seedu.hdbuy.api;
 
 import org.junit.jupiter.api.Test;
+import seedu.hdbuy.common.QueryKey;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import seedu.hdbuy.common.QueryKey;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -47,7 +46,7 @@ class QueryFormatterTest {
             queryBody.append(",");
         }
         queryBody.deleteCharAt(queryBody.length() - 1);
-        String output = String.format("{%s}", queryBody.toString());
+        String output = String.format("{%s}", queryBody);
         assertEquals("{\"town\":\"ang%20mo%20kio\",\"flat_type\":\"4%20room\",\"remaining_lease\":\"80\"}", output);
     }
 }

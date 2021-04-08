@@ -1,13 +1,13 @@
 package seedu.hdbuy.api;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.exception.EmptyResponseException;
 import seedu.hdbuy.common.exception.GatewayException;
 import seedu.hdbuy.ui.TextUi;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class GetRequest {
 

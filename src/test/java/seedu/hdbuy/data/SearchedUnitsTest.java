@@ -1,13 +1,12 @@
 package seedu.hdbuy.data;
 
 import org.junit.jupiter.api.Test;
-
-import java.util.Objects;
-
 import seedu.hdbuy.common.Unit;
 import seedu.hdbuy.common.exception.InvalidIndexException;
 import seedu.hdbuy.common.exception.NoFlatsException;
 import seedu.hdbuy.common.exception.NoSearchException;
+
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

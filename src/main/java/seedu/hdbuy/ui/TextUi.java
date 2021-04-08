@@ -1,23 +1,15 @@
 package seedu.hdbuy.ui;
 
+import seedu.hdbuy.common.QueryKey;
+import seedu.hdbuy.common.Unit;
+import seedu.hdbuy.common.exception.EmptyParameterException;
+import seedu.hdbuy.common.exception.InvalidParameterException;
+import seedu.hdbuy.parser.CommandType;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
-
-import seedu.hdbuy.common.QueryKey;
-import seedu.hdbuy.common.Unit;
-import seedu.hdbuy.common.exception.DuplicateUnitException;
-import seedu.hdbuy.common.exception.EmptyInputException;
-import seedu.hdbuy.common.exception.EmptyParameterException;
-import seedu.hdbuy.common.exception.GatewayException;
-import seedu.hdbuy.common.exception.InvalidIndexException;
-import seedu.hdbuy.common.exception.InvalidInputException;
-import seedu.hdbuy.common.exception.InvalidParameterException;
-import seedu.hdbuy.common.exception.MissingFileException;
-import seedu.hdbuy.common.exception.NoFlatsException;
-import seedu.hdbuy.common.exception.NoSearchException;
-import seedu.hdbuy.parser.CommandType;
 
 public class TextUi {
 
@@ -53,8 +45,7 @@ public class TextUi {
     }
 
     public static void showHelp() {
-        System.out.print(
-                "HdBuy is a way to easily find and bookmark resale flats of your liking.\n\n"
+        System.out.print("HdBuy is a way to easily find and bookmark resale flats of your liking.\n\n"
                 + "Report bugs to: hdbuy@gmail.com\n" + "GitHub page: <https://github.com/AY2021S2-CS2113-F10-1/tp>\n"
                 + "User Guide: <https://github.com/AY2021S2-CS2113-F10-1/tp/blob/master/docs/UserGuide.md>\n\n"
                 + "Available commands:\n===============================================\n");
@@ -70,7 +61,7 @@ public class TextUi {
         System.out.format("%30s%80s\n", summary);
         summary = new Object[]{"save <index>", "Add the unit at the inputted index to the shortlist"};
         System.out.format("%30s%80s\n", summary);
-        summary = new Object[]{"remove <index>", "Remove the unit at the inpuuted index from the shortlist"};
+        summary = new Object[]{"remove <index>", "Remove the unit at the inputted index from the shortlist"};
         System.out.format("%30s%80s\n", summary);
         summary = new Object[]{"shortlist", "Show all units in the shortlist"};
         System.out.format("%30s%80s\n", summary);
@@ -88,6 +79,7 @@ public class TextUi {
 
     public static void showInvalidParameter(String key, InvalidParameterException e) {
         System.out.println(e.getMessage());
+
         switch (key) {
         case CommandType.FILTER:
             System.out.println("FILTER command needs a type and a parameter to work.");

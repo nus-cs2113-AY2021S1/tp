@@ -1,15 +1,14 @@
 package seedu.hdbuy.command;
 
 import org.junit.jupiter.api.Test;
-
 import seedu.hdbuy.common.Unit;
 import seedu.hdbuy.data.SearchedUnits;
 
 class SaveRemoveCommandTest {
 
     @Test void saveRemoveExecuteTest() {
-        Unit unit = new Unit("JURONG WEST", "4 ROOM", 429000, 990, " 82 years 06 months", "664A JURONG WEST ST 64",
-                11111);
+        Unit unit =
+                new Unit("JURONG WEST", "4 ROOM", 429000, 990, " 82 years 06 months", "664A JURONG WEST ST 64", 11111);
         SearchedUnits.clearSearchedUnits();
         SearchedUnits.addToResult(unit);
         SaveCommand saveCommand = new SaveCommand(1);

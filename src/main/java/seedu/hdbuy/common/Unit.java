@@ -54,7 +54,7 @@ public class Unit {
     }
 
     @Override public String toString() {
-        return "Address: " + getAddress() + " - Type: " + getType() + " - Lease: "
-                + getLease() + " -  Price: $" + getPrice();
+        return "Address: " + getAddress() + " - Type: " + getType() + " - Lease: " + getLease() + " -  Price: $"
+                + getPrice();
     }
 }

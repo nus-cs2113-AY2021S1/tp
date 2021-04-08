@@ -1,7 +1,6 @@
 package seedu.hdbuy.common.exception;
 
 import org.junit.jupiter.api.Test;
-
 import seedu.hdbuy.ui.TextUi;
 
 class ExceptionTest {
