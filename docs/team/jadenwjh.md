@@ -36,8 +36,10 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
     - [SortCommand](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/command/SortCommand.java)
     - [SearchUnits](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/data/SearchedUnits.java)
 
+<div style="page-break-after: always;"></div>
+
 * **Enhancement**: JUnit tests to hit minimum 90% coverage.
-  * Highlights: Conducted unit and integration tests to confirm old bugs and identify more bugs.
+  * Highlights: Conducted unit and integration tests.
     - [CommandEvaluatorTest](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/test/java/seedu/hdbuy/parser/CommandEvaluatorTest.java)
     - [ParserTest](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/test/java/seedu/hdbuy/parser/ParserTest.java)
     - [SortCommandTest](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/test/java/seedu/hdbuy/command/SortCommandTest.java)
@@ -65,7 +67,7 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
     
 * **Enhancement**: Refactored source code to follow OOP as closely as possible.
   * Highlights: Reduce coupling to make it easier for unit testing. Improve readability.
-    - All other mentions above have been subjected to review
+    - All other classes mentioned above were also subjected to review
     - [HelpCommand](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/command/HelpCommand.java)
     - [HdBuy](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/HdBuy.java)
     - [DefaultCommand](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/command/DefaultCommand.java)
@@ -76,10 +78,15 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
     - [QueryKey](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/common/QueryKey.java)
     - [Unit](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/common/Unit.java)
 
-<div style="page-break-after: always;"></div>
-
 * **Project management**:
   * Managed releases `v1.0`,`v2.0`,`v2.1` (3 releases) on GitHub
+  
+* **Community**:
+  * PRs reviewed (with non-trivial review comments): [\#42](https://github.com/AY2021S2-CS2113-F10-1/tp/pull/42), [\#25](https://github.com/AY2021S2-CS2113-F10-1/tp/pull/25), [\#27](https://github.com/AY2021S2-CS2113-F10-1/tp/pull/27), [\#29](https://github.com/AY2021S2-CS2113-F10-1/tp/pull/29)
+  * Contributed to forum discussions (examples: [Calling constructor in Sequence diagram in PlantUML](https://github.com/nus-cs2113-AY2021S2/forum/issues/55), [Gradle-wrapper needs to be edited for runtest.sh / runtest.bat to build successfully](https://github.com/nus-cs2113-AY2021S2/forum/issues/57))
+  * Reported bugs and suggestions for other teams in the class (examples: [GULIO \#5](https://github.com/nus-cs2113-AY2021S2/tp/pull/5))
+
+<div style="page-break-after: always;"></div>
 
 * **Documentation**:
   * User Guide:
@@ -99,8 +106,3 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
     * [Drew CloseCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/CloseCommand.puml)
     * [Drew HelpCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/HelpCommand.puml)
     * [Drew ListCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ListCommand.puml)
-
-* **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#42](https://github.com/AY2021S2-CS2113-F10-1/tp/pull/42), [\#25](https://github.com/AY2021S2-CS2113-F10-1/tp/pull/25), [\#27](https://github.com/AY2021S2-CS2113-F10-1/tp/pull/27), [\#29](https://github.com/AY2021S2-CS2113-F10-1/tp/pull/29)
-  * Contributed to forum discussions (examples: [Calling constructor in Sequence diagram in PlantUML](https://github.com/nus-cs2113-AY2021S2/forum/issues/55), [Gradle-wrapper needs to be edited for runtest.sh / runtest.bat to build successfully](https://github.com/nus-cs2113-AY2021S2/forum/issues/57))
-  * Reported bugs and suggestions for other teams in the class (examples: [GULIO \#5](https://github.com/nus-cs2113-AY2021S2/tp/pull/5))
