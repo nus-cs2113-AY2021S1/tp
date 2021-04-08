@@ -62,7 +62,7 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
     - [CommandEvaluator](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/parser/CommandEvaluator.java)
     
 * **Enhancement**: Refactored TextUi class and removed unnecessary exception classes.
-  * Highlights: Deleted some exception classes. Simplified the methods for calling exceptions.
+  * Highlights: Simplified methods for calling exceptions.
     - [TextUi](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/ui/TextUi.java)
     
 * **Enhancement**: Refactored source code to follow OOP as closely as possible.
@@ -83,7 +83,7 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
   
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#42](https://github.com/AY2021S2-CS2113-F10-1/tp/pull/42), [\#25](https://github.com/AY2021S2-CS2113-F10-1/tp/pull/25), [\#27](https://github.com/AY2021S2-CS2113-F10-1/tp/pull/27), [\#29](https://github.com/AY2021S2-CS2113-F10-1/tp/pull/29)
-  * Contributed to forum discussions (examples: [Calling constructor in Sequence diagram in PlantUML](https://github.com/nus-cs2113-AY2021S2/forum/issues/55), [Gradle-wrapper needs to be edited for runtest.sh / runtest.bat to build successfully](https://github.com/nus-cs2113-AY2021S2/forum/issues/57))
+  * Contributed to forum discussions (examples: [Calling constructor in Sequence diagram in PlantUML](https://github.com/nus-cs2113-AY2021S2/forum/issues/55), [Gradle-wrapper build issue](https://github.com/nus-cs2113-AY2021S2/forum/issues/57))
   * Reported bugs and suggestions for other teams in the class (examples: [GULIO \#5](https://github.com/nus-cs2113-AY2021S2/tp/pull/5))
 
 <div style="page-break-after: always;"></div>
