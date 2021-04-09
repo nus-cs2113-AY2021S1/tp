@@ -16,7 +16,7 @@ public class CommandEvaluator {
     private static final String[] types = new String[]{"executive", "5 room", "4 room", "3 room", "2 room", "1 room"};
 
     /**
-     * This method extracts the keywords from the input line and inserts it into respective
+     * This method extracts the keywords from the input line and inserts it into respective.
      *
      * @param fullCommand The input line by the user.
      * @return A command object specified by the keyword inside the input.

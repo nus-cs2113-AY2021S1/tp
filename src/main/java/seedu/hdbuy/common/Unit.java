@@ -94,11 +94,6 @@ public class Unit {
                 getLocation());
     }
 
-    /**
-     * This method returns the more important details of the Unit object in a line of String.
-     *
-     * @return String that consists the Unit object's more important details.
-     */
     @Override public String toString() {
         return "Address: " + getAddress() + " - Type: " + getType() + " - Lease: " + getLease() + " -  Price: $"
             + getPrice();
