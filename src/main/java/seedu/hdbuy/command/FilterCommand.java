@@ -11,6 +11,12 @@ public class FilterCommand extends Command {
     protected String criteria;
     protected String value;
 
+    /**
+     * Input the criteria and value for the filter parameter.
+     *
+     * @param criteria The filter in which the search is going to be based on.
+     * @param value    The value of the filter.
+     */
     public FilterCommand(String criteria, String value) {
         this.criteria = criteria;
         this.value = value;

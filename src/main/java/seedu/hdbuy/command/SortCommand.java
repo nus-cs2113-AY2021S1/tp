@@ -12,6 +12,11 @@ import java.util.ArrayList;
 public class SortCommand extends Command {
     protected String criteria;
 
+    /**
+     * Gets the sorting type requested by the user.
+     *
+     * @param criteria The sort type requested by the user to be used in sorting the searched units.
+     */
     public SortCommand(String criteria) {
         this.criteria = criteria;
     }

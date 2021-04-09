@@ -10,6 +10,11 @@ public class RemoveCommand extends Command {
 
     protected int index;
 
+    /**
+     * Gets the index of the Unit object the user requested to remove.
+     *
+     * @param index The index of the Unit object in the user's shortlist.
+     */
     public RemoveCommand(int index) {
         this.index = index;
     }
