@@ -18,9 +18,9 @@ import static org.junit.jupiter.api.Assertions.fail;
 class ParserTest {
 
     @Test void parsePositiveTest() {
-        List<String> testInputs = new ArrayList<>(
-                Arrays.asList("filter location jurong", "sort asc", "sort desc", "find", "clear", "list", "help",
-                        "shortlist", "save 1", "remove 1", "exit"));
+        List<String> testInputs = new ArrayList<>(Arrays
+            .asList("filter location jurong", "sort asc", "sort desc", "find", "clear", "list", "help", "shortlist",
+                "save 1", "remove 1", "exit"));
         for (String input : testInputs) {
             try {
                 Command command = Parser.parse(input);
@@ -32,10 +32,9 @@ class ParserTest {
     }
 
     @Test void parseNegativeTest() {
-        List<String> testInputs = new ArrayList<>(
-                Arrays.asList("qkwjdwqdq", "filter lease_remaining 101", "filter lease_remaining -101", "remove",
-                        "find xxx", "clear xxx", "help xxx", "exit xxx", "list xxx", "save", "sort", "shortlist xxx",
-                        "clear xxx"));
+        List<String> testInputs = new ArrayList<>(Arrays
+            .asList("qkwjdwqdq", "filter lease_remaining 101", "filter lease_remaining -101", "remove", "find xxx",
+                "clear xxx", "help xxx", "exit xxx", "list xxx", "save", "sort", "shortlist xxx", "clear xxx"));
         for (String input : testInputs) {
             try {
                 Command command = Parser.parse(input);
@@ -62,7 +61,7 @@ class ParserTest {
 
     @Test void parseIndexTest() {
         Unit unit =
-                new Unit("JURONG WEST", "4 ROOM", 429000, 990, " 82 years 06 months", "664A JURONG WEST ST 64", 222222);
+            new Unit("JURONG WEST", "4 ROOM", 429000, 990, " 82 years 06 months", "664A JURONG WEST ST 64", 222222);
         SearchedUnits.clearSearchedUnits();
         SearchedUnits.addToResult(unit);
 

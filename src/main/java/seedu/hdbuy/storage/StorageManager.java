@@ -17,6 +17,9 @@ public class StorageManager {
 
     private static final String filePath = "./shortlist.txt";
 
+    /**
+     * This method will read the saved shortlist from a .TXT file and input it into the app.
+     */
     public static void read() {
         try {
             File f = new File(filePath);
@@ -40,6 +43,10 @@ public class StorageManager {
         }
     }
 
+    /**
+     * Before the app shut down, the app will save the non-empty shortlist into a .TXT file.
+     * The user will then be able to access their shortlist next time they start up the app.
+     */
     public static void write() {
         ArrayList<Unit> units = ShortList.getShortListedUnits();
         try {

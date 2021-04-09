@@ -5,6 +5,12 @@ import seedu.hdbuy.common.QueryKey;
 import java.util.Arrays;
 
 public class TermDefinition {
+    /**
+     * This method will return the definition of the command.
+     *
+     * @param key The string value of the command.
+     * @return The definition of the command.
+     */
     public static String getDefinition(String key) {
         String definition;
         switch (key) {
@@ -53,6 +59,12 @@ public class TermDefinition {
         return definition;
     }
 
+    /**
+     * This method will return an example of the command usage.
+     *
+     * @param key The string of the command.
+     * @return The example of the command usage.
+     */
     public static String getExample(String key) {
         String example;
         switch (key) {

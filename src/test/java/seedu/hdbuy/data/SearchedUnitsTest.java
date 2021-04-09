@@ -17,12 +17,12 @@ class SearchedUnitsTest {
 
     @Test void sortMapByPrice() {
 
-        Unit textUnit1 = new Unit("JURONG WEST", "4 ROOM", 429000, 990, " 82 years 06 months", "664A JURONG WEST ST 64",
-                1026083864);
-        Unit textUnit2 = new Unit("JURONG WEST", "4 ROOM", 429001, 990, " 82 years 06 months", "664A JURONG WEST ST 64",
-                1026083864);
-        Unit textUnit3 = new Unit("JURONG WEST", "4 ROOM", 429002, 990, " 82 years 06 months", "664A JURONG WEST ST 64",
-                1026083864);
+        Unit textUnit1 =
+            new Unit("JURONG WEST", "4 ROOM", 429000, 990, " 82 years 06 months", "664A JURONG WEST ST 64", 1026083864);
+        Unit textUnit2 =
+            new Unit("JURONG WEST", "4 ROOM", 429001, 990, " 82 years 06 months", "664A JURONG WEST ST 64", 1026083864);
+        Unit textUnit3 =
+            new Unit("JURONG WEST", "4 ROOM", 429002, 990, " 82 years 06 months", "664A JURONG WEST ST 64", 1026083864);
 
         try {
             SearchedUnits.clearSearchedUnits();
