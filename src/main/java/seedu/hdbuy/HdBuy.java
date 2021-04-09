@@ -20,6 +20,12 @@ public class HdBuy {
         receiveCommand(false);
     }
 
+    /**
+     * Returns a command object that will follow up with respective procedures.
+     * This is a recursive method that will only exit when isExit is set to true.
+     *
+     * @param isExit boolean check if the command object set exit value to 1
+     */
     private static void receiveCommand(boolean isExit) {
         if (!isExit) {
             String fullCommand = TextUi.readCommand();

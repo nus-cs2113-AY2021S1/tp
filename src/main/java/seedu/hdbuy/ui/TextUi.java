@@ -1,23 +1,15 @@
 package seedu.hdbuy.ui;
 
+import seedu.hdbuy.common.QueryKey;
+import seedu.hdbuy.common.Unit;
+import seedu.hdbuy.common.exception.EmptyParameterException;
+import seedu.hdbuy.common.exception.InvalidParameterException;
+import seedu.hdbuy.parser.CommandType;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
-
-import seedu.hdbuy.common.QueryKey;
-import seedu.hdbuy.common.Unit;
-import seedu.hdbuy.common.exception.DuplicateUnitException;
-import seedu.hdbuy.common.exception.EmptyInputException;
-import seedu.hdbuy.common.exception.EmptyParameterException;
-import seedu.hdbuy.common.exception.GatewayException;
-import seedu.hdbuy.common.exception.InvalidIndexException;
-import seedu.hdbuy.common.exception.InvalidInputException;
-import seedu.hdbuy.common.exception.InvalidParameterException;
-import seedu.hdbuy.common.exception.MissingFileException;
-import seedu.hdbuy.common.exception.NoFlatsException;
-import seedu.hdbuy.common.exception.NoSearchException;
-import seedu.hdbuy.parser.CommandType;
 
 public class TextUi {
 
@@ -27,6 +19,12 @@ public class TextUi {
     private static final int SEPARATOR_LENGTH = 80;
     private static final Scanner in = new Scanner(System.in);
 
+    /**
+     * Returns a String input if the user has input.
+     * If the user doesn't have any input, the app will return an "EXIT" string.
+     *
+     * @return the string of the user input or "exit"
+     */
     public static String readCommand() {
         if (in.hasNextLine()) {
             return in.nextLine();
@@ -34,6 +32,9 @@ public class TextUi {
         return CommandType.EXIT;
     }
 
+    /**
+     * Returns a separator when showing messages, so that user can easily differentiate each command they entered.
+     */
     public static void showSeparator() {
         for (int i = 0; i < SEPARATOR_LENGTH; i++) {
             System.out.print('-');
@@ -41,43 +42,47 @@ public class TextUi {
         System.out.print('\n');
     }
 
+    /**
+     * Shows a welcome message when the user starts up the app.
+     */
     public static void showWelcome() {
         showSeparator();
         System.out.print("Welcome to HDBuy!\nHow may I help you today?\n");
         showSeparator();
     }
 
+    /**
+     * Shows an exit message when the user exits the app.
+     */
     public static void showExit() {
         System.out.print("HDBuy Bye Bye!\n");
         in.close();
     }
 
+    /**
+     * Shows all the commands available and their usages alongside with their definitions.
+     * The message will be shown in a table.
+     */
     public static void showHelp() {
-        System.out.print(
-                "HdBuy is a way to easily find and bookmark resale flats of your liking.\n\n"
-                + "Report bugs to: hdbuy@gmail.com\n" + "GitHub page: <https://github.com/AY2021S2-CS2113-F10-1/tp>\n"
-                + "User Guide: <https://github.com/AY2021S2-CS2113-F10-1/tp/blob/master/docs/UserGuide.md>\n\n"
-                + "Available commands:\n===============================================\n");
-        Object[] summary = {"filter <attribute> <value>", "Add a filter condition. eg: filter location woodlands"};
-        System.out.format("%30s%80s\n", summary);
-        summary = new Object[]{"list", "Show all currently set filter condition to filter units matching preferences"};
-        System.out.format("%30s%80s\n", summary);
-        summary = new Object[]{"clear", "Remove all currently set filter conditions"};
-        System.out.format("%30s%80s\n", summary);
-        summary = new Object[]{"find", "Search for units with the current filter conditions"};
-        System.out.format("%30s%80s\n", summary);
-        summary = new Object[]{"sort <direction>", "Sort search results in ascending(asc) or descending(desc) order"};
-        System.out.format("%30s%80s\n", summary);
-        summary = new Object[]{"save <index>", "Add the unit at the inputted index to the shortlist"};
-        System.out.format("%30s%80s\n", summary);
-        summary = new Object[]{"remove <index>", "Remove the unit at the inpuuted index from the shortlist"};
-        System.out.format("%30s%80s\n", summary);
-        summary = new Object[]{"shortlist", "Show all units in the shortlist"};
-        System.out.format("%30s%80s\n", summary);
-        summary = new Object[]{"exit", "Exit the application"};
-        System.out.format("%30s%80s\n", summary);
+        System.out.print("HdBuy is a way to easily find and bookmark resale flats of your liking.\n\n"
+            + "Report bugs to: hdbuy@gmail.com\n" + "GitHub page: <https://github.com/AY2021S2-CS2113-F10-1/tp>\n"
+            + "User Guide: <https://github.com/AY2021S2-CS2113-F10-1/tp/blob/master/docs/UserGuide.md>\n\n"
+            + "Available commands:\n===============================================\n");
+
+        String[] terms = {"filter <attribute> <value>", "list", "clear", "find", "sort <direction>", "save <index>",
+            "remove <index>", "shortlist", "exit"};
+
+        for (String term : terms) {
+            Object[] summary = {term, TermDefinition.getDefinition(term)};
+            System.out.format("%30s%80s\n", summary);
+        }
     }
 
+    /**
+     * Shows the error messages when the user tries to initiate a search without specifying the filters.
+     *
+     * @param inputs [Placeholder]
+     */
     public static void showParameters(LinkedHashMap<QueryKey, String> inputs) {
         if (inputs.isEmpty()) {
             System.out.println("Currently there are no filter conditions set.");
@@ -86,58 +91,22 @@ public class TextUi {
         System.out.print("Filter conditions:\n" + inputs + "\n");
     }
 
+    /**
+     * This method will show the correct format of using the specific command by providing an example.
+     *
+     * @param key The valid Command argument that can be used by the user.
+     * @param e   The error message triggered by the wrong command format.
+     */
     public static void showInvalidParameter(String key, InvalidParameterException e) {
         System.out.println(e.getMessage());
-        switch (key) {
-        case CommandType.FILTER:
-            System.out.println("FILTER command needs a type and a parameter to work.");
-            System.out.println("Filter types: " + Arrays.asList(QueryKey.values()));
-            System.out.println("Example: \"filter location clementi\"");
-            System.out.println("Example: \"filter type 4 room\", can be any of X room (X = 1 - 5) or executive");
-            System.out.println("Example: \"filter lease_remaining 90\", can be any whole number from 0 - 99");
-            break;
-        case CommandType.FIND:
-            System.out.println("FIND command does not need any parameters.");
-            System.out.println("However, you need to provide filter before you execute the FIND command.");
-            break;
-        case CommandType.EXIT:
-            System.out.println("EXIT command does not need any parameters.");
-            System.out.println("You are closing the app after all.");
-            break;
-        case CommandType.HELP:
-            System.out.println("HELP command does not need any parameters.");
-            System.out.println("It's to help you understand all of our commands.");
-            break;
-        case CommandType.LIST:
-            System.out.println("LIST command does not need any parameters.");
-            System.out.println("The app will list out the parameters you have set.");
-            break;
-        case CommandType.REMOVE:
-            System.out.println("REMOVE command needs a parameter to work.");
-            System.out.println("Example: \"remove 1\"");
-            break;
-        case CommandType.SAVE:
-            System.out.println("SAVE command needs a parameter to work.");
-            System.out.println("Example: \"save 1\"");
-            break;
-        case CommandType.SHORTLIST:
-            System.out.println("SHORTLIST command does not need any parameters.");
-            System.out.println("If you want to modify the short list, use SAVE command or REMOVE command instead.");
-            break;
-        case CommandType.SORT:
-            System.out.println("SORT command needs a parameter to work.");
-            System.out.println("Sort types: {asc, desc}");
-            System.out.println("Example: \"sort asc\"");
-            break;
-        case CommandType.CLEAR:
-            System.out.println("CLEAR command does not need any parameters.");
-            System.out.println("The purpose is to clear the filters inside the query!");
-            break;
-        default:
-            break;
-        }
+        System.out.println(TermDefinition.getExample(key));
     }
 
+    /**
+     * This method will show all the units requested by the user after fetching data from the API.
+     *
+     * @param units The units that fulfilled the conditions set by the user.
+     */
     public static void showUnits(ArrayList<Unit> units) {
         Object[] columnNames = {"Index", "Address", "Type", "Lease", "Price"};
         System.out.format("%5s%24s%12s%24s%12s\n", columnNames);
@@ -148,6 +117,11 @@ public class TextUi {
         }
     }
 
+    /**
+     * This method will list out all the units saved by the user.
+     *
+     * @param units The units that fulfilled the conditions set and saved by the user.
+     */
     public static void showShortListUnits(ArrayList<Unit> units) {
         Object[] columnNames = {"Index", "Address", "Type", "Lease", "Price"};
         System.out.format("%5s%24s%12s%24s%12s\n", columnNames);
@@ -158,6 +132,11 @@ public class TextUi {
         }
     }
 
+    /**
+     * This method will display an error message if the user initiate the search without providing any filters.
+     *
+     * @param e The exception triggered by not providing filter before initializing search.
+     */
     public static void showEmptyParameter(EmptyParameterException e) {
         System.out.println("\"FIND\"" + e.getMessage());
         System.out.println("Please specify a filter to use before executing this command.");
@@ -165,18 +144,34 @@ public class TextUi {
         System.out.println("An example will be \"filter location clementi\"");
     }
 
+    /**
+     * Shows a message after user clears out all the filters.
+     */
     public static void showClearedFilterConditions() {
         System.out.print("Cleared filter conditions.\n");
     }
 
+    /**
+     * Shows the unit the user has requested to remove from their shortlist.
+     *
+     * @param unitDescription The description of the unit that is requested to be removed by the user.
+     */
     public static void showRemovedShortlistUnit(String unitDescription) {
         System.out.println("You have removed unit from shortlist: " + unitDescription);
     }
 
+    /**
+     * Shows a message after the user requested a unit to be saved into the shortlist.
+     *
+     * @param unitDescription The description of the unit that is requested to be saved by the user.
+     */
     public static void showSavedShortlistUnit(String unitDescription) {
         System.out.println("You have saved unit to shortlist: " + unitDescription);
     }
 
+    /**
+     * Default exception message to be shown if an exception is caught.
+     */
     public static void showExceptionMessage(Exception e) {
         System.out.println(e.getMessage());
     }
