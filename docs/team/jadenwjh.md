@@ -2,7 +2,7 @@
 
 HdBuy allow users to easily find and bookmark resale flats available matching their preferences.
 
-* **Code contributed**: 2517 (out of 2842) lines.
+* **Code contributed**:
     - [RepoSense link](https://nus-cs2113-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=jadenwjh&tabRepo=AY2021S2-CS2113-F10-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 * **New Feature**: Added the ability for users to make search queries from resale flat database.
@@ -91,6 +91,24 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
 * **Documentation**:
   * User Guide:
     * [Wrote Quick Start, How to Use, FAQ, Features, Command Summary](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/UserGuide.md)
+    * Maintained User Guide by testing instructions on the latest version of HdBuy.
+    * Added 'Quick Start' section for first-time users to set up HdBuy.
+    
+    <img src="../images/quick_start.png" width="400" height="300"/>
+    
+    * Added 'How to Use' section to familiarise users with commands for the first time.
+    
+    <img src="../images/how_to_use.png" width="400" height="300"/>
+    
+    * Added 'Features' section to give detailed information on each command.
+    
+    * Added 'Command Summary' section for users and testers to refer commands easily.
+        
+    <img src="../images/command_summary.png" width="400" height="300"/>
+    
+<div style="page-break-after: always;"></div>
+
+* **Documentation**:
   * Developer Guide:
     * [Wrote description of every component and commands, user stories, instructions for manual testing](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/DeveloperGuide.md)
     * [Drew Command class diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/CommandClass.puml)
