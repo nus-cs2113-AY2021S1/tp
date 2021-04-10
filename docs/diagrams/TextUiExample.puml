@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
+[-> ":TextUi": showInvalidParameter(String key, InvalidParameterException e)
+activate ":TextUi"
+loop text in term array
+    ":TextUi" -> ":TermDefinition": getExample(key)
+    activate ":TermDefinition"
+    ":TextUi" <- ":TermDefinition": example
+    deactivate ":TermDefinition"
+end
+[<- ":TextUi"
+deactivate ":TextUi"
+@enduml
