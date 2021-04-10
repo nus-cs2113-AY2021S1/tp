@@ -19,42 +19,48 @@ public class Unit {
         this.address = address;
         this.id = id;
     }
-
+    
     public String getLocation() {
         return location;
     }
-
+    
     public String getType() {
         return type;
     }
-
+    
     public int getPrice() {
         return price;
     }
-
+    
     public String getAddress() {
         return address;
     }
-
+    
     public int getId() {
         return id;
     }
-
+    
     public int getLeaseValue() {
         return leaseValue;
     }
-
+    
     public String getLease() {
         return lease;
     }
 
+    /**
+     * This method merged the data of the Unit object into a line of String.
+     *
+     * @return String that consists the Unit object's metadata.
+     */
     public String encodeToText() {
-        return String.format("%d:%s:%s:%d:%s:%d:%s", getId(), getAddress(), getType(), getLeaseValue(), getLease(),
-                getPrice(), getLocation());
+        return String
+            .format("%d:%s:%s:%d:%s:%d:%s", getId(), getAddress(), getType(), getLeaseValue(), getLease(), getPrice(),
+                getLocation());
     }
 
     @Override public String toString() {
-        return "Address: " + getAddress() + " - Type: " + getType() + " - Lease: "
-                + getLease() + " -  Price: $" + getPrice();
+        return "Address: " + getAddress() + " - Type: " + getType() + " - Lease: " + getLease() + " -  Price: $"
+            + getPrice();
     }
 }

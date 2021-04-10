@@ -1,11 +1,11 @@
 package seedu.hdbuy.command;
 
-import java.util.ArrayList;
-
 import seedu.hdbuy.common.Unit;
 import seedu.hdbuy.common.exception.NoFlatsException;
 import seedu.hdbuy.data.ShortList;
 import seedu.hdbuy.ui.TextUi;
+
+import java.util.ArrayList;
 
 public class ShortlistCommand extends Command {
 

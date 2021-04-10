@@ -1,8 +1,5 @@
 package seedu.hdbuy.command;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-
 import seedu.hdbuy.api.ApiRepository;
 import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.QueryKey;
@@ -13,6 +10,9 @@ import seedu.hdbuy.common.exception.NoSearchException;
 import seedu.hdbuy.data.SearchedUnits;
 import seedu.hdbuy.data.UserInput;
 import seedu.hdbuy.ui.TextUi;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class FindCommand extends Command {
 

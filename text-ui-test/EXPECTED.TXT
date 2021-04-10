@@ -23,7 +23,7 @@ Available commands:
                           find                             Search for units with the current filter conditions
               sort <direction>                 Sort search results in ascending(asc) or descending(desc) order
                   save <index>                             Add the unit at the inputted index to the shortlist
-                remove <index>                        Remove the unit at the inpuuted index from the shortlist
+                remove <index>                        Remove the unit at the inputted index from the shortlist
                      shortlist                                                 Show all units in the shortlist
                           exit                                                            Exit the application
 --------------------------------------------------------------------------------

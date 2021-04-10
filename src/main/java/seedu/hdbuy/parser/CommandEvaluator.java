@@ -1,13 +1,13 @@
 package seedu.hdbuy.parser;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import seedu.hdbuy.common.CommandKey;
 import seedu.hdbuy.common.HdBuyLogger;
 import seedu.hdbuy.common.exception.InvalidInputException;
 import seedu.hdbuy.common.exception.InvalidParameterException;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CommandEvaluator {
     private static final String LEASE_REMAINING = "lease_remaining";
@@ -15,12 +15,19 @@ public class CommandEvaluator {
     private static final String LOCATION = "location";
     private static final String[] types = new String[]{"executive", "5 room", "4 room", "3 room", "2 room", "1 room"};
 
+    /**
+     * This method extracts the keywords from the input line and inserts it into respective.
+     *
+     * @param fullCommand The input line by the user.
+     * @return A command object specified by the keyword inside the input.
+     * @throws InvalidParameterException An exception error triggered by wrong command format.
+     * @throws InvalidInputException     An exception error triggered by invalid command.
+     */
     public static CommandKey extractInfo(String fullCommand) throws InvalidParameterException, InvalidInputException {
         List<String> lineParts = Arrays.asList(fullCommand.split("\\s"));
         // Finds first non-empty input, else throws exception
-        String keyCommand = lineParts.stream().filter(text -> !text.isEmpty())
-                .findFirst()
-                .orElseThrow(() -> new InvalidParameterException(fullCommand));
+        String keyCommand = lineParts.stream().filter(text -> !text.isEmpty()).findFirst()
+            .orElseThrow(() -> new InvalidParameterException(fullCommand));
         int indexOfKeyCommand = lineParts.indexOf(keyCommand);
         List<String> commandBody = lineParts.subList(indexOfKeyCommand + 1, lineParts.size());
         switch (keyCommand) {
@@ -32,10 +39,15 @@ public class CommandEvaluator {
         case CommandType.SAVE:
             return evaluateEditShortlist(commandBody, keyCommand);
         case CommandType.HELP:
+            // Fallthrough
         case CommandType.FIND:
+            // Fallthrough
         case CommandType.LIST:
+            // Fallthrough
         case CommandType.SHORTLIST:
+            // Fallthrough
         case CommandType.CLEAR:
+            // Fallthrough
         case CommandType.EXIT:
             return evaluateNonParameterCommands(commandBody, keyCommand);
         default:
@@ -43,23 +55,21 @@ public class CommandEvaluator {
         }
     }
 
-    private static CommandKey evaluateNonParameterCommands(List<String> commandBody, String keyCommand) throws
-            InvalidParameterException {
+    private static CommandKey evaluateNonParameterCommands(List<String> commandBody, String keyCommand)
+        throws InvalidParameterException {
         if (!commandBody.isEmpty()) {
             throw new InvalidParameterException(keyCommand);
         }
         return new CommandKey(keyCommand);
     }
 
-    private static CommandKey evaluateFilter(List<String> lineParts, List<String> commandBody, String keyCommand) throws
-            InvalidParameterException {
-        String filterCriteria = commandBody.stream().filter(text -> !text.isEmpty())
-                .findFirst()
-                .orElseThrow(() -> new InvalidParameterException(keyCommand));
+    private static CommandKey evaluateFilter(List<String> lineParts, List<String> commandBody, String keyCommand)
+        throws InvalidParameterException {
+        String filterCriteria = commandBody.stream().filter(text -> !text.isEmpty()).findFirst()
+            .orElseThrow(() -> new InvalidParameterException(keyCommand));
         int indexOfFilterCriteria = lineParts.indexOf(filterCriteria);
         List<String> filterValueBody = lineParts.subList(indexOfFilterCriteria + 1, lineParts.size());
-        String filterValue = filterValueBody.stream().filter(text -> !text.isEmpty())
-                .collect(Collectors.joining(" "));
+        String filterValue = filterValueBody.stream().filter(text -> !text.isEmpty()).collect(Collectors.joining(" "));
         HdBuyLogger.info(String.format("%s : %s - %s", keyCommand, filterCriteria, filterValue));
         if (!isValidFilterParameter(filterCriteria, filterValue)) {
             throw new InvalidParameterException(keyCommand);
@@ -68,10 +78,9 @@ public class CommandEvaluator {
     }
 
     private static CommandKey evaluateSort(List<String> lineParts, String keyCommand) throws InvalidParameterException {
-        String sortCommand = lineParts.stream().filter(text -> !text.isEmpty())
-                .collect(Collectors.joining(" "));
-        if (!sortCommand.equals(String.format("%s %s", CommandType.SORT, CommandType.SORT_ASC))
-                && !sortCommand.equals(String.format("%s %s", CommandType.SORT, CommandType.SORT_DESC))) {
+        String sortCommand = lineParts.stream().filter(text -> !text.isEmpty()).collect(Collectors.joining(" "));
+        if (!sortCommand.equals(String.format("%s %s", CommandType.SORT, CommandType.SORT_ASC)) && !sortCommand
+            .equals(String.format("%s %s", CommandType.SORT, CommandType.SORT_DESC))) {
             throw new InvalidParameterException(keyCommand);
         }
         String sortValue = sortCommand.split("\\s")[1];
@@ -79,13 +88,12 @@ public class CommandEvaluator {
         return new CommandKey(keyCommand, sortValue);
     }
 
-    private static CommandKey evaluateEditShortlist(List<String> commandBody, String keyCommand) throws
-            InvalidParameterException {
+    private static CommandKey evaluateEditShortlist(List<String> commandBody, String keyCommand)
+        throws InvalidParameterException {
         if (commandBody.isEmpty()) {
             throw new InvalidParameterException(keyCommand);
         }
-        String targetIndex = commandBody.stream().filter(text -> !text.isEmpty())
-                .collect(Collectors.joining(" "));
+        String targetIndex = commandBody.stream().filter(text -> !text.isEmpty()).collect(Collectors.joining(" "));
         try {
             Integer.parseInt(targetIndex);
             HdBuyLogger.info(String.format("%s : %s", keyCommand, targetIndex));

@@ -13,6 +13,11 @@ public class SaveCommand extends Command {
 
     protected int index;
 
+    /**
+     * Gets the index of the Unit object the user requested to save.
+     *
+     * @param index The index of the Unit object in the array list of fetched units.
+     */
     public SaveCommand(int index) {
         this.index = index;
     }

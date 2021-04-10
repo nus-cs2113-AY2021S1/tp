@@ -1,9 +1,9 @@
 package seedu.hdbuy.api;
 
+import seedu.hdbuy.common.QueryKey;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import seedu.hdbuy.common.QueryKey;
 
 public class QueryFormatter {
 
@@ -41,6 +41,6 @@ public class QueryFormatter {
             queryBody.append(",");
         }
         queryBody.deleteCharAt(queryBody.length() - 1);
-        return String.format("{%s}", queryBody.toString());
+        return String.format("{%s}", queryBody);
     }
 }

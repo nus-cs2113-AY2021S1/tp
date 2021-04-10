@@ -20,7 +20,13 @@ import seedu.hdbuy.common.exception.InvalidParameterException;
 import seedu.hdbuy.ui.TextUi;
 
 public class Parser {
-
+    /**
+     * This method will parse the input into a Command object so the app can continue the procedure based on the input.
+     *
+     * @param fullLine The input command by the user.
+     * @return Command object specified by the input.
+     * @throws EmptyInputException Exception error that is triggered by an empty input.
+     */
     public static Command parse(String fullLine) throws EmptyInputException {
         if (fullLine.trim().isEmpty()) {
             throw new EmptyInputException();

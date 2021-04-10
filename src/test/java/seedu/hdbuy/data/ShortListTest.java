@@ -1,12 +1,11 @@
 package seedu.hdbuy.data;
 
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-
 import seedu.hdbuy.common.Unit;
 import seedu.hdbuy.common.exception.DuplicateUnitException;
 import seedu.hdbuy.common.exception.InvalidIndexException;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -18,8 +17,8 @@ class ShortListTest {
         ArrayList<Unit> units = ShortList.getShortListedUnits();
         assertNotNull(units);
 
-        Unit unit = new Unit("JURONG WEST", "4 ROOM", 429000, 990, " 82 years 06 months", "664A JURONG WEST ST 64",
-                1026083864);
+        Unit unit =
+            new Unit("JURONG WEST", "4 ROOM", 429000, 990, " 82 years 06 months", "664A JURONG WEST ST 64", 1026083864);
         try {
             ShortList.addToShortList(unit);
         } catch (DuplicateUnitException e) {

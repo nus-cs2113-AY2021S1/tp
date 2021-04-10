@@ -1,7 +1,5 @@
 package seedu.hdbuy.command;
 
-import java.util.ArrayList;
-
 import seedu.hdbuy.common.Unit;
 import seedu.hdbuy.common.exception.NoFlatsException;
 import seedu.hdbuy.common.exception.NoSearchException;
@@ -9,9 +7,16 @@ import seedu.hdbuy.data.SearchedUnits;
 import seedu.hdbuy.parser.CommandType;
 import seedu.hdbuy.ui.TextUi;
 
+import java.util.ArrayList;
+
 public class SortCommand extends Command {
     protected String criteria;
 
+    /**
+     * Gets the sorting type requested by the user.
+     *
+     * @param criteria The sort type requested by the user to be used in sorting the searched units.
+     */
     public SortCommand(String criteria) {
         this.criteria = criteria;
     }

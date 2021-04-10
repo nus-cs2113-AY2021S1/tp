@@ -5,6 +5,12 @@ import seedu.hdbuy.common.Unit;
 
 public class UnitDecoder {
 
+    /**
+     * Convert the results received into several separate strings and saved into a Unit object.
+     *
+     * @param text String of results received from the .TXT file.
+     * @return Unit object with data on the units.
+     */
     public static Unit textToUnit(String text) {
         if (text.isEmpty()) {
             return null;

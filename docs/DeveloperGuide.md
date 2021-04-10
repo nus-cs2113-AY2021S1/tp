@@ -60,6 +60,14 @@ The `Ui`
 * Retrieves user input from CLI.
 * Display results to user in CLI.
 
+For Help messages, the UI will call the TermDefinition class to retrieve the definition of the term, which is shown in the diagram below.
+
+<img src = "diagrams/TextUiDefinition.png" />
+
+If the user enters the command with the wrong format, the UI will call the TermDefinition class to retrieve the example of the term, which is shown in the diagram below.
+
+<img src = "diagrams/TextUiExample.png" />
+
 ### Data component
 
 The `Data`
