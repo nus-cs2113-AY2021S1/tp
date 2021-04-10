@@ -3,6 +3,7 @@
 
 hide footbox
 
+mainframe sd execute command
 activate ":HdBuy"
 ":HdBuy" -> ":ClearCommand": execute()
         activate ":ClearCommand"
@@ -16,4 +17,5 @@ activate ":HdBuy"
         deactivate ":TextUi"
         ":HdBuy" <-- ":ClearCommand"
         destroy ":ClearCommand"
+
 @enduml
