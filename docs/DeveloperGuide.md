@@ -1,20 +1,57 @@
 # Developer Guide
 
-## Design & implementation
+DISCLAIMER: PlantUML currently does not support hiding of lifelines after objects are destroyed.
+
+* For instance, CloseCommand is destroyed after signalling imminent exit:
+
+<img src="diagrams/CloseCommand.png" width="400" height="300"/>
+
+* However, due to limitations of PlantUML, the lifeline will still be present after destroying CloseCommand.
+
+## Table of Contents
+
+* [Design & Implementation](#design--implementation)
+    * [Architecture](#architecture)
+    * [Api Component](#api-component)
+    * [Storage Component](#storage-component)
+    * [Ui Component](#ui-component)
+    * [Data Component](#data-component)
+    * [Parser Component](#parser-component)
+    * [Command Component](#command-component)
+    * [Common Component](#common-component)  
+* [Product scope](#product-scope)
+    * [Target user profile](#target-user-profile)
+    * [Value proposition](#value-proposition)
+    * [User Stories](#user-stories)  
+* [Manual Testing Instructions](#manual-testing-instructions)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Launch and Shutdown](#launch-and-shutdown)
+    * [Filter conditions](#filter-conditions)
+    * [Find units matching filter conditions](#find-units-matching-filter-conditions)
+    * [Shortlisting units from search results](#shortlisting-units-from-search-results)
+    * [Sorting results by price in ascending or descending order](#sorting-results-by-price-in-ascending-or-descending-order)
+* [Error Handling](#error-handling)
+    * [Commands without Sufficient Parameters](#commands-without-sufficient-parameters)
+    * [Commands with Invalid Parameters](#commands-with-invalid-parameters)
+    * [Commands with Invalid Filters](#commands-with-invalid-filters)
+* [Glossary](#glossary)
+    
+## Design & Implementation
 
 ### Architecture
-<img src="diagrams/architecture.png" width="400" height="300"/>
+
+<img src="diagrams/architecture.jpg" width="400" height="300"/>
 
 The Architecture Diagram given above explains the high-level design of the App.
 
 The App consists of:
 
 * [**`Api`**](#api-component): Retrieves data on resale flats from server.
-* [**`Command`**](#command-component): The command executor.
-* [**`Parser`**](#parser-component): Translate user input to valid commands to be executed.
+* [**`Storage`**](#storage-component): Reads shortlisted units from, and writes shortlisted units to, the text file.
 * [**`Ui`**](#ui-component): Communicates with user via messages. Contains a sole TextUi class.
 * [**`Data`**](#data-component): Contains shortlist, user input history and temporarily tracks search history. Contains SearchedUnits, ShortList, and UserInput. All of which do not interact with each other.
-* [**`Storage`**](#storage-component): Reads shortlisted units from, and writes shortlisted units to, the text file.
+* [**`Parser`**](#parser-component): Translate user input to valid commands to be executed.
+* [**`Command`**](#command-component): The command executor.
 * [**`Common`**](#common-component): Models of objects used internally. Includes keys, exceptions, logger and the Unit class.
 
 ### Api component
@@ -85,7 +122,7 @@ The `Parser`
 
 The *Sequence Diagram* below shows how the components interact with each other when user enters a command from CLI.
 
-<img src="diagrams/ParserSequence.png" width="300" height="300"/>
+<img src="diagrams/ParserSequence.png" width="400" height="300"/>
 
 The CommandEvaluator class extracts the information from the input and thereafter passes a keyCommand to the Parser class for it to map and retrieve the appropriate Command to the HdBuy.
 
@@ -163,7 +200,7 @@ Low-to-middle income single users looking to buy resale flats.
 
 Easily find and bookmark resale flats available matching user's preference.
 
-## User Stories
+### User Stories
 
 |Version| As a ... | I want to ... | So that I can ...| Priority|
 |--------|----------|---------------|------------------|------------------|
@@ -174,19 +211,16 @@ Easily find and bookmark resale flats available matching user's preference.
 |v2.0|returning user|bookmark potential flats|keep track of potential flats| Nice to have|
 |v2.0|user|sort flats by price, in either ascending or descending order|view flats matching budget| Nice to have|
 
-## Non-Functional Requirements
+
+## Manual Testing Instructions
+
+### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Requires internet connection.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-
-
-## Instructions for manual testing
-
-Given below are instructions to test the app manually.
-
-### Launch and shutdown
+### Launch and Shutdown
 
 1. Initial launch
 
@@ -243,7 +277,7 @@ Given below are instructions to test the app manually.
    3. Incorrect delete commands to try: `find x` (where x can be input string)<br>
       Expected: Similar to previous. But with added message: "FIND command does not need any parameters. However, you need to provide filter before you execute the FIND command."
 
-### Shortlisting or bookmarking units from search results
+### Shortlisting units from search results
 
 7. Saving a unit from search result to shortlist, requires at least 1 `find` to be executed prior.
 
@@ -266,6 +300,7 @@ Given below are instructions to test the app manually.
    2. Incorrect inputs to try: `shortlist x` (where x is any string input)<br>
       Expected: Similar to previous.
       
+
 ### Sorting results by price in ascending or descending order
 
 10. Sorting results in ascending order 
@@ -282,24 +317,24 @@ The app will return error data that the user can use to identify and resolve inc
 app also handles errors occur during the invocation of API calls. In general, the app provides the following types of 
 error handling.
 
-   * For errors resulting from incorrectly formatted command lines, the app returns an error message with suggestions on
+* For errors resulting from incorrectly formatted command lines, the app returns an error message with suggestions on
 improving the command line.
      
-   * For errors caused by faulty API calls, the app will return an error message and will ask the user to restart the
+* For errors caused by faulty API calls, the app will return an error message and will ask the user to restart the
 app to attempt reconnection.
 
-### Error Handling for Commands without Sufficient Parameters
+### Commands without Sufficient Parameters
 
 When user initiates a `find` command without already setting a parameter to search, the app will not accept the input and
 will return an exception `EmptyParameterException` and asks the user to input a valid filter parameter first.
 
-### Error Handling for Commands with Invalid Parameters
+### Commands with Invalid Parameters
 
 When user enters a command to be parsed through `Parser()` with the wrong number of parameters, the app will not 
 continue the process and will return an exception `InvalidParameterException` and showcase user the correct parameters 
 to use.
 
-### Error Handling for Commands with Invalid Filters
+### Commands with Invalid Filters
 
 When user initiates a `filter` command with an invalid filter, the app will return an exception `InvalidFilterException`
 and will list out all the possible filters.

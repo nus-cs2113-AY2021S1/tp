@@ -15,14 +15,14 @@ activate ":Parser"
     activate ":CommandEvaluator"
     ":Parser" <-- ":CommandEvaluator": keyCommand
     deactivate ":CommandEvaluator"
-    create ":Command"
-            ":Parser" -> ":Command": matching keyCommand
-            activate ":Command"
-            ":Parser" <-- ":Command": command
+    create "{abstract} \n :Command"
+            ":Parser" -> "{abstract} \n :Command": matching keyCommand
+            activate "{abstract} \n :Command"
+            ":Parser" <-- "{abstract} \n :Command": command
             deactivate
             ":HdBuy" <-- ":Parser": command
             deactivate ":Parser"
-            ref over ":HdBuy": execute command
+            ref over ":HdBuy", "{abstract} \n :Command": execute command
 end
 deactivate ":HdBuy"
 @enduml
