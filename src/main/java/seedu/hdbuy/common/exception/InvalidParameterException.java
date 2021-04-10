@@ -4,7 +4,7 @@ public class InvalidParameterException extends Exception {
     private final String keyCommand;
 
     public InvalidParameterException(String keyCommand) {
-        super("You must enter the correct number of parameters.");
+        super("This is an invalid command. Please try the following:");
         this.keyCommand = keyCommand;
     }
 
