@@ -99,7 +99,11 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
     * Added 'Command Summary' section for users and testers to refer commands easily.
             
     <img src="../images/command_summary.png"/>
-    
+
+<div style="page-break-after: always;"></div>
+
+* **Documentation**:
+  * User Guide:
     * Added 'How to Use' section to familiarise users with commands for the first time.
     
     <img src="../images/how_to_use.png"/>
