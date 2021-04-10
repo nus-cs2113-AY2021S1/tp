@@ -28,7 +28,7 @@ The `Api`
 
 The *Class Diagram* below shows the different classes within Api. The entry point will be ApiRepository, accessed by Command.
 
-<img src="diagrams/ApiClass.png" />
+<img src="diagrams/ApiClass.png" width="300" height="400"/>
 
 **How classes within Api component interact with each other**
 
@@ -45,7 +45,7 @@ The `Storage`
 
 The *Class Diagram* below shows the different classes within Storage. The entry point will be StorageManager, accessed by Data.
 
-<img src="diagrams/StorageClass.png" />
+<img src="diagrams/StorageClass.png" width="400" height="300"/>
 
 **How classes within Storage component interact with each other**
 
