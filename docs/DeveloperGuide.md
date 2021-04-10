@@ -3,7 +3,7 @@
 ## Design & implementation
 
 ### Architecture
-![ApplicationArchitecture](diagrams/Architecture.png)
+![ApplicationArchitecture](diagrams/architecture.jpg)
 
 The Architecture Diagram given above explains the high-level design of the App.
 

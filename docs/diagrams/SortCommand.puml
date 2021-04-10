@@ -12,8 +12,9 @@ activate ":SortCommand"
         else desc
             ":SortCommand" -> ":SearchedUnits": sortMapByPrice(false)
             activate ":SearchedUnits"
-            ":SortCommand" <-- ":SearchedUnits": returns sorted listings in descending order wrt price
+            ":SortCommand" <- ":SearchedUnits" : returns sorted listings in descending order wrt price
         end
         deactivate ":SearchedUnits"
         destroy ":SortCommand"
+        == Cut here ==
 @enduml
