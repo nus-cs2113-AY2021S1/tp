@@ -3,7 +3,7 @@
 ## Design & implementation
 
 ### Architecture
-![ApplicationArchitecture](diagrams/architecture.jpg)
+<img src="diagrams/architecture.png" width="400" height="300"/>
 
 The Architecture Diagram given above explains the high-level design of the App.
 
@@ -28,13 +28,13 @@ The `Api`
 
 The *Class Diagram* below shows the different classes within Api. The entry point will be ApiRepository, accessed by Command.
 
-<img src="diagrams/ApiClass.png" width="300" height="400"/>
+<img src="diagrams/ApiClass.png" width="300" height="300"/>
 
 **How classes within Api component interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where a Find command is executed.
 
-<img src="diagrams/ApiSequence.png" />
+<img src="diagrams/ApiSequence.png" width="500" height="500"/>
 
 ### Storage component
 
@@ -85,7 +85,7 @@ The `Parser`
 
 The *Sequence Diagram* below shows how the components interact with each other when user enters a command from CLI.
 
-<img src="diagrams/ParserSequence.png" />
+<img src="diagrams/ParserSequence.png" width="300" height="300"/>
 
 The CommandEvaluator class extracts the information from the input and thereafter passes a keyCommand to the Parser class for it to map and retrieve the appropriate Command to the HdBuy.
 
@@ -97,8 +97,8 @@ The `Command`
 
 The *Class Diagrams (broken into 2 diagrams for easy viewing)* below shows the different Commands that can be mapped and retrieved by Parser.
 
-<img src="diagrams/CommandClass.png" />
-<img src="diagrams/CommandClass2.png" />
+<img src="diagrams/CommandClass.png" width="400" height="200"/>
+<img src="diagrams/CommandClass2.png" width="400" height="200"/>
 
 **How classes interact with a Command object during execution**
 
@@ -106,43 +106,43 @@ The *Sequence Diagram* below shows how the components interact with each other w
 
 1. `FilterCommand`
 
-<img src="diagrams/FilterCommand.png" />
+<img src="diagrams/FilterCommand.png" width="400" height="300"/>
 
 2. `FindCommand`
 
-<img src="diagrams/FindCommand.png" />
+<img src="diagrams/FindCommand.png" width="400" height="300"/>
 
 3. `RemoveCommand`
 
-<img src="diagrams/RemoveCommand.png" />
+<img src="diagrams/RemoveCommand.png" width="400" height="300"/>
 
 4. `SaveCommand`
 
-<img src="diagrams/SaveCommand.png" />
+<img src="diagrams/SaveCommand.png" width="400" height="300"/>
 
 5. `ShortlistCommand`
 
-<img src="diagrams/ShortlistCommand.png" />
+<img src="diagrams/ShortlistCommand.png" width="400" height="300"/>
  
 6. `SortCommand`
 
-<img src="diagrams/SortCommand.png" />
+<img src="diagrams/SortCommand.png" width="400" height="300"/>
 
 7. `ClearCommand`
 
-<img src="diagrams/ClearCommand.png" />
+<img src="diagrams/ClearCommand.png" width="400" height="300"/>
 
 8. `CloseCommand`
 
-<img src="diagrams/CloseCommand.png" />
+<img src="diagrams/CloseCommand.png" width="400" height="300"/>
 
 9. `HelpCommand`
 
-<img src="diagrams/HelpCommand.png" />
+<img src="diagrams/HelpCommand.png" width="400" height="300"/>
 
 10. `ListCommand`
 
-<img src="diagrams/ListCommand.png" />
+<img src="diagrams/ListCommand.png" width="400" height="300"/>
 
 11. `DefaultCommand` is a placeholder command, it will not be executed.
 
