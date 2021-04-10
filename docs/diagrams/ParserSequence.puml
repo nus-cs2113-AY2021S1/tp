@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+loop not exit
+activate ":HdBuy"
+":HdBuy" -> ":TextUi": readCommand()
+activate ":TextUi"
+":HdBuy" <-- ":TextUi": fullCommand
+deactivate ":TextUi"
+":HdBuy" -> ":Parser": parse(fullCommand)
+activate ":Parser"
+    ":Parser" -> ":CommandEvaluator": extractInfo(fullCommand)
+    activate ":CommandEvaluator"
+    ":Parser" <-- ":CommandEvaluator": keyCommand
+    deactivate ":CommandEvaluator"
+    create ":Command"
+            ":Parser" -> ":Command": matching keyCommand
+            activate ":Command"
+            ":Parser" <-- ":Command": command
+            deactivate
+            ":HdBuy" <-- ":Parser": command
+            deactivate ":Parser"
+            ref over ":HdBuy": execute command
+end
+deactivate ":HdBuy"
+@enduml

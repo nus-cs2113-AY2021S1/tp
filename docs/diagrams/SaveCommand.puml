@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
+activate ":HdBuy"
+        ":HdBuy" -> ":SaveCommand": execute()
+        activate ":SaveCommand"
+        ":SaveCommand" -> ":SearchedUnits": getUnit(index)
+        activate ":SearchedUnits"
+        ":SearchedUnits" --> ":SaveCommand": targetUnit
+        deactivate ":SearchedUnits"
+        opt targetUnit is not null
+            ":SaveCommand" -> ":ShortList": addTo":ShortList"(targetUnit)
+            activate ":ShortList"
+            ":SaveCommand" <-- ":ShortList"
+            deactivate ":ShortList"
+            ":SaveCommand" -> ":TextUi": showSaved":ShortList"Unit(targetUnit)
+            activate ":TextUi"
+            ":SaveCommand" <-- ":TextUi"
+            deactivate ":TextUi"
+        end
+        ":HdBuy" <-- ":SaveCommand"
+        destroy ":SaveCommand"
+@enduml
