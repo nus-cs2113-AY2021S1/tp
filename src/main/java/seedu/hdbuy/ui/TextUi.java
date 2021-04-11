@@ -103,26 +103,11 @@ public class TextUi {
     }
 
     /**
-     * This method will show all the units requested by the user after fetching data from the API.
+     * This method will show all the units to user.
      *
      * @param units The units that fulfilled the conditions set by the user.
      */
     public static void showUnits(ArrayList<Unit> units) {
-        Object[] columnNames = {"Index", "Address", "Type", "Lease", "Price"};
-        System.out.format("%5s%24s%12s%24s%12s\n", columnNames);
-        int i = 0;
-        for (Unit unit : units) {
-            Object[] unitData = {++i, unit.getAddress(), unit.getType(), unit.getLease(), "$" + unit.getPrice()};
-            System.out.format("%5s%24s%12s%24s%12s\n", unitData);
-        }
-    }
-
-    /**
-     * This method will list out all the units saved by the user.
-     *
-     * @param units The units that fulfilled the conditions set and saved by the user.
-     */
-    public static void showShortListUnits(ArrayList<Unit> units) {
         Object[] columnNames = {"Index", "Address", "Type", "Lease", "Price"};
         System.out.format("%5s%24s%12s%24s%12s\n", columnNames);
         int i = 0;
