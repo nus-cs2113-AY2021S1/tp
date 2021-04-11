@@ -12,7 +12,7 @@ HdBuy allows you to easily find and bookmark resale flats available matching you
 4. Execute your first command, 'help', to view all other available commands.
 
 ![Your first launch](images/landing.png)
-
+<div style="page-break-after: always;"></div>
 
 ## How to Use
 
@@ -40,7 +40,7 @@ HdBuy allows you to easily find and bookmark resale flats available matching you
     
 5. Closing the app
     1. Execute `exit` at any time to quit the app.
-
+<div style="page-break-after: always;"></div>
 
 ## Features 
 
@@ -127,9 +127,7 @@ Format: `sort TYPE`
 
 Example:
 * `sort asc` to sort listings in ascending order with respect to price.
-
-
-
+<div style="page-break-after: always;"></div>
 
 ## Error Handling
 
@@ -147,15 +145,13 @@ Prerequisites: `find` is run and shows some flats <br> `save 101`|101 is invalid
 |Prerequisites: `shortlist` is empty <br> `remove 1`|1 is invalid. It is either a non-integer or an out of range value.|Have at least one unit in the shortlist by using the `save` command.
 |Prerequisites: Bad internet connection or server down.|Server seems to be down, or was it your Internet connection?|Troubleshoot internet connection. If it is the server issue, please report it to our email.|
 
-
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
 **Q**: How do I transfer my data (shortlisted units) to another computer? 
 
 **A**: Install the app in the other computer and copy the current `shortlist.txt` file into the same directory as the app.
-
-
 
 ## Command Summary
 
