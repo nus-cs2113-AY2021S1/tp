@@ -40,7 +40,7 @@ DISCLAIMER: PlantUML currently does not support hiding of lifelines after object
 
 ### Architecture
 
-<img src="diagrams/architecture.jpg" width="400" height="300"/>
+<img src="diagrams/architecture.jpg" width="400" height="450"/>
 
 The Architecture Diagram given above explains the high-level design of the App.
 
