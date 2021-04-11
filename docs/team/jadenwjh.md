@@ -115,15 +115,24 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
 * **Documentation**:
   * Developer Guide:
     * [Wrote **table of contents** and **instructions for manual testing**](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/DeveloperGuide.md)
+    
+    * Contribution to Storage Component and its [diagrams](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/StorageSequence.puml)
+            
+        <img src="../images/storage_contribution.png"/>
+
+<div style="page-break-after: always;"></div>
+
+* **Documentation**:
+  * Developer Guide:
 
     * Contribution to Api Component and its [diagrams](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ApiSequence.puml)
     
         <img src="../images/api_contribution.png"/>
-    
-    * Contribution to Storage Component and its [diagrams](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/StorageSequence.puml)
-        
-        <img src="../images/storage_contribution.png"/>
-    
+
+<div style="page-break-after: always;"></div>
+
+* **Documentation**:
+  * Developer Guide:
     * Contribution to Parser Component and its [diagrams](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ParserSequence.puml)
         
         <img src="../images/parser_contribution.png"/>
@@ -131,6 +140,11 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
     * Contribution to Command Component and its [class diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/CommandClass.puml)
         
         <img src="../images/command_contribution.png"/>
+
+<div style="page-break-after: always;"></div>
+
+* **Documentation**:
+  * Developer Guide:
     
     * [Drew FindCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/FindCommand.puml)
         
@@ -139,6 +153,11 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
     * [Drew FilterCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/FilterCommand.puml)
         
         <img src="../diagrams/FilterCommand.png" width="600" height="400"/>
+        
+<div style="page-break-after: always;"></div>
+
+* **Documentation**:
+  * Developer Guide:
     
     * [Drew RemoveCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/RemoveCommand.puml)
         
@@ -147,6 +166,11 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
     * [Drew SaveCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/SaveCommand.puml)
         
         <img src="../diagrams/SaveCommand.png" width="600" height="400"/>
+        
+<div style="page-break-after: always;"></div>
+
+* **Documentation**:
+  * Developer Guide:
     
     * [Drew ClearCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ClearCommand.puml)
         
@@ -155,6 +179,11 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
     * [Drew ShortlistCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ShortlistCommand.puml)
         
         <img src="../diagrams/ShortlistCommand.png" width="600" height="400"/>
+        
+<div style="page-break-after: always;"></div>
+
+* **Documentation**:
+  * Developer Guide:
     
     * [Drew CloseCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/CloseCommand.puml)
         
@@ -163,6 +192,11 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
     * [Drew HelpCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/HelpCommand.puml)
         
         <img src="../diagrams/HelpCommand.png" width="600" height="300"/>
+        
+<div style="page-break-after: always;"></div>
+
+* **Documentation**:
+  * Developer Guide:
     
     * [Drew ListCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ListCommand.puml)
         
