@@ -114,17 +114,46 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
 
 * **Documentation**:
   * Developer Guide:
-    * [Wrote description of every component and commands, user stories, instructions for manual testing](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/DeveloperGuide.md)
-    * [Drew Command class diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/CommandClass.puml)
-    * [Drew Api component sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ApiSequence.puml)
-    * [Drew Storage component sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/StorageSequence.puml)
-    * [Drew Parser component sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ParserSequence.puml)
+    * [Wrote **table of contents** and **instructions for manual testing**](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/DeveloperGuide.md)
+
+    * Contribution to Api Component and its [diagrams](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ApiSequence.puml)
+    <img src="images/api_contribution.png" width="400" height="450"/>
+    
+    * Contribution to Storage Component and its [diagrams](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/StorageSequence.puml)
+    <img src="images/storage_contribution.png" width="400" height="450"/>
+    
+    * Contribution to Parser Component and its [diagrams](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ParserSequence.puml)
+    <img src="images/parser_contribution.png" width="400" height="450"/>
+    
+    * Contribution to Command Component and its [class diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/CommandClass.puml)
+    <img src="images/command_contribution.png" width="400" height="450"/>
+    
     * [Drew FindCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/FindCommand.puml)
+    <img src="diagrams/FindCommand.png" width="400" height="300"/>
+    
     * [Drew FilterCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/FilterCommand.puml)
+    <img src="diagrams/FilterCommand.png" width="400" height="300"/>
+    
     * [Drew RemoveCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/RemoveCommand.puml)
+    <img src="diagrams/RemoveCommand.png" width="400" height="300"/>
+    
     * [Drew SaveCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/SaveCommand.puml)
+    <img src="diagrams/SaveCommand.png" width="400" height="300"/>
+    
     * [Drew ClearCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ClearCommand.puml)
+    <img src="diagrams/ClearCommand.png" width="400" height="300"/>
+    
     * [Drew ShortlistCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ShortlistCommand.puml)
+    <img src="diagrams/ShortlistCommand.png" width="400" height="300"/>
+    
     * [Drew CloseCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/CloseCommand.puml)
+    <img src="diagrams/CloseCommand.png" width="400" height="300"/>
+    
     * [Drew HelpCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/HelpCommand.puml)
+    <img src="diagrams/HelpCommand.png" width="400" height="300"/>
+    
     * [Drew ListCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ListCommand.puml)
+    <img src="diagrams/ListCommand.png" width="400" height="300"/>
+    
+    * [Drew SortCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/SortCommand.puml)
+    <img src="diagrams/SortCommand.png" width="400" height="300"/>
