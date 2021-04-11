@@ -4,7 +4,7 @@ DISCLAIMER: PlantUML currently does not support hiding of lifelines after object
 
 * For instance, CloseCommand is destroyed after signalling imminent exit:
 
-<img src="diagrams/CloseCommand.png" width="400" height="300"/>
+<img src="diagrams/CloseCommand.png" width="400" height="200"/>
 
 * However, due to limitations of PlantUML, the lifeline will still be present after destroying CloseCommand.
 
@@ -65,13 +65,13 @@ The `Api`
 
 The *Class Diagram* below shows the different classes within Api. The entry point will be ApiRepository, accessed by Command.
 
-<img src="diagrams/ApiClass.png" width="300" height="300"/>
+<img src="diagrams/ApiClass.png" width="500" height="500"/>
 
 **How classes within Api component interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where a Find command is executed.
 
-<img src="diagrams/ApiSequence.png" width="500" height="500"/>
+<img src="diagrams/ApiSequence.png" width="700" height="700"/>
 
 ### Storage component
 
@@ -122,7 +122,7 @@ The `Parser`
 
 The *Sequence Diagram* below shows how the components interact with each other when user enters a command from CLI.
 
-<img src="diagrams/ParserSequence.png" width="400" height="300"/>
+<img src="diagrams/ParserSequence.png" width="600" height="450"/>
 
 The CommandEvaluator class extracts the information from the input and thereafter passes a keyCommand to the Parser class for it to map and retrieve the appropriate Command to the HdBuy.
 
@@ -134,54 +134,54 @@ The `Command`
 
 The *Class Diagrams (broken into 2 diagrams for easy viewing)* below shows the different Commands that can be mapped and retrieved by Parser.
 
-<img src="diagrams/CommandClass.png" width="400" height="200"/>
-<img src="diagrams/CommandClass2.png" width="400" height="200"/>
+<img src="diagrams/CommandClass.png" width="600" height="280"/>
+<img src="diagrams/CommandClass2.png" width="600" height="280"/>
 
 **How classes interact with a Command object during execution**
 
 The *Sequence Diagram* below shows how the components interact with each other when the respective commands are executed:
 
-1. `FilterCommand`
+`FilterCommand`
 
-<img src="diagrams/FilterCommand.png" width="400" height="300"/>
+<img src="diagrams/FilterCommand.png" width="600" height="400"/>
 
-2. `FindCommand`
+`FindCommand`
 
-<img src="diagrams/FindCommand.png" width="400" height="300"/>
+<img src="diagrams/FindCommand.png" width="600" height="400"/>
 
-3. `RemoveCommand`
+`RemoveCommand`
 
-<img src="diagrams/RemoveCommand.png" width="400" height="300"/>
+<img src="diagrams/RemoveCommand.png" width="600" height="400"/>
 
-4. `SaveCommand`
+`SaveCommand`
 
-<img src="diagrams/SaveCommand.png" width="400" height="300"/>
+<img src="diagrams/SaveCommand.png" width="600" height="400"/>
 
-5. `ShortlistCommand`
+`ShortlistCommand`
 
-<img src="diagrams/ShortlistCommand.png" width="400" height="300"/>
+<img src="diagrams/ShortlistCommand.png" width="600" height="400"/>
  
-6. `SortCommand`
+`SortCommand`
 
-<img src="diagrams/SortCommand.png" width="400" height="300"/>
+<img src="diagrams/SortCommand.png" width="600" height="400"/>
 
-7. `ClearCommand`
+`ClearCommand`
 
-<img src="diagrams/ClearCommand.png" width="400" height="300"/>
+<img src="diagrams/ClearCommand.png" width="600" height="300"/>
 
-8. `CloseCommand`
+`CloseCommand`
 
-<img src="diagrams/CloseCommand.png" width="400" height="300"/>
+<img src="diagrams/CloseCommand.png" width="600" height="300"/>
 
-9. `HelpCommand`
+`HelpCommand`
 
-<img src="diagrams/HelpCommand.png" width="400" height="300"/>
+<img src="diagrams/HelpCommand.png" width="600" height="300"/>
 
-10. `ListCommand`
+`ListCommand`
 
-<img src="diagrams/ListCommand.png" width="400" height="300"/>
+<img src="diagrams/ListCommand.png" width="600" height="300"/>
 
-11. `DefaultCommand` is a placeholder command, it will not be executed.
+`DefaultCommand` is a placeholder command, it will not be executed.
 
 ### Common component
 
