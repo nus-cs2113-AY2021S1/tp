@@ -31,8 +31,6 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
   * Highlights: Clearer instructions on the correct input; refactor term definition into a separate class to reduce the repeated code.
     - [TextUi](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/ui/TextUi.java)
     - [TermDefinition](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/src/main/java/seedu/hdbuy/ui/TermDefinition.java)
-  
-<div style="page-break-after: always;"></div>
 
 * **Project management**:
   * Manual test the code to find bugs and errors.
