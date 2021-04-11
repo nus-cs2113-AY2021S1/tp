@@ -106,7 +106,7 @@ public class TextUi {
     }
 
     /**
-     * This method will show all the units requested by the user after fetching data from the API.
+     * This method will show all the units to user.
      *
      * @param units The units that fulfilled the conditions set by the user.
      */
