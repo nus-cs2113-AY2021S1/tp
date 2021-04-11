@@ -118,19 +118,19 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
 
     * Contribution to Api Component and its [diagrams](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ApiSequence.puml)
     
-        <img src="../images/api_contribution.png" width="800" height="1080"/>
+        <img src="../images/api_contribution.png"/>
     
     * Contribution to Storage Component and its [diagrams](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/StorageSequence.puml)
         
-        <img src="../images/storage_contribution.png" width="800" height="1000"/>
+        <img src="../images/storage_contribution.png"/>
     
     * Contribution to Parser Component and its [diagrams](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ParserSequence.puml)
         
-        <img src="../images/parser_contribution.png" width="800" height="620"/>
+        <img src="../images/parser_contribution.png"/>
     
     * Contribution to Command Component and its [class diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/CommandClass.puml)
         
-        <img src="../images/command_contribution.png" width="1000" height="500"/>
+        <img src="../images/command_contribution.png"/>
     
     * [Drew FindCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/FindCommand.puml)
         
