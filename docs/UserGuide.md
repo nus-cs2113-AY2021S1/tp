@@ -8,8 +8,9 @@ HdBuy allows you to easily find and bookmark resale flats available matching you
 
 1. Ensure that you have Java 11 or above installed.
 2. Down the latest version of `HdBuy` from [here](https://github.com/AY2021S2-CS2113-F10-1/HdBuy/releases/tag/v2.1).
-3. Execute the jar file by going to the directory and running `java -jar hdbuy.jar` in command line.
-4. Execute your first command, 'help', to view all other available commands.
+3. Ensure that the .jar file downloaded is named `hdbuy.jar`. Else, rename it as such.
+4. Execute the jar file by going to its directory and running `java -jar hdbuy.jar` in command line.
+5. Execute your first command, 'help', to view all other available commands.
 
 ![Your first launch](images/landing.png)
 <div style="page-break-after: always;"></div>
