@@ -126,11 +126,11 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
     
     * Contribution to Parser Component and its [diagrams](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ParserSequence.puml)
         
-        <img src="../images/parser_contribution.png" width="600" height="620"/>
+        <img src="../images/parser_contribution.png" width="620" height="620"/>
     
     * Contribution to Command Component and its [class diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/CommandClass.puml)
         
-        <img src="../images/command_contribution.png" width="680" height="500"/>
+        <img src="../images/command_contribution.png" width="750" height="500"/>
     
     * [Drew FindCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/FindCommand.puml)
         
