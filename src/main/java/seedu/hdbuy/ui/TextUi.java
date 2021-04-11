@@ -68,8 +68,8 @@ public class TextUi {
      */
     public static void showHelp() {
         System.out.print("HdBuy is a way to easily find and bookmark resale flats of your liking.\n\n"
-            + "Report bugs to: hdbuy@gmail.com\n" + "GitHub page: <https://github.com/AY2021S2-CS2113-F10-1/tp>\n"
-            + "User Guide: <https://github.com/AY2021S2-CS2113-F10-1/tp/blob/master/docs/UserGuide.md>\n\n"
+            + "Report bugs to: hdbuy@gmail.com\n" + "GitHub page: <https://github.com/AY2021S2-CS2113-F10-1/HdBuy>\n"
+            + "User Guide: <https://ay2021s2-cs2113-f10-1.github.io/HdBuy/UserGuide.html>\n\n"
             + "Available commands:\n===============================================\n");
 
         String[] terms = {"filter <attribute> <value>", "list", "clear", "find", "sort <direction>", "save <index>",
