@@ -117,16 +117,16 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
     * [Wrote **table of contents** and **instructions for manual testing**](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/DeveloperGuide.md)
 
     * Contribution to Api Component and its [diagrams](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ApiSequence.puml)
-        * <img src="../images/api_contribution.png" width="400" height="450"/>
+        * <img src="../images/api_contribution.png" width="600" height="650"/>
     
     * Contribution to Storage Component and its [diagrams](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/StorageSequence.puml)
-        * <img src="../images/storage_contribution.png" width="400" height="450"/>
+        * <img src="../images/storage_contribution.png" width="600" height="650"/>
     
     * Contribution to Parser Component and its [diagrams](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ParserSequence.puml)
-        * <img src="../images/parser_contribution.png" width="400" height="450"/>
+        * <img src="../images/parser_contribution.png" width="600" height="650"/>
     
     * Contribution to Command Component and its [class diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/CommandClass.puml)
-        * <img src="../images/command_contribution.png" width="400" height="450"/>
+        * <img src="../images/command_contribution.png" width="600" height="550"/>
     
     * [Drew FindCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/FindCommand.puml)
         * <img src="../diagrams/FindCommand.png" width="400" height="300"/>
