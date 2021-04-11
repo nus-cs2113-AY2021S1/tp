@@ -7,6 +7,7 @@ DISCLAIMER: PlantUML currently does not support hiding of lifelines after object
 <img src="diagrams/CloseCommand.png" width="400" height="200"/>
 
 * However, due to limitations of PlantUML, the lifeline will still be present after destroying CloseCommand.
+<div style="page-break-after: always;"></div>
 
 ## Table of Contents
 
@@ -35,7 +36,8 @@ DISCLAIMER: PlantUML currently does not support hiding of lifelines after object
     * [Commands with Invalid Parameters](#commands-with-invalid-parameters)
     * [Commands with Invalid Filters](#commands-with-invalid-filters)
 * [Glossary](#glossary)
-    
+<div style="page-break-after: always;"></div>
+
 ## Design & Implementation
 
 ### Architecture
@@ -53,6 +55,8 @@ The App consists of:
 * [**`Parser`**](#parser-component): Translate user input to valid commands to be executed.
 * [**`Command`**](#command-component): The command executor.
 * [**`Common`**](#common-component): Models of objects used internally. Includes keys, exceptions, logger and the Unit class.
+
+<div style="page-break-after: always;"></div>
 
 ### Api component
 
@@ -73,6 +77,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="diagrams/ApiSequence.png" width="700" height="700"/>
 
+<div style="page-break-after: always;"></div>
+
 ### Storage component
 
 The `Storage`
@@ -90,6 +96,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="diagrams/StorageSequence.png" />
 
+<div style="page-break-after: always;"></div>
+
 ### Ui component
 
 The `Ui`
@@ -104,6 +112,8 @@ For Help messages, the UI will call the TermDefinition class to retrieve the def
 If the user enters the command with the wrong format, the UI will call the TermDefinition class to retrieve the example of the term, which is shown in the diagram below.
 
 <img src = "diagrams/TextUiExample.png" />
+
+<div style="page-break-after: always;"></div>
 
 ### Data component
 
@@ -126,6 +136,8 @@ The *Sequence Diagram* below shows how the components interact with each other w
 
 The CommandEvaluator class extracts the information from the input and thereafter passes a keyCommand to the Parser class for it to map and retrieve the appropriate Command to the HdBuy.
 
+<div style="page-break-after: always;"></div>
+
 ### Command component
 
 The `Command`
@@ -145,6 +157,8 @@ The *Sequence Diagram* below shows how the components interact with each other w
 
 <img src="diagrams/FilterCommand.png" width="600" height="400"/>
 
+<div style="page-break-after: always;"></div>
+
 `FindCommand`
 
 <img src="diagrams/FindCommand.png" width="600" height="400"/>
@@ -153,6 +167,8 @@ The *Sequence Diagram* below shows how the components interact with each other w
 
 <img src="diagrams/RemoveCommand.png" width="600" height="400"/>
 
+<div style="page-break-after: always;"></div>
+
 `SaveCommand`
 
 <img src="diagrams/SaveCommand.png" width="600" height="400"/>
@@ -160,6 +176,8 @@ The *Sequence Diagram* below shows how the components interact with each other w
 `ShortlistCommand`
 
 <img src="diagrams/ShortlistCommand.png" width="600" height="400"/>
+
+<div style="page-break-after: always;"></div>
  
 `SortCommand`
 
@@ -169,6 +187,8 @@ The *Sequence Diagram* below shows how the components interact with each other w
 
 <img src="diagrams/ClearCommand.png" width="600" height="300"/>
 
+<div style="page-break-after: always;"></div>
+
 `CloseCommand`
 
 <img src="diagrams/CloseCommand.png" width="600" height="300"/>
@@ -176,6 +196,8 @@ The *Sequence Diagram* below shows how the components interact with each other w
 `HelpCommand`
 
 <img src="diagrams/HelpCommand.png" width="600" height="300"/>
+
+<div style="page-break-after: always;"></div>
 
 `ListCommand`
 
@@ -189,7 +211,7 @@ The `Common`
 
 * Utility classes such as keys and exceptions.
 
-
+<div style="page-break-after: always;"></div>
 
 ## Product scope
 ### Target user profile
@@ -211,6 +233,7 @@ Easily find and bookmark resale flats available matching user's preference.
 |v2.0|returning user|bookmark potential flats|keep track of potential flats| Nice to have|
 |v2.0|user|sort flats by price, in either ascending or descending order|view flats matching budget| Nice to have|
 
+<div style="page-break-after: always;"></div>
 
 ## Manual Testing Instructions
 
@@ -234,6 +257,8 @@ Easily find and bookmark resale flats available matching user's preference.
 
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: Greeting message. If there is a shortlist, text file 'shortlist.txt' will be seen in folder.
+       
+<div style="page-break-after: always;"></div>
 
 ### Filter conditions
 
@@ -277,6 +302,8 @@ Easily find and bookmark resale flats available matching user's preference.
    3. Incorrect delete commands to try: `find x` (where x can be input string)<br>
       Expected: Similar to previous. But with added message: "FIND command does not need any parameters. However, you need to provide filter before you execute the FIND command."
 
+<div style="page-break-after: always;"></div>
+
 ### Shortlisting units from search results
 
 7. Saving a unit from search result to shortlist, requires at least 1 `find` to be executed prior.
@@ -310,6 +337,8 @@ Easily find and bookmark resale flats available matching user's preference.
 11. Sorting results in descending order 
 
     1. Test case: `sort desc` to display unit(s) in descending order of price.
+
+<div style="page-break-after: always;"></div>
 
 ## Error Handling
 
