@@ -102,7 +102,6 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
 
 <div style="page-break-after: always;"></div>
 
-* **Documentation**:
   * User Guide:
     * Added 'How to Use' section to familiarise users with commands for the first time.
     
@@ -122,7 +121,6 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
 
 <div style="page-break-after: always;"></div>
 
-* **Documentation**:
   * Developer Guide:
 
     * Contribution to Api Component and its [diagrams](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ApiSequence.puml)
@@ -131,7 +129,6 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
 
 <div style="page-break-after: always;"></div>
 
-* **Documentation**:
   * Developer Guide:
     * Contribution to Parser Component and its [diagrams](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ParserSequence.puml)
         
@@ -143,7 +140,6 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
 
 <div style="page-break-after: always;"></div>
 
-* **Documentation**:
   * Developer Guide:
     
     * [Drew FindCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/FindCommand.puml)
@@ -156,7 +152,6 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
         
 <div style="page-break-after: always;"></div>
 
-* **Documentation**:
   * Developer Guide:
     
     * [Drew RemoveCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/RemoveCommand.puml)
@@ -169,7 +164,6 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
         
 <div style="page-break-after: always;"></div>
 
-* **Documentation**:
   * Developer Guide:
     
     * [Drew ClearCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ClearCommand.puml)
@@ -182,7 +176,6 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
         
 <div style="page-break-after: always;"></div>
 
-* **Documentation**:
   * Developer Guide:
     
     * [Drew CloseCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/CloseCommand.puml)
@@ -195,7 +188,6 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
         
 <div style="page-break-after: always;"></div>
 
-* **Documentation**:
   * Developer Guide:
     
     * [Drew ListCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ListCommand.puml)
