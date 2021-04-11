@@ -71,6 +71,8 @@ The *Class Diagram* below shows the different classes within Api. The entry poin
 
 <img src="diagrams/ApiClass.png" width="500" height="500"/>
 
+<div style="page-break-after: always;"></div>
+
 **How classes within Api component interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where a Find command is executed.
@@ -89,6 +91,8 @@ The `Storage`
 The *Class Diagram* below shows the different classes within Storage. The entry point will be StorageManager, accessed by Data.
 
 <img src="diagrams/StorageClass.png" width="400" height="300"/>
+
+<div style="page-break-after: always;"></div>
 
 **How classes within Storage component interact with each other**
 
@@ -148,6 +152,8 @@ The *Class Diagrams (broken into 2 diagrams for easy viewing)* below shows the d
 
 <img src="diagrams/CommandClass.png" width="600" height="280"/>
 <img src="diagrams/CommandClass2.png" width="600" height="280"/>
+
+<div style="page-break-after: always;"></div>
 
 **How classes interact with a Command object during execution**
 
@@ -288,6 +294,8 @@ Easily find and bookmark resale flats available matching user's preference.
 
    2. Incorrect inputs to try: `clear x` (where x can be input string)<br>
       Expected: Notify user with message: "You must enter the correct number of parameters."
+      
+<div style="page-break-after: always;"></div>
 
 ### Find units matching filter conditions
 
@@ -301,8 +309,6 @@ Easily find and bookmark resale flats available matching user's preference.
 
    3. Incorrect delete commands to try: `find x` (where x can be input string)<br>
       Expected: Similar to previous. But with added message: "FIND command does not need any parameters. However, you need to provide filter before you execute the FIND command."
-
-<div style="page-break-after: always;"></div>
 
 ### Shortlisting units from search results
 
@@ -327,6 +333,7 @@ Easily find and bookmark resale flats available matching user's preference.
    2. Incorrect inputs to try: `shortlist x` (where x is any string input)<br>
       Expected: Similar to previous.
       
+<div style="page-break-after: always;"></div>
 
 ### Sorting results by price in ascending or descending order
 
