@@ -136,14 +136,15 @@ Example:
 Listed in the table below are the possible errors, how they can occur and how to remedy it.
 
 |How can this error occur|Description|How to remedy|
-|----|---|---------|
+|----|------|---------|
 |Prerequisites: `filter` not set <br>`find`|<img src="images/no_filter_find_error.png" width="300" height="100"/>|`find` requires a valid filter to function.<br>Please specify a filter to use before executing this command.
 |`filter quality good`|<img src="images/wrong_param_error.png" width="300" height="100"/>|`filter` command only allows for predetermined attributes.<br>Please use these filters: [LOCATION, TYPE, LEASE_REMAINING].
 |`filter lease_remaining 100`<br>`find`|There are no flats to be shown.|`clear` the filters before setting a new valid one.
-|`sort`|
-|Prerequisites: `find` not run or does not how flats to show <br> `save 1`|
-Prerequisites: `find` is run and show some flats <br> `save 101`|
-|Prerequisites: `shortlist` is empty <br> `remove 1`|
+|`sort`|<img src="images/sort_error.png" width="300" height="100"/>|`sort` requires a direction. Either asc (ascending) or desc(descending).
+|Prerequisites: `find` not run or it does not have flats to show <br> `save 1`|Please perform unit search first.|Set an appropriate filter and run the `find` command before attempting to `save`.
+Prerequisites: `find` is run and shows some flats <br> `save 101`|101 is invalid. It is either a non-integer or an out of range value.|Enter an integer from 1 to 100 instead.
+|`remove`|<img src="images/remove_error.png" width="300" height="100"/>|Input the index of the unit to remove.
+|Prerequisites: `shortlist` is empty <br> `remove 1`|1 is invalid. It is either a non-integer or an out of range value.|Have at least one unit in the shortlist by using the `save` command.
 |Prerequisites: Bad internet connection or server down.|Server seems to be down, or was it your Internet connection?|Troubleshoot internet connection. If it is the server issue, please report it to our email.|
 
 

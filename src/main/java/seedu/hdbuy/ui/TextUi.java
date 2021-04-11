@@ -19,6 +19,9 @@ public class TextUi {
     private static final int SEPARATOR_LENGTH = 80;
     private static final Scanner in = new Scanner(System.in);
 
+    private static final String unitFormat = "%-8s%-24s%-12s%-24s%-12s%n";
+    private static final String helpFormat = "%-30s%-80s%n";
+
     /**
      * Returns a String input if the user has input.
      * If the user doesn't have any input, the app will return an "EXIT" string.
@@ -74,7 +77,7 @@ public class TextUi {
 
         for (String term : terms) {
             Object[] summary = {term, TermDefinition.getDefinition(term)};
-            System.out.format("%30s%80s\n", summary);
+            System.out.format(helpFormat, summary);
         }
     }
 
@@ -109,11 +112,11 @@ public class TextUi {
      */
     public static void showUnits(ArrayList<Unit> units) {
         Object[] columnNames = {"Index", "Address", "Type", "Lease", "Price"};
-        System.out.format("%5s%24s%12s%24s%12s\n", columnNames);
+        System.out.format(unitFormat, columnNames);
         int i = 0;
         for (Unit unit : units) {
             Object[] unitData = {++i, unit.getAddress(), unit.getType(), unit.getLease(), "$" + unit.getPrice()};
-            System.out.format("%5s%24s%12s%24s%12s\n", unitData);
+            System.out.format(unitFormat, unitData);
         }
     }
 
