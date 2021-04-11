@@ -1,6 +1,5 @@
 
 shortlist
-help
 clear
 find
 sort asc
