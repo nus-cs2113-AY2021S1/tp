@@ -55,7 +55,7 @@ Given below are my contributions to the project.
 * **Contributions to team-based tasks**:
     * Tidy up the Google Docs. Added important links for the group members to keep track of things easily. The structure also makes the content easier to digest.
         - [CS2113 group 1](https://docs.google.com/document/d/1x-nq_wratQyNYqNDiN9RNC1ox3aGxQgZSRB6DzkErlk/edit?usp=sharing)
-
+    * Recorded the demo video. A comprehensive demo which demonstrates the abilities of the application.
 
 * **Review / mentoring contributions**:
     * Provide help and feedback when team members encounter problems setting up things.
