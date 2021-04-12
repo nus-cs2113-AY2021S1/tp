@@ -50,7 +50,7 @@ HdBuy allows you to easily find and bookmark resale flats available matching you
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `remove INDEX`, `INDEX` is a parameter which can be used as `remove 1`.
   e.g. in `filter ATTRIBUTE VALUE`, `ATTRIBUTE` is the attribute of a unit to filter. `VALUE` is the value of the attribute.
-
+* All commands is to be in `small caps` to be recognised.
 
 ### Add a Filter : `filter`
 

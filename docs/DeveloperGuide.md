@@ -248,6 +248,7 @@ Easily find and bookmark resale flats available matching user's preference.
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Requires internet connection.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Disable caps lock. All commands are to be in `small caps` to be recognised.
 
 ### Launch and Shutdown
 
@@ -358,6 +359,8 @@ improving the command line.
      
 * For errors caused by faulty API calls, the app will return an error message and will ask the user to restart the
 app to attempt reconnection.
+
+* All commands must be in `small caps` to be recognised.
 
 ### Commands without Sufficient Parameters
 
