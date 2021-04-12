@@ -127,7 +127,7 @@ public class TextUi {
      * @param e The exception triggered by not providing filter before initializing search.
      */
     public static void showEmptyParameter(EmptyParameterException e) {
-        System.out.println("\"FIND\"" + e.getMessage());
+        System.out.println(e.getMessage());
         System.out.println("Please specify a filter to use before executing this command.");
         System.out.println("Filters available: " + Arrays.asList(QueryKey.values()));
         System.out.println("An example will be \"filter location clementi\"");

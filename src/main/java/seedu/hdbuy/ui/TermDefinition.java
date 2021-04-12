@@ -69,13 +69,13 @@ public class TermDefinition {
         String example;
         switch (key) {
         case "clear":
-            example = "CLEAR command does not need any parameters.";
+            example = "`clear` command does not need any parameters.";
             break;
         case "exit":
-            example = "EXIT command does not need any parameters.";
+            example = "`exit` command does not need any parameters.";
             break;
         case "find":
-            example = "FIND command does not need any parameters.";
+            example = "`find` command does not need any parameters.";
             break;
         case "filter":
             example = "Filter types: " + Arrays.asList(QueryKey.values()) + "\nExample: \"filter location clementi\"\n"
@@ -83,22 +83,22 @@ public class TermDefinition {
                 + "lease_remaining 90\", can be any whole number from 0 - 99";
             break;
         case "help":
-            example = "HELP command does not need any parameters.";
+            example = "`help` command does not need any parameters.";
             break;
         case "list":
-            example = "LIST command does not need any parameters.";
+            example = "`list` command does not need any parameters.";
             break;
         case "remove":
             example = "Example: \"remove X\", X is the index of the unit in the shortlist.";
             break;
         case "save":
-            example = "Example: \"save X\", X is the index of the unit in the shortlist.";
+            example = "Example: \"save X\", X is the index of the unit from the search result.";
             break;
         case "shortlist":
-            example = "SHORTLIST command does not need any parameters.";
+            example = "`shortlist` command does not need any parameters.";
             break;
         case "sort":
-            example = "Example: \"sort <sorttype>\", <sorttype>: {asc, desc}.";
+            example = "Example: \"sort asc\" or \"sort desc\"";
             break;
         default:
             example = "Invalid example.";
