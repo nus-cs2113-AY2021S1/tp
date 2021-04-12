@@ -49,6 +49,9 @@ public class TermDefinition {
         case "sort <order>":
             definition = "Sort search results in ascending(asc) or descending(desc) order";
             break;
+        case "help":
+            definition = "Lists and defines all available commands";
+            break;
         default:
             definition = "Invalid definition";
             break;

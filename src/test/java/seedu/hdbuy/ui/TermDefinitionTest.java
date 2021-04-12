@@ -9,7 +9,7 @@ class TermDefinitionTest {
 
     @Test void getDefinition() {
         String[] terms = {"filter <attribute> <value>", "list", "clear", "find", "sort <order>", "save <index>",
-            "remove <index>", "shortlist", "exit"};
+            "remove <index>", "shortlist", "help", "exit"};
 
         for (String term : terms) {
             assertNotNull(TermDefinition.getDefinition(term));

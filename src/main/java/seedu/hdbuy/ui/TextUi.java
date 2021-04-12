@@ -75,7 +75,7 @@ public class TextUi {
             + "========================================\n");
 
         String[] terms = {"filter <attribute> <value>", "list", "clear", "find", "sort <order>", "save <index>",
-            "remove <index>", "shortlist", "exit"};
+            "remove <index>", "shortlist", "help", "exit"};
 
         for (String term : terms) {
             Object[] summary = {term, TermDefinition.getDefinition(term)};
