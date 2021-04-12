@@ -28,9 +28,6 @@ public class TermDefinition {
         case "filter <attribute> <value>":
             definition = "Add a filter condition. eg: filter location woodlands";
             break;
-        case "help":
-            definition = "It's to help you understand all of our commands";
-            break;
         case "list":
             definition = "Show all currently set filter condition to filter units matching preferences";
             break;
@@ -49,7 +46,7 @@ public class TermDefinition {
             break;
         case "sort":
             // Fallthrough
-        case "sort <direction>":
+        case "sort <order>":
             definition = "Sort search results in ascending(asc) or descending(desc) order";
             break;
         default:
