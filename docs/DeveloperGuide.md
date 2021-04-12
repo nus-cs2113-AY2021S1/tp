@@ -254,16 +254,18 @@ Easily find and bookmark resale flats available matching user's preference.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.<br>
 
-   2. Execute the jar file. Expected: Greeting message "Welcome to HDBuy! How may I help you today?".
+   2. Execute the jar file (`java --jar <filename>.jar`).<br>
+      Expected: Greeting message "Welcome to HDBuy! How may I help you today?".
 
 2. Shutdown and relaunch
 
-   1. Input: exit. Expected: Terminating message "HDBuy Bye Bye!".
+   1. Test case: `exit`<br>
+      Expected: Terminating message "HDBuy Bye Bye!"
 
    2. Re-launch the app by executing the jar file.<br>
-       Expected: Greeting message. If there is a shortlist, text file 'shortlist.txt' will be seen in folder.
+      Expected: Greeting message. If there is a shortlist, text file `shortlist.txt` will be seen in folder.
        
 <div style="page-break-after: always;"></div>
 
@@ -345,24 +347,18 @@ Easily find and bookmark resale flats available matching user's preference.
       
 <div style="page-break-after: always;"></div>
 
-### Sorting results by price in ascending or descending order
-
-10. Sorting results in ascending order 
+### Sorting results by price
 
    1. Test case: `sort asc` to display unit(s) in ascending order of price.
       Expected: Units from search results are sorted from lowest to highest price.
-       
-11. Sorting results in descending order 
 
-   1. Test case: `sort desc` to display unit(s) in descending order of price.
+   2. Test case: `sort desc` to display unit(s) in descending order of price.
       Expected: Units from search results are sorted from highest to lowest price.
 
-12. Exceptions.
-
-   1. Incorrect inputs to try: `sort`.
+   3. Incorrect inputs to try: `sort`.
       Expected: Message stating that this is an invalid command, followed by a positive example.
       
-   2. Incorrect inputs to try: `sort asc` or `sort desc` without executing `find` successfully.
+   4. Incorrect inputs to try: `sort asc` or `sort desc` without executing `find` successfully.
       Expected: Message to inform user to perform unit search first.
 
 <div style="page-break-after: always;"></div>
