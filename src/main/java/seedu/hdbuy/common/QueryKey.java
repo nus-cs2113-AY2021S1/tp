@@ -3,15 +3,15 @@ package seedu.hdbuy.common;
 public enum QueryKey {
     LOCATION {
         @Override public String toString() {
-            return "LOCATION";
+            return "location";
         }
     }, TYPE {
         @Override public String toString() {
-            return "TYPE";
+            return "type";
         }
     }, LEASE_REMAINING {
         @Override public String toString() {
-            return "LEASE_REMAINING";
+            return "lease_remaining";
         }
     }
 }

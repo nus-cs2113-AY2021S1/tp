@@ -47,16 +47,16 @@ HdBuy allows you to easily find and bookmark resale flats available matching you
 
 **Notes about the command format:**
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `remove INDEX`, `INDEX` is a parameter which can be used as `remove 1`.
-  e.g. in `filter ATTRIBUTE VALUE`, `ATTRIBUTE` is the attribute of a unit to filter. `VALUE` is the value of the attribute.
+* Words in wrapped in `<>` are the parameters to be supplied by the user.<br>
+  e.g. in `remove <index>`, `index` is a parameter which can be used as `remove 1`.
+  e.g. in `filter <attribute> <value>`, `attribute` is the attribute of a unit to filter. `value` is the value of the attribute.
 * All commands is to be in `small caps` to be recognised.
 
 ### Add a Filter : `filter`
 
 Add a filter condition. 
 
-Format: `filter ATTRIBUTE VALUE`
+Format: `filter <attribute> <value>`
 
 
 ### Search for units : `find`
@@ -77,7 +77,7 @@ Format: `shortlist`
 
 Adds a unit to the shortlist.
 
-Format: `save INDEX​`
+Format: `save <index>`
 
 **Note:**
 You have to complete a search before saving a unit to shortlist.
@@ -91,7 +91,7 @@ Example:
 
 Removes a unit from the shortlist.
 
-Format: `remove INDEX​`
+Format: `remove <index>`
 
 **Note:**
 You have to have at least 1 unit in shortlist.
@@ -124,10 +124,12 @@ Format: `help`
 
 Sorts listings either in ascending or descending order with respect to price.
 
-Format: `sort TYPE`
+Format: `sort <order>`
 
 Example:
 * `sort asc` to sort listings in ascending order with respect to price.
+* `sort desc` to sort listings in descending order with respect to price.
+
 <div style="page-break-after: always;"></div>
 
 ## Error Handling
@@ -136,10 +138,10 @@ Listed in the table below are the possible errors, how they can occur and how to
 
 |How can this error occur|Description|How to remedy|
 |----|------|---------|
-|Prerequisites: `filter` not set <br>`find`|"FIND" has no parameters currently.<br>Please specify a filter to use before executing this command.<br>Filters available: [LOCATION, TYPE, LEASE_REMAINING]<br>An example will be "filter location clementi"|`find` requires a valid filter to function.<br>Please specify a filter to use before executing this command.
-|`filter quality good`|This is an invalid command. Please try the following:<br>Filter types: [LOCATION, TYPE, LEASE_REMAINING]<br>Example: "filter location clementi"<br>Example: "filter type 4 room", can be any of X room (X = 1 - 5) or executive<br>Example: "filter lease_remaining 90", can be any whole number from 0 - 99|`filter` command only allows for predetermined attributes.<br>Please use these filters: [LOCATION, TYPE, LEASE_REMAINING].
-|`filter lease_remaining 100`<br>`find`|There are no flats to be shown.|`clear` the filters before setting a new valid one.
-|`sort`|This is an invalid command. Please try the following:<br>Example: "sort <sorttype>", <sorttype>: {asc, desc}.|`sort` requires a direction. Either asc (ascending) or desc(descending).
+|Prerequisites: `filter` not set <br>`find`|`find` has no parameters currently.<br>Please specify a filter to use before executing this command.<br>Filters available: [LOCATION, TYPE, LEASE_REMAINING]<br>An example will be "filter location clementi"|`find` requires a valid filter to function.<br>Please specify a filter to use before executing this command.
+|`filter quality good`|This is an invalid command. Please try the following:<br>Filter types: [location, type, lease_remaining]<br>Example: "filter location clementi"<br>Example: "filter type 4 room", can be any of X room (X = 1 - 5) or executive<br>Example: "filter lease_remaining 90", can be any whole number from 0 - 99|`filter` command only allows for predetermined attributes.<br>Please use these filters: [LOCATION, TYPE, LEASE_REMAINING].
+|`sort`|This is an invalid command. Please try the following:<br>Example: "sort asc" or "sort desc"|`sort` requires a direction. Either asc (ascending) or desc(descending).
+|Prerequisites: `find` not run <br> `sort asc` or `sort desc`|Please perform unit search first.|Perform searching of units first so that sorting can take place thereafter.
 |Prerequisites: `find` not run or it does not have flats to show <br> `save 1`|Please perform unit search first.|Set an appropriate filter and run the `find` command before attempting to `save`.
 Prerequisites: `find` is run and shows some flats <br> `save 101`|101 is invalid. It is either a non-integer or an out of range value.|Enter an integer from 1 to 100 instead.
 |`remove`|This is an invalid command. Please try the following:<br>Example: "remove X", X is the index of the unit in the shortlist.|Input the index of the unit to remove.
@@ -159,13 +161,11 @@ Prerequisites: `find` is run and shows some flats <br> `save 101`|101 is invalid
 Action | Format
 --------|----------------------------------------
 **View Shortlist** | `shortlist`
-**Save Shortlist** | `save INDEX` eg: `save 1`
-**Remove Shortlist** | `remove INDEX` eg: `remove 1`
-**Add a filter condition** | `filter ATTRIBUTE VALUE` eg: `filter location woodlands`
+**Save Shortlist** | `save <index>` eg: `save 1`
+**Remove Shortlist** | `remove <index>` eg: `remove 1`
+**Add a filter condition** | `filter <attribute> <value>` eg: `filter location woodlands`
 **Show filter conditions** | `list`
 **Clear filter conditions** | `clear`
 **Search for units** | `find`
 **Displays help guide** | `help`
-**Sort search results by ascending price** | `sort asc`
-**Sort search results by descending price** | `sort desc`
-
+**Sort search results by price** | `sort <order>` eg: `sort asc`, `sort desc`
