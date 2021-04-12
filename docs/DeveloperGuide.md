@@ -318,16 +318,22 @@ Easily find and bookmark resale flats available matching user's preference.
    1. Test case: After `find`, input `save 1` to save first unit from result to shortlist.
       Expected: Message stating the unit being saved to shortlist. Also displays the units' properties.
    
-   2. Incorrect inputs to try: `save`, `save x` (where x is not any of the indexes shown in search result)<br>
-      Expected: Message stating usage of invalid command, followed by a positive example. Unit is not saved.
+   2. Incorrect inputs to try: `save`<br>
+      Expected: Message stating usage of invalid command, followed by a positive example.
+      
+   3. Incorrect inputs to try: `save x` (where x is not any of the indexes shown in search results)<br>
+      Expected: Message stating x is out of range. Unit is not saved.
 
 8. Removing a unit from shortlist, requires user to have at least 1 unit in shortlist
 
    1. Test case: `remove 1` to remove the first unit in shortlist.
       Expected: Message stating the unit being removed from shortlist. Also displays the units' properties.
    
-   2. Incorrect inputs to try: `remove`, `remove x` (where x is not any of the indexes shown in shortlist)<br>
-      Expected: Message stating usage of invalid command, followed by a positive example. Unit is not removed.
+   2. Incorrect inputs to try: `remove`<br>
+      Expected: Message stating usage of invalid command, followed by a positive example.
+      
+   3. Incorrect inputs to try: `remove x` (where x is not any of the indexes shown in shortlist)<br>
+      Expected: Message stating x is out of range. Unit is not removed.
 
 9. Retrieving shortlist
 
