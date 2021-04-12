@@ -71,7 +71,8 @@ public class TextUi {
             + "Report bugs to: hdbuy@gmail.com\n" + "GitHub page: <https://github.com/AY2021S2-CS2113-F10-1/HdBuy>\n"
             + "User Guide: <https://ay2021s2-cs2113-f10-1.github.io/HdBuy/UserGuide.html>\n"
             + "The app is meant to recognise commands in `small caps`. Ensure caps lock is disabled.\n"
-            + "Available commands:\n===============================================\n");
+            + "Available commands:\n========================================"
+            + "========================================\n");
 
         String[] terms = {"filter <attribute> <value>", "list", "clear", "find", "sort <order>", "save <index>",
             "remove <index>", "shortlist", "exit"};
