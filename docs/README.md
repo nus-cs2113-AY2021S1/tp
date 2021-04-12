@@ -5,14 +5,14 @@ A way to easily find and bookmark resale flats of your liking.
 
 ## Search for your preferred flats
 
-<img src="images/find_example.png" width="600" height="200"/>
+<img src="images/find_example.png" width="600" height="220"/>
 
 * Search for resale flats matching your preferred location, type and lease remaining.
 
 
 ## Bookmark your favorite resale flat
 
-<img src="images/shortlist_example.png" width="600" height="200"/>
+<img src="images/shortlist_example.png" width="600" height="180"/>
 
 * Shortlist resale flats for future references so you will not forget them.
 

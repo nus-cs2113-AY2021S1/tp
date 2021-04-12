@@ -73,7 +73,7 @@ public class TextUi {
             + "The app is meant to recognise commands in `small caps`. Ensure caps lock is disabled.\n"
             + "Available commands:\n===============================================\n");
 
-        String[] terms = {"filter <attribute> <value>", "list", "clear", "find", "sort <direction>", "save <index>",
+        String[] terms = {"filter <attribute> <value>", "list", "clear", "find", "sort <order>", "save <index>",
             "remove <index>", "shortlist", "exit"};
 
         for (String term : terms) {
