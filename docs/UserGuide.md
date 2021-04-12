@@ -85,6 +85,7 @@ Only indexes shown in search results are valid.
 Example:
 * `save 1` to save the first unit in search result.
 
+<div style="page-break-after: always;"></div>
 
 ### Remove from shortlist: `remove`
 

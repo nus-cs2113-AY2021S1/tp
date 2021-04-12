@@ -313,6 +313,22 @@ Easily find and bookmark resale flats available matching user's preference.
    3. Incorrect inputs to try: `find x` (where x can be input string) <br>
       Expected: This is an invalid command. Please try the following: `find` command does not need any parameters.
 
+### Sorting results by price
+
+   1. Test case: `sort asc` to display unit(s) in ascending order of price <br>
+      Expected: Units from search results are sorted from lowest to highest price.
+
+   2. Test case: `sort desc` to display unit(s) in descending order of price <br>
+      Expected: Units from search results are sorted from highest to lowest price.
+
+   3. Incorrect inputs to try: `sort` <br>
+      Expected: Message stating that this is an invalid command, followed by a positive example.
+      
+   4. Incorrect inputs to try: `sort asc` or `sort desc` without executing `find` successfully <br>
+      Expected: Message to inform user to perform unit search first.
+      
+<div style="page-break-after: always;"></div>
+
 ### Shortlisting units from search results
 
 7. Saving a unit from search result to shortlist, requires at least 1 `find` to be executed prior.
@@ -344,22 +360,6 @@ Easily find and bookmark resale flats available matching user's preference.
    
    2. Incorrect inputs to try: `shortlist x` (where x is any string input) <br>
       Expected: Message stating usage of invalid command. `shortlist` command does not need any parameters.
-      
-<div style="page-break-after: always;"></div>
-
-### Sorting results by price
-
-   1. Test case: `sort asc` to display unit(s) in ascending order of price <br>
-      Expected: Units from search results are sorted from lowest to highest price.
-
-   2. Test case: `sort desc` to display unit(s) in descending order of price <br>
-      Expected: Units from search results are sorted from highest to lowest price.
-
-   3. Incorrect inputs to try: `sort` <br>
-      Expected: Message stating that this is an invalid command, followed by a positive example.
-      
-   4. Incorrect inputs to try: `sort asc` or `sort desc` without executing `find` successfully <br>
-      Expected: Message to inform user to perform unit search first.
 
 <div style="page-break-after: always;"></div>
 
