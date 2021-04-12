@@ -108,6 +108,7 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
     <img src="../images/how_to_use.png"/>
     
     * Added 'Features' section to give detailed information on each command.
+    * Edit and test latest version of app against UG.
     
 <div style="page-break-after: always;"></div>
 
@@ -154,41 +155,41 @@ HdBuy allow users to easily find and bookmark resale flats available matching th
   * Developer Guide:
     * [Drew RemoveCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/RemoveCommand.puml)
         
-        <img src="../diagrams/RemoveCommand.png" width="600" height="400"/>
+        <img src="../diagrams/RemoveCommand.png" width="600" height="350"/>
     
     * [Drew SaveCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/SaveCommand.puml)
         
-        <img src="../diagrams/SaveCommand.png" width="600" height="400"/>
+        <img src="../diagrams/SaveCommand.png" width="600" height="350"/>
         
 <div style="page-break-after: always;"></div>
 
   * Developer Guide:
     * [Drew ClearCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ClearCommand.puml)
         
-        <img src="../diagrams/ClearCommand.png" width="600" height="300"/>
+        <img src="../diagrams/ClearCommand.png" width="400" height="200"/>
     
     * [Drew ShortlistCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ShortlistCommand.puml)
         
-        <img src="../diagrams/ShortlistCommand.png" width="600" height="400"/>
+        <img src="../diagrams/ShortlistCommand.png" width="400" height="250"/>
         
 <div style="page-break-after: always;"></div>
 
   * Developer Guide:
     * [Drew CloseCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/CloseCommand.puml)
         
-        <img src="../diagrams/CloseCommand.png" width="600" height="300"/>
+        <img src="../diagrams/CloseCommand.png" width="400" height="200"/>
     
     * [Drew HelpCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/HelpCommand.puml)
         
-        <img src="../diagrams/HelpCommand.png" width="600" height="300"/>
+        <img src="../diagrams/HelpCommand.png" width="350" height="200"/>
         
 <div style="page-break-after: always;"></div>
 
   * Developer Guide:
     * [Drew ListCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/ListCommand.puml)
         
-        <img src="../diagrams/ListCommand.png" width="600" height="300"/>
+        <img src="../diagrams/ListCommand.png" width="400" height="180"/>
     
     * [Drew SortCommand sequence diagram](https://github.com/AY2021S2-CS2113-F10-1/tp/blame/master/docs/diagrams/SortCommand.puml)
         
-        <img src="../diagrams/SortCommand.png" width="600" height="400"/>
+        <img src="../diagrams/SortCommand.png" width="600" height="420"/>
