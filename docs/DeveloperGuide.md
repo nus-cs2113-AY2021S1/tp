@@ -256,15 +256,15 @@ Easily find and bookmark resale flats available matching user's preference.
 
    1. Download the jar file and copy into an empty folder.<br>
 
-   2. Execute the jar file (`java --jar <filename>.jar`).<br>
+   2. Execute the jar file (`java --jar <filename>.jar`) <br>
       Expected: Greeting message "Welcome to HDBuy! How may I help you today?".
 
 2. Shutdown and relaunch
 
-   1. Test case: `exit`<br>
+   1. Test case: `exit` <br>
       Expected: Terminating message "HDBuy Bye Bye!"
 
-   2. Re-launch the app by executing the jar file.<br>
+   2. Re-launch the app by executing the jar file <br>
       Expected: Greeting message. If there is a shortlist, text file `shortlist.txt` will be seen in folder.
        
 <div style="page-break-after: always;"></div>
@@ -273,29 +273,29 @@ Easily find and bookmark resale flats available matching user's preference.
 
 3. Setting filter condition(s) before searching for units (type of conditions: location, type, lease_remaining)
 
-   1. Test case: `filter location jurong`<br>
+   1. Test case: `filter location jurong` <br>
       Expected: Filter condition is temporarily saved. Message: "Filter conditions:{location=jurong}"
 
-   2. Test case: `filter type 4 room`<br>
+   2. Test case: `filter type 4 room` <br>
       Expected: Another condition will be saved. Message: "Filter conditions:{type=4 room, location=jurong}"
 
-   3. Incorrect inputs to try: `filter`, `filter 0`, `filter location` (filter condition missing type and parameter)<br>
+   3. Incorrect inputs to try: `filter`, `filter 0`, `filter location` (filter condition missing type and parameter) <br>
       Expected: Help message to guide user to fill in with correct inputs. Invalid input is not saved.
 
 4. List all filter condition(s)
 
-   1. Test case: `list`<br>
+   1. Test case: `list` <br>
       Expected: Shows all filter condition(s). Similar to test 3. If no conditions set previously, shows message: "Currently there are no filter conditions set."
 
-   2. Incorrect inputs to try: `list x` (where x can be input string)<br>
+   2. Incorrect inputs to try: `list x` (where x can be input string) <br>
       Expected: A message that mentions that command is invalid and `list` command does not need any parameters.
       
 5. Clear all filter condition(s)
 
-   1. Test case: `clear`<br>
+   1. Test case: `clear` <br>
       Expected: Clear all conditions. Shows message: "Cleared filter conditions."
 
-   2. Incorrect inputs to try: `clear x` (where x can be input string)<br>
+   2. Incorrect inputs to try: `clear x` (where x can be input string) <br>
       Expected: A message that mentions that command is invalid and `clear` command does not need any parameters.
       
 <div style="page-break-after: always;"></div>
@@ -304,61 +304,61 @@ Easily find and bookmark resale flats available matching user's preference.
 
 6. Searching for units with and without filter conditions set.
 
-   1. Test case: `find` with at least one filter condition set using `filter`<br>
+   1. Test case: `find` with at least one filter condition set using `filter` <br>
       Expected: Up to 100 units matching filter condition(s) will be shown.
 
    2. Test case: `find` without any filter conditions set <br>
       Expected: Message stating `find` has no parameters currently.", followed by assistance message.
 
-   3. Incorrect inputs to try: `find x` (where x can be input string)<br>
+   3. Incorrect inputs to try: `find x` (where x can be input string) <br>
       Expected: This is an invalid command. Please try the following: `find` command does not need any parameters.
 
 ### Shortlisting units from search results
 
 7. Saving a unit from search result to shortlist, requires at least 1 `find` to be executed prior.
 
-   1. Test case: After `find`, input `save 1` to save first unit from result to shortlist.
+   1. Test case: After `find`, input `save 1` to save first unit from result to shortlist <br>
       Expected: Message stating the unit being saved to shortlist. Also displays the units' properties.
    
-   2. Incorrect inputs to try: `save`<br>
+   2. Incorrect inputs to try: `save` <br>
       Expected: Message stating usage of invalid command, followed by a positive example.
       
-   3. Incorrect inputs to try: `save x` (where x is not any of the indexes shown in search results)<br>
+   3. Incorrect inputs to try: `save x` (where x is not any of the indexes shown in search results) <br>
       Expected: Message stating x is out of range. Unit is not saved.
 
 8. Removing a unit from shortlist, requires user to have at least 1 unit in shortlist
 
-   1. Test case: `remove 1` to remove the first unit in shortlist.
+   1. Test case: `remove 1` to remove the first unit in shortlist <br>
       Expected: Message stating the unit being removed from shortlist. Also displays the units' properties.
    
-   2. Incorrect inputs to try: `remove`<br>
+   2. Incorrect inputs to try: `remove` <br>
       Expected: Message stating usage of invalid command, followed by a positive example.
       
-   3. Incorrect inputs to try: `remove x` (where x is not any of the indexes shown in shortlist)<br>
+   3. Incorrect inputs to try: `remove x` (where x is not any of the indexes shown in shortlist) <br>
       Expected: Message stating x is out of range. Unit is not removed.
 
 9. Retrieving shortlist
 
-   1. Test case: `shortlist` to display unit(s) in shortlist.
+   1. Test case: `shortlist` to display unit(s) in shortlist <br>
       Expected: Display units in shortlist. If shortlist is empty, message "There are no flats to be shown." is shown.
    
-   2. Incorrect inputs to try: `shortlist x` (where x is any string input)<br>
+   2. Incorrect inputs to try: `shortlist x` (where x is any string input) <br>
       Expected: Message stating usage of invalid command. `shortlist` command does not need any parameters.
       
 <div style="page-break-after: always;"></div>
 
 ### Sorting results by price
 
-   1. Test case: `sort asc` to display unit(s) in ascending order of price.
+   1. Test case: `sort asc` to display unit(s) in ascending order of price <br>
       Expected: Units from search results are sorted from lowest to highest price.
 
-   2. Test case: `sort desc` to display unit(s) in descending order of price.
+   2. Test case: `sort desc` to display unit(s) in descending order of price <br>
       Expected: Units from search results are sorted from highest to lowest price.
 
-   3. Incorrect inputs to try: `sort`.
+   3. Incorrect inputs to try: `sort` <br>
       Expected: Message stating that this is an invalid command, followed by a positive example.
       
-   4. Incorrect inputs to try: `sort asc` or `sort desc` without executing `find` successfully.
+   4. Incorrect inputs to try: `sort asc` or `sort desc` without executing `find` successfully <br>
       Expected: Message to inform user to perform unit search first.
 
 <div style="page-break-after: always;"></div>
