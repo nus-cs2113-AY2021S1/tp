@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
+[-> ":TextUi": showHelp()
+activate ":TextUi"
+loop text in term array
+    ":TextUi" -> ":TermDefinition": getExample(term)
+    activate ":TermDefinition"
+    ":TextUi" <- ":TermDefinition": definition
+    deactivate ":TermDefinition"
+end
+[<- ":TextUi"
+deactivate ":TextUi"
+@enduml

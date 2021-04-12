@@ -1,1 +1,18 @@
-James Gosling
+
+shortlist
+clear
+find
+sort asc
+sort desc
+filter location jurong
+list
+clear
+filter location ang mo kio
+filter type 3 room
+list
+filter type 4 room
+filter lease_remaining 90
+list
+clear
+list
+exit

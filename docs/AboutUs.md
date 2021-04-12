@@ -1,9 +1,8 @@
 # About us
 
-Display | Name | Github Profile | Portfolio 
---------|:----:|:--------------:|:---------:
-![](https://via.placeholder.com/100.png?text=Photo) | John Doe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Don Joe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Ron John | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | John Roe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Don Roe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
+Name | Github Profile | Portfolio 
+----:|:--------------:|:---------:
+Chuah Jin Wei | [Github](https://github.com/heyjinwei/) | [Portfolio](team/heyjinwei.md)
+Wong Jun Hong | [Github](https://github.com/jadenwjh) | [Portfolio](team/jadenwjh.md)
+Tan Pang How | [Github](https://github.com/CabbageTime) | [Portfolio](team/cabbagetime.md)
+Angel Han | [Github](https://github.com/warmwhalefy) | [Portfolio](team/warmwhalefy.md)

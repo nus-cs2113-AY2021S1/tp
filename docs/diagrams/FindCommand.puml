@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
+activate ":HdBuy"
+        ":HdBuy" -> ":FindCommand": execute()
+        activate ":FindCommand"
+        opt user inputs not empty
+            ":FindCommand" -> ":TextUi": showParameters(inputs)
+            activate ":TextUi"
+            ":FindCommand" <-- ":TextUi"
+            deactivate ":TextUi"
+            ":FindCommand" -> ":SearchedUnits": clear":SearchedUnits"()
+            activate ":SearchedUnits"
+            ":FindCommand" <-- ":SearchedUnits"
+            deactivate ":SearchedUnits"
+            ":FindCommand" -> ":ApiRepository": fetchedUnits(inputs)
+            activate ":ApiRepository"
+            ":FindCommand" <-- ":ApiRepository"
+            deactivate ":ApiRepository"
+            ":FindCommand" -> ":SearchedUnits": get":SearchedUnits"()
+            activate ":SearchedUnits"
+            ":FindCommand" <-- ":SearchedUnits": units
+            deactivate ":SearchedUnits"
+            ":FindCommand" -> ":TextUi": showUnits(units)
+            activate ":TextUi"
+            ":FindCommand" <-- ":TextUi"
+            deactivate ":TextUi"
+            ":FindCommand" -> ":UserInput": clear user inputs
+            activate ":UserInput"
+            ":FindCommand" <-- ":UserInput"
+            deactivate ":UserInput"
+
+        end
+        ":HdBuy" <-- ":FindCommand"
+        destroy ":FindCommand"
+@enduml

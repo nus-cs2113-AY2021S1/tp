@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+mainframe sd execute command
+activate ":HdBuy"
+":HdBuy" -> ":ClearCommand": execute()
+        activate ":ClearCommand"
+        ":ClearCommand" -> ":UserInput": clearInputs()
+        activate ":UserInput"
+        ":ClearCommand" <-- ":UserInput"
+        deactivate ":UserInput"
+        ":ClearCommand" -> ":TextUi": showClearedFilterConditions()
+        activate ":TextUi"
+        ":ClearCommand" <-- ":TextUi"
+        deactivate ":TextUi"
+        ":HdBuy" <-- ":ClearCommand"
+        destroy ":ClearCommand"
+
+@enduml
