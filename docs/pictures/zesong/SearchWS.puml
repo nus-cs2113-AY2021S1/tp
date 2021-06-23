@@ -1,0 +1,29 @@
+@startuml
+!include ../../umldiagram/style.puml
+actor user
+activate WorkoutManager
+user -> WorkoutManager
+
+WorkoutManager -> CommandLib : get()
+activate CommandLib
+CommandLib --> WorkoutManager : Command
+deactivate CommandLib
+
+WorkoutManager -> Command : execute()
+activate Command
+
+Command -> PastRecordList : search()
+activate PastRecordList
+PastRecordList -> WorkoutManagerParser : parse()
+activate WorkoutManagerParser
+WorkoutManagerParser --> PastRecordList : list of predicates
+deactivate WorkoutManagerParser
+PastRecordList --> Command: filtered formatted list
+deactivate PastRecordList
+
+Command --> WorkoutManager : CommandResult
+deactivate Command
+
+WorkoutManager -->  user : output
+
+@enduml

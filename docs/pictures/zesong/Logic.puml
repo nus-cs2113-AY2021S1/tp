@@ -1,0 +1,20 @@
+@startuml
+!include ../../umldiagram/style.puml
+
+rectangle "Parser"{
+rectangle "XYZCommandParser"
+}
+
+rectangle "CommandLib"
+
+rectangle "Commands"{
+rectangle "Command"
+rectangle "XYZCommand"
+}
+rectangle "CommandResult"
+
+XYZCommandParser ..> CommandLib
+CommandLib ..> XYZCommand: executes
+XYZCommand -left-|> Command
+XYZCommand .right.> CommandResult: creates
+@enduml

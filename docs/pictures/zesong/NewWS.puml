@@ -1,0 +1,38 @@
+@startuml
+!include ../../umldiagram/style.puml
+actor user
+activate WorkoutManager
+user -> WorkoutManager
+WorkoutManager -> WorkoutManagerParser : parse()
+activate WorkoutManagerParser
+WorkoutManagerParser --> WorkoutManager : parsed input
+deactivate WorkoutManagerParser
+
+WorkoutManager -> Command : execute()
+activate Command
+
+Command -> PastRecordList : add()
+activate PastRecordList
+
+PastRecordList -> WorkoutManagerStorage : add()
+activate WorkoutManagerStorage
+WorkoutManagerStorage --> PastRecordList : filePath
+deactivate WorkoutManagerStorage
+
+PastRecordList --> Command : filePath
+deactivate PastRecordList
+
+Command -> WorkoutSession ** : filePath
+activate WorkoutSession
+    WorkoutSession --> Command -- : newWorkoutSession
+Command -> WorkoutSession : start()
+activate WorkoutSession
+WorkoutSession --> Command
+deactivate WorkoutSession
+
+Command --> WorkoutManager : CommandResult
+deactivate Command
+
+WorkoutManager -->  user : output
+
+@enduml

@@ -1,0 +1,47 @@
+@startuml
+!define PLANTUML_HOME %dirpath()/../../umldiagram
+!include ../../umldiagram/style.puml
+
+actor user
+user -> DietManager : "search"
+activate DietManager
+DietManager -> DietManagerParser : parse(userInput)
+activate DietManagerParser
+DietManagerParser --> DietManager : commParts[]
+deactivate DietManagerParser
+DietManager -> CommandLib : getCommand(commParts[0])
+activate CommandLib
+CommandLib --> DietManager : command
+deactivate CommandLib
+
+DietManager -> DietSessionSearch : execute()
+activate DietSessionSearch
+alt startDate.compareTo(endDate) > 0
+DietSessionSearch --> DietManager : commandResult
+else else
+    DietSessionSearch -> DietSessionSearch : checkEmptyTag(searchResult, tag)
+    activate DietSessionSearch
+    DietSessionSearch --> DietSessionSearch
+    deactivate DietSessionSearch
+    DietSessionSearch -> DietSessionSearch : checkEmptyFolder(listOfFiles, searchResult)
+    activate DietSessionSearch
+    DietSessionSearch --> DietSessionSearch
+    deactivate DietSessionSearch
+    DietSessionSearch -> DietSessionSearch : addToSearchResult()
+    activate DietSessionSearch
+    DietSessionSearch -> DietSessionSearch : addRow()
+    activate DietSessionSearch
+    DietSessionSearch --> DietSessionSearch
+    deactivate DietSessionSearch
+    DietSessionSearch --> DietSessionSearch
+    deactivate DietSessionSearch
+end
+
+DietSessionSearch --> DietManager : commandResult
+deactivate DietSessionSearch
+DietManager -> DietManagerUi : showToUser(message)
+destroy DietSessionSearch
+activate DietManagerUi
+DietManagerUi --> user : output
+deactivate DietManagerUi
+@enduml

@@ -12,6 +12,8 @@ repositories {
 dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'org.apache.commons:commons-lang3:3.5'
 }
 
 test {
@@ -33,7 +35,7 @@ application {
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "[CS2113T-F11-1][TheSchwarzenegger]"
     archiveClassifier = null
 }
 
@@ -41,6 +43,15 @@ checkstyle {
     toolVersion = '8.23'
 }
 
-run{
+run {
     standardInput = System.in
+    enableAssertions = true
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'seedu.duke.Duke'
+        )
+    }
 }

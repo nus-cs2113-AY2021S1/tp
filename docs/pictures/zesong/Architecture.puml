@@ -1,0 +1,28 @@
+@startuml
+!include ../../umldiagram/style.puml
+
+rectangle "User" {
+}
+
+rectangle  "body" {
+rectangle "Ui"
+rectangle "CommandLibrary"
+rectangle "Model"
+rectangle "DietManager"
+rectangle "ProfileManager"
+rectangle "WorkoutManager"
+}
+
+Ui --> CommandLibrary
+CommandLibrary -down-> ProfileManager
+CommandLibrary -down-> DietManager
+CommandLibrary -down-> WorkoutManager
+
+rectangle "Storage" {
+}
+rectangle "Duke" {
+}
+User -down-> Ui
+Duke -> Storage
+Duke -down->  body
+@enduml

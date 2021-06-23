@@ -1,0 +1,15 @@
+@startuml
+!define PLANTUML_HOME %dirpath()/../../umldiagram
+!include ../../umldiagram/style.puml
+
+mainframe <b>sd</b> parse user input in ProfileSession
+    actor user
+    activate ProfileSession
+    ProfileSession -> CommandResult ++ : getFeedbackMessage(result)
+    CommandResult --> ProfileSession -- : message
+    ProfileSession -> CommonUi ++ : showToUser(message)
+    destroy CommandResult
+    CommonUi --> user
+    deactivate CommonUi
+
+@enduml

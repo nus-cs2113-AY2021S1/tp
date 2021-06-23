@@ -1,0 +1,29 @@
+@startuml
+!include ../../umldiagram/style.puml
+actor user
+user -> WorkoutManager : input
+activate WorkoutManager
+
+WorkoutManager -> CommandLib : get()
+activate CommandLib
+CommandLib --> WorkoutManager : Command
+deactivate CommandLib
+
+WorkoutManager -> DeleteCommand : execute()
+activate DeleteCommand
+
+DeleteCommand -> PastRecordList : delete()
+activate PastRecordList
+PastRecordList -> workoutManagerStorage: writeToStorage()
+activate workoutManagerStorage
+workoutManagerStorage --> PastRecordList
+deactivate workoutManagerStorage
+PastRecordList --> DeleteCommand
+deactivate PastRecordList
+
+DeleteCommand --> WorkoutManager : CommandResult
+deactivate DeleteCommand
+
+WorkoutManager -->  user : output
+
+@enduml

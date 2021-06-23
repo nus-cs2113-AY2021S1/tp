@@ -1,0 +1,35 @@
+@startuml
+!define PLANTUML_HOME %dirpath()/../../umldiagram
+!include ../../umldiagram/style.puml
+
+actor user
+activate ProfileSession
+user -> CommonUi++ : Add Profile Command
+CommonUi --> ProfileSession -- : input
+
+ref over ProfileSession, ProfileParser, CommandLib: parse user input in ProfileSession
+
+ProfileSession -> Command ++ : execute()
+Command -> ProfileStorage ++ : loadData()
+ProfileStorage --> Command -- : profile
+
+alt hasExistingProfile
+    Command --> ProfileSession : result
+else else
+    Command -> ProfileParser ++ : extractCommandTagAndInfo(parsedInput)
+    ProfileParser --> Command -- : parsedInfo
+    Command -> Profile ** : parsedInfo
+    activate Profile
+    Profile --> Command -- : newProfile
+    Command -> ProfileStorage ++ : saveData(newProfile)
+    destroy Profile
+    ProfileStorage --> Command --
+    Command --> ProfileSession -- : result
+end
+
+deactivate Command
+destroy Command
+
+ref over user, ProfileSession, CommonUi: show message to user in ProfileSession
+
+@enduml

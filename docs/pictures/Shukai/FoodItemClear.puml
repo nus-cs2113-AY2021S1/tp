@@ -1,0 +1,38 @@
+@startuml
+!define PLANTUML_HOME %dirpath()/../../umldiagram
+!include ../../umldiagram/style.puml
+actor user
+activate DietSession
+user -> Ui++ : Clear FoodItem Command
+Ui --> DietSession -- : input
+
+ref over DietSession, DietSessionParser, CommandLib: parse user input in Diet Session Menu
+
+DietSession -> Command ++ : execute()
+Command -> Ui ++ : checkConfirmation()
+Ui --> Command --
+    alt isConfirmed
+        Command -> DietSession: foodList.clear()
+        DietSession --> Command
+        Command --> DietSession : result
+        deactivate Command
+
+        DietSession -> CommandResult ++ : getFeedbackMessage(result)
+        destroy Command
+        CommandResult --> DietSession -- : message
+        DietSession -> Ui ++ : showToUser(message)
+        Ui --> user
+        deactivate Ui
+
+    else else
+        DietSession -> CommandResult ++ : getFeedbackMessage(result)
+        CommandResult --> DietSession -- : message
+        DietSession -> Ui ++ : showToUser(message)
+
+Ui --> user
+deactivate Ui
+    end
+destroy CommandResult
+
+
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+!include ../../umldiagram/style.puml
+actor user
+user -> WorkoutManager : input
+activate WorkoutManager
+
+WorkoutManager -> CommandLib : get()
+activate CommandLib
+CommandLib --> WorkoutManager : Command
+deactivate CommandLib
+
+WorkoutManager -> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> PastRecordList : edit()
+activate PastRecordList
+PastRecordList --> EditCommand : filePath
+deactivate PastRecordList
+
+EditCommand --> workoutSession ** : filePath
+activate workoutSession
+workoutSession --> EditCommand: loaded workoutSession
+deactivate workoutSession
+
+EditCommand -> workoutSession : start()
+activate workoutSession
+workoutSession --> EditCommand
+deactivate workoutSession
+
+
+EditCommand --> WorkoutManager : CommandResult
+deactivate EditCommand
+
+WorkoutManager -->  user : output
+
+@enduml

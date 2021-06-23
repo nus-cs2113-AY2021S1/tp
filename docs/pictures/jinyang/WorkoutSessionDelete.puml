@@ -1,0 +1,29 @@
+@startuml
+!define PLANTUML_HOME %dirpath()/../../umldiagram
+!include PLANTUML_HOME/style.puml
+
+actor user
+user -> CommonUi++ : Delete
+CommonUi --> WorkoutSession -- : input
+
+activate WorkoutSession
+
+ref over WorkoutSession, WorkoutSessionParser, CommandLib: parse user input in WorkoutSession
+
+
+
+WorkoutSession -> WorkoutSessionDelete : execute()
+activate WorkoutSessionDelete
+
+WorkoutSessionDelete-> WorkoutSession : exerciseList.remove()
+WorkoutSession --> WorkoutSessionDelete
+WorkoutSessionDelete -> WorkoutSessionStorage : writeToStorage()
+activate WorkoutSessionStorage
+WorkoutSessionStorage --> WorkoutSessionDelete
+deactivate WorkoutSessionStorage
+
+WorkoutSessionDelete --> WorkoutSession : result
+deactivate WorkoutSessionDelete
+
+ref over WorkoutSession, CommonUi, user: show message to user in WorkoutSession
+@enduml

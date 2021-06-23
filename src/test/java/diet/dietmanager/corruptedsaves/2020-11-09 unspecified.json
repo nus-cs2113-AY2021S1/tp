@@ -1,0 +1,16 @@
+{
+  "foodList": [],
+  "dateInput": "09-11-2020",
+  "typeInput": "unspecified",
+  "date": {
+    "year": 2020
+    "month": 11
+    "day": 9
+  },
+  "isNew": true,
+  "index": -1,
+  "dietSessionUi": {},
+  "storage": {},
+  "parser": {},
+  "endDietSession": false
+}

@@ -1,0 +1,32 @@
+@startuml
+!include ../../umldiagram/style.puml
+
+actor user
+activate Duke
+user -> CommonUi : Command
+CommonUi --> Duke -- : input
+
+Duke -> CommonParser ++ : parseCommand(input)
+CommonParser --> Duke -- : parsedInput
+
+Duke -> CommandLib ++ : getCommand(parsedInput)
+CommandLib --> Duke -- : command
+
+alt command is "profile"
+    Duke -> ProfileSession **
+    activate ProfileSession
+    ProfileSession --> Duke --
+    |||
+else command is "diet"
+    Duke -> DietManager **
+    activate DietManager
+    DietManager --> Duke --
+    |||
+else command is "workout"
+    Duke -> WorkoutManager **
+    activate WorkoutManager
+    WorkoutManager --> Duke --
+    |||
+end
+
+@enduml

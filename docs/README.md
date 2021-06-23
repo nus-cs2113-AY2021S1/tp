@@ -1,8 +1,10 @@
-# Duke
+# The Schwarzenegger
 
-{Give product intro here}
+The Schwarzenegger is a desktop command line interface-based app for managing all your needs regarding fitness. With the built-in personal assistant, you are able to track your daily workout and diet sessions based on your profile. If you can type fast, The Schwarzenegger can help you maximise your efficiency for maintaining fitness.
 
-Useful links:
-* [User Guide](UserGuide.md)
-* [Developer Guide](DeveloperGuide.md)
-* [About Us](AboutUs.md)
+Site Map:
+
+* [User Guide](userguide.md)
+* [Developer Guide](developerguide.md)
+* [About Us](team/aboutus.md)
+

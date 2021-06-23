@@ -1,0 +1,32 @@
+@startuml
+!define PLANTUML_HOME %dirpath()/../../umldiagram
+!include PLANTUML_HOME/style.puml
+
+actor user
+activate ProfileSession
+user -> CommonUi++ : View Profile Command
+CommonUi --> ProfileSession -- : input
+
+ref over ProfileSession, ProfileParser, CommandLib: parse user input in ProfileSession
+
+ProfileSession -> Command ++ : execute()
+Command -> ProfileStorage ++ : loadData()
+ProfileStorage --> Command -- : profile
+
+alt hasExistingProfile
+    Command -> DietManager**
+    activate DietManager
+    DietManager --> Command --
+    Command -> DietManager ++ : getTodayTotalCalories()
+    DietManager --> Command -- : calories
+    Command --> ProfileSession : result
+    destroy DietManager
+else else
+    Command --> ProfileSession --: result
+end
+
+deactivate Command
+destroy Command
+
+ref over user, ProfileSession, CommonUi: show message to user in ProfileSession
+@enduml

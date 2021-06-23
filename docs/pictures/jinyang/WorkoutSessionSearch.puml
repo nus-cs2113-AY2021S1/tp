@@ -1,0 +1,51 @@
+@startuml
+!define PLANTUML_HOME %dirpath()/../../umldiagram
+!include PLANTUML_HOME/style.puml
+
+actor user
+user -> CommonUi++ : Search
+CommonUi --> WorkoutSession -- : input
+
+activate WorkoutSession
+
+ref over WorkoutSession, WorkoutSessionParser, CommandLib: parse user input in WorkoutSession
+
+WorkoutSession -> WorkoutSessionSearch : execute()
+activate WorkoutSessionSearch
+
+alt searchTerm.length() > 0
+    WorkoutSessionSearch -> WorkoutSessionSearch : formatList()
+    activate WorkoutSessionSearch
+    WorkoutSessionSearch --> WorkoutSessionSearch : formattedString
+    deactivate WorkoutSessionSearch
+    alt SearchResult is not Empty
+        WorkoutSessionSearch -> CommandResult ++ : searchResult
+        CommandResult --> WorkoutSession -- : result
+
+    else else
+        participant WorkoutSessionUi << Class >>
+        WorkoutSessionSearch -> WorkoutSessionUi : searchResultsEmpty()
+        activate WorkoutSessionUi
+        WorkoutSessionUi --> WorkoutSessionSearch : SEARCH_RESULTS_EMPTY
+        deactivate WorkoutSessionUi
+        WorkoutSessionSearch -> CommandResult ++ : SEARCH_RESULTS_EMPTY
+        CommandResult --> WorkoutSession -- : result
+    end
+else else
+    participant WorkoutSessionUi << Class >>
+    WorkoutSessionSearch -> WorkoutSessionUi : searchInputError()
+    activate WorkoutSessionUi
+    WorkoutSessionUi --> WorkoutSessionSearch : SEARCH_INPUT_ERROR
+    deactivate WorkoutSessionUi
+    WorkoutSessionSearch -> CommandResult ++ : SEARCH_INPUT_ERROR
+    CommandResult --> WorkoutSession -- : result
+end
+
+
+deactivate WorkoutSessionSearch
+
+ref over WorkoutSession, CommonUi, user: show message to user in WorkoutSession
+
+
+
+@enduml

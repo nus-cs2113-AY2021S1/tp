@@ -1,0 +1,30 @@
+@startuml
+!define PLANTUML_HOME %dirpath()/../../umldiagram
+!include PLANTUML_HOME/style.puml
+
+actor user
+user -> CommonUi++ : Help
+CommonUi --> WorkoutSession -- : input
+
+activate WorkoutSession
+
+ref over WorkoutSession, WorkoutSessionParser, CommandLib: parse user input in WorkoutSession
+
+WorkoutSession -> CommandLib : get()
+activate CommandLib
+CommandLib --> WorkoutSession : Command
+deactivate CommandLib
+
+WorkoutSession -> WorkoutSessionHelp : execute()
+activate WorkoutSessionHelp
+participant WorkoutSessionUi << Class >>
+WorkoutSessionHelp -> WorkoutSessionUi : printHelp()
+activate WorkoutSessionUi
+WorkoutSessionUi --> WorkoutSessionHelp
+deactivate WorkoutSessionUi
+
+WorkoutSessionHelp --> WorkoutSession : result
+deactivate WorkoutSessionHelp
+
+ref over WorkoutSession, CommonUi, user: show message to user in WorkoutSession
+@enduml

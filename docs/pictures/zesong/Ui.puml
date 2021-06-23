@@ -1,0 +1,18 @@
+@startuml
+skinparam Shadowing false
+hide circle
+
+class CommonUi {
+  void showToUser()
+  void getCommand()
+  boolean checkConfirmation()
+  String helpFormatter(String, String, String)
+}
+
+CommonUi ^-- ClassWorkoutManagerUi
+CommonUi ^-- ClassDietManagerUi
+CommonUi ^-- ClassWorkoutSessionUi
+CommonUi ^-- ClassDietSessionUi
+CommonUi ^-- ClassProfileUi
+
+@enduml

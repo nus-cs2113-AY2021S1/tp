@@ -1,0 +1,39 @@
+@startuml
+!include ../../umldiagram/style.puml
+
+actor user
+activate ProfileSession
+user -> CommonUi++ : Edit Profile Command
+CommonUi --> ProfileSession -- : input
+
+ref over ProfileSession, ProfileParser, CommandLib: parse user input in ProfileSession
+
+ProfileSession -> Command ++ : execute()
+Command -> ProfileStorage ++ : loadData()
+ProfileStorage --> Command -- : profile
+
+alt hasExistingProfile
+    Command -> ProfileParser ++ : extractCommandTagAndInfo(parsedInput)
+    ProfileParser --> Command -- : parsedInfo
+    Command -> Profile ** : parsedInfo
+    activate Profile
+    Profile --> Command -- : newProfile
+    Command -> Profile ++ : equals()
+    Profile --> Command -- : isEqual
+
+    alt isEqual
+        Command -> ProfileStorage ++ : saveData(newProfile)
+        ProfileStorage --> Command --
+        Command --> ProfileSession : result
+    else else
+        Command --> ProfileSession : result
+    end
+    destroy Profile
+else else
+    Command --> ProfileSession -- : result
+end
+destroy Command
+
+ref over user, ProfileSession, CommonUi: show message to user in ProfileSession
+
+@enduml

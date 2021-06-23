@@ -1,0 +1,15 @@
+{
+  "foodList": [],
+  "dateInput": "2020-05-04",
+  "typeInput": "breakfast",
+  "date": {
+    "year": 2020,
+    "month": 5,
+    "day": 4
+  },
+  "index": 1,
+  "dietSessionUi": {},
+  "storage": {},
+  "parser": {},
+  "endDietSession": false
+}

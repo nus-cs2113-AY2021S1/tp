@@ -1,0 +1,36 @@
+@startuml
+!define PLANTUML_HOME %dirpath()/../../umldiagram
+!include ../../umldiagram/style.puml
+actor user
+user -> DietManager : input
+activate DietManager
+DietManager -> DietManagerParser : parse(userInput)
+activate DietManagerParser
+DietManagerParser --> DietManager : commParts[]
+deactivate DietManagerParser
+DietManager -> CommandLib : getCommand(commParts[0])
+activate CommandLib
+CommandLib --> DietManager : command
+deactivate CommandLib
+
+DietManager -> DietSessionEdit : execute()
+activate DietSessionEdit
+
+DietSessionEdit -> DietStorage : readDietSession()
+activate DietStorage
+DietStorage --> DietSessionEdit : dietSession
+deactivate DietStorage
+
+DietSessionEdit -> DietSession : start()
+activate DietSession
+DietSession --> DietSessionEdit
+deactivate DietSession
+DietSessionEdit --> DietManager : result
+destroy DietSession
+deactivate DietSessionEdit
+destroy DietSessionEdit
+DietManager -> DietManagerUi : showToUser(message)
+activate DietManagerUi
+DietManagerUi --> user : output
+deactivate DietManagerUi
+@enduml

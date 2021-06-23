@@ -1,0 +1,14 @@
+@startuml
+!define PLANTUML_HOME %dirpath()/../../umldiagram
+!include PLANTUML_HOME/style.puml
+
+mainframe <b>sd</b> parse user input in WorkoutSession
+
+activate WorkoutSession
+WorkoutSession -> WorkoutSessionParser ++ : workoutSessionParser(input)
+WorkoutSessionParser --> WorkoutSession -- : parsedInput
+
+WorkoutSession -> CommandLib ++ : getCommand(parsedInput)
+CommandLib --> WorkoutSession -- : command
+
+@enduml

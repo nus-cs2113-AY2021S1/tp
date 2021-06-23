@@ -1,0 +1,25 @@
+@startuml
+!include ../../umldiagram/style.puml
+rectangle  "PastRecordList" {
+}
+rectangle  "Past workout records" {
+rectangle "pastRecord"
+}
+
+rectangle  "Food" {
+rectangle "food"
+}
+
+rectangle  "Exercises" {
+rectangle "exercise"
+}
+
+rectangle  "ExerciseList" {
+}
+
+rectangle  "Profile" {
+rectangle "profile"
+}
+PastRecordList *--> pastRecord: contains
+ExerciseList *--> exercise: contains
+@enduml
