@@ -10,6 +10,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.jetbrains:annotations:19.0.0'
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
 }
@@ -29,7 +30,15 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "StudyIt"
+}
+
+jar {
+    manifest {
+        attributes (
+            'Main-Class': 'studyit.StudyIt'
+        )
+    }
 }
 
 shadowJar {
@@ -41,6 +50,7 @@ checkstyle {
     toolVersion = '8.23'
 }
 
-run{
+run {
     standardInput = System.in
+    enableAssertions = true
 }
