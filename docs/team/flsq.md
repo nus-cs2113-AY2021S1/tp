@@ -1,4 +1,4 @@
-# Lim Si Qiao Florence - Project Portfolio Page
+# Florence - Project Portfolio Page
 
 ## Overview of Project: Study It
 Study It is an interactive desktop app that helps manage your study related matters, optimized for use via a Command
