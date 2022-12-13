@@ -1,0 +1,43 @@
+@startuml
+actor User
+
+box Logic
+participant "NuSchedule" as NuSchedule
+participant "Parser" as Parser
+participant "EditCommand" as EditCommand
+end box
+
+box Model
+participant ":EventList" as EventList
+end box
+
+User -> NuSchedule: (edit index)
+activate NuSchedule
+
+NuSchedule -> Parser: (edit index)
+activate Parser
+
+create EditCommand
+Parser -> EditCommand:newEditInformation()
+activate EditCommand
+
+EditCommand --> Parser: String[] editInformation
+deactivate EditCommand
+
+Parser --> NuSchedule: parsed command
+deactivate Parser
+
+NuSchedule -> EditCommand: execute()
+activate EditCommand
+
+EditCommand -> EventList: editEvent()
+activate EventList
+
+EventList --> EditCommand: event
+deactivate EventList
+
+EditCommand --> NuSchedule
+deactivate EditCommand
+
+
+@enduml

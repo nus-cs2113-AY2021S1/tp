@@ -1,0 +1,34 @@
+@startuml
+
+@startuml
+Actor User
+
+User -> ui : "edit 1"
+activate ui
+ui -> logic : readCommand("edit 1")
+activate logic
+
+logic -> model :execute(1)
+activate model
+
+model -> logic
+deactivate model
+
+logic -> storage : 
+activate storage
+
+storage -> storage : Save to file
+activate storage
+storage --> storage
+deactivate storage
+
+storage --> logic
+deactivate storage
+
+logic --> ui
+deactivate logic
+
+ui--> user
+deactivate ui
+@enduml
+@enduml
